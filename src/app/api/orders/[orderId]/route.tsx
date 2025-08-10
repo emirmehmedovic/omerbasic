@@ -3,7 +3,7 @@ import { Resend } from 'resend';
 import { OrderStatusUpdateEmail } from '@/components/emails/OrderStatusUpdateEmail';
 import React from 'react';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { authOptions } from '@/lib/auth';
 import { db } from '@/lib/db';
 import { z } from 'zod';
 

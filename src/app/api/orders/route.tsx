@@ -7,7 +7,7 @@ import { Resend } from 'resend';
 import { OrderConfirmationEmail } from '@/components/emails/OrderConfirmationEmail';
 import { checkoutFormSchema } from '@/lib/validations/order';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { authOptions } from '@/lib/auth';
 
 // Inicijaliziramo Resend samo ako je API ključ dostupan
 let resend: Resend | null = null;

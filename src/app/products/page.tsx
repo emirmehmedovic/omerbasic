@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import { db } from '@/lib/db';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
+import { authOptions } from '@/lib/auth';
 import ClientTecDocFilters from '@/components/ClientTecDocFilters';
 import { ProductCard } from '@/components/ProductCard';
 import { type Product, type Category } from '@/generated/prisma/client';
