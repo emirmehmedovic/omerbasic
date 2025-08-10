@@ -5,12 +5,6 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { db } from "@/lib/db";
 import CategoryAttributeManager from "@/components/admin/CategoryAttributeManager";
 
-interface CategoryAttributesPageProps {
-  params: {
-    categoryId: string;
-  };
-}
-
 export const metadata: Metadata = {
   title: "Atributi kategorije | Admin panel",
   description: "Upravljanje atributima kategorije",
@@ -18,7 +12,9 @@ export const metadata: Metadata = {
 
 export default async function CategoryAttributesPage({
   params,
-}: CategoryAttributesPageProps) {
+}: {
+  params: Promise<{ categoryId: string }>;
+}) {
   const session = await getServerSession(authOptions);
 
   // Provjera autorizacije
@@ -26,8 +22,8 @@ export default async function CategoryAttributesPage({
     return notFound();
   }
 
-  // Dohvaćamo categoryId iz params objekta
-  const categoryId = params.categoryId;
+  // Dohvaćamo categoryId iz params objekta (Next.js 15 async params)
+  const { categoryId } = await params;
 
   // Dohvat kategorije
   const category = await db.category.findUnique({
