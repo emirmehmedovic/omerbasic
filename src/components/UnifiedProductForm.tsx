@@ -6,6 +6,7 @@ import { useForm, Controller } from 'react-hook-form';
 import * as z from 'zod';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { CategoryAttribute } from '@/lib/types/category-attributes';
 import { Category } from '@/generated/prisma/client';
 
 // Extended Product type to include the fields we need for the form
@@ -36,13 +37,32 @@ type ExtendedProduct = {
   height?: number | null;
   length?: number | null;
   unitOfMeasure?: string;
+  generationIds?: string[];
+  // Relacije
+  vehicleFitments?: Array<{
+    id: string;
+    generationId: string;
+    generation: {
+      id: string;
+      name: string;
+      period?: string | null;
+      model: {
+        id: string;
+        name: string;
+        brand: {
+          id: string;
+          name: string;
+        };
+      };
+    };
+  }>;
 };
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import VehicleSelector from './vehicle-selector';
+import MultiVehicleSelector from './multi-vehicle-selector';
 import { ImageUpload } from './ImageUpload';
 import { productFormSchema, productApiSchema } from '@/lib/validations/product';
 
@@ -57,6 +77,8 @@ export const UnifiedProductForm = ({ initialData, categories }: UnifiedProductFo
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [showVehicleSelector, setShowVehicleSelector] = useState(false);
+  const [categoryAttributes, setCategoryAttributes] = useState<CategoryAttribute[]>([]);
+  const [loadingAttributes, setLoadingAttributes] = useState(false);
 
   const form = useForm<ProductFormValues>({
     resolver: zodResolver(productFormSchema),
@@ -80,6 +102,7 @@ export const UnifiedProductForm = ({ initialData, categories }: UnifiedProductFo
           unitOfMeasure: initialData.unitOfMeasure ?? '',
           stock: initialData.stock ? String(initialData.stock) : '0',
           generationIds: [], // TODO: Učitati postojeće veze
+          categoryAttributes: {}, // Dinamički atributi kategorije
         }
       : {
           name: '',
@@ -100,10 +123,34 @@ export const UnifiedProductForm = ({ initialData, categories }: UnifiedProductFo
           unitOfMeasure: '',
           stock: '0',
           generationIds: [],
+          categoryAttributes: {}, // Dinamički atributi kategorije
         },
   });
 
   const selectedCategoryId = form.watch('categoryId');
+
+  // Funkcija za dohvaćanje atributa kategorije
+  const fetchCategoryAttributes = async (categoryId: string) => {
+    if (!categoryId) return;
+    
+    try {
+      setLoadingAttributes(true);
+      const response = await fetch(`/api/categories/${categoryId}/attributes`);
+      
+      if (!response.ok) {
+        throw new Error('Greška prilikom dohvaćanja atributa kategorije');
+      }
+      
+      const data = await response.json();
+      setCategoryAttributes(data);
+    } catch (error) {
+      console.error('Greška prilikom dohvaćanja atributa kategorije:', error);
+      toast.error('Nije moguće dohvatiti atribute kategorije.');
+      setCategoryAttributes([]);
+    } finally {
+      setLoadingAttributes(false);
+    }
+  };
 
   useEffect(() => {
     if (selectedCategoryId) {
@@ -123,8 +170,12 @@ export const UnifiedProductForm = ({ initialData, categories }: UnifiedProductFo
       } else {
         setShowVehicleSelector(false);
       }
+      
+      // Dohvaćamo atribute za odabranu kategoriju
+      fetchCategoryAttributes(selectedCategoryId);
     } else {
       setShowVehicleSelector(false);
+      setCategoryAttributes([]);
     }
   }, [selectedCategoryId, categories]);
 
@@ -293,6 +344,93 @@ export const UnifiedProductForm = ({ initialData, categories }: UnifiedProductFo
         <hr />
         <h3 className="text-lg font-medium leading-6 text-gray-900">Specifikacije</h3>
 
+        {/* Dinamički atributi kategorije */}
+        {categoryAttributes.length > 0 && (
+          <div className="mb-8">
+            <h4 className="text-md font-medium mb-4 text-gray-700">Atributi kategorije</h4>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {categoryAttributes.map((attribute) => (
+                <div key={attribute.id} className="border p-4 rounded-md bg-gray-50">
+                  <h5 className="font-medium mb-2">{attribute.label}</h5>
+                  <p className="text-sm text-gray-500 mb-2">
+                    {attribute.isRequired ? (
+                      <span className="text-red-500">Obavezno</span>
+                    ) : (
+                      "Opcionalno"
+                    )}
+                    {attribute.unit && ` (${attribute.unit})`}
+                  </p>
+                  
+                  {/* Različiti tipovi inputa ovisno o tipu atributa */}
+                  <Controller
+                    name={`categoryAttributes.${attribute.name}`}
+                    control={form.control}
+                    render={({ field }) => {
+                      // Koristimo React.Fragment kao fallback umjesto null
+                      let inputElement = <></>;
+                      
+                      if (attribute.type === "string") {
+                        inputElement = (
+                          <Input 
+                            placeholder={`Unesite ${attribute.label.toLowerCase()}`} 
+                            className="w-full"
+                            {...field}
+                            value={field.value || ''}
+                          />
+                        );
+                      } else if (attribute.type === "number") {
+                        inputElement = (
+                          <Input 
+                            type="number" 
+                            placeholder={`Unesite ${attribute.label.toLowerCase()}`} 
+                            className="w-full"
+                            {...field}
+                            value={field.value || ''}
+                          />
+                        );
+                      } else if (attribute.type === "boolean") {
+                        inputElement = (
+                          <div className="flex items-center">
+                            <input 
+                              type="checkbox" 
+                              id={`attr-${attribute.id}`} 
+                              className="mr-2 h-4 w-4"
+                              checked={field.value === 'true'}
+                              onChange={(e) => field.onChange(e.target.checked ? 'true' : 'false')}
+                            />
+                            <label htmlFor={`attr-${attribute.id}`}>Da</label>
+                          </div>
+                        );
+                      } else if (attribute.type === "enum" && attribute.options) {
+                        inputElement = (
+                          <Select 
+                            onValueChange={field.onChange}
+                            value={field.value || ''}
+                          >
+                            <SelectTrigger>
+                              <SelectValue placeholder={`Odaberite ${attribute.label.toLowerCase()}`} />
+                            </SelectTrigger>
+                            <SelectContent>
+                              {attribute.options.map((option, index) => (
+                                <SelectItem key={index} value={option}>
+                                  {option}
+                                </SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
+                        );
+                      }
+                      
+                      return inputElement;
+                    }}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Standardne specifikacije */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           <FormField
             control={form.control}
@@ -413,8 +551,14 @@ export const UnifiedProductForm = ({ initialData, categories }: UnifiedProductFo
 
         {showVehicleSelector && (
           <div className='p-4 border-2 border-dashed rounded-lg mt-4'>
-            <h3 className="text-lg font-medium mb-4">Poveži s vozilom</h3>
-            <VehicleSelector onGenerationSelect={(id: string) => form.setValue('generationIds', [id])} />
+            <h3 className="text-lg font-medium mb-4">Poveži s vozilima</h3>
+            <p className="text-sm text-gray-500 mb-4">
+              Odaberite sva vozila s kojima je ovaj proizvod kompatibilan. Možete dodati više vozila.
+            </p>
+            <MultiVehicleSelector 
+              onGenerationsChange={(ids: string[]) => form.setValue('generationIds', ids)}
+              initialGenerationIds={initialData?.vehicleFitments?.map(fit => fit.generationId) || []} 
+            />
           </div>
         )}
 

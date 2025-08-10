@@ -33,8 +33,17 @@ model Product {
   dimensions         Json?       // Dimenzije proizvoda (npr. promjer, visina)
   standards          String[]    @default([]) // Standardi koje proizvod zadovoljava
 
-  // Many-to-many relation with VehicleGeneration
-  vehicleGenerations VehicleGeneration[]
+  // Veza s vozilima kroz ProductVehicleFitment model
+  vehicleFitments ProductVehicleFitment[]
+  
+  // Nove relacije za TecDoc
+  attributeValues     ProductAttributeValue[]
+  originalReferences  ProductCrossReference[] @relation("OriginalProduct")
+  replacementFor      ProductCrossReference[] @relation("ReplacementProduct")
+  
+  // Relacije za dobavljače i narudžbenice
+  supplierProducts    SupplierProduct[]
+  purchaseOrderItems  PurchaseOrderItem[]
 }
 
 model Category {
@@ -50,8 +59,93 @@ model Category {
   // TecDoc dodatna polja
   level     Int        @default(1) // 1=glavna, 2=podkategorija, 3=specifična
   iconUrl   String?    // URL do ikone kategorije
+  
+  // Nove relacije za TecDoc
+  attributes CategoryAttribute[]
+  attributeGroups AttributeGroup[]
+  
+  // Relacija za kategorijske popuste
+  discounts CategoryDiscount[]
+  
+  // Relacija za dobavljače
+  supplierCategories SupplierCategory[]
 
   @@unique([name, parentId])
+}
+
+// Model za grupe atributa kategorija
+model AttributeGroup {
+  id          String    @id @default(cuid())
+  name        String    // Npr. "Tehničke specifikacije", "Dimenzije"
+  label       String    // Lokalizirani naziv za prikaz
+  sortOrder   Int       @default(0)
+  categoryId  String
+  category    Category  @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  attributes  CategoryAttribute[]
+  
+  @@unique([name, categoryId])
+}
+
+// Model za definicije atributa kategorija
+model CategoryAttribute {
+  id              String    @id @default(cuid())
+  name            String    // Naziv atributa (npr. "viscosity", "diameter")
+  label           String    // Oznaka za prikaz (npr. "Viskozitet", "Promjer")
+  type            String    // Tip podatka (string, number, boolean, enum, range, dimension)
+  unit            String?   // Jedinica mjere (npr. "mm", "kg")
+  options         Json?     // Opcije za enum tipove
+  isRequired      Boolean   @default(false)
+  isFilterable    Boolean   @default(false)
+  isComparable    Boolean   @default(false)  // Može li se koristiti za usporedbu proizvoda
+  sortOrder       Int       @default(0)      // Redoslijed prikaza
+  categoryId      String
+  category        Category  @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  groupId         String?
+  group           AttributeGroup? @relation(fields: [groupId], references: [id], onDelete: SetNull)
+  values          ProductAttributeValue[]
+  
+  // Validacijska pravila i konverzije jedinica
+  validationRules Json?     // Min/max vrijednosti, regex paterni, itd.
+  supportedUnits  Json?     // Lista podržanih jedinica za konverziju
+  
+  @@unique([name, categoryId])
+}
+
+// Model za vrijednosti atributa proizvoda
+model ProductAttributeValue {
+  id          String    @id @default(cuid())
+  value       String    // Vrijednost atributa (spremljena kao string)
+  numericValue Float?   // Za numeričke vrijednosti (za lakše sortiranje/filtriranje)
+  unit        String?   // Jedinica u kojoj je vrijednost pohranjena
+  productId   String
+  product     Product   @relation(fields: [productId], references: [id], onDelete: Cascade)
+  attributeId String
+  attribute   CategoryAttribute @relation(fields: [attributeId], references: [id], onDelete: Cascade)
+  
+  @@unique([productId, attributeId])
+}
+
+// Model za predloške atributa
+model AttributeTemplate {
+  id          String    @id @default(cuid())
+  name        String    // Naziv predloška
+  description String?   // Opis predloška
+  attributes  Json      // Definicije atributa u predlošku
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+// Novi model za cross-reference
+model ProductCrossReference {
+  id              String   @id @default(cuid())
+  productId       String
+  product         Product  @relation("OriginalProduct", fields: [productId], references: [id], onDelete: Cascade)
+  referenceType   String   // OEM, Aftermarket, Replacement, etc.
+  referenceNumber String   // Broj dijela za referencu
+  manufacturer    String?  // Proizvođač reference
+  notes           String?  // Dodatne napomene
+  replacementId   String?  // ID zamjenskog proizvoda ako postoji u sustavu
+  replacement     Product? @relation("ReplacementProduct", fields: [replacementId], references: [id])
 }
 
 enum OrderStatus {
@@ -173,6 +267,13 @@ model User {
   orders        Order[]
   passwordResetTokens PasswordResetToken[]
   addresses     Address[]
+  categoryDiscounts CategoryDiscount[]
+  
+  // Relacije za narudžbenice
+  createdPurchaseOrders PurchaseOrder[] @relation("CreatedPurchaseOrders")
+  updatedPurchaseOrders PurchaseOrder[] @relation("UpdatedPurchaseOrders")
+  purchaseOrderStatusChanges PurchaseOrderStatusHistory[]
+  purchaseOrderComments PurchaseOrderComment[]
 }
 
 model PasswordResetToken {
@@ -204,6 +305,165 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+// Model za kategorijske popuste za B2B korisnike
+model CategoryDiscount {
+  id                String   @id @default(cuid())
+  userId            String
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  categoryId        String
+  category          Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  discountPercentage Float    @default(0)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@unique([userId, categoryId])
+}
+
+// Model dobavljača
+model Supplier {
+  id            String   @id @default(cuid())
+  name          String
+  companyName   String
+  address       String
+  city          String
+  postalCode    String
+  country       String
+  email         String
+  phone         String
+  contactPerson String?
+  taxId         String?
+  notes         String?   @db.Text
+  isActive      Boolean   @default(true)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  // Relacije
+  categories    SupplierCategory[]
+  products      SupplierProduct[]
+  orders        PurchaseOrder[]
+}
+
+// Veza dobavljača s kategorijama
+model SupplierCategory {
+  id          String   @id @default(cuid())
+  supplierId  String
+  categoryId  String
+  priority    Int      @default(1) // Prioritet dobavljača za ovu kategoriju
+  notes       String?  @db.Text
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // Relacije
+  supplier    Supplier @relation(fields: [supplierId], references: [id], onDelete: Cascade)
+  category    Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  
+  @@unique([supplierId, categoryId])
+}
+
+// Veza dobavljača s proizvodima
+model SupplierProduct {
+  id          String   @id @default(cuid())
+  supplierId  String
+  productId   String
+  supplierSku String?  // Šifra proizvoda kod dobavljača
+  priority    Int      @default(1) // Prioritet dobavljača za ovaj proizvod
+  price       Float    // Nabavna cijena
+  minOrderQty Int?     // Minimalna količina za narudžbu
+  leadTime    Int?     // Vrijeme isporuke u danima
+  notes       String?  @db.Text
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // Relacije
+  supplier    Supplier @relation(fields: [supplierId], references: [id], onDelete: Cascade)
+  product     Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  orderItems  PurchaseOrderItem[]
+  
+  @@unique([supplierId, productId])
+}
+
+// Enum za status narudžbenice
+enum PurchaseOrderStatus {
+  DRAFT
+  SENT
+  CONFIRMED
+  PARTIALLY_RECEIVED
+  RECEIVED
+  CANCELLED
+}
+
+// Model narudžbenice
+model PurchaseOrder {
+  id                  String               @id @default(cuid())
+  orderNumber         String               @unique // Automatski generirani broj narudžbe
+  supplierId          String
+  status              PurchaseOrderStatus  @default(DRAFT)
+  orderDate           DateTime             @default(now())
+  expectedDeliveryDate DateTime?
+  deliveryDate        DateTime?
+  subtotal            Float
+  taxAmount           Float
+  totalAmount         Float
+  notes               String?              @db.Text
+  createdById         String
+  updatedById         String?
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @updatedAt
+  
+  // Relacije
+  supplier            Supplier             @relation(fields: [supplierId], references: [id])
+  items               PurchaseOrderItem[]
+  statusHistory       PurchaseOrderStatusHistory[]
+  comments            PurchaseOrderComment[]
+  createdBy           User                 @relation("CreatedPurchaseOrders", fields: [createdById], references: [id])
+  updatedBy           User?                @relation("UpdatedPurchaseOrders", fields: [updatedById], references: [id])
+}
+
+// Model stavki narudžbenice
+model PurchaseOrderItem {
+  id                String   @id @default(cuid())
+  purchaseOrderId   String
+  productId         String
+  supplierProductId String?
+  quantity          Int
+  unitPrice         Float
+  totalPrice        Float
+  receivedQty       Int      @default(0)
+  notes             String?  @db.Text
+  
+  // Relacije
+  purchaseOrder     PurchaseOrder @relation(fields: [purchaseOrderId], references: [id], onDelete: Cascade)
+  product           Product  @relation(fields: [productId], references: [id])
+  supplierProduct   SupplierProduct? @relation(fields: [supplierProductId], references: [id])
+}
+
+// Model povijesti statusa narudžbenice
+model PurchaseOrderStatusHistory {
+  id                String             @id @default(cuid())
+  purchaseOrderId   String
+  status            PurchaseOrderStatus
+  changedById       String
+  changedAt         DateTime           @default(now())
+  notes             String?            @db.Text
+  
+  // Relacije
+  purchaseOrder     PurchaseOrder     @relation(fields: [purchaseOrderId], references: [id], onDelete: Cascade)
+  changedBy         User              @relation(fields: [changedById], references: [id])
+}
+
+// Model komentara na narudžbenici
+model PurchaseOrderComment {
+  id                String   @id @default(cuid())
+  purchaseOrderId   String
+  comment           String   @db.Text
+  createdById       String
+  createdAt         DateTime @default(now())
+  
+  // Relacije
+  purchaseOrder     PurchaseOrder @relation(fields: [purchaseOrderId], references: [id], onDelete: Cascade)
+  createdBy         User     @relation(fields: [createdById], references: [id])
 }
 
 enum VehicleType {
@@ -240,16 +500,64 @@ model VehicleGeneration {
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt
 
-  // TecDoc dodatna polja za motor
-  engineType     String?    // PETROL, DIESEL, HYBRID, ELECTRIC
-  enginePowerKW  Float?     // Snaga motora u kW
-  enginePowerHP  Float?     // Snaga motora u KS
-  engineCapacity Int?       // Zapremina motora u ccm
-  engineCode     String?    // Kod motora
+  // Poveznica na motore koji pripadaju ovoj generaciji
+  vehicleEngines VehicleEngine[]
 
-  // Many-to-many relation with Product
-  products     Product[]
+  // Dodatna TecDoc polja za detaljnije informacije o vozilu
+  constructionType    String?    // Tip konstrukcije (npr. Sedan, Hatchback)
+  wheelbase           Float?     // Međuosovinski razmak u mm
+  brakeSystem         String?    // Tip kočionog sustava
+  driveType           String?    // Tip pogona (FWD, RWD, AWD)
+  fuelType            String?    // Tip goriva (dodatno uz engineType)
+  transmission        String?    // Tip transmisije
+  doors               Int?       // Broj vrata
+  axles               Int?       // Broj osovina (važno za teretna vozila)
+  weight              Float?     // Težina vozila u kg
+  productionStart      String?    // Početak proizvodnje (godina)
+  productionEnd        String?    // Kraj proizvodnje (godina)
+
+  // Poveznica na proizvode kroz ProductVehicleFitment model
+  productFitments ProductVehicleFitment[]
 
   @@unique([modelId, name])
 }
 
+model VehicleEngine {
+  id              String    @id @default(cuid())
+  generationId    String
+  generation      VehicleGeneration @relation(fields: [generationId], references: [id], onDelete: Cascade)
+  engineType      String    // PETROL, DIESEL, HYBRID, ELECTRIC
+  
+  // Poveznica na ProductVehicleFitment
+  productFitments ProductVehicleFitment[]
+  enginePowerKW   Float?    // Snaga motora u kW
+  enginePowerHP   Float?    // Snaga motora u KS
+  engineCapacity  Int?      // Zapremina motora u ccm
+  engineCode      String?   // Kod motora
+  description     String?   // Dodatni opis motora
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+}
+
+// Model za detaljnu kompatibilnost proizvoda s vozilima
+model ProductVehicleFitment {
+  id              String    @id @default(cuid())
+  productId       String
+  product         Product   @relation(fields: [productId], references: [id], onDelete: Cascade)
+  generationId    String
+  generation      VehicleGeneration @relation(fields: [generationId], references: [id], onDelete: Cascade)
+  engineId        String?
+  engine          VehicleEngine? @relation(fields: [engineId], references: [id], onDelete: SetNull)
+  
+  // Dodatne informacije o kompatibilnosti
+  fitmentNotes    String?   // Dodatne napomene o kompatibilnosti
+  position        String?   // Pozicija na vozilu (npr. "Prednji", "Stražnji")
+  bodyStyles      String[]  @default([]) // Kompatibilni stilovi karoserije
+  yearFrom        Int?      // Godina od koje je kompatibilan
+  yearTo          Int?      // Godina do koje je kompatibilan
+  isUniversal     Boolean   @default(false) // Oznaka za univerzalne dijelove
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  
+  @@unique([productId, generationId, engineId])
+}

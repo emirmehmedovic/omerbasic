@@ -2,10 +2,11 @@
 
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { ChevronDown, ChevronRight } from 'lucide-react';
+import { ChevronDown, ChevronRight, Settings } from 'lucide-react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { toast } from 'react-hot-toast';
+import Link from 'next/link';
 import { categoryFormSchema } from '@/lib/validations/category';
 import type { Category as PrismaCategory } from '@/generated/prisma/client';
 
@@ -188,6 +189,9 @@ function CategoryItem({ category, onEdit, onDelete, level }: {
         <div className="space-x-2">
           <button onClick={() => onEdit(category)} className="text-sm text-blue-600 hover:underline">Uredi</button>
           <button onClick={() => onDelete(category.id)} className="text-sm text-red-600 hover:underline">Obriši</button>
+          <Link href={`/admin/categories/${category.id}/attributes`} className="text-sm text-green-600 hover:underline flex items-center">
+            <Settings className="h-3 w-3 mr-1" /> Atributi
+          </Link>
         </div>
       </div>
       {isOpen && (

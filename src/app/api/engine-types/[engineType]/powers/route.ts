@@ -13,9 +13,24 @@ export async function GET(
       return new NextResponse('Engine type is required', { status: 400 });
     }
 
-    // U stvarnoj implementaciji, ovdje bismo dohvatili snage motora iz baze
-    // Za sada vraćamo fiksne vrijednosti
-    const enginePowers = [55, 66, 77, 85, 92, 110, 125, 140, 155, 170, 185, 200];
+    // Dohvat snaga motora za odabrani tip motora iz baze
+    const engines = await db.vehicleEngine.findMany({
+      where: {
+        engineType: engineType,
+      },
+      select: {
+        enginePowerHP: true,
+      },
+      distinct: ['enginePowerHP'],
+      orderBy: {
+        enginePowerHP: 'asc',
+      },
+    });
+
+    // Izdvajanje jedinstvenih snaga motora i filtriranje null vrijednosti
+    const enginePowers = engines
+      .map(engine => engine.enginePowerHP)
+      .filter(power => power !== null) as number[];
 
     return NextResponse.json(enginePowers);
   } catch (error) {

@@ -66,10 +66,12 @@ async function getProducts(filters: {
   }
   
   if (generationId) {
-    // Koristimo relaciju vehicleGenerations za filtriranje po generationId
-    query.where.vehicleGenerations = {
+    // Koristimo relaciju vehicleFitments za filtriranje po generationId
+    query.where.vehicleFitments = {
       some: {
-        id: generationId
+        generation: {
+          id: generationId
+        }
       }
     };
   }

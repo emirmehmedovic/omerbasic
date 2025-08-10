@@ -1,7 +1,7 @@
 "use client";
 
 import { ColumnDef } from '@tanstack/react-table';
-import { ArrowUpDown, MoreHorizontal } from 'lucide-react';
+import { ArrowUpDown, MoreHorizontal, Settings } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { toast } from 'react-hot-toast';
@@ -136,6 +136,11 @@ export const columns: ColumnDef<ProductWithCategory>[] = [
             <DropdownMenuLabel>Akcije</DropdownMenuLabel>
             <DropdownMenuItem asChild>
               <Link href={`/admin/products/${product.id}`}>Uredi</Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem asChild>
+              <Link href={`/admin/products/${product.id}/attributes`} className="flex items-center">
+                <Settings className="h-4 w-4 mr-2" /> Atributi i reference
+              </Link>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem

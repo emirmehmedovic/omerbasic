@@ -19,9 +19,21 @@ export async function GET(
       return new NextResponse('Invalid engine capacity value', { status: 400 });
     }
 
-    // U stvarnoj implementaciji, ovdje bismo dohvatili kodove motora iz baze
-    // Za sada vraćamo fiksne vrijednosti
-    const engineCodes = ['CJXB', 'CJXC', 'CJXD', 'CZDA', 'CZDB', 'CZDC'];
+    // Dohvat kodova motora za odabranu zapreminu motora iz baze
+    const engines = await db.vehicleEngine.findMany({
+      where: {
+        engineCapacity: capacityValue,
+      },
+      select: {
+        engineCode: true,
+      },
+      distinct: ['engineCode'],
+    });
+
+    // Izdvajanje jedinstvenih kodova motora i filtriranje null vrijednosti
+    const engineCodes = engines
+      .map(engine => engine.engineCode)
+      .filter(code => code !== null && code !== '') as string[];
 
     return NextResponse.json(engineCodes);
   } catch (error) {

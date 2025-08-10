@@ -8,10 +8,11 @@ import axios from 'axios';
 import { toast } from 'react-hot-toast';
 import { productFormSchema, productApiSchema } from '@/lib/validations/product';
 import type { Category, Product } from '@/generated/prisma/client';
+import { ProductFormData } from '@/types/product';
 import { ImageUpload } from './ImageUpload';
 
 interface ProductFormProps {
-  initialData: Product | null;
+  initialData: ProductFormData | null;
   categories: Category[];
 }
 
@@ -33,18 +34,28 @@ export const ProductForm: React.FC<ProductFormProps> = ({ initialData, categorie
           description: initialData.description ?? '',
           imageUrl: initialData.imageUrl ?? '',
           price: String(initialData.price),
-          // Novi atributi - konverzija u string za formu
-          vehicleBrand: initialData.vehicleBrand ?? '',
-          vehicleModel: initialData.vehicleModel ?? '',
-          yearOfManufacture: String(initialData.yearOfManufacture ?? ''),
-          engineType: initialData.engineType ?? '',
+          // Izvlačimo dimenzije iz JSON polja ako postoje
+          weight: String(initialData.weight ?? 
+            (initialData.dimensions ? (initialData.dimensions as any)?.weight ?? '' : '')),
+          width: String(initialData.width ?? 
+            (initialData.dimensions ? (initialData.dimensions as any)?.width ?? '' : '')),
+          height: String(initialData.height ?? 
+            (initialData.dimensions ? (initialData.dimensions as any)?.height ?? '' : '')),
+          length: String(initialData.length ?? 
+            (initialData.dimensions ? (initialData.dimensions as any)?.length ?? '' : '')),
+          unitOfMeasure: initialData.unitOfMeasure ?? 
+            (initialData.technicalSpecs ? (initialData.technicalSpecs as any)?.unitOfMeasure ?? '' : ''),
+          // Podaci o vozilu iz relacija ili tehničkih specifikacija
+          vehicleBrand: initialData.vehicleBrand ?? 
+            (initialData.technicalSpecs ? (initialData.technicalSpecs as any)?.vehicleBrand ?? '' : ''),
+          vehicleModel: initialData.vehicleModel ?? 
+            (initialData.technicalSpecs ? (initialData.technicalSpecs as any)?.vehicleModel ?? '' : ''),
+          yearOfManufacture: String(initialData.yearOfManufacture ?? 
+            (initialData.technicalSpecs ? (initialData.technicalSpecs as any)?.yearOfManufacture ?? '' : '')),
+          engineType: initialData.engineType ?? 
+            (initialData.technicalSpecs ? (initialData.technicalSpecs as any)?.engineType ?? '' : ''),
           catalogNumber: initialData.catalogNumber ?? '',
           oemNumber: initialData.oemNumber ?? '',
-          weight: String(initialData.weight ?? ''),
-          width: String(initialData.width ?? ''),
-          height: String(initialData.height ?? ''),
-          length: String(initialData.length ?? ''),
-          unitOfMeasure: initialData.unitOfMeasure ?? '',
           stock: String(initialData.stock ?? 0),
         }
       : {
@@ -79,13 +90,36 @@ export const ProductForm: React.FC<ProductFormProps> = ({ initialData, categorie
       return;
     }
 
+    // Pripremamo podatke za slanje na API
+    const dimensions = {
+      weight: parsedData.data.weight,
+      width: parsedData.data.width,
+      height: parsedData.data.height,
+      length: parsedData.data.length
+    };
+    
+    const technicalSpecs = {
+      unitOfMeasure: parsedData.data.unitOfMeasure,
+      vehicleBrand: parsedData.data.vehicleBrand,
+      vehicleModel: parsedData.data.vehicleModel,
+      yearOfManufacture: parsedData.data.yearOfManufacture,
+      engineType: parsedData.data.engineType
+    };
+    
+    // Uklanjamo polja koja ne postoje direktno na Product modelu
+    const { 
+      weight, width, height, length, unitOfMeasure,
+      vehicleBrand, vehicleModel, yearOfManufacture, engineType,
+      ...productData 
+    } = parsedData.data;
+
     try {
       if (initialData) {
         // Šaljemo transformirane podatke (cijena je sada broj)
-        await axios.patch(`/api/products/${initialData.id}`, parsedData.data);
+        await axios.patch(`/api/products/${initialData.id}`, { ...productData, dimensions, technicalSpecs });
         toast.success('Proizvod ažuriran.');
       } else {
-        await axios.post('/api/products', parsedData.data);
+        await axios.post('/api/products', { ...productData, dimensions, technicalSpecs });
         toast.success('Proizvod kreiran.');
       }
       router.push('/admin/products');

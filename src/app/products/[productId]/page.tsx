@@ -36,7 +36,30 @@ const ProductPage = async ({ params }: ProductPageProps) => {
 
   const product = await db.product.findUnique({
     where: { id: productId },
-    include: { category: true },
+    include: { 
+      category: true,
+      vehicleFitments: {
+        include: {
+          generation: {
+            include: {
+              model: {
+                include: {
+                  brand: true,
+                },
+              },
+            },
+          },
+          engine: true,
+        },
+      },
+      attributeValues: {
+        include: {
+          attribute: true,
+        },
+      },
+      originalReferences: true,
+      replacementFor: true,
+    },
   });
 
   if (!product) {

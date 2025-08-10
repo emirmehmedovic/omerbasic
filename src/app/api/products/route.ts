@@ -79,6 +79,7 @@ export async function GET(req: Request) {
     const minPrice = searchParams.get('minPrice') || undefined;
     const maxPrice = searchParams.get('maxPrice') || undefined;
     const q = searchParams.get('q') || undefined;
+    const limit = searchParams.get('limit') ? parseInt(searchParams.get('limit')!) : undefined;
 
     const filters: any[] = [];
 
@@ -91,9 +92,9 @@ export async function GET(req: Request) {
 
     if (generationId) {
       filters.push({
-        vehicleGenerations: {
+        vehicleFitments: {
           some: {
-            id: generationId,
+            generationId: generationId,
           },
         },
       });
@@ -111,6 +112,15 @@ export async function GET(req: Request) {
         OR: [
           { name: { contains: q, mode: 'insensitive' } },
           { description: { contains: q, mode: 'insensitive' } },
+          { oemNumber: { contains: q, mode: 'insensitive' } },
+          { catalogNumber: { contains: q, mode: 'insensitive' } },
+          {
+            attributeValues: {
+              some: {
+                value: { contains: q, mode: 'insensitive' },
+              },
+            },
+          },
         ],
       });
     }
@@ -121,26 +131,76 @@ export async function GET(req: Request) {
       where,
       include: {
         category: true,
+        attributeValues: {
+          include: {
+            attribute: true
+          }
+        },
       },
       orderBy: {
         createdAt: 'desc',
       },
+      ...(limit ? { take: limit } : {}),
     });
 
     // Ako je B2B korisnik, primijeni popust na cijene proizvoda
-    if (isB2B && discountPercentage > 0) {
-      const productsWithDiscount = products.map(product => {
-        const originalPrice = product.price;
-        const discountedPrice = originalPrice * (1 - discountPercentage / 100);
-        
-        return {
-          ...product,
-          originalPrice: originalPrice, // Sačuvaj originalnu cijenu ako treba za prikaz
-          price: Number(discountedPrice.toFixed(2)), // Zaokruži na 2 decimale i konvertiraj natrag u broj
-        };
-      });
+    if (isB2B) {
+      // Dohvati ID korisnika iz tokena
+      const userId = token?.id;
       
-      return NextResponse.json(productsWithDiscount);
+      if (userId) {
+        // Dohvati kategorijske popuste za korisnika
+        const categoryDiscounts = await db.categoryDiscount.findMany({
+          where: {
+            userId: userId,
+          }
+        });
+        
+        // Kreiraj mapu popusta po kategorijama za brži pristup
+        const discountMap = new Map();
+        categoryDiscounts.forEach(discount => {
+          discountMap.set(discount.categoryId, discount.discountPercentage);
+        });
+        
+        // Primijeni popuste specifične za kategorije ili globalni popust
+        const productsWithDiscount = products.map(product => {
+          const originalPrice = product.price;
+          
+          // Prvo provjeri postoji li specifični popust za kategoriju
+          let categoryDiscount = discountMap.get(product.categoryId);
+          
+          // Ako ne postoji specifični popust, koristi globalni popust
+          if (categoryDiscount === undefined) {
+            categoryDiscount = discountPercentage || 0;
+          }
+          
+          const discountedPrice = originalPrice * (1 - categoryDiscount / 100);
+          
+          return {
+            ...product,
+            originalPrice: originalPrice, // Sačuvaj originalnu cijenu ako treba za prikaz
+            price: Number(discountedPrice.toFixed(2)), // Zaokruži na 2 decimale i konvertiraj natrag u broj
+            appliedDiscount: categoryDiscount, // Dodaj informaciju o primijenjenom popustu
+          };
+        });
+        
+        return NextResponse.json(productsWithDiscount);
+      } else if (discountPercentage > 0) {
+        // Fallback na globalni popust ako nemamo userId
+        const productsWithDiscount = products.map(product => {
+          const originalPrice = product.price;
+          const discountedPrice = originalPrice * (1 - discountPercentage / 100);
+          
+          return {
+            ...product,
+            originalPrice: originalPrice,
+            price: Number(discountedPrice.toFixed(2)),
+            appliedDiscount: discountPercentage,
+          };
+        });
+        
+        return NextResponse.json(productsWithDiscount);
+      }
     }
 
     return NextResponse.json(products);
@@ -169,8 +229,38 @@ export async function POST(req: Request) {
       catalogNumber,
       oemNumber,
       generationIds, // Destrukturiramo ID-jeve generacija
+      // Dodajemo ostala polja iz validacijske sheme
+      weight,
+      width,
+      height,
+      length,
+      yearOfManufacture,
+      vehicleBrand,
+      vehicleModel,
+      engineType,
+      unitOfMeasure,
+      stock,
+      categoryAttributes, // Dinamički atributi kategorije
     } = result.data;
 
+    // Pripremamo dimensions JSON objekt
+    const dimensions = {
+      weight: weight || null,
+      width: width || null,
+      height: height || null,
+      length: length || null
+    };
+    
+    // Pripremamo technicalSpecs JSON objekt
+    const technicalSpecs = {
+      yearOfManufacture: yearOfManufacture || null,
+      vehicleBrand: vehicleBrand || null,
+      vehicleModel: vehicleModel || null,
+      engineType: engineType || null,
+      unitOfMeasure: unitOfMeasure || null
+    };
+    
+    // Prvo kreiramo proizvod bez atributa
     const product = await db.product.create({
       data: {
         name,
@@ -180,15 +270,63 @@ export async function POST(req: Request) {
         categoryId,
         catalogNumber,
         oemNumber,
-        // Ako postoje generationIds, poveži ih s proizvodom
-        ...(generationIds && generationIds.length > 0 && {
-          vehicleGenerations: {
-            connect: generationIds.map((id: string) => ({ id }))
-          }
-        })
+        // Koristimo JSON polja za dimenzije i tehničke specifikacije
+        dimensions,
+        technicalSpecs,
+        stock: stock || 0,
+        // Ne povezujemo generacije ovdje, to ćemo napraviti nakon kreiranja proizvoda
       },
     });
 
+    // Ako postoje dinamički atributi kategorije, kreiramo zapise u ProductAttributeValue tabeli
+    if (categoryAttributes && Object.keys(categoryAttributes).length > 0) {
+      try {
+        // Dohvatimo sve atribute kategorije
+        const categoryAttrs = await db.categoryAttribute.findMany({
+          where: { categoryId }
+        });
+        
+        // Za svaki atribut u categoryAttributes, kreiramo zapis u ProductAttributeValue
+        for (const [attrName, attrValue] of Object.entries(categoryAttributes)) {
+          // Pronađi atribut kategorije po imenu
+          const attribute = categoryAttrs.find(attr => attr.name === attrName);
+          
+          if (attribute && attrValue) {
+            await db.productAttributeValue.create({
+              data: {
+                value: attrValue,
+                productId: product.id,
+                attributeId: attribute.id
+              }
+            });
+          }
+        }
+      } catch (error) {
+        console.error('Error creating product attribute values:', error);
+        // Ne prekidamo izvršavanje ako dođe do greške pri kreiranju atributa
+      }
+    }
+    
+    // Ako postoje generationIds, kreiramo ProductVehicleFitment zapise
+    if (generationIds && generationIds.length > 0) {
+      try {
+        // Za svaku generaciju kreiramo zapis u ProductVehicleFitment tabeli
+        for (const generationId of generationIds) {
+          await db.productVehicleFitment.create({
+            data: {
+              productId: product.id,
+              generationId,
+              // Ostala polja možemo ostaviti prazna ili postaviti default vrijednosti
+              isUniversal: false
+            }
+          });
+        }
+      } catch (error) {
+        console.error('Error creating product vehicle fitments:', error);
+        // Ne prekidamo izvršavanje ako dođe do greške pri kreiranju fitment zapisa
+      }
+    }
+    
     return NextResponse.json(product, { status: 201 });
   } catch (error) {
     if (error instanceof z.ZodError) {

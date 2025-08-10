@@ -4,15 +4,24 @@ import { Fragment } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Dialog, Transition } from '@headlessui/react';
-import { LayoutDashboard, ShoppingCart, Package, Users2, List, LogOut, X } from 'lucide-react';
+import { LayoutDashboard, ShoppingCart, Package, Users2, List, LogOut, X, Car, Tags, Search, BarChart, ClipboardList, FileText } from 'lucide-react';
 import { signOut } from 'next-auth/react';
 
 const sidebarItems = [
   { name: 'Dashboard', href: '/admin', icon: LayoutDashboard },
+  { name: 'Statistika', href: '/admin/statistics', icon: BarChart },
   { name: 'Proizvodi', href: '/admin/products', icon: ShoppingCart },
   { name: 'Narudžbe', href: '/admin/orders', icon: Package },
   { name: 'Kategorije', href: '/admin/categories', icon: List },
+  { name: 'Atributi', href: '/admin/attribute-management', icon: Tags },
   { name: 'Korisnici', href: '/admin/users', icon: Users2 },
+  { name: 'B2B korisnici', href: '/admin/users/b2b', icon: Users2 },
+  { name: 'Vozila', href: '/admin/vehicles', icon: Car },
+  { name: 'Dobavljači', href: '/admin/suppliers', icon: Users2 },
+  { name: 'Proizvodi dobavljača', href: '/admin/supplier-products', icon: Package },
+  { name: 'Narudžbenice', href: '/admin/purchase-orders', icon: ClipboardList },
+  { name: 'Statistika narudžbenica', href: '/admin/purchase-orders/statistics', icon: FileText },
+  { name: 'Napredna pretraga', href: '/admin/advanced-search', icon: Search },
 ];
 
 interface SidebarProps {

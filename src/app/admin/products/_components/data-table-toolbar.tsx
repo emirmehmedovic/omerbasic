@@ -27,7 +27,7 @@ const getCategoryAndChildrenIds = (categoryId: string, categories: CategoryWithC
   }
   return ids;
 };
-import { X } from 'lucide-react';
+import { X, Download } from 'lucide-react';
 import { CategoryCombobox } from './category-combobox';
 import type { CategoryWithChildren } from '../page';
 
@@ -73,6 +73,16 @@ export function DataTableToolbar<TData>({ table, categories }: DataTableToolbarP
             <X className="ml-2 h-4 w-4" />
           </Button>
         )}
+      </div>
+      <div>
+        <Button
+          variant="outline"
+          onClick={() => window.open('/api/products/export', '_blank')}
+          className="h-10 px-2 lg:px-3 flex items-center"
+        >
+          <Download className="mr-2 h-4 w-4" />
+          Export CSV
+        </Button>
       </div>
     </div>
   );

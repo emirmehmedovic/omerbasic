@@ -3,16 +3,18 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { generationId: string } }
+  context: { params: { generationId: string } }
 ) {
   try {
-    if (!params.generationId) {
+    const generationId = context.params.generationId;
+    
+    if (!generationId) {
       return new NextResponse('Generation ID is required', { status: 400 });
     }
 
     const generation = await db.vehicleGeneration.findUnique({
       where: {
-        id: params.generationId,
+        id: generationId,
       },
       include: {
         model: {

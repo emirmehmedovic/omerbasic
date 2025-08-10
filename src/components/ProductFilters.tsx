@@ -7,6 +7,8 @@ import type { Category } from '@/generated/prisma/client';
 import VehicleSelector from './vehicle-selector';
 import CategoryHierarchy from './CategoryHierarchy';
 import TechnicalSpecsFilter from './TechnicalSpecsFilter';
+import CategoryAttributesFilter from './CategoryAttributesFilter';
+import CrossReferenceFilter from './CrossReferenceFilter';
 import { ChevronDown, ChevronUp, Filter, X, Sliders } from 'lucide-react';
 
 interface ProductFiltersProps {
@@ -26,11 +28,15 @@ export function ProductFilters({
 }: ProductFiltersProps) {
   const [filters, setFilters] = useState(initialFilters);
   const [techSpecs, setTechSpecs] = useState<Record<string, string>>({});
+  const [categoryAttributes, setCategoryAttributes] = useState<Record<string, string>>({});
+  const [crossReference, setCrossReference] = useState<string>('');
   const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({
     categories: true,
     vehicle: true,
     techSpecs: true,
-    price: true
+    price: true,
+    attributes: true,
+    crossReference: true
   });
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   
@@ -67,6 +73,45 @@ export function ProductFilters({
     updateUrl(newFilters);
   }, 500);
   
+  const handleCategoryAttributesChange = useDebouncedCallback((attributes: Record<string, string>) => {
+    setCategoryAttributes(attributes);
+    
+    // Dodaj atribute kategorije u URL kao posebne parametre
+    const newFilters = { ...filters };
+    
+    // Prvo ukloni sve postojeće attr_ parametre
+    Object.keys(newFilters).forEach(key => {
+      if (key.startsWith('attr_')) {
+        delete newFilters[key];
+      }
+    });
+    
+    // Dodaj nove attr_ parametre
+    Object.entries(attributes).forEach(([attrId, value]) => {
+      if (value) {
+        newFilters[`attr_${attrId}`] = value;
+      }
+    });
+    
+    setFilters(newFilters);
+    updateUrl(newFilters);
+  }, 500);
+  
+  const handleCrossReferenceChange = useDebouncedCallback((value: string) => {
+    setCrossReference(value);
+    
+    const newFilters = { ...filters };
+    
+    if (value) {
+      newFilters.crossRef = value;
+    } else {
+      delete newFilters.crossRef;
+    }
+    
+    setFilters(newFilters);
+    updateUrl(newFilters);
+  }, 500);
+  
   const updateUrl = (filterParams: Record<string, any>) => {
     const params = new URLSearchParams();
     Object.entries(filterParams).forEach(([filterKey, filterValue]) => {
@@ -94,15 +139,24 @@ export function ProductFilters({
   // Učitaj inicijalne tehničke specifikacije iz URL-a
   useEffect(() => {
     const initialSpecs: Record<string, string> = {};
+    const initialAttributes: Record<string, string> = {};
+    let initialCrossRef = '';
     
     Object.entries(initialFilters).forEach(([key, value]) => {
       if (key.startsWith('spec_') && typeof value === 'string') {
         const specName = key.replace('spec_', '');
         initialSpecs[specName] = value;
+      } else if (key.startsWith('attr_') && typeof value === 'string') {
+        const attrId = key.replace('attr_', '');
+        initialAttributes[attrId] = value;
+      } else if (key === 'crossRef' && typeof value === 'string') {
+        initialCrossRef = value;
       }
     });
     
     setTechSpecs(initialSpecs);
+    setCategoryAttributes(initialAttributes);
+    setCrossReference(initialCrossRef);
   }, [initialFilters]);
 
   // Broj aktivnih filtera
@@ -288,28 +342,81 @@ export function ProductFilters({
           
           {/* 3. RED: Tehničke specifikacije */}
           {showTechSpecs && filters.categoryId && (
-            <div className="w-full">
-              <div className="bg-white/70 backdrop-blur-sm rounded-xl border border-white/50 shadow-sm overflow-hidden">
-                <button 
-                  onClick={() => toggleSection('techSpecs')}
-                  className="w-full flex items-center justify-between p-3 text-left font-medium text-slate-700 hover:bg-white/50 transition-colors"
-                >
-                  <span>Tehničke specifikacije</span>
-                  {expandedSections.techSpecs ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-                </button>
-                
-                {expandedSections.techSpecs && (
-                  <div className="p-3 pt-0 border-t border-white/30">
-                    <TechnicalSpecsFilter 
-                      categoryId={filters.categoryId} 
-                      onSpecsChange={handleTechSpecsChange}
-                      selectedSpecs={techSpecs}
-                    />
-                  </div>
-                )}
+            <div className="filter-section mb-4">
+              <div 
+                className="flex items-center justify-between cursor-pointer py-2 border-b border-slate-200"
+                onClick={() => toggleSection('techSpecs')}
+              >
+                <h3 className="font-medium text-slate-700 flex items-center">
+                  <ChevronDown 
+                    className={`h-4 w-4 mr-1 transition-transform ${expandedSections.techSpecs ? '' : '-rotate-90'}`} 
+                  />
+                  Tehničke specifikacije
+                </h3>
               </div>
+              
+              {expandedSections.techSpecs && (
+                <div className="mt-3">
+                  <TechnicalSpecsFilter 
+                    categoryId={filters.categoryId} 
+                    onSpecsChange={handleTechSpecsChange}
+                    selectedSpecs={techSpecs}
+                  />
+                </div>
+              )}
             </div>
           )}
+          
+          {/* Atributi kategorije */}
+          {filters.categoryId && (
+            <div className="filter-section mb-4">
+              <div 
+                className="flex items-center justify-between cursor-pointer py-2 border-b border-slate-200"
+                onClick={() => toggleSection('attributes')}
+              >
+                <h3 className="font-medium text-slate-700 flex items-center">
+                  <ChevronDown 
+                    className={`h-4 w-4 mr-1 transition-transform ${expandedSections.attributes ? '' : '-rotate-90'}`} 
+                  />
+                  Atributi
+                </h3>
+              </div>
+              
+              {expandedSections.attributes && (
+                <div className="mt-3">
+                  <CategoryAttributesFilter
+                    categoryId={filters.categoryId}
+                    onAttributesChange={handleCategoryAttributesChange}
+                    selectedAttributes={categoryAttributes}
+                  />
+                </div>
+              )}
+            </div>
+          )}
+          
+          {/* Cross-reference pretraga */}
+          <div className="filter-section mb-4">
+            <div 
+              className="flex items-center justify-between cursor-pointer py-2 border-b border-slate-200"
+              onClick={() => toggleSection('crossReference')}
+            >
+              <h3 className="font-medium text-slate-700 flex items-center">
+                <ChevronDown 
+                  className={`h-4 w-4 mr-1 transition-transform ${expandedSections.crossReference ? '' : '-rotate-90'}`} 
+                />
+                OEM / Aftermarket broj
+              </h3>
+            </div>
+            
+            {expandedSections.crossReference && (
+              <div className="mt-3">
+                <CrossReferenceFilter
+                  onCrossReferenceChange={handleCrossReferenceChange}
+                  initialValue={crossReference}
+                />
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>

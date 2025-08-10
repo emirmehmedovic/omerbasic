@@ -1,0 +1,19 @@
+// Novi model za kategorijske popuste
+model CategoryDiscount {
+  id                String   @id @default(cuid())
+  userId            String
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  categoryId        String
+  category          Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  discountPercentage Float    @default(0)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  @@unique([userId, categoryId])
+}
+
+// Dodati ovu relaciju u User model:
+// categoryDiscounts CategoryDiscount[]
+
+// Dodati ovu relaciju u Category model:
+// discounts CategoryDiscount[]

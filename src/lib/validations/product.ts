@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
-
-
+// Shema za dinamičke atribute
+export const dynamicAttributesSchema = z.record(z.string(), z.string().optional());
 
 // Shema za validaciju na frontendu (u formi)
 export const productFormSchema = z.object({
@@ -12,6 +12,8 @@ export const productFormSchema = z.object({
   }),
   imageUrl: z.string().optional().or(z.literal('')), // Removed extra comma
   categoryId: z.string().cuid({ message: 'Kategorija nije ispravna.' }),
+  // Dinamički atributi kategorije
+  categoryAttributes: dynamicAttributesSchema.optional(),
 
   // Novi detaljni atributi
   vehicleBrand: z.string().optional().or(z.literal('')),
@@ -45,16 +47,53 @@ export const productFormSchema = z.object({
 export const productApiSchema = productFormSchema.extend({
   // Transformiramo stringove u brojeve prije slanja na API
   price: z.coerce.number().positive({ message: 'Cijena mora biti pozitivan broj.' }),
-  yearOfManufacture: z.string().optional().nullable()
-    .transform(val => val === '' || val === '0' || val === undefined ? null : parseInt(val as string)),
-  weight: z.string().optional().nullable()
-    .transform(val => val === '' || val === '0' || val === undefined ? null : parseFloat(val as string)),
-  width: z.string().optional().nullable()
-    .transform(val => val === '' || val === '0' || val === undefined ? null : parseFloat(val as string)),
-  height: z.string().optional().nullable()
-    .transform(val => val === '' || val === '0' || val === undefined ? null : parseFloat(val as string)),
-  length: z.string().optional().nullable()
-    .transform(val => val === '' || val === '0' || val === undefined ? null : parseFloat(val as string)),
+  yearOfManufacture: z.preprocess(
+    (val) => (val === null || val === undefined) ? '' : String(val),
+    z.string().optional()
+      .transform(val => {
+        if (!val || val === '') return null;
+        const num = parseInt(val);
+        return isNaN(num) ? null : num;
+      })
+  ),
+  weight: z.preprocess(
+    // Pretprocesiranje - pretvaranje u string ako nije
+    (val) => (val === null || val === undefined) ? '' : String(val),
+    // Zatim validacija i transformacija
+    z.string().optional()
+      .transform(val => {
+        if (!val || val === '') return null;
+        const num = parseFloat(val);
+        return isNaN(num) ? null : num;
+      })
+  ),
+  width: z.preprocess(
+    (val) => (val === null || val === undefined) ? '' : String(val),
+    z.string().optional()
+      .transform(val => {
+        if (!val || val === '') return null;
+        const num = parseFloat(val);
+        return isNaN(num) ? null : num;
+      })
+  ),
+  height: z.preprocess(
+    (val) => (val === null || val === undefined) ? '' : String(val),
+    z.string().optional()
+      .transform(val => {
+        if (!val || val === '') return null;
+        const num = parseFloat(val);
+        return isNaN(num) ? null : num;
+      })
+  ),
+  length: z.preprocess(
+    (val) => (val === null || val === undefined) ? '' : String(val),
+    z.string().optional()
+      .transform(val => {
+        if (!val || val === '') return null;
+        const num = parseFloat(val);
+        return isNaN(num) ? null : num;
+      })
+  ),
   stock: z.coerce.number().int().min(0, { message: 'Zalihe ne mogu biti negativne.' }).default(0),
 });
 

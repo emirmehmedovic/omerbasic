@@ -1,0 +1,29 @@
+Upute za integraciju EngineButton komponente u VehiclesClient.tsx:
+
+1. Pronađite sljedeći kod u VehiclesClient.tsx:
+
+```tsx
+<li key={generation.id} className="flex items-center p-2 border rounded-md">
+  <ChevronRight className="h-4 w-4 mr-2 text-gray-400" />
+  <span>{generation.name}</span>
+  {generation.period && <span className="ml-2 text-gray-500">({generation.period})</span>}
+</li>
+```
+
+2. Zamijenite ga sljedećim kodom:
+
+```tsx
+<li key={generation.id} className="flex items-center justify-between p-2 border rounded-md">
+  <div className="flex items-center">
+    <ChevronRight className="h-4 w-4 mr-2 text-gray-400" />
+    <span>{generation.name}</span>
+    {generation.period && <span className="ml-2 text-gray-500">({generation.period})</span>}
+  </div>
+  <EngineButton generationId={generation.id} />
+</li>
+```
+
+3. Ovo trebate napraviti na oba mjesta u kodu gdje se prikazuju generacije vozila.
+
+4. Nakon što dodate EngineButton komponentu, možete pristupiti stranici za upravljanje motorima vozila putem URL-a:
+/admin/vehicles/engines/[generationId]

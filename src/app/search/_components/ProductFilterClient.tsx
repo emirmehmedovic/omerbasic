@@ -23,9 +23,9 @@ export function ProductFilterClient({ filterData }: ProductFilterClientProps) {
   const searchParams = useSearchParams();
 
   const [filters, setFilters] = useState({
-    categoryId: searchParams.get('categoryId') || '',
-    vehicleBrand: searchParams.get('vehicleBrand') || '',
-    vehicleModel: searchParams.get('vehicleModel') || '',
+    categoryId: searchParams.get('categoryId') || 'all',
+    vehicleBrand: searchParams.get('vehicleBrand') || 'all',
+    vehicleModel: searchParams.get('vehicleModel') || 'all',
   });
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
@@ -34,9 +34,9 @@ export function ProductFilterClient({ filterData }: ProductFilterClientProps) {
     const fetchProducts = async () => {
       setLoading(true);
       const params = new URLSearchParams();
-      if (filters.categoryId) params.set('categoryId', filters.categoryId);
-      if (filters.vehicleBrand) params.set('vehicleBrand', filters.vehicleBrand);
-      if (filters.vehicleModel) params.set('vehicleModel', filters.vehicleModel);
+      if (filters.categoryId && filters.categoryId !== 'all') params.set('categoryId', filters.categoryId);
+      if (filters.vehicleBrand && filters.vehicleBrand !== 'all') params.set('vehicleBrand', filters.vehicleBrand);
+      if (filters.vehicleModel && filters.vehicleModel !== 'all') params.set('vehicleModel', filters.vehicleModel);
 
       // Ažuriramo URL bez ponovnog učitavanja stranice
       router.push(`${pathname}?${params.toString()}`);
@@ -74,7 +74,7 @@ export function ProductFilterClient({ filterData }: ProductFilterClientProps) {
                 <Select value={filters.categoryId} onValueChange={(value: string) => handleFilterChange('categoryId', value)}>
           <SelectTrigger><SelectValue placeholder="Sve kategorije" /></SelectTrigger>
           <SelectContent>
-            <SelectItem value="">Sve kategorije</SelectItem>
+            <SelectItem value="all">Sve kategorije</SelectItem>
             {filterData.categories.map(c => <SelectItem key={c.id} value={c.id}>{c.name}</SelectItem>)}
           </SelectContent>
         </Select>
@@ -83,7 +83,7 @@ export function ProductFilterClient({ filterData }: ProductFilterClientProps) {
                 <Select value={filters.vehicleBrand} onValueChange={(value: string) => handleFilterChange('vehicleBrand', value)}>
           <SelectTrigger><SelectValue placeholder="Sve marke vozila" /></SelectTrigger>
           <SelectContent>
-            <SelectItem value="">Sve marke</SelectItem>
+            <SelectItem value="all">Sve marke</SelectItem>
             {filterData.brands.map(b => <SelectItem key={b} value={b}>{b}</SelectItem>)}
           </SelectContent>
         </Select>
@@ -92,7 +92,7 @@ export function ProductFilterClient({ filterData }: ProductFilterClientProps) {
                 <Select value={filters.vehicleModel} onValueChange={(value: string) => handleFilterChange('vehicleModel', value)}>
           <SelectTrigger><SelectValue placeholder="Svi modeli vozila" /></SelectTrigger>
           <SelectContent>
-            <SelectItem value="">Svi modeli</SelectItem>
+            <SelectItem value="all">Svi modeli</SelectItem>
             {filterData.models.map(m => <SelectItem key={m} value={m}>{m}</SelectItem>)}
           </SelectContent>
         </Select>

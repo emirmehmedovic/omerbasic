@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
 import { db } from '@/lib/db';
-import { EngineType } from '@/lib/types';
 
 export async function GET(
   req: Request,
@@ -25,9 +24,19 @@ export async function GET(
       return new NextResponse('Generation not found', { status: 404 });
     }
 
-    // U stvarnoj implementaciji, ovdje bismo dohvatili tipove motora iz baze
-    // Za sada vraćamo fiksne vrijednosti iz EngineType enuma
-    const engineTypes = Object.values(EngineType);
+    // Dohvat tipova motora za ovu generaciju iz baze
+    const engines = await db.vehicleEngine.findMany({
+      where: {
+        generationId: generationId,
+      },
+      distinct: ['engineType'],
+      select: {
+        engineType: true,
+      },
+    });
+
+    // Izdvajanje jedinstvenih tipova motora
+    const engineTypes = engines.map(engine => engine.engineType);
 
     return NextResponse.json(engineTypes);
   } catch (error) {

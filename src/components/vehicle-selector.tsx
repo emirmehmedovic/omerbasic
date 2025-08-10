@@ -47,7 +47,7 @@ const VehicleSelector = ({
           if (vehicle.vehicleType) setVehicleType(vehicle.vehicleType as VehicleType);
           if (vehicle.brandId) setSelectedBrand(vehicle.brandId);
           if (vehicle.modelId) setSelectedModel(vehicle.modelId);
-          if (vehicle.generationId) {
+          if (vehicle.generationId && selectedGeneration !== vehicle.generationId) {
             setSelectedGeneration(vehicle.generationId);
             // Također pozovi callback funkciju za odabir generacije
             onGenerationSelect(vehicle.generationId);
@@ -63,11 +63,13 @@ const VehicleSelector = ({
         localStorage.removeItem('selectedVehicle');
       }
     }
-  }, [rememberSelection, onGenerationSelect]);
+  }, [rememberSelection, onGenerationSelect, selectedGeneration]);
 
   // Spremi odabrano vozilo u localStorage kada se promijeni bilo koji parametar
   useEffect(() => {
-    if (rememberSelection && typeof window !== 'undefined') {
+    if (rememberSelection && typeof window !== 'undefined' && 
+        (vehicleType || selectedBrand || selectedModel || selectedGeneration || 
+         selectedEngineType || selectedEnginePower || selectedEngineCapacity || selectedEngineCode)) {
       const vehicleToSave = {
         vehicleType,
         brandId: selectedBrand,

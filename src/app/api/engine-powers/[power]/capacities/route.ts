@@ -19,9 +19,24 @@ export async function GET(
       return new NextResponse('Invalid engine power value', { status: 400 });
     }
 
-    // U stvarnoj implementaciji, ovdje bismo dohvatili zapremine motora iz baze
-    // Za sada vraćamo fiksne vrijednosti
-    const engineCapacities = [1000, 1200, 1400, 1600, 1800, 2000, 2200, 2500, 3000];
+    // Dohvat zapremina motora za odabranu snagu motora iz baze
+    const engines = await db.vehicleEngine.findMany({
+      where: {
+        enginePowerHP: powerValue,
+      },
+      select: {
+        engineCapacity: true,
+      },
+      distinct: ['engineCapacity'],
+      orderBy: {
+        engineCapacity: 'asc',
+      },
+    });
+
+    // Izdvajanje jedinstvenih zapremina motora i filtriranje null vrijednosti
+    const engineCapacities = engines
+      .map(engine => engine.engineCapacity)
+      .filter(capacity => capacity !== null) as number[];
 
     return NextResponse.json(engineCapacities);
   } catch (error) {
