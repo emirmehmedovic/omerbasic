@@ -7,15 +7,9 @@ import { Separator } from '@/components/ui/separator';
 // @ts-ignore - Skeleton komponenta postoji ali TypeScript ne može pronaći deklaraciju tipa
 import { Skeleton } from '@/components/ui/skeleton';
 
-interface DiscountsPageProps {
-  params: {
-    userId: string;
-  };
-}
-
-export default async function DiscountsPage({ params }: DiscountsPageProps) {
-  // Dohvati params objekt i izvuci userId
-  const { userId } = params;
+export default async function DiscountsPage({ params }: { params: Promise<{ userId: string }> }) {
+  // Dohvati params objekt i izvuci userId (Next.js 15 async params)
+  const { userId } = await params;
   
   // Dohvati korisnika da provjerimo postoji li i je li B2B
   const user = await db.user.findUnique({

@@ -45,14 +45,15 @@ async function getOrderDetails(orderId: string) {
   return order;
 }
 
-export default async function OrderDetailsPage({ params }: { params: { orderId: string } }) {
+export default async function OrderDetailsPage({ params }: { params: Promise<{ orderId: string }> }) {
+  const { orderId } = await params;
   const session = await getServerSession(authOptions);
 
   if (!session || session.user.role !== 'ADMIN') {
     redirect('/login');
   }
 
-  const order = await getOrderDetails(params.orderId);
+  const order = await getOrderDetails(orderId);
 
   if (!order) {
     return (

@@ -36,8 +36,9 @@ async function getCategories() {
   });
 }
 
-export default async function EditProductPage({ params }: { params: { productId: string } }) {
-  const product = await getProduct(params.productId);
+export default async function EditProductPage({ params }: { params: Promise<{ productId: string }> }) {
+  const { productId } = await params;
+  const product = await getProduct(productId);
   const categories = await getCategories();
   
   // Extract vehicle information from the first fitment if available
@@ -71,7 +72,7 @@ export default async function EditProductPage({ params }: { params: { productId:
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-2xl font-bold">Uredi proizvod</h1>
         <Link 
-          href={`/admin/products/${params.productId}/attributes`} 
+          href={`/admin/products/${productId}/attributes`} 
           className="flex items-center px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors"
         >
           <Settings className="h-4 w-4 mr-2" /> Atributi i reference

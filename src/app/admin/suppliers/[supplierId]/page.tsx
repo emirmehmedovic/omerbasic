@@ -11,22 +11,17 @@ export const metadata: Metadata = {
   description: "Upravljanje detaljima dobavljača",
 };
 
-interface SupplierDetailsPageProps {
-  params: {
-    supplierId: string;
-  };
-}
-
-const SupplierDetailsPage = async ({ params }: SupplierDetailsPageProps) => {
+const SupplierDetailsPage = async ({ params }: { params: Promise<{ supplierId: string }> }) => {
   const session = await getServerSession(authOptions);
 
   if (!session || session.user.role !== "ADMIN") {
     redirect("/");
   }
 
+  const { supplierId } = await params;
   const supplier = await db.supplier.findUnique({
     where: {
-      id: params.supplierId,
+      id: supplierId,
     },
   });
 

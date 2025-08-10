@@ -5,13 +5,7 @@ import { notFound, redirect } from 'next/navigation';
 import Link from 'next/link';
 import { CheckCircle2 } from 'lucide-react';
 
-interface OrderConfirmationPageProps {
-  params: {
-    orderId: string;
-  };
-}
-
-export default async function OrderConfirmationPage({ params }: OrderConfirmationPageProps) {
+export default async function OrderConfirmationPage({ params }: { params: Promise<{ orderId: string }> }) {
   // U Next.js 15+ moramo koristiti await za pristup dinamičkim parametrima
   const { orderId } = await params;
   const currentUser = await getCurrentUser();

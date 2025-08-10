@@ -5,13 +5,7 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { db } from "@/lib/db";
 import PurchaseOrderDetails from "../components/PurchaseOrderDetails";
 
-interface PurchaseOrderPageProps {
-  params: {
-    purchaseOrderId: string;
-  };
-}
-
-export default async function PurchaseOrderPage({ params }: PurchaseOrderPageProps) {
+export default async function PurchaseOrderPage({ params }: { params: Promise<{ purchaseOrderId: string }> }) {
   const session = await getServerSession(authOptions);
 
   if (!session || session.user.role !== "ADMIN") {
@@ -19,9 +13,10 @@ export default async function PurchaseOrderPage({ params }: PurchaseOrderPagePro
   }
 
   // Dohvati narudžbenicu
+  const { purchaseOrderId } = await params;
   const purchaseOrder = await db.purchaseOrder.findUnique({
     where: {
-      id: params.purchaseOrderId,
+      id: purchaseOrderId,
     },
     include: {
       supplier: true,

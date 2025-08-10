@@ -7,12 +7,6 @@ import ProductAttributeValueManager from "@/components/admin/ProductAttributeVal
 import ProductCrossReferenceManager from "@/components/admin/ProductCrossReferenceManager";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-interface ProductAttributesPageProps {
-  params: {
-    productId: string;
-  };
-}
-
 export const metadata: Metadata = {
   title: "Atributi i reference proizvoda | Admin panel",
   description: "Upravljanje atributima i cross-referencama proizvoda",
@@ -20,7 +14,9 @@ export const metadata: Metadata = {
 
 export default async function ProductAttributesPage({
   params,
-}: ProductAttributesPageProps) {
+}: {
+  params: Promise<{ productId: string }>;
+}) {
   const session = await getServerSession(authOptions);
 
   // Provjera autorizacije
@@ -28,7 +24,7 @@ export default async function ProductAttributesPage({
     return notFound();
   }
 
-  const { productId } = params;
+  const { productId } = await params;
 
   // Dohvat proizvoda s kategorijom
   const product = await db.product.findUnique({

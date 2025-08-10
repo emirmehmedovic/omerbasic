@@ -4,9 +4,9 @@ import { EngineClient } from '../_components/EngineClient';
 export const dynamic = 'force-dynamic';
 
 interface EnginePageProps {
-  params: {
+  params: Promise<{
     generationId: string;
-  };
+  }>;
 }
 
 async function getData(generationId: string) {
@@ -41,7 +41,8 @@ async function getData(generationId: string) {
 }
 
 export default async function EnginePage({ params }: EnginePageProps) {
-  const { generation, engines } = await getData(params.generationId);
+  const { generationId } = await params;
+  const { generation, engines } = await getData(generationId);
 
   return (
     <div className="p-6">
