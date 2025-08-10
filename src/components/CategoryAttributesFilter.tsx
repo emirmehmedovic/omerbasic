@@ -8,8 +8,8 @@ import { Label } from '@/components/ui/label';
 
 interface CategoryAttributesFilterProps {
   categoryId: string;
-  onAttributesChange: (attributes: Record<string, string>) => void;
-  selectedAttributes?: Record<string, string>;
+  onAttributesChange: (attributes: Record<string, string | number>) => void;
+  selectedAttributes?: Record<string, string | number>;
 }
 
 interface CategoryAttribute {
@@ -27,7 +27,7 @@ export default function CategoryAttributesFilter({
 }: CategoryAttributesFilterProps) {
   const [attributes, setAttributes] = useState<CategoryAttribute[]>([]);
   const [loading, setLoading] = useState(false);
-  const [selectedValues, setSelectedValues] = useState<Record<string, string>>(selectedAttributes);
+  const [selectedValues, setSelectedValues] = useState<Record<string, string | number>>(selectedAttributes);
 
   // Fetch attributes when category changes
   useEffect(() => {
@@ -59,7 +59,7 @@ export default function CategoryAttributesFilter({
 
   // Reset selected values when attributes change
   useEffect(() => {
-    const validSelectedValues: Record<string, string> = {};
+    const validSelectedValues: Record<string, string | number> = {};
     
     // Zadrži samo one odabrane vrijednosti koje još uvijek postoje u novim atributima
     Object.entries(selectedValues).forEach(([attrId, value]) => {
@@ -72,7 +72,7 @@ export default function CategoryAttributesFilter({
     onAttributesChange(validSelectedValues);
   }, [attributes, onAttributesChange]);
 
-  const handleAttributeChange = (attributeId: string, value: string) => {
+  const handleAttributeChange = (attributeId: string, value: string | number) => {
     const newValues = { ...selectedValues };
     
     if (value && value !== 'all') {
@@ -105,7 +105,7 @@ export default function CategoryAttributesFilter({
           
           {attribute.type === 'SELECT' && attribute.options.length > 0 && (
             <Select
-              value={selectedValues[attribute.id] || ''}
+              value={selectedValues[attribute.id] !== undefined ? String(selectedValues[attribute.id]) : ''}
               onValueChange={(value) => handleAttributeChange(attribute.id, value)}
             >
               <SelectTrigger id={`attr-${attribute.id}`} className="w-full">
@@ -127,7 +127,7 @@ export default function CategoryAttributesFilter({
               id={`attr-${attribute.id}`}
               type="text"
               placeholder="Unesite vrijednost..."
-              value={selectedValues[attribute.id] || ''}
+              value={selectedValues[attribute.id] !== undefined ? String(selectedValues[attribute.id]) : ''}
               onChange={(e) => handleAttributeChange(attribute.id, e.target.value)}
               className="w-full"
             />
@@ -138,7 +138,7 @@ export default function CategoryAttributesFilter({
               id={`attr-${attribute.id}`}
               type="number"
               placeholder="Unesite vrijednost..."
-              value={selectedValues[attribute.id] || ''}
+              value={selectedValues[attribute.id] !== undefined ? String(selectedValues[attribute.id]) : ''}
               onChange={(e) => handleAttributeChange(attribute.id, e.target.value)}
               className="w-full"
             />

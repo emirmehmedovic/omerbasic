@@ -4,8 +4,8 @@ import { useState, useEffect } from 'react';
 
 interface TechnicalSpecsFilterProps {
   categoryId: string;
-  onSpecsChange: (specs: Record<string, string>) => void;
-  selectedSpecs?: Record<string, string>;
+  onSpecsChange: (specs: Record<string, string | number>) => void;
+  selectedSpecs?: Record<string, string | number>;
 }
 
 export default function TechnicalSpecsFilter({ 
@@ -15,7 +15,7 @@ export default function TechnicalSpecsFilter({
 }: TechnicalSpecsFilterProps) {
   const [specs, setSpecs] = useState<Record<string, string[]>>({});
   const [loading, setLoading] = useState(false);
-  const [selectedValues, setSelectedValues] = useState<Record<string, string>>(selectedSpecs);
+  const [selectedValues, setSelectedValues] = useState<Record<string, string | number>>(selectedSpecs);
 
   // Fetch specs when category changes
   useEffect(() => {
@@ -48,10 +48,10 @@ export default function TechnicalSpecsFilter({
   // Reset selected values when specs change
   useEffect(() => {
     // Zadrži samo one odabrane vrijednosti koje još uvijek postoje u novim specifikacijama
-    const newSelectedValues: Record<string, string> = {};
+    const newSelectedValues: Record<string, string | number> = {};
     
     Object.entries(selectedValues).forEach(([key, value]) => {
-      if (specs[key] && specs[key].includes(value)) {
+      if (specs[key] && specs[key].includes(String(value))) {
         newSelectedValues[key] = value;
       }
     });
@@ -60,7 +60,7 @@ export default function TechnicalSpecsFilter({
     onSpecsChange(newSelectedValues);
   }, [specs]);
 
-  const handleSpecChange = (specName: string, value: string) => {
+  const handleSpecChange = (specName: string, value: string | number) => {
     const newSelectedValues = { ...selectedValues };
     
     if (value) {
@@ -105,7 +105,7 @@ export default function TechnicalSpecsFilter({
             </label>
             <div className="relative">
               <select
-                value={selectedValues[specName] || ''}
+                value={selectedValues[specName] !== undefined ? String(selectedValues[specName]) : ''}
                 onChange={(e) => handleSpecChange(specName, e.target.value)}
                 className="w-full px-3 py-2 bg-white/70 backdrop-blur-sm rounded-xl border border-white/50 shadow-sm text-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-orange/50 transition-all duration-200"
               >

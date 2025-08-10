@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useDebouncedCallback } from 'use-debounce';
 import type { Category } from '@/generated/prisma/client';
 import VehicleSelector from './vehicle-selector';
@@ -13,7 +13,7 @@ import { ChevronDown, ChevronUp, Filter, X, Sliders } from 'lucide-react';
 
 interface ProductFiltersProps {
   categories: Category[];
-  initialFilters: { [key: string]: any };
+  initialFilters: Record<string, string | number | undefined>;
   showVehicleFilters?: boolean;
   showTechSpecs?: boolean;
   showHierarchy?: boolean;
@@ -26,9 +26,9 @@ export function ProductFilters({
   showTechSpecs = true,
   showHierarchy = true 
 }: ProductFiltersProps) {
-  const [filters, setFilters] = useState(initialFilters);
-  const [techSpecs, setTechSpecs] = useState<Record<string, string>>({});
-  const [categoryAttributes, setCategoryAttributes] = useState<Record<string, string>>({});
+  const [filters, setFilters] = useState<Record<string, string | number | undefined>>(initialFilters);
+  const [techSpecs, setTechSpecs] = useState<Record<string, string | number>>({});
+  const [categoryAttributes, setCategoryAttributes] = useState<Record<string, string | number>>({});
   const [crossReference, setCrossReference] = useState<string>('');
   const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({
     categories: true,
@@ -43,13 +43,13 @@ export function ProductFilters({
   const router = useRouter();
   const pathname = usePathname();
 
-  const handleFilterChange = useDebouncedCallback((key: string, value: string) => {
+  const handleFilterChange = useDebouncedCallback((key: string, value: string | number) => {
     const newFilters = { ...filters, [key]: value };
     setFilters(newFilters);
     updateUrl(newFilters);
   }, 500);
   
-  const handleTechSpecsChange = useDebouncedCallback((specs: Record<string, string>) => {
+  const handleTechSpecsChange = useDebouncedCallback((specs: Record<string, string | number>) => {
     setTechSpecs(specs);
     
     // Dodaj tehničke specifikacije u URL kao posebne parametre
@@ -73,7 +73,7 @@ export function ProductFilters({
     updateUrl(newFilters);
   }, 500);
   
-  const handleCategoryAttributesChange = useDebouncedCallback((attributes: Record<string, string>) => {
+  const handleCategoryAttributesChange = useDebouncedCallback((attributes: Record<string, string | number>) => {
     setCategoryAttributes(attributes);
     
     // Dodaj atribute kategorije u URL kao posebne parametre
@@ -112,11 +112,11 @@ export function ProductFilters({
     updateUrl(newFilters);
   }, 500);
   
-  const updateUrl = (filterParams: Record<string, any>) => {
+  const updateUrl = (filterParams: Record<string, string | number | undefined>) => {
     const params = new URLSearchParams();
     Object.entries(filterParams).forEach(([filterKey, filterValue]) => {
       if (filterValue) {
-        params.set(filterKey, String(filterValue));
+        params.set(filterKey, filterValue.toString());
       }
     });
 
@@ -234,7 +234,7 @@ export function ProductFilters({
                     <div className="max-h-60 overflow-y-auto pr-1 custom-scrollbar">
                       <CategoryHierarchy 
                         onCategorySelect={(categoryId) => handleFilterChange('categoryId', categoryId)}
-                        selectedCategoryId={filters.categoryId}
+                        selectedCategoryId={typeof filters.categoryId === 'string' ? filters.categoryId : undefined}
                       />
                     </div>
                   ) : (
@@ -244,7 +244,7 @@ export function ProductFilters({
                           id="category"
                           name="categoryId"
                           onChange={(e) => handleFilterChange('categoryId', e.target.value)}
-                          value={filters.categoryId || ''}
+                          value={typeof filters.categoryId === 'string' ? filters.categoryId : ''}
                           className="w-full px-4 py-2.5 bg-white/70 backdrop-blur-sm rounded-xl border border-white/50 shadow-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-orange/50 transition-all duration-200"
                         >
                           <option value="">Sve kategorije</option>
@@ -287,7 +287,7 @@ export function ProductFilters({
                           name="minPrice"
                           placeholder="0"
                           onChange={(e) => handleFilterChange('minPrice', e.target.value)}
-                          value={filters.minPrice || ''}
+                          value={typeof filters.minPrice === 'string' || typeof filters.minPrice === 'number' ? filters.minPrice : ''}
                           className="w-full px-3 py-2 bg-white/70 backdrop-blur-sm rounded-xl border border-white/50 shadow-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-orange/50 transition-all duration-200"
                         />
                         <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400 text-sm">KM</div>
@@ -304,7 +304,7 @@ export function ProductFilters({
                           name="maxPrice"
                           placeholder="1000+"
                           onChange={(e) => handleFilterChange('maxPrice', e.target.value)}
-                          value={filters.maxPrice || ''}
+                          value={typeof filters.maxPrice === 'string' || typeof filters.maxPrice === 'number' ? filters.maxPrice : ''}
                           className="w-full px-3 py-2 bg-white/70 backdrop-blur-sm rounded-xl border border-white/50 shadow-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-orange/50 transition-all duration-200"
                         />
                         <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400 text-sm">KM</div>
@@ -358,7 +358,7 @@ export function ProductFilters({
               {expandedSections.techSpecs && (
                 <div className="mt-3">
                   <TechnicalSpecsFilter 
-                    categoryId={filters.categoryId} 
+                    categoryId={typeof filters.categoryId === 'string' ? filters.categoryId : ''} 
                     onSpecsChange={handleTechSpecsChange}
                     selectedSpecs={techSpecs}
                   />
@@ -385,7 +385,7 @@ export function ProductFilters({
               {expandedSections.attributes && (
                 <div className="mt-3">
                   <CategoryAttributesFilter
-                    categoryId={filters.categoryId}
+                    categoryId={typeof filters.categoryId === 'string' ? filters.categoryId : ''}
                     onAttributesChange={handleCategoryAttributesChange}
                     selectedAttributes={categoryAttributes}
                   />
