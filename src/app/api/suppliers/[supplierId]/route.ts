@@ -8,7 +8,7 @@ import { authOptions } from "@/lib/auth";
 // GET - Dohvaćanje pojedinačnog dobavljača
 export async function GET(
   req: Request,
-  { params }: { params: { supplierId: string } }
+  { params }: { params: Promise<{ supplierId: string }>}
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -21,13 +21,14 @@ export async function GET(
       return new NextResponse("Forbidden", { status: 403 });
     }
 
-    if (!params.supplierId) {
+    const { supplierId } = await params;
+    if (!supplierId) {
       return new NextResponse("Supplier ID is required", { status: 400 });
     }
 
     const supplier = await db.supplier.findUnique({
       where: {
-        id: params.supplierId,
+        id: supplierId,
       },
       include: {
         categories: {
@@ -57,7 +58,7 @@ export async function GET(
 // PATCH - Ažuriranje dobavljača
 export async function PATCH(
   req: Request,
-  { params }: { params: { supplierId: string } }
+  { params }: { params: Promise<{ supplierId: string }>}
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -70,7 +71,8 @@ export async function PATCH(
       return new NextResponse("Forbidden", { status: 403 });
     }
 
-    if (!params.supplierId) {
+    const { supplierId } = await params;
+    if (!supplierId) {
       return new NextResponse("Supplier ID is required", { status: 400 });
     }
 
@@ -96,7 +98,7 @@ export async function PATCH(
     // Provjera postoji li dobavljač
     const existingSupplier = await db.supplier.findUnique({
       where: {
-        id: params.supplierId,
+        id: supplierId,
       },
     });
 
@@ -106,7 +108,7 @@ export async function PATCH(
 
     const updatedSupplier = await db.supplier.update({
       where: {
-        id: params.supplierId,
+        id: supplierId,
       },
       data: validatedData,
     });
@@ -125,7 +127,7 @@ export async function PATCH(
 // DELETE - Brisanje dobavljača
 export async function DELETE(
   req: Request,
-  { params }: { params: { supplierId: string } }
+  { params }: { params: Promise<{ supplierId: string }>}
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -138,14 +140,15 @@ export async function DELETE(
       return new NextResponse("Forbidden", { status: 403 });
     }
 
-    if (!params.supplierId) {
+    const { supplierId } = await params;
+    if (!supplierId) {
       return new NextResponse("Supplier ID is required", { status: 400 });
     }
 
     // Provjera postoji li dobavljač
     const existingSupplier = await db.supplier.findUnique({
       where: {
-        id: params.supplierId,
+        id: supplierId,
       },
     });
 
@@ -156,7 +159,7 @@ export async function DELETE(
     // Brisanje dobavljača i svih povezanih podataka (kaskadno brisanje)
     await db.supplier.delete({
       where: {
-        id: params.supplierId,
+        id: supplierId,
       },
     });
 

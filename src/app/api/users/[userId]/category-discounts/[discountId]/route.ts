@@ -11,11 +11,11 @@ const updateCategoryDiscountSchema = z.object({
 // GET - dohvat pojedinačnog popusta
 export async function GET(
   req: Request,
-  context: { params: { userId: string; discountId: string } }
+  { params }: { params: Promise<{ userId: string; discountId: string }>}
 ) {
   try {
     // Dohvati userId i discountId iz parametara rute
-    const { userId, discountId } = context.params;
+    const { userId, discountId } = await params;
     
     const currentUser = await getCurrentUser();
 
@@ -48,11 +48,11 @@ export async function GET(
 // PATCH - ažuriranje postojećeg popusta
 export async function PATCH(
   req: Request,
-  context: { params: { userId: string, discountId: string } }
+  { params }: { params: Promise<{ userId: string; discountId: string }>}
 ) {
   try {
     // Dohvati userId i discountId iz parametara rute
-    const { userId, discountId } = context.params;
+    const { userId, discountId } = await params;
     
     const currentUser = await getCurrentUser();
 
@@ -101,11 +101,11 @@ export async function PATCH(
 // DELETE - brisanje popusta
 export async function DELETE(
   req: Request,
-  context: { params: { userId: string, discountId: string } }
+  { params }: { params: Promise<{ userId: string; discountId: string }>}
 ) {
   try {
     // Dohvati userId i discountId iz parametara rute
-    const { userId, discountId } = context.params;
+    const { userId, discountId } = await params;
     
     const currentUser = await getCurrentUser();
 

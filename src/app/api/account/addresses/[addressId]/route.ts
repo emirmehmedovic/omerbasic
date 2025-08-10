@@ -4,14 +4,14 @@ import { getCurrentUser } from '@/lib/session';
 import { addressFormSchema } from '@/lib/validations/account';
 
 // PATCH /api/account/addresses/{addressId}
-export async function PATCH(req: Request, { params }: { params: { addressId: string } }) {
+export async function PATCH(req: Request, { params }: { params: Promise<{ addressId: string }> }) {
   try {
     const user = await getCurrentUser();
     if (!user) {
       return new NextResponse('Unauthorized', { status: 401 });
     }
 
-    const { addressId } = params;
+    const { addressId } = await params;
     const body = await req.json();
     const data = addressFormSchema.parse(body);
 
@@ -43,14 +43,14 @@ export async function PATCH(req: Request, { params }: { params: { addressId: str
 }
 
 // DELETE /api/account/addresses/{addressId}
-export async function DELETE(req: Request, { params }: { params: { addressId: string } }) {
+export async function DELETE(req: Request, { params }: { params: Promise<{ addressId: string }> }) {
   try {
     const user = await getCurrentUser();
     if (!user) {
       return new NextResponse('Unauthorized', { status: 401 });
     }
 
-    const { addressId } = params;
+    const { addressId } = await params;
 
     // Provjeri da li adresa pripada korisniku
     const addressToDelete = await db.address.findFirst({

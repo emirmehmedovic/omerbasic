@@ -4,15 +4,12 @@ import { z } from 'zod';
 import { db } from '@/lib/db';
 import { updateCategorySchema } from '@/lib/validations/category';
 
-interface IParams {
-  params: {
-    categoryId: string;
-  };
-}
-
-export async function PATCH(req: Request, { params }: IParams) {
+export async function PATCH(
+  req: Request,
+  { params }: { params: Promise<{ categoryId: string }> }
+) {
   try {
-    const { categoryId } = params;
+    const { categoryId } = await params;
     const body = await req.json();
 
     const { name, parentId } = updateCategorySchema.parse(body);
@@ -57,9 +54,12 @@ export async function PATCH(req: Request, { params }: IParams) {
   }
 }
 
-export async function DELETE(req: Request, { params }: IParams) {
+export async function DELETE(
+  req: Request,
+  { params }: { params: Promise<{ categoryId: string }> }
+) {
   try {
-    const { categoryId } = params;
+    const { categoryId } = await params;
 
     // Optional: Check if the category has products associated with it
     const categoryWithProducts = await db.category.findUnique({

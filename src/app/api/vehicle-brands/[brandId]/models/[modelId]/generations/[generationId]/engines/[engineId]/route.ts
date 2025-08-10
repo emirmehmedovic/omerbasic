@@ -17,11 +17,10 @@ const vehicleEngineSchema = z.object({
 
 export async function GET(
   req: Request,
-  context: { params: { brandId: string; modelId: string; generationId: string; engineId: string } }
+  { params }: { params: Promise<{ brandId: string; modelId: string; generationId: string; engineId: string }> }
 ) {
   try {
-    const params = await context.params;
-    const { engineId } = params;
+    const { engineId } = await params;
 
     const engine = await db.vehicleEngine.findUnique({
       where: { id: engineId },
@@ -40,7 +39,7 @@ export async function GET(
 
 export async function PATCH(
   req: Request,
-  context: { params: { brandId: string; modelId: string; generationId: string; engineId: string } }
+  { params }: { params: Promise<{ brandId: string; modelId: string; generationId: string; engineId: string }> }
 ) {
   try {
     // Provjera autentikacije
@@ -50,8 +49,7 @@ export async function PATCH(
       return NextResponse.json({ error: 'Nemate dozvolu za ovu akciju' }, { status: 403 });
     }
 
-    const params = await context.params;
-    const { engineId, generationId } = params;
+    const { generationId, engineId } = await params;
 
     // Provjera postoji li motor
     const engine = await db.vehicleEngine.findUnique({
@@ -101,7 +99,7 @@ export async function PATCH(
 
 export async function DELETE(
   req: Request,
-  context: { params: { brandId: string; modelId: string; generationId: string; engineId: string } }
+  { params }: { params: Promise<{ brandId: string; modelId: string; generationId: string; engineId: string }> }
 ) {
   try {
     // Provjera autentikacije
@@ -111,8 +109,7 @@ export async function DELETE(
       return NextResponse.json({ error: 'Nemate dozvolu za ovu akciju' }, { status: 403 });
     }
 
-    const params = await context.params;
-    const { engineId, generationId } = params;
+    const { generationId, engineId } = await params;
 
     // Provjera postoji li motor
     const engine = await db.vehicleEngine.findUnique({

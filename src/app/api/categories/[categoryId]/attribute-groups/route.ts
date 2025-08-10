@@ -8,11 +8,11 @@ import { z } from "zod";
 // GET - Dohvat svih grupa atributa za kategoriju
 export async function GET(
   req: Request,
-  context: { params: { categoryId: string } }
+  { params }: { params: Promise<{ categoryId: string }> }
 ) {
   try {
-    // Dohvaćamo categoryId iz context.params - koristimo await
-    const { categoryId } = await context.params;
+    // Dohvaćamo categoryId iz params - koristimo await
+    const { categoryId } = await params;
 
     const attributeGroups = await db.attributeGroup.findMany({
       where: {
@@ -39,7 +39,7 @@ export async function GET(
 // POST - Kreiranje nove grupe atributa za kategoriju
 export async function POST(
   req: Request,
-  context: { params: { categoryId: string } }
+  { params }: { params: Promise<{ categoryId: string }> }
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -50,8 +50,8 @@ export async function POST(
       );
     }
 
-    // Dohvaćamo categoryId iz context.params - koristimo await
-    const { categoryId } = await context.params;
+    // Dohvaćamo categoryId iz params - koristimo await
+    const { categoryId } = await params;
     const body = await req.json();
     
     // Validacija podataka

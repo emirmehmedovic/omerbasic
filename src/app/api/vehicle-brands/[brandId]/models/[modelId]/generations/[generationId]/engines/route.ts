@@ -17,11 +17,10 @@ const vehicleEngineSchema = z.object({
 
 export async function GET(
   req: Request,
-  context: { params: { brandId: string; modelId: string; generationId: string } }
+  { params }: { params: Promise<{ brandId: string; modelId: string; generationId: string }> }
 ) {
   try {
-    const params = await context.params;
-    const { generationId } = params;
+    const { generationId } = await params;
 
     // Provjera postoji li generacija
     const generation = await db.vehicleGeneration.findUnique({
@@ -47,7 +46,7 @@ export async function GET(
 
 export async function POST(
   req: Request,
-  context: { params: { brandId: string; modelId: string; generationId: string } }
+  { params }: { params: Promise<{ brandId: string; modelId: string; generationId: string }> }
 ) {
   try {
     // Provjera autentikacije
@@ -57,8 +56,7 @@ export async function POST(
       return NextResponse.json({ error: 'Nemate dozvolu za ovu akciju' }, { status: 403 });
     }
 
-    const params = await context.params;
-    const { generationId } = params;
+    const { generationId } = await params;
 
     // Provjera postoji li generacija
     const generation = await db.vehicleGeneration.findUnique({

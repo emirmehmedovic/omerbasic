@@ -19,10 +19,10 @@ const categoryAttributeSchema = z.object({
 // GET - Dohvat pojedinačnog atributa
 export async function GET(
   req: Request,
-  { params }: { params: { categoryId: string; attributeId: string } }
+  { params }: { params: Promise<{ categoryId: string; attributeId: string }>}
 ) {
   try {
-    const { attributeId } = params;
+    const { categoryId, attributeId } = await params;
 
     const attribute = await db.categoryAttribute.findUnique({
       where: {
@@ -50,7 +50,7 @@ export async function GET(
 // PUT - Ažuriranje postojećeg atributa
 export async function PUT(
   req: Request,
-  { params }: { params: { categoryId: string; attributeId: string } }
+  { params }: { params: Promise<{ categoryId: string; attributeId: string }>}
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -61,7 +61,7 @@ export async function PUT(
       );
     }
 
-    const { attributeId, categoryId } = params;
+    const { categoryId, attributeId } = await params;
     const body = await req.json();
     
     // Validacija podataka
@@ -121,7 +121,7 @@ export async function PUT(
 // DELETE - Brisanje atributa
 export async function DELETE(
   req: Request,
-  { params }: { params: { categoryId: string; attributeId: string } }
+  { params }: { params: Promise<{ categoryId: string; attributeId: string }>}
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -132,7 +132,7 @@ export async function DELETE(
       );
     }
 
-    const { attributeId } = params;
+    const { categoryId, attributeId } = await params;
     
     // Provjera da li atribut postoji
     const existingAttribute = await db.categoryAttribute.findUnique({

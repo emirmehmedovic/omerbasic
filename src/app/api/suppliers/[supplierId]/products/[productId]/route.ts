@@ -8,7 +8,7 @@ import { authOptions } from "@/lib/auth";
 // PATCH - Ažuriranje veze dobavljača s proizvodom
 export async function PATCH(
   req: Request,
-  { params }: { params: { supplierId: string; productId: string } }
+  { params }: { params: Promise<{ supplierId: string; productId: string }>}
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -21,7 +21,8 @@ export async function PATCH(
       return new NextResponse("Forbidden", { status: 403 });
     }
 
-    if (!params.supplierId || !params.productId) {
+    const { supplierId, productId } = await params;
+    if (!supplierId || !productId) {
       return new NextResponse("Supplier ID and Product ID are required", { status: 400 });
     }
 
@@ -42,8 +43,8 @@ export async function PATCH(
     const existingLink = await db.supplierProduct.findUnique({
       where: {
         supplierId_productId: {
-          supplierId: params.supplierId,
-          productId: params.productId,
+          supplierId,
+          productId,
         },
       },
     });
@@ -56,8 +57,8 @@ export async function PATCH(
     const updatedLink = await db.supplierProduct.update({
       where: {
         supplierId_productId: {
-          supplierId: params.supplierId,
-          productId: params.productId,
+          supplierId,
+          productId,
         },
       },
       data: validatedData,
@@ -84,7 +85,7 @@ export async function PATCH(
 // DELETE - Brisanje veze dobavljača s proizvodom
 export async function DELETE(
   req: Request,
-  { params }: { params: { supplierId: string; productId: string } }
+  { params }: { params: Promise<{ supplierId: string; productId: string }>}
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -97,7 +98,8 @@ export async function DELETE(
       return new NextResponse("Forbidden", { status: 403 });
     }
 
-    if (!params.supplierId || !params.productId) {
+    const { supplierId, productId } = await params;
+    if (!supplierId || !productId) {
       return new NextResponse("Supplier ID and Product ID are required", { status: 400 });
     }
 
@@ -105,8 +107,8 @@ export async function DELETE(
     const existingLink = await db.supplierProduct.findUnique({
       where: {
         supplierId_productId: {
-          supplierId: params.supplierId,
-          productId: params.productId,
+          supplierId,
+          productId,
         },
       },
     });
@@ -119,8 +121,8 @@ export async function DELETE(
     await db.supplierProduct.delete({
       where: {
         supplierId_productId: {
-          supplierId: params.supplierId,
-          productId: params.productId,
+          supplierId,
+          productId,
         },
       },
     });

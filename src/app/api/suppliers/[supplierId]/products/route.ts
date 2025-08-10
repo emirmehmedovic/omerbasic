@@ -8,11 +8,11 @@ import { authOptions } from "@/lib/auth";
 // GET - Dohvaćanje proizvoda za dobavljača
 export async function GET(
   req: Request,
-  context: { params: { supplierId: string } }
+  { params }: { params: Promise<{ supplierId: string }> }
 ) {
   try {
     const session = await getServerSession(authOptions);
-    const { supplierId } = await context.params;
+    const { supplierId } = await params;
 
     if (!session) {
       return new NextResponse("Unauthorized", { status: 401 });
@@ -62,11 +62,11 @@ export async function GET(
 // POST - Dodavanje proizvoda dobavljaču
 export async function POST(
   req: Request,
-  context: { params: { supplierId: string } }
+  { params }: { params: Promise<{ supplierId: string }> }
 ) {
   try {
     const session = await getServerSession(authOptions);
-    const { supplierId } = await context.params;
+    const { supplierId } = await params;
 
     if (!session) {
       return new NextResponse("Unauthorized", { status: 401 });

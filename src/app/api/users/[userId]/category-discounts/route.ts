@@ -15,11 +15,11 @@ const categoryDiscountSchema = z.object({
 // GET - dohvat svih popusta za korisnika
 export async function GET(
   req: Request,
-  context: { params: { userId: string } }
+  { params }: { params: Promise<{ userId: string }>}
 ) {
   try {
     // Dohvati userId iz parametara rute
-    const userId = context.params.userId;
+    const { userId } = await params;
     console.log('[CATEGORY_DISCOUNTS_GET] userId:', userId);
     
     const currentUser = await getCurrentUser();
@@ -68,11 +68,11 @@ export async function GET(
 // POST - kreiranje novog popusta za kategoriju
 export async function POST(
   req: Request,
-  context: { params: { userId: string } }
+  { params }: { params: Promise<{ userId: string }>}
 ) {
   try {
     // Dohvati userId iz parametara rute
-    const { userId } = context.params;
+    const { userId } = await params;
     
     const currentUser = await getCurrentUser();
 

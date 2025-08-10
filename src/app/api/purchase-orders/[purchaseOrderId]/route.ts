@@ -15,7 +15,7 @@ const updatePurchaseOrderSchema = z.object({
 
 export async function GET(
   req: Request,
-  { params }: { params: { purchaseOrderId: string } }
+  { params }: { params: Promise<{ purchaseOrderId: string }>}
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -28,13 +28,14 @@ export async function GET(
       return new NextResponse("Forbidden", { status: 403 });
     }
 
-    if (!params.purchaseOrderId) {
+    const { purchaseOrderId } = await params;
+    if (!purchaseOrderId) {
       return new NextResponse("Purchase order ID is required", { status: 400 });
     }
 
     const purchaseOrder = await db.purchaseOrder.findUnique({
       where: {
-        id: params.purchaseOrderId,
+        id: purchaseOrderId,
       },
       include: {
         supplier: true,
@@ -98,7 +99,7 @@ export async function GET(
 
 export async function PATCH(
   req: Request,
-  { params }: { params: { purchaseOrderId: string } }
+  { params }: { params: Promise<{ purchaseOrderId: string }>}
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -111,7 +112,8 @@ export async function PATCH(
       return new NextResponse("Forbidden", { status: 403 });
     }
 
-    if (!params.purchaseOrderId) {
+    const { purchaseOrderId } = await params;
+    if (!purchaseOrderId) {
       return new NextResponse("Purchase order ID is required", { status: 400 });
     }
 
@@ -121,7 +123,7 @@ export async function PATCH(
     // Dohvati trenutnu narudžbenicu
     const currentOrder = await db.purchaseOrder.findUnique({
       where: {
-        id: params.purchaseOrderId,
+        id: purchaseOrderId,
       },
     });
 
@@ -149,7 +151,7 @@ export async function PATCH(
       updateData.status = validatedData.status;
       await db.purchaseOrderStatusHistory.create({
         data: {
-          purchaseOrderId: params.purchaseOrderId,
+          purchaseOrderId,
           status: validatedData.status,
           changedById: session.user.id,
           notes: validatedData.statusNote || null,
@@ -160,7 +162,7 @@ export async function PATCH(
     // Ažuriraj narudžbenicu
     const updatedOrder = await db.purchaseOrder.update({
       where: {
-        id: params.purchaseOrderId,
+        id: purchaseOrderId,
       },
       data: updateData,
       include: {
@@ -200,7 +202,7 @@ export async function PATCH(
 
 export async function DELETE(
   req: Request,
-  { params }: { params: { purchaseOrderId: string } }
+  { params }: { params: Promise<{ purchaseOrderId: string }>}
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -213,14 +215,15 @@ export async function DELETE(
       return new NextResponse("Forbidden", { status: 403 });
     }
 
-    if (!params.purchaseOrderId) {
+    const { purchaseOrderId } = await params;
+    if (!purchaseOrderId) {
       return new NextResponse("Purchase order ID is required", { status: 400 });
     }
 
     // Provjeri postoji li narudžbenica
     const purchaseOrder = await db.purchaseOrder.findUnique({
       where: {
-        id: params.purchaseOrderId,
+        id: purchaseOrderId,
       },
     });
 
@@ -236,7 +239,7 @@ export async function DELETE(
     // Obriši narudžbenicu
     await db.purchaseOrder.delete({
       where: {
-        id: params.purchaseOrderId,
+        id: purchaseOrderId,
       },
     });
 

@@ -12,9 +12,7 @@ type ProductWithDiscount = Product & {
 };
 
 interface ProductPageProps {
-  params: {
-    productId: string;
-  };
+  params: Promise<{ productId: string }>;
 }
 
 

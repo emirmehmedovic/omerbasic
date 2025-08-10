@@ -8,7 +8,7 @@ import { UserRole } from '@/generated/prisma/client';
 
 export async function DELETE(
   req: Request,
-  { params }: { params: { userId: string } }
+  { params }: { params: Promise<{ userId: string }> }
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -16,7 +16,7 @@ export async function DELETE(
       return new NextResponse('Unauthorized', { status: 401 });
     }
 
-    const { userId } = params;
+    const { userId } = await params;
     if (!userId) {
       return new NextResponse('User ID is required', { status: 400 });
     }
@@ -40,7 +40,7 @@ export async function DELETE(
 
 export async function PATCH(
   req: Request,
-  { params }: { params: { userId: string } }
+  { params }: { params: Promise<{ userId: string }> }
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -48,7 +48,7 @@ export async function PATCH(
       return new NextResponse('Unauthorized', { status: 401 });
     }
 
-    const { userId } = params;
+    const { userId } = await params;
     if (!userId) {
       return new NextResponse('User ID is required', { status: 400 });
     }

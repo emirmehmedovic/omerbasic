@@ -8,11 +8,11 @@ import { z } from "zod";
 // GET - Dohvat pojedinačne grupe atributa
 export async function GET(
   req: Request,
-  context: { params: { categoryId: string; groupId: string } }
+  { params }: { params: Promise<{ categoryId: string; groupId: string }> }
 ) {
   try {
-    // Dohvaćamo parametre iz context.params - koristimo await
-    const { categoryId, groupId } = await context.params;
+    // Dohvaćamo parametre iz params - koristimo await
+    const { categoryId, groupId } = await params;
 
     const attributeGroup = await db.attributeGroup.findUnique({
       where: {
@@ -44,7 +44,7 @@ export async function GET(
 // PUT - Ažuriranje grupe atributa
 export async function PUT(
   req: Request,
-  context: { params: { categoryId: string; groupId: string } }
+  { params }: { params: Promise<{ categoryId: string; groupId: string }> }
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -55,8 +55,8 @@ export async function PUT(
       );
     }
 
-    // Dohvaćamo parametre iz context.params - koristimo await
-    const { categoryId, groupId } = await context.params;
+    // Dohvaćamo parametre iz params - koristimo await
+    const { categoryId, groupId } = await params;
     const body = await req.json();
     
     // Validacija podataka
@@ -125,7 +125,7 @@ export async function PUT(
 // DELETE - Brisanje grupe atributa
 export async function DELETE(
   req: Request,
-  context: { params: { categoryId: string; groupId: string } }
+  { params }: { params: Promise<{ categoryId: string; groupId: string }> }
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -136,8 +136,8 @@ export async function DELETE(
       );
     }
 
-    // Dohvaćamo parametre iz context.params - koristimo await
-    const { categoryId, groupId } = await context.params;
+    // Dohvaćamo parametre iz params - koristimo await
+    const { categoryId, groupId } = await params;
     
     // Provjera da li grupa postoji
     const existingGroup = await db.attributeGroup.findUnique({

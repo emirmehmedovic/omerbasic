@@ -12,7 +12,7 @@ const commentSchema = z.object({
 
 export async function POST(
   req: Request,
-  { params }: { params: { purchaseOrderId: string } }
+  { params }: { params: Promise<{ purchaseOrderId: string }>}
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -25,14 +25,15 @@ export async function POST(
       return new NextResponse("Forbidden", { status: 403 });
     }
 
-    if (!params.purchaseOrderId) {
+    const { purchaseOrderId } = await params;
+    if (!purchaseOrderId) {
       return new NextResponse("Purchase order ID is required", { status: 400 });
     }
 
     // Provjeri postoji li narudžbenica
     const purchaseOrder = await db.purchaseOrder.findUnique({
       where: {
-        id: params.purchaseOrderId,
+        id: purchaseOrderId,
       },
     });
 
@@ -46,7 +47,7 @@ export async function POST(
     // Dodaj komentar
     const comment = await db.purchaseOrderComment.create({
       data: {
-        purchaseOrderId: params.purchaseOrderId,
+        purchaseOrderId,
         comment: validatedData.comment,
         createdById: session.user.id,
       },
@@ -73,7 +74,7 @@ export async function POST(
 
 export async function GET(
   req: Request,
-  { params }: { params: { purchaseOrderId: string } }
+  { params }: { params: Promise<{ purchaseOrderId: string }>}
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -86,14 +87,15 @@ export async function GET(
       return new NextResponse("Forbidden", { status: 403 });
     }
 
-    if (!params.purchaseOrderId) {
+    const { purchaseOrderId } = await params;
+    if (!purchaseOrderId) {
       return new NextResponse("Purchase order ID is required", { status: 400 });
     }
 
     // Dohvati komentare za narudžbenicu
     const comments = await db.purchaseOrderComment.findMany({
       where: {
-        purchaseOrderId: params.purchaseOrderId,
+        purchaseOrderId,
       },
       include: {
         createdBy: {

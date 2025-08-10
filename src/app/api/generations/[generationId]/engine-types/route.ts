@@ -3,10 +3,10 @@ import { db } from '@/lib/db';
 
 export async function GET(
   req: Request,
-  { params }: { params: { generationId: string } }
+  { params }: { params: Promise<{ generationId: string }>}
 ) {
   try {
-    const { generationId } = params;
+    const { generationId } = await params;
 
     // Provjera je li generationId validan
     if (!generationId) {

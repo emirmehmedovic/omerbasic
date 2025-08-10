@@ -19,11 +19,10 @@ const batchCrossReferencesSchema = z.array(productCrossReferenceSchema);
 // GET - Dohvat svih cross-referenci za proizvod
 export async function GET(
   req: Request,
-  context: { params: { productId: string } }
+  { params }: { params: Promise<{ productId: string }> }
 ) {
   try {
-    const params = await context.params;
-    const { productId } = params;
+    const { productId } = await params;
 
     // Provjera da li proizvod postoji
     const product = await db.product.findUnique({
@@ -70,7 +69,7 @@ export async function GET(
 // POST - Dodavanje cross-reference za proizvod
 export async function POST(
   req: Request,
-  context: { params: { productId: string } }
+  { params }: { params: Promise<{ productId: string }> }
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -81,8 +80,7 @@ export async function POST(
       );
     }
 
-    const params = await context.params;
-    const { productId } = params;
+    const { productId } = await params;
     const body = await req.json();
     
     // Validacija podataka
@@ -152,7 +150,7 @@ export async function POST(
 // PUT - Batch ažuriranje cross-referenci za proizvod
 export async function PUT(
   req: Request,
-  context: { params: { productId: string } }
+  { params }: { params: Promise<{ productId: string }> }
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -163,8 +161,7 @@ export async function PUT(
       );
     }
 
-    const params = await context.params;
-    const { productId } = params;
+    const { productId } = await params;
     const body = await req.json();
     
     // Validacija podataka
@@ -237,7 +234,7 @@ export async function PUT(
 // DELETE - Brisanje svih cross-referenci za proizvod
 export async function DELETE(
   req: Request,
-  context: { params: { productId: string } }
+  { params }: { params: Promise<{ productId: string }> }
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -248,8 +245,7 @@ export async function DELETE(
       );
     }
 
-    const params = await context.params;
-    const { productId } = params;
+    const { productId } = await params;
     
     // Provjera da li proizvod postoji
     const product = await db.product.findUnique({

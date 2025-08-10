@@ -1,4 +1,5 @@
 import VehicleCompatibilityClient from "./_components/VehicleCompatibilityClient";
+import { Suspense } from "react";
 
 export const metadata = {
   title: "Pretraga proizvoda po vozilu | Omerbasic",
@@ -9,7 +10,9 @@ export default function VehicleCompatibilityPage() {
   return (
     <div className="container mx-auto py-8">
       <h1 className="text-3xl font-bold mb-6">Pretraga proizvoda po vozilu</h1>
-      <VehicleCompatibilityClient />
+      <Suspense fallback={<div className="flex justify-center py-10">Učitavanje...</div>}>
+        <VehicleCompatibilityClient />
+      </Suspense>
     </div>
   );
 }

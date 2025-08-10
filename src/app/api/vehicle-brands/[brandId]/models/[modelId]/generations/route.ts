@@ -28,11 +28,11 @@ const vehicleGenerationSchema = z.object({
 
 export async function GET(
   req: Request,
-  context: { params: { brandId: string, modelId: string } }
+  { params }: { params: Promise<{ brandId: string; modelId: string }> }
 ) {
   try {
     // Dohvaćanje parametara na asinkroni način
-    const { brandId, modelId } = await context.params;
+    const { brandId, modelId } = await params;
     
     // Provjera postoji li model
     const model = await db.vehicleModel.findUnique({
@@ -62,7 +62,7 @@ export async function GET(
 
 export async function POST(
   req: Request,
-  context: { params: { brandId: string, modelId: string } }
+  { params }: { params: Promise<{ brandId: string; modelId: string }> }
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -72,7 +72,7 @@ export async function POST(
     }
     
     // Dohvaćanje parametara na asinkroni način
-    const { brandId, modelId } = await context.params;
+    const { brandId, modelId } = await params;
 
     // Provjera postoji li model
     const model = await db.vehicleModel.findUnique({

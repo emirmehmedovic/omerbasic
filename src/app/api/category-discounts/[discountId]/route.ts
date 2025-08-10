@@ -5,11 +5,11 @@ import { getCurrentUser } from '@/lib/session';
 // DELETE - brisanje popusta
 export async function DELETE(
   req: Request,
-  context: { params: { discountId: string } }
+  { params }: { params: Promise<{ discountId: string }> }
 ) {
   try {
     // Dohvati params objekt i izvuci discountId
-    const { discountId } = await context.params;
+    const { discountId } = await params;
     
     // Dohvati userId iz query parametra
     const { searchParams } = new URL(req.url);
@@ -57,11 +57,11 @@ export async function DELETE(
 // GET - dohvat pojedinačnog popusta
 export async function GET(
   req: Request,
-  context: { params: { discountId: string } }
+  { params }: { params: Promise<{ discountId: string }> }
 ) {
   try {
     // Dohvati params objekt i izvuci discountId
-    const { discountId } = await context.params;
+    const { discountId } = await params;
     
     // Dohvati userId iz query parametra
     const { searchParams } = new URL(req.url);

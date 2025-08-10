@@ -12,11 +12,10 @@ const productAttributeValueSchema = z.object({
 // GET - Dohvat pojedinačne vrijednosti atributa za proizvod
 export async function GET(
   req: Request,
-  context: { params: { productId: string; attributeId: string } }
+  { params }: { params: Promise<{ productId: string; attributeId: string }> }
 ) {
   try {
-    const params = await context.params;
-    const { productId, attributeId } = params;
+    const { productId, attributeId } = await params;
 
     // Dohvat vrijednosti atributa
     const attributeValue = await db.productAttributeValue.findFirst({
@@ -49,7 +48,7 @@ export async function GET(
 // PUT - Ažuriranje pojedinačne vrijednosti atributa
 export async function PUT(
   req: Request,
-  context: { params: { productId: string; attributeId: string } }
+  { params }: { params: Promise<{ productId: string; attributeId: string }> }
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -60,8 +59,7 @@ export async function PUT(
       );
     }
 
-    const params = await context.params;
-    const { productId, attributeId } = params;
+    const { productId, attributeId } = await params;
     const body = await req.json();
     
     // Validacija podataka
@@ -144,7 +142,7 @@ export async function PUT(
 // DELETE - Brisanje pojedinačne vrijednosti atributa
 export async function DELETE(
   req: Request,
-  context: { params: { productId: string; attributeId: string } }
+  { params }: { params: Promise<{ productId: string; attributeId: string }> }
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -155,8 +153,7 @@ export async function DELETE(
       );
     }
 
-    const params = await context.params;
-    const { productId, attributeId } = params;
+    const { productId, attributeId } = await params;
     
     // Dohvat postojeće vrijednosti atributa
     const existingValue = await db.productAttributeValue.findFirst({

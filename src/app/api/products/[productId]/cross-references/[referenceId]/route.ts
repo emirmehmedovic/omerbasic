@@ -16,11 +16,10 @@ const productCrossReferenceSchema = z.object({
 // GET - Dohvat pojedinačne cross-reference
 export async function GET(
   req: Request,
-  context: { params: { productId: string; referenceId: string } }
+  context: { params: Promise<{ productId: string; referenceId: string }> }
 ) {
   try {
-    const params = await context.params;
-    const { referenceId } = params;
+    const { productId, referenceId } = await context.params;
 
     // Dohvat cross-reference s informacijama o zamjenskom proizvodu ako postoji
     const crossReference = await db.productCrossReference.findUnique({
@@ -59,7 +58,7 @@ export async function GET(
 // PUT - Ažuriranje pojedinačne cross-reference
 export async function PUT(
   req: Request,
-  context: { params: { productId: string; referenceId: string } }
+  context: { params: Promise<{ productId: string; referenceId: string }> }
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -70,8 +69,7 @@ export async function PUT(
       );
     }
 
-    const params = await context.params;
-    const { referenceId } = params;
+    const { productId, referenceId } = await context.params;
     const body = await req.json();
     
     // Validacija podataka
@@ -139,7 +137,7 @@ export async function PUT(
 // DELETE - Brisanje pojedinačne cross-reference
 export async function DELETE(
   req: Request,
-  context: { params: { productId: string; referenceId: string } }
+  context: { params: Promise<{ productId: string; referenceId: string }> }
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -150,8 +148,7 @@ export async function DELETE(
       );
     }
 
-    const params = await context.params;
-    const { referenceId } = params;
+    const { productId, referenceId } = await context.params;
     
     // Provjera da li cross-reference postoji
     const existingReference = await db.productCrossReference.findUnique({

@@ -5,7 +5,7 @@ import { getServerSession } from 'next-auth';
 
 export async function GET(
   req: Request,
-  context: { params: { generationId: string } }
+  { params }: { params: Promise<{ generationId: string }> }
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -15,7 +15,7 @@ export async function GET(
       return new NextResponse("Unauthorized", { status: 401 });
     }
 
-    const { generationId } = context.params;
+    const { generationId } = await params;
 
     // Dohvati generaciju s povezanim modelom i brendom
     const generation = await db.vehicleGeneration.findUnique({

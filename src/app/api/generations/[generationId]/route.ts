@@ -3,10 +3,10 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(
   req: NextRequest,
-  context: { params: { generationId: string } }
+  { params }: { params: Promise<{ generationId: string }>}
 ) {
   try {
-    const generationId = context.params.generationId;
+    const { generationId } = await params;
     
     if (!generationId) {
       return new NextResponse('Generation ID is required', { status: 400 });

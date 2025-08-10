@@ -16,11 +16,10 @@ const batchAttributeValuesSchema = z.array(productAttributeValueSchema);
 // GET - Dohvat svih vrijednosti atributa za proizvod
 export async function GET(
   req: Request,
-  context: { params: { productId: string } }
+  { params }: { params: Promise<{ productId: string }> }
 ) {
   try {
-    const params = await context.params;
-    const { productId } = params;
+    const { productId } = await params;
 
     // Provjera da li proizvod postoji
     const product = await db.product.findUnique({
@@ -62,7 +61,7 @@ export async function GET(
 // POST - Dodavanje/ažuriranje vrijednosti atributa za proizvod (batch)
 export async function POST(
   req: Request,
-  context: { params: { productId: string } }
+  { params }: { params: Promise<{ productId: string }> }
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -73,8 +72,7 @@ export async function POST(
       );
     }
 
-    const params = await context.params;
-    const { productId } = params;
+    const { productId } = await params;
     const body = await req.json();
     
     // Validacija podataka
@@ -179,7 +177,7 @@ export async function POST(
 // DELETE - Brisanje svih vrijednosti atributa za proizvod
 export async function DELETE(
   req: Request,
-  context: { params: { productId: string } }
+  { params }: { params: Promise<{ productId: string }> }
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -190,8 +188,7 @@ export async function DELETE(
       );
     }
 
-    const params = await context.params;
-    const { productId } = params;
+    const { productId } = await params;
     
     // Provjera da li proizvod postoji
     const product = await db.product.findUnique({

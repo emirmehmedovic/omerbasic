@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { Resend } from 'resend';
+// import { Resend } from 'resend'; // Privremeno isključeno
 import { OrderStatusUpdateEmail } from '@/components/emails/OrderStatusUpdateEmail';
 import React from 'react';
 import { getServerSession } from 'next-auth';
@@ -7,7 +7,8 @@ import { authOptions } from '@/lib/auth';
 import { db } from '@/lib/db';
 import { z } from 'zod';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Privremeno isključeno dok ne nabavimo API ključ
+// const resend = new Resend(process.env.RESEND_API_KEY);
 
 const updateStatusSchema = z.object({
   status: z.enum(['PENDING', 'PROCESSING', 'SHIPPED', 'DELIVERED', 'CANCELLED']),
@@ -15,7 +16,7 @@ const updateStatusSchema = z.object({
 
 export async function PATCH(
   req: Request,
-  { params }: { params: { orderId: string } }
+  { params }: { params: Promise<{ orderId: string }>}
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -24,7 +25,7 @@ export async function PATCH(
       return new NextResponse('Unauthorized', { status: 401 });
     }
 
-    const { orderId } = params;
+    const { orderId } = await params;
     const body = await req.json();
     const validation = updateStatusSchema.safeParse(body);
 
@@ -40,17 +41,19 @@ export async function PATCH(
     });
 
     // Slanje emaila nakon uspješne promjene statusa
-    try {
-      await resend.emails.send({
-        from: 'onboarding@resend.dev', // Promijenite u vašu verificiranu domenu
-        to: updatedOrder.customerEmail,
-        subject: `Status vaše narudžbe #${updatedOrder.id.substring(0, 8)} je ažuriran`,
-        react: <OrderStatusUpdateEmail order={updatedOrder} newStatus={status} />,
-      });
-    } catch (emailError) {
-      console.error('Email sending failed:', emailError);
-      // Ne zaustavljamo proces ako email ne uspije, samo logiramo grešku
-    }
+    // Privremeno isključeno dok ne nabavimo Resend API ključ
+    // try {
+    //   await resend.emails.send({
+    //     from: 'onboarding@resend.dev', // Promijenite u vašu verificiranu domenu
+    //     to: updatedOrder.customerEmail,
+    //     subject: `Status vaše narudžbe #${updatedOrder.id.substring(0, 8)} je ažuriran`,
+    //     react: <OrderStatusUpdateEmail order={updatedOrder} newStatus={status} />,
+    //   });
+    // } catch (emailError) {
+    //   console.error('Email sending failed:', emailError);
+    //   // Ne zaustavljamo proces ako email ne uspije, samo logiramo grešku
+    // }
+    console.log('Email slanje privremeno isključeno - nedostaje Resend API ključ');
 
     return NextResponse.json(updatedOrder);
 

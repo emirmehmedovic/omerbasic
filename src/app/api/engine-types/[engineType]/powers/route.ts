@@ -3,7 +3,7 @@ import { db } from '@/lib/db';
 
 export async function GET(
   req: Request,
-  { params }: { params: { engineType: string } }
+  { params }: { params: Promise<{ engineType: string }>}
 ) {
   try {
     const { engineType } = await params;

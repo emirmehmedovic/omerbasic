@@ -31,7 +31,7 @@ const applyTemplateSchema = z.object({
 // POST - Primjena predloška atributa na kategoriju
 export async function POST(
   req: Request,
-  context: { params: { categoryId: string } }
+  { params }: { params: Promise<{ categoryId: string }> }
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -42,8 +42,8 @@ export async function POST(
       );
     }
 
-    // Dohvaćamo categoryId iz context.params
-    const { categoryId } = context.params;
+    // Dohvaćamo categoryId iz params (async)
+    const { categoryId } = await params;
     const body = await req.json();
     
     // Validacija podataka

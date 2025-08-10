@@ -10,7 +10,7 @@ const commentSchema = z.object({
 
 export async function POST(
   req: Request,
-  { params }: { params: { orderId: string } }
+  { params }: { params: Promise<{ orderId: string }>}
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -19,7 +19,7 @@ export async function POST(
       return new NextResponse('Unauthorized', { status: 401 });
     }
 
-    const { orderId } = params;
+    const { orderId } = await params;
     const body = await req.json();
     const validation = commentSchema.safeParse(body);
 

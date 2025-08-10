@@ -8,7 +8,7 @@ import { authOptions } from "@/lib/auth";
 // PATCH - Ažuriranje veze dobavljača s kategorijom
 export async function PATCH(
   req: Request,
-  { params }: { params: { supplierId: string; categoryId: string } }
+  { params }: { params: Promise<{ supplierId: string; categoryId: string }>}
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -21,7 +21,8 @@ export async function PATCH(
       return new NextResponse("Forbidden", { status: 403 });
     }
 
-    if (!params.supplierId || !params.categoryId) {
+    const { supplierId, categoryId } = await params;
+    if (!supplierId || !categoryId) {
       return new NextResponse("Supplier ID and Category ID are required", { status: 400 });
     }
 
@@ -38,8 +39,8 @@ export async function PATCH(
     const existingLink = await db.supplierCategory.findUnique({
       where: {
         supplierId_categoryId: {
-          supplierId: params.supplierId,
-          categoryId: params.categoryId,
+          supplierId,
+          categoryId,
         },
       },
     });
@@ -52,8 +53,8 @@ export async function PATCH(
     const updatedLink = await db.supplierCategory.update({
       where: {
         supplierId_categoryId: {
-          supplierId: params.supplierId,
-          categoryId: params.categoryId,
+          supplierId,
+          categoryId,
         },
       },
       data: {
@@ -79,7 +80,7 @@ export async function PATCH(
 // DELETE - Brisanje veze dobavljača s kategorijom
 export async function DELETE(
   req: Request,
-  { params }: { params: { supplierId: string; categoryId: string } }
+  { params }: { params: Promise<{ supplierId: string; categoryId: string }>}
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -92,7 +93,8 @@ export async function DELETE(
       return new NextResponse("Forbidden", { status: 403 });
     }
 
-    if (!params.supplierId || !params.categoryId) {
+    const { supplierId, categoryId } = await params;
+    if (!supplierId || !categoryId) {
       return new NextResponse("Supplier ID and Category ID are required", { status: 400 });
     }
 
@@ -100,8 +102,8 @@ export async function DELETE(
     const existingLink = await db.supplierCategory.findUnique({
       where: {
         supplierId_categoryId: {
-          supplierId: params.supplierId,
-          categoryId: params.categoryId,
+          supplierId,
+          categoryId,
         },
       },
     });
@@ -114,8 +116,8 @@ export async function DELETE(
     await db.supplierCategory.delete({
       where: {
         supplierId_categoryId: {
-          supplierId: params.supplierId,
-          categoryId: params.categoryId,
+          supplierId,
+          categoryId,
         },
       },
     });

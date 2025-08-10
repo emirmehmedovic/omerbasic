@@ -3,10 +3,10 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: { modelId: string } }
+  { params }: { params: Promise<{ modelId: string }>}
 ) {
     try {
-    const { modelId } = params;
+    const { modelId } = await params;
     const generations = await db.vehicleGeneration.findMany({
       where: {
         modelId,

@@ -3,7 +3,7 @@ import { db } from '@/lib/db';
 
 export async function GET(
   req: Request,
-  { params }: { params: { capacity: string } }
+  { params }: { params: Promise<{ capacity: string }>}
 ) {
   try {
     const { capacity } = await params;

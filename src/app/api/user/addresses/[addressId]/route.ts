@@ -5,7 +5,7 @@ import { db } from '@/lib/db';
 import { addressSchema } from '@/lib/validations/address';
 
 // Ažuriraj adresu
-export async function PATCH(req: Request, { params }: { params: { addressId: string } }) {
+export async function PATCH(req: Request, { params }: { params: Promise<{ addressId: string }>}) {
   try {
     const session = await getServerSession(authOptions);
     if (!session?.user?.id) {
@@ -21,8 +21,9 @@ export async function PATCH(req: Request, { params }: { params: { addressId: str
 
     const { isDefaultBilling, isDefaultShipping, ...addressData } = validation.data;
 
+    const { addressId } = await params;
     const addressToUpdate = await db.address.findFirst({
-      where: { id: params.addressId, userId: session.user.id },
+      where: { id: addressId, userId: session.user.id },
     });
 
     if (!addressToUpdate) {
@@ -45,7 +46,7 @@ export async function PATCH(req: Request, { params }: { params: { addressId: str
       }
 
       const updated = await tx.address.update({
-        where: { id: params.addressId },
+        where: { id: addressId },
         data: {
           ...addressData,
           isDefaultBilling: isDefaultBilling ?? false,
@@ -65,15 +66,16 @@ export async function PATCH(req: Request, { params }: { params: { addressId: str
 }
 
 // Obriši adresu
-export async function DELETE(req: Request, { params }: { params: { addressId: string } }) {
+export async function DELETE(req: Request, { params }: { params: Promise<{ addressId: string }>}) {
   try {
     const session = await getServerSession(authOptions);
     if (!session?.user?.id) {
       return new NextResponse('Unauthorized', { status: 401 });
     }
 
+    const { addressId } = await params;
     const addressToDelete = await db.address.findFirst({
-      where: { id: params.addressId, userId: session.user.id },
+      where: { id: addressId, userId: session.user.id },
     });
 
     if (!addressToDelete) {
@@ -81,7 +83,7 @@ export async function DELETE(req: Request, { params }: { params: { addressId: st
     }
 
     await db.address.delete({
-      where: { id: params.addressId },
+      where: { id: addressId },
     });
 
     return new NextResponse(null, { status: 204 }); // No Content

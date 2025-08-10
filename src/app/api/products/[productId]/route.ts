@@ -3,15 +3,12 @@ import { db } from '@/lib/db';
 import { updateProductSchema } from '@/lib/validations/product';
 import { z } from 'zod';
 
-interface IParams {
-  params: {
-    productId: string;
-  };
-}
-
-export async function GET(req: Request, { params }: IParams) {
+export async function GET(
+  req: Request,
+  { params }: { params: Promise<{ productId: string }> }
+) {
   try {
-    const { productId } = params;
+    const { productId } = await params;
     const product = await db.product.findUnique({
       where: { id: productId },
       include: { 
@@ -51,9 +48,12 @@ export async function GET(req: Request, { params }: IParams) {
   }
 }
 
-export async function PATCH(req: Request, { params }: IParams) {
+export async function PATCH(
+  req: Request,
+  { params }: { params: Promise<{ productId: string }> }
+) {
   try {
-    const { productId } = params;
+    const { productId } = await params;
     const body = await req.json();
 
     const validation = updateProductSchema.safeParse(body);
@@ -195,9 +195,12 @@ export async function PATCH(req: Request, { params }: IParams) {
   }
 }
 
-export async function DELETE(req: Request, { params }: IParams) {
+export async function DELETE(
+  req: Request,
+  { params }: { params: Promise<{ productId: string }> }
+) {
   try {
-    const { productId } = params;
+    const { productId } = await params;
 
     await db.product.delete({
       where: { id: productId },

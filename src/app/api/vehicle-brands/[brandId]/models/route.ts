@@ -12,11 +12,11 @@ const vehicleModelSchema = z.object({
 
 export async function GET(
   req: Request,
-  context: { params: { brandId: string } }
+  { params }: { params: Promise<{ brandId: string }> }
 ) {
   try {
     // Dohvaćanje parametara na asinkroni način
-    const { brandId } = await context.params;
+    const { brandId } = await params;
     
     // Provjera postoji li marka
     const brand = await db.vehicleBrand.findUnique({
@@ -46,7 +46,7 @@ export async function GET(
 
 export async function POST(
   req: Request,
-  context: { params: { brandId: string } }
+  { params }: { params: Promise<{ brandId: string }> }
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -56,7 +56,7 @@ export async function POST(
     }
 
     // Dohvaćanje parametara na asinkroni način
-    const { brandId } = await context.params;
+    const { brandId } = await params;
     
     // Provjera postoji li marka
     const brand = await db.vehicleBrand.findUnique({

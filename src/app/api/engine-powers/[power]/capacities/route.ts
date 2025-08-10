@@ -3,7 +3,7 @@ import { db } from '@/lib/db';
 
 export async function GET(
   req: Request,
-  { params }: { params: { power: string } }
+  { params }: { params: Promise<{ power: string }>}
 ) {
   try {
     const { power } = await params;

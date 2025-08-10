@@ -8,7 +8,7 @@ import React from 'react';
 
 export async function GET(
   req: Request,
-  { params }: { params: { orderId: string } }
+  { params }: { params: Promise<{ orderId: string }>}
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -17,7 +17,7 @@ export async function GET(
       return new NextResponse('Unauthorized', { status: 401 });
     }
 
-    const { orderId } = params;
+    const { orderId } = await params;
 
     const order = await db.order.findUnique({
       where: { id: orderId },

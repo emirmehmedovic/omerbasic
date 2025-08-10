@@ -13,7 +13,7 @@ const updateItemSchema = z.object({
 
 export async function PATCH(
   req: Request,
-  { params }: { params: { purchaseOrderId: string; itemId: string } }
+  { params }: { params: Promise<{ purchaseOrderId: string; itemId: string }>}
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -26,7 +26,8 @@ export async function PATCH(
       return new NextResponse("Forbidden", { status: 403 });
     }
 
-    if (!params.purchaseOrderId || !params.itemId) {
+    const { purchaseOrderId, itemId } = await params;
+    if (!purchaseOrderId || !itemId) {
       return new NextResponse("Purchase order ID and item ID are required", { status: 400 });
     }
 
@@ -36,7 +37,7 @@ export async function PATCH(
     // Dohvati stavku narudžbenice
     const item = await db.purchaseOrderItem.findUnique({
       where: {
-        id: params.itemId,
+        id: itemId,
       },
       include: {
         purchaseOrder: true,
@@ -48,7 +49,7 @@ export async function PATCH(
       return new NextResponse("Item not found", { status: 404 });
     }
 
-    if (item.purchaseOrderId !== params.purchaseOrderId) {
+    if (item.purchaseOrderId !== purchaseOrderId) {
       return new NextResponse("Item does not belong to the specified purchase order", { status: 400 });
     }
 
@@ -60,7 +61,7 @@ export async function PATCH(
     // Ažuriraj primljenu količinu
     const updatedItem = await db.purchaseOrderItem.update({
       where: {
-        id: params.itemId,
+        id: itemId,
       },
       data: {
         receivedQty: validatedData.receivedQty,
@@ -105,7 +106,7 @@ export async function PATCH(
     // Provjeri status svih stavki i ažuriraj status narudžbenice ako je potrebno
     const allItems = await db.purchaseOrderItem.findMany({
       where: {
-        purchaseOrderId: params.purchaseOrderId,
+        purchaseOrderId,
       },
     });
 
@@ -126,7 +127,7 @@ export async function PATCH(
     if (newStatus !== item.purchaseOrder.status) {
       await db.purchaseOrder.update({
         where: {
-          id: params.purchaseOrderId,
+          id: purchaseOrderId,
         },
         data: {
           status: newStatus,
@@ -137,7 +138,7 @@ export async function PATCH(
       // Dodaj zapis u povijest statusa
       await db.purchaseOrderStatusHistory.create({
         data: {
-          purchaseOrderId: params.purchaseOrderId,
+          purchaseOrderId,
           status: newStatus,
           changedById: session.user.id,
           notes: `Status automatski ažuriran nakon primanja proizvoda.`,

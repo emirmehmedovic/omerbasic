@@ -8,7 +8,7 @@ import { authOptions } from "@/lib/auth";
 // GET - Dohvaćanje kategorija za dobavljača
 export async function GET(
   req: Request,
-  { params }: { params: { supplierId: string } }
+  { params }: { params: Promise<{ supplierId: string }>}
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -21,13 +21,14 @@ export async function GET(
       return new NextResponse("Forbidden", { status: 403 });
     }
 
-    if (!params.supplierId) {
+    const { supplierId } = await params;
+    if (!supplierId) {
       return new NextResponse("Supplier ID is required", { status: 400 });
     }
 
     const supplierCategories = await db.supplierCategory.findMany({
       where: {
-        supplierId: params.supplierId,
+        supplierId,
       },
       include: {
         category: true,
@@ -47,7 +48,7 @@ export async function GET(
 // POST - Dodavanje kategorije dobavljaču
 export async function POST(
   req: Request,
-  { params }: { params: { supplierId: string } }
+  { params }: { params: Promise<{ supplierId: string }>}
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -60,7 +61,8 @@ export async function POST(
       return new NextResponse("Forbidden", { status: 403 });
     }
 
-    if (!params.supplierId) {
+    const { supplierId } = await params;
+    if (!supplierId) {
       return new NextResponse("Supplier ID is required", { status: 400 });
     }
 
@@ -77,7 +79,7 @@ export async function POST(
     // Provjera postoji li dobavljač
     const supplier = await db.supplier.findUnique({
       where: {
-        id: params.supplierId,
+        id: supplierId,
       },
     });
 
@@ -100,7 +102,7 @@ export async function POST(
     const existingLink = await db.supplierCategory.findUnique({
       where: {
         supplierId_categoryId: {
-          supplierId: params.supplierId,
+          supplierId,
           categoryId,
         },
       },
@@ -113,7 +115,7 @@ export async function POST(
     // Kreiranje veze
     const supplierCategory = await db.supplierCategory.create({
       data: {
-        supplierId: params.supplierId,
+        supplierId,
         categoryId,
         priority,
         notes,

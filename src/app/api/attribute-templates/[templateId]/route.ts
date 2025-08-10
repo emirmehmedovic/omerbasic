@@ -8,11 +8,11 @@ import { z } from "zod";
 // GET - Dohvat pojedinačnog predloška atributa
 export async function GET(
   req: Request,
-  context: { params: { templateId: string } }
+  { params }: { params: Promise<{ templateId: string }> }
 ) {
   try {
-    // Dohvaćamo templateId iz context.params - koristimo await
-    const { templateId } = await context.params;
+    // Dohvaćamo templateId iz params - koristimo await
+    const { templateId } = await params;
 
     const attributeTemplate = await db.attributeTemplate.findUnique({
       where: {
@@ -40,7 +40,7 @@ export async function GET(
 // PUT - Ažuriranje predloška atributa
 export async function PUT(
   req: Request,
-  context: { params: { templateId: string } }
+  { params }: { params: Promise<{ templateId: string }> }
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -51,8 +51,8 @@ export async function PUT(
       );
     }
 
-    // Dohvaćamo templateId iz context.params - koristimo await
-    const { templateId } = await context.params;
+    // Dohvaćamo templateId iz params - koristimo await
+    const { templateId } = await params;
     const body = await req.json();
     
     // Validacija podataka
@@ -119,7 +119,7 @@ export async function PUT(
 // DELETE - Brisanje predloška atributa
 export async function DELETE(
   req: Request,
-  context: { params: { templateId: string } }
+  { params }: { params: Promise<{ templateId: string }> }
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -130,8 +130,8 @@ export async function DELETE(
       );
     }
 
-    // Dohvaćamo templateId iz context.params - koristimo await
-    const { templateId } = await context.params;
+    // Dohvaćamo templateId iz params - koristimo await
+    const { templateId } = await params;
     
     // Provjera da li predložak postoji
     const existingTemplate = await db.attributeTemplate.findUnique({
