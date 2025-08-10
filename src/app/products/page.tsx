@@ -11,13 +11,13 @@ import { getCategoryWithAncestors } from '../../lib/categories';
 export const dynamic = 'force-dynamic';
 
 interface ProductsPageProps {
-  searchParams: { 
+  searchParams: Promise<{ 
     categoryId?: string;
     generationId?: string;
     minPrice?: string;
     maxPrice?: string;
     q?: string;
-  }
+  }>;
 }
 
 // Definiramo specifičniji tip za proizvod s uključenom kategorijom

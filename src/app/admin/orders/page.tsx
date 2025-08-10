@@ -17,20 +17,14 @@ const formatDate = (date: Date) => {
   }).format(date);
 };
 
-interface AdminOrdersPageProps {
-  searchParams: {
-    status?: OrderStatus;
-  };
-}
-
-export default async function AdminOrdersPage({ searchParams }: AdminOrdersPageProps) {
+export default async function AdminOrdersPage({ searchParams }: { searchParams: Promise<{ status?: OrderStatus }> }) {
   const session = await getServerSession(authOptions);
 
   if (!session || session.user.role !== 'ADMIN') {
     redirect('/login');
   }
 
-  const { status } = searchParams;
+  const { status } = await searchParams;
   const whereClause = status ? { status } : {};
 
   const getOrders = async () => {
