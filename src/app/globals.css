@@ -1,6 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Custom layout styles */
+@layer components {
+  .products-with-sidebar-container {
+    @apply flex flex-col md:flex-row gap-4;
+  }
+  
+  .sidebar-container {
+    @apply w-full md:w-64 lg:w-72 flex-shrink-0;
+  }
+  
+  .products-container {
+    @apply flex-grow;
+  }
+}
  
 @layer base {
   :root {

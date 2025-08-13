@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { 
   Select, 
@@ -17,6 +17,7 @@ import { cn } from "@/lib/utils";
 type VehicleBrand = {
   id: string;
   name: string;
+  type?: 'PASSENGER' | 'COMMERCIAL';
 };
 
 type VehicleModel = {
@@ -52,17 +53,20 @@ interface VehicleSelectorProps {
   }) => void;
   className?: string;
   compact?: boolean;
+  vehicleType?: 'PASSENGER' | 'COMMERCIAL' | 'ALL';
 }
 
 export default function VehicleSelector({
   onVehicleSelect,
   className,
-  compact = false
+  compact = false,
+  vehicleType = 'ALL'
 }: VehicleSelectorProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
   
   // Stanja za odabir vozila
+  const [allBrands, setAllBrands] = useState<VehicleBrand[]>([]);
   const [brands, setBrands] = useState<VehicleBrand[]>([]);
   const [models, setModels] = useState<VehicleModel[]>([]);
   const [generations, setGenerations] = useState<VehicleGeneration[]>([]);
@@ -82,6 +86,26 @@ export default function VehicleSelector({
   const [loadingModels, setLoadingModels] = useState<boolean>(false);
   const [loadingGenerations, setLoadingGenerations] = useState<boolean>(false);
   const [loadingEngines, setLoadingEngines] = useState<boolean>(false);
+
+  // Helper: jedinstveni po id-u
+  const uniqById = <T extends { id: string }>(arr: T[]) => {
+    const seen = new Set<string>();
+    const out: T[] = [];
+    for (const item of arr) {
+      if (!seen.has(item.id)) {
+        seen.add(item.id);
+        out.push(item);
+      }
+    }
+    return out;
+  };
+
+  // Deduplirani prikazi za mape (sprječava React key warning kod duplikata)
+  const brandsToRender = useMemo<VehicleBrand[]>(() => uniqById(allBrands.filter((b: VehicleBrand) => vehicleType === 'ALL' || b.type === vehicleType)), [allBrands, vehicleType]);
+  const modelsToRender = useMemo<VehicleModel[]>(() => uniqById(models), [models]);
+  const generationsToRender = useMemo<VehicleGeneration[]>(() => uniqById(generations), [generations]);
+  const enginesToRender = useMemo<VehicleEngine[]>(() => uniqById(engines), [engines]);
+  const bodyStylesToRender = useMemo<string[]>(() => Array.from(new Set((bodyStyles || []).filter(Boolean))) as string[], [bodyStyles]);
   
   // Učitavanje brendova vozila pri prvom renderiranju
   useEffect(() => {
@@ -92,7 +116,12 @@ export default function VehicleSelector({
         if (!response.ok) throw new Error("Greška pri dohvaćanju brendova vozila");
         
         const data = await response.json();
-        setBrands(data);
+        setAllBrands(Array.isArray(data) ? data : []);
+        // Primijeni inicijalni filter po tipu
+        const filtered = Array.isArray(data)
+          ? data.filter((b: VehicleBrand) => vehicleType === 'ALL' || b.type === vehicleType)
+          : [];
+        setBrands(filtered);
         
         // Postavi odabrani brend iz URL-a ako postoji
         const brandIdFromUrl = searchParams.get("brandId");
@@ -108,6 +137,18 @@ export default function VehicleSelector({
     
     fetchBrands();
   }, [searchParams]);
+
+  // Kad se promijeni vehicleType, filtriraj brendove i resetiraj odabire
+  useEffect(() => {
+    const filtered = allBrands.filter((b) => vehicleType === 'ALL' || b.type === vehicleType);
+    setBrands(filtered);
+    // Reset selekcija jer se kontekst promijenio
+    setSelectedBrandId("");
+    setSelectedModelId("");
+    setSelectedGenerationId("");
+    setSelectedEngineId("");
+    setSelectedBodyStyle("");
+  }, [vehicleType, allBrands]);
   
   // Učitavanje modela kada se odabere brend
   useEffect(() => {
@@ -186,12 +227,16 @@ export default function VehicleSelector({
     const fetchEnginesAndBodyStyles = async () => {
       setLoadingEngines(true);
       try {
-        // Dohvaćanje motora
-        const enginesResponse = await fetch(`/api/generations/${selectedGenerationId}/engine-types`);
+        // Dohvaćanje motora (puni zapisi)
+        const enginesResponse = await fetch(`/api/generations/${selectedGenerationId}/engines`);
         if (!enginesResponse.ok) throw new Error("Greška pri dohvaćanju motora");
         
         const enginesData = await enginesResponse.json();
-        setEngines(enginesData);
+        // Očekujemo niz objekata s poljima: id, engineType, enginePowerKW, enginePowerHP, engineCapacity, engineCode, description, generationId
+        const normalized = Array.isArray(enginesData)
+          ? enginesData.filter((e: any) => e && typeof e === 'object' && e.id)
+          : [];
+        setEngines(normalized);
         
         // Dohvaćanje generacije za stilove karoserije
         const generationResponse = await fetch(`/api/generations/${selectedGenerationId}`);
@@ -325,13 +370,13 @@ export default function VehicleSelector({
             </SelectTrigger>
             <SelectContent>
               {loadingBrands ? (
-                <div className="flex items-center justify-center p-2">
+                <div key="loader-brands" className="flex items-center justify-center p-2">
                   <Loader2 className="h-4 w-4 animate-spin" />
                   <span className="ml-2">Učitavanje...</span>
                 </div>
               ) : (
-                brands.map((brand) => (
-                  <SelectItem key={brand.id} value={brand.id}>
+                brandsToRender.map((brand, idx) => (
+                  <SelectItem key={`brand-${brand.id}-${idx}`} value={brand.id}>
                     {brand.name}
                   </SelectItem>
                 ))
@@ -352,13 +397,13 @@ export default function VehicleSelector({
             </SelectTrigger>
             <SelectContent>
               {loadingModels ? (
-                <div className="flex items-center justify-center p-2">
+                <div key="loader-models" className="flex items-center justify-center p-2">
                   <Loader2 className="h-4 w-4 animate-spin" />
                   <span className="ml-2">Učitavanje...</span>
                 </div>
               ) : (
-                models.map((model) => (
-                  <SelectItem key={model.id} value={model.id}>
+                modelsToRender.map((model, idx) => (
+                  <SelectItem key={`model-${model.id}-${idx}`} value={model.id}>
                     {model.name}
                   </SelectItem>
                 ))
@@ -379,13 +424,13 @@ export default function VehicleSelector({
             </SelectTrigger>
             <SelectContent>
               {loadingGenerations ? (
-                <div className="flex items-center justify-center p-2">
+                <div key="loader-generations" className="flex items-center justify-center p-2">
                   <Loader2 className="h-4 w-4 animate-spin" />
                   <span className="ml-2">Učitavanje...</span>
                 </div>
               ) : (
-                generations.map((generation) => (
-                  <SelectItem key={generation.id} value={generation.id}>
+                generationsToRender.map((generation, idx) => (
+                  <SelectItem key={`gen-${generation.id}-${idx}`} value={generation.id}>
                     {generation.name} {generation.period ? `(${generation.period})` : ""}
                   </SelectItem>
                 ))
@@ -405,15 +450,15 @@ export default function VehicleSelector({
               <SelectValue placeholder="Odaberi motor (opcionalno)" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="all">Svi motori</SelectItem>
+              <SelectItem key="all-engines" value="all">Svi motori</SelectItem>
               {loadingEngines ? (
-                <div className="flex items-center justify-center p-2">
+                <div key="loader-engines" className="flex items-center justify-center p-2">
                   <Loader2 className="h-4 w-4 animate-spin" />
                   <span className="ml-2">Učitavanje...</span>
                 </div>
               ) : (
-                engines.map((engine) => (
-                  <SelectItem key={engine.id} value={engine.id}>
+                enginesToRender.map((engine, idx) => (
+                  <SelectItem key={`engine-${engine.id}-${idx}`} value={engine.id}>
                     {formatEngineDescription(engine)}
                   </SelectItem>
                 ))
@@ -434,9 +479,9 @@ export default function VehicleSelector({
                 <SelectValue placeholder="Odaberi karoseriju (opcionalno)" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="all">Sve karoserije</SelectItem>
-                {bodyStyles.map((style, index) => (
-                  <SelectItem key={index} value={style}>
+                <SelectItem key="all-body-styles" value="all">Sve karoserije</SelectItem>
+                {bodyStylesToRender.map((style) => (
+                  <SelectItem key={`style-${style}`} value={style}>
                     {style}
                   </SelectItem>
                 ))}
@@ -456,9 +501,9 @@ export default function VehicleSelector({
               <SelectValue placeholder="Odaberi godinu (opcionalno)" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="all">Sve godine</SelectItem>
-              {generateYearOptions().map((year) => (
-                <SelectItem key={year} value={year.toString()}>
+              <SelectItem key="all-years" value="all">Sve godine</SelectItem>
+              {generateYearOptions().map((year, idx) => (
+                <SelectItem key={`year-${year}-${idx}`} value={year.toString()}>
                   {year}
                 </SelectItem>
               ))}

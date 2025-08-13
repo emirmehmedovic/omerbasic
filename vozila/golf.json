@@ -1,0 +1,384 @@
+[
+    {
+      "name": "Volkswagen",
+      "type": "PASSENGER",
+      "models": [
+        {
+          "name": "Golf",
+          "generations": [
+            {
+              "name": "Mk3",
+              "period": "1992–1999",
+              "bodyStyles": ["Hatchback", "Wagon", "Cabriolet"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity_cm3": 1390,
+                  "enginePower_kW": 55,
+                  "enginePower_HP": 75,
+                  "engineCodes": ["ABD", "AEX", "APQ"],
+                  "description": "1.4 MPI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity_cm3": 1595,
+                  "enginePower_kW": 66,
+                  "enginePower_HP": 90,
+                  "engineCodes": ["ABU", "AEA", "AEE"],
+                  "description": "1.6 MPI/8V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity_cm3": 1600,
+                  "enginePower_kW": null,
+                  "enginePower_HP": null,
+                  "engineCodes": ["AEK", "AFT", "AKS"],
+                  "description": "1.6 MPI higher spec"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity_cm3": 1781,
+                  "enginePower_kW": 66,
+                  "enginePower_HP": 90,
+                  "engineCodes": ["AAM", "ANN"],
+                  "description": "1.8 MPI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity_cm3": 1781,
+                  "enginePower_kW": 90,
+                  "enginePower_HP": 122,
+                  "engineCodes": ["ABS", "ADZ", "ACC", "ANP"],
+                  "description": "1.8 MPI higher spec"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity_cm3": 1984,
+                  "enginePower_kW": null,
+                  "enginePower_HP": null,
+                  "engineCodes": ["2E", "ADY", "AGG", "AKR", "ABA", "AWG", "AWF"],
+                  "description": "2.0 MPI variants"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity_cm3": 1984,
+                  "enginePower_kW": null,
+                  "enginePower_HP": null,
+                  "engineCodes": ["ABF"],
+                  "description": "2.0 16V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity_cm3": 2800,
+                  "enginePower_kW": 128,
+                  "enginePower_HP": 174,
+                  "engineCodes": ["AAA"],
+                  "description": "2.8 VR6 12V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity_cm3": 2900,
+                  "enginePower_kW": 140,
+                  "enginePower_HP": 190,
+                  "engineCodes": ["ABV"],
+                  "description": "2.9 VR6 12V"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 1896,
+                  "enginePower_kW": 47,
+                  "enginePower_HP": 64,
+                  "engineCodes": ["1Y"],
+                  "description": "1.9 D (atmospheric)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 1896,
+                  "enginePower_kW": null,
+                  "enginePower_HP": null,
+                  "engineCodes": ["AEY"],
+                  "description": "1.9 SDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 1896,
+                  "enginePower_kW": null,
+                  "enginePower_HP": null,
+                  "engineCodes": ["AAZ"],
+                  "description": "1.9 TD"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 1896,
+                  "enginePower_kW": null,
+                  "enginePower_HP": null,
+                  "engineCodes": ["1Z", "AHU", "ALE"],
+                  "description": "1.9 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 1896,
+                  "enginePower_kW": null,
+                  "enginePower_HP": null,
+                  "engineCodes": ["AFN", "AVG"],
+                  "description": "1.9 TDI higher power"
+                }
+              ]
+            },
+            {
+              "name": "Mk4",
+              "period": "1997–2003",
+              "bodyStyles": ["Hatchback", "Wagon", "Cabriolet"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity_cm3": 1390,
+                  "enginePower_kW": 55,
+                  "enginePower_HP": 75,
+                  "engineCodes": ["AKQ", "APE"],
+                  "description": "1.4 MPI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity_cm3": 1595,
+                  "enginePower_kW": 74,
+                  "enginePower_HP": 100,
+                  "engineCodes": ["AEH", "AKL", "BFQ", "BSE"],
+                  "description": "1.6 MPI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity_cm3": 1781,
+                  "enginePower_kW": 92,
+                  "enginePower_HP": 125,
+                  "engineCodes": ["AGN", "AUM"],
+                  "description": "1.8 20V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity_cm3": 1781,
+                  "enginePower_kW": 110,
+                  "enginePower_HP": 150,
+                  "engineCodes": ["AGU", "ARZ", "AUQ"],
+                  "description": "1.8T 20V Turbo"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity_cm3": 1984,
+                  "enginePower_kW": 85,
+                  "enginePower_HP": 115,
+                  "engineCodes": ["AQY", "AZJ"],
+                  "description": "2.0 MPI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity_cm3": 2324,
+                  "enginePower_kW": 110,
+                  "enginePower_HP": 150,
+                  "engineCodes": ["AGZ"],
+                  "description": "2.3 VR5 10V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity_cm3": 2324,
+                  "enginePower_kW": 125,
+                  "enginePower_HP": 170,
+                  "engineCodes": ["AQN"],
+                  "description": "2.3 VR5 20V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity_cm3": 3189,
+                  "enginePower_kW": 184,
+                  "enginePower_HP": 250,
+                  "engineCodes": ["BFH"],
+                  "description": "3.2 VR6 (R32)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 1896,
+                  "enginePower_kW": 50,
+                  "enginePower_HP": 70,
+                  "engineCodes": ["AEY", "AGP"],
+                  "description": "1.9 SDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 1896,
+                  "enginePower_kW": 66,
+                  "enginePower_HP": 90,
+                  "engineCodes": ["ALH", "AHF", "ASV"],
+                  "description": "1.9 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 1896,
+                  "enginePower_kW": [85, 96, 110],
+                  "enginePower_HP": [115, 130, 150],
+                  "engineCodes": ["AJM", "ASZ", "ARL"],
+                  "description": "1.9 TDI PD"
+                }
+              ]
+            },
+            {
+              "name": "Mk5",
+              "period": "2003–2009",
+              "bodyStyles": ["Hatchback", "Wagon"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity_cm3": 1598,
+                  "enginePower_kW": 75,
+                  "enginePower_HP": 102,
+                  "engineCodes": ["BAG"],
+                  "description": "1.6 MPI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity_cm3": 1984,
+                  "enginePower_kW": 147,
+                  "enginePower_HP": 200,
+                  "engineCodes": ["BWA", "AXX", "BPY"],
+                  "description": "2.0 TFSI GTI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity_cm3": 3189,
+                  "enginePower_kW": 184,
+                  "enginePower_HP": 250,
+                  "engineCodes": ["BUB"],
+                  "description": "3.2 VR6 R32"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 1896,
+                  "enginePower_kW": 77,
+                  "enginePower_HP": 105,
+                  "engineCodes": ["BKC", "BLS", "BXE"],
+                  "description": "1.9 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 1968,
+                  "enginePower_kW": 103,
+                  "enginePower_HP": 140,
+                  "engineCodes": ["BKD"],
+                  "description": "2.0 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 1968,
+                  "enginePower_kW": 125,
+                  "enginePower_HP": 170,
+                  "engineCodes": ["BMN"],
+                  "description": "2.0 TDI PD"
+                }
+              ]
+            },
+            {
+              "name": "Mk6",
+              "period": "2008–2012",
+              "bodyStyles": ["Hatchback", "Wagon", "Convertible"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity_cm3": 1197,
+                  "enginePower_kW": 77,
+                  "enginePower_HP": 105,
+                  "engineCodes": ["CBZB"],
+                  "description": "1.2 TSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity_cm3": 1390,
+                  "enginePower_kW": 118,
+                  "enginePower_HP": 160,
+                  "engineCodes": ["CAVD"],
+                  "description": "1.4 TSI Twincharger"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity_cm3": 1984,
+                  "enginePower_kW": 155,
+                  "enginePower_HP": 211,
+                  "engineCodes": ["CCZB"],
+                  "description": "2.0 TSI GTI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 1598,
+                  "enginePower_kW": 77,
+                  "enginePower_HP": 105,
+                  "engineCodes": ["CFHC"],
+                  "description": "1.6 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 1968,
+                  "enginePower_kW": 103,
+                  "enginePower_HP": 140,
+                  "engineCodes": ["CBBB", "CBAA"],
+                  "description": "2.0 TDI"
+                }
+              ]
+            },
+            {
+              "name": "Mk7",
+              "period": "2012–2019",
+              "bodyStyles": ["Hatchback", "Wagon"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity_cm3": 999,
+                  "enginePower_kW": 81,
+                  "enginePower_HP": 110,
+                  "engineCodes": ["CHZC"],
+                  "description": "1.0 TSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity_cm3": 1395,
+                  "enginePower_kW": 90,
+                  "enginePower_HP": 122,
+                  "engineCodes": ["CZEA"],
+                  "description": "1.4 TSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity_cm3": 1984,
+                  "enginePower_kW": 162,
+                  "enginePower_HP": 220,
+                  "engineCodes": ["CHHB"],
+                  "description": "2.0 TSI GTI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 1598,
+                  "enginePower_kW": 81,
+                  "enginePower_HP": 110,
+                  "engineCodes": ["CRKB"],
+                  "description": "1.6 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 1968,
+                  "enginePower_kW": 110,
+                  "enginePower_HP": 150,
+                  "engineCodes": ["DFGA"],
+                  "description": "2.0 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 1968,
+                  "enginePower_kW": 135,
+                  "enginePower_HP": 184,
+                  "engineCodes": ["DGCA"],
+                  "description": "2.0 TDI GTD"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 import { VehicleBrand, VehicleModel, VehicleGeneration, VehicleType } from '@/generated/prisma/client';
 import { EngineType } from '@/lib/types';
@@ -35,6 +35,10 @@ const VehicleSelector = ({
   const [selectedEngineCapacity, setSelectedEngineCapacity] = useState<string>('');
   const [engineCodes, setEngineCodes] = useState<string[]>([]);
   const [selectedEngineCode, setSelectedEngineCode] = useState<string>('');
+  
+  // Helpers for deduplication
+  const uniqStrings = (arr: string[]) => Array.from(new Set(arr.filter(Boolean)));
+  const uniqNumbers = (arr: number[]) => Array.from(new Set(arr.filter((n) => n !== null && n !== undefined)));
   
 
   // Učitaj spremljene postavke iz localStorage pri prvom renderiranju
@@ -155,7 +159,7 @@ const VehicleSelector = ({
           return;
         }
         const data = await res.json();
-        setEngineTypes(data);
+        setEngineTypes(Array.isArray(data) ? uniqStrings(data) : []);
       } catch (error) {
         console.error('Error fetching engine types:', error);
       }
@@ -179,7 +183,7 @@ const VehicleSelector = ({
           return;
         }
         const data = await res.json();
-        setEnginePowers(data);
+        setEnginePowers(Array.isArray(data) ? uniqNumbers(data) : []);
       } catch (error) {
         console.error('Error fetching engine powers:', error);
       }
@@ -203,7 +207,7 @@ const VehicleSelector = ({
           return;
         }
         const data = await res.json();
-        setEngineCapacities(data);
+        setEngineCapacities(Array.isArray(data) ? uniqNumbers(data) : []);
       } catch (error) {
         console.error('Error fetching engine capacities:', error);
       }
@@ -227,7 +231,7 @@ const VehicleSelector = ({
           return;
         }
         const data = await res.json();
-        setEngineCodes(data);
+        setEngineCodes(Array.isArray(data) ? uniqStrings(data) : []);
       } catch (error) {
         console.error('Error fetching engine codes:', error);
       }
@@ -332,8 +336,8 @@ const VehicleSelector = ({
             className="w-full px-3 py-2 bg-white/70 backdrop-blur-sm rounded-xl border border-white/50 shadow-sm text-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-orange/50 transition-all duration-200 disabled:opacity-50" 
           >
             <option value="">Tip motora</option>
-            {engineTypes.map((type) => (
-              <option key={type} value={type}>{type === 'PETROL' ? 'Benzin' : type === 'DIESEL' ? 'Dizel' : type}</option>
+            {engineTypes.map((type, idx) => (
+              <option key={`etype-${type}-${idx}`} value={type}>{type === 'PETROL' ? 'Benzin' : type === 'DIESEL' ? 'Dizel' : type}</option>
             ))}
           </select>
 
@@ -345,8 +349,8 @@ const VehicleSelector = ({
             className="w-full px-3 py-2 bg-white/70 backdrop-blur-sm rounded-xl border border-white/50 shadow-sm text-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-orange/50 transition-all duration-200 disabled:opacity-50" 
           >
             <option value="">Snaga (kW)</option>
-            {enginePowers.map((power) => (
-              <option key={power} value={power.toString()}>{power} kW / {Math.round(power * 1.36)} KS</option>
+            {enginePowers.map((power, idx) => (
+              <option key={`epower-${power}-${idx}`} value={power.toString()}>{power} kW / {Math.round(power * 1.36)} KS</option>
             ))}
           </select>
 
@@ -358,8 +362,8 @@ const VehicleSelector = ({
             className="w-full px-3 py-2 bg-white/70 backdrop-blur-sm rounded-xl border border-white/50 shadow-sm text-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-orange/50 transition-all duration-200 disabled:opacity-50" 
           >
             <option value="">Zapremina (ccm)</option>
-            {engineCapacities.map((capacity) => (
-              <option key={capacity} value={capacity.toString()}>{capacity} ccm</option>
+            {engineCapacities.map((capacity, idx) => (
+              <option key={`ecap-${capacity}-${idx}`} value={capacity.toString()}>{capacity} ccm</option>
             ))}
           </select>
 
@@ -371,8 +375,8 @@ const VehicleSelector = ({
             className="w-full px-3 py-2 bg-white/70 backdrop-blur-sm rounded-xl border border-white/50 shadow-sm text-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-orange/50 transition-all duration-200 disabled:opacity-50" 
           >
             <option value="">Kod motora</option>
-            {engineCodes.map((code) => (
-              <option key={code} value={code}>{code}</option>
+            {engineCodes.map((code, idx) => (
+              <option key={`ecode-${code}-${idx}`} value={code}>{code}</option>
             ))}
           </select>
         </div>
