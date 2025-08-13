@@ -1,12 +1,13 @@
 import { NextResponse } from 'next/server';
 import { db } from '@/lib/db';
 
-export async function GET(
-  _req: Request,
-  { params }: { params: { generationId: string } }
-) {
+export async function GET(req: Request) {
   try {
-    const { generationId } = params;
+    // Extract generationId from the pathname: /api/generations/[generationId]/engines
+    const url = new URL(req.url);
+    const parts = url.pathname.split('/').filter(Boolean);
+    const genIdx = parts.findIndex((p) => p === 'generations');
+    const generationId = genIdx >= 0 ? parts[genIdx + 1] : undefined;
 
     if (!generationId) {
       return new NextResponse('Generation ID is required', { status: 400 });

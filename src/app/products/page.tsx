@@ -33,10 +33,7 @@ function ProductsHeader() {
 // Footer će doći nakon uvođenja paginacije
 
 // Glavna komponenta stranice - pretvorena u klijentsku komponentu
-export default function ProductsPage() {
-  // Koristimo useSearchParams hook za dohvaćanje parametara
-  const searchParams = useSearchParams();
-  
+function ProductsPageInner() {
   // Definiramo tip za filtere
   type FilterState = {
     categoryId?: string;
@@ -46,6 +43,9 @@ export default function ProductsPage() {
     q?: string;
     [key: string]: any; // Za ostale moguće filtere
   };
+
+  // Koristimo useSearchParams hook za dohvaćanje parametara (unutar Suspense)
+  const searchParams = useSearchParams();
 
   // Sigurno dohvaćamo vrijednosti iz searchParams
   const initialFilters: FilterState = {
@@ -91,13 +91,19 @@ export default function ProductsPage() {
         {/* Glavni sadržaj */}
         <div className="w-full md:w-3/4 lg:w-4/5">
           <div className="space-y-6">
-            <Suspense fallback={<ProductsLoading />}>
-              <ProductsHeader />
-              <ProductsResults filters={currentFilters} />
-            </Suspense>
+            <ProductsHeader />
+            <ProductsResults filters={currentFilters} />
           </div>
         </div>
       </div>
     </div>
+  );
+}
+
+export default function ProductsPage() {
+  return (
+    <Suspense fallback={<ProductsLoading />}>
+      <ProductsPageInner />
+    </Suspense>
   );
 }
