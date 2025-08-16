@@ -2,20 +2,25 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { useRouter, usePathname, useSearchParams } from 'next/navigation';
-import HierarchicalFilters from './HierarchicalFilters';
+import HierarchicalFilters, { Category } from './HierarchicalFilters';
+import { VehicleBrand } from '@/generated/prisma/client';
 
 interface ClientHierarchicalFiltersProps {
   initialFilters: Record<string, any>;
   displayMode?: 'full' | 'topOnly' | 'sidebarOnly';
-  updateUrl?: boolean; // Nova opcija za kontrolu ažuriranja URL-a
-  onFilterChangeExternal?: (filters: Record<string, any>) => void; // Callback za vanjsko ažuriranje filtera
+  updateUrl?: boolean;
+  onFilterChangeExternal?: (filters: Record<string, any>) => void;
+  categories: Category[];
+  brands: VehicleBrand[];
 }
 
 export default function ClientHierarchicalFilters({ 
   initialFilters, 
   displayMode = 'full',
-  updateUrl = false, // Defaultno ne ažuriramo URL
-  onFilterChangeExternal
+  updateUrl = false,
+  onFilterChangeExternal,
+  categories,
+  brands
 }: ClientHierarchicalFiltersProps) {
   const router = useRouter();
   const pathname = usePathname();
@@ -83,6 +88,8 @@ export default function ClientHierarchicalFilters({
       onFilterChange={handleFilterChange}
       initialFilters={currentFilters}
       displayMode={displayMode}
+      categories={categories}
+      brands={brands}
     />
   );
 }

@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import { Dialog, Transition } from '@headlessui/react';
 import { LayoutDashboard, ShoppingCart, Package, Users2, List, LogOut, X, Car, Tags, Search, BarChart, ClipboardList, FileText } from 'lucide-react';
 import { signOut } from 'next-auth/react';
+import Image from 'next/image';
 
 const sidebarItems = [
   { name: 'Dashboard', href: '/admin', icon: LayoutDashboard },
@@ -35,12 +36,14 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
   const content = (
     <div className="flex flex-col h-full">
       <div className="flex items-center justify-between mb-8 px-4 pt-4">
-        <Link href="/" className="text-2xl font-bold text-gray-800">Webshop</Link>
+                <Link href="/">
+          <Image src="/images/omerbasic.png" alt="Omerbasic Logo" width={180} height={40} />
+        </Link>
         <button onClick={onClose} className="md:hidden text-gray-600">
           <X className="h-6 w-6" />
         </button>
       </div>
-      <nav className="flex flex-col flex-grow p-4">
+      <nav className="flex flex-col flex-grow p-4 overflow-y-auto">
         {sidebarItems.map((item) => {
           const isActive = pathname === item.href || (item.href !== '/admin' && pathname.startsWith(item.href));
           return (
@@ -51,7 +54,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
               className={`flex items-center px-4 py-3 mb-2 rounded-lg transition-colors ${
                 isActive
                   ? 'bg-[#92000A] text-white shadow-md'
-                  : 'text-gray-600 hover:bg-gray-200/50'
+                  : 'text-gray-600 hover:bg-gray-100'
               }`}>
               <item.icon className="w-5 h-5 mr-3" />
               <span>{item.name}</span>
@@ -73,7 +76,8 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
   return (
     <>
       {/* Static sidebar for desktop */}
-      <aside className="h-screen w-64 hidden md:flex flex-col bg-white/50 backdrop-blur-lg border-r border-gray-200/60">
+      {/* Static sidebar for desktop */}
+      <aside className="fixed top-0 left-0 h-full w-64 hidden md:flex flex-col bg-white border-r border-gray-200 z-30">
         {content}
       </aside>
 
@@ -102,7 +106,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
               leaveFrom="translate-x-0"
               leaveTo="-translate-x-full"
             >
-              <Dialog.Panel className="relative flex-1 flex flex-col max-w-xs w-full bg-white/80 backdrop-blur-lg">
+              <Dialog.Panel className="relative flex-1 flex flex-col max-w-xs w-full bg-white">
                 {content}
               </Dialog.Panel>
             </Transition.Child>

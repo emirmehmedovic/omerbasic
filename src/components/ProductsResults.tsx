@@ -174,10 +174,10 @@ export default function ProductsResults({ filters }: Props) {
                 <Link
                   href={`/products/${p.id}`}
                   key={p.id}
-                  className="animate-fade-in flex items-center bg-gradient-to-br from-slate-900 to-slate-950 p-4 rounded-lg border border-transparent hover:border-sunfire-500/50 transition-all duration-300 hover:scale-[1.02]"
+                  className="animate-fade-in flex flex-col sm:flex-row sm:items-center bg-gradient-to-br from-slate-900 to-slate-950 p-4 rounded-lg border border-transparent hover:border-sunfire-500/50 transition-all duration-300 hover:scale-[1.02]"
                   style={{ animationDelay: `${index * 50}ms` }}
                 >
-                  <div className="relative w-24 h-24 flex-shrink-0 mr-6">
+                  <div className="relative w-full sm:w-24 h-32 sm:h-24 flex-shrink-0 mb-4 sm:mb-0 sm:mr-6">
                     <Image 
                       src={p.imageUrl || '/images/placeholder.jpg'} 
                       alt={p.name} 
@@ -189,7 +189,7 @@ export default function ProductsResults({ filters }: Props) {
                     <p className="text-sm text-sunfire-300 mb-1">{p.category?.name || 'Kategorija'}</p>
                     <h3 className="text-lg font-semibold text-white mb-2 line-clamp-2">{p.name}</h3>
                   </div>
-                  <div className="text-right ml-6 w-48 flex-shrink-0">
+                  <div className="text-left sm:text-right w-full sm:w-48 flex-shrink-0 mt-4 sm:mt-0 sm:ml-6">
                     <p className="text-xl font-bold text-sunfire-400 mb-3">{p.price.toFixed(2)} BAM</p>
                     <button 
                       onClick={(e) => {

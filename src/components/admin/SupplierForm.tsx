@@ -130,7 +130,7 @@ export const SupplierForm: React.FC<SupplierFormProps> = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-[600px]">
+      <DialogContent className="sm:max-w-[600px] bg-white">
         <DialogHeader>
           <DialogTitle>{title}</DialogTitle>
           <Button

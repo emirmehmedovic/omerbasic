@@ -9,7 +9,7 @@ interface StatCardProps {
 
 export const StatCard = ({ title, value, icon: Icon }: StatCardProps) => {
   return (
-    <Card className="rounded-xl shadow-sm hover:shadow-md transition-shadow bg-white/60 backdrop-blur-sm border-gray-200/60">
+    <Card className="rounded-xl shadow-sm hover:shadow-md transition-shadow bg-gradient-to-br from-white to-gray-100 border-gray-200">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
         <CardTitle className="text-sm font-medium text-gray-600">{title}</CardTitle>
         <Icon className="h-5 w-5 text-gray-400" />

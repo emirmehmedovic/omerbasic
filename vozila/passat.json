@@ -1,0 +1,206 @@
+{
+    "name": "Volkswagen",
+    "type": "PASSENGER",
+    "models": [
+      {
+        "name": "Passat",
+        "generations": [
+          {
+            "name": "B5",
+            "period": "1996–2000",
+            "bodyStyles": ["Sedan", "Wagon"],
+            "engines": [
+              {
+                "engineType": "Petrol",
+                "engineCapacity": 1595,
+                "enginePowerKW": 74,
+                "enginePowerHP": 101,
+                "engineCode": "ADP",
+                "description": "1.6 MPI"
+              },
+              {
+                "engineType": "Petrol",
+                "engineCapacity": 1781,
+                "enginePowerKW": 110,
+                "enginePowerHP": 150,
+                "engineCode": "AEB",
+                "description": "1.8T 20V"
+              },
+              {
+                "engineType": "Diesel",
+                "engineCapacity": 1896,
+                "enginePowerKW": 81,
+                "enginePowerHP": 110,
+                "engineCode": "AFN",
+                "description": "1.9 TDI"
+              }
+            ]
+          },
+          {
+            "name": "B5.5",
+            "period": "2000–2005",
+            "bodyStyles": ["Sedan", "Wagon"],
+            "engines": [
+              {
+                "engineType": "Petrol",
+                "engineCapacity": 1984,
+                "enginePowerKW": 85,
+                "enginePowerHP": 115,
+                "engineCode": "AZM",
+                "description": "2.0 MPI"
+              },
+              {
+                "engineType": "Petrol",
+                "engineCapacity": 2771,
+                "enginePowerKW": 142,
+                "enginePowerHP": 193,
+                "engineCode": "AZA",
+                "description": "2.8 V6"
+              },
+              {
+                "engineType": "Diesel",
+                "engineCapacity": 1896,
+                "enginePowerKW": 96,
+                "enginePowerHP": 130,
+                "engineCode": "AVF",
+                "description": "1.9 TDI PD"
+              }
+            ]
+          },
+          {
+            "name": "B6",
+            "period": "2005–2010",
+            "bodyStyles": ["Sedan", "Wagon"],
+            "engines": [
+              {
+                "engineType": "Petrol",
+                "engineCapacity": 1595,
+                "enginePowerKW": 75,
+                "enginePowerHP": 102,
+                "engineCode": "BAG",
+                "description": "1.6 MPI"
+              },
+              {
+                "engineType": "Petrol",
+                "engineCapacity": 1984,
+                "enginePowerKW": 147,
+                "enginePowerHP": 200,
+                "engineCode": "BWA",
+                "description": "2.0 TFSI"
+              },
+              {
+                "engineType": "Diesel",
+                "engineCapacity": 1968,
+                "enginePowerKW": 103,
+                "enginePowerHP": 140,
+                "engineCode": "BKP",
+                "description": "2.0 TDI"
+              }
+            ]
+          },
+          {
+            "name": "B7",
+            "period": "2010–2014",
+            "bodyStyles": ["Sedan", "Wagon"],
+            "engines": [
+              {
+                "engineType": "Petrol",
+                "engineCapacity": 1390,
+                "enginePowerKW": 90,
+                "enginePowerHP": 122,
+                "engineCode": "CAXA",
+                "description": "1.4 TSI"
+              },
+              {
+                "engineType": "Petrol",
+                "engineCapacity": 1984,
+                "enginePowerKW": 155,
+                "enginePowerHP": 210,
+                "engineCode": "CCZB",
+                "description": "2.0 TSI"
+              },
+              {
+                "engineType": "Diesel",
+                "engineCapacity": 1968,
+                "enginePowerKW": 125,
+                "enginePowerHP": 170,
+                "engineCode": "CFGB",
+                "description": "2.0 TDI CR"
+              }
+            ]
+          },
+          {
+            "name": "B8",
+            "period": "2014–2023",
+            "bodyStyles": ["Sedan", "Wagon"],
+            "engines": [
+              {
+                "engineType": "Petrol",
+                "engineCapacity": 1395,
+                "enginePowerKW": 110,
+                "enginePowerHP": 150,
+                "engineCode": "CZDA",
+                "description": "1.4 TSI"
+              },
+              {
+                "engineType": "Petrol",
+                "engineCapacity": 1984,
+                "enginePowerKW": 140,
+                "enginePowerHP": 190,
+                "engineCode": "CZPA",
+                "description": "2.0 TSI"
+              },
+              {
+                "engineType": "Diesel",
+                "engineCapacity": 1968,
+                "enginePowerKW": 110,
+                "enginePowerHP": 150,
+                "engineCode": "DFGA",
+                "description": "2.0 TDI"
+              },
+              {
+                "engineType": "Hybrid",
+                "engineCapacity": 1395,
+                "enginePowerKW": 160,
+                "enginePowerHP": 218,
+                "engineCode": "DGEA",
+                "description": "1.4 TSI GTE Plug-in Hybrid"
+              }
+            ]
+          },
+          {
+            "name": "B9",
+            "period": "2023–",
+            "bodyStyles": ["Wagon"],
+            "engines": [
+              {
+                "engineType": "Petrol",
+                "engineCapacity": 1498,
+                "enginePowerKW": 110,
+                "enginePowerHP": 150,
+                "engineCode": "DPCA",
+                "description": "1.5 eTSI"
+              },
+              {
+                "engineType": "Diesel",
+                "engineCapacity": 1968,
+                "enginePowerKW": 110,
+                "enginePowerHP": 150,
+                "engineCode": "DFFA",
+                "description": "2.0 TDI"
+              },
+              {
+                "engineType": "Hybrid",
+                "engineCapacity": 1395,
+                "enginePowerKW": 160,
+                "enginePowerHP": 218,
+                "engineCode": "DGEA",
+                "description": "1.4 TSI eHybrid"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+  

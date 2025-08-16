@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useSession, signOut } from 'next-auth/react';
 import { useCart } from '@/context/CartContext';
 import Image from 'next/image';
-import { ShoppingCart, User, Package, LogOut, ChevronDown, Menu } from 'lucide-react';
+import { ShoppingCart, User, Package, LogOut, ChevronDown, Menu, Search } from 'lucide-react';
 import { SearchBar } from './SearchBar';
 import { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
@@ -41,27 +41,16 @@ const MobileNavLink = ({
 export function Navbar() {
   const { data: session, status } = useSession();
   const { cartCount } = useCart();
-  const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [userMenuOpen, setUserMenuOpen] = useState(false);
-
-  // Efekt za praćenje scroll pozicije
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const [searchOpen, setSearchOpen] = useState(false);
 
   return (
-    <nav className="sticky top-0 z-50 py-3 transition-all duration-300">
+    <nav className="relative z-50 py-3 transition-all duration-300">
       <div
         className={cn(
-          "container mx-auto transition-all duration-300 rounded-full backdrop-blur-lg bg-white/70",
-          scrolled
-            ? "shadow-lg"
-            : "shadow-sm"
+          "container mx-auto transition-all duration-300 backdrop-blur-lg bg-white/70 shadow-sm",
+          menuOpen || searchOpen ? "rounded-t-2xl" : "rounded-2xl"
         )}
       >
         <div className="flex justify-between items-center py-2 px-4">
@@ -110,7 +99,7 @@ export function Navbar() {
                     onClick={() => setUserMenuOpen(!userMenuOpen)}
                     className={cn(
                       "flex items-center space-x-1 py-1 px-3 rounded-full transition-all",
-                      userMenuOpen || scrolled ? "bg-slate-100/80 shadow-sm" : "hover:bg-slate-100/80"
+                      userMenuOpen ? "bg-slate-100/80 shadow-sm" : "hover:bg-slate-100/80"
                     )}
                   >
                     <span className="text-sm font-medium text-slate-800">
@@ -168,25 +157,40 @@ export function Navbar() {
               )}
             </div>
 
-            {/* Mobilni meni toggle */}
-            <button 
-              className="md:hidden p-2 rounded-full hover:bg-white/50 transition-colors"
-              onClick={() => setMenuOpen(!menuOpen)}
-              aria-label="Otvori meni"
-            >
-              <Menu className="h-6 w-6 text-orange-500" />
-            </button>
+            {/* Mobilni meni i search toggle */}
+            <div className="md:hidden flex items-center space-x-2">
+              <button 
+                className="p-2 rounded-full hover:bg-white/50 transition-colors"
+                onClick={() => setSearchOpen(!searchOpen)}
+                aria-label="Otvori pretragu"
+              >
+                <Search className="h-6 w-6 text-orange-500" />
+              </button>
+              <button 
+                className="p-2 rounded-full hover:bg-white/50 transition-colors"
+                onClick={() => setMenuOpen(!menuOpen)}
+                aria-label="Otvori meni"
+              >
+                <Menu className="h-6 w-6 text-orange-500" />
+              </button>
+            </div>
           </div>
         </div>
       </div>
 
+      {/* Mobilna pretraga */}
+      {searchOpen && (
+        <div className="md:hidden bg-white/80 backdrop-blur-lg border-t border-slate-200/50 shadow-lg container mx-auto rounded-b-2xl">
+          <div className="container mx-auto px-4 py-3">
+            <SearchBar />
+          </div>
+        </div>
+      )}
+
       {/* Mobilni meni */}
       {menuOpen && (
-        <div className="md:hidden bg-white/80 backdrop-blur-lg border-t border-slate-200/50 shadow-lg">
+        <div className="md:hidden bg-white/80 backdrop-blur-lg border-t border-slate-200/50 shadow-lg container mx-auto rounded-b-2xl">
           <div className="container mx-auto px-4 py-3">
-            <div className="mb-4">
-              <SearchBar />
-            </div>
             
             <div className="flex flex-col space-y-2">
               <MobileNavLink href="/" onClick={() => setMenuOpen(false)}>Početna</MobileNavLink>

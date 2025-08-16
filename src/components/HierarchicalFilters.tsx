@@ -7,16 +7,13 @@ import TechnicalSpecsFilter from './TechnicalSpecsFilter';
 import { Button } from './ui/button';
 import { Separator } from './ui/separator';
 
-// Tip za kategoriju
-interface Category {
-  id: string;
-  name: string;
-  level: number;
-  parentId: string | null;
-  iconUrl?: string | null;
+import { Category as PrismaCategory } from '@/generated/prisma/client';
+
+// Tip za kategoriju sa djecom
+export type Category = PrismaCategory & {
   children: Category[];
-  productCount?: number; // Dodajemo opcionalnu vrijednost za broj proizvoda
-}
+  productCount?: number;
+};
 
 // Komponenta za prikaz aktivnih filtera
 const ActiveFilters = ({ filters, onRemove }: { 
@@ -111,21 +108,26 @@ const SubcategoryList = ({
   );
 };
 
+import { VehicleBrand } from '@/generated/prisma/client';
+
 interface HierarchicalFiltersProps {
   onFilterChange: (filters: any) => void;
   initialFilters?: any;
   displayMode?: 'full' | 'topOnly' | 'sidebarOnly';
+  categories: Category[];
+  brands: VehicleBrand[];
 }
 
 export default function HierarchicalFilters({ 
   onFilterChange, 
   initialFilters = {},
-  displayMode = 'full'
+  displayMode = 'full',
+  categories,
+  brands
 }: HierarchicalFiltersProps) {
   // Stanje za kategorije
-  const [categories, setCategories] = useState<Category[]>([]);
   const [mainCategories, setMainCategories] = useState<Category[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   
   // Odabrana glavna kategorija će se izračunati ispod nakon što definiramo filters stanje
   
@@ -152,27 +154,13 @@ export default function HierarchicalFilters({
     }));
   }, [initialFilters]);
 
-  // Dohvat kategorija (samo jednom pri mount-u)
+  // Postavljanje glavnih kategorija iz propsa
   useEffect(() => {
-    async function fetchCategories() {
-      try {
-        const response = await fetch('/api/categories/hierarchy');
-        if (!response.ok) throw new Error('Failed to fetch categories');
-        const data = await response.json();
-        setCategories(data);
-        
-        // Filtriramo glavne kategorije (one bez parentId)
-        const main = data.filter((cat: Category) => cat.parentId === null);
-        setMainCategories(main);
-      } catch (error) {
-        console.error('Error fetching categories:', error);
-      } finally {
-        setLoading(false);
-      }
+    if (categories) {
+            const main = categories.filter(cat => cat.parentId === null);
+      setMainCategories(main);
     }
-    
-    fetchCategories();
-  }, []);
+  }, [categories]);
 
   // selectedMainCategory se računa preko useMemo iznad, nije potreban dodatni efekt
 

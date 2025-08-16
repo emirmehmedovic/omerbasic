@@ -310,7 +310,7 @@ export function StatisticsClient({ initialData }: StatisticsClientProps) {
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-        <Card>
+        <Card className="bg-gradient-to-br from-white to-gray-100 border-gray-200">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium">Prosječna vrijednost narudžbe</CardTitle>
           </CardHeader>
@@ -319,7 +319,7 @@ export function StatisticsClient({ initialData }: StatisticsClientProps) {
           </CardContent>
         </Card>
         
-        <Card>
+        <Card className="bg-gradient-to-br from-white to-gray-100 border-gray-200">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium">Ukupno narudžbi</CardTitle>
           </CardHeader>
@@ -328,7 +328,7 @@ export function StatisticsClient({ initialData }: StatisticsClientProps) {
           </CardContent>
         </Card>
         
-        <Card>
+        <Card className="bg-gradient-to-br from-white to-gray-100 border-gray-200">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium">Ukupni prihod</CardTitle>
           </CardHeader>
@@ -337,7 +337,7 @@ export function StatisticsClient({ initialData }: StatisticsClientProps) {
           </CardContent>
         </Card>
         
-        <Card>
+        <Card className="bg-gradient-to-br from-white to-gray-100 border-gray-200">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium">Proizvodi s niskom zalihom</CardTitle>
           </CardHeader>
@@ -347,7 +347,7 @@ export function StatisticsClient({ initialData }: StatisticsClientProps) {
         </Card>
       </div>
       
-      <Card>
+      <Card className="bg-gradient-to-br from-white to-gray-100 border-gray-200">
         <CardHeader>
           <CardTitle>Statistika prodaje i proizvoda</CardTitle>
           <CardDescription>

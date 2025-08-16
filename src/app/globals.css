@@ -8,6 +8,65 @@
   }
 }
 
+@layer utilities {
+  /* App background using OKLab metal blue with subtle vignette */
+  .bg-app {
+    /* Solid fallback */
+    background-color: #0f1b2d; /* fallback for older browsers */
+    /* Vignette gradients (broadly supported) */
+    background-image:
+      radial-gradient(1200px 600px at 15% 10%, rgba(64, 93, 141, 0.25) 0%, rgba(15, 27, 45, 0) 60%),
+      radial-gradient(1000px 500px at 85% 85%, rgba(40, 66, 108, 0.18) 0%, rgba(15, 27, 45, 0) 60%);
+    background-blend-mode: normal;
+  }
+
+  /* Frosted glass card without border */
+  .glass-card {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+    @apply backdrop-blur-xl shadow-xl border border-white/10;
+    @apply transition-all duration-300;
+  }
+
+  .glass-card:hover {
+    @apply shadow-2xl border-slate-600 transition-all;
+  }
+
+  /* High-contrast glass for headers */
+  .glass-header {
+    @apply bg-slate-900/40 backdrop-blur-2xl shadow-2xl border border-white/20;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  }
+
+  /* Dark slate accent helpers */
+  .accent-text {
+    /* Fallback accent text color */
+    color: #e26d2d;
+  }
+  .accent-bg {
+    background: linear-gradient(135deg, var(--sunfire-a30) 0%, var(--sunfire-a20) 100%);
+    border: 1px solid var(--sunfire-a20);
+  }
+
+  @keyframes pulse-sunfire {
+    0%, 100% {
+      border-color: #ff8a3d; /* Brighter sunfire */
+      box-shadow: 0 0 15px 2px rgba(255, 138, 61, 0.5);
+    }
+    50% {
+      border-color: #ffbe8a; /* Even brighter sunfire */
+      box-shadow: 0 0 25px 8px rgba(255, 190, 138, 0.7);
+    }
+  }
+
+  .hover-pulse-sunfire:hover {
+    animation: pulse-sunfire 1.5s ease-in-out infinite;
+  }
+
+  .bg-admin-gradient {
+    background-image: radial-gradient(ellipse at top, #ffffff, #f0f2f5);
+  }
+}
+
 /* Custom layout styles */
 @layer components {
   .products-with-sidebar-container {
