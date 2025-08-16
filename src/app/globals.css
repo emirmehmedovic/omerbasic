@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  body {
+    @apply bg-slate-950 text-slate-50;
+  }
+}
+
 /* Custom layout styles */
 @layer components {
   .products-with-sidebar-container {
@@ -19,7 +25,20 @@
  
 @layer base {
   :root {
-    --background: 35 30% 95%; /* Topla bež pozadina */
+    /* OKLab theme tokens */
+    --metal-blue-a0: oklab(50.8% -0.037 -0.128);
+    --metal-blue-a10: oklab(41.5% -0.025 -0.096);
+    --metal-blue-a20: oklab(32.3% -0.015 -0.063);
+    --metal-blue-a30: oklab(23.1% -0.004 -0.031);
+
+    --sunfire-a0: #602317;
+    --sunfire-a10: #A33D21;
+    --sunfire-a20: #E66A21;
+    --sunfire-a30: #F79330;
+    --sunfire-a40: #FCD97A;
+
+    /* Base HSL tokens (kept for compatibility with tailwind.config mappings) */
+    --background: 35 30% 95%; /* fallback background */
     --foreground: 222.2 84% 4.9%;
  
     --card: 0 0% 100%;
@@ -46,7 +65,7 @@
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
     --ring: 222.2 84% 4.9%;
- 
+
     --radius: 0.5rem;
   }
  
@@ -78,5 +97,121 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
+  }
+}
+
+/* Utilities for new theme */
+@layer utilities {
+  /* App background using OKLab metal blue with subtle vignette */
+  .bg-app {
+    /* Solid fallback */
+    background-color: #0f1b2d; /* fallback for older browsers */
+    /* Vignette gradients (broadly supported) */
+    background-image:
+      radial-gradient(1200px 600px at 15% 10%, rgba(64, 93, 141, 0.25) 0%, rgba(15, 27, 45, 0) 60%),
+      radial-gradient(1000px 500px at 85% 85%, rgba(40, 66, 108, 0.18) 0%, rgba(15, 27, 45, 0) 60%);
+    background-blend-mode: normal;
+  }
+
+  /* Frosted glass card without border */
+  .glass-card {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+    @apply backdrop-blur-xl shadow-xl border border-white/10;
+    @apply transition-all duration-300;
+  }
+
+  .glass-card:hover {
+    @apply shadow-2xl border-slate-600 transition-all;
+  }
+
+  /* High-contrast glass for headers */
+  .glass-header {
+    @apply bg-slate-900/40 backdrop-blur-2xl shadow-2xl border border-white/20;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  }
+
+  /* Dark slate accent helpers */
+  .accent-text {
+    /* Fallback accent text color */
+    color: #e26d2d;
+  }
+  .accent-bg {
+    background: linear-gradient(135deg, var(--sunfire-a30) 0%, var(--sunfire-a20) 100%);
+    border: 1px solid var(--sunfire-a20);
+  }
+
+  @keyframes pulse-sunfire {
+    0%, 100% {
+      border-color: #ff8a3d; /* Brighter sunfire */
+      box-shadow: 0 0 15px 2px rgba(255, 138, 61, 0.5);
+    }
+    50% {
+      border-color: #ffbe8a; /* Even brighter sunfire */
+      box-shadow: 0 0 25px 8px rgba(255, 190, 138, 0.7);
+    }
+  }
+
+  .hover-pulse-sunfire:hover {
+    animation: pulse-sunfire 1.5s ease-in-out infinite;
+  }
+}
+
+@layer components {
+  /* Dark theme overrides for react-calendar */
+  .react-calendar-dark.react-calendar {
+    @apply w-full border-none bg-transparent p-2;
+  }
+
+  .react-calendar-dark.react-calendar .react-calendar__navigation button {
+    @apply text-slate-300 hover:bg-slate-700 rounded-md min-w-10 h-10 flex items-center justify-center transition-colors;
+  }
+
+  .react-calendar-dark.react-calendar .react-calendar__navigation button:disabled {
+    @apply text-slate-600 bg-transparent hover:bg-transparent;
+  }
+
+  .react-calendar-dark.react-calendar .react-calendar__navigation__label {
+    @apply font-bold text-lg text-white rounded-md hover:bg-slate-800 px-4 h-10 flex items-center justify-center transition-colors;
+  }
+
+  .react-calendar-dark.react-calendar .react-calendar__month-view__weekdays__weekday abbr {
+    @apply no-underline text-slate-400 font-medium uppercase text-xs text-center;
+  }
+
+  .react-calendar-dark.react-calendar .react-calendar__tile {
+    @apply text-white bg-transparent rounded-md hover:bg-slate-700/50 h-10 transition-colors;
+  }
+
+  .react-calendar-dark.react-calendar .react-calendar__tile:disabled {
+    @apply text-slate-600 bg-transparent hover:bg-transparent;
+  }
+
+  .react-calendar-dark.react-calendar .react-calendar__tile--now {
+    @apply bg-sunfire-500/20 text-sunfire-300 font-bold;
+  }
+
+  .react-calendar-dark.react-calendar .react-calendar__tile--active {
+    @apply bg-sunfire-500 text-white hover:bg-sunfire-600;
+  }
+
+  .react-calendar-dark.react-calendar .react-calendar__tile--range {
+    @apply bg-sunfire-500/30 text-white rounded-none;
+  }
+
+  .react-calendar-dark.react-calendar .react-calendar__tile--rangeStart,
+  .react-calendar-dark.react-calendar .react-calendar__tile--rangeEnd {
+    @apply bg-sunfire-500 text-white;
+  }
+
+  .react-calendar-dark.react-calendar .react-calendar__tile--rangeStart {
+    @apply rounded-l-full rounded-r-none;
+  }
+
+  .react-calendar-dark.react-calendar .react-calendar__tile--rangeEnd {
+    @apply rounded-r-full rounded-l-none;
+  }
+
+  .react-calendar-dark.react-calendar .react-calendar__month-view__days__day--neighboringMonth {
+    @apply text-slate-500;
   }
 }

@@ -64,10 +64,5 @@ export default async function OrdersPage() {
     }
   }
 
-  return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-6">Moje narudžbe</h1>
-      <OrdersClient orders={finalOrders} />
-    </div>
-  );
+  return <OrdersClient orders={finalOrders} />;
 }

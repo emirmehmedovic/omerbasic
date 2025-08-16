@@ -265,6 +265,7 @@ export default function AdvancedProductSearchClient({ categories }: AdvancedProd
               <Button
                 key={page}
                 variant={page === currentPage ? "default" : "outline"}
+                className={page === currentPage ? 'bg-sunfire-500 hover:bg-sunfire-600 border-sunfire-400' : 'border-slate-700 hover:bg-slate-800 hover:text-white'}
                 onClick={() => page !== currentPage && handlePageChange(page)}
               >
                 {page}
@@ -295,7 +296,7 @@ export default function AdvancedProductSearchClient({ categories }: AdvancedProd
       />
       
       {/* Prikaz rezultata */}
-      <div className="mt-6">
+      <div className="mt-6 bg-gradient-to-t from-black/60 to-transparent p-6 rounded-2xl border border-sunfire-500/30 shadow-lg shadow-sunfire-500/10">
         {isLoading ? (
           <div className="flex justify-center items-center py-12">
             <Loader2 className="h-8 w-8 animate-spin text-primary" />
@@ -316,7 +317,7 @@ export default function AdvancedProductSearchClient({ categories }: AdvancedProd
         ) : (
           <>
             {/* Broj rezultata */}
-            <div className="mb-4 text-sm text-gray-500">
+            <div className="mb-6 text-lg font-semibold text-white">
               Pronađeno {searchResults.total} proizvoda
             </div>
             

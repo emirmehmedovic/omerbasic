@@ -4,6 +4,7 @@ import { useCart } from '@/context/CartContext';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Trash2 } from 'lucide-react';
+import { CartSuggestions } from '@/components/CartSuggestions';
 
 // Funkcija za formatiranje cijene
 const formatPrice = (price: number) => {
@@ -16,15 +17,18 @@ const formatPrice = (price: number) => {
 export default function CartPage() {
   const { cartItems, removeFromCart, updateQuantity, cartTotal, cartCount } = useCart();
 
+  const categoryIds = cartItems.map(item => item.categoryId).filter((id): id is string => !!id);
+  const excludeProductIds = cartItems.map(item => item.id);
+
   if (cartCount === 0) {
     return (
       <div className="container mx-auto px-4 py-12 text-center">
-        <div className="bg-white/80 backdrop-blur-md rounded-xl p-8 shadow-xl border border-white/20 max-w-2xl mx-auto">
-          <h1 className="text-2xl font-semibold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600">Vaša korpa je prazna</h1>
-          <p className="text-gray-600 mb-8">Izgleda da još niste dodali nijedan proizvod.</p>
+        <div className="glass-card rounded-xl p-8 max-w-2xl mx-auto">
+          <h1 className="text-3xl font-bold text-slate-200 mb-4">Vaša korpa je prazna</h1>
+          <p className="text-slate-400 mb-8">Izgleda da još niste dodali nijedan proizvod.</p>
           <Link 
             href="/" 
-            className="inline-block rounded-lg bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 px-6 py-3 font-medium text-white shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105"
+            className="inline-block accent-bg text-white font-bold py-3 px-8 rounded-lg shadow-md hover:shadow-lg transition-all duration-200"
           >
             Vratite se na kupovinu
           </Link>
@@ -35,17 +39,17 @@ export default function CartPage() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <div className="bg-white/80 backdrop-blur-md rounded-xl p-8 shadow-xl border border-white/20 mb-8">
-        <h1 className="text-2xl font-semibold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600">Vaša korpa</h1>
+      <div className="glass-card rounded-xl p-8 mb-8">
+        <h1 className="text-3xl font-bold text-slate-200 mb-6">Vaša korpa</h1>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 space-y-4">
             {cartItems.map((item) => (
               <div 
                 key={item.id} 
-                className="flex items-center justify-between gap-4 rounded-xl bg-white/60 backdrop-blur-sm p-4 shadow-md border border-white/30 hover:shadow-lg transition-all duration-200"
+                className="flex items-center justify-between gap-4 rounded-xl bg-slate-800/50 p-4 border border-slate-700/50 hover:bg-slate-800/80 transition-all duration-200"
               >
-                <div className="flex items-center gap-4">
-                  <div className="relative h-24 w-24 overflow-hidden rounded-lg shadow-md">
+                <div className="flex items-center gap-4 flex-grow">
+                  <div className="relative h-24 w-24 flex-shrink-0 overflow-hidden rounded-lg shadow-md">
                     <Image
                       src={item.imageUrl || 'https://placehold.co/600x400.png?text=Slika+nije+dostupna'}
                       alt={item.name}
@@ -53,14 +57,14 @@ export default function CartPage() {
                       className="object-cover"
                     />
                   </div>
-                  <div>
+                  <div className="flex-grow">
                     <Link 
                       href={`/products/${item.id}`} 
-                      className="font-semibold text-lg hover:text-indigo-600 transition-colors duration-200"
+                      className="font-semibold text-lg text-slate-200 hover:text-sunfire-a40 transition-colors duration-200"
                     >
                       {item.name}
                     </Link>
-                    <p className="text-gray-700 font-medium">{formatPrice(item.price)}</p>
+                    <p className="text-slate-300 font-bold text-lg">{formatPrice(item.price)}</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-4">
@@ -69,11 +73,11 @@ export default function CartPage() {
                     min="1"
                     value={item.quantity}
                     onChange={(e) => updateQuantity(item.id, parseInt(e.target.value, 10))}
-                    className="w-16 rounded-lg bg-white/50 border-0 px-3 py-2 text-center text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 backdrop-blur-sm focus:ring-2 focus:ring-inset focus:ring-indigo-400"
+                    className="w-20 rounded-lg bg-slate-900/70 border border-slate-700 px-3 py-2 text-center text-slate-200 focus:ring-2 focus:ring-sunfire-a30 focus:border-sunfire-a30"
                   />
                   <button 
                     onClick={() => removeFromCart(item.id)} 
-                    className="text-red-500 hover:text-red-700 bg-white/50 p-2 rounded-full hover:bg-red-50 transition-colors duration-200"
+                    className="text-slate-500 hover:text-red-500 bg-slate-800/50 p-2 rounded-full hover:bg-red-500/10 transition-colors duration-200"
                   >
                     <Trash2 size={20} />
                   </button>
@@ -81,25 +85,34 @@ export default function CartPage() {
               </div>
             ))}
           </div>
-          <div className="rounded-xl bg-white/70 backdrop-blur-md p-6 shadow-lg border border-white/30 h-fit">
-            <h2 className="text-xl font-semibold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600">Pregled narudžbe</h2>
-            <div className="flex justify-between mb-2 text-gray-700">
-              <span>Ukupno ({cartCount} artikal/a)</span>
-              <span className="font-medium">{formatPrice(cartTotal)}</span>
+          <div className="glass-card rounded-xl p-6 h-fit">
+            <h2 className="text-2xl font-bold text-slate-200 mb-4">Pregled narudžbe</h2>
+            <div className="space-y-3 text-slate-300">
+              <div className="flex justify-between">
+                <span>Ukupno ({cartCount} artikal/a)</span>
+                <span className="font-medium">{formatPrice(cartTotal)}</span>
+              </div>
+              {/* Ovdje se mogu dodati troskovi dostave */}
             </div>
-            <div className="flex justify-between font-bold text-lg border-t border-gray-200 pt-4 mt-4">
+            <div className="flex justify-between font-bold text-xl border-t border-slate-700/50 pt-4 mt-4 text-white">
               <span>Ukupno za platiti</span>
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600">{formatPrice(cartTotal)}</span>
+              <span className="text-sunfire-a40">{formatPrice(cartTotal)}</span>
             </div>
             <Link 
               href="/checkout" 
-              className="mt-6 block w-full rounded-lg bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 py-3 text-center font-medium text-white shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105"
+              className="mt-6 block w-full accent-bg text-white font-bold py-3 text-center rounded-lg shadow-md hover:shadow-lg transition-all duration-200"
             >
               Nastavi na plaćanje
             </Link>
           </div>
         </div>
       </div>
+      {cartCount > 0 && 
+        <CartSuggestions 
+          categoryIds={categoryIds} 
+          excludeProductIds={excludeProductIds} 
+        />
+      }
     </div>
   );
 }

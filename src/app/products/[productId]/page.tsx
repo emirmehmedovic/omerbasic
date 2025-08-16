@@ -17,6 +17,17 @@ interface ProductPageProps {
 
 
 
+// Komponenta za header stranice proizvoda
+function ProductDetailHeader({ productName }: { productName: string }) {
+  return (
+    <div className="mb-8">
+      <div className="rounded-2xl p-8 text-white bg-gradient-to-t from-black/60 to-transparent border border-white/10 flex items-center justify-center h-full transform-gpu transition-transform duration-300 hover:scale-105 hover-pulse-sunfire">
+        <h1 className="font-bold text-4xl accent-text text-center">{productName}</h1>
+      </div>
+    </div>
+  );
+}
+
 const ProductPage = async ({ params }: ProductPageProps) => {
   // U Next.js 15, params treba koristiti s await
   const { productId } = await params;
@@ -75,8 +86,11 @@ const ProductPage = async ({ params }: ProductPageProps) => {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <ProductDetails product={productWithDiscount} />
+    <div className="min-h-screen bg-app relative">
+      <div className="container mx-auto px-4 py-6 max-w-7xl relative z-10">
+        <ProductDetailHeader productName={product.name} />
+        <ProductDetails product={productWithDiscount} />
+      </div>
     </div>
   );
 };

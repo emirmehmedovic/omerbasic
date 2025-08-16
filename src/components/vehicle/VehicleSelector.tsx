@@ -2,12 +2,12 @@
 
 import { useState, useEffect, useMemo } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { 
-  Select, 
-  SelectContent, 
-  SelectItem, 
-  SelectTrigger, 
-  SelectValue 
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { Loader2, ChevronRight, Car } from "lucide-react";
@@ -31,6 +31,7 @@ type VehicleGeneration = {
   name: string;
   modelId: string;
   period?: string | null;
+  bodyStyles?: string[];
 };
 
 type VehicleEngine = {
@@ -71,18 +72,16 @@ export default function VehicleSelector({
   const [models, setModels] = useState<VehicleModel[]>([]);
   const [generations, setGenerations] = useState<VehicleGeneration[]>([]);
   const [engines, setEngines] = useState<VehicleEngine[]>([]);
-  const [bodyStyles, setBodyStyles] = useState<string[]>([]);
+
   
   // Stanja za odabrane vrijednosti
   const [selectedBrandId, setSelectedBrandId] = useState<string>("");
   const [selectedModelId, setSelectedModelId] = useState<string>("");
   const [selectedGenerationId, setSelectedGenerationId] = useState<string>("");
   const [selectedEngineId, setSelectedEngineId] = useState<string>("");
-  const [selectedBodyStyle, setSelectedBodyStyle] = useState<string>("");
-  const [selectedYear, setSelectedYear] = useState<string>("");
   
   // Stanja za učitavanje
-  const [loadingBrands, setLoadingBrands] = useState<boolean>(false);
+  const [loadingBrands, setLoadingBrands] = useState<boolean>(true);
   const [loadingModels, setLoadingModels] = useState<boolean>(false);
   const [loadingGenerations, setLoadingGenerations] = useState<boolean>(false);
   const [loadingEngines, setLoadingEngines] = useState<boolean>(false);
@@ -105,7 +104,6 @@ export default function VehicleSelector({
   const modelsToRender = useMemo<VehicleModel[]>(() => uniqById(models), [models]);
   const generationsToRender = useMemo<VehicleGeneration[]>(() => uniqById(generations), [generations]);
   const enginesToRender = useMemo<VehicleEngine[]>(() => uniqById(engines), [engines]);
-  const bodyStylesToRender = useMemo<string[]>(() => Array.from(new Set((bodyStyles || []).filter(Boolean))) as string[], [bodyStyles]);
   
   // Učitavanje brendova vozila pri prvom renderiranju
   useEffect(() => {
@@ -117,13 +115,7 @@ export default function VehicleSelector({
         
         const data = await response.json();
         setAllBrands(Array.isArray(data) ? data : []);
-        // Primijeni inicijalni filter po tipu
-        const filtered = Array.isArray(data)
-          ? data.filter((b: VehicleBrand) => vehicleType === 'ALL' || b.type === vehicleType)
-          : [];
-        setBrands(filtered);
         
-        // Postavi odabrani brend iz URL-a ako postoji
         const brandIdFromUrl = searchParams.get("brandId");
         if (brandIdFromUrl) {
           setSelectedBrandId(brandIdFromUrl);
@@ -136,18 +128,16 @@ export default function VehicleSelector({
     };
     
     fetchBrands();
-  }, [searchParams]);
+  }, []);
 
   // Kad se promijeni vehicleType, filtriraj brendove i resetiraj odabire
   useEffect(() => {
     const filtered = allBrands.filter((b) => vehicleType === 'ALL' || b.type === vehicleType);
     setBrands(filtered);
-    // Reset selekcija jer se kontekst promijenio
     setSelectedBrandId("");
     setSelectedModelId("");
     setSelectedGenerationId("");
     setSelectedEngineId("");
-    setSelectedBodyStyle("");
   }, [vehicleType, allBrands]);
   
   // Učitavanje modela kada se odabere brend
@@ -160,6 +150,11 @@ export default function VehicleSelector({
     
     const fetchModels = async () => {
       setLoadingModels(true);
+      setGenerations([]);
+      setEngines([]);
+      setSelectedModelId("");
+      setSelectedGenerationId("");
+      setSelectedEngineId("");
       try {
         const response = await fetch(`/api/vehicle-brands/${selectedBrandId}/models`);
         if (!response.ok) throw new Error("Greška pri dohvaćanju modela vozila");
@@ -167,7 +162,6 @@ export default function VehicleSelector({
         const data = await response.json();
         setModels(data);
         
-        // Postavi odabrani model iz URL-a ako postoji
         const modelIdFromUrl = searchParams.get("modelId");
         if (modelIdFromUrl) {
           setSelectedModelId(modelIdFromUrl);
@@ -180,7 +174,7 @@ export default function VehicleSelector({
     };
     
     fetchModels();
-  }, [selectedBrandId, searchParams]);
+  }, [selectedBrandId]);
   
   // Učitavanje generacija kada se odabere model
   useEffect(() => {
@@ -192,6 +186,9 @@ export default function VehicleSelector({
     
     const fetchGenerations = async () => {
       setLoadingGenerations(true);
+      setEngines([]);
+      setSelectedGenerationId("");
+      setSelectedEngineId("");
       try {
         const response = await fetch(`/api/models/${selectedModelId}/generations`);
         if (!response.ok) throw new Error("Greška pri dohvaćanju generacija vozila");
@@ -199,7 +196,6 @@ export default function VehicleSelector({
         const data = await response.json();
         setGenerations(data);
         
-        // Postavi odabranu generaciju iz URL-a ako postoji
         const generationIdFromUrl = searchParams.get("generationId");
         if (generationIdFromUrl) {
           setSelectedGenerationId(generationIdFromUrl);
@@ -212,63 +208,33 @@ export default function VehicleSelector({
     };
     
     fetchGenerations();
-  }, [selectedModelId, searchParams]);
+  }, [selectedModelId]);
   
   // Učitavanje motora i stilova karoserije kada se odabere generacija
   useEffect(() => {
     if (!selectedGenerationId) {
       setEngines([]);
-      setBodyStyles([]);
       setSelectedEngineId("");
-      setSelectedBodyStyle("");
       return;
     }
     
     const fetchEnginesAndBodyStyles = async () => {
       setLoadingEngines(true);
+      setEngines([]);
+      setSelectedEngineId("");
       try {
-        // Dohvaćanje motora (puni zapisi)
+
+
         const enginesResponse = await fetch(`/api/generations/${selectedGenerationId}/engines`);
         if (!enginesResponse.ok) throw new Error("Greška pri dohvaćanju motora");
-        
         const enginesData = await enginesResponse.json();
-        // Očekujemo niz objekata s poljima: id, engineType, enginePowerKW, enginePowerHP, engineCapacity, engineCode, description, generationId
-        const normalized = Array.isArray(enginesData)
-          ? enginesData.filter((e: any) => e && typeof e === 'object' && e.id)
-          : [];
-        setEngines(normalized);
+        setEngines(enginesData || []);
         
-        // Dohvaćanje generacije za stilove karoserije
-        const generationResponse = await fetch(`/api/generations/${selectedGenerationId}`);
-        if (!generationResponse.ok) throw new Error("Greška pri dohvaćanju generacije");
-        
-        const generationData = await generationResponse.json();
-        
-        // Parsiranje stilova karoserije iz JSON polja
-        let bodyStylesArray: string[] = [];
-        if (generationData.bodyStyles && typeof generationData.bodyStyles === 'object') {
-          bodyStylesArray = Array.isArray(generationData.bodyStyles) 
-            ? generationData.bodyStyles 
-            : [];
-        }
-        
-        setBodyStyles(bodyStylesArray);
-        
-        // Postavi odabrani motor i stil karoserije iz URL-a ako postoji
         const engineIdFromUrl = searchParams.get("engineId");
-        if (engineIdFromUrl) {
-          setSelectedEngineId(engineIdFromUrl);
-        }
+        if (engineIdFromUrl) setSelectedEngineId(engineIdFromUrl);
         
-        const bodyStyleFromUrl = searchParams.get("bodyStyle");
-        if (bodyStyleFromUrl) {
-          setSelectedBodyStyle(bodyStyleFromUrl);
-        }
-        
-        const yearFromUrl = searchParams.get("year");
-        if (yearFromUrl) {
-          setSelectedYear(yearFromUrl);
-        }
+
+
       } catch (error) {
         console.error("Greška:", error);
       } finally {
@@ -277,253 +243,160 @@ export default function VehicleSelector({
     };
     
     fetchEnginesAndBodyStyles();
-  }, [selectedGenerationId, searchParams]);
+  }, [selectedGenerationId]);
   
-  // Generiranje godina za odabir
-  const generateYearOptions = () => {
-    const currentYear = new Date().getFullYear();
-    const years = [];
-    
-    // Generiranje godina od 1950 do trenutne godine
-    for (let year = currentYear; year >= 1950; year--) {
-      years.push(year);
-    }
-    
-    return years;
-  };
+
   
   // Handler za pretragu proizvoda po vozilu
   const handleSearch = () => {
     if (!selectedGenerationId) return;
     
-    const params = new URLSearchParams();
+    const params = new URLSearchParams(searchParams);
     
     if (selectedGenerationId) params.set("generationId", selectedGenerationId);
+    else params.delete("generationId");
+
     if (selectedEngineId && selectedEngineId !== 'all') params.set("engineId", selectedEngineId);
-    if (selectedBodyStyle && selectedBodyStyle !== 'all') params.set("bodyStyle", selectedBodyStyle);
-    // Godina je vezana uz generaciju, pa je ne dodajemo kao zaseban parametar
-    // Ako je potrebno filtriranje po godini, to će se raditi na backend strani
-    
-    // Ako je proslijeđen callback, pozovi ga
+    else params.delete("engineId");
+
+
+
     if (onVehicleSelect) {
       onVehicleSelect({
         generationId: selectedGenerationId,
-        engineId: selectedEngineId || undefined,
-        bodyStyle: selectedBodyStyle || undefined,
-        year: selectedYear ? parseInt(selectedYear) : undefined,
+        engineId: selectedEngineId !== 'all' ? selectedEngineId : undefined,
       });
     } else {
-      // Inače, preusmjeri na stranicu s proizvodima
-      router.push(`/products/vehicle-compatibility?${params.toString()}`);
+      router.push(`/products/advanced-search?${params.toString()}`);
     }
   };
   
   // Formatiranje opisa motora
   const formatEngineDescription = (engine: VehicleEngine) => {
     const parts = [];
-    
-    if (engine.engineType) {
-      parts.push(engine.engineType);
-    }
-    
-    if (engine.engineCapacity) {
-      parts.push(`${(engine.engineCapacity / 1000).toFixed(1)}L`);
-    }
-    
-    if (engine.enginePowerKW) {
-      parts.push(`${engine.enginePowerKW}kW`);
-    }
-    
-    if (engine.enginePowerHP) {
-      parts.push(`(${engine.enginePowerHP}KS)`);
-    }
-    
-    if (engine.engineCode) {
-      parts.push(engine.engineCode);
-    }
-    
+    if (engine.engineType) parts.push(engine.engineType);
+    if (engine.engineCapacity) parts.push(`${(engine.engineCapacity / 1000).toFixed(1)}L`);
+    if (engine.enginePowerKW) parts.push(`${engine.enginePowerKW}kW`);
+    if (engine.enginePowerHP) parts.push(`(${engine.enginePowerHP}KS)`);
+    if (engine.engineCode) parts.push(engine.engineCode);
     return parts.join(" ");
   };
   
+  const selectTriggerClasses = "w-full bg-slate-800/60 border-sunfire-500/60 hover:border-sunfire-400 focus:border-sunfire-400 focus:ring-2 focus:ring-sunfire-500/80 text-white data-[placeholder]:text-white transition-all duration-300";
+
   return (
-    <div className={cn("space-y-4", className)}>
+    <div className={cn("bg-gradient-to-t from-black/60 to-transparent p-6 rounded-2xl", className)}>
       {!compact && (
-        <div className="flex items-center space-x-2 mb-4">
-          <Car className="h-5 w-5 text-primary" />
-          <h3 className="text-lg font-medium">Odaberi vozilo</h3>
+        <div className="flex items-center mb-4">
+          <div className="p-2 rounded-lg mr-3 bg-sunfire-500/10 shadow-lg shadow-sunfire-500/10">
+             <Car className="h-6 w-6 text-sunfire-300" />
+          </div>
+          <h3 className="text-xl font-bold text-white">Odabir vozila</h3>
         </div>
       )}
       
-      <div className={cn(
-        "grid gap-4",
-        compact ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-5" : "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
-      )}>
-        {/* Odabir brenda */}
-        <div>
+      <div className="space-y-4 p-4 bg-slate-900/50 rounded-lg border border-slate-800">
+        <div className={cn(
+          "grid gap-4",
+          compact ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-4" : "grid-cols-1 md:grid-cols-2"
+        )}>
+          {/* Odabir brenda */}
           <Select
             value={selectedBrandId}
             onValueChange={setSelectedBrandId}
             disabled={loadingBrands}
           >
-            <SelectTrigger className="w-full">
-              <SelectValue placeholder="Odaberi marku" />
+            <SelectTrigger className={selectTriggerClasses}>
+              <SelectValue placeholder="Marka" />
             </SelectTrigger>
             <SelectContent>
               {loadingBrands ? (
-                <div key="loader-brands" className="flex items-center justify-center p-2">
-                  <Loader2 className="h-4 w-4 animate-spin" />
-                  <span className="ml-2">Učitavanje...</span>
-                </div>
+                <div className="flex items-center justify-center p-2"><Loader2 className="h-4 w-4 animate-spin mr-2 text-sunfire-400" />Učitavanje...</div>
               ) : (
-                brandsToRender.map((brand, idx) => (
-                  <SelectItem key={`brand-${brand.id}-${idx}`} value={brand.id}>
-                    {brand.name}
-                  </SelectItem>
+                brandsToRender.map((brand) => (
+                  <SelectItem key={brand.id} value={brand.id} className="focus:bg-sunfire-500/20 focus:text-slate-900">{brand.name}</SelectItem>
                 ))
               )}
             </SelectContent>
           </Select>
-        </div>
-        
-        {/* Odabir modela */}
-        <div>
+          
+          {/* Odabir modela */}
           <Select
             value={selectedModelId}
             onValueChange={setSelectedModelId}
             disabled={!selectedBrandId || loadingModels}
           >
-            <SelectTrigger className="w-full">
-              <SelectValue placeholder="Odaberi model" />
+            <SelectTrigger className={selectTriggerClasses}>
+              <SelectValue placeholder="Model" />
             </SelectTrigger>
             <SelectContent>
               {loadingModels ? (
-                <div key="loader-models" className="flex items-center justify-center p-2">
-                  <Loader2 className="h-4 w-4 animate-spin" />
-                  <span className="ml-2">Učitavanje...</span>
-                </div>
+                <div className="flex items-center justify-center p-2"><Loader2 className="h-4 w-4 animate-spin mr-2 text-sunfire-400" />Učitavanje...</div>
               ) : (
-                modelsToRender.map((model, idx) => (
-                  <SelectItem key={`model-${model.id}-${idx}`} value={model.id}>
-                    {model.name}
-                  </SelectItem>
+                modelsToRender.map((model) => (
+                  <SelectItem key={model.id} value={model.id} className="focus:bg-sunfire-500/20 focus:text-slate-900">{model.name}</SelectItem>
                 ))
               )}
             </SelectContent>
           </Select>
-        </div>
-        
-        {/* Odabir generacije */}
-        <div>
+          
+          {/* Odabir generacije */}
           <Select
             value={selectedGenerationId}
             onValueChange={setSelectedGenerationId}
             disabled={!selectedModelId || loadingGenerations}
           >
-            <SelectTrigger className="w-full">
-              <SelectValue placeholder="Odaberi generaciju" />
+            <SelectTrigger className={selectTriggerClasses}>
+              <SelectValue placeholder="Generacija" />
             </SelectTrigger>
             <SelectContent>
               {loadingGenerations ? (
-                <div key="loader-generations" className="flex items-center justify-center p-2">
-                  <Loader2 className="h-4 w-4 animate-spin" />
-                  <span className="ml-2">Učitavanje...</span>
-                </div>
+                <div className="flex items-center justify-center p-2"><Loader2 className="h-4 w-4 animate-spin mr-2 text-sunfire-400" />Učitavanje...</div>
               ) : (
-                generationsToRender.map((generation, idx) => (
-                  <SelectItem key={`gen-${generation.id}-${idx}`} value={generation.id}>
-                    {generation.name} {generation.period ? `(${generation.period})` : ""}
-                  </SelectItem>
+                generationsToRender.map((gen) => (
+                  <SelectItem key={gen.id} value={gen.id} className="focus:bg-sunfire-500/20 focus:text-slate-900">{gen.name} {gen.period && `(${gen.period})`}</SelectItem>
                 ))
               )}
             </SelectContent>
           </Select>
-        </div>
-        
-        {/* Odabir motora */}
-        <div>
+          
+          {/* Odabir motora */}
           <Select
             value={selectedEngineId}
             onValueChange={setSelectedEngineId}
             disabled={!selectedGenerationId || loadingEngines}
           >
-            <SelectTrigger className="w-full">
-              <SelectValue placeholder="Odaberi motor (opcionalno)" />
+            <SelectTrigger className={selectTriggerClasses}>
+              <SelectValue placeholder="Motor" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem key="all-engines" value="all">Svi motori</SelectItem>
               {loadingEngines ? (
-                <div key="loader-engines" className="flex items-center justify-center p-2">
-                  <Loader2 className="h-4 w-4 animate-spin" />
-                  <span className="ml-2">Učitavanje...</span>
-                </div>
+                <div className="flex items-center justify-center p-2"><Loader2 className="h-4 w-4 animate-spin mr-2 text-sunfire-400" />Učitavanje...</div>
               ) : (
-                enginesToRender.map((engine, idx) => (
-                  <SelectItem key={`engine-${engine.id}-${idx}`} value={engine.id}>
-                    {formatEngineDescription(engine)}
-                  </SelectItem>
-                ))
+                <>
+                  <SelectItem value="all" className="focus:bg-sunfire-500/20 focus:text-slate-900">Svi motori</SelectItem>
+                  {enginesToRender.map((engine) => (
+                    <SelectItem key={engine.id} value={engine.id} className="focus:bg-sunfire-500/20 focus:text-slate-900">{formatEngineDescription(engine)}</SelectItem>
+                  ))}
+                </>
               )}
             </SelectContent>
           </Select>
         </div>
         
-        {/* Odabir stila karoserije */}
-        {bodyStyles.length > 0 && (
-          <div>
-            <Select
-              value={selectedBodyStyle}
-              onValueChange={setSelectedBodyStyle}
+        {onVehicleSelect && (
+          <div className="flex justify-end mt-6">
+            <Button 
+              onClick={handleSearch} 
               disabled={!selectedGenerationId}
+              className="bg-sunfire-500 hover:bg-sunfire-600 text-white font-bold py-2 px-4 rounded-lg shadow-lg hover:shadow-xl shadow-sunfire-500/20 hover:shadow-sunfire-500/40 transition-all duration-300 transform hover:-translate-y-0.5 flex items-center gap-2 disabled:bg-sunfire-500/50 disabled:cursor-not-allowed border border-sunfire-400 hover:border-sunfire-300"
             >
-              <SelectTrigger className="w-full">
-                <SelectValue placeholder="Odaberi karoseriju (opcionalno)" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem key="all-body-styles" value="all">Sve karoserije</SelectItem>
-                {bodyStylesToRender.map((style) => (
-                  <SelectItem key={`style-${style}`} value={style}>
-                    {style}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+              Primijeni filtere
+              <ChevronRight className="h-4 w-4" />
+            </Button>
           </div>
         )}
-        
-        {/* Odabir godine */}
-        <div>
-          <Select
-            value={selectedYear}
-            onValueChange={setSelectedYear}
-            disabled={!selectedGenerationId}
-          >
-            <SelectTrigger className="w-full">
-              <SelectValue placeholder="Odaberi godinu (opcionalno)" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem key="all-years" value="all">Sve godine</SelectItem>
-              {generateYearOptions().map((year, idx) => (
-                <SelectItem key={`year-${year}-${idx}`} value={year.toString()}>
-                  {year}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
       </div>
-      
-      {/* Gumb za pretragu */}
-      <Button
-        onClick={handleSearch}
-        disabled={!selectedGenerationId}
-        className={cn(
-          "w-full md:w-auto",
-          compact ? "mt-2" : "mt-4"
-        )}
-      >
-        Pretraži dijelove
-        <ChevronRight className="ml-2 h-4 w-4" />
-      </Button>
     </div>
   );
 }

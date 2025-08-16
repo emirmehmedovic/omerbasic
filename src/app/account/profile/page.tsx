@@ -17,15 +17,6 @@ export default async function ProfilePage() {
   });
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="max-w-5xl mx-auto">
-        <h1 className="text-3xl font-bold mb-6 text-gray-800 bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
-          Moj profil
-        </h1>
-        <div className="bg-white/70 backdrop-blur-lg rounded-xl shadow-lg p-8 border border-white/20">
-          <ProfileClient user={user} addresses={addresses} />
-        </div>
-      </div>
-    </div>
+    <ProfileClient user={user} addresses={addresses} />
   );
 }

@@ -114,7 +114,7 @@ export default async function HomePage() {
   };
 
   return (
-    <main className="bg-gradient-to-br from-slate-50 to-slate-100 font-sans min-h-screen">
+    <main className="bg-app font-sans min-h-screen">
       {/* Decorative elements */}
       <div className="fixed top-20 left-20 w-72 h-72 bg-amber/20 rounded-full blur-3xl -z-10"></div>
       <div className="fixed bottom-20 right-20 w-96 h-96 bg-orange/10 rounded-full blur-3xl -z-10"></div>
@@ -122,51 +122,63 @@ export default async function HomePage() {
       
       <div className="container mx-auto px-4 py-16 sm:py-24 relative z-10">
         
-        {/* Hero Section */}
-        <section className="relative mb-32 overflow-hidden rounded-3xl">
-          <div className="absolute inset-0 bg-gradient-to-r from-amber via-orange to-brown opacity-90 -z-10"></div>
-          <div className="absolute inset-0 bg-[url('/images/pattern.png')] opacity-10 -z-10"></div>
-          
-          <div className="relative z-10 flex flex-col md:flex-row items-center p-8 md:p-16">
-            <div className="md:w-1/2 text-left md:pr-8">
-              <h1 className="text-5xl md:text-7xl font-bold tracking-tighter text-white drop-shadow-md">
-                Vaš partner za autodijelove.
-              </h1>
-              <p className="mt-6 text-lg text-white/90">
-                Vrhunska kvaliteta, stručna podrška i brza dostava. Sve što vašem vozilu treba, na jednom mjestu.
-              </p>
+        {/* Hero Section - Two Column Layout */}
+        <section className="mb-32">
+          <div className="grid grid-cols-1 lg:grid-cols-10 gap-6">
+            {/* Left Main Block (70%) */}
+            <div className="relative lg:col-span-7 rounded-3xl p-8 md:p-12 flex flex-col justify-between overflow-hidden h-[500px]">
+              <div className="absolute inset-0 bg-gradient-to-r from-amber via-orange to-brown opacity-90 -z-10"></div>
+              <div className="absolute inset-0 bg-[url('/images/pattern.png')] opacity-10 -z-10"></div>
               
-              <div className="mt-10 flex flex-col sm:flex-row gap-4">
+              <div className="relative z-10">
+                <h1 className="text-5xl md:text-6xl font-bold tracking-tighter text-white drop-shadow-md">
+                  Vaš partner za autodijelove.
+                </h1>
+                <p className="mt-4 text-lg text-white/90 max-w-md">
+                  Vrhunska kvaliteta, stručna podrška i brza dostava. Sve što vašem vozilu treba.
+                </p>
+              </div>
+
+              <div className="relative z-10 flex flex-col sm:flex-row gap-4">
                 <Button asChild size="lg" className="bg-white text-brown hover:bg-white/90 rounded-full px-8 py-6 text-base font-semibold shadow-lg">
                   <Link href="/products">Istraži proizvode</Link>
                 </Button>
-                
-                <div className="relative">
-                  <div className="absolute inset-0 bg-white/20 backdrop-blur-sm rounded-full"></div>
-                  <Button asChild variant="outline" size="lg" className="relative bg-transparent border-white/40 text-white hover:bg-white/10 rounded-full px-8 py-6 text-base font-semibold">
-                    <Link href="/search" className="flex items-center gap-2">
-                      <Search className="h-5 w-5" />
-                      Pretraži
-                    </Link>
-                  </Button>
-                </div>
+                <Button asChild variant="outline" size="lg" className="bg-transparent border-white/40 text-white hover:bg-white/10 rounded-full px-8 py-6 text-base font-semibold">
+                  <Link href="/search" className="flex items-center gap-2">
+                    <Search className="h-5 w-5" />
+                    Pretraži
+                  </Link>
+                </Button>
               </div>
             </div>
-            
-            <div className="md:w-1/2 mt-12 md:mt-0 flex justify-center">
-              <div className="relative w-full max-w-md aspect-square animate-float">
-                <div className="absolute inset-0 bg-white/20 backdrop-blur-md rounded-3xl border border-white/30 shadow-2xl"></div>
-                <div className="absolute inset-4 bg-gradient-radial from-white/80 to-white/40 rounded-2xl"></div>
-                <div className="absolute inset-0 flex items-center justify-center p-8">
-                  <Image 
-                    src="/images/hero-image.png" 
-                    alt="Auto dijelovi" 
-                    width={400} 
-                    height={400}
-                    className="object-contain drop-shadow-2xl"
-                  />
+
+            {/* Right Column (30%) */}
+            <div className="lg:col-span-3 flex flex-col gap-6">
+              {/* Right Top Block */}
+              <Link href="/products/vehicle-compatibility" className="group relative glass-card rounded-3xl p-8 flex flex-col justify-between overflow-hidden flex-1">
+                <div>
+                  <h2 className="text-2xl font-bold text-slate-100">Provjera kompatibilnosti</h2>
+                  <p className="text-slate-400 mt-2">Pronađite dijelove koji odgovaraju vašem vozilu.</p>
                 </div>
-              </div>
+                <div className="flex justify-end mt-4">
+                  <div className="bg-slate-700/50 border border-slate-600 rounded-full p-3 group-hover:bg-sunfire-a40 transition-colors">
+                    <ArrowRight className="h-6 w-6 text-white" />
+                  </div>
+                </div>
+              </Link>
+
+              {/* Right Bottom Block */}
+              <Link href="/#trust-bar" className="group relative glass-card rounded-3xl p-8 flex flex-col justify-between overflow-hidden flex-1">
+                <div>
+                  <h2 className="text-2xl font-bold text-slate-100">Pouzdanost i podrška</h2>
+                  <p className="text-slate-400 mt-2">Brza dostava, sigurna kupovina i stručna pomoć.</p>
+                </div>
+                <div className="flex justify-end mt-4">
+                  <div className="bg-slate-700/50 border border-slate-600 rounded-full p-3 group-hover:bg-sunfire-a40 transition-colors">
+                    <ArrowRight className="h-6 w-6 text-white" />
+                  </div>
+                </div>
+              </Link>
             </div>
           </div>
         </section>
@@ -196,11 +208,11 @@ export default async function HomePage() {
 
         {/* Latest Products Section */}
         <section className="relative">
-          <div className="absolute inset-0 -mx-4 bg-white/50 backdrop-blur-md rounded-3xl border border-white/30 shadow-lg -z-10"></div>
+          <div className="absolute inset-0 -mx-4 bg-gradient-to-t from-black/60 to-transparent rounded-3xl border border-sunfire-500/30 shadow-lg shadow-sunfire-500/10 -z-10"></div>
           
           <div className="p-8">
             <div className="flex items-center justify-between mb-12">
-              <h2 className="text-4xl font-bold tracking-tight text-slate-900">Najnovije u ponudi</h2>
+              <h2 className="text-4xl font-bold tracking-tight text-white">Najnovije u ponudi</h2>
               <Button asChild variant="ghost" className="text-orange hover:text-brown hover:bg-orange/5">
                 <Link href="/products" className="flex items-center gap-1">
                   Svi proizvodi

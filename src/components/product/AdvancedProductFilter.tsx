@@ -355,7 +355,7 @@ export default function AdvancedProductFilter({
 
       {/* Napredni filteri */}
       {isFilterVisible && (
-        <Card className="mb-4">
+        <div className="bg-slate-900/80 border border-sunfire-500/60 rounded-lg p-6 mb-4">
           <CardHeader>
             <div className="flex justify-between items-center">
               <CardTitle>Napredni filteri</CardTitle>
@@ -502,7 +502,7 @@ export default function AdvancedProductFilter({
               <Button onClick={applyFilters}>Primijeni filtere</Button>
             </div>
           </CardContent>
-        </Card>
+        </div>
       )}
     </div>
   );

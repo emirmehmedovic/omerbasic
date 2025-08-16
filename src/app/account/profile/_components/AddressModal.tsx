@@ -52,56 +52,56 @@ export const AddressModal = ({ isOpen, onClose, initialData }: AddressModalProps
 
   return (
     <div className="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex justify-center items-center">
-      <div className="bg-white/90 backdrop-blur-md rounded-xl p-8 w-full max-w-md shadow-2xl border border-white/20 animate-fade-in-up">
-        <h2 className="text-xl font-semibold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600">
+      <div className="relative bg-slate-900/70 backdrop-blur-xl rounded-2xl p-8 w-full max-w-md shadow-2xl border border-slate-800 animate-fade-in-up">
+        <h2 className="text-2xl font-bold text-white mb-6">
           {initialData ? 'Uredi adresu' : 'Dodaj novu adresu'}
         </h2>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Ulica</label>
+            <label htmlFor="street" className="block text-sm font-medium text-slate-300 mb-1">Ulica</label>
             <input 
               {...form.register('street')} 
-              className="block w-full rounded-lg bg-white/50 border-0 px-4 py-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 backdrop-blur-sm focus:ring-2 focus:ring-inset focus:ring-indigo-400" 
+              className="block w-full rounded-lg border-slate-700 bg-slate-800/60 shadow-sm px-4 py-2.5 text-white focus:border-sunfire-500 focus:ring-sunfire-500" 
             />
-            {form.formState.errors.street && <p className="text-red-500 text-sm mt-1">{form.formState.errors.street.message}</p>}
+            {form.formState.errors.street && <p className="mt-2 text-sm text-red-500">{form.formState.errors.street.message}</p>}
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Grad</label>
+            <label htmlFor="city" className="block text-sm font-medium text-slate-300 mb-1">Grad</label>
             <input 
               {...form.register('city')} 
-              className="block w-full rounded-lg bg-white/50 border-0 px-4 py-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 backdrop-blur-sm focus:ring-2 focus:ring-inset focus:ring-indigo-400" 
+              className="block w-full rounded-lg border-slate-700 bg-slate-800/60 shadow-sm px-4 py-2.5 text-white focus:border-sunfire-500 focus:ring-sunfire-500" 
             />
-            {form.formState.errors.city && <p className="text-red-500 text-sm mt-1">{form.formState.errors.city.message}</p>}
+            {form.formState.errors.city && <p className="mt-2 text-sm text-red-500">{form.formState.errors.city.message}</p>}
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Poštanski broj</label>
+            <label htmlFor="postalCode" className="block text-sm font-medium text-slate-300 mb-1">Poštanski broj</label>
             <input 
               {...form.register('postalCode')} 
-              className="block w-full rounded-lg bg-white/50 border-0 px-4 py-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 backdrop-blur-sm focus:ring-2 focus:ring-inset focus:ring-indigo-400" 
+              className="block w-full rounded-lg border-slate-700 bg-slate-800/60 shadow-sm px-4 py-2.5 text-white focus:border-sunfire-500 focus:ring-sunfire-500" 
             />
-            {form.formState.errors.postalCode && <p className="text-red-500 text-sm mt-1">{form.formState.errors.postalCode.message}</p>}
+            {form.formState.errors.postalCode && <p className="mt-2 text-sm text-red-500">{form.formState.errors.postalCode.message}</p>}
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Država</label>
+            <label htmlFor="country" className="block text-sm font-medium text-slate-300 mb-1">Država</label>
             <input 
               {...form.register('country')} 
-              className="block w-full rounded-lg bg-white/50 border-0 px-4 py-2.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 backdrop-blur-sm focus:ring-2 focus:ring-inset focus:ring-indigo-400" 
+              className="block w-full rounded-lg border-slate-700 bg-slate-800/60 shadow-sm px-4 py-2.5 text-white focus:border-sunfire-500 focus:ring-sunfire-500" 
             />
-            {form.formState.errors.country && <p className="text-red-500 text-sm mt-1">{form.formState.errors.country.message}</p>}
+            {form.formState.errors.country && <p className="mt-2 text-sm text-red-500">{form.formState.errors.country.message}</p>}
           </div>
           <div className="flex justify-end gap-4 pt-6">
             <button 
               type="button" 
               onClick={onClose} 
               disabled={isLoading} 
-              className="rounded-lg bg-gray-200 py-2.5 px-5 text-sm font-medium text-gray-800 shadow-md hover:bg-gray-300 transition-all duration-200"
+              className="rounded-lg bg-slate-700 py-2.5 px-5 text-sm font-medium text-slate-200 shadow-md hover:bg-slate-600 transition-all duration-200"
             >
               Odustani
             </button>
             <button 
               type="submit" 
               disabled={isLoading} 
-              className="rounded-lg bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 py-2.5 px-5 text-sm font-medium text-white shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100"
+              className="rounded-lg border border-transparent bg-sunfire-500 py-2.5 px-5 text-sm font-semibold text-white shadow-md hover:bg-sunfire-600 focus:outline-none focus:ring-2 focus:ring-sunfire-500 focus:ring-offset-2 dark:focus:ring-offset-slate-950 disabled:opacity-60 transition-all"
             >
               {isLoading ? 'Spremanje...' : 'Spremi'}
             </button>

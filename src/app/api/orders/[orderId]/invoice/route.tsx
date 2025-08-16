@@ -13,7 +13,7 @@ export async function GET(
   try {
     const session = await getServerSession(authOptions);
 
-    if (!session || session.user.role !== 'ADMIN') {
+    if (!session) {
       return new NextResponse('Unauthorized', { status: 401 });
     }
 
@@ -33,6 +33,11 @@ export async function GET(
 
     if (!order) {
       return new NextResponse('Order not found', { status: 404 });
+    }
+
+    // Allow access if user is an admin or if the order belongs to the user
+    if (session.user.role !== 'ADMIN' && order.userId !== session.user.id) {
+      return new NextResponse('Forbidden', { status: 403 });
     }
 
     // Renderujemo React komponentu u PDF stream

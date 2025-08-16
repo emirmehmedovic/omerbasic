@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useSession, signOut } from 'next-auth/react';
 import { useCart } from '@/context/CartContext';
+import Image from 'next/image';
 import { ShoppingCart, User, Package, LogOut, ChevronDown, Menu } from 'lucide-react';
 import { SearchBar } from './SearchBar';
 import { useState, useEffect } from 'react';
@@ -12,7 +13,7 @@ import { cn } from '@/lib/utils';
 const NavLink = ({ href, children }: { href: string, children: React.ReactNode }) => (
   <Link 
     href={href} 
-    className="py-2 px-3 text-slate-700 hover:text-orange font-medium text-sm rounded-lg hover:bg-white/50 transition-colors"
+    className="py-2 px-3 text-slate-700 hover:text-orange-500 font-medium text-sm rounded-lg hover:bg-slate-100/80 transition-colors"
   >
     {children}
   </Link>
@@ -31,7 +32,7 @@ const MobileNavLink = ({
   <Link 
     href={href} 
     onClick={onClick}
-    className="flex items-center px-4 py-2 text-sm text-slate-700 hover:bg-white/50 hover:text-orange"
+    className="flex items-center px-4 py-2 text-sm text-slate-700 hover:bg-slate-100/80 hover:text-orange-500"
   >
     {children}
   </Link>
@@ -54,25 +55,20 @@ export function Navbar() {
   }, []);
 
   return (
-    <nav 
-      className={cn(
-        "sticky top-0 z-50 transition-all duration-300",
-        scrolled 
-          ? "bg-white/70 backdrop-blur-lg shadow-lg" 
-          : "bg-transparent"
-      )}
-    >
-      <div className="container mx-auto px-4">
-        <div className="flex justify-between items-center py-4">
+    <nav className="sticky top-0 z-50 py-3 transition-all duration-300">
+      <div
+        className={cn(
+          "container mx-auto transition-all duration-300 rounded-full backdrop-blur-lg bg-white/70",
+          scrolled
+            ? "shadow-lg"
+            : "shadow-sm"
+        )}
+      >
+        <div className="flex justify-between items-center py-2 px-4">
           {/* Logo i branding */}
           <div className="flex items-center">
             <Link href="/" className="flex items-center space-x-2">
-              <div className="relative w-10 h-10 rounded-xl bg-accent-gradient flex items-center justify-center shadow-lg">
-                <span className="text-xl font-bold text-white">A</span>
-              </div>
-              <span className="text-2xl font-bold bg-gradient-to-r from-amber via-orange to-brown bg-clip-text text-transparent hidden sm:inline-block">
-                AutoDijelovi
-              </span>
+              <Image src="/images/omerbasic.png" alt="Omerbasic Auto Dijelovi Logo" width={180} height={40} />
             </Link>
           </div>
 
@@ -95,15 +91,12 @@ export function Navbar() {
             {/* Košarica */}
             <Link 
               href="/cart" 
-              className="relative p-2 rounded-full hover:bg-white/20 transition-colors"
+              className="relative p-2 rounded-full hover:bg-white/50 transition-colors"
               aria-label="Košarica"
             >
-              <ShoppingCart className={cn(
-                "h-6 w-6 transition-colors",
-                scrolled ? "text-slate-800" : "text-slate-700"
-              )} />
+              <ShoppingCart className="h-6 w-6 text-slate-800 transition-colors" />
               {cartCount > 0 && (
-                <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-accent-gradient text-xs font-bold text-white shadow-md">
+                <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-sunfire-500 text-xs font-bold text-white shadow-md shadow-sunfire-500/30">
                   {cartCount}
                 </span>
               )}
@@ -117,13 +110,10 @@ export function Navbar() {
                     onClick={() => setUserMenuOpen(!userMenuOpen)}
                     className={cn(
                       "flex items-center space-x-1 py-1 px-3 rounded-full transition-all",
-                      userMenuOpen || scrolled ? "bg-white/80 shadow-sm" : "hover:bg-white/20"
+                      userMenuOpen || scrolled ? "bg-slate-100/80 shadow-sm" : "hover:bg-slate-100/80"
                     )}
                   >
-                    <span className={cn(
-                      "text-sm font-medium",
-                      scrolled ? "text-slate-800" : "text-slate-700"
-                    )}>
+                    <span className="text-sm font-medium text-slate-800">
                       {session.user.name?.split(' ')[0]}
                     </span>
                     <ChevronDown className="h-4 w-4 text-slate-600" />
@@ -138,19 +128,19 @@ export function Navbar() {
                       
                       <Link 
                         href="/account/profile" 
-                        className="flex items-center px-4 py-2 text-sm text-slate-700 hover:bg-white/50 hover:text-orange"
+                        className="flex items-center px-4 py-2 text-sm text-slate-700 hover:bg-slate-100/80 hover:text-orange-500"
                         onClick={() => setUserMenuOpen(false)}
                       >
-                        <User className="h-4 w-4 mr-2" />
+                        <User className="h-4 w-4 mr-2 text-orange-500" />
                         Moj profil
                       </Link>
                       
                       <Link 
                         href="/account/orders" 
-                        className="flex items-center px-4 py-2 text-sm text-slate-700 hover:bg-white/50 hover:text-orange"
+                        className="flex items-center px-4 py-2 text-sm text-slate-700 hover:bg-slate-100/80 hover:text-orange-500"
                         onClick={() => setUserMenuOpen(false)}
                       >
-                        <Package className="h-4 w-4 mr-2" />
+                        <Package className="h-4 w-4 mr-2 text-orange-500" />
                         Moje narudžbe
                       </Link>
                       
@@ -159,10 +149,9 @@ export function Navbar() {
                           setUserMenuOpen(false);
                           signOut({ callbackUrl: '/' });
                         }}
-                        className="w-full flex items-center px-4 py-2 text-sm text-slate-700 hover:bg-white/50 hover:text-orange"
+                        className="flex items-center px-4 py-2 text-sm text-slate-700 hover:bg-slate-100/80 hover:text-orange-500"
                       >
-                        <LogOut className="h-4 w-4 mr-2" />
-                        Odjava
+                        <LogOut className="h-4 w-4 mr-2 text-orange-500" /> Odjava
                       </button>
                     </div>
                   )}
@@ -171,7 +160,7 @@ export function Navbar() {
                 <div className="flex items-center space-x-2">
                   <Link 
                     href="/login?redirect=/products" 
-                    className="py-1.5 px-4 rounded-full bg-accent-gradient text-sm font-medium text-white shadow-md hover:shadow-lg transition-all"
+                    className="py-1.5 px-4 rounded-full bg-sunfire-500 text-sm font-medium text-white shadow-md hover:shadow-lg shadow-sunfire-500/20 transition-all"
                   >
                     Katalog za servisere
                   </Link>
@@ -181,14 +170,11 @@ export function Navbar() {
 
             {/* Mobilni meni toggle */}
             <button 
-              className="md:hidden p-2 rounded-full hover:bg-white/20 transition-colors"
+              className="md:hidden p-2 rounded-full hover:bg-white/50 transition-colors"
               onClick={() => setMenuOpen(!menuOpen)}
               aria-label="Otvori meni"
             >
-              <Menu className={cn(
-                "h-6 w-6",
-                scrolled ? "text-slate-800" : "text-slate-700"
-              )} />
+              <Menu className="h-6 w-6 text-orange-500" />
             </button>
           </div>
         </div>
@@ -214,23 +200,23 @@ export function Navbar() {
                 {status === 'authenticated' ? (
                   <>
                     <div className="px-4 py-2 mb-2">
-                      <p className="text-sm font-medium text-slate-900">Bok, {session.user.name}</p>
+                      <p className="text-sm font-medium text-orange-500">Bok, {session.user.name}</p>
                       <p className="text-xs text-slate-500 truncate">{session.user.email}</p>
                     </div>
                     <MobileNavLink href="/account/profile" onClick={() => setMenuOpen(false)}>
-                      <User className="h-4 w-4 mr-2" /> Moj profil
+                      <User className="h-4 w-4 mr-2 text-orange-500" /> Moj profil
                     </MobileNavLink>
                     <MobileNavLink href="/account/orders" onClick={() => setMenuOpen(false)}>
-                      <Package className="h-4 w-4 mr-2" /> Moje narudžbe
+                      <Package className="h-4 w-4 mr-2 text-orange-500" /> Moje narudžbe
                     </MobileNavLink>
                     <button
                       onClick={() => {
                         setMenuOpen(false);
                         signOut({ callbackUrl: '/' });
                       }}
-                      className="w-full flex items-center px-4 py-2 text-sm text-slate-700 hover:bg-white/50 hover:text-orange"
+                      className="flex items-center px-4 py-2 text-sm text-slate-700 hover:bg-slate-100/80 hover:text-orange-500"
                     >
-                      <LogOut className="h-4 w-4 mr-2" /> Odjava
+                      <LogOut className="h-4 w-4 mr-2 text-orange-500" /> Odjava
                     </button>
                   </>
                 ) : (
@@ -238,7 +224,7 @@ export function Navbar() {
                     <Link 
                       href="/login?redirect=/products" 
                       onClick={() => setMenuOpen(false)}
-                      className="py-2 px-4 text-center rounded-lg bg-accent-gradient text-sm font-medium text-white shadow-md hover:shadow-lg transition-all"
+                      className="py-2 px-4 text-center rounded-lg bg-sunfire-500 text-sm font-medium text-white shadow-md hover:shadow-lg shadow-sunfire-500/20 transition-all"
                     >
                       Katalog za servisere
                     </Link>
