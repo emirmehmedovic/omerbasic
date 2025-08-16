@@ -126,9 +126,9 @@ export default async function HomePage() {
         <section className="mb-32">
           <div className="grid grid-cols-1 lg:grid-cols-10 gap-6">
             {/* Left Main Block (70%) */}
-            <div className="relative lg:col-span-7 rounded-3xl p-8 md:p-12 flex flex-col justify-between overflow-hidden h-[500px]">
-              <div className="absolute inset-0 bg-gradient-to-r from-amber via-orange to-brown opacity-90 -z-10"></div>
-              <div className="absolute inset-0 bg-[url('/images/pattern.png')] opacity-10 -z-10"></div>
+            <div className="relative lg:col-span-7 rounded-3xl p-8 md:p-12 flex flex-col justify-between h-[500px] [box-shadow:0_0_60px_-15px_theme(colors.sunfire.400)]">
+              <div className="absolute inset-0 bg-gradient-to-r from-amber via-orange to-brown opacity-90 -z-10 rounded-3xl"></div>
+              <div className="absolute inset-0 bg-[url('/images/pattern.png')] opacity-10 -z-10 rounded-3xl"></div>
               
               <div className="relative z-10">
                 <h1 className="text-5xl md:text-6xl font-bold tracking-tighter text-white drop-shadow-md">
