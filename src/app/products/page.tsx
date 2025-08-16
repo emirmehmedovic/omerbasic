@@ -22,7 +22,18 @@ async function getFilterData() {
     },
   });
 
-  return { categories, brands };
+  // Type mapping funkcija za kategorije
+  const mapCategories = (cats: any[]): any[] => {
+    return cats.map(cat => ({
+      ...cat,
+      children: mapCategories(cat.children || [])
+    }));
+  };
+
+  return { 
+    categories: mapCategories(categories), 
+    brands 
+  };
 }
 
 function ProductsLoading() {

@@ -228,13 +228,13 @@ export function StatisticsClient({ initialData }: StatisticsClientProps) {
                 <Button 
                   variant="outline" 
                   size="sm" 
-                  className="flex items-center gap-1"
+                  className="flex items-center gap-1 bg-white border-gray-300 text-gray-700 hover:bg-gray-50"
                 >
                   <Download className="h-4 w-4" />
                   Izvoz podataka
                 </Button>
               </PopoverTrigger>
-              <PopoverContent className="w-80 p-4" align="end">
+              <PopoverContent className="w-80 p-4 bg-white border-gray-200" align="end">
                 <div className="space-y-4">
                   <div>
                     <h4 className="font-medium mb-2">Format izvoza</h4>
@@ -243,14 +243,14 @@ export function StatisticsClient({ initialData }: StatisticsClientProps) {
                       className="w-full" 
                       onValueChange={(value) => setExportFormat(value as ExportFormat)}
                     >
-                      <TabsList className="grid w-full grid-cols-3">
-                        <TabsTrigger value="csv" className="flex items-center gap-1">
+                      <TabsList className="grid w-full grid-cols-3 bg-gray-100">
+                        <TabsTrigger value="csv" className="flex items-center gap-1 data-[state=active]:bg-white data-[state=active]:text-gray-900 text-gray-600">
                           <FileText className="h-4 w-4" /> CSV
                         </TabsTrigger>
-                        <TabsTrigger value="json" className="flex items-center gap-1">
+                        <TabsTrigger value="json" className="flex items-center gap-1 data-[state=active]:bg-white data-[state=active]:text-gray-900 text-gray-600">
                           <FileJson className="h-4 w-4" /> JSON
                         </TabsTrigger>
-                        <TabsTrigger value="excel" className="flex items-center gap-1">
+                        <TabsTrigger value="excel" className="flex items-center gap-1 data-[state=active]:bg-white data-[state=active]:text-gray-900 text-gray-600">
                           <FileSpreadsheet className="h-4 w-4" /> Excel
                         </TabsTrigger>
                       </TabsList>
@@ -264,7 +264,7 @@ export function StatisticsClient({ initialData }: StatisticsClientProps) {
                         variant="ghost" 
                         size="sm" 
                         onClick={() => handleExport('salesByDate')}
-                        className="justify-start"
+                        className="justify-start text-gray-700 hover:bg-gray-100"
                       >
                         Prodaja po datumu
                       </Button>
@@ -272,7 +272,7 @@ export function StatisticsClient({ initialData }: StatisticsClientProps) {
                         variant="ghost" 
                         size="sm" 
                         onClick={() => handleExport('topProducts')}
-                        className="justify-start"
+                        className="justify-start text-gray-700 hover:bg-gray-100"
                       >
                         Najprodavaniji proizvodi
                       </Button>
@@ -280,7 +280,7 @@ export function StatisticsClient({ initialData }: StatisticsClientProps) {
                         variant="ghost" 
                         size="sm" 
                         onClick={() => handleExport('categoryStats')}
-                        className="justify-start"
+                        className="justify-start text-gray-700 hover:bg-gray-100"
                       >
                         Statistika po kategorijama
                       </Button>
@@ -288,7 +288,7 @@ export function StatisticsClient({ initialData }: StatisticsClientProps) {
                         variant="ghost" 
                         size="sm" 
                         onClick={() => handleExport('b2bUserStats')}
-                        className="justify-start"
+                        className="justify-start text-gray-700 hover:bg-gray-100"
                       >
                         B2B korisnici
                       </Button>
@@ -296,7 +296,7 @@ export function StatisticsClient({ initialData }: StatisticsClientProps) {
                         variant="ghost" 
                         size="sm" 
                         onClick={() => handleExport('inventoryAnalysis')}
-                        className="justify-start"
+                        className="justify-start text-gray-700 hover:bg-gray-100"
                       >
                         Analiza zaliha
                       </Button>

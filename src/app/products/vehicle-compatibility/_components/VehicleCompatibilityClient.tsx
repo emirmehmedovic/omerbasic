@@ -2,10 +2,12 @@
 
 import { useState, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
-import VehicleSelector from "@/components/vehicle/VehicleSelector";
 import { ProductCard } from "@/components/ProductCard";
 import { Button } from "@/components/ui/button";
-import { Loader2 } from "lucide-react";
+import { Loader2, Car, Zap, Award, Users } from "lucide-react";
+import ClientHierarchicalFilters from '@/components/ClientHierarchicalFilters';
+import { VehicleBrand } from '@/generated/prisma/client';
+import { Category } from '@/components/HierarchicalFilters';
 
 // Tip za proizvod u rezultatima pretrage
 type ProductWithFitment = {
@@ -60,13 +62,114 @@ type SearchResults = {
   totalPages: number;
 };
 
-export default function VehicleCompatibilityClient() {
+interface VehicleCompatibilityClientProps {
+  filterData: {
+    categories: Category[];
+    brands: VehicleBrand[];
+  };
+}
+
+function VehicleCompatibilityHeader() {
+  return (
+    <div className="grid grid-cols-1 lg:grid-cols-10 gap-6 mb-8">
+      <div className="lg:col-span-7 rounded-2xl overflow-hidden">
+        <div className="relative rounded-2xl p-8 md:p-12 flex flex-col justify-between min-h-[300px] [box-shadow:0_0_60px_-15px_theme(colors.sunfire.400)] overflow-hidden">
+          {/* Animated Background - Same as homepage */}
+          <div className="absolute inset-0 bg-gradient-to-r from-amber via-orange to-brown opacity-90 -z-10 rounded-2xl"></div>
+          <div className="absolute inset-0 bg-[url('/images/pattern.png')] opacity-10 -z-10 rounded-2xl"></div>
+          
+          {/* Animated overlay */}
+          <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/5 to-transparent -z-10 rounded-2xl animate-pulse"></div>
+          
+          <div className="relative z-10">
+            <div className="flex items-center gap-3 mb-4">
+              <Car className="w-8 h-8 text-yellow-200" />
+              <span className="text-white/90 font-medium">Kompatibilnost vozila</span>
+            </div>
+            
+            <h1 className="text-4xl md:text-5xl font-bold tracking-tighter text-white drop-shadow-md mb-4 leading-tight">
+              Pronađite dijelove za{' '}
+              <span className="bg-gradient-to-r from-yellow-200 via-yellow-300 to-yellow-100 bg-clip-text text-transparent">
+                vaše vozilo
+              </span>
+            </h1>
+            <p className="text-lg text-white/90 max-w-lg leading-relaxed">
+              Odaberite vozilo i pronađite sve kompatibilne autodijelove. Brzo, jednostavno i pouzdano.
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <div className="lg:col-span-3 flex flex-col gap-4">
+        <div className="rounded-2xl p-6 text-white bg-gradient-to-t from-black/60 to-transparent border border-white/10 flex items-center justify-center">
+          <div className="text-center">
+            <Car className="w-8 h-8 mx-auto mb-2 text-amber" />
+            <h3 className="font-bold text-lg">Provjera kompatibilnosti</h3>
+          </div>
+        </div>
+        
+        <div className="grid grid-cols-2 gap-4">
+          <div className="accent-bg rounded-2xl p-4 flex flex-col justify-center items-center text-center text-white">
+            <Zap className="w-6 h-6 mb-2 text-yellow-200" />
+            <p className="text-sm font-medium">Brza pretraga</p>
+          </div>
+          <div className="accent-bg rounded-2xl p-4 flex flex-col justify-center items-center text-center text-white">
+            <Award className="w-6 h-6 mb-2 text-yellow-200" />
+            <p className="text-sm font-medium">100% precizno</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function VehicleCompatibilityClient({ filterData }: VehicleCompatibilityClientProps) {
+  type FilterState = {
+    categoryId?: string;
+    generationId?: string;
+    engineId?: string;
+    bodyStyle?: string;
+    year?: string;
+    minPrice?: string;
+    maxPrice?: string;
+    q?: string;
+    [key: string]: any;
+  };
+
   const searchParams = useSearchParams();
   
   const [searchResults, setSearchResults] = useState<SearchResults | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
+
+  const initialFilters: FilterState = {
+    categoryId: searchParams.get('categoryId') || undefined,
+    generationId: searchParams.get('generationId') || undefined,
+    engineId: searchParams.get('engineId') || undefined,
+    bodyStyle: searchParams.get('bodyStyle') || undefined,
+    year: searchParams.get('year') || undefined,
+    minPrice: searchParams.get('minPrice') || undefined,
+    maxPrice: searchParams.get('maxPrice') || undefined,
+    q: searchParams.get('q') || undefined,
+  };
+
+  const [currentFilters, setCurrentFilters] = useState<FilterState>(initialFilters);
   
+  const handleFilterChange = (filters: Record<string, any>) => {
+    setCurrentFilters(prev => ({ ...prev, ...filters }));
+    
+    // Ako je odabrano vozilo (generationId), izvrši pretragu
+    if (filters.generationId) {
+      fetchSearchResults({
+        generationId: filters.generationId,
+        engineId: filters.engineId,
+        bodyStyle: filters.bodyStyle,
+        year: filters.year ? parseInt(filters.year) : undefined,
+        categoryId: filters.categoryId,
+      });
+    }
+  };
+
   // Dohvaćanje rezultata pretrage iz URL parametara pri prvom renderiranju
   useEffect(() => {
     const generationId = searchParams.get("generationId");
@@ -77,6 +180,7 @@ export default function VehicleCompatibilityClient() {
         engineId: searchParams.get("engineId") || undefined,
         bodyStyle: searchParams.get("bodyStyle") || undefined,
         year: searchParams.get("year") ? parseInt(searchParams.get("year")!) : undefined,
+        categoryId: searchParams.get("categoryId") || undefined,
       });
     }
   }, [searchParams]);
@@ -87,6 +191,7 @@ export default function VehicleCompatibilityClient() {
     engineId?: string;
     bodyStyle?: string;
     year?: number;
+    categoryId?: string;
     page?: number;
     limit?: number;
   }) => {
@@ -100,6 +205,7 @@ export default function VehicleCompatibilityClient() {
       if (params.generationId) url.searchParams.set('vehicleGenerationId', params.generationId);
       if (params.engineId) url.searchParams.set('vehicleEngineId', params.engineId);
       if (params.bodyStyle) url.searchParams.set('bodyStyle', params.bodyStyle);
+      if (params.categoryId) url.searchParams.set('categoryId', params.categoryId);
       // Godina je vezana uz generaciju, ne šaljemo je kao zaseban parametar
       
       // Paginacija
@@ -129,28 +235,18 @@ export default function VehicleCompatibilityClient() {
       setIsLoading(false);
     }
   };
-  
-  // Handler za odabir vozila
-  const handleVehicleSelect = (params: {
-    generationId?: string;
-    engineId?: string;
-    bodyStyle?: string;
-    year?: number;
-  }) => {
-    if (params.generationId) {
-      fetchSearchResults(params);
-    }
-  };
+
   
   // Handler za promjenu stranice
   const handlePageChange = (newPage: number) => {
     if (!searchResults) return;
     
     const params = {
-      generationId: searchParams.get("generationId") || undefined,
-      engineId: searchParams.get("engineId") || undefined,
-      bodyStyle: searchParams.get("bodyStyle") || undefined,
-      year: searchParams.get("year") ? parseInt(searchParams.get("year")!) : undefined,
+      generationId: currentFilters.generationId,
+      engineId: currentFilters.engineId,
+      bodyStyle: currentFilters.bodyStyle,
+      year: currentFilters.year ? parseInt(currentFilters.year) : undefined,
+      categoryId: currentFilters.categoryId,
       page: newPage,
     };
     
@@ -199,12 +295,13 @@ export default function VehicleCompatibilityClient() {
     
     return (
       <div className="flex justify-center mt-8">
-        <div className="flex space-x-2">
+        <div className="flex space-x-2 glass-card p-4 rounded-xl border border-white/10">
           {/* Gumb za prethodnu stranicu */}
           <Button
             variant="outline"
             onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}
+            className="bg-slate-800/50 border-slate-600 text-slate-300 hover:bg-slate-700/50 hover:text-white disabled:opacity-50"
           >
             Prethodna
           </Button>
@@ -214,7 +311,7 @@ export default function VehicleCompatibilityClient() {
             if (page < 0) {
               // Renderiranje "..."
               return (
-                <Button key={`ellipsis-${index}`} variant="ghost" disabled>
+                <Button key={`ellipsis-${index}`} variant="ghost" disabled className="text-slate-400">
                   ...
                 </Button>
               );
@@ -225,6 +322,10 @@ export default function VehicleCompatibilityClient() {
                 key={page}
                 variant={page === currentPage ? "default" : "outline"}
                 onClick={() => page !== currentPage && handlePageChange(page)}
+                className={page === currentPage 
+                  ? "bg-gradient-to-r from-amber to-orange text-white border-none" 
+                  : "bg-slate-800/50 border-slate-600 text-slate-300 hover:bg-slate-700/50 hover:text-white"
+                }
               >
                 {page}
               </Button>
@@ -236,6 +337,7 @@ export default function VehicleCompatibilityClient() {
             variant="outline"
             onClick={() => handlePageChange(currentPage + 1)}
             disabled={currentPage === totalPages}
+            className="bg-slate-800/50 border-slate-600 text-slate-300 hover:bg-slate-700/50 hover:text-white disabled:opacity-50"
           >
             Sljedeća
           </Button>
@@ -314,81 +416,115 @@ export default function VehicleCompatibilityClient() {
   };
   
   return (
-    <div className="space-y-8">
-      {/* Selektor vozila */}
-      <div className="bg-gray-50 p-6 rounded-lg shadow-sm">
-        <VehicleSelector onVehicleSelect={handleVehicleSelect} />
-      </div>
-      
-      {/* Prikaz rezultata */}
-      <div>
-        {isLoading ? (
-          <div className="flex justify-center items-center py-12">
-            <Loader2 className="h-8 w-8 animate-spin text-primary" />
-            <span className="ml-2">Učitavanje rezultata...</span>
+    <div className="min-h-screen bg-app relative">
+      <div className="container mx-auto px-4 py-6 max-w-7xl relative z-10">
+        <div className="mb-8">
+          <VehicleCompatibilityHeader />
+        </div>
+
+        <div className="mb-8">
+          <ClientHierarchicalFilters
+            key="top-filters"
+            initialFilters={currentFilters}
+            displayMode="topOnly"
+            updateUrl={true}
+            onFilterChangeExternal={handleFilterChange}
+            categories={filterData.categories}
+            brands={filterData.brands}
+          />
+        </div>
+
+        <div className="flex flex-col lg:flex-row gap-6">
+          <div className="w-full lg:w-1/4">
+            <ClientHierarchicalFilters
+              key="sidebar-filters"
+              initialFilters={currentFilters}
+              displayMode="sidebarOnly"
+              onFilterChangeExternal={handleFilterChange}
+              categories={filterData.categories}
+              brands={filterData.brands}
+            />
           </div>
-        ) : error ? (
-          <div className="bg-red-50 text-red-700 p-4 rounded-md">
-            <p>{error}</p>
-          </div>
-        ) : !searchResults ? (
-          <div className="text-center py-12 text-gray-500">
-            <p>Odaberite vozilo za pretragu kompatibilnih proizvoda</p>
-          </div>
-        ) : searchResults.products.length === 0 ? (
-          <div className="text-center py-12 text-gray-500">
-            <p>Nema pronađenih proizvoda za odabrano vozilo</p>
-          </div>
-        ) : (
-          <>
-            {/* Broj rezultata */}
-            <div className="mb-4 text-sm text-gray-500">
-              Pronađeno {searchResults.total} kompatibilnih proizvoda
-            </div>
-            
-            {/* Grid s proizvodima */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-              {searchResults.products.map((product) => (
-                <div key={product.id} className="flex flex-col">
-                  {/* Koristimo as any da zaobiđemo TypeScript provjere za ProductCard */}
-                  <ProductCard
-                    product={{
-                      id: product.id,
-                      name: product.name,
-                      price: product.price,
-                      category: {
-                        ...product.category,
-                        parentId: null,
-                        level: 0,
-                        iconUrl: null
-                      },
-                      imageUrl: product.imageUrl || null,
-                      isFeatured: false,
-                      isArchived: false,
-                      description: null,
-                      stock: 0,
-                      catalogNumber: product.catalogNumber,
-                      oemNumber: product.oemNumber,
-                      categoryId: product.category.id,
-                      createdAt: new Date(),
-                      updatedAt: new Date(),
-                      dimensions: {},
-                      technicalSpecs: {},
-                      standards: [],
-                      images: product.images
-                    } as any}
-                  />
-                  <div className="mt-2 text-xs text-gray-500 italic">
-                    {formatFitmentInfo(product)}
-                  </div>
+
+          <div className="w-full lg:w-3/4">
+            <div className="glass-card rounded-2xl p-6">
+              {isLoading ? (
+                <div className="flex justify-center items-center py-12">
+                  <Loader2 className="h-8 w-8 animate-spin text-amber" />
+                  <span className="ml-2 text-slate-300">Učitavanje rezultata...</span>
                 </div>
-              ))}
+              ) : error ? (
+                <div className="bg-red-500/10 border border-red-500/20 text-red-300 p-6 rounded-xl">
+                  <p>{error}</p>
+                </div>
+              ) : !searchResults ? (
+                <div className="text-center py-16">
+                  <Car className="w-16 h-16 mx-auto mb-4 text-slate-400" />
+                  <h3 className="text-xl font-semibold text-slate-300 mb-2">Odaberite vozilo</h3>
+                  <p className="text-slate-400">Koristite filtere da pronađete kompatibilne proizvode za vaše vozilo</p>
+                </div>
+              ) : searchResults.products.length === 0 ? (
+                <div className="text-center py-16">
+                  <Car className="w-16 h-16 mx-auto mb-4 text-slate-400" />
+                  <h3 className="text-xl font-semibold text-slate-300 mb-2">Nema rezultata</h3>
+                  <p className="text-slate-400">Nema pronađenih proizvoda za odabrano vozilo</p>
+                </div>
+              ) : (
+                <>
+                  {/* Broj rezultata */}
+                  <div className="mb-6 flex items-center justify-between">
+                    <div className="text-slate-300">
+                      Pronađeno <span className="font-semibold text-amber">{searchResults.total}</span> kompatibilnih proizvoda
+                    </div>
+                  </div>
+                  
+                  {/* Grid s proizvodima */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+                    {searchResults.products.map((product) => (
+                      <div key={product.id} className="flex flex-col">
+                        <ProductCard
+                          product={{
+                            id: product.id,
+                            name: product.name,
+                            price: product.price,
+                            category: {
+                              ...product.category,
+                              parentId: null,
+                              level: 0,
+                              iconUrl: null
+                            },
+                            imageUrl: product.imageUrl || null,
+                            isFeatured: false,
+                            isArchived: false,
+                            description: null,
+                            stock: 0,
+                            catalogNumber: product.catalogNumber,
+                            oemNumber: product.oemNumber,
+                            categoryId: product.category.id,
+                            createdAt: new Date(),
+                            updatedAt: new Date(),
+                            dimensions: {},
+                            technicalSpecs: {},
+                            standards: [],
+                            images: product.images
+                          } as any}
+                        />
+                        <div className="mt-3 p-3 rounded-lg bg-slate-800/50 border border-slate-700/50">
+                          <div className="text-xs text-slate-400 italic">
+                            {formatFitmentInfo(product)}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  
+                  {/* Paginacija */}
+                  {renderPagination()}
+                </>
+              )}
             </div>
-            
-            {/* Paginacija */}
-            {renderPagination()}
-          </>
-        )}
+          </div>
+        </div>
       </div>
     </div>
   );

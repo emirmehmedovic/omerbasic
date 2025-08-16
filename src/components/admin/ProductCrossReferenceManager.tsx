@@ -270,13 +270,14 @@ export default function ProductCrossReferenceManager({
                 resetForm();
                 setIsDialogOpen(true);
               }}
+              className="bg-gradient-to-r from-amber via-orange to-brown text-white hover:from-amber/90 hover:via-orange/90 hover:to-brown/90 shadow-lg hover:scale-105 transition-all duration-200"
             >
               <Plus className="mr-2 h-4 w-4" /> Dodaj novu referencu
             </Button>
           </DialogTrigger>
-          <DialogContent className="sm:max-w-[500px]">
+          <DialogContent className="sm:max-w-[500px] bg-gradient-to-br from-white via-gray-50/80 to-blue-50/60 backdrop-blur-sm border border-amber/20 shadow-xl">
             <DialogHeader>
-              <DialogTitle>
+              <DialogTitle className="text-gray-900 font-semibold">
                 {editingReference ? "Uredi referencu" : "Dodaj novu referencu"}
               </DialogTitle>
             </DialogHeader>
@@ -290,19 +291,19 @@ export default function ProductCrossReferenceManager({
                   name="referenceType"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Tip reference</FormLabel>
+                      <FormLabel className="text-gray-700 font-medium">Tip reference</FormLabel>
                       <Select
                         onValueChange={field.onChange}
                         defaultValue={field.value}
                       >
                         <FormControl>
-                          <SelectTrigger>
+                          <SelectTrigger className="bg-white border-amber/30 focus:border-amber rounded-xl transition-all duration-200 text-gray-900">
                             <SelectValue placeholder="Odaberite tip reference" />
                           </SelectTrigger>
                         </FormControl>
-                        <SelectContent>
+                        <SelectContent className="bg-white/95 backdrop-blur-sm border-gray-200 rounded-xl shadow-xl">
                           {referenceTypes.map((type) => (
-                            <SelectItem key={type} value={type}>
+                            <SelectItem key={type} value={type} className="text-gray-700 hover:bg-gray-100">
                               {type}
                             </SelectItem>
                           ))}
@@ -317,9 +318,13 @@ export default function ProductCrossReferenceManager({
                   name="referenceNumber"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Broj reference</FormLabel>
+                      <FormLabel className="text-gray-700 font-medium">Broj reference</FormLabel>
                       <FormControl>
-                        <Input placeholder="npr. 1234567890" {...field} />
+                        <Input 
+                          placeholder="npr. 1234567890" 
+                          {...field} 
+                          className="bg-white border-amber/30 focus:border-amber rounded-xl transition-all duration-200 text-gray-900 placeholder:text-gray-500"
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -330,9 +335,14 @@ export default function ProductCrossReferenceManager({
                   name="manufacturer"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Proizvođač</FormLabel>
+                      <FormLabel className="text-gray-700 font-medium">Proizvođač</FormLabel>
                       <FormControl>
-                        <Input placeholder="npr. Bosch, Febi" {...field} value={field.value || ""} />
+                        <Input 
+                          placeholder="npr. Bosch, Febi" 
+                          {...field} 
+                          value={field.value || ""} 
+                          className="bg-white border-amber/30 focus:border-amber rounded-xl transition-all duration-200 text-gray-900 placeholder:text-gray-500"
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -343,9 +353,14 @@ export default function ProductCrossReferenceManager({
                   name="notes"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Napomena</FormLabel>
+                      <FormLabel className="text-gray-700 font-medium">Napomena</FormLabel>
                       <FormControl>
-                        <Textarea placeholder="Dodatne informacije..." {...field} value={field.value || ""} />
+                        <Textarea 
+                          placeholder="Dodatne informacije..." 
+                          {...field} 
+                          value={field.value || ""} 
+                          className="bg-white border-amber/30 focus:border-amber rounded-xl transition-all duration-200 text-gray-900 placeholder:text-gray-500 resize-none"
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -356,7 +371,7 @@ export default function ProductCrossReferenceManager({
                   name="replacementId"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Zamjenski proizvod</FormLabel>
+                      <FormLabel className="text-gray-700 font-medium">Zamjenski proizvod</FormLabel>
                       <div className="flex space-x-2">
                         <FormControl>
                           <Input 
@@ -364,11 +379,16 @@ export default function ProductCrossReferenceManager({
                             {...field} 
                             value={field.value || ""} 
                             readOnly 
+                            className="bg-white border-amber/30 focus:border-amber rounded-xl transition-all duration-200 text-gray-900 placeholder:text-gray-500"
                           />
                         </FormControl>
                         <Dialog open={isProductSearchOpen} onOpenChange={setIsProductSearchOpen}>
                           <DialogTrigger asChild>
-                            <Button type="button" variant="outline">
+                            <Button 
+                              type="button" 
+                              variant="outline"
+                              className="bg-white border-amber/30 hover:border-amber/50 text-gray-700 hover:text-gray-900 rounded-xl transition-all duration-200"
+                            >
                               <Search className="h-4 w-4" />
                             </Button>
                           </DialogTrigger>
@@ -450,10 +470,14 @@ export default function ProductCrossReferenceManager({
                       setIsDialogOpen(false);
                       resetForm();
                     }}
+                    className="bg-white border-amber/30 hover:border-amber/50 text-gray-700 hover:text-gray-900 rounded-xl transition-all duration-200"
                   >
                     Odustani
                   </Button>
-                  <Button type="submit">
+                  <Button 
+                    type="submit"
+                    className="bg-gradient-to-r from-amber via-orange to-brown text-white hover:from-amber/90 hover:via-orange/90 hover:to-brown/90 shadow-lg hover:scale-105 transition-all duration-200"
+                  >
                     <Save className="mr-2 h-4 w-4" />
                     Spremi
                   </Button>

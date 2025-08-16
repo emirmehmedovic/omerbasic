@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { VehicleBrand, VehicleModel, VehicleGeneration, VehicleType } from '@/generated/prisma/client';
+import { VehicleBrand, VehicleModel, VehicleGeneration, VehicleType, VehicleEngine } from '@/generated/prisma/client';
 import { Button } from '@/components/ui/button';
 import { X } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
@@ -15,6 +15,8 @@ interface MultiVehicleSelectorProps {
 interface SelectedVehicle {
   id: string;
   displayName: string;
+  engineId?: string;
+  engineDisplayName?: string;
 }
 
 const MultiVehicleSelector = ({ 
@@ -28,6 +30,8 @@ const MultiVehicleSelector = ({
   const [selectedModel, setSelectedModel] = useState<string>('');
   const [generations, setGenerations] = useState<VehicleGeneration[]>([]);
   const [selectedGeneration, setSelectedGeneration] = useState<string>('');
+  const [engines, setEngines] = useState<VehicleEngine[]>([]);
+  const [selectedEngine, setSelectedEngine] = useState<string>('');
   
   // Stanje za praćenje odabranih vozila
   const [selectedVehicles, setSelectedVehicles] = useState<SelectedVehicle[]>([]);
@@ -95,6 +99,8 @@ const MultiVehicleSelector = ({
     if (!selectedModel) {
       setGenerations([]);
       setSelectedGeneration('');
+      setEngines([]);
+      setSelectedEngine('');
       return;
     }
     const fetchGenerations = async () => {
@@ -105,12 +111,30 @@ const MultiVehicleSelector = ({
     fetchGenerations();
   }, [selectedModel]);
 
+  // Fetch engines when generation changes
+  useEffect(() => {
+    if (!selectedGeneration) {
+      setEngines([]);
+      setSelectedEngine('');
+      return;
+    }
+    const fetchEngines = async () => {
+      const res = await fetch(`/api/generations/${selectedGeneration}/engines`);
+      const data = await res.json();
+      setEngines(data);
+    };
+    fetchEngines();
+  }, [selectedGeneration]);
+
   // Dodaj vozilo u odabrana
   const addVehicle = () => {
     if (!selectedGeneration) return;
     
+    // Kreiraj jedinstveni ID koji uključuje generaciju i motor
+    const vehicleId = selectedEngine ? `${selectedGeneration}-${selectedEngine}` : selectedGeneration;
+    
     // Provjeri da li je već dodano
-    if (selectedVehicles.some(v => v.id === selectedGeneration)) {
+    if (selectedVehicles.some(v => v.id === vehicleId)) {
       return;
     }
     
@@ -126,10 +150,16 @@ const MultiVehicleSelector = ({
     const brand = brands.find(b => b.id === selectedBrand);
     if (!brand) return;
     
+    // Nađi podatke o motoru ako je odabran
+    const engine = selectedEngine ? engines.find(e => e.id === selectedEngine) : null;
+    
     // Kreiraj prikaz za odabrano vozilo
+    const engineInfo = engine ? ` - ${engine.engineType} ${engine.engineCapacity}cc ${engine.enginePowerHP}KS` : '';
     const newVehicle: SelectedVehicle = {
-      id: selectedGeneration,
-      displayName: `${brand.name} ${model.name} ${generation.name} (${generation.period})`
+      id: vehicleId,
+      displayName: `${brand.name} ${model.name} ${generation.name} (${generation.period})${engineInfo}`,
+      engineId: selectedEngine || undefined,
+      engineDisplayName: engine ? `${engine.engineType} ${engine.engineCapacity}cc ${engine.enginePowerHP}KS` : undefined
     };
     
     // Dodaj u listu i obavijesti roditelja
@@ -139,6 +169,7 @@ const MultiVehicleSelector = ({
     
     // Resetiraj odabir za novo dodavanje
     setSelectedGeneration('');
+    setSelectedEngine('');
   };
 
   // Ukloni vozilo iz odabranih
@@ -150,7 +181,7 @@ const MultiVehicleSelector = ({
 
   return (
     <div className="w-full space-y-4">
-      <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
+      <div className="grid grid-cols-1 md:grid-cols-6 gap-2">
         {/* Vehicle Type Dropdown */}
         <select 
           value={vehicleType} 
@@ -160,11 +191,11 @@ const MultiVehicleSelector = ({
             setSelectedModel('');
             setSelectedGeneration('');
           }} 
-          className="px-3 py-2 bg-white rounded border border-gray-300 shadow-sm text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="px-3 py-2 bg-white rounded border border-gray-300 shadow-sm text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
         >
-          <option value="">Tip vozila</option>
-          <option value="PASSENGER">Putničko</option>
-          <option value="COMMERCIAL">Teretno</option>
+          <option value="" className="text-gray-900">Tip vozila</option>
+          <option value="PASSENGER" className="text-gray-900">Putničko</option>
+          <option value="COMMERCIAL" className="text-gray-900">Teretno</option>
         </select>
 
         {/* Brand Dropdown */}
@@ -176,11 +207,11 @@ const MultiVehicleSelector = ({
             setSelectedGeneration('');
           }} 
           disabled={!vehicleType} 
-          className="px-3 py-2 bg-white rounded border border-gray-300 shadow-sm text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50"
+          className="px-3 py-2 bg-white rounded border border-gray-300 shadow-sm text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 text-gray-900"
         >
-          <option value="">Brend</option>
+          <option value="" className="text-gray-900">Brend</option>
           {brands.map((brand) => (
-            <option key={brand.id} value={brand.id}>{brand.name}</option>
+            <option key={brand.id} value={brand.id} className="text-gray-900">{brand.name}</option>
           ))}
         </select>
 
@@ -190,26 +221,45 @@ const MultiVehicleSelector = ({
           onChange={(e) => {
             setSelectedModel(e.target.value);
             setSelectedGeneration('');
+            setSelectedEngine('');
           }} 
           disabled={!selectedBrand} 
-          className="px-3 py-2 bg-white rounded border border-gray-300 shadow-sm text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50"
+          className="px-3 py-2 bg-white rounded border border-gray-300 shadow-sm text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 text-gray-900"
         >
-          <option value="">Model</option>
+          <option value="" className="text-gray-900">Model</option>
           {models.map((model) => (
-            <option key={model.id} value={model.id}>{model.name}</option>
+            <option key={model.id} value={model.id} className="text-gray-900">{model.name}</option>
           ))}
         </select>
 
         {/* Generation Dropdown */}
         <select 
           value={selectedGeneration}
-          onChange={(e) => setSelectedGeneration(e.target.value)} 
+          onChange={(e) => {
+            setSelectedGeneration(e.target.value);
+            setSelectedEngine('');
+          }} 
           disabled={!selectedModel} 
-          className="px-3 py-2 bg-white rounded border border-gray-300 shadow-sm text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50" 
+          className="px-3 py-2 bg-white rounded border border-gray-300 shadow-sm text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 text-gray-900" 
         >
-          <option value="">Generacija</option>
+          <option value="" className="text-gray-900">Generacija</option>
           {generations.map((gen) => (
-            <option key={gen.id} value={gen.id}>{`${gen.name} (${gen.period})`}</option>
+            <option key={gen.id} value={gen.id} className="text-gray-900">{`${gen.name} (${gen.period})`}</option>
+          ))}
+        </select>
+
+        {/* Engine Dropdown */}
+        <select 
+          value={selectedEngine}
+          onChange={(e) => setSelectedEngine(e.target.value)} 
+          disabled={!selectedGeneration} 
+          className="px-3 py-2 bg-white rounded border border-gray-300 shadow-sm text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 text-gray-900" 
+        >
+          <option value="" className="text-gray-900">Motor (opciono)</option>
+          {engines.map((engine) => (
+            <option key={engine.id} value={engine.id} className="text-gray-900">
+              {`${engine.engineType} ${engine.engineCapacity}cc ${engine.enginePowerHP}KS`}
+            </option>
           ))}
         </select>
 

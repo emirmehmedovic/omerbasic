@@ -48,13 +48,13 @@ export function CategoryCombobox({ categories, value, onChange }: CategoryCombob
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-[250px] justify-between bg-white/80 backdrop-blur-sm h-10"
+          className="w-[250px] justify-between bg-gradient-to-r from-white/95 to-gray-50/95 backdrop-blur-sm h-11 text-gray-700 border-amber/30 hover:border-amber/50 focus:border-amber rounded-xl transition-all duration-200 shadow-sm"
         >
           {selectedCategoryName}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[250px] p-0">
+      <PopoverContent className="w-[250px] p-0 bg-white/95 backdrop-blur-sm border-gray-200 rounded-xl shadow-xl">
         <Command>
           <CommandInput placeholder="Pronađi kategoriju..." />
           <CommandList>

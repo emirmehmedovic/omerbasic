@@ -41,48 +41,68 @@ export function DataTableToolbar<TData>({ table, categories }: DataTableToolbarP
   const isFiltered = table.getState().columnFilters.length > 0;
   const [selectedCategoryId, setSelectedCategoryId] = React.useState('');
 
-  return (
-    <div className="flex items-center justify-between">
-      <div className="flex flex-1 items-center space-x-2">
-        <Input
-          placeholder="Pretraži po nazivu..."
-          value={(table.getColumn('name')?.getFilterValue() as string) ?? ''}
-          onChange={(event) => table.getColumn('name')?.setFilterValue(event.target.value)}
-          className="h-10 w-[150px] lg:w-[250px] bg-white/80 backdrop-blur-sm"
-        />
-        <CategoryCombobox
-          categories={categories}
-          value={selectedCategoryId}
-          onChange={(value) => {
-            setSelectedCategoryId(value);
-            if (!value) {
-              table.getColumn('category')?.setFilterValue(undefined);
-            } else {
-              const allRelatedIds = getCategoryAndChildrenIds(value, categories);
-              table.getColumn('category')?.setFilterValue(allRelatedIds);
-            }
-          }}
-        />
-        {isFiltered && (
-          <Button
-            variant="ghost"
-            onClick={() => table.resetColumnFilters()}
-            className="h-10 px-2 lg:px-3"
-          >
-            Reset
-            <X className="ml-2 h-4 w-4" />
-          </Button>
-        )}
-      </div>
-      <div>
+    return (
+    <div className="space-y-4">
+      {/* Search and Filters Row */}
+      <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 flex-1">
+          <div className="relative">
+            <Input
+              placeholder="Pretraži proizvode..."
+              value={(table.getColumn('name')?.getFilterValue() as string) ?? ''}
+              onChange={(event) => table.getColumn('name')?.setFilterValue(event.target.value)}
+              className="h-11 w-[200px] lg:w-[300px] bg-gradient-to-r from-white/95 to-gray-50/95 backdrop-blur-sm text-gray-900 placeholder:text-gray-500 border-amber/30 rounded-xl focus:border-amber focus:ring-amber/20 shadow-sm"
+            />
+            <svg className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </div>
+          <CategoryCombobox
+            categories={categories}
+            value={selectedCategoryId}
+            onChange={(value) => {
+              setSelectedCategoryId(value);
+              if (!value) {
+                table.getColumn('category')?.setFilterValue(undefined);
+              } else {
+                const allRelatedIds = getCategoryAndChildrenIds(value, categories);
+                table.getColumn('category')?.setFilterValue(allRelatedIds);
+              }
+            }}
+          />
+          {isFiltered && (
+            <Button
+              variant="ghost"
+              onClick={() => table.resetColumnFilters()}
+              className="h-11 px-4 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-xl transition-all duration-200"
+            >
+              <X className="mr-2 h-4 w-4" />
+              Reset
+            </Button>
+          )}
+        </div>
+        
+        {/* Export Button */}
         <Button
           variant="outline"
           onClick={() => window.open('/api/products/export', '_blank')}
-          className="h-10 px-2 lg:px-3 flex items-center"
+          className="h-11 px-6 flex items-center bg-gradient-to-r from-white/90 to-gray-50/90 backdrop-blur-sm text-gray-700 hover:from-white hover:to-gray-50 border-amber/30 hover:border-amber/50 rounded-xl transition-all duration-200 shadow-sm"
         >
           <Download className="mr-2 h-4 w-4" />
           Export CSV
         </Button>
+      </div>
+
+      {/* Results Summary */}
+      <div className="flex items-center justify-between text-sm text-gray-600">
+        <span>
+          Prikazano {table.getFilteredRowModel().rows.length} od {table.getRowModel().rows.length} proizvoda
+        </span>
+        {isFiltered && (
+          <span className="text-amber-600 font-medium">
+            Filtri aktivni
+          </span>
+        )}
       </div>
     </div>
   );

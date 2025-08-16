@@ -92,12 +92,12 @@ export function DateRangeFilter({ onChange, defaultValue, className }: DateRange
   return (
     <div className={cn("flex flex-col sm:flex-row gap-2", className)}>
       <Select value={selectedPreset} onValueChange={handlePresetChange}>
-        <SelectTrigger className="w-[180px]">
+        <SelectTrigger className="w-[180px] bg-white border-gray-300 text-gray-700">
           <SelectValue placeholder="Odaberite period" />
         </SelectTrigger>
-        <SelectContent>
+        <SelectContent className="bg-white border-gray-200">
           {Object.entries(presets).map(([key, { label }]) => (
-            <SelectItem key={key} value={key}>{label}</SelectItem>
+            <SelectItem key={key} value={key} className="text-gray-700 hover:bg-gray-100">{label}</SelectItem>
           ))}
         </SelectContent>
       </Select>
@@ -107,15 +107,15 @@ export function DateRangeFilter({ onChange, defaultValue, className }: DateRange
           <Button
             variant="outline"
             className={cn(
-              "w-full sm:w-auto justify-start text-left font-normal",
-              !dateRange && "text-muted-foreground"
+              "w-full sm:w-auto justify-start text-left font-normal bg-white border-gray-300 text-gray-700 hover:bg-gray-50",
+              !dateRange && "text-gray-500"
             )}
           >
             <CalendarIcon className="mr-2 h-4 w-4" />
             {formatDateRange()}
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="w-auto p-0" align="start">
+        <PopoverContent className="w-auto p-0 bg-white border-gray-200" align="start">
           <Calendar
             initialFocus
             mode="range"
