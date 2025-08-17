@@ -67,7 +67,7 @@ export default function CategoryAttributeManager({
       isRequired: false,
       isFilterable: false,
       sortOrder: 0,
-      categoryId: categoryId, // Add categoryId from props
+      categoryId: categoryId,
     },
   });
 
@@ -231,7 +231,7 @@ export default function CategoryAttributeManager({
           name="options"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Opcije (JSON format)</FormLabel>
+              <FormLabel className="text-gray-700 font-medium">Opcije (JSON format)</FormLabel>
               <FormControl>
                 <Textarea
                   placeholder='["opcija1", "opcija2", "opcija3"]'
@@ -241,6 +241,7 @@ export default function CategoryAttributeManager({
                       ? JSON.stringify(field.value)
                       : field.value || ""
                   }
+                  className="bg-white border-amber/30 focus:border-amber rounded-xl transition-all duration-200 text-gray-900 placeholder:text-gray-500"
                 />
               </FormControl>
               <FormMessage />
@@ -264,9 +265,14 @@ export default function CategoryAttributeManager({
           name="unit"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Jedinica mjere</FormLabel>
+              <FormLabel className="text-gray-700 font-medium">Jedinica mjere</FormLabel>
               <FormControl>
-                <Input placeholder="npr. mm, kg, l" {...field} value={field.value || ""} />
+                <Input 
+                  placeholder="npr. mm, kg, l" 
+                  {...field} 
+                  value={field.value || ""} 
+                  className="bg-white border-amber/30 focus:border-amber rounded-xl transition-all duration-200 text-gray-900 placeholder:text-gray-500"
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -279,227 +285,285 @@ export default function CategoryAttributeManager({
   };
 
   return (
-    <div className="space-y-6">
-      <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-bold">
-          Atributi za kategoriju: {categoryName}
-        </h2>
-        <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
-          <DialogTrigger asChild>
-            <Button
-              onClick={() => {
-                resetForm();
-                setIsDialogOpen(true);
-              }}
-            >
-              <Plus className="mr-2 h-4 w-4" /> Dodaj novi atribut
-            </Button>
-          </DialogTrigger>
-          <DialogContent className="sm:max-w-[500px]">
-            <DialogHeader>
-              <DialogTitle>
-                {editingAttribute ? "Uredi atribut" : "Dodaj novi atribut"}
-              </DialogTitle>
-            </DialogHeader>
-            <Form {...form}>
-              <form
-                onSubmit={form.handleSubmit(onSubmit)}
-                className="space-y-4 pt-4"
+    <div className="bg-gradient-to-r from-white/95 to-gray-50/95 backdrop-blur-sm rounded-2xl border border-amber/20 shadow-sm overflow-hidden">
+      <div className="bg-gradient-to-r from-white/90 to-gray-50/90 border-b border-amber/20 px-6 py-4">
+        <div className="flex justify-between items-center">
+          <h2 className="text-xl font-semibold text-gray-900 flex items-center gap-2">
+            <svg className="w-5 h-5 text-amber" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            Atributi ({attributes.length})
+          </h2>
+          <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+            <DialogTrigger asChild>
+              <Button
+                onClick={() => {
+                  resetForm();
+                  setIsDialogOpen(true);
+                }}
+                className="bg-gradient-to-r from-amber via-orange to-brown text-white hover:from-amber/90 hover:via-orange/90 hover:to-brown/90 shadow-lg hover:scale-105 transition-all duration-200 rounded-xl px-4 py-2 text-sm font-medium"
               >
-                <FormField
-                  control={form.control}
-                  name="name"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Naziv atributa (interni)</FormLabel>
-                      <FormControl>
-                        <Input
-                          placeholder="npr. viscosity, diameter"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="label"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Oznaka atributa (za prikaz)</FormLabel>
-                      <FormControl>
-                        <Input
-                          placeholder="npr. Viskozitet, Promjer"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="type"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Tip podatka</FormLabel>
-                      <Select
-                        onValueChange={field.onChange}
-                        defaultValue={field.value}
-                      >
+                <Plus className="mr-2 h-4 w-4" /> Dodaj novi atribut
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-[500px] bg-gradient-to-br from-white via-gray-50/80 to-blue-50/60 backdrop-blur-sm border border-amber/20 shadow-xl">
+              <DialogHeader>
+                <DialogTitle className="text-gray-900 font-semibold flex items-center gap-2">
+                  <svg className="w-5 h-5 text-amber" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  {editingAttribute ? "Uredi atribut" : "Dodaj novi atribut"}
+                </DialogTitle>
+              </DialogHeader>
+              <Form {...form}>
+                <form
+                  onSubmit={form.handleSubmit(onSubmit)}
+                  className="space-y-4 pt-4"
+                >
+                  <FormField
+                    control={form.control}
+                    name="name"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-gray-700 font-medium">Naziv atributa (interni)</FormLabel>
                         <FormControl>
-                          <SelectTrigger>
-                            <SelectValue placeholder="Odaberite tip podatka" />
-                          </SelectTrigger>
+                          <Input
+                            placeholder="npr. viscosity, diameter"
+                            {...field}
+                            className="bg-white border-amber/30 focus:border-amber rounded-xl transition-all duration-200 text-gray-900 placeholder:text-gray-500"
+                          />
                         </FormControl>
-                        <SelectContent>
-                          <SelectItem value="string">Tekst</SelectItem>
-                          <SelectItem value="number">Broj</SelectItem>
-                          <SelectItem value="boolean">Da/Ne</SelectItem>
-                          <SelectItem value="enum">Lista opcija</SelectItem>
-                        </SelectContent>
-                      </Select>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                {renderUnitField()}
-                {renderOptionsField()}
-                <FormField
-                  control={form.control}
-                  name="isRequired"
-                  render={({ field }) => (
-                    <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
-                      <FormControl>
-                        <Checkbox
-                          checked={field.value}
-                          onCheckedChange={field.onChange}
-                        />
-                      </FormControl>
-                      <div className="space-y-1 leading-none">
-                        <FormLabel>Obavezno polje</FormLabel>
-                      </div>
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="isFilterable"
-                  render={({ field }) => (
-                    <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
-                      <FormControl>
-                        <Checkbox
-                          checked={field.value}
-                          onCheckedChange={field.onChange}
-                        />
-                      </FormControl>
-                      <div className="space-y-1 leading-none">
-                        <FormLabel>Omogući filtriranje</FormLabel>
-                      </div>
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="sortOrder"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Redoslijed prikaza</FormLabel>
-                      <FormControl>
-                        <Input
-                          type="number"
-                          {...field}
-                          onChange={(e) =>
-                            field.onChange(parseInt(e.target.value) || 0)
-                          }
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <div className="flex justify-end space-x-2 pt-4">
-                  <Button
-                    type="button"
-                    variant="outline"
-                    onClick={() => {
-                      setIsDialogOpen(false);
-                      resetForm();
-                    }}
-                  >
-                    Odustani
-                  </Button>
-                  <Button type="submit">
-                    <Save className="mr-2 h-4 w-4" />
-                    Spremi
-                  </Button>
-                </div>
-              </form>
-            </Form>
-          </DialogContent>
-        </Dialog>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="label"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-gray-700 font-medium">Oznaka atributa (za prikaz)</FormLabel>
+                        <FormControl>
+                          <Input
+                            placeholder="npr. Viskozitet, Promjer"
+                            {...field}
+                            className="bg-white border-amber/30 focus:border-amber rounded-xl transition-all duration-200 text-gray-900 placeholder:text-gray-500"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="type"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-gray-700 font-medium">Tip podatka</FormLabel>
+                        <Select
+                          onValueChange={field.onChange}
+                          defaultValue={field.value}
+                        >
+                          <FormControl>
+                            <SelectTrigger className="bg-white border-amber/30 focus:border-amber rounded-xl transition-all duration-200 text-gray-900">
+                              <SelectValue placeholder="Odaberite tip podatka" />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent className="bg-white/95 backdrop-blur-sm border-gray-200 rounded-xl shadow-xl">
+                            <SelectItem value="string" className="text-gray-700 hover:bg-gray-100">Tekst</SelectItem>
+                            <SelectItem value="number" className="text-gray-700 hover:bg-gray-100">Broj</SelectItem>
+                            <SelectItem value="boolean" className="text-gray-700 hover:bg-gray-100">Da/Ne</SelectItem>
+                            <SelectItem value="enum" className="text-gray-700 hover:bg-gray-100">Lista opcija</SelectItem>
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  {renderUnitField()}
+                  {renderOptionsField()}
+                  <FormField
+                    control={form.control}
+                    name="isRequired"
+                    render={({ field }) => (
+                      <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-xl border border-amber/20 p-4 bg-gradient-to-r from-white/95 to-gray-50/95 backdrop-blur-sm">
+                        <FormControl>
+                          <Checkbox
+                            checked={field.value}
+                            onCheckedChange={field.onChange}
+                            className="text-amber"
+                          />
+                        </FormControl>
+                        <div className="space-y-1 leading-none">
+                          <FormLabel className="text-gray-700 font-medium">Obavezno polje</FormLabel>
+                        </div>
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="isFilterable"
+                    render={({ field }) => (
+                      <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-xl border border-amber/20 p-4 bg-gradient-to-r from-white/95 to-gray-50/95 backdrop-blur-sm">
+                        <FormControl>
+                          <Checkbox
+                            checked={field.value}
+                            onCheckedChange={field.onChange}
+                            className="text-amber"
+                          />
+                        </FormControl>
+                        <div className="space-y-1 leading-none">
+                          <FormLabel className="text-gray-700 font-medium">Omogući filtriranje</FormLabel>
+                        </div>
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="sortOrder"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-gray-700 font-medium">Redoslijed prikaza</FormLabel>
+                        <FormControl>
+                          <Input
+                            type="number"
+                            {...field}
+                            onChange={(e) =>
+                              field.onChange(parseInt(e.target.value) || 0)
+                            }
+                            className="bg-white border-amber/30 focus:border-amber rounded-xl transition-all duration-200 text-gray-900 placeholder:text-gray-500"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <div className="flex justify-end space-x-3 pt-4">
+                    <Button
+                      type="button"
+                      variant="outline"
+                      onClick={() => {
+                        setIsDialogOpen(false);
+                        resetForm();
+                      }}
+                      className="bg-gradient-to-r from-white/95 to-gray-50/95 backdrop-blur-sm text-gray-700 hover:from-white hover:to-gray-50 border-amber/30 hover:border-amber/50 rounded-xl transition-all duration-200 shadow-sm"
+                    >
+                      Odustani
+                    </Button>
+                    <Button 
+                      type="submit"
+                      className="bg-gradient-to-r from-amber via-orange to-brown text-white hover:from-amber/90 hover:via-orange/90 hover:to-brown/90 shadow-lg hover:scale-105 transition-all duration-200 rounded-xl"
+                    >
+                      <Save className="mr-2 h-4 w-4" />
+                      Spremi
+                    </Button>
+                  </div>
+                </form>
+              </Form>
+            </DialogContent>
+          </Dialog>
+        </div>
       </div>
 
-      {loading ? (
-        <div className="text-center py-4">Učitavanje...</div>
-      ) : attributes.length === 0 ? (
-        <div className="text-center py-4 border rounded-md">
-          Nema definiranih atributa za ovu kategoriju
-        </div>
-      ) : (
-        <div className="border rounded-md">
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Naziv</TableHead>
-                <TableHead>Oznaka</TableHead>
-                <TableHead>Tip</TableHead>
-                <TableHead>Jedinica</TableHead>
-                <TableHead>Obavezno</TableHead>
-                <TableHead>Filtriranje</TableHead>
-                <TableHead>Redoslijed</TableHead>
-                <TableHead className="text-right">Akcije</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {attributes.map((attribute) => (
-                <TableRow key={attribute.id}>
-                  <TableCell>{attribute.name}</TableCell>
-                  <TableCell>{attribute.label}</TableCell>
-                  <TableCell>{attribute.type}</TableCell>
-                  <TableCell>{attribute.unit || "-"}</TableCell>
-                  <TableCell>
-                    {attribute.isRequired ? "Da" : "Ne"}
-                  </TableCell>
-                  <TableCell>
-                    {attribute.isFilterable ? "Da" : "Ne"}
-                  </TableCell>
-                  <TableCell>{attribute.sortOrder}</TableCell>
-                  <TableCell className="text-right">
-                    <div className="flex justify-end space-x-2">
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => setupEditForm(attribute)}
-                      >
-                        <Edit className="h-4 w-4" />
-                      </Button>
-                      <Button
-                        variant="destructive"
-                        size="sm"
-                        onClick={() => deleteAttribute(attribute.id)}
-                      >
-                        <Trash2 className="h-4 w-4" />
-                      </Button>
-                    </div>
-                  </TableCell>
+      <div className="p-6">
+        {loading ? (
+          <div className="text-center py-12">
+            <div className="flex flex-col items-center gap-3">
+              <div className="p-3 bg-gradient-to-r from-white/80 to-gray-50/80 backdrop-blur-sm rounded-xl border border-amber/30">
+                <svg className="w-8 h-8 text-amber animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                </svg>
+              </div>
+              <p className="text-gray-600 font-medium">Učitavanje atributa...</p>
+            </div>
+          </div>
+        ) : attributes.length === 0 ? (
+          <div className="text-center py-12">
+            <div className="flex flex-col items-center gap-3">
+              <div className="p-3 bg-gradient-to-r from-white/80 to-gray-50/80 backdrop-blur-sm rounded-xl border border-amber/30">
+                <svg className="w-8 h-8 text-amber" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <p className="text-gray-600 font-medium">Nema definiranih atributa</p>
+              <p className="text-gray-500 text-sm">Dodajte prvi atribut za ovu kategoriju</p>
+            </div>
+          </div>
+        ) : (
+          <div className="bg-gradient-to-r from-white/95 to-gray-50/95 backdrop-blur-sm rounded-2xl border border-amber/20 shadow-sm overflow-hidden">
+            <Table>
+              <TableHeader>
+                <TableRow className="bg-gradient-to-r from-white/90 to-gray-50/90 border-b border-amber/20">
+                  <TableHead className="text-gray-700 font-semibold">Naziv</TableHead>
+                  <TableHead className="text-gray-700 font-semibold">Oznaka</TableHead>
+                  <TableHead className="text-gray-700 font-semibold">Tip</TableHead>
+                  <TableHead className="text-gray-700 font-semibold">Jedinica</TableHead>
+                  <TableHead className="text-gray-700 font-semibold">Obavezno</TableHead>
+                  <TableHead className="text-gray-700 font-semibold">Filtriranje</TableHead>
+                  <TableHead className="text-gray-700 font-semibold">Redoslijed</TableHead>
+                  <TableHead className="text-right text-gray-700 font-semibold">Akcije</TableHead>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </div>
-      )}
+              </TableHeader>
+              <TableBody>
+                {attributes.map((attribute) => (
+                  <TableRow 
+                    key={attribute.id}
+                    className="hover:bg-gradient-to-r hover:from-amber/10 hover:to-orange/10 transition-all duration-200 border-b border-amber/10"
+                  >
+                    <TableCell className="text-gray-900 font-medium">{attribute.name}</TableCell>
+                    <TableCell className="text-gray-700">{attribute.label}</TableCell>
+                    <TableCell>
+                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-800">
+                        {attribute.type}
+                      </span>
+                    </TableCell>
+                    <TableCell className="text-gray-600">{attribute.unit || "-"}</TableCell>
+                    <TableCell>
+                      <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                        attribute.isRequired 
+                          ? 'bg-green-100 text-green-800' 
+                          : 'bg-gray-100 text-gray-800'
+                      }`}>
+                        {attribute.isRequired ? "Da" : "Ne"}
+                      </span>
+                    </TableCell>
+                    <TableCell>
+                      <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                        attribute.isFilterable 
+                          ? 'bg-blue-100 text-blue-800' 
+                          : 'bg-gray-100 text-gray-800'
+                      }`}>
+                        {attribute.isFilterable ? "Da" : "Ne"}
+                      </span>
+                    </TableCell>
+                    <TableCell className="text-gray-700">{attribute.sortOrder}</TableCell>
+                    <TableCell className="text-right">
+                      <div className="flex justify-end space-x-2">
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => setupEditForm(attribute)}
+                          className="bg-gradient-to-r from-white/95 to-gray-50/95 backdrop-blur-sm text-gray-700 hover:from-white hover:to-gray-50 border-amber/30 hover:border-amber/50 rounded-xl transition-all duration-200 shadow-sm"
+                        >
+                          <Edit className="h-4 w-4" />
+                        </Button>
+                        <Button
+                          variant="destructive"
+                          size="sm"
+                          onClick={() => deleteAttribute(attribute.id)}
+                          className="bg-gradient-to-r from-red-500 to-red-600 text-white hover:from-red-600 hover:to-red-700 shadow-lg hover:scale-105 transition-all duration-200 rounded-xl"
+                        >
+                          <Trash2 className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

@@ -32,22 +32,27 @@ export default function UpdateOrderStatus({ order }: UpdateOrderStatusProps) {
   };
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-md">
-        <h2 className="text-xl font-semibold mb-4">Ažuriraj status</h2>
-        <div className="flex items-center gap-4">
+    <div className="bg-gradient-to-r from-white/95 to-gray-50/95 backdrop-blur-sm rounded-xl border border-amber/20 shadow-sm p-4">
+        <h3 className="text-sm font-semibold text-gray-900 mb-3 flex items-center gap-2">
+          <svg className="w-4 h-4 text-amber" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+          </svg>
+          Ažuriraj status
+        </h3>
+        <div className="flex flex-col gap-3">
             <select 
                 value={status}
                 onChange={(e) => setStatus(e.target.value as OrderStatus)}
-                className="flex-grow rounded-md border-gray-300 shadow-sm"
+                className="bg-white border-amber/30 focus:border-amber rounded-xl transition-all duration-200 text-gray-900 px-3 py-2 text-sm"
             >
                 {orderStatuses.map(s => (
-                    <option key={s} value={s}>{s}</option>
+                    <option key={s} value={s} className="text-gray-900">{s}</option>
                 ))}
             </select>
             <button 
                 onClick={handleUpdateStatus}
                 disabled={isLoading || status === order.status}
-                className="rounded-md bg-indigo-600 px-4 py-2 font-medium text-white hover:bg-indigo-700 disabled:opacity-50"
+                className="bg-gradient-to-r from-amber via-orange to-brown text-white hover:from-amber/90 hover:via-orange/90 hover:to-brown/90 shadow-lg hover:scale-105 transition-all duration-200 rounded-xl px-4 py-2 text-sm font-medium disabled:opacity-50 disabled:hover:scale-100"
             >
                 {isLoading ? 'Spremanje...' : 'Spremi'}
             </button>

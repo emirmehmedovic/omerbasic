@@ -24,7 +24,11 @@ export default function OrderFilters() {
     <div className="flex items-center gap-2">
       <button
         onClick={() => handleFilter(null)}
-        className={`px-3 py-1 text-sm font-medium rounded-full ${!currentStatus ? 'bg-indigo-600 text-white' : 'bg-gray-200 text-gray-700'}`}
+        className={`px-4 py-2 text-sm font-medium rounded-xl transition-all duration-200 ${
+          !currentStatus 
+            ? 'bg-gradient-to-r from-amber via-orange to-brown text-white shadow-lg' 
+            : 'bg-gradient-to-r from-white/95 to-gray-50/95 backdrop-blur-sm text-gray-700 border border-amber/30 hover:border-amber/50'
+        }`}
       >
         Sve
       </button>
@@ -32,7 +36,11 @@ export default function OrderFilters() {
         <button
           key={status}
           onClick={() => handleFilter(status)}
-          className={`px-3 py-1 text-sm font-medium rounded-full ${currentStatus === status ? 'bg-indigo-600 text-white' : 'bg-gray-200 text-gray-700'}`}
+          className={`px-4 py-2 text-sm font-medium rounded-xl transition-all duration-200 ${
+            currentStatus === status 
+              ? 'bg-gradient-to-r from-amber via-orange to-brown text-white shadow-lg' 
+              : 'bg-gradient-to-r from-white/95 to-gray-50/95 backdrop-blur-sm text-gray-700 border border-amber/30 hover:border-amber/50'
+          }`}
         >
           {status}
         </button>

@@ -13,6 +13,9 @@ import type { Category as PrismaCategory } from '@/generated/prisma/client';
 // Proširujemo tip da uključuje djecu za rekurzivni prikaz
 export type CategoryWithChildren = PrismaCategory & {
   children?: CategoryWithChildren[];
+  _count?: {
+    products: number;
+  };
 };
 
 type CategoryManagerProps = {
@@ -25,6 +28,7 @@ export function CategoryManager({ initialCategories }: CategoryManagerProps) {
   const [categories, setCategories] = useState<CategoryWithChildren[]>(initialCategories);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingCategory, setEditingCategory] = useState<CategoryWithChildren | null>(null);
+  const [showAllCategories, setShowAllCategories] = useState(false);
 
             // Tip za podatke kakvi dolaze iz forme (prije transformacije)
   type CategoryFormInput = z.input<typeof categoryFormSchema>;
@@ -109,49 +113,131 @@ export function CategoryManager({ initialCategories }: CategoryManagerProps) {
   // Filtriramo samo top-level kategorije za početni render
   const topLevelCategories = categories.filter(c => !c.parentId);
 
+  // Funkcija za brojanje svih kategorija (rekurzivno)
+  const countAllCategories = (cats: CategoryWithChildren[]): number => {
+    return cats.reduce((total, cat) => {
+      return total + 1 + (cat.children ? countAllCategories(cat.children) : 0);
+    }, 0);
+  };
+
+  const totalCategories = countAllCategories(categories);
+  const displayedCategories = showAllCategories ? categories : topLevelCategories;
+
   return (
-    <div className="bg-white p-6 rounded-lg shadow-md">
-      <div className="flex justify-between items-center mb-4">
-        <h1 className="text-2xl font-bold text-gray-800">Upravljanje kategorijama</h1>
-        <button onClick={openModalForNew} className="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition">
-          Dodaj novu kategoriju
-        </button>
+    <div className="bg-gradient-to-r from-white/95 to-gray-50/95 backdrop-blur-sm rounded-2xl border border-amber/20 shadow-sm overflow-hidden">
+      <div className="bg-gradient-to-r from-white/90 to-gray-50/90 border-b border-amber/20 px-6 py-4">
+        <div className="flex justify-between items-center">
+          <div className="flex items-center gap-4">
+            <h2 className="text-xl font-semibold text-gray-900 flex items-center gap-2">
+              <svg className="w-5 h-5 text-amber" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+              </svg>
+              Kategorije ({showAllCategories ? totalCategories : topLevelCategories.length})
+            </h2>
+            <div className="flex items-center gap-2">
+              <button 
+                onClick={() => setShowAllCategories(!showAllCategories)}
+                className={`px-3 py-1 text-xs font-medium rounded-lg transition-all duration-200 ${
+                  showAllCategories 
+                    ? 'bg-gradient-to-r from-amber via-orange to-brown text-white shadow-sm' 
+                    : 'bg-gradient-to-r from-white/95 to-gray-50/95 backdrop-blur-sm text-gray-700 border border-amber/30 hover:border-amber/50'
+                }`}
+              >
+                {showAllCategories ? 'Samo glavne' : 'Sve kategorije'}
+              </button>
+              <span className="text-xs text-gray-500">
+                {showAllCategories ? `${topLevelCategories.length} glavnih, ${totalCategories - topLevelCategories.length} podkategorija` : `${totalCategories} ukupno`}
+              </span>
+            </div>
+          </div>
+          <button 
+            onClick={openModalForNew} 
+            className="bg-gradient-to-r from-amber via-orange to-brown text-white hover:from-amber/90 hover:via-orange/90 hover:to-brown/90 shadow-lg hover:scale-105 transition-all duration-200 rounded-xl px-4 py-2 text-sm font-medium flex items-center gap-2"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+            </svg>
+            Dodaj novu kategoriju
+          </button>
+        </div>
       </div>
 
-      <div className="space-y-2">
-        {topLevelCategories.map(category => (
-          <CategoryItem 
-            key={category.id} 
-            category={category} 
-            onEdit={openModalForEdit} 
-            onDelete={onDelete} 
-            level={0} 
-          />
-        ))}
+      <div className="p-6">
+        <div className="space-y-2">
+          {displayedCategories.map(category => (
+            <CategoryItem 
+              key={category.id} 
+              category={category} 
+              onEdit={openModalForEdit} 
+              onDelete={onDelete} 
+              level={0} 
+            />
+          ))}
+        </div>
+        
+        {displayedCategories.length === 0 && (
+          <div className="text-center py-12">
+            <div className="flex flex-col items-center gap-3">
+              <div className="p-3 bg-gradient-to-r from-white/80 to-gray-50/80 backdrop-blur-sm rounded-xl border border-amber/30">
+                <svg className="w-8 h-8 text-amber" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                </svg>
+              </div>
+              <p className="text-gray-600 font-medium">Nema kategorija</p>
+              <p className="text-gray-500 text-sm">Dodajte prvu kategoriju da počnete organizaciju</p>
+            </div>
+          </div>
+        )}
       </div>
 
       {isModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-          <div className="bg-white p-8 rounded-lg shadow-xl w-full max-w-md">
-            <h2 className="text-xl font-bold mb-4">{editingCategory ? 'Uredi kategoriju' : 'Dodaj novu kategoriju'}</h2>
-            <form onSubmit={handleSubmit(onSave)} className="space-y-4">
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex justify-center items-center z-50">
+          <div className="bg-gradient-to-br from-white via-gray-50/80 to-blue-50/60 backdrop-blur-sm rounded-2xl border border-amber/20 shadow-xl w-full max-w-md mx-4">
+            <div className="bg-gradient-to-r from-white/90 to-gray-50/90 border-b border-amber/20 px-6 py-4 rounded-t-2xl">
+              <h2 className="text-xl font-semibold text-gray-900 flex items-center gap-2">
+                <svg className="w-5 h-5 text-amber" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                </svg>
+                {editingCategory ? 'Uredi kategoriju' : 'Dodaj novu kategoriju'}
+              </h2>
+            </div>
+            <form onSubmit={handleSubmit(onSave)} className="p-6 space-y-4">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700">Naziv</label>
-                <input {...register('name')} id="name" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" />
+                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">Naziv kategorije</label>
+                <input 
+                  {...register('name')} 
+                  id="name" 
+                  className="w-full bg-white border-amber/30 focus:border-amber rounded-xl transition-all duration-200 text-gray-900 placeholder:text-gray-500 px-3 py-2" 
+                  placeholder="Unesite naziv kategorije"
+                />
                 {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name.message}</p>}
               </div>
               <div>
-                <label htmlFor="parentId" className="block text-sm font-medium text-gray-700">Nadređena kategorija</label>
-                <select {...register('parentId')} id="parentId" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
-                  <option value="">-- Nema nadređene --</option>
+                <label htmlFor="parentId" className="block text-sm font-medium text-gray-700 mb-2">Nadređena kategorija</label>
+                <select 
+                  {...register('parentId')} 
+                  id="parentId" 
+                  className="w-full bg-white border-amber/30 focus:border-amber rounded-xl transition-all duration-200 text-gray-900 px-3 py-2"
+                >
+                  <option value="">-- Nema nadređene kategorije --</option>
                   {categories.map(cat => (
                     <option key={cat.id} value={cat.id} disabled={cat.id === editingCategory?.id}>{cat.name}</option>
                   ))}
                 </select>
               </div>
               <div className="flex justify-end space-x-3 pt-4">
-                <button type="button" onClick={closeModal} className="bg-gray-200 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-300">Odustani</button>
-                <button type="submit" disabled={isSubmitting} className="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 disabled:opacity-50">
+                <button 
+                  type="button" 
+                  onClick={closeModal} 
+                  className="bg-gradient-to-r from-white/95 to-gray-50/95 backdrop-blur-sm text-gray-700 hover:from-white hover:to-gray-50 border-amber/30 hover:border-amber/50 rounded-xl transition-all duration-200 shadow-sm px-4 py-2"
+                >
+                  Odustani
+                </button>
+                <button 
+                  type="submit" 
+                  disabled={isSubmitting} 
+                  className="bg-gradient-to-r from-amber via-orange to-brown text-white hover:from-amber/90 hover:via-orange/90 hover:to-brown/90 shadow-lg hover:scale-105 transition-all duration-200 rounded-xl px-4 py-2 text-sm font-medium disabled:opacity-50 disabled:hover:scale-100"
+                >
                   {isSubmitting ? 'Spremanje...' : 'Spremi'}
                 </button>
               </div>
@@ -175,27 +261,82 @@ function CategoryItem({ category, onEdit, onDelete, level }: {
 
   return (
     <div style={{ marginLeft: `${level * 20}px` }} className="flex flex-col">
-      <div className="flex items-center justify-between p-2 bg-gray-50 rounded-md hover:bg-gray-100">
-        <div className="flex items-center">
+      <div className={`flex items-center justify-between p-3 bg-gradient-to-r from-white/80 to-gray-50/80 backdrop-blur-sm rounded-xl border border-amber/10 hover:border-amber/30 hover:bg-gradient-to-r hover:from-white hover:to-gray-50 transition-all duration-200 ${hasChildren ? 'hover:shadow-md' : ''}`}>
+        <div 
+          className={`flex items-center flex-1 ${hasChildren ? 'cursor-pointer' : ''}`}
+          onClick={() => hasChildren && setIsOpen(!isOpen)}
+        >
           {hasChildren ? (
-            <button onClick={() => setIsOpen(!isOpen)} className="p-1 rounded-full hover:bg-gray-200 transition-colors">
+            <button 
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsOpen(!isOpen);
+              }} 
+              className="p-1 rounded-full hover:bg-amber/10 transition-colors text-amber-600"
+            >
               {isOpen ? <ChevronDown className="h-4 w-4" /> : <ChevronRight className="h-4 w-4" />}
             </button>
           ) : (
             <div className="w-6 h-6 mr-1"></div> // Placeholder for alignment
           )}
-          <span className="ml-1">{category.name}</span>
+          <div className="flex items-center gap-2">
+            <span className="text-gray-900 font-medium">{category.name}</span>
+            <div className="flex items-center gap-1">
+              {category._count && category._count.products > 0 && (
+                <span 
+                  className="px-2 py-1 text-xs rounded-full font-medium border shadow-sm"
+                  style={{
+                    backgroundColor: '#dbeafe',
+                    color: '#1e40af',
+                    borderColor: '#3b82f6'
+                  }}
+                >
+                  {category._count.products} proizvoda
+                </span>
+              )}
+              {hasChildren && (
+                <span 
+                  className="px-2 py-1 text-xs rounded-full font-medium border shadow-sm"
+                  style={{
+                    backgroundColor: '#fef3c7',
+                    color: '#92400e',
+                    borderColor: '#f59e0b'
+                  }}
+                >
+                  {category.children?.length} podkategorija
+                </span>
+              )}
+              {hasChildren && (
+                <span className="text-xs text-gray-400 ml-1">
+                  (klikni za proširenje)
+                </span>
+              )}
+            </div>
+          </div>
         </div>
-        <div className="space-x-2">
-          <button onClick={() => onEdit(category)} className="text-sm text-blue-600 hover:underline">Uredi</button>
-          <button onClick={() => onDelete(category.id)} className="text-sm text-red-600 hover:underline">Obriši</button>
-          <Link href={`/admin/categories/${category.id}/attributes`} className="text-sm text-green-600 hover:underline flex items-center">
+        <div className="flex items-center space-x-2">
+          <button 
+            onClick={() => onEdit(category)} 
+            className="text-sm text-blue-600 hover:text-blue-800 hover:bg-blue-50 px-2 py-1 rounded-lg transition-all duration-200"
+          >
+            Uredi
+          </button>
+          <button 
+            onClick={() => onDelete(category.id)} 
+            className="text-sm text-red-600 hover:text-red-800 hover:bg-red-50 px-2 py-1 rounded-lg transition-all duration-200"
+          >
+            Obriši
+          </button>
+          <Link 
+            href={`/admin/categories/${category.id}/attributes`} 
+            className="text-sm text-green-600 hover:text-green-800 hover:bg-green-50 px-2 py-1 rounded-lg transition-all duration-200 flex items-center"
+          >
             <Settings className="h-3 w-3 mr-1" /> Atributi
           </Link>
         </div>
       </div>
       {isOpen && (
-        <div className="mt-1 space-y-1">
+        <div className="mt-2 space-y-2 ml-4">
           {category.children?.map(child => (
             <CategoryItem key={child.id} category={child} onEdit={onEdit} onDelete={onDelete} level={level + 1} />
           ))}
