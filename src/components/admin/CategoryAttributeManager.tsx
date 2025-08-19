@@ -231,7 +231,7 @@ export default function CategoryAttributeManager({
           name="options"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-gray-700 font-medium">Opcije (JSON format)</FormLabel>
+              <FormLabel className="text-slate-700 font-medium">Opcije (JSON format)</FormLabel>
               <FormControl>
                 <Textarea
                   placeholder='["opcija1", "opcija2", "opcija3"]'
@@ -241,7 +241,7 @@ export default function CategoryAttributeManager({
                       ? JSON.stringify(field.value)
                       : field.value || ""
                   }
-                  className="bg-white border-amber/30 focus:border-amber rounded-xl transition-all duration-200 text-gray-900 placeholder:text-gray-500"
+                  className="bg-white border-slate-300 focus:border-sunfire-500 rounded-xl transition-all duration-200 text-slate-900 placeholder:text-slate-500"
                 />
               </FormControl>
               <FormMessage />
@@ -265,13 +265,13 @@ export default function CategoryAttributeManager({
           name="unit"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-gray-700 font-medium">Jedinica mjere</FormLabel>
+              <FormLabel className="text-slate-700 font-medium">Jedinica mjere</FormLabel>
               <FormControl>
                 <Input 
                   placeholder="npr. mm, kg, l" 
                   {...field} 
                   value={field.value || ""} 
-                  className="bg-white border-amber/30 focus:border-amber rounded-xl transition-all duration-200 text-gray-900 placeholder:text-gray-500"
+                  className="bg-white border-slate-300 focus:border-sunfire-500 rounded-xl transition-all duration-200 text-slate-900 placeholder:text-slate-500"
                 />
               </FormControl>
               <FormMessage />
@@ -301,15 +301,15 @@ export default function CategoryAttributeManager({
                   resetForm();
                   setIsDialogOpen(true);
                 }}
-                className="bg-gradient-to-r from-amber via-orange to-brown text-white hover:from-amber/90 hover:via-orange/90 hover:to-brown/90 shadow-lg hover:scale-105 transition-all duration-200 rounded-xl px-4 py-2 text-sm font-medium"
+                className="accent-bg text-white hover:opacity-90 shadow-lg hover:scale-105 transition-all duration-200 rounded-xl px-4 py-2 text-sm font-medium"
               >
                 <Plus className="mr-2 h-4 w-4" /> Dodaj novi atribut
               </Button>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-[500px] bg-gradient-to-br from-white via-gray-50/80 to-blue-50/60 backdrop-blur-sm border border-amber/20 shadow-xl">
+            <DialogContent className="sm:max-w-[500px] bg-white rounded-xl shadow-xl border border-slate-200">
               <DialogHeader>
-                <DialogTitle className="text-gray-900 font-semibold flex items-center gap-2">
-                  <svg className="w-5 h-5 text-amber" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <DialogTitle className="text-slate-800 font-bold flex items-center gap-2 text-xl">
+                  <svg className="w-6 h-6 text-sunfire-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                   {editingAttribute ? "Uredi atribut" : "Dodaj novi atribut"}
@@ -325,12 +325,12 @@ export default function CategoryAttributeManager({
                     name="name"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-gray-700 font-medium">Naziv atributa (interni)</FormLabel>
+                        <FormLabel className="text-slate-700 font-medium">Naziv atributa (interni)</FormLabel>
                         <FormControl>
                           <Input
                             placeholder="npr. viscosity, diameter"
                             {...field}
-                            className="bg-white border-amber/30 focus:border-amber rounded-xl transition-all duration-200 text-gray-900 placeholder:text-gray-500"
+                            className="bg-white border-slate-300 focus:border-sunfire-500 rounded-xl transition-all duration-200 text-slate-900 placeholder:text-slate-500"
                           />
                         </FormControl>
                         <FormMessage />
@@ -342,12 +342,12 @@ export default function CategoryAttributeManager({
                     name="label"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-gray-700 font-medium">Oznaka atributa (za prikaz)</FormLabel>
+                        <FormLabel className="text-slate-700 font-medium">Oznaka atributa (za prikaz)</FormLabel>
                         <FormControl>
                           <Input
                             placeholder="npr. Viskozitet, Promjer"
                             {...field}
-                            className="bg-white border-amber/30 focus:border-amber rounded-xl transition-all duration-200 text-gray-900 placeholder:text-gray-500"
+                            className="bg-white border-slate-300 focus:border-sunfire-500 rounded-xl transition-all duration-200 text-slate-900 placeholder:text-slate-500"
                           />
                         </FormControl>
                         <FormMessage />
@@ -359,21 +359,21 @@ export default function CategoryAttributeManager({
                     name="type"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-gray-700 font-medium">Tip podatka</FormLabel>
+                        <FormLabel className="text-slate-700 font-medium">Tip podatka</FormLabel>
                         <Select
                           onValueChange={field.onChange}
                           defaultValue={field.value}
                         >
                           <FormControl>
-                            <SelectTrigger className="bg-white border-amber/30 focus:border-amber rounded-xl transition-all duration-200 text-gray-900">
+                            <SelectTrigger className="bg-white border-slate-300 focus:border-sunfire-500 rounded-xl transition-all duration-200 text-slate-900">
                               <SelectValue placeholder="Odaberite tip podatka" />
                             </SelectTrigger>
                           </FormControl>
-                          <SelectContent className="bg-white/95 backdrop-blur-sm border-gray-200 rounded-xl shadow-xl">
-                            <SelectItem value="string" className="text-gray-700 hover:bg-gray-100">Tekst</SelectItem>
-                            <SelectItem value="number" className="text-gray-700 hover:bg-gray-100">Broj</SelectItem>
-                            <SelectItem value="boolean" className="text-gray-700 hover:bg-gray-100">Da/Ne</SelectItem>
-                            <SelectItem value="enum" className="text-gray-700 hover:bg-gray-100">Lista opcija</SelectItem>
+                          <SelectContent className="bg-white border-slate-200 rounded-xl shadow-xl">
+                            <SelectItem value="string" className="text-slate-700 hover:bg-slate-100 focus:bg-slate-100">Tekst</SelectItem>
+                            <SelectItem value="number" className="text-slate-700 hover:bg-slate-100 focus:bg-slate-100">Broj</SelectItem>
+                            <SelectItem value="boolean" className="text-slate-700 hover:bg-slate-100 focus:bg-slate-100">Da/Ne</SelectItem>
+                            <SelectItem value="enum" className="text-slate-700 hover:bg-slate-100 focus:bg-slate-100">Lista opcija</SelectItem>
                           </SelectContent>
                         </Select>
                         <FormMessage />
@@ -386,16 +386,16 @@ export default function CategoryAttributeManager({
                     control={form.control}
                     name="isRequired"
                     render={({ field }) => (
-                      <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-xl border border-amber/20 p-4 bg-gradient-to-r from-white/95 to-gray-50/95 backdrop-blur-sm">
+                      <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-xl border border-slate-200 p-4 bg-slate-50">
                         <FormControl>
                           <Checkbox
                             checked={field.value}
                             onCheckedChange={field.onChange}
-                            className="text-amber"
+                            className="data-[state=checked]:bg-sunfire-500 data-[state=checked]:border-sunfire-500"
                           />
                         </FormControl>
                         <div className="space-y-1 leading-none">
-                          <FormLabel className="text-gray-700 font-medium">Obavezno polje</FormLabel>
+                          <FormLabel className="text-slate-700 font-medium">Obavezno polje</FormLabel>
                         </div>
                       </FormItem>
                     )}
@@ -404,16 +404,16 @@ export default function CategoryAttributeManager({
                     control={form.control}
                     name="isFilterable"
                     render={({ field }) => (
-                      <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-xl border border-amber/20 p-4 bg-gradient-to-r from-white/95 to-gray-50/95 backdrop-blur-sm">
+                      <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-xl border border-slate-200 p-4 bg-slate-50">
                         <FormControl>
                           <Checkbox
                             checked={field.value}
                             onCheckedChange={field.onChange}
-                            className="text-amber"
+                            className="data-[state=checked]:bg-sunfire-500 data-[state=checked]:border-sunfire-500"
                           />
                         </FormControl>
                         <div className="space-y-1 leading-none">
-                          <FormLabel className="text-gray-700 font-medium">Omogući filtriranje</FormLabel>
+                          <FormLabel className="text-slate-700 font-medium">Omogući filtriranje</FormLabel>
                         </div>
                       </FormItem>
                     )}
@@ -423,7 +423,7 @@ export default function CategoryAttributeManager({
                     name="sortOrder"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-gray-700 font-medium">Redoslijed prikaza</FormLabel>
+                        <FormLabel className="text-slate-700 font-medium">Redoslijed prikaza</FormLabel>
                         <FormControl>
                           <Input
                             type="number"
@@ -431,7 +431,7 @@ export default function CategoryAttributeManager({
                             onChange={(e) =>
                               field.onChange(parseInt(e.target.value) || 0)
                             }
-                            className="bg-white border-amber/30 focus:border-amber rounded-xl transition-all duration-200 text-gray-900 placeholder:text-gray-500"
+                            className="bg-white border-slate-300 focus:border-sunfire-500 rounded-xl transition-all duration-200 text-slate-900 placeholder:text-slate-500"
                           />
                         </FormControl>
                         <FormMessage />
@@ -446,13 +446,13 @@ export default function CategoryAttributeManager({
                         setIsDialogOpen(false);
                         resetForm();
                       }}
-                      className="bg-gradient-to-r from-white/95 to-gray-50/95 backdrop-blur-sm text-gray-700 hover:from-white hover:to-gray-50 border-amber/30 hover:border-amber/50 rounded-xl transition-all duration-200 shadow-sm"
+                      className="bg-slate-100 text-slate-700 hover:bg-slate-200 border-slate-300 hover:border-slate-400 rounded-xl transition-all duration-200"
                     >
                       Odustani
                     </Button>
                     <Button 
                       type="submit"
-                      className="bg-gradient-to-r from-amber via-orange to-brown text-white hover:from-amber/90 hover:via-orange/90 hover:to-brown/90 shadow-lg hover:scale-105 transition-all duration-200 rounded-xl"
+                      className="accent-bg text-white hover:opacity-90 shadow-lg hover:scale-105 transition-all duration-200 rounded-xl"
                     >
                       <Save className="mr-2 h-4 w-4" />
                       Spremi

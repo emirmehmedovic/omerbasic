@@ -44,6 +44,9 @@ model Product {
   // Relacije za dobavljače i narudžbenice
   supplierProducts    SupplierProduct[]
   purchaseOrderItems  PurchaseOrderItem[]
+  
+  // Relacija za featured products
+  featuredProduct     FeaturedProduct?
 }
 
 model Category {
@@ -560,4 +563,48 @@ model ProductVehicleFitment {
   updatedAt       DateTime  @updatedAt
   
   @@unique([productId, generationId, engineId])
+}
+
+// Model za kontakt zahtjeve
+model ContactRequest {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  phone     String
+  subject   String
+  message   String
+  status    String   @default("new") // new, read, responded
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Model za B2B aplikacije
+model B2BRequest {
+  id            String   @id @default(cuid())
+  companyName   String
+  contactPerson String
+  email         String
+  phone         String
+  address       String
+  city          String
+  businessType  String
+  description   String
+  status        String   @default("new") // new, read, approved, rejected
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+// Model za featured products u carousel-u
+model FeaturedProduct {
+  id              String   @id @default(cuid())
+  productId       String
+  product         Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  displayOrder    Int      @default(0) // Redoslijed prikaza
+  isActive        Boolean  @default(true)
+  customTitle     String?  // Opcionalni custom naslov
+  customImageUrl  String?  // Opcionalni custom image URL
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@unique([productId])
 }

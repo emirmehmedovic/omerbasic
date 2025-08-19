@@ -208,9 +208,9 @@ export default function AttributeTemplateManager() {
               <Plus className="mr-2 h-4 w-4" /> Dodaj novi predložak
             </Button>
           </DialogTrigger>
-          <DialogContent className="sm:max-w-[600px]">
+          <DialogContent className="sm:max-w-[600px] bg-white rounded-xl shadow-xl border border-slate-200">
             <DialogHeader>
-              <DialogTitle>
+              <DialogTitle className="text-slate-800 font-bold text-xl">
                 {editingTemplate ? "Uredi predložak atributa" : "Dodaj novi predložak atributa"}
               </DialogTitle>
             </DialogHeader>

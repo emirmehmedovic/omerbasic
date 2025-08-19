@@ -114,8 +114,8 @@ export async function POST(
 
     // Pretvaranje datuma iz string formata u Date objekt ako postoje
     // Koristimo any za privremeno zaobilaženje TypeScript grešaka
-    let prodStart: any = productionStart ? new Date(productionStart) : null;
-    let prodEnd: any = productionEnd ? new Date(productionEnd) : null;
+    const prodStart: any = productionStart ? new Date(productionStart) : null;
+    const prodEnd: any = productionEnd ? new Date(productionEnd) : null;
 
     const vehicleGeneration = await db.vehicleGeneration.create({
       data: {

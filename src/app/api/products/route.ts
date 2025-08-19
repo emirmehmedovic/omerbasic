@@ -1,5 +1,5 @@
-import { NextResponse } from 'next/server';
-import { db } from '@/lib/db';
+import { NextRequest, NextResponse } from "next/server";
+import { db } from "@/lib/db";
 import { productApiSchema } from '@/lib/validations/product';
 import { z } from 'zod';
 import { getCurrentUser } from '@/lib/session';
@@ -7,7 +7,7 @@ import { getCurrentUser } from '@/lib/session';
 // Pomoćna funkcija za dohvat kategorije i svih njenih podkategorija (potomaka)
 async function getCategoryAndChildrenIds(categoryId: string): Promise<string[]> {
   const allIds: string[] = [categoryId];
-  let queue: string[] = [categoryId];
+  const queue: string[] = [categoryId];
 
   while (queue.length > 0) {
     const currentId = queue.shift();
@@ -28,185 +28,44 @@ async function getCategoryAndChildrenIds(categoryId: string): Promise<string[]> 
   return allIds;
 }
 
-export async function GET(req: Request) {
-  const { searchParams } = new URL(req.url);
+export async function GET(req: NextRequest) {
   try {
-    console.log('[PRODUCTS_GET] Headers:', JSON.stringify(Object.fromEntries([...req.headers.entries()]), null, 2));
-    
-    // Dohvati token iz headera koji je postavljen u middleware-u
-    let token = null;
-    const tokenHeader = req.headers.get('x-nextauth-token');
-    
-    console.log('[PRODUCTS_GET] x-nextauth-token header postoji:', tokenHeader ? 'DA' : 'NE');
-    
-    if (tokenHeader) {
-      console.log('[PRODUCTS_GET] Raw token header:', tokenHeader);
-      try {
-        token = JSON.parse(tokenHeader);
-        console.log('[PRODUCTS_GET] Token iz headera:', JSON.stringify(token, null, 2));
-      } catch (error) {
-        console.error('[PRODUCTS_GET] Greška pri parsiranju tokena:', error);
-      }
-    } else {
-      // Pokušaj dohvatiti trenutnog korisnika kao fallback
-      try {
-        const currentUser = await getCurrentUser();
-        console.log('[PRODUCTS_GET] Fallback - getCurrentUser:', JSON.stringify(currentUser, null, 2));
-        if (currentUser) {
-          token = {
-            role: currentUser.role,
-            discountPercentage: currentUser.discountPercentage
-          };
-        }
-      } catch (error) {
-        console.error('[PRODUCTS_GET] Greška pri dohvaćanju korisnika:', error);
-      }
-    }
-    
-    // Koristi token za B2B cijene
-    const isB2B = token?.role === 'B2B';
-    const discountPercentage = isB2B ? (token?.discountPercentage || 0) : 0;
-    
-    // Debugging info
-    console.log('[PRODUCTS_GET] isB2B:', isB2B);
-    console.log('[PRODUCTS_GET] discountPercentage:', discountPercentage);
-    
-    // Extract all potential filter parameters from the URL
-    const categoryId = searchParams.get('categoryId') || undefined;
-    const generationId = searchParams.get('generationId') || undefined;
-    const catalogNumber = searchParams.get('catalogNumber') || undefined;
-    const oemNumber = searchParams.get('oemNumber') || undefined;
-    const minPrice = searchParams.get('minPrice') || undefined;
-    const maxPrice = searchParams.get('maxPrice') || undefined;
-    const q = searchParams.get('q') || undefined;
-    const limit = searchParams.get('limit') ? parseInt(searchParams.get('limit')!) : undefined;
-
-    const filters: any[] = [];
-
-    if (categoryId) {
-      const categoryIds = await getCategoryAndChildrenIds(categoryId);
-      filters.push({ categoryId: { in: categoryIds } });
-    }
-    if (catalogNumber) filters.push({ catalogNumber: { contains: catalogNumber, mode: 'insensitive' } });
-    if (oemNumber) filters.push({ oemNumber: { contains: oemNumber, mode: 'insensitive' } });
-
-    if (generationId) {
-      filters.push({
-        vehicleFitments: {
-          some: {
-            generationId: generationId,
-          },
-        },
-      });
-    }
-
-    if (minPrice || maxPrice) {
-      const priceFilter: any = {};
-      if (minPrice) priceFilter.gte = parseFloat(minPrice);
-      if (maxPrice) priceFilter.lte = parseFloat(maxPrice);
-      filters.push({ price: priceFilter });
-    }
-
-    if (q) {
-      filters.push({
-        OR: [
-          { name: { contains: q, mode: 'insensitive' } },
-          { description: { contains: q, mode: 'insensitive' } },
-          { oemNumber: { contains: q, mode: 'insensitive' } },
-          { catalogNumber: { contains: q, mode: 'insensitive' } },
-          {
-            attributeValues: {
-              some: {
-                value: { contains: q, mode: 'insensitive' },
-              },
-            },
-          },
-        ],
-      });
-    }
-
-    const where = filters.length > 0 ? { AND: filters } : {};
+    const { searchParams } = new URL(req.url);
+    const search = searchParams.get("search");
+    const limit = parseInt(searchParams.get("limit") || "100");
 
     const products = await db.product.findMany({
-      where,
-      include: {
-        category: true,
-        attributeValues: {
-          include: {
-            attribute: true
-          }
-        },
+      where: {
+        isArchived: false,
+        ...(search && {
+          OR: [
+            { name: { contains: search, mode: "insensitive" } },
+            { catalogNumber: { contains: search, mode: "insensitive" } },
+          ],
+        }),
+      },
+      select: {
+        id: true,
+        name: true,
+        price: true,
+        imageUrl: true,
+        catalogNumber: true,
+        stock: true,
+        isArchived: true,
       },
       orderBy: {
-        createdAt: 'desc',
+        name: "asc",
       },
-      ...(limit ? { take: limit } : {}),
+      take: limit,
     });
-
-    // Ako je B2B korisnik, primijeni popust na cijene proizvoda
-    if (isB2B) {
-      // Dohvati ID korisnika iz tokena
-      const userId = token?.id;
-      
-      if (userId) {
-        // Dohvati kategorijske popuste za korisnika
-        const categoryDiscounts = await db.categoryDiscount.findMany({
-          where: {
-            userId: userId,
-          }
-        });
-        
-        // Kreiraj mapu popusta po kategorijama za brži pristup
-        const discountMap = new Map();
-        categoryDiscounts.forEach(discount => {
-          discountMap.set(discount.categoryId, discount.discountPercentage);
-        });
-        
-        // Primijeni popuste specifične za kategorije ili globalni popust
-        const productsWithDiscount = products.map(product => {
-          const originalPrice = product.price;
-          
-          // Prvo provjeri postoji li specifični popust za kategoriju
-          let categoryDiscount = discountMap.get(product.categoryId);
-          
-          // Ako ne postoji specifični popust, koristi globalni popust
-          if (categoryDiscount === undefined) {
-            categoryDiscount = discountPercentage || 0;
-          }
-          
-          const discountedPrice = originalPrice * (1 - categoryDiscount / 100);
-          
-          return {
-            ...product,
-            originalPrice: originalPrice, // Sačuvaj originalnu cijenu ako treba za prikaz
-            price: Number(discountedPrice.toFixed(2)), // Zaokruži na 2 decimale i konvertiraj natrag u broj
-            appliedDiscount: categoryDiscount, // Dodaj informaciju o primijenjenom popustu
-          };
-        });
-        
-        return NextResponse.json(productsWithDiscount);
-      } else if (discountPercentage > 0) {
-        // Fallback na globalni popust ako nemamo userId
-        const productsWithDiscount = products.map(product => {
-          const originalPrice = product.price;
-          const discountedPrice = originalPrice * (1 - discountPercentage / 100);
-          
-          return {
-            ...product,
-            originalPrice: originalPrice,
-            price: Number(discountedPrice.toFixed(2)),
-            appliedDiscount: discountPercentage,
-          };
-        });
-        
-        return NextResponse.json(productsWithDiscount);
-      }
-    }
 
     return NextResponse.json(products);
   } catch (error) {
-    console.error('[PRODUCTS_GET]', error);
-    return new NextResponse('Internal error', { status: 500 });
+    console.error("Greška pri dohvaćanju proizvoda:", error);
+    return NextResponse.json(
+      { error: "Greška pri dohvaćanju proizvoda" },
+      { status: 500 }
+    );
   }
 }
 

@@ -39,10 +39,7 @@ export default async function VehiclesPage() {
   const { vehicleBrands } = await getData();
 
   return (
-    <div className="p-6">
-      <div className="flex justify-between items-center mb-4">
-        <h1 className="text-3xl font-bold text-gray-800">Upravljanje vozilima</h1>
-      </div>
+    <div className="p-6 space-y-6">
       <VehiclesClient initialVehicleBrands={vehicleBrands} />
     </div>
   );

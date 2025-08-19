@@ -4,7 +4,7 @@ import { Fragment } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Dialog, Transition } from '@headlessui/react';
-import { LayoutDashboard, ShoppingCart, Package, Users2, List, LogOut, X, Car, Tags, Search, BarChart, ClipboardList, FileText } from 'lucide-react';
+import { LayoutDashboard, ShoppingCart, Package, Users2, List, LogOut, X, Car, Tags, Search, BarChart, ClipboardList, FileText, MessageSquare, Star } from 'lucide-react';
 import { signOut } from 'next-auth/react';
 import Image from 'next/image';
 
@@ -22,6 +22,8 @@ const sidebarItems = [
   { name: 'Proizvodi dobavljača', href: '/admin/supplier-products', icon: Package },
   { name: 'Narudžbenice', href: '/admin/purchase-orders', icon: ClipboardList },
   { name: 'Statistika narudžbenica', href: '/admin/purchase-orders/statistics', icon: FileText },
+  { name: 'Zahtjevi', href: '/admin/requests', icon: MessageSquare },
+  { name: 'Featured Proizvodi', href: '/admin/featured-products', icon: Star },
   { name: 'Napredna pretraga', href: '/admin/advanced-search', icon: Search },
 ];
 
@@ -34,40 +36,54 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
   const pathname = usePathname();
 
   const content = (
-    <div className="flex flex-col h-full">
-      <div className="flex items-center justify-between mb-8 px-4 pt-4">
-                <Link href="/">
+    <div className="flex flex-col h-full bg-gradient-to-b from-white via-gray-50/80 to-blue-50/60 backdrop-blur-sm">
+      {/* Header */}
+      <div className="flex items-center justify-between mb-6 px-6 pt-6 pb-4 border-b border-amber/20">
+        <Link href="/" className="hover:opacity-80 transition-opacity">
           <Image src="/images/omerbasic.png" alt="Omerbasic Logo" width={180} height={40} />
         </Link>
-        <button onClick={onClose} className="md:hidden text-gray-600">
-          <X className="h-6 w-6" />
+        <button 
+          onClick={onClose} 
+          className="md:hidden text-gray-600 hover:text-gray-900 p-2 rounded-lg hover:bg-amber/10 transition-all duration-200"
+        >
+          <X className="h-5 w-5" />
         </button>
       </div>
-      <nav className="flex flex-col flex-grow p-4 overflow-y-auto">
-        {sidebarItems.map((item) => {
-          const isActive = pathname === item.href || (item.href !== '/admin' && pathname.startsWith(item.href));
-          return (
-            <Link
-              key={item.name}
-              href={item.href}
-              onClick={onClose}
-              className={`flex items-center px-4 py-3 mb-2 rounded-lg transition-colors ${
-                isActive
-                  ? 'bg-[#92000A] text-white shadow-md'
-                  : 'text-gray-600 hover:bg-gray-100'
-              }`}>
-              <item.icon className="w-5 h-5 mr-3" />
-              <span>{item.name}</span>
-            </Link>
-          );
-        })}
+
+      {/* Navigation */}
+      <nav className="flex flex-col flex-grow px-4 overflow-y-auto">
+        <div className="space-y-2">
+          {sidebarItems.map((item) => {
+            const isActive = pathname === item.href || (item.href !== '/admin' && pathname.startsWith(item.href));
+            return (
+              <Link
+                key={item.name}
+                href={item.href}
+                onClick={onClose}
+                className={`flex items-center px-4 py-3 rounded-xl transition-all duration-200 group ${
+                  isActive
+                    ? 'bg-gradient-to-r from-amber via-orange to-brown text-white shadow-lg shadow-amber/25'
+                    : 'text-gray-700 hover:bg-gradient-to-r hover:from-amber/10 hover:via-orange/10 hover:to-brown/10 hover:text-gray-900'
+                }`}
+              >
+                <item.icon className={`w-5 h-5 mr-3 transition-colors duration-200 ${
+                  isActive ? 'text-white' : 'text-amber group-hover:text-orange'
+                }`} />
+                <span className="font-medium">{item.name}</span>
+              </Link>
+            );
+          })}
+        </div>
       </nav>
-      <div className='p-4'>
+
+      {/* Footer */}
+      <div className="p-4 border-t border-amber/20">
         <button
           onClick={() => signOut({ callbackUrl: '/login' })}
-          className="flex items-center w-full px-4 py-3 text-left text-gray-600 rounded-lg hover:bg-gray-200/50 transition-colors">
-          <LogOut className="w-5 h-5 mr-3" />
-          <span>Odjavi se</span>
+          className="flex items-center w-full px-4 py-3 text-left text-gray-700 rounded-xl hover:bg-gradient-to-r hover:from-red-50 hover:via-red-100 hover:to-red-200 hover:text-red-700 transition-all duration-200 group"
+        >
+          <LogOut className="w-5 h-5 mr-3 text-red-500 group-hover:text-red-600 transition-colors duration-200" />
+          <span className="font-medium">Odjavi se</span>
         </button>
       </div>
     </div>
@@ -76,8 +92,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
   return (
     <>
       {/* Static sidebar for desktop */}
-      {/* Static sidebar for desktop */}
-      <aside className="fixed top-0 left-0 h-full w-64 hidden md:flex flex-col bg-white border-r border-gray-200 z-30">
+      <aside className="fixed top-0 left-0 h-full w-64 hidden md:flex flex-col bg-gradient-to-b from-white via-gray-50/80 to-blue-50/60 backdrop-blur-sm border-r border-amber/20 shadow-lg z-30">
         {content}
       </aside>
 
@@ -93,7 +108,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="fixed inset-0 bg-black bg-opacity-25" />
+            <div className="fixed inset-0 bg-black/25 backdrop-blur-sm" />
           </Transition.Child>
 
           <div className="fixed inset-0 flex z-40">
@@ -106,7 +121,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
               leaveFrom="translate-x-0"
               leaveTo="-translate-x-full"
             >
-              <Dialog.Panel className="relative flex-1 flex flex-col max-w-xs w-full bg-white">
+              <Dialog.Panel className="relative flex-1 flex flex-col max-w-xs w-full bg-gradient-to-b from-white via-gray-50/80 to-blue-50/60 backdrop-blur-sm border-r border-amber/20 shadow-xl">
                 {content}
               </Dialog.Panel>
             </Transition.Child>

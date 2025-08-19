@@ -1,6 +1,6 @@
 import { db } from '@/lib/db';
 import { StatCard } from '@/components/admin/StatCard';
-import { DollarSign, Package, ShoppingCart, Users, Plus, Settings } from 'lucide-react';
+import { DollarSign, Package, ShoppingCart, Users, Plus, Settings, BarChart3, TrendingUp, Users2, ShoppingBag } from 'lucide-react';
 import Link from 'next/link';
 import { formatPrice } from '@/lib/utils';
 
@@ -39,45 +39,133 @@ export default async function AdminDashboardPage() {
   const { totalRevenue, totalSales, productCount, customerCount } = await getDashboardData();
 
   return (
-    <div>
-      <h1 className="text-3xl font-bold mb-6 text-gray-800">Dashboard</h1>
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        <StatCard title="Ukupan Prihod" value={formatPrice(totalRevenue)} icon={DollarSign} />
-        <StatCard title="Ukupno Prodaja" value={totalSales} icon={Package} />
-        <StatCard title="Ukupno Proizvoda" value={productCount} icon={ShoppingCart} />
-        <StatCard title="Ukupno Kupaca" value={customerCount} icon={Users} />
+    <div className="space-y-6">
+      {/* Header Section */}
+      <div className="bg-gradient-to-br from-white via-gray-50/80 to-blue-50/60 backdrop-blur-sm rounded-2xl p-6 border border-amber/20 shadow-sm">
+        <div className="flex items-center gap-3">
+          <div className="p-2 bg-gradient-to-r from-white/80 to-gray-50/80 backdrop-blur-sm rounded-lg border border-amber/30">
+            <BarChart3 className="w-6 h-6 text-amber" />
+          </div>
+          <div>
+            <h1 className="text-2xl font-bold bg-gradient-to-r from-gray-900 via-amber to-orange bg-clip-text text-transparent">
+              Dashboard
+            </h1>
+            <p className="text-gray-600 mt-1">Pregled ključnih metrika i brzi pristup</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Stats Cards */}
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <StatCard 
+          title="Ukupan Prihod" 
+          value={formatPrice(totalRevenue)} 
+          icon={DollarSign}
+          description="Ukupan prihod od isporučenih narudžbi"
+        />
+        <StatCard 
+          title="Ukupno Prodaja" 
+          value={totalSales} 
+          icon={Package}
+          description="Broj uspješnih narudžbi"
+        />
+        <StatCard 
+          title="Ukupno Proizvoda" 
+          value={productCount} 
+          icon={ShoppingCart}
+          description="Broj proizvoda u katalogu"
+        />
+        <StatCard 
+          title="Ukupno Kupaca" 
+          value={customerCount} 
+          icon={Users}
+          description="Broj registriranih korisnika"
+        />
       </div>
       
-      <div className="mt-8">
-        <h2 className="text-2xl font-bold mb-4 text-gray-800">Brzi linkovi</h2>
+      {/* Quick Links Section */}
+      <div className="bg-gradient-to-r from-white/95 to-gray-50/95 backdrop-blur-sm rounded-2xl border border-amber/20 shadow-sm p-6">
+        <div className="flex items-center gap-2 mb-6">
+          <TrendingUp className="w-5 h-5 text-amber" />
+          <h2 className="text-xl font-semibold text-gray-900">Brzi linkovi</h2>
+        </div>
+        
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          <Link href="/admin/products/new" className="flex items-center p-4 bg-white rounded-lg shadow hover:shadow-md transition-shadow">
-            <div className="p-3 rounded-full bg-blue-100 text-blue-600 mr-4">
-              <Plus className="h-6 w-6" />
+          <Link 
+            href="/admin/products/new" 
+            className="group flex items-center p-4 bg-gradient-to-r from-white/80 to-gray-50/80 backdrop-blur-sm rounded-xl border border-amber/20 shadow-sm hover:shadow-lg hover:border-amber/30 transition-all duration-200"
+          >
+            <div className="p-3 rounded-lg bg-gradient-to-r from-amber/10 to-orange/10 border border-amber/20 mr-4 group-hover:from-amber/20 group-hover:to-orange/20 transition-all duration-200">
+              <Plus className="h-6 w-6 text-amber group-hover:text-orange transition-colors duration-200" />
             </div>
             <div>
-              <h3 className="font-medium">Dodaj novi proizvod</h3>
-              <p className="text-sm text-gray-500">Kreiraj novi proizvod u katalogu</p>
+              <h3 className="font-medium text-gray-900 group-hover:text-gray-800 transition-colors duration-200">Dodaj novi proizvod</h3>
+              <p className="text-sm text-gray-600">Kreiraj novi proizvod u katalogu</p>
             </div>
           </Link>
           
-          <Link href="/admin/products" className="flex items-center p-4 bg-white rounded-lg shadow hover:shadow-md transition-shadow">
-            <div className="p-3 rounded-full bg-green-100 text-green-600 mr-4">
-              <ShoppingCart className="h-6 w-6" />
+          <Link 
+            href="/admin/products" 
+            className="group flex items-center p-4 bg-gradient-to-r from-white/80 to-gray-50/80 backdrop-blur-sm rounded-xl border border-amber/20 shadow-sm hover:shadow-lg hover:border-amber/30 transition-all duration-200"
+          >
+            <div className="p-3 rounded-lg bg-gradient-to-r from-amber/10 to-orange/10 border border-amber/20 mr-4 group-hover:from-amber/20 group-hover:to-orange/20 transition-all duration-200">
+              <ShoppingBag className="h-6 w-6 text-amber group-hover:text-orange transition-colors duration-200" />
             </div>
             <div>
-              <h3 className="font-medium">Upravljaj proizvodima</h3>
-              <p className="text-sm text-gray-500">Pregledaj i uredi postojeće proizvode</p>
+              <h3 className="font-medium text-gray-900 group-hover:text-gray-800 transition-colors duration-200">Upravljaj proizvodima</h3>
+              <p className="text-sm text-gray-600">Pregledaj i uredi postojeće proizvode</p>
             </div>
           </Link>
           
-          <Link href="/admin/categories" className="flex items-center p-4 bg-white rounded-lg shadow hover:shadow-md transition-shadow">
-            <div className="p-3 rounded-full bg-purple-100 text-purple-600 mr-4">
-              <Settings className="h-6 w-6" />
+          <Link 
+            href="/admin/categories" 
+            className="group flex items-center p-4 bg-gradient-to-r from-white/80 to-gray-50/80 backdrop-blur-sm rounded-xl border border-amber/20 shadow-sm hover:shadow-lg hover:border-amber/30 transition-all duration-200"
+          >
+            <div className="p-3 rounded-lg bg-gradient-to-r from-amber/10 to-orange/10 border border-amber/20 mr-4 group-hover:from-amber/20 group-hover:to-orange/20 transition-all duration-200">
+              <Settings className="h-6 w-6 text-amber group-hover:text-orange transition-colors duration-200" />
             </div>
             <div>
-              <h3 className="font-medium">Upravljaj kategorijama</h3>
-              <p className="text-sm text-gray-500">Uredi kategorije i njihove atribute</p>
+              <h3 className="font-medium text-gray-900 group-hover:text-gray-800 transition-colors duration-200">Upravljaj kategorijama</h3>
+              <p className="text-sm text-gray-600">Uredi kategorije i njihove atribute</p>
+            </div>
+          </Link>
+
+          <Link 
+            href="/admin/users" 
+            className="group flex items-center p-4 bg-gradient-to-r from-white/80 to-gray-50/80 backdrop-blur-sm rounded-xl border border-amber/20 shadow-sm hover:shadow-lg hover:border-amber/30 transition-all duration-200"
+          >
+            <div className="p-3 rounded-lg bg-gradient-to-r from-amber/10 to-orange/10 border border-amber/20 mr-4 group-hover:from-amber/20 group-hover:to-orange/20 transition-all duration-200">
+              <Users2 className="h-6 w-6 text-amber group-hover:text-orange transition-colors duration-200" />
+            </div>
+            <div>
+              <h3 className="font-medium text-gray-900 group-hover:text-gray-800 transition-colors duration-200">Upravljaj korisnicima</h3>
+              <p className="text-sm text-gray-600">Pregledaj i uredi korisničke račune</p>
+            </div>
+          </Link>
+
+          <Link 
+            href="/admin/orders" 
+            className="group flex items-center p-4 bg-gradient-to-r from-white/80 to-gray-50/80 backdrop-blur-sm rounded-xl border border-amber/20 shadow-sm hover:shadow-lg hover:border-amber/30 transition-all duration-200"
+          >
+            <div className="p-3 rounded-lg bg-gradient-to-r from-amber/10 to-orange/10 border border-amber/20 mr-4 group-hover:from-amber/20 group-hover:to-orange/20 transition-all duration-200">
+              <Package className="h-6 w-6 text-amber group-hover:text-orange transition-colors duration-200" />
+            </div>
+            <div>
+              <h3 className="font-medium text-gray-900 group-hover:text-gray-800 transition-colors duration-200">Pregled narudžbi</h3>
+              <p className="text-sm text-gray-600">Upravljaj narudžbama i statusima</p>
+            </div>
+          </Link>
+
+          <Link 
+            href="/admin/suppliers" 
+            className="group flex items-center p-4 bg-gradient-to-r from-white/80 to-gray-50/80 backdrop-blur-sm rounded-xl border border-amber/20 shadow-sm hover:shadow-lg hover:border-amber/30 transition-all duration-200"
+          >
+            <div className="p-3 rounded-lg bg-gradient-to-r from-amber/10 to-orange/10 border border-amber/20 mr-4 group-hover:from-amber/20 group-hover:to-orange/20 transition-all duration-200">
+              <Users className="h-6 w-6 text-amber group-hover:text-orange transition-colors duration-200" />
+            </div>
+            <div>
+              <h3 className="font-medium text-gray-900 group-hover:text-gray-800 transition-colors duration-200">Upravljaj dobavljačima</h3>
+              <p className="text-sm text-gray-600">Pregledaj i uredi dobavljače</p>
             </div>
           </Link>
         </div>

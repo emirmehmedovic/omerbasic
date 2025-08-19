@@ -23,7 +23,7 @@ export default async function AdminUsersPage() {
   const safeUsers = users.map(({ password, ...user }: User) => user);
 
   return (
-    <div className="flex-1 space-y-4 p-8 pt-6">
+    <div className="p-6 space-y-6">
       <UsersClient data={safeUsers} />
     </div>
   );

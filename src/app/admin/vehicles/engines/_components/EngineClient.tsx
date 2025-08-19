@@ -217,79 +217,137 @@ export const EngineClient = ({
   };
 
   return (
-    <div className="space-y-4">
-      <div className="flex items-center mb-6">
-        <Link href="/admin/vehicles" className="flex items-center text-gray-600 hover:text-gray-900">
-          <ArrowLeft className="mr-2 h-4 w-4" />
-          Nazad na vozila
-        </Link>
-      </div>
-
-      <div className="flex items-center justify-between">
-        <div>
-          <h2 className="text-xl font-semibold">
-            Motori za {generation.name}
-          </h2>
-          <p className="text-gray-500">
-            {generation.model.brand.name} {generation.model.name}
-            {generation.period && ` (${generation.period})`}
-          </p>
+    <div className="space-y-6">
+      {/* Header Section */}
+      <div className="bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
+        <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                <div className="p-2 bg-gradient-to-r from-white/80 to-gray-50/80 backdrop-blur-sm rounded-lg border border-gray-200">
+                  <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                </div>
+                <div>
+                  <h1 className="text-2xl font-bold text-gray-900">
+                    Motori za {generation.name}
+                  </h1>
+                  <p className="text-gray-600 mt-1">
+                    {generation.model.brand.name} {generation.model.name}
+                    {generation.period && ` (${generation.period})`}
+                  </p>
+                </div>
+              </div>
+          <div className="flex items-center gap-3">
+            <Link 
+              href="/admin/vehicles" 
+              className="flex items-center text-gray-600 hover:text-gray-900 bg-white border border-gray-200 hover:border-gray-300 rounded-xl transition-all duration-200 shadow-sm px-4 py-2 font-medium"
+            >
+              <ArrowLeft className="mr-2 h-4 w-4" />
+              Nazad na vozila
+            </Link>
+            <Button 
+              onClick={() => setIsAddingEngine(true)}
+              className="bg-blue-600 text-white hover:bg-blue-700 shadow-sm hover:shadow-md transition-all duration-200 rounded-xl px-4 py-2 font-semibold"
+            >
+              <Plus className="mr-2 h-4 w-4" /> Dodaj motor
+            </Button>
+          </div>
         </div>
-        <Button onClick={() => setIsAddingEngine(true)}>
-          <Plus className="mr-2 h-4 w-4" /> Dodaj motor
-        </Button>
       </div>
 
       {engines.length === 0 ? (
-        <div className="text-center py-8 bg-gray-50 rounded-md border">
-          <p className="text-gray-500">Nema dostupnih motora za ovu generaciju</p>
-          <Button 
-            variant="outline" 
-            className="mt-4"
-            onClick={() => setIsAddingEngine(true)}
-          >
-            <Plus className="mr-2 h-4 w-4" /> Dodaj prvi motor
-          </Button>
+        <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+          <div className="p-8 text-center">
+            <div className="mx-auto w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4">
+              <svg className="w-8 h-8 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Nema dostupnih motora</h3>
+            <p className="text-gray-600 mb-4">Za ovu generaciju još nije dodan nijedan motor</p>
+            <Button 
+              onClick={() => setIsAddingEngine(true)}
+              className="bg-blue-600 text-white hover:bg-blue-700 shadow-sm hover:shadow-md transition-all duration-200 rounded-xl px-4 py-2 font-semibold"
+            >
+              <Plus className="mr-2 h-4 w-4" /> Dodaj prvi motor
+            </Button>
+          </div>
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {engines.map((engine) => (
-            <Card key={engine.id} className="overflow-hidden">
-              <CardContent className="p-4">
-                <div className="flex justify-between items-start">
-                  <div>
-                    <div className="font-medium text-lg">
-                      {formatEngineType(engine.engineType)}
-                      {engine.engineCode && ` (${engine.engineCode})`}
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {engines.map((engine) => (
+                <div key={engine.id} className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden hover:shadow-md transition-all duration-200">
+                  {/* Engine Header */}
+                  <div className="bg-gray-50 border-b border-gray-200 px-6 py-4">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <div className="p-2 bg-white rounded-lg border border-gray-200">
+                          <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                          </svg>
+                        </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900">
+                        {formatEngineType(engine.engineType)}
+                      </h3>
+                      {engine.engineCode && (
+                        <p className="text-sm text-gray-600">Kod: {engine.engineCode}</p>
+                      )}
                     </div>
-                    <div className="text-sm text-muted-foreground mt-1">
-                      {engine.engineCapacity && `${engine.engineCapacity} ccm`}
-                      {engine.enginePowerKW && ` • ${engine.enginePowerKW} kW`}
-                      {engine.enginePowerHP && ` • ${engine.enginePowerHP} KS`}
-                    </div>
-                    {engine.description && (
-                      <div className="text-sm mt-2 text-gray-600">{engine.description}</div>
-                    )}
                   </div>
-                  <div className="flex space-x-2">
+                </div>
+              </div>
+              
+              {/* Engine Details */}
+              <div className="p-6">
+                <div className="space-y-3">
+                  {(engine.engineCapacity || engine.enginePowerKW || engine.enginePowerHP) && (
+                    <div className="flex flex-wrap gap-2">
+                      {engine.engineCapacity && (
+                        <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-medium">
+                          {engine.engineCapacity} ccm
+                        </span>
+                      )}
+                      {engine.enginePowerKW && (
+                        <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-medium">
+                          {engine.enginePowerKW} kW
+                        </span>
+                      )}
+                      {engine.enginePowerHP && (
+                        <span className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-medium">
+                          {engine.enginePowerHP} KS
+                        </span>
+                      )}
+                    </div>
+                  )}
+                  
+                  {engine.description && (
+                    <div className="text-sm text-gray-600 bg-gray-50 rounded-lg p-3">
+                      {engine.description}
+                    </div>
+                  )}
+                  
+                  <div className="flex justify-end space-x-2 pt-2">
                     <Button
-                      variant="outline"
-                      size="icon"
+                      size="sm"
                       onClick={() => handleEditEngine(engine)}
+                      className="bg-blue-600 text-white hover:bg-blue-700 shadow-sm hover:shadow-md transition-all duration-200 rounded-lg px-3 py-1 text-xs font-medium"
                     >
-                      <Edit className="h-4 w-4" />
+                      <Edit className="h-4 w-4 mr-1" />
+                      Uredi
                     </Button>
                     <Button
-                      variant="outline"
-                      size="icon"
+                      size="sm"
                       onClick={() => handleDeleteEngine(engine.id)}
+                      className="bg-red-600 text-white hover:bg-red-700 shadow-sm hover:shadow-md transition-all duration-200 rounded-lg px-3 py-1 text-xs font-medium"
                     >
-                      <Trash className="h-4 w-4" />
+                      <Trash className="h-4 w-4 mr-1" />
+                      Obriši
                     </Button>
                   </div>
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           ))}
         </div>
       )}
@@ -297,16 +355,26 @@ export const EngineClient = ({
       {/* Modal za dodavanje motora */}
       {isAddingEngine && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded-lg w-full max-w-md max-h-[90vh] overflow-y-auto">
-            <h2 className="text-xl font-bold mb-4">Dodaj novi motor</h2>
+          <div className="w-full max-w-md bg-white border border-gray-200 shadow-xl rounded-2xl p-6 max-h-[90vh] overflow-y-auto">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="p-2 bg-gray-100 rounded-lg border border-gray-200">
+                <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                </svg>
+              </div>
+              <div>
+                <h2 className="text-xl font-semibold text-gray-900">Dodaj novi motor</h2>
+                <p className="text-gray-600 text-sm">Kreirajte novi motor za ovu generaciju</p>
+              </div>
+            </div>
             <div className="space-y-4">
               <div className="space-y-2">
-                <label className="text-sm font-medium">Tip motora</label>
+                <label className="text-gray-700 font-medium">Tip motora</label>
                 <Select
                   value={engineType}
                   onValueChange={(value) => setEngineType(value)}
                 >
-                  <SelectTrigger>
+                  <SelectTrigger className="bg-white border-amber/30 focus:border-amber rounded-xl transition-all duration-200 text-gray-900">
                     <SelectValue placeholder="Odaberite tip motora" />
                   </SelectTrigger>
                   <SelectContent>
@@ -320,64 +388,75 @@ export const EngineClient = ({
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <label className="text-sm font-medium">Snaga (kW)</label>
+                  <label className="text-gray-700 font-medium">Snaga (kW)</label>
                   <Input
                     type="number"
                     placeholder="npr. 85"
                     value={enginePowerKW}
                     onChange={(e) => setEnginePowerKW(e.target.value)}
+                    className="bg-white border-amber/30 focus:border-amber rounded-xl transition-all duration-200 text-gray-900 placeholder:text-gray-500 px-4 py-2"
                   />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm font-medium">Snaga (KS)</label>
+                  <label className="text-gray-700 font-medium">Snaga (KS)</label>
                   <Input
                     type="number"
                     placeholder="npr. 115"
                     value={enginePowerHP}
                     onChange={(e) => setEnginePowerHP(e.target.value)}
+                    className="bg-white border-amber/30 focus:border-amber rounded-xl transition-all duration-200 text-gray-900 placeholder:text-gray-500 px-4 py-2"
                   />
                 </div>
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-medium">Zapremina (ccm)</label>
+                <label className="text-gray-700 font-medium">Zapremina (ccm)</label>
                 <Input
                   type="number"
                   placeholder="npr. 1998"
                   value={engineCapacity}
                   onChange={(e) => setEngineCapacity(e.target.value)}
+                  className="bg-white border-amber/30 focus:border-amber rounded-xl transition-all duration-200 text-gray-900 placeholder:text-gray-500 px-4 py-2"
                 />
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-medium">Kod motora</label>
+                <label className="text-gray-700 font-medium">Kod motora</label>
                 <Input
                   placeholder="npr. CJXA"
                   value={engineCode}
                   onChange={(e) => setEngineCode(e.target.value)}
+                  className="bg-white border-amber/30 focus:border-amber rounded-xl transition-all duration-200 text-gray-900 placeholder:text-gray-500 px-4 py-2"
                 />
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-medium">Opis (opciono)</label>
+                <label className="text-gray-700 font-medium">Opis (opciono)</label>
                 <Input
                   placeholder="Dodatni opis motora"
                   value={engineDescription}
                   onChange={(e) => setEngineDescription(e.target.value)}
+                  className="bg-white border-amber/30 focus:border-amber rounded-xl transition-all duration-200 text-gray-900 placeholder:text-gray-500 px-4 py-2"
                 />
               </div>
 
-              <div className="flex justify-end space-x-2 pt-2">
+              <div className="flex justify-end space-x-2 pt-4">
                 <Button
                   variant="outline"
                   onClick={() => {
                     resetForm();
                     setIsAddingEngine(false);
                   }}
+                  className="bg-white text-gray-700 hover:bg-gray-50 border-gray-300 hover:border-gray-400 rounded-xl transition-all duration-200 shadow-sm px-4 py-2 font-semibold"
                 >
                   Odustani
                 </Button>
-                <Button onClick={handleAddEngine}>Dodaj motor</Button>
+                <Button 
+                  onClick={handleAddEngine}
+                  className="bg-blue-600 text-white hover:bg-blue-700 shadow-sm hover:shadow-md transition-all duration-200 rounded-xl px-4 py-2 font-semibold"
+                >
+                  Dodaj motor
+                </Button>
               </div>
             </div>
           </div>
@@ -387,16 +466,26 @@ export const EngineClient = ({
       {/* Modal za uređivanje motora */}
       {isEditingEngine && currentEngine && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white p-6 rounded-lg w-full max-w-md max-h-[90vh] overflow-y-auto">
-            <h2 className="text-xl font-bold mb-4">Uredi motor</h2>
+          <div className="w-full max-w-md bg-white border border-gray-200 shadow-xl rounded-2xl p-6 max-h-[90vh] overflow-y-auto">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="p-2 bg-gray-100 rounded-lg border border-gray-200">
+                <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                </svg>
+              </div>
+              <div>
+                <h2 className="text-xl font-semibold text-gray-900">Uredi motor</h2>
+                <p className="text-gray-600 text-sm">Ažurirajte podatke o motoru</p>
+              </div>
+            </div>
             <div className="space-y-4">
               <div className="space-y-2">
-                <label className="text-sm font-medium">Tip motora</label>
+                <label className="text-gray-700 font-medium">Tip motora</label>
                 <Select
                   value={engineType}
                   onValueChange={(value) => setEngineType(value)}
                 >
-                  <SelectTrigger>
+                  <SelectTrigger className="bg-white border-amber/30 focus:border-amber rounded-xl transition-all duration-200 text-gray-900">
                     <SelectValue placeholder="Odaberite tip motora" />
                   </SelectTrigger>
                   <SelectContent>
@@ -410,64 +499,75 @@ export const EngineClient = ({
 
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <label className="text-sm font-medium">Snaga (kW)</label>
+                  <label className="text-gray-700 font-medium">Snaga (kW)</label>
                   <Input
                     type="number"
                     placeholder="npr. 85"
                     value={enginePowerKW}
                     onChange={(e) => setEnginePowerKW(e.target.value)}
+                    className="bg-white border-amber/30 focus:border-amber rounded-xl transition-all duration-200 text-gray-900 placeholder:text-gray-500 px-4 py-2"
                   />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-sm font-medium">Snaga (KS)</label>
+                  <label className="text-gray-700 font-medium">Snaga (KS)</label>
                   <Input
                     type="number"
                     placeholder="npr. 115"
                     value={enginePowerHP}
                     onChange={(e) => setEnginePowerHP(e.target.value)}
+                    className="bg-white border-amber/30 focus:border-amber rounded-xl transition-all duration-200 text-gray-900 placeholder:text-gray-500 px-4 py-2"
                   />
                 </div>
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-medium">Zapremina (ccm)</label>
+                <label className="text-gray-700 font-medium">Zapremina (ccm)</label>
                 <Input
                   type="number"
                   placeholder="npr. 1998"
                   value={engineCapacity}
                   onChange={(e) => setEngineCapacity(e.target.value)}
+                  className="bg-white border-amber/30 focus:border-amber rounded-xl transition-all duration-200 text-gray-900 placeholder:text-gray-500 px-4 py-2"
                 />
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-medium">Kod motora</label>
+                <label className="text-gray-700 font-medium">Kod motora</label>
                 <Input
                   placeholder="npr. CJXA"
                   value={engineCode}
                   onChange={(e) => setEngineCode(e.target.value)}
+                  className="bg-white border-amber/30 focus:border-amber rounded-xl transition-all duration-200 text-gray-900 placeholder:text-gray-500 px-4 py-2"
                 />
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-medium">Opis (opciono)</label>
+                <label className="text-gray-700 font-medium">Opis (opciono)</label>
                 <Input
                   placeholder="Dodatni opis motora"
                   value={engineDescription}
                   onChange={(e) => setEngineDescription(e.target.value)}
+                  className="bg-white border-amber/30 focus:border-amber rounded-xl transition-all duration-200 text-gray-900 placeholder:text-gray-500 px-4 py-2"
                 />
               </div>
 
-              <div className="flex justify-end space-x-2 pt-2">
+              <div className="flex justify-end space-x-2 pt-4">
                 <Button
                   variant="outline"
                   onClick={() => {
                     resetForm();
                     setIsEditingEngine(false);
                   }}
+                  className="bg-white text-gray-700 hover:bg-gray-50 border-gray-300 hover:border-gray-400 rounded-xl transition-all duration-200 shadow-sm px-4 py-2 font-semibold"
                 >
                   Odustani
                 </Button>
-                <Button onClick={handleUpdateEngine}>Spremi promjene</Button>
+                <Button 
+                  onClick={handleUpdateEngine}
+                  className="bg-blue-600 text-white hover:bg-blue-700 shadow-sm hover:shadow-md transition-all duration-200 rounded-xl px-4 py-2 font-semibold"
+                >
+                  Spremi promjene
+                </Button>
               </div>
             </div>
           </div>

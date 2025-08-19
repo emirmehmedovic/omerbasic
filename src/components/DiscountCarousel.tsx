@@ -1,36 +1,48 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import Image from 'next/image';
 
-// Placeholder data - replace with API data later
-const discountedProducts = [
-  {
-    id: 1,
-    name: 'Premium kočioni diskovi',
-    originalPrice: '150.00 KM',
-    discountedPrice: '119.99 KM',
-    imageUrl: '/placeholders/part1.jpg',
-  },
-  {
-    id: 2,
-    name: 'Set kvačila visoke performanse',
-    originalPrice: '450.00 KM',
-    discountedPrice: '379.99 KM',
-    imageUrl: '/placeholders/part2.jpg',
-  },
-  {
-    id: 3,
-    name: 'LED prednja svjetla',
-    originalPrice: '320.00 KM',
-    discountedPrice: '249.99 KM',
-    imageUrl: '/placeholders/part3.jpg',
-  },
-];
+interface FeaturedProduct {
+  id: string;
+  productId: string;
+  product: {
+    id: string;
+    name: string;
+    price: number;
+    imageUrl?: string;
+  };
+  displayOrder: number;
+  isActive: boolean;
+  customTitle?: string;
+  customImageUrl?: string;
+}
 
 export const DiscountCarousel = () => {
+  const [featuredProducts, setFeaturedProducts] = useState<FeaturedProduct[]>([]);
+  const [loading, setLoading] = useState(true);
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true });
+
+  useEffect(() => {
+    const fetchFeaturedProducts = async () => {
+      try {
+        const response = await fetch('/api/featured-products');
+        if (response.ok) {
+          const data = await response.json();
+          // Filtriraj samo aktivne proizvode
+          const activeProducts = data.filter((product: FeaturedProduct) => product.isActive);
+          setFeaturedProducts(activeProducts);
+        }
+      } catch (error) {
+        console.error('Greška pri dohvaćanju featured proizvoda:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchFeaturedProducts();
+  }, []);
 
   const scrollPrev = React.useCallback(() => {
     if (emblaApi) emblaApi.scrollPrev();
@@ -40,24 +52,46 @@ export const DiscountCarousel = () => {
     if (emblaApi) emblaApi.scrollNext();
   }, [emblaApi]);
 
+  if (loading) {
+    return (
+      <div className="relative w-full h-full flex flex-col justify-center items-center text-white">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-sunfire-500"></div>
+      </div>
+    );
+  }
+
+  if (featuredProducts.length === 0) {
+    return (
+      <div className="relative w-full h-full flex flex-col justify-center items-center text-white">
+        <div className="text-center">
+          <h3 className="text-2xl font-bold mb-2">Nema featured proizvoda</h3>
+          <p className="text-slate-300">Dodajte proizvode u admin panelu</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="relative w-full h-full flex flex-col justify-center items-center text-white">
       <div className="overflow-hidden w-full rounded-2xl" ref={emblaRef}>
         <div className="flex">
-          {discountedProducts.map((product) => (
-            <div className="flex-[0_0_100%] relative min-h-[400px]" key={product.id}>
+          {featuredProducts.map((featuredProduct) => (
+            <div className="flex-[0_0_100%] relative min-h-[400px]" key={featuredProduct.id}>
               <Image
-                src={product.imageUrl}
-                alt={product.name}
+                src={featuredProduct.customImageUrl || featuredProduct.product.imageUrl || '/placeholders/part1.jpg'}
+                alt={featuredProduct.customTitle || featuredProduct.product.name}
                 layout="fill"
                 objectFit="cover"
                 className="brightness-50"
               />
               <div className="absolute inset-0 flex flex-col justify-end p-8 bg-gradient-to-t from-black/60 to-transparent">
-                <h3 className="text-2xl font-bold mb-2">{product.name}</h3>
+                <h3 className="text-2xl font-bold mb-2">
+                  {featuredProduct.customTitle || featuredProduct.product.name}
+                </h3>
                 <div className="flex items-baseline gap-3">
-                  <p className="text-3xl font-bold accent-text">{product.discountedPrice}</p>
-                  <p className="text-xl line-through text-slate-400">{product.originalPrice}</p>
+                  <p className="text-3xl font-bold accent-text">
+                    {featuredProduct.product.price.toFixed(2)} KM
+                  </p>
                 </div>
               </div>
             </div>

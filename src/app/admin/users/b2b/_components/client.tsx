@@ -2,20 +2,22 @@
 
 import { useState } from 'react';
 import { User } from '@/generated/prisma/client';
-import { FiEdit, FiPlus, FiTrash2 } from 'react-icons/fi';
+import { FiEdit, FiPlus, FiTrash2, FiPercent } from 'react-icons/fi';
 import { CreateB2bUserForm } from '@/app/admin/users/_components/CreateB2bUserForm';
 import { EditUserForm } from '@/app/admin/users/_components/EditUserForm';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
 import { useSession } from 'next-auth/react';
+import { format } from 'date-fns';
+import Link from 'next/link';
 
 type SafeUser = Omit<User, 'password'>;
 
-interface UsersClientProps {
+interface B2BUsersClientProps {
   data: SafeUser[];
 }
 
-export function UsersClient({ data }: UsersClientProps) {
+export function B2BUsersClient({ data }: B2BUsersClientProps) {
   const { data: session } = useSession();
   const [users, setUsers] = useState<SafeUser[]>(data);
   const [isCreateModalOpen, setCreateModalOpen] = useState(false);
@@ -40,14 +42,14 @@ export function UsersClient({ data }: UsersClientProps) {
   };
 
   const handleDelete = async (userId: string) => {
-    if (!window.confirm('Jeste li sigurni da želite obrisati ovog korisnika? Ova akcija je nepovratna.')) {
+    if (!window.confirm('Jeste li sigurni da želite obrisati ovog B2B korisnika? Ova akcija je nepovratna.')) {
       return;
     }
 
     try {
       await axios.delete(`/api/admin/users/${userId}`);
       setUsers((currentUsers) => currentUsers.filter((user) => user.id !== userId));
-      toast.success('Korisnik je uspješno obrisan.');
+      toast.success('B2B korisnik je uspješno obrisan.');
     } catch (error: any) {
       const errorMessage = error.response?.data?.message || 'Došlo je do greške prilikom brisanja.';
       toast.error(errorMessage);
@@ -61,15 +63,15 @@ export function UsersClient({ data }: UsersClientProps) {
         <div className="flex items-center gap-3">
           <div className="p-3 bg-gradient-to-r from-white/80 to-gray-50/80 backdrop-blur-sm rounded-xl border border-amber/30">
             <svg className="w-8 h-8 text-amber" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
             </svg>
           </div>
           <div>
             <h1 className="text-3xl font-bold bg-gradient-to-r from-amber via-orange to-brown bg-clip-text text-transparent">
-              Upravljanje korisnicima
+              B2B korisnici
             </h1>
             <p className="text-gray-600 mt-1">
-              Upravljajte korisnicima sistema i B2B partnerima
+              Upravljanje B2B korisnicima i njihovim popustima
             </p>
           </div>
         </div>
@@ -81,12 +83,12 @@ export function UsersClient({ data }: UsersClientProps) {
             <div>
               <h2 className="text-xl font-semibold text-gray-900 flex items-center gap-2">
                 <svg className="w-5 h-5 text-amber" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                 </svg>
-                Korisnici ({users.length})
+                B2B korisnici ({users.length})
               </h2>
               <p className="text-gray-600 mt-1">
-                Pregled i upravljanje svim korisnicima sistema
+                Pregled i upravljanje svim B2B korisnicima sistema
               </p>
             </div>
             <button 
@@ -103,46 +105,63 @@ export function UsersClient({ data }: UsersClientProps) {
             <table className="min-w-full divide-y divide-amber/20">
               <thead className="bg-gradient-to-r from-amber/10 to-orange/10">
                 <tr>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-amber/70">Ime</th>
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-amber/70">Naziv firme</th>
                   <th scope="col" className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-amber/70">Email</th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-amber/70">Uloga</th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-amber/70">Firma</th>
-                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-amber/70">Popust</th>
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-amber/70">Opći popust</th>
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-amber/70">Datum registracije</th>
                   <th scope="col" className="relative px-6 py-3">
-                    <span className="sr-only">Uredi</span>
+                    <span className="sr-only">Akcije</span>
                   </th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-amber/20 bg-white">
-                {users.map((user) => (
-                  <tr key={user.id} className="hover:bg-gradient-to-r hover:from-amber/5 hover:to-orange/5 transition-colors duration-200">
-                    <td className="whitespace-nowrap px-6 py-4 text-gray-900 font-medium">{user.name}</td>
-                    <td className="whitespace-nowrap px-6 py-4 text-gray-700">{user.email}</td>
-                    <td className="whitespace-nowrap px-6 py-4">
-                      <span className={`rounded-full px-3 py-1 text-xs font-semibold ${user.role === 'ADMIN' ? 'badge-admin' : user.role === 'B2B' ? 'badge-b2b' : 'badge-user'}`}>
-                        {user.role}
-                      </span>
-                    </td>
-                    <td className="whitespace-nowrap px-6 py-4 text-gray-700">{user.companyName || '-'}</td>
-                    <td className="whitespace-nowrap px-6 py-4">
-                      <span className="badge-discount rounded-full px-3 py-1 text-xs font-semibold">
-                        {user.discountPercentage}%
-                      </span>
-                    </td>
-                    <td className="whitespace-nowrap px-6 py-4 text-right text-sm font-medium">
-                      <div className="flex items-center justify-end gap-x-4">
-                        <button onClick={() => openEditModal(user)} className="btn-edit p-2 rounded-lg transition-all duration-200">
-                          <FiEdit size={18} />
-                        </button>
-                        {session?.user?.id !== user.id && (
-                          <button onClick={() => handleDelete(user.id)} className="btn-delete p-2 rounded-lg transition-all duration-200">
-                            <FiTrash2 size={18} />
-                          </button>
-                        )}
+                {users.length === 0 ? (
+                  <tr>
+                    <td colSpan={5} className="px-6 py-8 text-center">
+                      <div className="flex flex-col items-center gap-3">
+                        <div className="p-3 bg-gradient-to-r from-white/80 to-gray-50/80 backdrop-blur-sm rounded-xl border border-amber/30">
+                          <svg className="w-8 h-8 text-amber/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                          </svg>
+                        </div>
+                        <div>
+                          <h3 className="text-lg font-semibold text-gray-900">Nema B2B korisnika</h3>
+                          <p className="text-gray-600 mt-1">Dodajte prvog B2B korisnika da počnete</p>
+                        </div>
                       </div>
                     </td>
                   </tr>
-                ))}
+                ) : (
+                  users.map((user) => (
+                    <tr key={user.id} className="hover:bg-gradient-to-r hover:from-amber/5 hover:to-orange/5 transition-colors duration-200">
+                      <td className="whitespace-nowrap px-6 py-4 text-gray-900 font-medium">{user.companyName || 'Nije uneseno'}</td>
+                      <td className="whitespace-nowrap px-6 py-4 text-gray-700">{user.email}</td>
+                      <td className="whitespace-nowrap px-6 py-4">
+                        <span className="badge-discount rounded-full px-3 py-1 text-xs font-semibold">
+                          {user.discountPercentage ? `${user.discountPercentage}%` : '0%'}
+                        </span>
+                      </td>
+                      <td className="whitespace-nowrap px-6 py-4 text-gray-700">{format(new Date(user.createdAt), 'dd.MM.yyyy.')}</td>
+                      <td className="whitespace-nowrap px-6 py-4 text-right text-sm font-medium">
+                        <div className="flex items-center justify-end gap-x-2">
+                          <button onClick={() => openEditModal(user)} className="btn-edit p-2 rounded-lg transition-all duration-200">
+                            <FiEdit size={18} />
+                          </button>
+                          <Link href={`/admin/users/${user.id}/discounts`}>
+                            <button className="btn-discounts p-2 rounded-lg transition-all duration-200">
+                              <FiPercent size={18} />
+                            </button>
+                          </Link>
+                          {session?.user?.id !== user.id && (
+                            <button onClick={() => handleDelete(user.id)} className="btn-delete p-2 rounded-lg transition-all duration-200">
+                              <FiTrash2 size={18} />
+                            </button>
+                          )}
+                        </div>
+                      </td>
+                    </tr>
+                  ))
+                )}
               </tbody>
             </table>
           </div>
@@ -176,7 +195,7 @@ export function UsersClient({ data }: UsersClientProps) {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900">Uredi korisnika: {selectedUser.name}</h3>
+              <h3 className="text-xl font-semibold text-gray-900">Uredi B2B korisnika: {selectedUser.companyName || selectedUser.name}</h3>
             </div>
             <EditUserForm
               user={selectedUser}

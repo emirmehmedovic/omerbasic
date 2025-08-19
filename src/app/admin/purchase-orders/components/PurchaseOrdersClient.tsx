@@ -4,12 +4,10 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { format } from "date-fns";
-import { Plus } from "lucide-react";
+import { Plus, FileText, Building2 } from "lucide-react";
 import { toast } from "react-hot-toast";
 
 import { Button } from "@/components/ui/button";
-import { Heading } from "@/components/ui/heading";
-import { Separator } from "@/components/ui/separator";
 import { DataTable } from "@/components/ui/data-table";
 import { CustomAlertModal } from "@/components/modals/custom-alert-modal";
 import { DateRangePicker } from "@/components/ui/date-range-picker";
@@ -66,8 +64,8 @@ export default function PurchaseOrdersClient() {
   const [purchaseOrders, setPurchaseOrders] = useState<PurchaseOrder[]>([]);
   const [open, setOpen] = useState(false);
   const [deletingId, setDeletingId] = useState<string | null>(null);
-  const [statusFilter, setStatusFilter] = useState<string>("");
-  const [supplierFilter, setSupplierFilter] = useState<string>("");
+  const [statusFilter, setStatusFilter] = useState<string>("all");
+  const [supplierFilter, setSupplierFilter] = useState<string>("all");
   const [suppliers, setSuppliers] = useState<{ id: string; name: string }[]>([]);
 
   // Dohvati narudžbenice
@@ -81,11 +79,11 @@ export default function PurchaseOrdersClient() {
         url += `fromDate=${startDate.toISOString()}&toDate=${endDate.toISOString()}&`;
       }
       
-      if (statusFilter) {
+      if (statusFilter && statusFilter !== "all") {
         url += `status=${statusFilter}&`;
       }
       
-      if (supplierFilter) {
+      if (supplierFilter && supplierFilter !== "all") {
         url += `supplierId=${supplierFilter}&`;
       }
       
@@ -139,7 +137,7 @@ export default function PurchaseOrdersClient() {
       accessorKey: "orderNumber",
       header: "Broj narudžbe",
       cell: ({ row }: any) => (
-        <div className="font-medium">
+        <div className="font-medium text-gray-900">
           {row.original.orderNumber}
         </div>
       ),
@@ -147,6 +145,11 @@ export default function PurchaseOrdersClient() {
     {
       accessorKey: "supplier.name",
       header: "Dobavljač",
+      cell: ({ row }: any) => (
+        <div className="text-gray-900">
+          {row.original.supplier.name}
+        </div>
+      ),
     },
     {
       accessorKey: "status",
@@ -159,19 +162,31 @@ export default function PurchaseOrdersClient() {
     {
       accessorKey: "orderDate",
       header: "Datum narudžbe",
-      cell: ({ row }: any) => format(new Date(row.original.orderDate), "dd.MM.yyyy"),
+      cell: ({ row }: any) => (
+        <div className="text-gray-900">
+          {format(new Date(row.original.orderDate), "dd.MM.yyyy")}
+        </div>
+      ),
     },
     {
       accessorKey: "expectedDeliveryDate",
       header: "Očekivana isporuka",
-      cell: ({ row }: any) => row.original.expectedDeliveryDate 
-        ? format(new Date(row.original.expectedDeliveryDate), "dd.MM.yyyy")
-        : "-",
+      cell: ({ row }: any) => (
+        <div className="text-gray-900">
+          {row.original.expectedDeliveryDate 
+            ? format(new Date(row.original.expectedDeliveryDate), "dd.MM.yyyy")
+            : "-"}
+        </div>
+      ),
     },
     {
       accessorKey: "totalAmount",
       header: "Ukupno (KM)",
-      cell: ({ row }: any) => `${row.original.totalAmount.toFixed(2)} KM`,
+      cell: ({ row }: any) => (
+        <div className="text-gray-900 font-medium">
+          {row.original.totalAmount.toFixed(2)} KM
+        </div>
+      ),
     },
     {
       id: "actions",
@@ -184,6 +199,7 @@ export default function PurchaseOrdersClient() {
               variant="outline" 
               size="sm"
               onClick={() => router.push(`/admin/purchase-orders/${purchaseOrder.id}`)}
+              className="bg-gradient-to-r from-white/95 to-gray-50/95 backdrop-blur-sm text-gray-700 hover:from-white hover:to-gray-50 border-amber/30 hover:border-amber/50 rounded-lg transition-all duration-200 shadow-sm"
             >
               Detalji
             </Button>
@@ -195,6 +211,7 @@ export default function PurchaseOrdersClient() {
                   setDeletingId(purchaseOrder.id);
                   setOpen(true);
                 }}
+                className="rounded-lg"
               >
                 Obriši
               </Button>
@@ -215,67 +232,87 @@ export default function PurchaseOrdersClient() {
         title="Brisanje narudžbenice"
         description="Jeste li sigurni da želite obrisati ovu narudžbenicu? Ova akcija se ne može poništiti."
       />
-      <div className="flex items-center justify-between">
-        <Heading
-          title={`Narudžbenice (${purchaseOrders.length})`}
-          description="Upravljanje narudžbenicama"
+
+      {/* Header Section */}
+      <div className="bg-gradient-to-br from-white via-gray-50/80 to-blue-50/60 backdrop-blur-sm rounded-2xl p-6 border border-amber/20 shadow-sm mb-6">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="p-2 bg-gradient-to-r from-white/80 to-gray-50/80 backdrop-blur-sm rounded-lg border border-amber/30">
+              <FileText className="w-6 h-6 text-amber" />
+            </div>
+            <div>
+              <h1 className="text-2xl font-bold bg-gradient-to-r from-gray-900 via-amber to-orange bg-clip-text text-transparent">
+                Narudžbenice
+              </h1>
+              <p className="text-gray-600 mt-1">Upravljajte narudžbenicama, filtrirajte po datumu, statusu i dobavljaču</p>
+            </div>
+          </div>
+
+          <Button 
+            onClick={() => router.push("/admin/purchase-orders/new")}
+            className="bg-gradient-to-r from-amber via-orange to-brown text-white hover:from-amber/90 hover:via-orange/90 hover:to-brown/90 shadow-lg hover:scale-105 transition-all duration-200 rounded-xl px-6 py-2 font-semibold"
+          >
+            <Plus className="mr-2 h-4 w-4" />
+            Nova narudžbenica
+          </Button>
+        </div>
+      </div>
+
+      {/* Filters */}
+      <div className="bg-gradient-to-r from-white/95 to-gray-50/95 backdrop-blur-sm rounded-2xl border border-amber/20 shadow-sm p-4 mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="flex-1 min-w-[200px]">
+            <label className="text-sm font-medium mb-1 block text-gray-700">Vremenski period</label>
+            <DateRangePicker />
+          </div>
+
+          <div className="min-w-[200px]">
+            <label className="text-sm font-medium mb-1 block text-gray-700">Status</label>
+            <Select value={statusFilter} onValueChange={(v) => setStatusFilter(v)}>
+              <SelectTrigger className="bg-white border-amber/30 focus:border-amber rounded-xl text-gray-900">
+                <SelectValue placeholder="Svi statusi" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">Svi statusi</SelectItem>
+                <SelectItem value="DRAFT">Nacrt</SelectItem>
+                <SelectItem value="SENT">Poslano</SelectItem>
+                <SelectItem value="CONFIRMED">Potvrđeno</SelectItem>
+                <SelectItem value="PARTIALLY_RECEIVED">Djelomično primljeno</SelectItem>
+                <SelectItem value="RECEIVED">Primljeno</SelectItem>
+                <SelectItem value="CANCELLED">Otkazano</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
+          <div className="min-w-[200px]">
+            <label className="text-sm font-medium mb-1 block text-gray-700">Dobavljač</label>
+            <Select value={supplierFilter} onValueChange={(v) => setSupplierFilter(v)}>
+              <SelectTrigger className="bg-white border-amber/30 focus:border-amber rounded-xl text-gray-900">
+                <SelectValue placeholder="Svi dobavljači" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">Svi dobavljači</SelectItem>
+                {suppliers.map((supplier) => (
+                  <SelectItem key={supplier.id} value={supplier.id}>
+                    {supplier.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+        </div>
+      </div>
+
+      {/* Table */}
+      <div className="bg-gradient-to-r from-white/95 to-gray-50/95 backdrop-blur-sm rounded-2xl border border-amber/20 shadow-sm p-4">
+        <DataTable
+          columns={columns}
+          data={purchaseOrders}
+          searchKey="orderNumber"
+          searchPlaceholder="Pretraži po broju narudžbe..."
+          isLoading={loading}
         />
-        <Button onClick={() => router.push("/admin/purchase-orders/new")}>
-          <Plus className="mr-2 h-4 w-4" />
-          Nova narudžbenica
-        </Button>
       </div>
-      <Separator />
-      
-      <div className="flex flex-wrap gap-4 mb-4">
-        <div className="flex-1 min-w-[200px]">
-          <label className="text-sm font-medium mb-1 block">Vremenski period</label>
-          <DateRangePicker />
-        </div>
-        
-        <div className="min-w-[200px]">
-          <label className="text-sm font-medium mb-1 block">Status</label>
-          <Select value={statusFilter} onValueChange={setStatusFilter}>
-            <SelectTrigger>
-              <SelectValue placeholder="Svi statusi" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">Svi statusi</SelectItem>
-              <SelectItem value="DRAFT">Nacrt</SelectItem>
-              <SelectItem value="SENT">Poslano</SelectItem>
-              <SelectItem value="CONFIRMED">Potvrđeno</SelectItem>
-              <SelectItem value="PARTIALLY_RECEIVED">Djelomično primljeno</SelectItem>
-              <SelectItem value="RECEIVED">Primljeno</SelectItem>
-              <SelectItem value="CANCELLED">Otkazano</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-        
-        <div className="min-w-[200px]">
-          <label className="text-sm font-medium mb-1 block">Dobavljač</label>
-          <Select value={supplierFilter} onValueChange={setSupplierFilter}>
-            <SelectTrigger>
-              <SelectValue placeholder="Svi dobavljači" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">Svi dobavljači</SelectItem>
-              {suppliers.map((supplier) => (
-                <SelectItem key={supplier.id} value={supplier.id}>
-                  {supplier.name}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
-      </div>
-      
-      <DataTable
-        columns={columns}
-        data={purchaseOrders}
-        searchKey="orderNumber"
-        searchPlaceholder="Pretraži po broju narudžbe..."
-        isLoading={loading}
-      />
     </>
   );
 }

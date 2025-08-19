@@ -5,11 +5,9 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import { format } from "date-fns";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line, PieChart, Pie, Cell } from "recharts";
-import { Download, FileDown } from "lucide-react";
+import { Download, FileDown, BarChart3, TrendingUp, Building2, Package, ArrowLeft } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { Heading } from "@/components/ui/heading";
-import { Separator } from "@/components/ui/separator";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { DateRangePicker } from "@/components/ui/date-range-picker";
 import { useDate } from "@/hooks/use-date-range";
@@ -59,7 +57,7 @@ const formatStatus = (status: string) => {
 };
 
 // Boje za grafikone
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884d8', '#82ca9d'];
+const COLORS = ['#f59e0b', '#ea580c', '#a16207', '#d97706', '#fbbf24', '#fcd34d'];
 
 export default function PurchaseOrderStatisticsClient() {
   const router = useRouter();
@@ -178,145 +176,182 @@ export default function PurchaseOrderStatisticsClient() {
 
   return (
     <>
-      <div className="flex items-center justify-between">
-        <Heading
-          title="Statistika narudžbenica"
-          description="Pregled statistike i analitike narudžbenica"
-        />
-        <Button
-          variant="outline"
-          onClick={() => router.push("/admin/purchase-orders")}
-        >
-          Natrag na narudžbenice
-        </Button>
-      </div>
-      <Separator />
-      
-      <div className="flex flex-wrap gap-4 mb-4">
-        <div className="flex-1 min-w-[200px]">
-          <label className="text-sm font-medium mb-1 block">Vremenski period</label>
-          <DateRangePicker />
-        </div>
-        
-        <div className="min-w-[200px]">
-          <label className="text-sm font-medium mb-1 block">Status</label>
-          <Select value={statusFilter} onValueChange={setStatusFilter}>
-            <SelectTrigger>
-              <SelectValue placeholder="Svi statusi" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">Svi statusi</SelectItem>
-              <SelectItem value="DRAFT">Nacrt</SelectItem>
-              <SelectItem value="SENT">Poslano</SelectItem>
-              <SelectItem value="CONFIRMED">Potvrđeno</SelectItem>
-              <SelectItem value="PARTIALLY_RECEIVED">Djelomično primljeno</SelectItem>
-              <SelectItem value="RECEIVED">Primljeno</SelectItem>
-              <SelectItem value="CANCELLED">Otkazano</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-        
-        <div className="min-w-[200px]">
-          <label className="text-sm font-medium mb-1 block">Dobavljač</label>
-          <Select value={supplierFilter} onValueChange={setSupplierFilter}>
-            <SelectTrigger>
-              <SelectValue placeholder="Svi dobavljači" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">Svi dobavljači</SelectItem>
-              {suppliers.map((supplier) => (
-                <SelectItem key={supplier.id} value={supplier.id}>
-                  {supplier.name}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+      {/* Header Section */}
+      <div className="bg-gradient-to-br from-white via-gray-50/80 to-blue-50/60 backdrop-blur-sm rounded-2xl p-6 border border-amber/20 shadow-sm mb-6">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={() => router.push("/admin/purchase-orders")}
+              className="bg-gradient-to-r from-white/95 to-gray-50/95 backdrop-blur-sm text-gray-700 hover:from-white hover:to-gray-50 border-amber/30 hover:border-amber/50 rounded-lg transition-all duration-200 shadow-sm"
+            >
+              <ArrowLeft className="h-4 w-4" />
+            </Button>
+            <div className="flex items-center gap-3">
+              <div className="p-2 bg-gradient-to-r from-white/80 to-gray-50/80 backdrop-blur-sm rounded-lg border border-amber/30">
+                <BarChart3 className="w-6 h-6 text-amber" />
+              </div>
+              <div>
+                <h1 className="text-2xl font-bold bg-gradient-to-r from-gray-900 via-amber to-orange bg-clip-text text-transparent">
+                  Statistika narudžbenica
+                </h1>
+                <p className="text-gray-600 mt-1">Pregled statistike i analitike narudžbenica</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+
+      {/* Filters Section */}
+      <div className="bg-gradient-to-r from-white/95 to-gray-50/95 backdrop-blur-sm rounded-2xl border border-amber/20 shadow-sm p-6 mb-6">
+        <h3 className="font-semibold text-gray-900 mb-4">Filteri</h3>
+        <div className="flex flex-wrap gap-4">
+          <div className="flex-1 min-w-[200px]">
+            <label className="text-sm font-medium mb-1 block text-gray-700">Vremenski period</label>
+            <DateRangePicker />
+          </div>
+          
+          <div className="min-w-[200px]">
+            <label className="text-sm font-medium mb-1 block text-gray-700">Status</label>
+            <Select value={statusFilter} onValueChange={setStatusFilter}>
+              <SelectTrigger className="bg-white border-amber/30 focus:border-amber rounded-xl transition-all duration-200 text-gray-900 placeholder:text-gray-500">
+                <SelectValue placeholder="Svi statusi" />
+              </SelectTrigger>
+              <SelectContent className="bg-white border border-amber/20 rounded-xl shadow-lg">
+                <SelectItem value="all">Svi statusi</SelectItem>
+                <SelectItem value="DRAFT">Nacrt</SelectItem>
+                <SelectItem value="SENT">Poslano</SelectItem>
+                <SelectItem value="CONFIRMED">Potvrđeno</SelectItem>
+                <SelectItem value="PARTIALLY_RECEIVED">Djelomično primljeno</SelectItem>
+                <SelectItem value="RECEIVED">Primljeno</SelectItem>
+                <SelectItem value="CANCELLED">Otkazano</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          
+          <div className="min-w-[200px]">
+            <label className="text-sm font-medium mb-1 block text-gray-700">Dobavljač</label>
+            <Select value={supplierFilter} onValueChange={setSupplierFilter}>
+              <SelectTrigger className="bg-white border-amber/30 focus:border-amber rounded-xl transition-all duration-200 text-gray-900 placeholder:text-gray-500">
+                <SelectValue placeholder="Svi dobavljači" />
+              </SelectTrigger>
+              <SelectContent className="bg-white border border-amber/20 rounded-xl shadow-lg">
+                <SelectItem value="all">Svi dobavljači</SelectItem>
+                {suppliers.map((supplier) => (
+                  <SelectItem key={supplier.id} value={supplier.id}>
+                    {supplier.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+        </div>
+      </div>
       
-      {/* Izvoz podataka */}
-      <div className="flex flex-wrap gap-2 mb-6">
-        <Select value={exportDataType} onValueChange={setExportDataType}>
-          <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="Tip podataka" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="orders">Narudžbenice</SelectItem>
-            <SelectItem value="suppliers">Dobavljači</SelectItem>
-            <SelectItem value="products">Proizvodi</SelectItem>
-            <SelectItem value="status">Statusi</SelectItem>
-          </SelectContent>
-        </Select>
-        
-        <Select value={exportType} onValueChange={(value: any) => setExportType(value)}>
-          <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="Format izvoza" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="csv">CSV</SelectItem>
-            <SelectItem value="json">JSON</SelectItem>
-            <SelectItem value="excel">Excel</SelectItem>
-          </SelectContent>
-        </Select>
-        
-        <Button variant="outline" onClick={handleExport} disabled={!stats}>
-          <FileDown className="mr-2 h-4 w-4" />
-          Izvoz podataka
-        </Button>
+      {/* Export Section */}
+      <div className="bg-gradient-to-r from-white/95 to-gray-50/95 backdrop-blur-sm rounded-2xl border border-amber/20 shadow-sm p-6 mb-6">
+        <h3 className="font-semibold text-gray-900 mb-4">Izvoz podataka</h3>
+        <div className="flex flex-wrap gap-3">
+          <Select value={exportDataType} onValueChange={setExportDataType}>
+            <SelectTrigger className="w-[180px] bg-white border-amber/30 focus:border-amber rounded-xl transition-all duration-200 text-gray-900">
+              <SelectValue placeholder="Tip podataka" />
+            </SelectTrigger>
+            <SelectContent className="bg-white border border-amber/20 rounded-xl shadow-lg">
+              <SelectItem value="orders">Narudžbenice</SelectItem>
+              <SelectItem value="suppliers">Dobavljači</SelectItem>
+              <SelectItem value="products">Proizvodi</SelectItem>
+              <SelectItem value="status">Statusi</SelectItem>
+            </SelectContent>
+          </Select>
+          
+          <Select value={exportType} onValueChange={(value: any) => setExportType(value)}>
+            <SelectTrigger className="w-[180px] bg-white border-amber/30 focus:border-amber rounded-xl transition-all duration-200 text-gray-900">
+              <SelectValue placeholder="Format izvoza" />
+            </SelectTrigger>
+            <SelectContent className="bg-white border border-amber/20 rounded-xl shadow-lg">
+              <SelectItem value="csv">CSV</SelectItem>
+              <SelectItem value="json">JSON</SelectItem>
+              <SelectItem value="excel">Excel</SelectItem>
+            </SelectContent>
+          </Select>
+          
+          <Button 
+            variant="outline" 
+            onClick={handleExport} 
+            disabled={!stats}
+            className="bg-gradient-to-r from-white/95 to-gray-50/95 backdrop-blur-sm text-gray-700 hover:from-white hover:to-gray-50 border-amber/30 hover:border-amber/50 rounded-xl transition-all duration-200 shadow-sm"
+          >
+            <FileDown className="mr-2 h-4 w-4" />
+            Izvoz podataka
+          </Button>
+        </div>
       </div>
       
       {loading ? (
-        <div className="flex items-center justify-center h-64">
-          <p>Učitavanje statistike...</p>
+        <div className="flex items-center justify-center h-64 bg-gradient-to-r from-white/95 to-gray-50/95 backdrop-blur-sm rounded-2xl border border-amber/20">
+          <p className="text-gray-600">Učitavanje statistike...</p>
         </div>
       ) : !stats ? (
-        <div className="flex items-center justify-center h-64">
-          <p>Nema dostupnih podataka za odabrani period.</p>
+        <div className="flex items-center justify-center h-64 bg-gradient-to-r from-white/95 to-gray-50/95 backdrop-blur-sm rounded-2xl border border-amber/20">
+          <p className="text-gray-600">Nema dostupnih podataka za odabrani period.</p>
         </div>
       ) : (
         <>
-          <Tabs value={activeTab} onValueChange={setActiveTab}>
-            <TabsList>
-              <TabsTrigger value="overview">Pregled</TabsTrigger>
-              <TabsTrigger value="monthly">Mjesečna statistika</TabsTrigger>
-              <TabsTrigger value="suppliers">Dobavljači</TabsTrigger>
-              <TabsTrigger value="products">Proizvodi</TabsTrigger>
+          <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
+            <TabsList className="bg-gradient-to-r from-white/95 to-gray-50/95 backdrop-blur-sm border border-amber/20 rounded-xl p-1">
+              <TabsTrigger value="overview" className="text-gray-700 hover:text-gray-900 data-[state=active]:bg-gradient-to-r data-[state=active]:from-amber data-[state=active]:via-orange data-[state=active]:to-brown data-[state=active]:text-white rounded-lg transition-all duration-200">Pregled</TabsTrigger>
+              <TabsTrigger value="monthly" className="text-gray-700 hover:text-gray-900 data-[state=active]:bg-gradient-to-r data-[state=active]:from-amber data-[state=active]:via-orange data-[state=active]:to-brown data-[state=active]:text-white rounded-lg transition-all duration-200">Mjesečna statistika</TabsTrigger>
+              <TabsTrigger value="suppliers" className="text-gray-700 hover:text-gray-900 data-[state=active]:bg-gradient-to-r data-[state=active]:from-amber data-[state=active]:via-orange data-[state=active]:to-brown data-[state=active]:text-white rounded-lg transition-all duration-200">Dobavljači</TabsTrigger>
+              <TabsTrigger value="products" className="text-gray-700 hover:text-gray-900 data-[state=active]:bg-gradient-to-r data-[state=active]:from-amber data-[state=active]:via-orange data-[state=active]:to-brown data-[state=active]:text-white rounded-lg transition-all duration-200">Proizvodi</TabsTrigger>
             </TabsList>
             
-            <TabsContent value="overview" className="space-y-4 mt-4">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <Card>
-                  <CardHeader className="pb-2">
-                    <CardTitle className="text-sm font-medium">Ukupno narudžbenica</CardTitle>
+            <TabsContent value="overview" className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <Card className="bg-gradient-to-r from-white/95 to-gray-50/95 backdrop-blur-sm border border-amber/20 shadow-sm">
+                  <CardHeader className="bg-gradient-to-r from-amber/5 to-orange/5 border-b border-amber/20">
+                    <CardTitle className="flex items-center gap-2 text-gray-900">
+                      <BarChart3 className="w-5 h-5 text-amber" />
+                      Ukupno narudžbenica
+                    </CardTitle>
                   </CardHeader>
-                  <CardContent>
-                    <div className="text-2xl font-bold">{stats.totalOrders}</div>
+                  <CardContent className="pt-4">
+                    <div className="text-3xl font-bold text-gray-900">{stats.totalOrders}</div>
                   </CardContent>
                 </Card>
-                <Card>
-                  <CardHeader className="pb-2">
-                    <CardTitle className="text-sm font-medium">Ukupan iznos</CardTitle>
+                <Card className="bg-gradient-to-r from-white/95 to-gray-50/95 backdrop-blur-sm border border-amber/20 shadow-sm">
+                  <CardHeader className="bg-gradient-to-r from-amber/5 to-orange/5 border-b border-amber/20">
+                    <CardTitle className="flex items-center gap-2 text-gray-900">
+                      <TrendingUp className="w-5 h-5 text-amber" />
+                      Ukupan iznos
+                    </CardTitle>
                   </CardHeader>
-                  <CardContent>
-                    <div className="text-2xl font-bold">{stats.totalAmount.toFixed(2)} KM</div>
+                  <CardContent className="pt-4">
+                    <div className="text-3xl font-bold text-gray-900">{stats.totalAmount.toFixed(2)} KM</div>
                   </CardContent>
                 </Card>
-                <Card>
-                  <CardHeader className="pb-2">
-                    <CardTitle className="text-sm font-medium">Prosječna vrijednost narudžbe</CardTitle>
+                <Card className="bg-gradient-to-r from-white/95 to-gray-50/95 backdrop-blur-sm border border-amber/20 shadow-sm">
+                  <CardHeader className="bg-gradient-to-r from-amber/5 to-orange/5 border-b border-amber/20">
+                    <CardTitle className="flex items-center gap-2 text-gray-900">
+                      <TrendingUp className="w-5 h-5 text-amber" />
+                      Prosječna vrijednost
+                    </CardTitle>
                   </CardHeader>
-                  <CardContent>
-                    <div className="text-2xl font-bold">{stats.averageOrderValue.toFixed(2)} KM</div>
+                  <CardContent className="pt-4">
+                    <div className="text-3xl font-bold text-gray-900">{stats.averageOrderValue.toFixed(2)} KM</div>
                   </CardContent>
                 </Card>
               </div>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Narudžbenice po statusu</CardTitle>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <Card className="bg-gradient-to-r from-white/95 to-gray-50/95 backdrop-blur-sm border border-amber/20 shadow-sm">
+                  <CardHeader className="bg-gradient-to-r from-amber/5 to-orange/5 border-b border-amber/20">
+                    <CardTitle className="flex items-center gap-2 text-gray-900">
+                      <BarChart3 className="w-5 h-5 text-amber" />
+                      Narudžbenice po statusu
+                    </CardTitle>
                   </CardHeader>
-                  <CardContent className="h-[300px]">
+                  <CardContent className="h-[300px] pt-4">
                     <ResponsiveContainer width="100%" height="100%">
                       <PieChart>
                         <Pie
@@ -341,11 +376,14 @@ export default function PurchaseOrderStatisticsClient() {
                   </CardContent>
                 </Card>
                 
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Mjesečni trend narudžbi</CardTitle>
+                <Card className="bg-gradient-to-r from-white/95 to-gray-50/95 backdrop-blur-sm border border-amber/20 shadow-sm">
+                  <CardHeader className="bg-gradient-to-r from-amber/5 to-orange/5 border-b border-amber/20">
+                    <CardTitle className="flex items-center gap-2 text-gray-900">
+                      <TrendingUp className="w-5 h-5 text-amber" />
+                      Mjesečni trend narudžbi
+                    </CardTitle>
                   </CardHeader>
-                  <CardContent className="h-[300px]">
+                  <CardContent className="h-[300px] pt-4">
                     <ResponsiveContainer width="100%" height="100%">
                       <LineChart
                         data={stats.monthlyStats}
@@ -356,8 +394,8 @@ export default function PurchaseOrderStatisticsClient() {
                         <YAxis />
                         <Tooltip formatter={(value) => typeof value === 'number' ? value.toFixed(2) : value} />
                         <Legend />
-                        <Line type="monotone" dataKey="orders" name="Broj narudžbi" stroke="#8884d8" />
-                        <Line type="monotone" dataKey="amount" name="Iznos (KM)" stroke="#82ca9d" />
+                        <Line type="monotone" dataKey="orders" name="Broj narudžbi" stroke="#f59e0b" />
+                        <Line type="monotone" dataKey="amount" name="Iznos (KM)" stroke="#ea580c" />
                       </LineChart>
                     </ResponsiveContainer>
                   </CardContent>
@@ -365,12 +403,15 @@ export default function PurchaseOrderStatisticsClient() {
               </div>
             </TabsContent>
             
-            <TabsContent value="monthly" className="space-y-4 mt-4">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Mjesečna statistika narudžbenica</CardTitle>
+            <TabsContent value="monthly" className="space-y-6">
+              <Card className="bg-gradient-to-r from-white/95 to-gray-50/95 backdrop-blur-sm border border-amber/20 shadow-sm">
+                <CardHeader className="bg-gradient-to-r from-amber/5 to-orange/5 border-b border-amber/20">
+                  <CardTitle className="flex items-center gap-2 text-gray-900">
+                    <BarChart3 className="w-5 h-5 text-amber" />
+                    Mjesečna statistika narudžbenica
+                  </CardTitle>
                 </CardHeader>
-                <CardContent className="h-[400px]">
+                <CardContent className="h-[400px] pt-4">
                   <ResponsiveContainer width="100%" height="100%">
                     <BarChart
                       data={stats.monthlyStats}
@@ -378,39 +419,42 @@ export default function PurchaseOrderStatisticsClient() {
                     >
                       <CartesianGrid strokeDasharray="3 3" />
                       <XAxis dataKey="month" />
-                      <YAxis yAxisId="left" orientation="left" stroke="#8884d8" />
-                      <YAxis yAxisId="right" orientation="right" stroke="#82ca9d" />
+                      <YAxis yAxisId="left" orientation="left" stroke="#f59e0b" />
+                      <YAxis yAxisId="right" orientation="right" stroke="#ea580c" />
                       <Tooltip formatter={(value) => typeof value === 'number' ? value.toFixed(2) : value} />
                       <Legend />
-                      <Bar yAxisId="left" dataKey="orders" name="Broj narudžbi" fill="#8884d8" />
-                      <Bar yAxisId="right" dataKey="amount" name="Iznos (KM)" fill="#82ca9d" />
+                      <Bar yAxisId="left" dataKey="orders" name="Broj narudžbi" fill="#f59e0b" />
+                      <Bar yAxisId="right" dataKey="amount" name="Iznos (KM)" fill="#ea580c" />
                     </BarChart>
                   </ResponsiveContainer>
                 </CardContent>
               </Card>
               
-              <Card>
-                <CardHeader>
-                  <CardTitle>Detaljna mjesečna statistika</CardTitle>
+              <Card className="bg-gradient-to-r from-white/95 to-gray-50/95 backdrop-blur-sm border border-amber/20 shadow-sm">
+                <CardHeader className="bg-gradient-to-r from-amber/5 to-orange/5 border-b border-amber/20">
+                  <CardTitle className="flex items-center gap-2 text-gray-900">
+                    <BarChart3 className="w-5 h-5 text-amber" />
+                    Detaljna mjesečna statistika
+                  </CardTitle>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="pt-4">
                   <div className="overflow-x-auto">
                     <table className="w-full border-collapse">
                       <thead>
-                        <tr className="border-b">
-                          <th className="text-left py-2 px-4">Mjesec</th>
-                          <th className="text-right py-2 px-4">Broj narudžbi</th>
-                          <th className="text-right py-2 px-4">Ukupan iznos (KM)</th>
-                          <th className="text-right py-2 px-4">Prosječna vrijednost (KM)</th>
+                        <tr className="border-b border-amber/20">
+                          <th className="text-left py-3 px-4 text-gray-700 font-medium">Mjesec</th>
+                          <th className="text-right py-3 px-4 text-gray-700 font-medium">Broj narudžbi</th>
+                          <th className="text-right py-3 px-4 text-gray-700 font-medium">Ukupan iznos (KM)</th>
+                          <th className="text-right py-3 px-4 text-gray-700 font-medium">Prosječna vrijednost (KM)</th>
                         </tr>
                       </thead>
                       <tbody>
                         {stats.monthlyStats.map((item, index) => (
-                          <tr key={index} className="border-b hover:bg-muted/50">
-                            <td className="py-2 px-4">{item.month}</td>
-                            <td className="text-right py-2 px-4">{item.orders}</td>
-                            <td className="text-right py-2 px-4">{item.amount.toFixed(2)}</td>
-                            <td className="text-right py-2 px-4">
+                          <tr key={index} className="border-b border-amber/10 hover:bg-amber/5 transition-colors">
+                            <td className="py-3 px-4 text-gray-900">{item.month}</td>
+                            <td className="text-right py-3 px-4 text-gray-900 font-medium">{item.orders}</td>
+                            <td className="text-right py-3 px-4 text-gray-900">{item.amount.toFixed(2)}</td>
+                            <td className="text-right py-3 px-4 text-gray-900">
                               {item.orders > 0 ? (item.amount / item.orders).toFixed(2) : "0.00"}
                             </td>
                           </tr>
@@ -422,12 +466,15 @@ export default function PurchaseOrderStatisticsClient() {
               </Card>
             </TabsContent>
             
-            <TabsContent value="suppliers" className="space-y-4 mt-4">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Top dobavljači po broju narudžbi</CardTitle>
+            <TabsContent value="suppliers" className="space-y-6">
+              <Card className="bg-gradient-to-r from-white/95 to-gray-50/95 backdrop-blur-sm border border-amber/20 shadow-sm">
+                <CardHeader className="bg-gradient-to-r from-amber/5 to-orange/5 border-b border-amber/20">
+                  <CardTitle className="flex items-center gap-2 text-gray-900">
+                    <Building2 className="w-5 h-5 text-amber" />
+                    Top dobavljači po broju narudžbi
+                  </CardTitle>
                 </CardHeader>
-                <CardContent className="h-[400px]">
+                <CardContent className="h-[400px] pt-4">
                   <ResponsiveContainer width="100%" height="100%">
                     <BarChart
                       data={stats.topSuppliers}
@@ -439,17 +486,20 @@ export default function PurchaseOrderStatisticsClient() {
                       <YAxis type="category" dataKey="supplierName" width={150} />
                       <Tooltip />
                       <Legend />
-                      <Bar dataKey="orderCount" name="Broj narudžbi" fill="#8884d8" />
+                      <Bar dataKey="orderCount" name="Broj narudžbi" fill="#f59e0b" />
                     </BarChart>
                   </ResponsiveContainer>
                 </CardContent>
               </Card>
               
-              <Card>
-                <CardHeader>
-                  <CardTitle>Top dobavljači po ukupnom iznosu</CardTitle>
+              <Card className="bg-gradient-to-r from-white/95 to-gray-50/95 backdrop-blur-sm border border-amber/20 shadow-sm">
+                <CardHeader className="bg-gradient-to-r from-amber/5 to-orange/5 border-b border-amber/20">
+                  <CardTitle className="flex items-center gap-2 text-gray-900">
+                    <Building2 className="w-5 h-5 text-amber" />
+                    Top dobavljači po ukupnom iznosu
+                  </CardTitle>
                 </CardHeader>
-                <CardContent className="h-[400px]">
+                <CardContent className="h-[400px] pt-4">
                   <ResponsiveContainer width="100%" height="100%">
                     <BarChart
                       data={stats.topSuppliers}
@@ -461,34 +511,37 @@ export default function PurchaseOrderStatisticsClient() {
                       <YAxis type="category" dataKey="supplierName" width={150} />
                       <Tooltip formatter={(value) => typeof value === 'number' ? value.toFixed(2) + ' KM' : value} />
                       <Legend />
-                      <Bar dataKey="totalAmount" name="Ukupan iznos (KM)" fill="#82ca9d" />
+                      <Bar dataKey="totalAmount" name="Ukupan iznos (KM)" fill="#ea580c" />
                     </BarChart>
                   </ResponsiveContainer>
                 </CardContent>
               </Card>
               
-              <Card>
-                <CardHeader>
-                  <CardTitle>Detaljna statistika dobavljača</CardTitle>
+              <Card className="bg-gradient-to-r from-white/95 to-gray-50/95 backdrop-blur-sm border border-amber/20 shadow-sm">
+                <CardHeader className="bg-gradient-to-r from-amber/5 to-orange/5 border-b border-amber/20">
+                  <CardTitle className="flex items-center gap-2 text-gray-900">
+                    <Building2 className="w-5 h-5 text-amber" />
+                    Detaljna statistika dobavljača
+                  </CardTitle>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="pt-4">
                   <div className="overflow-x-auto">
                     <table className="w-full border-collapse">
                       <thead>
-                        <tr className="border-b">
-                          <th className="text-left py-2 px-4">Dobavljač</th>
-                          <th className="text-right py-2 px-4">Broj narudžbi</th>
-                          <th className="text-right py-2 px-4">Ukupan iznos (KM)</th>
-                          <th className="text-right py-2 px-4">Prosječna vrijednost (KM)</th>
+                        <tr className="border-b border-amber/20">
+                          <th className="text-left py-3 px-4 text-gray-700 font-medium">Dobavljač</th>
+                          <th className="text-right py-3 px-4 text-gray-700 font-medium">Broj narudžbi</th>
+                          <th className="text-right py-3 px-4 text-gray-700 font-medium">Ukupan iznos (KM)</th>
+                          <th className="text-right py-3 px-4 text-gray-700 font-medium">Prosječna vrijednost (KM)</th>
                         </tr>
                       </thead>
                       <tbody>
                         {stats.topSuppliers.map((item) => (
-                          <tr key={item.supplierId} className="border-b hover:bg-muted/50">
-                            <td className="py-2 px-4">{item.supplierName}</td>
-                            <td className="text-right py-2 px-4">{item.orderCount}</td>
-                            <td className="text-right py-2 px-4">{item.totalAmount.toFixed(2)}</td>
-                            <td className="text-right py-2 px-4">
+                          <tr key={item.supplierId} className="border-b border-amber/10 hover:bg-amber/5 transition-colors">
+                            <td className="py-3 px-4 text-gray-900">{item.supplierName}</td>
+                            <td className="text-right py-3 px-4 text-gray-900 font-medium">{item.orderCount}</td>
+                            <td className="text-right py-3 px-4 text-gray-900">{item.totalAmount.toFixed(2)}</td>
+                            <td className="text-right py-3 px-4 text-gray-900">
                               {item.orderCount > 0 ? (item.totalAmount / item.orderCount).toFixed(2) : "0.00"}
                             </td>
                           </tr>
@@ -500,12 +553,15 @@ export default function PurchaseOrderStatisticsClient() {
               </Card>
             </TabsContent>
             
-            <TabsContent value="products" className="space-y-4 mt-4">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Top proizvodi po količini</CardTitle>
+            <TabsContent value="products" className="space-y-6">
+              <Card className="bg-gradient-to-r from-white/95 to-gray-50/95 backdrop-blur-sm border border-amber/20 shadow-sm">
+                <CardHeader className="bg-gradient-to-r from-amber/5 to-orange/5 border-b border-amber/20">
+                  <CardTitle className="flex items-center gap-2 text-gray-900">
+                    <Package className="w-5 h-5 text-amber" />
+                    Top proizvodi po količini
+                  </CardTitle>
                 </CardHeader>
-                <CardContent className="h-[400px]">
+                <CardContent className="h-[400px] pt-4">
                   <ResponsiveContainer width="100%" height="100%">
                     <BarChart
                       data={stats.topProducts}
@@ -517,17 +573,20 @@ export default function PurchaseOrderStatisticsClient() {
                       <YAxis type="category" dataKey="productName" width={150} />
                       <Tooltip />
                       <Legend />
-                      <Bar dataKey="quantity" name="Količina" fill="#8884d8" />
+                      <Bar dataKey="quantity" name="Količina" fill="#f59e0b" />
                     </BarChart>
                   </ResponsiveContainer>
                 </CardContent>
               </Card>
               
-              <Card>
-                <CardHeader>
-                  <CardTitle>Top proizvodi po ukupnom iznosu</CardTitle>
+              <Card className="bg-gradient-to-r from-white/95 to-gray-50/95 backdrop-blur-sm border border-amber/20 shadow-sm">
+                <CardHeader className="bg-gradient-to-r from-amber/5 to-orange/5 border-b border-amber/20">
+                  <CardTitle className="flex items-center gap-2 text-gray-900">
+                    <Package className="w-5 h-5 text-amber" />
+                    Top proizvodi po ukupnom iznosu
+                  </CardTitle>
                 </CardHeader>
-                <CardContent className="h-[400px]">
+                <CardContent className="h-[400px] pt-4">
                   <ResponsiveContainer width="100%" height="100%">
                     <BarChart
                       data={stats.topProducts}
@@ -539,34 +598,37 @@ export default function PurchaseOrderStatisticsClient() {
                       <YAxis type="category" dataKey="productName" width={150} />
                       <Tooltip formatter={(value) => typeof value === 'number' ? value.toFixed(2) + ' KM' : value} />
                       <Legend />
-                      <Bar dataKey="totalAmount" name="Ukupan iznos (KM)" fill="#82ca9d" />
+                      <Bar dataKey="totalAmount" name="Ukupan iznos (KM)" fill="#ea580c" />
                     </BarChart>
                   </ResponsiveContainer>
                 </CardContent>
               </Card>
               
-              <Card>
-                <CardHeader>
-                  <CardTitle>Detaljna statistika proizvoda</CardTitle>
+              <Card className="bg-gradient-to-r from-white/95 to-gray-50/95 backdrop-blur-sm border border-amber/20 shadow-sm">
+                <CardHeader className="bg-gradient-to-r from-amber/5 to-orange/5 border-b border-amber/20">
+                  <CardTitle className="flex items-center gap-2 text-gray-900">
+                    <Package className="w-5 h-5 text-amber" />
+                    Detaljna statistika proizvoda
+                  </CardTitle>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="pt-4">
                   <div className="overflow-x-auto">
                     <table className="w-full border-collapse">
                       <thead>
-                        <tr className="border-b">
-                          <th className="text-left py-2 px-4">Proizvod</th>
-                          <th className="text-right py-2 px-4">Količina</th>
-                          <th className="text-right py-2 px-4">Ukupan iznos (KM)</th>
-                          <th className="text-right py-2 px-4">Prosječna cijena (KM)</th>
+                        <tr className="border-b border-amber/20">
+                          <th className="text-left py-3 px-4 text-gray-700 font-medium">Proizvod</th>
+                          <th className="text-right py-3 px-4 text-gray-700 font-medium">Količina</th>
+                          <th className="text-right py-3 px-4 text-gray-700 font-medium">Ukupan iznos (KM)</th>
+                          <th className="text-right py-3 px-4 text-gray-700 font-medium">Prosječna cijena (KM)</th>
                         </tr>
                       </thead>
                       <tbody>
                         {stats.topProducts.map((item) => (
-                          <tr key={item.productId} className="border-b hover:bg-muted/50">
-                            <td className="py-2 px-4">{item.productName}</td>
-                            <td className="text-right py-2 px-4">{item.quantity}</td>
-                            <td className="text-right py-2 px-4">{item.totalAmount.toFixed(2)}</td>
-                            <td className="text-right py-2 px-4">
+                          <tr key={item.productId} className="border-b border-amber/10 hover:bg-amber/5 transition-colors">
+                            <td className="py-3 px-4 text-gray-900">{item.productName}</td>
+                            <td className="text-right py-3 px-4 text-gray-900 font-medium">{item.quantity}</td>
+                            <td className="text-right py-3 px-4 text-gray-900">{item.totalAmount.toFixed(2)}</td>
+                            <td className="text-right py-3 px-4 text-gray-900">
                               {item.quantity > 0 ? (item.totalAmount / item.quantity).toFixed(2) : "0.00"}
                             </td>
                           </tr>
