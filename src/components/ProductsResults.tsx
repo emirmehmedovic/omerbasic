@@ -41,41 +41,63 @@ export default function ProductsResults({ filters }: Props) {
   const [view, setView] = useState<'grid' | 'list'>('list');
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
+  const [loadingMore, setLoadingMore] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
+  const [hasMore, setHasMore] = useState<boolean>(false);
+  const PAGE_SIZE = 24;
   const { addToCart } = useCart();
 
-  const queryString = useMemo(() => {
+  const baseParams = useMemo(() => {
     const params = new URLSearchParams();
     if (filters.categoryId) params.set("categoryId", String(filters.categoryId));
     if (filters.generationId) params.set("generationId", String(filters.generationId));
     if (filters.minPrice) params.set("minPrice", String(filters.minPrice));
     if (filters.maxPrice) params.set("maxPrice", String(filters.maxPrice));
     if (filters.q) params.set("q", String(filters.q));
-    return params.toString();
+    return params;
   }, [filters]);
 
+  const fetchPage = async (skip: number, append: boolean) => {
+    const params = new URLSearchParams(baseParams.toString());
+    params.set('limit', String(PAGE_SIZE));
+    params.set('skip', String(skip));
+    const url = `/api/products?${params.toString()}`;
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`Greška pri dohvaćanju proizvoda (${res.status})`);
+    const data: Product[] = await res.json();
+    setHasMore(data.length === PAGE_SIZE);
+    setProducts(prev => append ? [...prev, ...data] : data);
+  };
+
+  // Reset and load first page when filters change
   useEffect(() => {
-    let isCancelled = false;
-    async function load() {
+    let cancelled = false;
+    (async () => {
       setLoading(true);
       setError(null);
       try {
-        const url = queryString ? `/api/products?${queryString}` : "/api/products";
-        const res = await fetch(url);
-        if (!res.ok) throw new Error(`Greška pri dohvaćanju proizvoda (${res.status})`);
-        const data = await res.json();
-        if (!isCancelled) setProducts(data as Product[]);
+        await fetchPage(0, false);
       } catch (e: any) {
-        if (!isCancelled) setError(e.message || "Greška pri učitavanju proizvoda");
+        if (!cancelled) setError(e.message || 'Greška pri učitavanju proizvoda');
       } finally {
-        if (!isCancelled) setLoading(false);
+        if (!cancelled) setLoading(false);
       }
+    })();
+    return () => { cancelled = true; };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [baseParams.toString()]);
+
+  const loadMore = async () => {
+    setLoadingMore(true);
+    setError(null);
+    try {
+      await fetchPage(products.length, true);
+    } catch (e: any) {
+      setError(e.message || 'Greška pri učitavanju proizvoda');
+    } finally {
+      setLoadingMore(false);
     }
-    load();
-    return () => {
-      isCancelled = true;
-    };
-  }, [queryString]);
+  };
 
   if (loading) {
     return (
@@ -205,6 +227,18 @@ export default function ProductsResults({ filters }: Props) {
                   </div>
                 </Link>
               ))}
+            </div>
+          )}
+
+          {hasMore && (
+            <div className="mt-8 flex justify-center">
+              <button
+                onClick={loadMore}
+                disabled={loadingMore}
+                className={`px-5 py-2.5 rounded-md text-sm font-semibold border transition-colors ${loadingMore ? 'bg-slate-800 text-slate-400 border-slate-700' : 'bg-sunfire-500 text-white border-sunfire-500 hover:bg-sunfire-600'}`}
+              >
+                {loadingMore ? 'Učitavanje…' : 'Učitaj više'}
+              </button>
             </div>
           )}
         </>

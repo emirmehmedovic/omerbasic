@@ -5,6 +5,8 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight, Truck, ShieldCheck, Wrench, Package, Search, ChevronRight, Star, Users, Award, Phone, MessageCircle, Mail, Zap, TrendingUp, Clock } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { ProductCard } from '@/components/ProductCard';
+import { DiscountCarousel } from '@/components/DiscountCarousel';
+import { FeaturedBrands } from '@/components/FeaturedBrands';
 
 const MAIN_CATEGORIES = ["Teretna vozila", "Putnička vozila", "ADR oprema", "Autopraonice"];
 
@@ -328,6 +330,33 @@ export default async function HomePage() {
           </div>
         </section>
 
+        {/* Promotions Section - Bento Layout */}
+        <section className="mb-32">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="lg:col-span-2 rounded-2xl overflow-hidden shadow-lg">
+              <DiscountCarousel />
+            </div>
+            <div className="flex flex-col gap-8">
+              <Link href="/b2b" className="group relative block bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl p-8 h-full text-white hover:scale-105 transition-transform duration-300 shadow-lg">
+                <h3 className="text-2xl font-bold mb-2">B2B Partnerstvo</h3>
+                <p className="text-slate-300 mb-4">Posebne pogodnosti za poslovne korisnike.</p>
+                <div className="flex items-center font-medium text-amber">
+                  Saznaj više
+                  <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </Link>
+              <Link href="/contact" className="group relative block bg-gradient-to-br from-amber via-orange to-brown rounded-2xl p-8 h-full text-white hover:scale-105 transition-transform duration-300 shadow-lg">
+                <h3 className="text-2xl font-bold mb-2">Trebate Pomoć?</h3>
+                <p className="text-white/90 mb-4">Naš tim stručnjaka je tu za vas.</p>
+                <div className="flex items-center font-medium">
+                  Kontaktirajte nas
+                  <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </Link>
+            </div>
+          </div>
+        </section>
+
         {/* Latest Products Section */}
         <section className="relative">
           <div className="absolute inset-0 -mx-4 bg-gradient-to-t from-black/60 to-transparent rounded-3xl border border-sunfire-500/30 shadow-lg shadow-sunfire-500/10 -z-10"></div>
@@ -351,15 +380,9 @@ export default async function HomePage() {
           </div>
         </section>
 
-        {/* Trust Bar */}
-        <section className="mb-16 mt-32">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <TrustBadge icon={Truck} text="Brza dostava" />
-            <TrustBadge icon={ShieldCheck} text="Sigurna kupovina" />
-            <TrustBadge icon={Wrench} text="Stručna podrška" />
-            <TrustBadge icon={Package} text="Originalni dijelovi" />
-          </div>
-        </section>
+        {/* Featured Brands Section */}
+        <FeaturedBrands />
+
 
       </div>
     </main>

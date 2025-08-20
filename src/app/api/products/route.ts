@@ -31,32 +31,54 @@ async function getCategoryAndChildrenIds(categoryId: string): Promise<string[]> 
 export async function GET(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);
-    const search = searchParams.get("search");
+    const query = searchParams.get("q");
+    const categoryId = searchParams.get("categoryId");
+    const generationId = searchParams.get("generationId");
+    const minPrice = searchParams.get("minPrice");
+    const maxPrice = searchParams.get("maxPrice");
     const limit = parseInt(searchParams.get("limit") || "100");
+    const skip = parseInt(searchParams.get("skip") || "0");
+
+    let where: any = { isArchived: false };
+
+    if (query) {
+      where.OR = [
+        { name: { contains: query, mode: "insensitive" } },
+        { catalogNumber: { contains: query, mode: "insensitive" } },
+        { oemNumber: { contains: query, mode: "insensitive" } },
+        { description: { contains: query, mode: "insensitive" } },
+      ];
+    }
+
+    if (categoryId) {
+      const categoryIds = await getCategoryAndChildrenIds(categoryId);
+      where.categoryId = { in: categoryIds };
+    }
+
+    if (generationId) {
+      where.vehicleFitments = {
+        some: {
+          generationId: generationId,
+        },
+      };
+    }
+
+    if (minPrice || maxPrice) {
+      where.price = {};
+      if (minPrice) where.price.gte = parseFloat(minPrice);
+      if (maxPrice) where.price.lte = parseFloat(maxPrice);
+    }
 
     const products = await db.product.findMany({
-      where: {
-        isArchived: false,
-        ...(search && {
-          OR: [
-            { name: { contains: search, mode: "insensitive" } },
-            { catalogNumber: { contains: search, mode: "insensitive" } },
-          ],
-        }),
-      },
-      select: {
-        id: true,
-        name: true,
-        price: true,
-        imageUrl: true,
-        catalogNumber: true,
-        stock: true,
-        isArchived: true,
+      where,
+      include: {
+        category: true,
       },
       orderBy: {
-        name: "asc",
+        createdAt: "desc",
       },
       take: limit,
+      skip: skip,
     });
 
     return NextResponse.json(products);

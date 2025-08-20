@@ -39,39 +39,35 @@ export default function ClientHierarchicalFilters({
   }, []);
 
   const handleFilterChange = (filters: Record<string, any>) => {
-    // Ažuriramo lokalno stanje filtera
     setCurrentFilters(filters);
-    
-    // Ako je inicijalno učitavanje, ne radimo ništa s URL-om
+
     if (isInitialMount.current) return;
-    
-    // Ako imamo vanjski callback, pozovemo ga (ali i dalje možemo ažurirati URL ako je omogućeno)
+
     if (onFilterChangeExternal) {
-      onFilterChangeExternal(filters);
+      const { q, ...filterParams } = filters;
+      onFilterChangeExternal(filterParams);
     }
     
     // Ako ne trebamo ažurirati URL, završavamo ovdje
     if (!updateUrl) return;
     
-    // Kreiramo novi URLSearchParams objekt
-    const params = new URLSearchParams();
-    
-    // Dodamo nove parametre
-    Object.entries(filters).forEach(([key, value]) => {
+    const params = new URLSearchParams(searchParams);
+
+    // Ažuriramo parametre na temelju novih filtera
+    Object.keys(filters).forEach(key => {
+      const value = filters[key];
       if (value) {
-        if (key === 'specs' && typeof value === 'object') {
-          // Za specs objekt, dodaj ih kao pojedinačne parametre
-          Object.entries(value).forEach(([specKey, specValue]) => {
-            if (specValue) {
-              params.set(`spec_${specKey}`, String(specValue));
-            }
-          });
-        } else {
-          // Za sve ostale parametre, dodaj ih direktno
-          params.set(key, String(value));
-        }
+        params.set(key, String(value));
+      } else {
+        params.delete(key);
       }
     });
+
+    // Ako je primijenjen bilo koji filter osim 'q', ukloni 'q'
+    const isFiltering = Object.keys(filters).some(key => key !== 'q' && filters[key]);
+    if (isFiltering) {
+      params.delete('q');
+    }
     
     // Provjerimo jesu li se parametri stvarno promijenili
     const newParamsString = params.toString();

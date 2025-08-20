@@ -22,41 +22,49 @@ const ActiveFilters = ({ filters, onRemove }: {
 }) => {
   if (filters.length === 0) return null;
   
+  // Posložimo filtre u željeni redoslijed za breadcrumb (vozilo -> kategorija -> ostalo)
+  const order = ['Vozilo', 'Kategorija'];
+  const sorted = [...filters].sort((a, b) => {
+    const ia = order.indexOf(a.type);
+    const ib = order.indexOf(b.type);
+    return (ia === -1 ? 99 : ia) - (ib === -1 ? 99 : ib);
+  });
+
   return (
-    <div className="active-filters mb-6">
-      <div className="rounded-2xl p-6 text-white bg-gradient-to-t from-black/60 to-transparent border border-white/10">
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-3">
-            <Filter className="h-5 w-5 text-sunfire-300" />
-            <h3 className="font-bold text-white text-xl">Aktivni filteri</h3>
+    <div className="active-filters mb-3">
+      <div className="rounded-xl px-3 py-2 text-white bg-gradient-to-t from-black/60 to-transparent border border-white/10">
+        <div className="flex items-center justify-between gap-3">
+          <div className="flex items-center gap-2 min-w-0">
+            <Filter className="h-4 w-4 text-sunfire-300 flex-shrink-0" />
+            <div className="flex items-center flex-wrap text-sm text-white/90">
+              {sorted.map((f, idx) => (
+                <div key={f.id} className="flex items-center max-w-full">
+                  {/* Segment */}
+                  <span className="truncate">
+                    {f.label}
+                  </span>
+                  <button
+                    onClick={() => onRemove(f.id)}
+                    className="ml-1 text-white/60 hover:text-white"
+                    aria-label={`Ukloni ${f.type}`}
+                  >
+                    <X className="h-3.5 w-3.5" />
+                  </button>
+                  {/* Separator osim za zadnji */}
+                  {idx < sorted.length - 1 && (
+                    <span className="mx-2 text-white/40">–</span>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
-          <button 
-            className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold text-white bg-sunfire-500 hover:bg-sunfire-600 transition-all duration-200 ease-in-out shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
-            onClick={() => filters.forEach(f => onRemove(f.id))}
+          <button
+            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs font-semibold text-white bg-sunfire-500 hover:bg-sunfire-600 transition-colors shadow-sm"
+            onClick={() => sorted.forEach(f => onRemove(f.id))}
           >
-            <X className="h-4 w-4" />
+            <X className="h-3.5 w-3.5" />
             Očisti sve
           </button>
-        </div>
-      
-        <div className="flex flex-wrap gap-3">
-          {filters.map(filter => (
-            <div 
-              key={filter.id}
-              className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/10 rounded-lg text-sm border border-white/20 backdrop-blur-sm"
-            >
-              {filter.type !== 'Kategorija' && (
-                <span className="text-sunfire-300 font-semibold">{filter.type}:</span>
-              )}
-              <span className="text-white">{filter.label}</span>
-              <button 
-                onClick={() => onRemove(filter.id)}
-                className="p-0.5 rounded-full text-white/50 hover:text-white hover:bg-sunfire-500/50 transition-colors"
-              >
-                <X className="h-4 w-4" />
-              </button>
-            </div>
-          ))}
         </div>
       </div>
     </div>
@@ -253,9 +261,10 @@ export default function HierarchicalFilters({
   const handleSubcategorySelect = (categoryId: string) => {
     const category = findCategoryById(categories, categoryId);
     if (category) {
-      // Ispravak: Koristimo 'categoryId' kao ključ, a 'Kategorija' kao tip za prikaz
-      updateFilter('categoryId', categoryId, 'Kategorija', category.name);
-      console.log('Selected subcategory:', categoryId, category.name);
+      // Labela uključuje i glavnu kategoriju kako bi se sve prikazalo u jednoj traci aktivnih filtera
+      const parentLabel = selectedMainCategory?.name ? `${selectedMainCategory.name} › ${category.name}` : category.name;
+      updateFilter('categoryId', categoryId, 'Kategorija', parentLabel);
+      console.log('Selected subcategory:', categoryId, parentLabel);
     }
   };
 
@@ -296,8 +305,8 @@ export default function HierarchicalFilters({
   
   return (
     <div className="hierarchical-filters">
-      {/* Aktivni filteri se uvijek prikazuju */}
-      {activeFilters.length > 0 && (
+      {/* Aktivni filteri se prikazuju samo u 'full' modu */}
+      {displayMode === 'full' && activeFilters.length > 0 && (
         <div className="mb-4">
           <ActiveFilters filters={activeFilters} onRemove={removeFilter} />
         </div>
@@ -356,28 +365,30 @@ export default function HierarchicalFilters({
             </div>
           </div>
           
-          {/* Clean odabir vozila */}
-          <div className="vehicle-selector">
-            <div className="bg-gradient-to-t from-black/60 to-transparent p-6 rounded-2xl">
-              <div className="flex items-center mb-4">
-                <div className="p-2 rounded-lg mr-3">
-                  <Car className="h-6 w-6 text-sunfire-300" />
+          {/* Clean odabir vozila (prikaži samo za Teretna/Putnička) */}
+          {derivedVehicleType !== 'ALL' && (
+            <div className="vehicle-selector">
+              <div className="bg-gradient-to-t from-black/60 to-transparent p-6 rounded-2xl">
+                <div className="flex items-center mb-4">
+                  <div className="p-2 rounded-lg mr-3">
+                    <Car className="h-6 w-6 text-sunfire-300" />
+                  </div>
+                  <h3 className="text-xl font-bold text-white">Odabir vozila</h3>
                 </div>
-                <h3 className="text-xl font-bold text-white">Odabir vozila</h3>
+                
+                <VehicleSelector 
+                  onVehicleSelect={(data) => {
+                    if (data.generationId) {
+                      // Ispravak: Poziv s ispravnim argumentima
+                      updateFilter('generationId', data.generationId, 'Vozilo', `Odabrano`);
+                    }
+                  }}
+                  compact={true}
+                  vehicleType={derivedVehicleType}
+                />
               </div>
-              
-            <VehicleSelector 
-              onVehicleSelect={(data) => {
-                if (data.generationId) {
-                  // Ispravak: Poziv s ispravnim argumentima
-                  updateFilter('generationId', data.generationId, 'Vozilo', `Odabrano`);
-                }
-              }}
-              compact={true}
-              vehicleType={derivedVehicleType}
-            />
             </div>
-          </div>
+          )}
         </div>
       )}
       

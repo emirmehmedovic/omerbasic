@@ -5,7 +5,7 @@ export async function GET() {
   try {
     const featuredProducts = await db.featuredProduct.findMany({
       include: {
-        product: true,
+        product: { include: { category: true } },
       },
       orderBy: {
         displayOrder: "asc",
