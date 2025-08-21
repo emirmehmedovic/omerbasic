@@ -1,4 +1,5 @@
 import { db } from '@/lib/db';
+import { unstable_cache } from 'next/cache';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
@@ -10,21 +11,29 @@ import { FeaturedBrands } from '@/components/FeaturedBrands';
 
 const MAIN_CATEGORIES = ["Teretna vozila", "Putnička vozila", "ADR oprema", "Autopraonice"];
 
-async function getMainCategories() {
-  return db.category.findMany({
-    where: {
-      name: { in: MAIN_CATEGORIES }
-    },
-  });
-}
+const getMainCategories = unstable_cache(
+  async () => {
+    return db.category.findMany({
+      where: {
+        name: { in: MAIN_CATEGORIES }
+      },
+    });
+  },
+  ['home-main-categories'],
+  { tags: ['categories'] }
+);
 
-async function getLatestProducts() {
-  return db.product.findMany({
-    take: 8,
-    orderBy: { createdAt: 'desc' },
-    include: { category: true },
-  });
-}
+const getLatestProducts = unstable_cache(
+  async () => {
+    return db.product.findMany({
+      take: 8,
+      orderBy: { createdAt: 'desc' },
+      include: { category: true },
+    });
+  },
+  ['home-latest-products'],
+  { tags: ['products'] }
+);
 
 const TrustBadge = ({ icon: Icon, text }: { icon: React.ElementType, text: string }) => (
   <div className="flex items-center gap-3 p-4 rounded-xl bg-white/20 backdrop-blur-md border border-white/30 shadow-lg">

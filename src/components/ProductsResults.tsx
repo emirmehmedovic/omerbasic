@@ -45,6 +45,7 @@ export default function ProductsResults({ filters }: Props) {
   const [loadingMore, setLoadingMore] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [hasMore, setHasMore] = useState<boolean>(false);
+  const [nextCursor, setNextCursor] = useState<string | null>(null);
   const PAGE_SIZE = 24;
   const { addToCart } = useCart();
 
@@ -59,15 +60,17 @@ export default function ProductsResults({ filters }: Props) {
     return params;
   }, [filters]);
 
-  const fetchPage = async (skip: number, append: boolean) => {
+  const fetchPage = async (cursor: string | null, append: boolean) => {
     const params = new URLSearchParams(baseParams.toString());
     params.set('limit', String(PAGE_SIZE));
-    params.set('skip', String(skip));
+    if (cursor) params.set('cursor', cursor);
     const url = `/api/products?${params.toString()}`;
     const res = await fetch(url);
     if (!res.ok) throw new Error(`Greška pri dohvaćanju proizvoda (${res.status})`);
+    const newCursor = res.headers.get('X-Next-Cursor');
     const data: Product[] = await res.json();
-    setHasMore(data.length === PAGE_SIZE);
+    setHasMore(Boolean(newCursor));
+    setNextCursor(newCursor);
     setProducts(prev => append ? [...prev, ...data] : data);
   };
 
@@ -78,7 +81,7 @@ export default function ProductsResults({ filters }: Props) {
       setLoading(true);
       setError(null);
       try {
-        await fetchPage(0, false);
+        await fetchPage(null, false);
       } catch (e: any) {
         if (!cancelled) setError(e.message || 'Greška pri učitavanju proizvoda');
       } finally {
@@ -93,7 +96,7 @@ export default function ProductsResults({ filters }: Props) {
     setLoadingMore(true);
     setError(null);
     try {
-      await fetchPage(products.length, true);
+      await fetchPage(nextCursor, true);
     } catch (e: any) {
       setError(e.message || 'Greška pri učitavanju proizvoda');
     } finally {
@@ -203,7 +206,7 @@ export default function ProductsResults({ filters }: Props) {
                 >
                   <div className="relative w-full sm:w-24 h-32 sm:h-24 flex-shrink-0 mb-4 sm:mb-0 sm:mr-6">
                     <Image 
-                      src={p.imageUrl || '/images/placeholder.jpg'} 
+                      src={p.imageUrl || '/images/mockup.png'} 
                       alt={p.name} 
                       layout="fill"
                       className="object-cover rounded-md" 

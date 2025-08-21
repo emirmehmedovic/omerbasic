@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { rateLimit, keyFromIpAndPath } from '@/lib/ratelimit';
 import { z } from 'zod';
 import { db } from '@/lib/db';
 
@@ -19,6 +20,21 @@ const advancedSearchParamsSchema = z.object({
 
 export async function GET(req: Request) {
   try {
+    // Rate limit advanced search
+    const ip = (typeof (req as any).ip === 'string' && (req as any).ip)
+      || (req.headers.get('x-forwarded-for')?.split(',')[0]?.trim())
+      || req.headers.get('x-real-ip')
+      || null;
+    const key = keyFromIpAndPath(ip, '/api/products/advanced-search');
+    const rl = rateLimit(key, 10, 60_000);
+    if (!rl.ok) {
+      const res = NextResponse.json({ error: 'Previše zahtjeva. Pokušajte ponovo kasnije.' }, { status: 429 });
+      res.headers.set('RateLimit-Limit', '10');
+      res.headers.set('RateLimit-Remaining', String(rl.remaining));
+      res.headers.set('RateLimit-Reset', String(Math.ceil(rl.resetInMs / 1000)));
+      return res;
+    }
+    
     const url = new URL(req.url);
     
     // Osnovni parametri

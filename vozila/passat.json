@@ -1,4 +1,5 @@
-{
+[
+  {
     "name": "Volkswagen",
     "type": "PASSENGER",
     "models": [
@@ -6,25 +7,49 @@
         "name": "Passat",
         "generations": [
           {
-            "name": "B5",
-            "period": "1996–2000",
+            "name": "B4",
+            "period": "1993-1997",
             "bodyStyles": ["Sedan", "Wagon"],
             "engines": [
               {
                 "engineType": "Petrol",
                 "engineCapacity": 1595,
                 "enginePowerKW": 74,
-                "enginePowerHP": 101,
-                "engineCode": "ADP",
+                "enginePowerHP": 100,
+                "engineCode": "AEK/AFT",
                 "description": "1.6 MPI"
               },
               {
                 "engineType": "Petrol",
                 "engineCapacity": 1781,
-                "enginePowerKW": 110,
-                "enginePowerHP": 150,
-                "engineCode": "AEB",
-                "description": "1.8T 20V"
+                "enginePowerKW": 66,
+                "enginePowerHP": 90,
+                "engineCode": "ABS/ADZ",
+                "description": "1.8 MPI"
+              },
+              {
+                "engineType": "Petrol",
+                "engineCapacity": 1984,
+                "enginePowerKW": 85,
+                "enginePowerHP": 115,
+                "engineCode": "2E/ADY",
+                "description": "2.0 MPI"
+              },
+              {
+                "engineType": "Petrol",
+                "engineCapacity": 2792,
+                "enginePowerKW": 128,
+                "enginePowerHP": 174,
+                "engineCode": "AAA",
+                "description": "2.8 VR6"
+              },
+              {
+                "engineType": "Diesel",
+                "engineCapacity": 1896,
+                "enginePowerKW": 66,
+                "enginePowerHP": 90,
+                "engineCode": "1Z/AHU",
+                "description": "1.9 TDI"
               },
               {
                 "engineType": "Diesel",
@@ -37,10 +62,137 @@
             ]
           },
           {
-            "name": "B5.5",
-            "period": "2000–2005",
+            "name": "B5",
+            "period": "1996-2000",
             "bodyStyles": ["Sedan", "Wagon"],
             "engines": [
+              {
+                "engineType": "Petrol",
+                "engineCapacity": 1595,
+                "enginePowerKW": 74,
+                "enginePowerHP": 100,
+                "engineCode": "ADP/AHL/ARM/ANA",
+                "description": "1.6 MPI"
+              },
+              {
+                "engineType": "Petrol",
+                "engineCapacity": 1781,
+                "enginePowerKW": 85,
+                "enginePowerHP": 116,
+                "engineCode": "AFY",
+                "description": "1.8 20V"
+              },
+              {
+                "engineType": "Petrol",
+                "engineCapacity": 1781,
+                "enginePowerKW": 92,
+                "enginePowerHP": 125,
+                "engineCode": "ADR/APT/ARG",
+                "description": "1.8 20V"
+              },
+              {
+                "engineType": "Petrol",
+                "engineCapacity": 1781,
+                "enginePowerKW": 110,
+                "enginePowerHP": 150,
+                "engineCode": "AEB/APU/ANB/ATW",
+                "description": "1.8T 20V"
+              },
+              {
+                "engineType": "Petrol",
+                "engineCapacity": 1984,
+                "enginePowerKW": 88,
+                "enginePowerHP": 120,
+                "engineCode": "AUZ/ASU/AVA",
+                "description": "2.0 MPI"
+              },
+              {
+                "engineType": "Petrol",
+                "engineCapacity": 2324,
+                "enginePowerKW": 110,
+                "enginePowerHP": 150,
+                "engineCode": "AGZ",
+                "description": "2.3 VR5 10V"
+              },
+              {
+                "engineType": "Petrol",
+                "engineCapacity": 2771,
+                "enginePowerKW": 137,
+                "enginePowerHP": 186,
+                "engineCode": "ACK/AGE/AHA/ALG/ATX/APR/AQD",
+                "description": "2.8 V6 30V"
+              },
+              {
+                "engineType": "Petrol",
+                "engineCapacity": 2771,
+                "enginePowerKW": 142,
+                "enginePowerHP": 193,
+                "engineCode": "ACK/AGE/AHA/ALG/ATX/APR/AQD",
+                "description": "2.8 V6 30V (high output)"
+              },
+              {
+                "engineType": "Diesel",
+                "engineCapacity": 1896,
+                "enginePowerKW": 66,
+                "enginePowerHP": 90,
+                "engineCode": "AHU/AHH",
+                "description": "1.9 TDI (VE)"
+              },
+              {
+                "engineType": "Diesel",
+                "engineCapacity": 1896,
+                "enginePowerKW": 81,
+                "enginePowerHP": 110,
+                "engineCode": "AFN/AVG",
+                "description": "1.9 TDI (VE)"
+              },
+              {
+                "engineType": "Diesel",
+                "engineCapacity": 1896,
+                "enginePowerKW": 85,
+                "enginePowerHP": 115,
+                "engineCode": "AJM/ATJ",
+                "description": "1.9 TDI PD"
+              },
+              {
+                "engineType": "Diesel",
+                "engineCapacity": 2496,
+                "enginePowerKW": 110,
+                "enginePowerHP": 150,
+                "engineCode": "AFB",
+                "description": "2.5 V6 TDI"
+              }
+            ]
+          },
+          {
+            "name": "B5.5",
+            "period": "2000-2005",
+            "bodyStyles": ["Sedan", "Wagon"],
+            "engines": [
+              {
+                "engineType": "Petrol",
+                "engineCapacity": 1595,
+                "enginePowerKW": 75,
+                "enginePowerHP": 102,
+                "engineCode": "ALZ",
+                "description": "1.6 MPI"
+              },
+              {
+                "engineType": "Petrol",
+                "engineCapacity": 1781,
+                "enginePowerKW": 110,
+                "enginePowerHP": 150,
+                "engineCode": "AWT",
+                "description": "1.8T 20V"
+              },
+              {
+                "engineType": "Petrol",
+                "engineCapacity": 1781,
+                "enginePowerKW": 125,
+                "enginePowerHP": 170,
+                "engineCode": "AWM",
+                "description": "1.8T 20V (170 hp)"
+              },
               {
                 "engineType": "Petrol",
                 "engineCapacity": 1984,
@@ -51,56 +203,97 @@
               },
               {
                 "engineType": "Petrol",
+                "engineCapacity": 1984,
+                "enginePowerKW": 96,
+                "enginePowerHP": 130,
+                "engineCode": "ALT",
+                "description": "2.0 20V"
+              },
+              {
+                "engineType": "Petrol",
+                "engineCapacity": 2324,
+                "enginePowerKW": 125,
+                "enginePowerHP": 170,
+                "engineCode": "AZX",
+                "description": "2.3 VR5 20V"
+              },
+              {
+                "engineType": "Petrol",
+                "engineCapacity": 2771,
+                "enginePowerKW": 140,
+                "enginePowerHP": 190,
+                "engineCode": "AMX/ATQ/BBG",
+                "description": "2.8 V6 30V"
+              },
+              {
+                "engineType": "Petrol",
                 "engineCapacity": 2771,
                 "enginePowerKW": 142,
                 "enginePowerHP": 193,
-                "engineCode": "AZA",
-                "description": "2.8 V6"
+                "engineCode": "AMX/ATQ/BBG",
+                "description": "2.8 V6 30V (193 hp)"
+              },
+              {
+                "engineType": "Petrol",
+                "engineCapacity": 3999,
+                "enginePowerKW": 202,
+                "enginePowerHP": 275,
+                "engineCode": "BDN/BDP",
+                "description": "4.0 W8"
+              },
+              {
+                "engineType": "Diesel",
+                "engineCapacity": 1896,
+                "enginePowerKW": 74,
+                "enginePowerHP": 100,
+                "engineCode": "AVB",
+                "description": "1.9 TDI PD"
               },
               {
                 "engineType": "Diesel",
                 "engineCapacity": 1896,
                 "enginePowerKW": 96,
                 "enginePowerHP": 130,
-                "engineCode": "AVF",
+                "engineCode": "AWX/AVF",
                 "description": "1.9 TDI PD"
+              },
+              {
+                "engineType": "Diesel",
+                "engineCapacity": 1968,
+                "enginePowerKW": 100,
+                "enginePowerHP": 136,
+                "engineCode": "BGW/BHW",
+                "description": "2.0 TDI PD"
+              },
+              {
+                "engineType": "Diesel",
+                "engineCapacity": 2496,
+                "enginePowerKW": 110,
+                "enginePowerHP": 150,
+                "engineCode": "AKN",
+                "description": "2.5 V6 TDI"
+              },
+              {
+                "engineType": "Diesel",
+                "engineCapacity": 2496,
+                "enginePowerKW": 120,
+                "enginePowerHP": 163,
+                "engineCode": "BDG",
+                "description": "2.5 V6 TDI"
+              },
+              {
+                "engineType": "Diesel",
+                "engineCapacity": 2496,
+                "enginePowerKW": 132,
+                "enginePowerHP": 180,
+                "engineCode": "BDH/BAU",
+                "description": "2.5 V6 TDI"
               }
             ]
           },
           {
             "name": "B6",
-            "period": "2005–2010",
-            "bodyStyles": ["Sedan", "Wagon"],
-            "engines": [
-              {
-                "engineType": "Petrol",
-                "engineCapacity": 1595,
-                "enginePowerKW": 75,
-                "enginePowerHP": 102,
-                "engineCode": "BAG",
-                "description": "1.6 MPI"
-              },
-              {
-                "engineType": "Petrol",
-                "engineCapacity": 1984,
-                "enginePowerKW": 147,
-                "enginePowerHP": 200,
-                "engineCode": "BWA",
-                "description": "2.0 TFSI"
-              },
-              {
-                "engineType": "Diesel",
-                "engineCapacity": 1968,
-                "enginePowerKW": 103,
-                "enginePowerHP": 140,
-                "engineCode": "BKP",
-                "description": "2.0 TDI"
-              }
-            ]
-          },
-          {
-            "name": "B7",
-            "period": "2010–2014",
+            "period": "2005-2010",
             "bodyStyles": ["Sedan", "Wagon"],
             "engines": [
               {
@@ -113,27 +306,234 @@
               },
               {
                 "engineType": "Petrol",
+                "engineCapacity": 1595,
+                "enginePowerKW": 75,
+                "enginePowerHP": 102,
+                "engineCode": "BSE/BSF/CCSA",
+                "description": "1.6 MPI"
+              },
+              {
+                "engineType": "Petrol",
+                "engineCapacity": 1598,
+                "enginePowerKW": 85,
+                "enginePowerHP": 115,
+                "engineCode": "BLF/BLP",
+                "description": "1.6 FSI"
+              },
+              {
+                "engineType": "Petrol",
                 "engineCapacity": 1984,
-                "enginePowerKW": 155,
-                "enginePowerHP": 210,
-                "engineCode": "CCZB",
-                "description": "2.0 TSI"
+                "enginePowerKW": 110,
+                "enginePowerHP": 150,
+                "engineCode": "BLR/BVX/BVY",
+                "description": "2.0 FSI"
+              },
+              {
+                "engineType": "Petrol",
+                "engineCapacity": 1798,
+                "enginePowerKW": 118,
+                "enginePowerHP": 160,
+                "engineCode": "BZB/CDAA",
+                "description": "1.8 TSI"
+              },
+              {
+                "engineType": "Petrol",
+                "engineCapacity": 1984,
+                "enginePowerKW": 147,
+                "enginePowerHP": 200,
+                "engineCode": "AXX/BWA/BPY/CAWB/CCTA/CBFA",
+                "description": "2.0 T(F)SI"
+              },
+              {
+                "engineType": "Petrol",
+                "engineCapacity": 3189,
+                "enginePowerKW": 184,
+                "enginePowerHP": 250,
+                "engineCode": "AXZ",
+                "description": "3.2 V6 FSI"
+              },
+              {
+                "engineType": "Petrol",
+                "engineCapacity": 3597,
+                "enginePowerKW": 206,
+                "enginePowerHP": 280,
+                "engineCode": "BLV",
+                "description": "3.6 VR6 FSI"
+              },
+              {
+                "engineType": "Petrol",
+                "engineCapacity": 3597,
+                "enginePowerKW": 220,
+                "enginePowerHP": 300,
+                "engineCode": "BWS",
+                "description": "R36 3.6 VR6"
+              },
+              {
+                "engineType": "CNG",
+                "engineCapacity": 1390,
+                "enginePowerKW": 110,
+                "enginePowerHP": 150,
+                "engineCode": "CDGA",
+                "description": "1.4 TSI EcoFuel"
+              },
+              {
+                "engineType": "Diesel",
+                "engineCapacity": 1598,
+                "enginePowerKW": 77,
+                "enginePowerHP": 105,
+                "engineCode": "CAYC",
+                "description": "1.6 TDI CR"
+              },
+              {
+                "engineType": "Diesel",
+                "engineCapacity": 1896,
+                "enginePowerKW": 77,
+                "enginePowerHP": 105,
+                "engineCode": "BKC/BXE/BLS",
+                "description": "1.9 TDI PD"
+              },
+              {
+                "engineType": "Diesel",
+                "engineCapacity": 1968,
+                "enginePowerKW": 103,
+                "enginePowerHP": 140,
+                "engineCode": "BMM/BMP/BKP",
+                "description": "2.0 TDI PD"
               },
               {
                 "engineType": "Diesel",
                 "engineCapacity": 1968,
                 "enginePowerKW": 125,
                 "enginePowerHP": 170,
-                "engineCode": "CFGB",
+                "engineCode": "BMR/BMN",
+                "description": "2.0 TDI PD (DPF)"
+              },
+              {
+                "engineType": "Diesel",
+                "engineCapacity": 1968,
+                "enginePowerKW": 103,
+                "enginePowerHP": 140,
+                "engineCode": "CBAB",
                 "description": "2.0 TDI CR"
+              },
+              {
+                "engineType": "Diesel",
+                "engineCapacity": 1968,
+                "enginePowerKW": 125,
+                "enginePowerHP": 170,
+                "engineCode": "CBBA/CBBB",
+                "description": "2.0 TDI CR (DPF)"
+              },
+              {
+                "engineType": "Diesel",
+                "engineCapacity": 1968,
+                "enginePowerKW": 105,
+                "enginePowerHP": 143,
+                "engineCode": "CBAC",
+                "description": "2.0 BlueTDI CR (SCR)"
               }
             ]
           },
           {
-            "name": "B8",
-            "period": "2014–2023",
+            "name": "B7",
+            "period": "2010-2014",
             "bodyStyles": ["Sedan", "Wagon"],
             "engines": [
+              {
+                "engineType": "Petrol",
+                "engineCapacity": 1390,
+                "enginePowerKW": 90,
+                "enginePowerHP": 122,
+                "engineCode": "CAXA",
+                "description": "1.4 TSI"
+              },
+              {
+                "engineType": "Petrol",
+                "engineCapacity": 1798,
+                "enginePowerKW": 118,
+                "enginePowerHP": 160,
+                "engineCode": "CJSA/CABA",
+                "description": "1.8 TSI"
+              },
+              {
+                "engineType": "Petrol",
+                "engineCapacity": 1984,
+                "enginePowerKW": 154,
+                "enginePowerHP": 210,
+                "engineCode": "CCZA/CCZB",
+                "description": "2.0 TSI"
+              },
+              {
+                "engineType": "Petrol",
+                "engineCapacity": 3597,
+                "enginePowerKW": 221,
+                "enginePowerHP": 300,
+                "engineCode": "CDVB/CMTA",
+                "description": "3.6 VR6 FSI 4Motion"
+              },
+              {
+                "engineType": "CNG",
+                "engineCapacity": 1390,
+                "enginePowerKW": 110,
+                "enginePowerHP": 150,
+                "engineCode": "—",
+                "description": "1.4 TSI EcoFuel"
+              },
+              {
+                "engineType": "Diesel",
+                "engineCapacity": 1598,
+                "enginePowerKW": 77,
+                "enginePowerHP": 105,
+                "engineCode": "CAYC",
+                "description": "1.6 TDI CR"
+              },
+              {
+                "engineType": "Diesel",
+                "engineCapacity": 1968,
+                "enginePowerKW": 103,
+                "enginePowerHP": 140,
+                "engineCode": "CBAB",
+                "description": "2.0 TDI CR"
+              },
+              {
+                "engineType": "Diesel",
+                "engineCapacity": 1968,
+                "enginePowerKW": 125,
+                "enginePowerHP": 170,
+                "engineCode": "CLLA/CFGB",
+                "description": "2.0 TDI CR"
+              },
+              {
+                "engineType": "Diesel",
+                "engineCapacity": 1968,
+                "enginePowerKW": 130,
+                "enginePowerHP": 177,
+                "engineCode": "CFGC",
+                "description": "2.0 TDI CR (late)"
+              },
+              {
+                "engineType": "Diesel",
+                "engineCapacity": 1968,
+                "enginePowerKW": 103,
+                "enginePowerHP": 140,
+                "engineCode": "CFF/CFFB",
+                "description": "2.0 BlueTDI CR (SCR)"
+              }
+            ]
+          },
+          {
+            "name": "B8 (MQB)",
+            "period": "2014-2023",
+            "bodyStyles": ["Sedan", "Wagon"],
+            "engines": [
+              {
+                "engineType": "Petrol",
+                "engineCapacity": 1395,
+                "enginePowerKW": 92,
+                "enginePowerHP": 125,
+                "engineCode": "CZCA",
+                "description": "1.4 TSI"
+              },
               {
                 "engineType": "Petrol",
                 "engineCapacity": 1395,
@@ -144,11 +544,51 @@
               },
               {
                 "engineType": "Petrol",
+                "engineCapacity": 1498,
+                "enginePowerKW": 110,
+                "enginePowerHP": 150,
+                "engineCode": "DACA/DPCA",
+                "description": "1.5 TSI evo"
+              },
+              {
+                "engineType": "Petrol",
                 "engineCapacity": 1984,
                 "enginePowerKW": 140,
                 "enginePowerHP": 190,
-                "engineCode": "CZPA",
+                "engineCode": "DKZA",
                 "description": "2.0 TSI"
+              },
+              {
+                "engineType": "Petrol",
+                "engineCapacity": 1984,
+                "enginePowerKW": 162,
+                "enginePowerHP": 220,
+                "engineCode": "CHHB",
+                "description": "2.0 TSI (pre-facelift)"
+              },
+              {
+                "engineType": "Plug-in Hybrid",
+                "engineCapacity": 1395,
+                "enginePowerKW": 115,
+                "enginePowerHP": 156,
+                "engineCode": "CZEA (ICE part)",
+                "description": "GTE 1.4 TSI PHEV (system output higher)"
+              },
+              {
+                "engineType": "Diesel",
+                "engineCapacity": 1598,
+                "enginePowerKW": 88,
+                "enginePowerHP": 120,
+                "engineCode": "—",
+                "description": "1.6 TDI CR"
+              },
+              {
+                "engineType": "Diesel",
+                "engineCapacity": 1968,
+                "enginePowerKW": 81,
+                "enginePowerHP": 110,
+                "engineCode": "—",
+                "description": "2.0 TDI CR (entry)"
               },
               {
                 "engineType": "Diesel",
@@ -156,46 +596,23 @@
                 "enginePowerKW": 110,
                 "enginePowerHP": 150,
                 "engineCode": "DFGA",
-                "description": "2.0 TDI"
-              },
-              {
-                "engineType": "Hybrid",
-                "engineCapacity": 1395,
-                "enginePowerKW": 160,
-                "enginePowerHP": 218,
-                "engineCode": "DGEA",
-                "description": "1.4 TSI GTE Plug-in Hybrid"
-              }
-            ]
-          },
-          {
-            "name": "B9",
-            "period": "2023–",
-            "bodyStyles": ["Wagon"],
-            "engines": [
-              {
-                "engineType": "Petrol",
-                "engineCapacity": 1498,
-                "enginePowerKW": 110,
-                "enginePowerHP": 150,
-                "engineCode": "DPCA",
-                "description": "1.5 eTSI"
+                "description": "2.0 TDI CR"
               },
               {
                 "engineType": "Diesel",
                 "engineCapacity": 1968,
-                "enginePowerKW": 110,
-                "enginePowerHP": 150,
-                "engineCode": "DFFA",
-                "description": "2.0 TDI"
+                "enginePowerKW": 140,
+                "enginePowerHP": 190,
+                "engineCode": "DFHA",
+                "description": "2.0 TDI CR"
               },
               {
-                "engineType": "Hybrid",
-                "engineCapacity": 1395,
-                "enginePowerKW": 160,
-                "enginePowerHP": 218,
-                "engineCode": "DGEA",
-                "description": "1.4 TSI eHybrid"
+                "engineType": "Diesel",
+                "engineCapacity": 1968,
+                "enginePowerKW": 176,
+                "enginePowerHP": 240,
+                "engineCode": "—",
+                "description": "2.0 BiTDI CR"
               }
             ]
           }
@@ -203,4 +620,4 @@
       }
     ]
   }
-  
+]

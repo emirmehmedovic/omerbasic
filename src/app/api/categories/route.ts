@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { revalidateTag } from 'next/cache';
 import { z } from 'zod';
 
 import { db } from '@/lib/db';
@@ -43,7 +44,10 @@ export async function POST(req: Request) {
         parentId,
       },
     });
-
+    try {
+      revalidateTag('categories');
+      revalidateTag('products'); // UIs may display counts per category
+    } catch {}
     return NextResponse.json(category, { status: 201 });
   } catch (error) {
     if (error instanceof z.ZodError) {

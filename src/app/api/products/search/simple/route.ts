@@ -4,6 +4,9 @@ import { getServerSession } from "next-auth";
 import { db } from "@/lib/db";
 import { authOptions } from "@/lib/auth";
 
+// Cache per-URL for 30s
+export const revalidate = 30;
+
 export async function GET(req: Request) {
   try {
     const session = await getServerSession(authOptions);
@@ -23,22 +26,17 @@ export async function GET(req: Request) {
       return NextResponse.json([]);
     }
 
-    // Pretraživanje proizvoda po nazivu, kataloškom broju ili OEM broju
-    const products = await db.product.findMany({
-      where: {
-        OR: [
-          { name: { contains: query, mode: "insensitive" } },
-          { catalogNumber: { contains: query, mode: "insensitive" } },
-          { oemNumber: { contains: query, mode: "insensitive" } },
-        ],
-      },
-      include: {
-        category: true,
-      },
-      take: 20, // Ograničenje broja rezultata
-    });
+    // Trigram similarity ranking for faster, more relevant admin search
+    const q = `%${query}%`;
+    const rows = await db.$queryRaw<any>`
+      SELECT id, name, "catalogNumber", "oemNumber", price, "imageUrl", "categoryId"
+      FROM "Product"
+      WHERE (name ILIKE ${q} OR "catalogNumber" ILIKE ${q} OR COALESCE("oemNumber", '') ILIKE ${q})
+      ORDER BY GREATEST(similarity(name, ${query}), similarity("catalogNumber", ${query})) DESC, "createdAt" DESC
+      LIMIT 20
+    `;
 
-    return NextResponse.json(products);
+    return NextResponse.json(rows);
   } catch (error) {
     console.error("[PRODUCTS_SEARCH_SIMPLE]", error);
     return new NextResponse("Internal Error", { status: 500 });

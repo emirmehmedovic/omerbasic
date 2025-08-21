@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { unstable_cache } from 'next/cache';
 
 export const dynamic = 'force-dynamic';
 import { ProductsClient } from './_components/ProductsClient';
@@ -9,29 +10,28 @@ export type CategoryWithChildren = Category & {
   children?: CategoryWithChildren[];
 };
 
-async function getData() {
-  const products = await db.product.findMany({
-    include: { category: true },
-    orderBy: { createdAt: 'desc' },
-  });
-
-  const allCategories: CategoryWithChildren[] = await db.category.findMany({
-    include: {
-      children: {
-        include: { children: true }, // 2 levels deep
+const getData = unstable_cache(
+  async () => {
+    const allCategories: CategoryWithChildren[] = await db.category.findMany({
+      include: {
+        children: {
+          include: { children: true }, // 2 levels deep
+        },
       },
-    },
-    orderBy: { name: 'asc' },
-  });
+      orderBy: { name: 'asc' },
+    });
 
-  // Filter for top-level categories to pass to the client
-  const categories = allCategories.filter((c) => !c.parentId);
+    // Filter for top-level categories to pass to the client
+    const categories = allCategories.filter((c) => !c.parentId);
 
-  return { products, categories };
-}
+    return { categories };
+  },
+  ['admin-products-categories'],
+  { tags: ['categories'] }
+);
 
 export default async function AdminProductsPage() {
-  const { products, categories } = await getData();
+  const { categories } = await getData();
 
   return (
     <div className="p-6 space-y-6">
@@ -61,6 +61,16 @@ export default async function AdminProductsPage() {
               </svg>
               Import CSV
             </Link>
+            <Link
+              href="/api/admin/products/export"
+              prefetch={false}
+              className="inline-flex items-center justify-center rounded-xl text-sm font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-gradient-to-r from-white/95 to-gray-50/95 backdrop-blur-sm text-gray-700 hover:from-white hover:to-gray-50 hover:shadow-lg hover:scale-105 border border-amber/30 h-11 px-6 py-2 shadow-sm"
+            >
+              <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v12m0 0l-3-3m3 3l3-3M4 20h16" />
+              </svg>
+              Export CSV
+            </Link>
             <Link 
               href="/admin/products/new" 
               className="inline-flex items-center justify-center rounded-xl text-sm font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-gradient-to-r from-amber via-orange to-brown text-white hover:from-amber/90 hover:via-orange/90 hover:to-brown/90 hover:shadow-lg hover:scale-105 h-11 px-6 py-2"
@@ -76,7 +86,7 @@ export default async function AdminProductsPage() {
 
       {/* Products Table */}
       <div className="bg-gradient-to-br from-white via-gray-50/80 to-blue-50/60 backdrop-blur-sm rounded-2xl p-6 border border-amber/20 shadow-sm">
-        <ProductsClient products={products} categories={categories} />
+        <ProductsClient categories={categories} />
       </div>
     </div>
   );

@@ -8,12 +8,10 @@ import {
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
-  getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
 
-import { Input } from '@/components/ui/input';
 import {
   Table,
   TableBody,
@@ -42,12 +40,24 @@ interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
   categories: CategoryWithChildren[];
+  onSearch?: (q: string) => void;
+  onCategoryChange?: (categoryId: string) => void;
+  hasMore?: boolean;
+  loadingMore?: boolean;
+  onLoadMore?: () => void;
+  initialLoading?: boolean;
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
   categories,
+  onSearch,
+  onCategoryChange,
+  hasMore,
+  loadingMore,
+  onLoadMore,
+  initialLoading,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
@@ -59,7 +69,6 @@ export function DataTable<TData, TValue>({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
-    getPaginationRowModel: getPaginationRowModel(),
     onSortingChange: setSorting,
     getSortedRowModel: getSortedRowModel(),
     onColumnFiltersChange: setColumnFilters,
@@ -72,7 +81,12 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className="space-y-6">
-      <DataTableToolbar table={table} categories={categories} />
+      <DataTableToolbar
+        table={table}
+        categories={categories}
+        onSearch={onSearch}
+        onCategoryChange={onCategoryChange}
+      />
       <div className="rounded-2xl border border-amber/20 bg-gradient-to-br from-white/95 to-gray-50/95 backdrop-blur-sm overflow-hidden shadow-sm">
         <Table>
           <TableHeader>
@@ -94,7 +108,13 @@ export function DataTable<TData, TValue>({
             ))}
           </TableHeader>
           <TableBody>
-            {table.getRowModel().rows?.length ? (
+            {initialLoading ? (
+              <TableRow>
+                <TableCell colSpan={columns.length} className="h-24 text-center">
+                  Učitavanje...
+                </TableCell>
+              </TableRow>
+            ) : table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow
                   key={row.id}
@@ -126,36 +146,18 @@ export function DataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
-      <div className="flex items-center justify-between py-4 px-6 bg-gradient-to-r from-white/80 to-gray-50/80 border-t border-amber/20">
-        <div className="text-sm text-gray-600">
-          Stranica {table.getState().pagination.pageIndex + 1} od {table.getPageCount()}
-        </div>
-        <div className="flex items-center space-x-2">
+      <div className="flex items-center justify-center py-4 px-6">
+        {hasMore ? (
           <Button
             variant="outline"
             size="sm"
-            onClick={() => table.previousPage()}
-            disabled={!table.getCanPreviousPage()}
+            onClick={onLoadMore}
+            disabled={loadingMore}
             className="bg-gradient-to-r from-white/95 to-gray-50/95 backdrop-blur-sm text-gray-700 hover:from-white hover:to-gray-50 hover:shadow-sm border-amber/30 rounded-xl transition-all duration-200"
           >
-            <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-            Prethodna
+            {loadingMore ? 'Učitavanje...' : 'Učitaj još'}
           </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => table.nextPage()}
-            disabled={!table.getCanNextPage()}
-            className="bg-gradient-to-r from-white/95 to-gray-50/95 backdrop-blur-sm text-gray-700 hover:from-white hover:to-gray-50 hover:shadow-sm border-amber/30 rounded-xl transition-all duration-200"
-          >
-            Sljedeća
-            <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </Button>
-        </div>
+        ) : null}
       </div>
     </div>
   );

@@ -1,0 +1,248 @@
+{
+    "Dijelovi za servisiranje / inspekciju / održavanje": [
+      "Interval regulacije"
+    ],
+  
+    "Elektrika": [
+      "Akumulator",
+      "Alternator / pojedinačni dijelovi",
+      "Instrumenti",
+      "Rasvjeta",
+      "Regulacija vozne dinamike",
+      "Relej",
+      "Senzori",
+      "Signalni uređaj",
+      "Sustav paljenja",
+      "Sustav za pokretanje",
+      "Upravljački uređaji",
+      "Višefunkcijska sklopka / upravljačka jedinica",
+      "Višefunkcijski relej"
+    ],
+  
+    "Filtar": [
+      "Filtar radne hidraulike",
+      "Filtar za gorivo",
+      "Filtar za rashladno sredstvo",
+      "Filtar za tekućinu za pranje stakala",
+      "Filtar za ulje",
+      "Filtar za ureu",
+      "Filtar za zrak",
+      "Filtar za zrak unutarnjeg prostora",
+      "Hidraulični filtar mjenjača",
+      "Hidraulični filtar prijenosnika upravljača",
+      "Komplet filtra"
+    ],
+  
+    "Grijanje / ventilacija / klimatizacija": [
+      "Grijanje / ventilacija",
+      "Klima-uređaj"
+    ],
+  
+    "Hidraulični sustav": [
+      "Filtar, radna hidraulika"
+    ],
+  
+    "Vozačeva kabina": [],
+  
+    "Hlađenje": [
+      "Crijeva / vodovi / prirubnice",
+      "Dijelovi za pričvršćivanje hladnjaka",
+      "Ekspanzijska posuda",
+      "Hladnjak ulja / pojedinačni dijelovi",
+      "Hladnjak vode / pojedinačni dijelovi",
+      "Hladnjak zraka punjenja / pojedinačni dijelovi",
+      "Prekidač / senzor",
+      "Pumpa za vodu / brtva",
+      "Termometar / brtva termostata",
+      "Ventilator / pojedinačni dijelovi",
+      "Zaštita od smrzavanja"
+    ],
+  
+    "Ispušni sustav": [
+      "Brtve / cijevne spojnice / pojedinačni dijelovi",
+      "Ispušne cijevi",
+      "Prigušivač zvuka / pribor za prigušivač zvuka",
+      "Punjač",
+      "Senzor / sonda",
+      "Ubrizgavanje uree"
+    ],
+  
+    "Kočni sustav": [
+      "Bubanj kočnica",
+      "Disk kočnica",
+      "Glavni kočni cilindar / pribor",
+      "Kočna crijeva / kočni vodovi",
+      "Kočna tekućina",
+      "Kočni cilindar / pneumatski sustav",
+      "Kočno sedlo",
+      "Pokazivač istrošenosti",
+      "Poluge / čelična užad / užad",
+      "Prekidač kočnog svjetla",
+      "Regulacija vozne dinamike",
+      "Uređaj trajne kočnice"
+    ],
+  
+    "Kotači / gume": [
+      "Kotač",
+      "Naplatak"
+    ],
+  
+    "Luksuzna oprema": [
+      "Centralno zaključavanje",
+      "Motor / relej / prekidač",
+      "Podizač stakla"
+    ],
+  
+    "Mjenjač": [
+      "Automatizirani mjenjač (ASG)",
+      "Automatski mjenjač / komponente automatskog mjenjača",
+      "Ručni mjenjač / komponente ručnog mjenjača",
+      "Ulja"
+    ],
+  
+    "Motor": [
+      "Brtve",
+      "Brtveni prstenovi",
+      "Cilindar / klip",
+      "Električni sustav motora",
+      "Glava cilindra",
+      "Kompleti brtvi",
+      "Kućište ručice",
+      "Opskrba zrakom",
+      "Ovjes motora",
+      "Podmazivanje",
+      "Pogon ručice",
+      "Remenski pogon / zupčasti remen",
+      "Upravljanje motorom"
+    ],
+  
+    "Oprema / pribor": [
+      "Pranje farova / pribor za pranje farova",
+      "Pranje stakala / pribor za pranje stakala",
+      "Retrovizor / pribor za retrovizor",
+      "Unutarnja oprema"
+    ],
+  
+    "Uređaj za vuču / naprava za vuču": [],
+  
+    "Osovinski pogon": [
+      "Diferencijal / komponente",
+      "Prekidači / ventili",
+      "Razdjelni prijenosnik / komponente razdjelnog prijenosnika",
+      "Ulja",
+      "Zglobno vratilo"
+    ],
+  
+    "Ovjes / amortizeri": [
+      "Amortizer",
+      "Lisnata opruga",
+      "Opružna noga / amortizer / priključni dijelovi",
+      "Ovjes / amortizeri vozačeve kabine",
+      "Uležištenje opružne noge / amortizera",
+      "Zračni ovjes"
+    ],
+  
+    "Ovjes kotača": [
+      "Glavčina kotača / pribor",
+      "Ležaj kotača / komplet ležaja kotača",
+      "Nosač osovine / tijelo osovine / uležištenje",
+      "Osovinski rukavac / komponente",
+      "Podizna osovina",
+      "Potpornji / šipke",
+      "Stabilizator / pribor za stabilizator"
+    ],
+  
+    "Upravljač": [
+      "Prijenosnik upravljača / pumpa",
+      "Spona upravljača / zglob spone upravljača",
+      "Šipka upravljača / potisna šipka",
+      "Ulja",
+      "Ventili",
+      "Vratilo upravljačkog mehanizma / stup upravljača / zglob",
+      "Zglob"
+    ],
+  
+    "Pneumatski sustav": [
+      "Glava spojke",
+      "Ispitni priključak",
+      "Kočni / radni cilindar",
+      "Kompresor / pojedinačni dijelovi kompresora",
+      "Pojačivač spojke",
+      "Prekidač",
+      "Prigušivač zvuka (pneumatski sustav)",
+      "Regulator tlaka / pribor za regulator tlaka",
+      "Senzor",
+      "Spremnik za zrak / pribor za spremnik za zrak",
+      "Sušač zraka / uložak za sušač zraka",
+      "Ventili / sustav komprimiranog zraka",
+      "Vodovi / spojnice",
+      "Zračni ovjes"
+    ],
+  
+    "Pogon kotača": [
+      "Planetni zupčani prijenosnik",
+      "Pogonsko vratilo / pribor za pogonsko vratilo"
+    ],
+  
+    "Pomoćni pogon": [
+      "Brtve",
+      "Ulje"
+    ],
+  
+    "Priprema goriva": [
+      "Priprema smjese",
+      "Pročišćavanje ispušnih plinova"
+    ],
+  
+    "Remenski pogon / zupčasti remen": [
+      "Klinasti rebrasti remen / pribor za klinasti rebrasti remen",
+      "Klinasti remen / komplet klinastog remena",
+      "Remenica"
+    ],
+  
+    "Spojka": [
+      "Aktiviranje spojke",
+      "Crijeva / vodovi / pribor",
+      "Disk spojke",
+      "Hidraulična tekućina",
+      "Komplet spojke",
+      "Kućište spojke",
+      "Pojačivač spojke",
+      "Potisna ploča spojke",
+      "Potisni ležaj / središnji isključivač",
+      "Vodeći ležaj / postavni prsten",
+      "Zamašnjak"
+    ],
+  
+    "Sustav za dovod goriva": [
+      "Crijeva / vodovi",
+      "Filtar / kućište filtra",
+      "Jedinica za dovod, komplet",
+      "Pumpa za gorivo",
+      "Senzor rezervoara",
+      "Spremnik za gorivo / pribor",
+      "Ventili"
+    ],
+  
+    "Sustav zaključavanja": [
+      "Brave u unutrašnjosti",
+      "Brave vanjske",
+      "Cilindar brave / komplet cilindra brave",
+      "Pojedinačni dijelovi",
+      "Ručke / kvake"
+    ],
+  
+    "Vozačeva kabina / karoserija": [
+      "Dijelovi karoserije / blatobran / odbojnik",
+      "Ostakljenje",
+      "Ovjes / amortizeri vozačeve kabine",
+      "Plinske opruge",
+      "Pranje farova / pribor za pranje farova",
+      "Pranje stakala / pribor za pranje stakala",
+      "Retrovizor / pribor za retrovizor",
+      "Uležištenje vozačeve kabine",
+      "Uređaj za naginjanje vozačeve kabine",
+      "Zaklopke / poklopci / vrata / klizni krov"
+    ]
+  }
+  

@@ -1,4 +1,5 @@
 import { db } from "@/lib/db";
+import { SIMILARITY_THRESHOLD, NAME_WEIGHT, CATALOG_WEIGHT } from "@/lib/search-constants";
 import { Prisma } from "@prisma/client";
 import { 
   SearchParams, 
@@ -289,15 +290,210 @@ export async function advancedSearch(params: SearchParams): Promise<SearchResult
     standards,
     page = 1,
     limit = 20,
-    sort
+    sort,
+    cursorScore,
+    cursorId,
   } = params;
   
-  // Osnovni where uvjet
+  // Ako imamo dovoljno dugačak upit, koristimo relevance keyset pretragu
+  if (query && query.length >= 3) {
+    // 1) Sastavi CTE za kategorije ako je zadana kategorija
+    // 2) Izračunaj score i primijeni keyset WHERE
+    // 3) Vrati id, score; zatim dohvatiti detalje proizvoda i očuvati poredak
+    type Row = { id: string; score: number };
+    let rows: Row[] = [];
+    if (categoryId) {
+      rows = await db.$queryRaw<Row[]>`
+        WITH RECURSIVE cte AS (
+          SELECT ${categoryId}::uuid AS id
+          UNION ALL
+          SELECT c."id" FROM "Category" c JOIN cte ON c."parentId" = cte.id
+        )
+        SELECT p.id,
+          (${NAME_WEIGHT} * similarity(immutable_unaccent(lower(p.name)), immutable_unaccent(lower(${query}))) +
+           ${CATALOG_WEIGHT} * similarity(immutable_unaccent(lower(p."catalogNumber")), immutable_unaccent(lower(${query})))) AS score
+        FROM "Product" p
+        WHERE (
+          immutable_unaccent(lower(p.name)) % immutable_unaccent(lower(${query}))
+          OR immutable_unaccent(lower(p."catalogNumber")) % immutable_unaccent(lower(${query}))
+          OR immutable_unaccent(lower(COALESCE(p."oemNumber", ''))) % immutable_unaccent(lower(${query}))
+        )
+        AND p."categoryId" IN (SELECT id FROM cte)
+        AND (
+          similarity(immutable_unaccent(lower(p.name)), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD} OR
+          similarity(immutable_unaccent(lower(p."catalogNumber")), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD} OR
+          similarity(immutable_unaccent(lower(COALESCE(p."oemNumber", ''))), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD}
+        )
+        AND (
+          ${cursorScore == null && cursorId == null}
+          OR score < ${cursorScore as any}
+          OR (score = ${cursorScore as any} AND p.id < ${cursorId as any})
+        )
+        ORDER BY score DESC, p.id DESC
+        LIMIT ${Number(limit)}
+      `;
+    } else {
+      rows = await db.$queryRaw<Row[]>`
+        SELECT p.id,
+          (${NAME_WEIGHT} * similarity(immutable_unaccent(lower(p.name)), immutable_unaccent(lower(${query}))) +
+           ${CATALOG_WEIGHT} * similarity(immutable_unaccent(lower(p."catalogNumber")), immutable_unaccent(lower(${query})))) AS score
+        FROM "Product" p
+        WHERE (
+          immutable_unaccent(lower(p.name)) % immutable_unaccent(lower(${query}))
+          OR immutable_unaccent(lower(p."catalogNumber")) % immutable_unaccent(lower(${query}))
+          OR immutable_unaccent(lower(COALESCE(p."oemNumber", ''))) % immutable_unaccent(lower(${query}))
+        )
+        AND (
+          similarity(immutable_unaccent(lower(p.name)), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD} OR
+          similarity(immutable_unaccent(lower(p."catalogNumber")), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD} OR
+          similarity(immutable_unaccent(lower(COALESCE(p."oemNumber", ''))), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD}
+        )
+        AND (
+          ${cursorScore == null && cursorId == null}
+          OR score < ${cursorScore as any}
+          OR (score = ${cursorScore as any} AND p.id < ${cursorId as any})
+        )
+        ORDER BY score DESC, p.id DESC
+        LIMIT ${Number(limit)}
+      `;
+    }
+
+    const ids = rows.map(r => r.id);
+    if (ids.length === 0) {
+      return { items: [], total: 0, page, limit, totalPages: 0, nextCursor: null };
+    }
+
+    // Dohvati detalje i očuvaj poredak
+    const productsUnordered = await db.product.findMany({
+      where: { id: { in: ids } },
+      include: {
+        category: true,
+        attributeValues: { include: { attribute: true } },
+      },
+    });
+    const map = new Map(productsUnordered.map(p => [p.id, p]));
+    const items = ids.map(id => map.get(id)).filter(Boolean);
+
+    // Sljedeći kursor
+    const last = rows[rows.length - 1];
+    const nextCursor = rows.length === Number(limit) ? { score: last.score, id: last.id } : null;
+
+    // Procijeni total preko sličnih filtera (bez keyset)
+    // Napomena: ovo može biti teže za DB, ali daje kompletan broj za UI
+    let totalRows: Array<{ count: bigint }> = [];
+    if (categoryId) {
+      totalRows = await db.$queryRaw<Array<{ count: bigint }>>`
+        WITH RECURSIVE cte AS (
+          SELECT ${categoryId}::uuid AS id
+          UNION ALL
+          SELECT c."id" FROM "Category" c JOIN cte ON c."parentId" = cte.id
+        )
+        SELECT COUNT(*)::bigint AS count
+        FROM "Product" p
+        WHERE (
+          immutable_unaccent(lower(p.name)) % immutable_unaccent(lower(${query}))
+          OR immutable_unaccent(lower(p."catalogNumber")) % immutable_unaccent(lower(${query}))
+          OR immutable_unaccent(lower(COALESCE(p."oemNumber", ''))) % immutable_unaccent(lower(${query}))
+        )
+        AND p."categoryId" IN (SELECT id FROM cte)
+        AND (
+          similarity(immutable_unaccent(lower(p.name)), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD} OR
+          similarity(immutable_unaccent(lower(p."catalogNumber")), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD} OR
+          similarity(immutable_unaccent(lower(COALESCE(p."oemNumber", ''))), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD}
+        )
+      `;
+    } else {
+      totalRows = await db.$queryRaw<Array<{ count: bigint }>>`
+        SELECT COUNT(*)::bigint AS count
+        FROM "Product" p
+        WHERE (
+          immutable_unaccent(lower(p.name)) % immutable_unaccent(lower(${query}))
+          OR immutable_unaccent(lower(p."catalogNumber")) % immutable_unaccent(lower(${query}))
+          OR immutable_unaccent(lower(COALESCE(p."oemNumber", ''))) % immutable_unaccent(lower(${query}))
+        )
+        AND (
+          similarity(immutable_unaccent(lower(p.name)), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD} OR
+          similarity(immutable_unaccent(lower(p."catalogNumber")), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD} OR
+          similarity(immutable_unaccent(lower(COALESCE(p."oemNumber", ''))), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD}
+        )
+      `;
+    }
+    const total = Number(totalRows[0]?.count ?? 0);
+    const totalPages = Math.ceil(total / Number(limit));
+
+    return { items: items as any[], total, page, limit: Number(limit), totalPages, nextCursor };
+  }
+
+  // Osnovni where uvjet (non-query i fallback)
   const where: any = {};
   const whereConditions: any[] = [];
   
   // Dodavanje uvjeta za tekstualno pretraživanje
-  if (query) {
+  // Umjesto Prisma contains (koji ne koristi trigram GIN), prefiltriramo ID-jeve raw SQL-om sa unaccent+trigram
+  let prefilteredIds: string[] | null = null;
+  if (query && query.length >= 3) {
+    try {
+      if (categoryId) {
+        const rows = await db.$queryRaw<{ id: string }[]>`
+          WITH RECURSIVE cte AS (
+            SELECT ${categoryId}::uuid AS id
+            UNION ALL
+            SELECT c."id" FROM "Category" c JOIN cte ON c."parentId" = cte.id
+          )
+          SELECT p.id
+          FROM "Product" p
+          WHERE (
+            immutable_unaccent(lower(p.name)) % immutable_unaccent(lower(${query}))
+            OR immutable_unaccent(lower(p."catalogNumber")) % immutable_unaccent(lower(${query}))
+            OR immutable_unaccent(lower(COALESCE(p."oemNumber", ''))) % immutable_unaccent(lower(${query}))
+          )
+          AND p."categoryId" IN (SELECT id FROM cte)
+          AND (
+            similarity(immutable_unaccent(lower(p.name)), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD} OR
+            similarity(immutable_unaccent(lower(p."catalogNumber")), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD} OR
+            similarity(immutable_unaccent(lower(COALESCE(p."oemNumber", ''))), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD}
+          )
+          ORDER BY (
+            ${NAME_WEIGHT} * similarity(immutable_unaccent(lower(p.name)), immutable_unaccent(lower(${query}))) +
+            ${CATALOG_WEIGHT} * similarity(immutable_unaccent(lower(p."catalogNumber")), immutable_unaccent(lower(${query})))
+          ) DESC, p."createdAt" DESC
+          LIMIT 5000
+        `;
+        prefilteredIds = rows.map(r => r.id);
+      } else {
+        const rows = await db.$queryRaw<{ id: string }[]>`
+          SELECT p.id
+          FROM "Product" p
+          WHERE (
+            immutable_unaccent(lower(p.name)) % immutable_unaccent(lower(${query}))
+            OR immutable_unaccent(lower(p."catalogNumber")) % immutable_unaccent(lower(${query}))
+            OR immutable_unaccent(lower(COALESCE(p."oemNumber", ''))) % immutable_unaccent(lower(${query}))
+          )
+          AND (
+            similarity(immutable_unaccent(lower(p.name)), immutable_unaccent(lower(${query}))) > 0.1 OR
+            similarity(immutable_unaccent(lower(p."catalogNumber")), immutable_unaccent(lower(${query}))) > 0.1 OR
+            similarity(immutable_unaccent(lower(COALESCE(p."oemNumber", ''))), immutable_unaccent(lower(${query}))) > 0.1
+          )
+          ORDER BY (
+            0.7 * similarity(immutable_unaccent(lower(p.name)), immutable_unaccent(lower(${query}))) +
+            0.3 * similarity(immutable_unaccent(lower(p."catalogNumber")), immutable_unaccent(lower(${query})))
+          ) DESC, p."createdAt" DESC
+          LIMIT 5000
+        `;
+        prefilteredIds = rows.map(r => r.id);
+      }
+    } catch (e) {
+      // Ako raw pretraga zakaže, fallback na Prisma contains filter (sporije)
+      whereConditions.push({
+        OR: [
+          { name: { contains: query, mode: 'insensitive' } },
+          { description: { contains: query, mode: 'insensitive' } },
+          { catalogNumber: { contains: query, mode: 'insensitive' } }
+        ]
+      });
+    }
+  } else if (query) {
+    // Za kratke upite (<3), koristi fallback zbog niske kvalitete trigram matcheva
     whereConditions.push({
       OR: [
         { name: { contains: query, mode: 'insensitive' } },
@@ -307,9 +503,36 @@ export async function advancedSearch(params: SearchParams): Promise<SearchResult
     });
   }
   
-  // Dodavanje uvjeta za kategoriju
-  if (categoryId) {
-    where.categoryId = categoryId;
+  // Dodavanje uvjeta za kategoriju (uključi potomke)
+  if (categoryId && !prefilteredIds) {
+    try {
+      const cats = await db.$queryRaw<{ id: string }[]>`
+        WITH RECURSIVE cte AS (
+          SELECT ${categoryId}::uuid AS id
+          UNION ALL
+          SELECT c."id" FROM "Category" c JOIN cte ON c."parentId" = cte.id
+        )
+        SELECT id FROM cte
+      `;
+      const catIds = cats.map(c => c.id);
+      if (catIds.length > 0) {
+        where.categoryId = { in: catIds };
+      } else {
+        // Ako nema potomaka (ne bi se trebalo desiti), koristi samo zadanu kategoriju
+        where.categoryId = categoryId;
+      }
+    } catch {
+      // Fallback na strogo filtriranje ako CTE zakaže
+      where.categoryId = categoryId;
+    }
+  }
+
+  // Ako smo prefiltrirali ID-jeve, primijeni ih na where
+  if (prefilteredIds) {
+    if (prefilteredIds.length === 0) {
+      return { items: [], total: 0, page, limit, totalPages: 0 };
+    }
+    where.id = { in: prefilteredIds };
   }
   
   // Dodavanje uvjeta za atribute

@@ -40,6 +40,9 @@ export const productFormSchema = z.object({
   stock: z.string().optional().or(z.literal('')).refine((val) => !val || /^\d+$/.test(val), {
     message: 'Zalihe moraju biti cijeli broj.',
   }),
+  lowStockThreshold: z.string().optional().or(z.literal('')).refine((val) => !val || /^\d+$/.test(val), {
+    message: 'Prag zaliha mora biti cijeli broj ili prazan.',
+  }),
   generationIds: z.array(z.string()).optional()
 });
 
@@ -95,6 +98,14 @@ export const productApiSchema = productFormSchema.extend({
       })
   ),
   stock: z.coerce.number().int().min(0, { message: 'Zalihe ne mogu biti negativne.' }).default(0),
+  lowStockThreshold: z.preprocess(
+    (val) => (val === null || val === undefined) ? '' : String(val),
+    z.string().optional().transform((val) => {
+      if (!val || val === '') return null;
+      const num = parseInt(val, 10);
+      return isNaN(num) ? null : num;
+    })
+  ),
 });
 
 export const updateProductSchema = productApiSchema.partial();

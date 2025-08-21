@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useSearchParams } from "next/navigation";
 import AdvancedProductFilter from "@/components/product/AdvancedProductFilter";
 import { ProductCard } from "@/components/ProductCard";
@@ -128,9 +128,15 @@ export default function AdvancedProductSearchClient({ categories }: AdvancedProd
   const [searchResults, setSearchResults] = useState<SearchResults | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
+  const cooldownUntilRef = useRef<number>(0);
   
   // Funkcija za dohvaćanje rezultata pretrage
   const fetchSearchResults = async (params: FilterParams) => {
+    // honor cooldown after 429
+    const now = Date.now();
+    if (cooldownUntilRef.current && now < cooldownUntilRef.current) {
+      return;
+    }
     setIsLoading(true);
     setError(null);
     
@@ -138,7 +144,9 @@ export default function AdvancedProductSearchClient({ categories }: AdvancedProd
       // Izgradnja URL-a s parametrima
       const url = new URL('/api/products/advanced-search', window.location.origin);
       
-      if (params.query) url.searchParams.set('query', params.query);
+      if (params.query && params.query.trim().length >= 3) {
+        url.searchParams.set('query', params.query.trim());
+      }
       if (params.categoryId) url.searchParams.set('categoryId', params.categoryId);
       if (params.minPrice !== undefined) url.searchParams.set('minPrice', params.minPrice.toString());
       if (params.maxPrice !== undefined) url.searchParams.set('maxPrice', params.maxPrice.toString());
@@ -158,7 +166,15 @@ export default function AdvancedProductSearchClient({ categories }: AdvancedProd
       const response = await fetch(url.toString());
       
       if (!response.ok) {
-        const errorData = await response.json();
+        if (response.status === 429) {
+          const resetHeader = response.headers.get('RateLimit-Reset');
+          const resetInSec = resetHeader ? parseInt(resetHeader) : 5;
+          const msg = `Previše zahtjeva. Pokušajte ponovo za ${resetInSec}s.`;
+          setError(msg);
+          cooldownUntilRef.current = Date.now() + (isNaN(resetInSec) ? 5000 : resetInSec * 1000);
+          return;
+        }
+        const errorData = await response.json().catch(() => ({ error: 'Greška prilikom pretrage proizvoda' }));
         throw new Error(errorData.error || 'Greška prilikom pretrage proizvoda');
       }
       
@@ -171,19 +187,38 @@ export default function AdvancedProductSearchClient({ categories }: AdvancedProd
       setIsLoading(false);
     }
   };
-  
+
+  // Debounce
+  const debounceRef = useRef<NodeJS.Timeout | null>(null);
+  const debouncedFetch = (params: FilterParams, delay = 300) => {
+    if (debounceRef.current) clearTimeout(debounceRef.current);
+    debounceRef.current = setTimeout(() => {
+      fetchSearchResults(params);
+    }, delay);
+  };
+
   // Učitavanje rezultata pri prvom renderiranju
   useEffect(() => {
     // Provjera ima li dovoljno parametara za pretragu
     const hasSearchParams = searchParams.toString().length > 0;
     if (hasSearchParams) {
-      fetchSearchResults(initialParams);
+      debouncedFetch(initialParams, 0);
     }
   }, []);
   
   // Handler za promjenu filtera
   const handleFilterChange = (params: FilterParams) => {
-    fetchSearchResults(params);
+    // Ako je upit prekratak, a nema drugih filtera, ne pozivati API
+    const hasQuery = Boolean(params.query && params.query.trim().length >= 3);
+    const hasOtherFilters = Boolean(
+      params.categoryId || params.minPrice !== undefined || params.maxPrice !== undefined ||
+      params.crossReferenceNumber || params.vehicleGenerationId || (params.attributes && Object.keys(params.attributes).length > 0)
+    );
+    if (!hasQuery && !hasOtherFilters) {
+      setSearchResults({ products: [], total: 0, page: params.page, limit: params.limit, totalPages: 0 });
+      return;
+    }
+    debouncedFetch(params);
   };
   
   // Handler za promjenu stranice
@@ -346,6 +381,8 @@ export default function AdvancedProductSearchClient({ categories }: AdvancedProd
                     oemNumber: product.oemNumber,
                     description: "",
                     stock: 0,
+                    lowStockThreshold: null,
+                    lowStockAlerted: false,
                     technicalSpecs: {},
                     dimensions: {},
                     standards: [],

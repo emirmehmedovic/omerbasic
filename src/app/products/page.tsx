@@ -1,40 +1,45 @@
 import { Suspense } from 'react';
 import { db as prisma } from '@/lib/db';
+import { unstable_cache } from 'next/cache';
 import ProductsPageClient from './_components/ProductsPageClient';
 
-async function getFilterData() {
-  const categories = await prisma.category.findMany({
-    where: {
-      parentId: null,
-    },
-    include: {
-      children: {
-        include: {
-          children: true,
+const getFilterData = unstable_cache(
+  async () => {
+    const categories = await prisma.category.findMany({
+      where: {
+        parentId: null,
+      },
+      include: {
+        children: {
+          include: {
+            children: true,
+          },
         },
       },
-    },
-  });
+    });
 
-  const brands = await prisma.vehicleBrand.findMany({
-    orderBy: {
-      name: 'asc',
-    },
-  });
+    const brands = await prisma.vehicleBrand.findMany({
+      orderBy: {
+        name: 'asc',
+      },
+    });
 
-  // Type mapping funkcija za kategorije
-  const mapCategories = (cats: any[]): any[] => {
-    return cats.map(cat => ({
-      ...cat,
-      children: mapCategories(cat.children || [])
-    }));
-  };
+    // Type mapping funkcija za kategorije
+    const mapCategories = (cats: any[]): any[] => {
+      return cats.map(cat => ({
+        ...cat,
+        children: mapCategories(cat.children || [])
+      }));
+    };
 
-  return { 
-    categories: mapCategories(categories), 
-    brands 
-  };
-}
+    return { 
+      categories: mapCategories(categories), 
+      brands 
+    };
+  },
+  ['products-filter-data'],
+  { tags: ['categories'] }
+);
 
 function ProductsLoading() {
   return (

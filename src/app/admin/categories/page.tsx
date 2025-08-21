@@ -1,28 +1,33 @@
 import { CategoryManager, CategoryWithChildren } from '@/components/CategoryManager';
 import { db } from '@/lib/db';
+import { unstable_cache } from 'next/cache';
 
-async function getCategories(): Promise<CategoryWithChildren[]> {
-  const categories = await db.category.findMany({
-    include: {
-      children: {
-        include: { 
-          children: true,
-          _count: {
-            select: { products: true }
-          }
-        }, // Uključujemo i drugi nivo za potpunije stablo
+const getCategories = unstable_cache(
+  async (): Promise<CategoryWithChildren[]> => {
+    const categories = await db.category.findMany({
+      include: {
+        children: {
+          include: { 
+            children: true,
+            _count: {
+              select: { products: true }
+            }
+          }, // Uključujemo i drugi nivo za potpunije stablo
+        },
+        _count: {
+          select: { products: true }
+        }
       },
-      _count: {
-        select: { products: true }
-      }
-    },
-    orderBy: {
-      name: 'asc',
-    },
-  });
-  // Filtriramo samo top-level kategorije za prosljeđivanje
-  return categories.filter(c => !c.parentId);
-}
+      orderBy: {
+        name: 'asc',
+      },
+    });
+    // Filtriramo samo top-level kategorije za prosljeđivanje
+    return categories.filter(c => !c.parentId);
+  },
+  ['admin-categories'],
+  { tags: ['categories'] }
+);
 
 export default async function CategoriesPage() {
   const initialCategories = await getCategories();

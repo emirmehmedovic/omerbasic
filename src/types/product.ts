@@ -17,4 +17,8 @@ export interface ProductFormData extends PrismaProduct {
   
   // Fields that might be in technicalSpecs JSON
   generationIds?: string[];
+
+  // Low stock configuration (new)
+  lowStockThreshold: number | null;
+  lowStockAlerted: boolean;
 }

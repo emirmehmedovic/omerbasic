@@ -1,0 +1,204 @@
+{
+    "Servis / inspekcija / održavanje": {
+      "Dodatni radovi": [],
+      "Interval regulacije / servisa": []
+    },
+    "Dvokotač": [],
+    "Elektrika i elektronika": {
+      "Akumulator": [],
+      "Alternator / pojedinačni dijelovi": [],
+      "Sistem za pokretanje (anlaser) / pojedinačni dijelovi": [],
+      "Svjetla i rasvjeta": {
+        "Glavni far / pojedinačni dijelovi": [],
+        "Dodatni far / pojedinačni dijelovi": [],
+        "Zadnje svjetlo / pojedinačni dijelovi": [],
+        "Pokazivač smjera / pojedinačni dijelovi": []
+      },
+      "Instrumenti (tabla, mjerni uređaji)": [],
+      "Senzori": [],
+      "Sirena / dvostruka sirena": [],
+      "Komplet kablova / pojedinačni dijelovi kompleta": [],
+      "Prekidači / releji / upravljački uređaji za osvjetljenje": [],
+      "Releji": [],
+      "Središnji električni sistem": [],
+      "Upravljački uređaji (ECU)": [],
+      "Višefunkcijska sklopka / upravljačka jedinica": [],
+      "Višefunkcijski relej": [],
+      "CAN sabirnica": []
+    },
+    "Filteri": {
+      "Filter goriva": [],
+      "Filter ulja": [],
+      "Filter zraka": [],
+      "Filter zraka kabine (polenski)": [],
+      "Hidraulični filter": []
+    },
+    "Hlađenje motora": {
+      "Crijeva / vodovi / prirubnice": [],
+      "Hladnjak vode / hladnjak ulja": [],
+      "Hlađenje zrakom": [],
+      "Prekidač / senzor (termo-prekidač)": [],
+      "Pumpa za vodu / brtva": [],
+      "Termostat / brtva termostata / termometar rashladne tečnosti": [],
+      "Upravljački uređaj ventilatora": [],
+      "Ventilator": [],
+      "Zaštita od smrzavanja (antifriz)": [],
+      "Relej": []
+    },
+    "Ispušni sistem": {
+      "Koljenasta cijev / downpipe": [],
+      "Lambda sonda (O2 senzor)": [],
+      "Dijelovi za montažu / nosači": [],
+      "Katalizator / DPF / SCR": {
+        "Regeneracija DPF-a": [],
+        "Ubrizgavanje uree (AdBlue)": []
+      },
+      "Senzori / sonde (NOx, diferencijalni pritisak, temperatura)": []
+    },
+    "Kočioni sistem": {
+      "Disk kočnica (disk / pribor)": [],
+      "Kočne obloge (pločice) / čeljust": [],
+      "Bubanj kočnica": [],
+      "Kočno sedlo (kliješta) / pribor": [],
+      "Glavni kočni cilindar": [],
+      "Cilindar točka": [],
+      "Kočna crijeva / vodovi / pribor": [],
+      "Kočna tekućina": [],
+      "Pojačivač sile kočenja (servo)": [],
+      "Prekidač kočionog svjetla": [],
+      "Pokazivač istrošenosti kočnica": [],
+      "Spremnik kočne tekućine / pojedinačni dijelovi": [],
+      "Regulacija vozne dinamike (ABS / ESP / ASR)": [],
+      "Vakuumska pumpa": [],
+      "Visokoučinkovita kočnica (performance)": []
+    },
+    "Kotači i gume": {
+      "Pribor (vijci, matice, prstenovi)": [],
+      "Sistem za kontrolu pritiska u gumama (TPMS)": []
+    },
+    "Mjenjač i prijenos": {
+      "Ručni mjenjač": [],
+      "Automatski mjenjač": [],
+      "Mjenjač s dvostrukom spojkom (DSG/DCT)": [],
+      "Automatizirani mjenjač (ASG)": [],
+      "Ulja mjenjača": [],
+      "Alati (servis mjenjača)": []
+    },
+    "Motor i agregati": {
+      "Brtve (dihtunzi)": [],
+      "Cilindar / klip": [],
+      "Glava cilindra / priključni dijelovi": [],
+      "Električni sistem motora": [],
+      "Opskrba zrakom (usis, leptir, MAF/MAP)": [],
+      "Podmazivanje (pumpa ulja, karter)": [],
+      "Pročišćavanje ispušnih plinova (EGR, katalizator, DPF)": [],
+      "Remenski pogon (zupčasti, klinasti, roleri)": [],
+      "Upravljanje motorom (ECU, aktuatori, senzori)": [],
+      "Zaštita motora / zaštita podvozja": [],
+      "Ovjes motora (nosači)": [],
+      "Poklopac ventila / kućišta": []
+    },
+    "Osovinski i pogonski sistem": {
+      "Pogon točkova (homokinetički zglobovi, poluosovine)": [],
+      "Diferencijal / prijenos": [],
+      "Ulja (diferencijal/prijenos)": []
+    },
+    "Ovjes i amortizeri": {
+      "Amortizer": [],
+      "Opruge / gornji ležajevi": [],
+      "Zračni ovjes": [],
+      "Ovjes osovine / vodilica točka": [],
+      "Pneumatski sistem (nivelacija)": []
+    },
+    "Gorivo i priprema smjese": {
+      "Priprema goriva (pumpa, regulator, vodovi)": [],
+      "Priprema smjese (ubrizgavanje, karburator, common-rail)": [],
+      "Sistem za dovod goriva": [],
+      "Spremnik za gorivo / pribor": []
+    },
+    "Kvačilo / priključni dijelovi": {
+      "Komplet kvačila": [],
+      "Kućište kvačila / zamašnjak (jedno/dvomaseni)": [],
+      "Hidraulični pogon kvačila (cilindri, cijevi)": []
+    },
+    "Sistem paljenja / sistem predgrijanja": {
+      "Svjećice / bobine": [],
+      "Davač impulsa (radilica, bregasta)": [],
+      "Upravljački uređaji / releji / senzori": []
+    },
+    "Grijanje / ventilacija": {
+      "Dodatna pumpa za vodu": [],
+      "Filter zraka kabine (polenski)": [],
+      "Izmjenjivač topline za unutrašnjost": [],
+      "Pojedinačni dijelovi ventilatora": [],
+      "Predgrijavanje rashladne vode": [],
+      "Upravljački uređaji": [],
+      "Ventili / regulacija": []
+    },
+    "Hibridni / električni pogon": {
+      "Visokonaponska baterija / moduli": [],
+      "Inverter / konverter / punjač": [],
+      "Električni motor (e-motor)": [],
+      "HV kablovi i razvod": [],
+      "e-AC kompresor": []
+    },
+    "Informacioni / komunikacioni sistemi": {
+      "Audiosistem": [],
+      "Instrumenti": [],
+      "Navigacija / telematika": [],
+      "Kamera / pomoć pri parkiranju": []
+    },
+    "Karoserija": {
+      "Dijelovi karoserije / blatobran / branik": [],
+      "Prednji dio vozila": [],
+      "Zadnji dio vozila": [],
+      "Pričvršćenje hladnjaka": [],
+      "Putnička kabina / ćelija": [],
+      "Ostakljenje / retrovizori": [],
+      "Plinske opruge": [],
+      "Svjetla (vanjska rasvjeta)": [],
+      "Ukrasne / zaštitne / dekorativne lajsne, amblemi, zaštita od prskanja": [],
+      "Zaklopke / poklopci / vrata / krov (klizni, panoramski, sklopivi)": [],
+      "Spremnik za gorivo / pojedinačni dijelovi": [],
+      "Elektromotor (podizači, aktuatori)": []
+    },
+    "Klima uređaj (A/C)": {
+      "Kompresor / pojedinačni dijelovi": [],
+      "Kondenzator": [],
+      "Isparivač": [],
+      "Sušač": [],
+      "Ventili": [],
+      "Crijeva / vodovi": [],
+      "Prekidači": [],
+      "Senzori": [],
+      "Upravljački uređaj": [],
+      "Komplet za popravak": []
+    },
+    "Luksuzna i dodatna oprema": {
+      "Centralno zaključavanje": [],
+      "Grijanje u mirovanju": [],
+      "Kamera": [],
+      "Motor / relej / prekidač (prozori, brave)": [],
+      "Podizač stakla": [],
+      "Pomoć pri parkiranju / upozorenje pri vožnji unazad": [],
+      "Pumpe (pranje stakala/farova)": [],
+      "Senzor za kišu": [],
+      "Aktiviranje vrata prtljažnika": []
+    },
+    "Upravljački sistem (volan)": {
+      "Letva volana / servo": [],
+      "Krajnice / spone": [],
+      "Pumpa servo upravljača": [],
+      "Stub volana / prekidači": []
+    },
+    "Uređaj za vuču / priključni dijelovi": [],
+    "Pranje / čišćenje": {
+      "Pranje farova": [],
+      "Pranje stakala": [],
+      "Pribor": []
+    },
+    "Sigurnosni sistemi": [],
+    "Posebni alati": [],
+    "Remenski pogon (opšti)": []
+  }
+  

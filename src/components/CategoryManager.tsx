@@ -139,7 +139,7 @@ export function CategoryManager({ initialCategories }: CategoryManagerProps) {
   const flattenedForSelect = useMemo(() => flattenCategories(topLevelCategories), [categories]);
 
   return (
-    <div className="bg-gradient-to-r from-white/95 to-gray-50/95 backdrop-blur-sm rounded-2xl border border-amber/20 shadow-sm overflow-hidden">
+    <div className="bg-gradient-to-r from-white/95 to-gray-50/95 backdrop-blur-sm rounded-2xl border border-amber/20 shadow-sm">
       <div className="bg-gradient-to-r from-white/90 to-gray-50/90 border-b border-amber/20 px-6 py-4">
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-4">

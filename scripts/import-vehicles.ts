@@ -123,9 +123,10 @@ async function upsertEngine(generationId: string, engine: VehicleEngineInput) {
 async function importFromFile(filePath: string) {
   const fullPath = path.isAbsolute(filePath) ? filePath : path.join(process.cwd(), filePath);
   const raw = readFileSync(fullPath, 'utf-8');
-  const parsed = JSON.parse(raw) as any[];
+  const parsed = JSON.parse(raw) as any;
+  const brandsArray: any[] = Array.isArray(parsed) ? parsed : (parsed ? [parsed] : []);
 
-  for (const brand of parsed) {
+  for (const brand of brandsArray) {
     const mappedBrand: VehicleBrandInput = {
       name: brand.name,
       type: brand.type,

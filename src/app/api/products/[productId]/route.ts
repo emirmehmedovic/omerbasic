@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { revalidateTag } from 'next/cache';
 import { db } from '@/lib/db';
 import { updateProductSchema } from '@/lib/validations/product';
 import { z } from 'zod';
@@ -209,6 +210,7 @@ export async function PATCH(
       }
     }
 
+    try { revalidateTag('products'); } catch {}
     return NextResponse.json(product);
   } catch (error) {
     if (error instanceof z.ZodError) {
@@ -229,7 +231,7 @@ export async function DELETE(
     await db.product.delete({
       where: { id: productId },
     });
-
+    try { revalidateTag('products'); revalidateTag('categories'); } catch {}
     return new NextResponse(null, { status: 204 });
   } catch (error) {
     console.error('[PRODUCT_DELETE]', error);

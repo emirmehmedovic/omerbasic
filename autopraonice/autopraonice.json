@@ -1,0 +1,62 @@
+{
+    "Autopraonice": {
+      "Oprema za pranje vozila": [
+        "Samouslužni aparati za pranje",
+        "Portalne autopraonice",
+        "Tunelske autopraonice",
+        "Visokotlačni perači",
+        "Usisivači za unutrašnjost"
+      ],
+      "Potrošni materijal": [
+        "Detergenti i šamponi",
+        "Vosak za zaštitu",
+        "Pjena za predpranje",
+        "Sredstva za čišćenje felgi",
+        "Sredstva za unutrašnje čišćenje",
+        "Sredstva za dezinfekciju klime"
+      ],
+      "Oprema za sušenje": [
+        "Sušilice vozila (ventilatori, tunelski sistemi)",
+        "Krpe od mikrovlakana",
+        "Papirne rolne za brisanje"
+      ],
+      "Oprema za poliranje i njegu": [
+        "Mašine za poliranje",
+        "Paste za poliranje",
+        "Zaštitni premazi (keramički, nano)",
+        "Četke i spužve"
+      ],
+      "Specijalna oprema": [
+        "Oprema za pranje podvozja",
+        "Oprema za pranje kamiona i autobusa",
+        "Oprema za pranje cisterni",
+        "Strojevi za pranje tepiha i presvlaka"
+      ],
+      "Sistemi za upravljanje vodom": [
+        "Sistemi za reciklažu vode",
+        "Separatori ulja i masti",
+        "Filteri za vodu",
+        "Spremnici za otpadne vode"
+      ],
+      "Oprema za grijanje i hemiju": [
+        "Dozirne pumpe za hemiju",
+        "Sistemi za miješanje hemikalija",
+        "Grijači vode",
+        "Kotlovnice za toplu vodu"
+      ],
+      "Sigurnosna i zaštitna oprema": [
+        "Zaštitne rukavice i odjeća",
+        "Naočale i maske",
+        "Ventilacija i odsisavanje para",
+        "Protuklizne podloge"
+      ],
+      "Pribor i dodaci": [
+        "Držači i stalci za crijeva",
+        "Pjenomati",
+        "Kante i posude",
+        "Četke za pranje",
+        "Setovi za detailing"
+      ]
+    }
+  }
+  

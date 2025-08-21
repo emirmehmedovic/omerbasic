@@ -34,12 +34,27 @@ import type { CategoryWithChildren } from '../page';
 interface DataTableToolbarProps<TData> {
   table: Table<TData>;
   categories: CategoryWithChildren[];
+  onSearch?: (q: string) => void;
+  onCategoryChange?: (categoryId: string) => void;
 }
 
 
-export function DataTableToolbar<TData>({ table, categories }: DataTableToolbarProps<TData>) {
+export function DataTableToolbar<TData>({ table, categories, onSearch, onCategoryChange }: DataTableToolbarProps<TData>) {
   const isFiltered = table.getState().columnFilters.length > 0;
   const [selectedCategoryId, setSelectedCategoryId] = React.useState('');
+  const [search, setSearch] = React.useState('');
+
+  // debounce search -> 300ms
+  React.useEffect(() => {
+    const id = setTimeout(() => {
+      const q = search.trim();
+      // update table filter for UI consistency
+      table.getColumn('name')?.setFilterValue(q);
+      // server-driven callback
+      if (onSearch) onSearch(q);
+    }, 300);
+    return () => clearTimeout(id);
+  }, [search]);
 
     return (
     <div className="space-y-4">
@@ -49,8 +64,8 @@ export function DataTableToolbar<TData>({ table, categories }: DataTableToolbarP
           <div className="relative">
             <Input
               placeholder="Pretraži proizvode..."
-              value={(table.getColumn('name')?.getFilterValue() as string) ?? ''}
-              onChange={(event) => table.getColumn('name')?.setFilterValue(event.target.value)}
+              value={search}
+              onChange={(event) => setSearch(event.target.value)}
               className="h-11 w-[200px] lg:w-[300px] bg-gradient-to-r from-white/95 to-gray-50/95 backdrop-blur-sm text-gray-900 placeholder:text-gray-500 border-amber/30 rounded-xl focus:border-amber focus:ring-amber/20 shadow-sm"
             />
             <svg className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -68,6 +83,7 @@ export function DataTableToolbar<TData>({ table, categories }: DataTableToolbarP
                 const allRelatedIds = getCategoryAndChildrenIds(value, categories);
                 table.getColumn('category')?.setFilterValue(allRelatedIds);
               }
+              if (onCategoryChange) onCategoryChange(value);
             }}
           />
           {isFiltered && (

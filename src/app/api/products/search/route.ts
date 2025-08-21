@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { SIMILARITY_THRESHOLD, NAME_WEIGHT, CATALOG_WEIGHT } from '@/lib/search-constants';
 import { db } from "@/lib/db";
 import { 
   advancedSearch, 
@@ -7,26 +8,12 @@ import {
   parseSortParam 
 } from "@/lib/search-utils";
 import { SearchParams } from "@/lib/types/search";
+import { rateLimit, keyFromIpAndPath } from "@/lib/ratelimit";
 
-// Helper: collect a category and all of its descendants' IDs
-async function getCategoryAndChildrenIds(categoryId: string): Promise<string[]> {
-  const allIds: string[] = [categoryId];
-  const queue: string[] = [categoryId];
-  while (queue.length > 0) {
-    const currentId = queue.shift();
-    if (!currentId) continue;
-    const children = await db.category.findMany({
-      where: { parentId: currentId },
-      select: { id: true },
-    });
-    const childrenIds = children.map((c) => c.id);
-    if (childrenIds.length > 0) {
-      allIds.push(...childrenIds);
-      queue.push(...childrenIds);
-    }
-  }
-  return allIds;
-}
+// Cache per-URL for 30s to smooth traffic while keeping results fresh
+export const revalidate = 30;
+
+// We will use a recursive CTE in SQL for category descendants to avoid N+1
 
 export async function GET(req: Request) {
   try {
@@ -34,7 +21,24 @@ export async function GET(req: Request) {
     const query = searchParams.get("q");
     const mode = searchParams.get("mode") || "basic";
 
-    // Osnovna pretraga (kompatibilnost s postojećim kodom)
+    // Simple per-IP rate limiting
+    const ip = (typeof (req as any).ip === 'string' && (req as any).ip)
+      || (req.headers.get('x-forwarded-for')?.split(',')[0]?.trim())
+      || req.headers.get('x-real-ip')
+      || null;
+    const pathKey = mode === 'advanced' ? '/api/products/search:advanced' : '/api/products/search:basic';
+    const limitConfig = mode === 'advanced' ? { limit: 10, windowMs: 60_000 } : { limit: 20, windowMs: 60_000 };
+    const key = keyFromIpAndPath(ip, pathKey);
+    const rl = rateLimit(key, limitConfig.limit, limitConfig.windowMs);
+    if (!rl.ok) {
+      const res = NextResponse.json({ error: 'Previše zahtjeva. Pokušajte ponovo kasnije.' }, { status: 429 });
+      res.headers.set('RateLimit-Limit', String(limitConfig.limit));
+      res.headers.set('RateLimit-Remaining', String(rl.remaining));
+      res.headers.set('RateLimit-Reset', String(Math.ceil(rl.resetInMs / 1000)));
+      return res;
+    }
+
+    // Osnovna pretraga (brža uz trigram + unaccent, indeksirano)
     if (mode === "basic") {
       if (!query || query.length < 3) {
         return NextResponse.json(
@@ -44,32 +48,60 @@ export async function GET(req: Request) {
       }
 
       const categoryId = searchParams.get("categoryId");
-      let where: any = {
-        OR: [
-          { name: { contains: query, mode: "insensitive" } },
-          { catalogNumber: { contains: query, mode: "insensitive" } },
-          { oemNumber: { contains: query, mode: "insensitive" } },
-        ],
-      };
+
+      // Normalize query once in SQL using lower+unaccent; use trigram % operator to leverage GIN indexes
+      let rows: any[];
       if (categoryId) {
-        const ids = await getCategoryAndChildrenIds(categoryId);
-        where.categoryId = { in: ids };
+        rows = await db.$queryRaw<any>`
+          WITH RECURSIVE cte AS (
+            SELECT ${categoryId}::uuid AS id
+            UNION ALL
+            SELECT c."id"
+            FROM "Category" c
+            JOIN cte ON c."parentId" = cte.id
+          )
+          SELECT p.id, p.name, p."catalogNumber", p."oemNumber", p.price, p."imageUrl", p."categoryId"
+          FROM "Product" p
+          WHERE (
+            immutable_unaccent(lower(p.name)) % immutable_unaccent(lower(${query}))
+            OR immutable_unaccent(lower(p."catalogNumber")) % immutable_unaccent(lower(${query}))
+            OR immutable_unaccent(lower(COALESCE(p."oemNumber", ''))) % immutable_unaccent(lower(${query}))
+          )
+          AND p."categoryId" IN (SELECT id FROM cte)
+          AND (
+            similarity(immutable_unaccent(lower(p.name)), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD} OR
+            similarity(immutable_unaccent(lower(p."catalogNumber")), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD} OR
+            similarity(immutable_unaccent(lower(COALESCE(p."oemNumber", ''))), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD}
+          )
+          ORDER BY (
+            ${NAME_WEIGHT} * similarity(immutable_unaccent(lower(p.name)), immutable_unaccent(lower(${query}))) +
+            ${CATALOG_WEIGHT} * similarity(immutable_unaccent(lower(p."catalogNumber")), immutable_unaccent(lower(${query})))
+          ) DESC, p."createdAt" DESC
+          LIMIT 20
+        `;
+      } else {
+        rows = await db.$queryRaw<any>`
+          SELECT p.id, p.name, p."catalogNumber", p."oemNumber", p.price, p."imageUrl", p."categoryId"
+          FROM "Product" p
+          WHERE (
+            immutable_unaccent(lower(p.name)) % immutable_unaccent(lower(${query}))
+            OR immutable_unaccent(lower(p."catalogNumber")) % immutable_unaccent(lower(${query}))
+            OR immutable_unaccent(lower(COALESCE(p."oemNumber", ''))) % immutable_unaccent(lower(${query}))
+          )
+          AND (
+            similarity(immutable_unaccent(lower(p.name)), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD} OR
+            similarity(immutable_unaccent(lower(p."catalogNumber")), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD} OR
+            similarity(immutable_unaccent(lower(COALESCE(p."oemNumber", ''))), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD}
+          )
+          ORDER BY (
+            ${NAME_WEIGHT} * similarity(immutable_unaccent(lower(p.name)), immutable_unaccent(lower(${query}))) +
+            ${CATALOG_WEIGHT} * similarity(immutable_unaccent(lower(p."catalogNumber")), immutable_unaccent(lower(${query})))
+          ) DESC, p."createdAt" DESC
+          LIMIT 20
+        `;
       }
 
-      // Pretraživanje proizvoda po nazivu, kataloškom broju ili OEM broju
-      const products = await db.product.findMany({
-        where,
-        select: {
-          id: true,
-          name: true,
-          catalogNumber: true,
-          oemNumber: true,
-          price: true,
-        },
-        take: 20, // Ograničenje broja rezultata
-      });
-
-      return NextResponse.json(products);
+      return NextResponse.json(rows);
     }
     
     // Napredna pretraga
@@ -87,7 +119,9 @@ export async function GET(req: Request) {
         standards: searchParams.get("standards")?.split(",") || [],
         page: parseInt(searchParams.get("page") || "1"),
         limit: parseInt(searchParams.get("limit") || "20"),
-        sort: parseSortParam(searchParams.get("sort") || "")
+        sort: parseSortParam(searchParams.get("sort") || ""),
+        cursorScore: searchParams.get("cursorScore") ? Number(searchParams.get("cursorScore")) : undefined,
+        cursorId: searchParams.get("cursorId") || undefined,
       };
 
       // Izvršavanje napredne pretrage

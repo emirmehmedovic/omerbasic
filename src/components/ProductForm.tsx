@@ -57,6 +57,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({ initialData, categorie
           catalogNumber: initialData.catalogNumber ?? '',
           oemNumber: initialData.oemNumber ?? '',
           stock: String(initialData.stock ?? 0),
+          lowStockThreshold: initialData.lowStockThreshold != null ? String(initialData.lowStockThreshold as any) : '',
         }
       : {
           name: '',
@@ -77,6 +78,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({ initialData, categorie
           length: '',
           unitOfMeasure: '',
           stock: '0',
+          lowStockThreshold: '',
         },
   });
 
@@ -132,7 +134,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({ initialData, categorie
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-8 bg-white p-8 rounded-lg shadow-md">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
         <div>
           <label htmlFor="name" className="block text-sm font-medium text-gray-700">Naziv</label>
           <input
@@ -166,6 +168,18 @@ export const ProductForm: React.FC<ProductFormProps> = ({ initialData, categorie
             placeholder="0"
           />
           {errors.stock && <p className="mt-2 text-sm text-red-600">{errors.stock.message}</p>}
+        </div>
+        <div>
+          <label htmlFor="lowStockThreshold" className="block text-sm font-medium text-gray-700">Prag niskih zaliha (opcionalno)</label>
+          <input
+            id="lowStockThreshold"
+            type="number"
+            step="1"
+            {...register('lowStockThreshold')}
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+            placeholder="npr. 5"
+          />
+          {errors.lowStockThreshold && <p className="mt-2 text-sm text-red-600">{errors.lowStockThreshold.message}</p>}
         </div>
       </div>
 

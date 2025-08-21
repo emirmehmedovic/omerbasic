@@ -18,6 +18,9 @@ model Product {
   price              Float
   imageUrl           String?
   stock              Int         @default(0)
+  // Low stock configuration
+  lowStockThreshold  Int?
+  lowStockAlerted    Boolean     @default(false)
   catalogNumber      String      @unique
   oemNumber          String?
   isFeatured         Boolean     @default(false)
@@ -47,6 +50,15 @@ model Product {
   
   // Relacija za featured products
   featuredProduct     FeaturedProduct?
+
+  // Performance indexes
+  @@index([categoryId, isArchived])
+  @@index([isFeatured])
+  @@index([updatedAt])
+  @@index([createdAt])
+  @@index([createdAt, id])
+  @@index([price])
+  @@index([name])
 }
 
 model Category {
@@ -74,6 +86,7 @@ model Category {
   supplierCategories SupplierCategory[]
 
   @@unique([name, parentId])
+  @@index([parentId])
 }
 
 // Model za grupe atributa kategorija
@@ -523,6 +536,7 @@ model VehicleGeneration {
   productFitments ProductVehicleFitment[]
 
   @@unique([modelId, name])
+  @@index([modelId])
 }
 
 model VehicleEngine {
@@ -563,6 +577,8 @@ model ProductVehicleFitment {
   updatedAt       DateTime  @updatedAt
   
   @@unique([productId, generationId, engineId])
+  @@index([generationId, engineId])
+  @@index([productId])
 }
 
 // Model za kontakt zahtjeve

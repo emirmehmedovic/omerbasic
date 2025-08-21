@@ -3,6 +3,10 @@ import { db } from "@/lib/db";
 import { productApiSchema } from '@/lib/validations/product';
 import { z } from 'zod';
 import { getCurrentUser } from '@/lib/session';
+import { revalidateTag } from 'next/cache';
+
+// Enable ISR-style caching for this route per-URL for 60 seconds
+export const revalidate = 60;
 
 // Pomoćna funkcija za dohvat kategorije i svih njenih podkategorija (potomaka)
 async function getCategoryAndChildrenIds(categoryId: string): Promise<string[]> {
@@ -40,8 +44,8 @@ export async function GET(req: NextRequest) {
       : null;
     const minPrice = searchParams.get("minPrice");
     const maxPrice = searchParams.get("maxPrice");
-    const limit = parseInt(searchParams.get("limit") || "100");
-    const skip = parseInt(searchParams.get("skip") || "0");
+    const limit = Math.min(parseInt(searchParams.get("limit") || "24"), 100);
+    const cursor = searchParams.get("cursor"); // keyset cursor = last item id
 
     let where: any = { isArchived: false };
 
@@ -73,19 +77,41 @@ export async function GET(req: NextRequest) {
       if (maxPrice) where.price.lte = parseFloat(maxPrice);
     }
 
+    // Keyset pagination: order by createdAt desc, then id desc; use id cursor
     const products = await db.product.findMany({
       where,
-      include: {
-        category: true,
+      select: {
+        id: true,
+        name: true,
+        price: true,
+        stock: true,
+        imageUrl: true,
+        catalogNumber: true,
+        oemNumber: true,
+        categoryId: true,
+        createdAt: true,
+        updatedAt: true,
+        category: { select: { id: true, name: true, parentId: true } },
       },
-      orderBy: {
-        createdAt: "desc",
-      },
-      take: limit,
-      skip: skip,
+      orderBy: [
+        { createdAt: 'desc' },
+        { id: 'desc' },
+      ],
+      take: limit + 1, // fetch one extra to know if there's next page
+      ...(cursor ? { cursor: { id: cursor }, skip: 1 } : {}),
     });
 
-    return NextResponse.json(products);
+    let nextCursor: string | null = null;
+    let items = products;
+    if (products.length > limit) {
+      const nextItem = products[products.length - 1];
+      nextCursor = nextItem.id;
+      items = products.slice(0, limit);
+    }
+
+    const res = NextResponse.json(items);
+    if (nextCursor) res.headers.set('X-Next-Cursor', nextCursor);
+    return res;
   } catch (error) {
     console.error("Greška pri dohvaćanju proizvoda:", error);
     return NextResponse.json(
@@ -125,6 +151,7 @@ export async function POST(req: Request) {
       engineType,
       unitOfMeasure,
       stock,
+      lowStockThreshold,
       categoryAttributes, // Dinamički atributi kategorije
     } = result.data;
 
@@ -162,6 +189,7 @@ export async function POST(req: Request) {
         dimensions,
         technicalSpecs,
         stock: stock || 0,
+        lowStockThreshold: lowStockThreshold ?? null,
         // Ne povezujemo generacije ovdje, to ćemo napraviti nakon kreiranja proizvoda
       },
     });
@@ -238,7 +266,12 @@ export async function POST(req: Request) {
         }
       }
     });
-    
+    // Revalidate caches
+    try {
+      revalidateTag('products');
+      revalidateTag('categories'); // product counts per category might appear in cached UIs
+    } catch {}
+
     return NextResponse.json(productWithFitments ?? product, { status: 201 });
   } catch (error) {
     if (error instanceof z.ZodError) {

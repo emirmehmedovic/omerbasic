@@ -42,6 +42,9 @@ export interface SearchParams {
   page: number;
   limit: number;
   sort?: SortOption;
+  // Optional relevance keyset cursor (used when query is present)
+  cursorScore?: number;
+  cursorId?: string;
 }
 
 // Tip za rezultat pretrage
@@ -51,4 +54,6 @@ export interface SearchResult<T> {
   page: number;
   limit: number;
   totalPages: number;
+  // Optional next cursor for relevance keyset mode
+  nextCursor?: { score: number; id: string } | null;
 }

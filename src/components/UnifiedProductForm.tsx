@@ -18,6 +18,7 @@ type ExtendedProduct = {
   price: number;
   imageUrl: string | null;
   stock: number;
+  lowStockThreshold?: number | null;
   catalogNumber: string;
   oemNumber: string | null;
   isFeatured: boolean;
@@ -106,6 +107,7 @@ export const UnifiedProductForm = ({ initialData, categories }: UnifiedProductFo
           length: initialData.length ? String(initialData.length) : '',
           unitOfMeasure: initialData.unitOfMeasure ?? '',
           stock: initialData.stock ? String(initialData.stock) : '0',
+          lowStockThreshold: initialData.lowStockThreshold != null ? String(initialData.lowStockThreshold) : '',
           generationIds: initialData.vehicleFitments?.map(f => f.engine?.id ? `${f.generationId}::${f.engine.id}` : f.generationId) || [],
           categoryAttributes: {}, // Dinamički atributi kategorije
         }
@@ -127,6 +129,7 @@ export const UnifiedProductForm = ({ initialData, categories }: UnifiedProductFo
           length: '',
           unitOfMeasure: '',
           stock: '0',
+          lowStockThreshold: '',
           generationIds: [],
           categoryAttributes: {}, // Dinamički atributi kategorije
         },
@@ -308,7 +311,7 @@ export const UnifiedProductForm = ({ initialData, categories }: UnifiedProductFo
             </svg>
             Osnovne informacije
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             <FormField
               control={form.control}
               name="name"
