@@ -8,6 +8,26 @@ import {
 } from "@/lib/search-utils";
 import { SearchParams } from "@/lib/types/search";
 
+// Helper: collect a category and all of its descendants' IDs
+async function getCategoryAndChildrenIds(categoryId: string): Promise<string[]> {
+  const allIds: string[] = [categoryId];
+  const queue: string[] = [categoryId];
+  while (queue.length > 0) {
+    const currentId = queue.shift();
+    if (!currentId) continue;
+    const children = await db.category.findMany({
+      where: { parentId: currentId },
+      select: { id: true },
+    });
+    const childrenIds = children.map((c) => c.id);
+    if (childrenIds.length > 0) {
+      allIds.push(...childrenIds);
+      queue.push(...childrenIds);
+    }
+  }
+  return allIds;
+}
+
 export async function GET(req: Request) {
   try {
     const { searchParams } = new URL(req.url);
@@ -23,15 +43,22 @@ export async function GET(req: Request) {
         );
       }
 
+      const categoryId = searchParams.get("categoryId");
+      let where: any = {
+        OR: [
+          { name: { contains: query, mode: "insensitive" } },
+          { catalogNumber: { contains: query, mode: "insensitive" } },
+          { oemNumber: { contains: query, mode: "insensitive" } },
+        ],
+      };
+      if (categoryId) {
+        const ids = await getCategoryAndChildrenIds(categoryId);
+        where.categoryId = { in: ids };
+      }
+
       // Pretraživanje proizvoda po nazivu, kataloškom broju ili OEM broju
       const products = await db.product.findMany({
-        where: {
-          OR: [
-            { name: { contains: query, mode: "insensitive" } },
-            { catalogNumber: { contains: query, mode: "insensitive" } },
-            { oemNumber: { contains: query, mode: "insensitive" } },
-          ],
-        },
+        where,
         select: {
           id: true,
           name: true,

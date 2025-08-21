@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { User } from '@/generated/prisma/client';
 import { FiEdit, FiPlus, FiTrash2 } from 'react-icons/fi';
 import { CreateB2bUserForm } from '@/app/admin/users/_components/CreateB2bUserForm';
+import { CreateAdminUserForm } from '@/app/admin/users/_components/CreateAdminUserForm';
 import { EditUserForm } from '@/app/admin/users/_components/EditUserForm';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
@@ -20,6 +21,7 @@ export function UsersClient({ data }: UsersClientProps) {
   const [users, setUsers] = useState<SafeUser[]>(data);
   const [isCreateModalOpen, setCreateModalOpen] = useState(false);
   const [isEditModalOpen, setEditModalOpen] = useState(false);
+  const [isCreateAdminModalOpen, setCreateAdminModalOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState<SafeUser | null>(null);
 
   const handleCreateSuccess = (newUser: SafeUser) => {
@@ -89,12 +91,20 @@ export function UsersClient({ data }: UsersClientProps) {
                 Pregled i upravljanje svim korisnicima sistema
               </p>
             </div>
-            <button 
-              onClick={() => setCreateModalOpen(true)} 
-              className="bg-gradient-to-r from-amber via-orange to-brown text-white hover:from-amber/90 hover:via-orange/90 hover:to-brown/90 shadow-lg hover:scale-105 transition-all duration-200 rounded-xl px-4 py-2 font-semibold flex items-center gap-2"
-            >
-              <FiPlus /> Dodaj B2B korisnika
-            </button>
+            <div className="flex items-center gap-3">
+              <button 
+                onClick={() => setCreateModalOpen(true)} 
+                className="bg-gradient-to-r from-amber via-orange to-brown text-white hover:from-amber/90 hover:via-orange/90 hover:to-brown/90 shadow-lg hover:scale-105 transition-all duration-200 rounded-xl px-4 py-2 font-semibold flex items-center gap-2"
+              >
+                <FiPlus /> Dodaj B2B korisnika
+              </button>
+              <button 
+                onClick={() => setCreateAdminModalOpen(true)} 
+                className="bg-gradient-to-r from-slate-800 via-slate-700 to-slate-600 text-white hover:from-slate-900 hover:via-slate-800 hover:to-slate-700 shadow-lg hover:scale-105 transition-all duration-200 rounded-xl px-4 py-2 font-semibold flex items-center gap-2"
+              >
+                <FiPlus /> Dodaj Admina
+              </button>
+            </div>
           </div>
         </div>
 
@@ -162,6 +172,23 @@ export function UsersClient({ data }: UsersClientProps) {
               <h3 className="text-xl font-semibold text-gray-900">Kreiraj novog B2B korisnika</h3>
             </div>
             <CreateB2bUserForm onSuccess={handleCreateSuccess} onCancel={() => setCreateModalOpen(false)} />
+          </div>
+        </div>
+      )}
+
+      {/* Modal za dodavanje ADMIN korisnika */}
+      {isCreateAdminModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="w-full max-w-2xl bg-gradient-to-br from-white via-gray-50/80 to-blue-50/60 backdrop-blur-sm border border-amber/20 shadow-xl rounded-2xl p-6">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="p-2 bg-gradient-to-r from-white/80 to-gray-50/80 backdrop-blur-sm rounded-lg border border-amber/30">
+                <svg className="w-5 h-5 text-slate-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 10-8 0v4M5 20h14a2 2 0 002-2v-5a2 2 0 00-2-2H5a2 2 0 00-2 2v5a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900">Kreiraj novog ADMIN korisnika</h3>
+            </div>
+            <CreateAdminUserForm onSuccess={(u) => { handleCreateSuccess(u); setCreateAdminModalOpen(false); }} onCancel={() => setCreateAdminModalOpen(false)} />
           </div>
         </div>
       )}

@@ -57,11 +57,22 @@ export async function middleware(req: NextRequest) {
     }
   }
   
-  // B2B redirect nakon prijave - preusmjeri B2B korisnike na products stranicu
-  if (pathname === '/login' && token && token.role === 'B2B') {
-    const url = req.nextUrl.clone();
-    url.pathname = '/products';
-    return NextResponse.redirect(url);
+  // B2B pravila pristupa
+  if (token && token.role === 'B2B') {
+    // Ako B2B korisnik ide na login, preusmjeri ga na proizvode
+    if (pathname === '/login') {
+      const url = req.nextUrl.clone();
+      url.pathname = '/products';
+      return NextResponse.redirect(url);
+    }
+
+    // Blokiraj samo naslovnu i kontakt stranicu za B2B; sve ostalo dozvoli (pretraga itd.)
+    const isContact = pathname === '/contact' || pathname.startsWith('/contact/');
+    if (pathname === '/' || isContact) {
+      const url = req.nextUrl.clone();
+      url.pathname = '/products';
+      return NextResponse.redirect(url);
+    }
   }
 
   // Za sve ostale rute, dozvoli pristup
@@ -69,5 +80,12 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/admin/:path*', '/login', '/api/:path*'],
+  // Pokreni middleware na svim stranicama (osim statičkih i image ruta) + API + admin + login
+  matcher: [
+    '/api/:path*',
+    '/admin/:path*',
+    '/login',
+    // Svi ostali page route-ovi (isključi _next/static, _next/image i favicon itd.)
+    '/((?!_next/static|_next/image|favicon.ico|robots.txt|sitemap.xml).*)',
+  ],
 };

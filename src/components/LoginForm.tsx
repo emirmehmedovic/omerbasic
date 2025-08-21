@@ -69,9 +69,8 @@ export function LoginForm() {
         </button>
       </form>
       <p className="mt-6 text-center text-sm text-gray-600">
-        Nemate nalog?{' '}
-        <Link href="/register" className="font-medium text-blue-600 hover:text-blue-500">
-          Registrujte se
+        <Link href="/contact" className="font-medium text-blue-600 hover:text-blue-500">
+          Zatražite B2B račun
         </Link>
       </p>
     </div>

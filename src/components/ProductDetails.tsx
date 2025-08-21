@@ -9,6 +9,8 @@ import { Badge } from "@/components/ui/badge";
 import { Car, Info, Settings, Tag, BookCopy, Copy } from "lucide-react";
 import Link from "next/link";
 import { formatPrice } from "@/lib/utils";
+import { useEffect, useState } from 'react';
+import { ProductCard } from '@/components/ProductCard';
 
 // Tip za fitment vozila
 type VehicleFitment = {
@@ -69,6 +71,47 @@ interface ProductDetailsProps {
 
 // Koristimo formatPrice iz utils.ts
 
+// Prikaz kartice zamjenskog proizvoda za dati replacementId
+const ReplacementProductPreview: React.FC<{ id: string }> = ({ id }) => {
+  const [data, setData] = useState<(Product & { category: Category | null; originalPrice?: number }) | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    let alive = true;
+    setLoading(true);
+    fetch(`/api/products/${id}`)
+      .then(async (res) => {
+        if (!res.ok) throw new Error(await res.text());
+        return res.json();
+      })
+      .then((json) => {
+        if (!alive) return;
+        setData(json);
+      })
+      .catch((e) => {
+        if (!alive) return;
+        setError(typeof e?.message === 'string' ? e.message : 'Greška pri učitavanju proizvoda');
+      })
+      .finally(() => alive && setLoading(false));
+    return () => { alive = false; };
+  }, [id]);
+
+  if (loading) {
+    return (
+      <div className="rounded-xl border border-slate-700 bg-slate-900/40 p-4">
+        <div className="h-40 w-full rounded-lg bg-slate-800 animate-pulse mb-3" />
+        <div className="h-4 w-2/3 rounded bg-slate-800 animate-pulse mb-2" />
+        <div className="h-4 w-1/3 rounded bg-slate-800 animate-pulse" />
+      </div>
+    );
+  }
+  if (error || !data) {
+    return <div className="text-xs text-red-400">Nije moguće učitati zamjenski proizvod.</div>;
+  }
+  return <ProductCard product={data} />;
+};
+
 export const ProductDetails = ({ product }: ProductDetailsProps) => {
   const { addToCart } = useCart();
 
@@ -116,6 +159,63 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
       return "Univerzalni dio";
     }
     return "";
+  };
+
+  // Normalizacija i parsiranje vrijednosti pozicije (npr. "front,left" -> ["Prednja", "Lijeva"]).
+  const normalizePositionToken = (token: string) => {
+    const t = token.trim().toLowerCase();
+    const map: Record<string, string> = {
+      front: "Prednja",
+      rear: "Zadnja",
+      left: "Lijeva",
+      right: "Desna",
+      inner: "Unutarnja",
+      outer: "Vanjska",
+      driver: "Vozačeva",
+      passenger: "Suvozačeva",
+      axle1: "Osovina 1",
+      axle2: "Osovina 2",
+    };
+    return map[t] || token.trim();
+  };
+
+  const splitPosition = (pos?: string | null) =>
+    pos ? pos.split(/[;,/|]/).map((p) => p.trim()).filter(Boolean) : [];
+
+  // Lokalizacija ključeva i vrijednosti za Tehničke podatke
+  const localizeTechKey = (key: string) => {
+    const k = key.trim();
+    const map: Record<string, string> = {
+      engineType: "Tip motora",
+      vehicleBrand: "Marka vozila",
+      vehicleModel: "Model vozila",
+      vehicleGeneration: "Generacija vozila",
+      engineCode: "Šifra motora",
+      enginePowerKW: "Snaga (kW)",
+      enginePowerHP: "Snaga (KS)",
+      engineCapacity: "Zapremina (ccm)",
+    };
+    return map[k] || k.charAt(0).toUpperCase() + k.slice(1).replace(/([A-Z])/g, ' $1');
+  };
+
+  const localizeTechValue = (key: string, value: any) => {
+    if (value === null || value === undefined) return "";
+    const k = key.trim().toLowerCase();
+    // Mapiranje za tip motora
+    if (k === 'enginetype') {
+      const vt = String(value).toLowerCase();
+      const engineMap: Record<string, string> = {
+        petrol: 'Benzin',
+        gasoline: 'Benzin',
+        diesel: 'Dizel',
+        hybrid: 'Hibrid',
+        electric: 'Električni',
+      };
+      return engineMap[vt] || String(value);
+    }
+    // Bool vrijednosti
+    if (typeof value === 'boolean') return value ? 'Da' : 'Ne';
+    return String(value);
   };
 
   return (
@@ -214,7 +314,7 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
               className="flex items-center space-x-2 py-3 px-4 rounded-lg font-medium text-slate-300 data-[state=active]:accent-bg data-[state=active]:text-white transition-all duration-200"
             >
               <Tag className="h-4 w-4" />
-              <span>Reference</span>
+              <span>Reference i zamjenski proizvodi</span>
             </TabsTrigger>
           </TabsList>
           
@@ -285,8 +385,23 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
                                 )}
                               </div>
                               <div>
-                                <p className="font-semibold text-slate-300">Pozicija</p>
-                                <p className="text-slate-400">{fitment.position || <span className="italic text-slate-500">Nije specificirano</span>}</p>
+                                <div className="flex items-center gap-2">
+                                  <p className="font-semibold text-slate-300">Pozicija ugradnje</p>
+                                  <span title="Mjesto ugradnje dijela (npr. Prednja/Zadnja, Lijeva/Desna, Unutarnja/Vanjska).">
+                                    <Info className="h-4 w-4 text-slate-500" />
+                                  </span>
+                                </div>
+                                {splitPosition(fitment.position).length > 0 ? (
+                                  <div className="flex flex-wrap gap-1 mt-1">
+                                    {splitPosition(fitment.position).map((p, idx) => (
+                                      <Badge key={idx} variant="outline" className="text-xs">
+                                        {normalizePositionToken(p)}
+                                      </Badge>
+                                    ))}
+                                  </div>
+                                ) : (
+                                  <p className="text-slate-500 italic">Sve pozicije (nije specificirano)</p>
+                                )}
                               </div>
                               {fitment.fitmentNotes && (
                                 <div>
@@ -371,8 +486,8 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
                         .filter(([, value]) => value !== null && value !== undefined && value !== '')
                         .map(([key, value]) => (
                           <div key={key} className="flex justify-between text-sm border-b border-slate-700/50 pb-2">
-                            <dt className="text-slate-400">{key}</dt>
-                            <dd className="text-slate-200 font-medium">{value?.toString()}</dd>
+                            <dt className="text-slate-400">{localizeTechKey(key)}</dt>
+                            <dd className="text-slate-200 font-medium">{localizeTechValue(key, value)}</dd>
                           </div>
                         ))}
                     </dl>
@@ -422,7 +537,7 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
                   <div className="accent-bg p-3 rounded-xl shadow-lg">
                     <BookCopy className="h-6 w-6 text-white" />
                   </div>
-                  <h3 className="text-xl font-bold text-slate-200">Referentni brojevi</h3>
+                  <h3 className="text-xl font-bold text-slate-200">Reference i zamjenski proizvodi</h3>
                 </div>
                 {(product.originalReferences && product.originalReferences.length > 0) ? (
                   (() => {
@@ -447,9 +562,16 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
                             <h4 className="font-bold text-sunfire-a40 mb-3 border-b border-slate-700 pb-2">{manufacturer}</h4>
                             <ul className="space-y-2">
                               {refs.map(ref => (
-                                <li key={ref.id} className="text-sm text-slate-300 font-mono bg-slate-900/50 px-3 py-2 rounded-md flex items-center justify-between">
-                                  <span>{ref.referenceNumber}</span>
-                                  <Copy className="h-4 w-4 text-slate-500 hover:text-white cursor-pointer transition" onClick={() => copyToClipboard(ref.referenceNumber)} />
+                                <li key={ref.id} className="text-sm text-slate-300 bg-slate-900/50 px-3 py-2 rounded-md">
+                                  <div className="flex items-center justify-between">
+                                    <span className="font-mono">{ref.referenceNumber}</span>
+                                    <Copy className="h-4 w-4 text-slate-500 hover:text-white cursor-pointer transition" onClick={() => copyToClipboard(ref.referenceNumber)} />
+                                  </div>
+                                  {ref.replacementId && (
+                                    <div className="mt-3">
+                                      <ReplacementProductPreview id={ref.replacementId} />
+                                    </div>
+                                  )}
                                 </li>
                               ))}
                             </ul>
@@ -465,6 +587,52 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
                   </div>
                 )}
               </div>
+
+              {/* Ako je ovaj proizvod zamjena za OEM broj(eve), prikaži i te veze */}
+              {product.replacementFor && product.replacementFor.length > 0 && (
+                <div className="glass-card rounded-xl p-6">
+                  <div className="flex items-center space-x-3 mb-4">
+                    <div className="accent-bg p-3 rounded-xl shadow-lg">
+                      <Tag className="h-6 w-6 text-white" />
+                    </div>
+                    <h3 className="text-xl font-bold text-slate-200">Ovaj proizvod je zamjena za OEM</h3>
+                  </div>
+                  {(() => {
+                    const grouped = (product.replacementFor || []).reduce((acc, reference) => {
+                      const manufacturer = reference.manufacturer || 'Nepoznato';
+                      if (!acc[manufacturer]) acc[manufacturer] = [];
+                      acc[manufacturer].push(reference);
+                      return acc;
+                    }, {} as Record<string, typeof product.replacementFor>);
+
+                    return (
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        {Object.entries(grouped).map(([manufacturer, refs]) => (
+                          <div key={manufacturer} className="bg-slate-800/50 rounded-lg p-4">
+                            <h4 className="font-bold text-sunfire-a40 mb-3 border-b border-slate-700 pb-2">{manufacturer}</h4>
+                            <ul className="space-y-2">
+                              {refs.map(ref => (
+                                <li key={ref.id} className="text-sm text-slate-300 bg-slate-900/50 px-3 py-2 rounded-md">
+                                  <div className="flex items-center justify-between">
+                                    <span className="font-mono">{ref.referenceNumber}</span>
+                                    <Copy className="h-4 w-4 text-slate-500 hover:text-white cursor-pointer transition" onClick={() => { navigator.clipboard.writeText(ref.referenceNumber); toast.success(`Kopirano: ${ref.referenceNumber}`); }} />
+                                  </div>
+                                  {/* Prikaži karticu OEM proizvoda (productId) na koji je vezan ovaj ref */}
+                                  {ref.productId && (
+                                    <div className="mt-3">
+                                      <ReplacementProductPreview id={ref.productId} />
+                                    </div>
+                                  )}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        ))}
+                      </div>
+                    );
+                  })()}
+                </div>
+              )}
             </div>
           </TabsContent>
         </Tabs>

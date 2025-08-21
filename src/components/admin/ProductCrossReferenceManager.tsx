@@ -67,6 +67,8 @@ export default function ProductCrossReferenceManager({
   const [searchResults, setSearchResults] = useState<any[]>([]);
   const [isSearching, setIsSearching] = useState(false);
   const [isProductSearchOpen, setIsProductSearchOpen] = useState(false);
+  const [categoryOptions, setCategoryOptions] = useState<{ id: string; label: string }[]>([]);
+  const [selectedCategoryId, setSelectedCategoryId] = useState<string>("all");
 
   const form = useForm<ProductCrossReferenceFormValues>({
     resolver: zodResolver(productCrossReferenceSchema),
@@ -140,7 +142,9 @@ export default function ProductCrossReferenceManager({
 
     try {
       setIsSearching(true);
-      const response = await fetch(`/api/products/search?q=${encodeURIComponent(query)}`);
+      const params = new URLSearchParams({ q: query, mode: 'basic' });
+      if (selectedCategoryId && selectedCategoryId !== 'all') params.set('categoryId', selectedCategoryId);
+      const response = await fetch(`/api/products/search?${params.toString()}`);
       
       if (!response.ok) {
         throw new Error("Greška prilikom pretraživanja proizvoda");
@@ -165,7 +169,34 @@ export default function ProductCrossReferenceManager({
     }, 300);
 
     return () => clearTimeout(timer);
-  }, [searchQuery]);
+  }, [searchQuery, selectedCategoryId]);
+
+  // Fetch category hierarchy and flatten for Select when modal opens first time
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const res = await fetch('/api/categories/hierarchy');
+        if (!res.ok) throw new Error('Greška pri dohvaćanju kategorija');
+        const data = await res.json();
+        // Flatten hierarchy with indentation
+        const flat: { id: string; label: string }[] = [];
+        const walk = (nodes: any[], depth: number) => {
+          for (const n of nodes) {
+            const prefix = depth > 0 ? '— '.repeat(depth) : '';
+            flat.push({ id: n.id, label: `${prefix}${n.name}` });
+            if (n.children && n.children.length) walk(n.children, depth + 1);
+          }
+        };
+        walk(Array.isArray(data) ? data : [], 0);
+        setCategoryOptions(flat);
+      } catch (e) {
+        console.error('Category fetch error', e);
+      }
+    };
+    if (isProductSearchOpen && categoryOptions.length === 0) {
+      fetchCategories();
+    }
+  }, [isProductSearchOpen, categoryOptions.length]);
 
   // Odabir zamjenskog proizvoda
   const selectReplacementProduct = (product: any) => {
@@ -260,9 +291,9 @@ export default function ProductCrossReferenceManager({
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 text-gray-900">
       <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-bold">Cross-reference proizvoda</h2>
+        <h2 className="text-2xl font-bold text-gray-900">Cross-reference proizvoda</h2>
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
           <DialogTrigger asChild>
             <Button
@@ -387,22 +418,46 @@ export default function ProductCrossReferenceManager({
                             <Button 
                               type="button" 
                               variant="outline"
-                              className="bg-white border-amber/30 hover:border-amber/50 text-gray-700 hover:text-gray-900 rounded-xl transition-all duration-200"
+                              onClick={() => setIsProductSearchOpen(true)}
                             >
-                              <Search className="h-4 w-4" />
+                              <Search className="mr-2 h-4 w-4" />
+                              Pretraži
                             </Button>
                           </DialogTrigger>
-                          <DialogContent className="sm:max-w-[600px]">
+                          <DialogContent className="sm:max-w-[700px] bg-white text-gray-900 border border-amber/20 shadow-xl">
                             <DialogHeader>
                               <DialogTitle>Pretraži proizvode</DialogTitle>
                             </DialogHeader>
                             <div className="space-y-4 pt-4">
-                              <div className="flex space-x-2">
-                                <Input
-                                  placeholder="Pretraži po nazivu, katalogu ili OEM broju..."
-                                  value={searchQuery}
-                                  onChange={(e) => setSearchQuery(e.target.value)}
-                                />
+                              <div className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+                                <div className="md:col-span-2">
+                                  <Input
+                                    placeholder="Pretraži po nazivu, katalogu ili OEM broju..."
+                                    value={searchQuery}
+                                    onChange={(e) => setSearchQuery(e.target.value)}
+                                    className="bg-white border-amber/30 focus:border-amber rounded-xl transition-all duration-200 text-gray-900 placeholder:text-gray-500"
+                                  />
+                                </div>
+                                <div>
+                                  <Select value={selectedCategoryId} onValueChange={(v) => {
+                                    setSelectedCategoryId(v);
+                                    if (searchQuery && searchQuery.length >= 3) {
+                                      searchProducts(searchQuery);
+                                    }
+                                  }}>
+                                    <SelectTrigger className="bg-white border-amber/30 focus:border-amber rounded-xl text-gray-900">
+                                      <SelectValue placeholder="Sve kategorije" />
+                                    </SelectTrigger>
+                                    <SelectContent className="bg-white max-h-80 overflow-auto">
+                                      <SelectItem value="all" className="text-gray-700">Sve kategorije</SelectItem>
+                                      {categoryOptions.map(opt => (
+                                        <SelectItem key={opt.id} value={opt.id} className="text-gray-700">
+                                          {opt.label}
+                                        </SelectItem>
+                                      ))}
+                                    </SelectContent>
+                                  </Select>
+                                </div>
                               </div>
                               <div className="border rounded-md max-h-[300px] overflow-y-auto">
                                 {isSearching ? (
@@ -489,22 +544,22 @@ export default function ProductCrossReferenceManager({
       </div>
 
       {loading ? (
-        <div className="text-center py-4">Učitavanje...</div>
+        <div className="text-center py-4 text-gray-900">Učitavanje...</div>
       ) : crossReferences.length === 0 ? (
-        <div className="text-center py-4 border rounded-md">
+        <div className="text-center py-4 border rounded-md bg-white text-gray-900">
           Nema definiranih cross-referenci za ovaj proizvod
         </div>
       ) : (
-        <div className="border rounded-md">
-          <Table>
+        <div className="border rounded-md bg-white text-gray-900">
+          <Table className="text-gray-900">
             <TableHeader>
               <TableRow>
-                <TableHead>Tip</TableHead>
-                <TableHead>Broj reference</TableHead>
-                <TableHead>Proizvođač</TableHead>
-                <TableHead>Zamjenski proizvod</TableHead>
-                <TableHead>Napomena</TableHead>
-                <TableHead className="text-right">Akcije</TableHead>
+                <TableHead className="text-gray-700">Tip</TableHead>
+                <TableHead className="text-gray-700">Broj reference</TableHead>
+                <TableHead className="text-gray-700">Proizvođač</TableHead>
+                <TableHead className="text-gray-700">Zamjenski proizvod</TableHead>
+                <TableHead className="text-gray-700">Napomena</TableHead>
+                <TableHead className="text-right text-gray-700">Akcije</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -534,9 +589,11 @@ export default function ProductCrossReferenceManager({
                       <Button
                         variant="outline"
                         size="sm"
+                        title="Uredi"
+                        className="bg-white text-gray-800 border-amber/30 hover:bg-amber/10 hover:text-gray-900"
                         onClick={() => setupEditForm(reference)}
                       >
-                        <Edit className="h-4 w-4" />
+                        <Edit className="h-4 w-4 text-gray-800" />
                       </Button>
                       <Button
                         variant="destructive"

@@ -5,6 +5,23 @@ import bcrypt from 'bcrypt';
 
 export async function POST(req: Request) {
   try {
+    // Dozvoli kreiranje korisnika samo ADMIN korisnicima (preko middleware token headera)
+    const tokenHeader = req.headers.get('x-nextauth-token');
+    if (!tokenHeader) {
+      return new NextResponse('Zabranjeno: potrebna je administratorska autentikacija.', { status: 403 });
+    }
+
+    let token: any = null;
+    try {
+      token = JSON.parse(tokenHeader);
+    } catch (e) {
+      return new NextResponse('Nevažeći token header.', { status: 400 });
+    }
+
+    if (!token || token.role !== 'ADMIN') {
+      return new NextResponse('Zabranjeno: samo administrator može kreirati korisnike.', { status: 403 });
+    }
+
     const body = await req.json();
     const validation = registerSchema.safeParse(body);
 
@@ -26,7 +43,7 @@ export async function POST(req: Request) {
     // Hashiranje lozinke
     const hashedPassword = await bcrypt.hash(password, 12);
 
-    // Kreiranje korisnika
+    // Kreiranje korisnika (inicijalno kao USER, admin može kasnije promijeniti ulogu)
     const user = await db.user.create({
       data: {
         name,

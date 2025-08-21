@@ -83,8 +83,8 @@ export function LoginForm() {
         </div>
 
         <div className="text-sm text-center">
-          <Link href="/register" className="font-medium text-sunfire-600 hover:text-sunfire-500 dark:text-sunfire-400 dark:hover:text-sunfire-300">
-            Nemate račun? Registrirajte se.
+          <Link href="/contact" className="font-medium text-sunfire-600 hover:text-sunfire-500 dark:text-sunfire-400 dark:hover:text-sunfire-300">
+            Zatražite B2B račun
           </Link>
         </div>
 

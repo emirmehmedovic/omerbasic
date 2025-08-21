@@ -25,6 +25,21 @@ export const createB2bUserApiSchema = z.object({
   discountPercentage: z.number().min(0).max(100).optional(),
 });
 
+// Sheme za ADMIN korisnika
+export const createAdminUserFormSchema = z.object({
+  name: z.string().min(3, { message: 'Ime mora imati najmanje 3 karaktera.' }),
+  email: z.string().email({ message: 'Unesite ispravnu email adresu.' }),
+  password: z.string().min(8, { message: 'Lozinka mora imati najmanje 8 karaktera.' }),
+});
+
+export type CreateAdminUserFormValues = z.infer<typeof createAdminUserFormSchema>;
+
+export const createAdminUserApiSchema = z.object({
+  name: z.string().min(3),
+  email: z.string().email(),
+  password: z.string().min(8),
+});
+
 // Shema za ažuriranje korisnika (forma)
 export const updateUserFormSchema = createB2bUserFormSchema.extend({
   password: z.string().optional(), // Lozinka je opcionalna pri ažuriranju
