@@ -41,7 +41,20 @@ export async function GET(
       return new NextResponse('Proizvod nije pronađen', { status: 404 });
     }
 
-    return NextResponse.json(product);
+    // Nakon ažuriranja fitmenata vratimo proizvod sa fitmentima radi provjere
+    const productWithFitments = await db.product.findUnique({
+      where: { id: productId },
+      include: {
+        vehicleFitments: {
+          include: {
+            generation: { include: { model: { include: { brand: true } } } },
+            engine: true,
+          }
+        }
+      }
+    });
+
+    return NextResponse.json(productWithFitments ?? product);
   } catch (error) {
     console.error('[PRODUCT_GET]', error);
     return new NextResponse('Internal error', { status: 500 });
@@ -76,6 +89,9 @@ export async function PATCH(
       unitOfMeasure,
       ...otherData 
     } = validation.data;
+
+    // Debug log za generationIds
+    try { console.log('[PRODUCT_PATCH] generationIds:', generationIds); } catch {}
 
     // Pripremamo dimensions JSON objekt ako su dostavljene dimenzije
     const dimensionsUpdate = (weight !== undefined || width !== undefined || height !== undefined || length !== undefined) ? {
@@ -113,7 +129,7 @@ export async function PATCH(
       },
     });
     
-    // Ako su dostavljeni generationIds, ažuriramo ProductVehicleFitment zapise
+    // Ako su dostavljeni generationIds, ažuriramo ProductVehicleFitment zapise (podržava genId ili genId-engineId)
     if (generationIds !== undefined) {
       try {
         // Prvo obrišemo sve postojeće ProductVehicleFitment zapise za ovaj proizvod
@@ -123,11 +139,19 @@ export async function PATCH(
         
         // Zatim kreiramo nove ProductVehicleFitment zapise za svaki generationId
         if (generationIds && generationIds.length > 0) {
-          for (const generationId of generationIds) {
+          for (const composite of generationIds) {
+            let generationId = String(composite);
+            let engineId: string | undefined;
+            if (String(composite).includes('::')) {
+              [generationId, engineId] = String(composite).split('::');
+            } else if (String(composite).includes('-')) {
+              [generationId, engineId] = String(composite).split('-');
+            }
             await db.productVehicleFitment.create({
               data: {
                 productId,
                 generationId,
+                engineId: engineId || null,
                 isUniversal: false
               }
             });

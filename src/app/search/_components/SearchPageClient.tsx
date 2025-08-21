@@ -23,6 +23,7 @@ export default function SearchPageClient({ filterData }: SearchPageClientProps) 
     q: searchParams.get('q') || undefined,
     categoryId: searchParams.get('categoryId') || undefined,
     generationId: searchParams.get('generationId') || undefined,
+    engineId: searchParams.get('engineId') || undefined,
     minPrice: searchParams.get('minPrice') || undefined,
     maxPrice: searchParams.get('maxPrice') || undefined,
   });

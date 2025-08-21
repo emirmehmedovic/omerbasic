@@ -34,6 +34,10 @@ export async function GET(req: NextRequest) {
     const query = searchParams.get("q");
     const categoryId = searchParams.get("categoryId");
     const generationId = searchParams.get("generationId");
+    const rawEngineId = searchParams.get("engineId");
+    const engineId = rawEngineId && rawEngineId !== 'all' && rawEngineId !== 'undefined' && rawEngineId !== 'null' && rawEngineId.trim() !== ''
+      ? rawEngineId
+      : null;
     const minPrice = searchParams.get("minPrice");
     const maxPrice = searchParams.get("maxPrice");
     const limit = parseInt(searchParams.get("limit") || "100");
@@ -55,12 +59,12 @@ export async function GET(req: NextRequest) {
       where.categoryId = { in: categoryIds };
     }
 
-    if (generationId) {
-      where.vehicleFitments = {
-        some: {
-          generationId: generationId,
-        },
-      };
+    if (generationId || engineId) {
+      // Build fitment filter depending on provided params
+      const fitmentFilter: any = {};
+      if (generationId) fitmentFilter.generationId = generationId;
+      if (engineId) fitmentFilter.engineId = engineId;
+      where.vehicleFitments = { some: fitmentFilter };
     }
 
     if (minPrice || maxPrice) {
@@ -123,6 +127,9 @@ export async function POST(req: Request) {
       stock,
       categoryAttributes, // Dinamički atributi kategorije
     } = result.data;
+
+    // Debug log za generationIds
+    try { console.log('[PRODUCTS_POST] generationIds:', generationIds); } catch {}
 
     // Pripremamo dimensions JSON objekt
     const dimensions = {
@@ -188,15 +195,24 @@ export async function POST(req: Request) {
       }
     }
     
-    // Ako postoje generationIds, kreiramo ProductVehicleFitment zapise
+    // Ako postoje generationIds, kreiramo ProductVehicleFitment zapise (podržava genId ili genId-engineId)
     if (generationIds && generationIds.length > 0) {
       try {
-        // Za svaku generaciju kreiramo zapis u ProductVehicleFitment tabeli
-        for (const generationId of generationIds) {
+        // Za svaku generaciju/motor kreiramo zapis u ProductVehicleFitment tabeli
+        for (const composite of generationIds) {
+          let generationId = String(composite);
+          let engineId: string | undefined;
+          if (String(composite).includes('::')) {
+            [generationId, engineId] = String(composite).split('::');
+          } else if (String(composite).includes('-')) {
+            // Back-compat for older delimiter
+            [generationId, engineId] = String(composite).split('-');
+          }
           await db.productVehicleFitment.create({
             data: {
               productId: product.id,
               generationId,
+              engineId: engineId || null,
               // Ostala polja možemo ostaviti prazna ili postaviti default vrijednosti
               isUniversal: false
             }
@@ -208,7 +224,22 @@ export async function POST(req: Request) {
       }
     }
     
-    return NextResponse.json(product, { status: 201 });
+    // Vratimo proizvod sa uključenim vehicleFitments kako bismo odmah vidjeli rezultat
+    const productWithFitments = await db.product.findUnique({
+      where: { id: product.id },
+      include: {
+        vehicleFitments: {
+          include: {
+            generation: {
+              include: { model: { include: { brand: true } } }
+            },
+            engine: true,
+          }
+        }
+      }
+    });
+    
+    return NextResponse.json(productWithFitments ?? product, { status: 201 });
   } catch (error) {
     if (error instanceof z.ZodError) {
       return new NextResponse(JSON.stringify(error.issues), { status: 400 });

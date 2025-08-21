@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef, useMemo } from 'react';
-import { X, Filter, Car, Settings, Layers, Truck, ShieldCheck, SprayCan, LifeBuoy, Droplets, Box } from 'lucide-react';
+import { X, Filter, Car, Settings, Layers, Truck, ShieldCheck, SprayCan, LifeBuoy, Droplets, Box, ChevronRight, ChevronDown } from 'lucide-react';
 import VehicleSelector from './vehicle/VehicleSelector';
 import TechnicalSpecsFilter from './TechnicalSpecsFilter';
 import { Button } from './ui/button';
@@ -71,49 +71,97 @@ const ActiveFilters = ({ filters, onRemove }: {
   );
 };
 
-// Komponenta za prikaz podkategorija u sidebaru
-const SubcategoryList = ({ 
-  categories, 
-  selectedCategoryId, 
-  onCategorySelect 
-}: { 
-  categories: Category[]; 
-  selectedCategoryId: string; 
-  onCategorySelect: (id: string) => void 
+// Komponenta za prikaz podkategorija u sidebaru (rekurzivna s expand/collapse)
+const SubcategoryList = ({
+  categories,
+  selectedCategoryId,
+  onCategorySelect,
+  expandIds,
+}: {
+  categories: Category[];
+  selectedCategoryId: string;
+  onCategorySelect: (id: string) => void;
+  expandIds?: string[];
 }) => {
-  return (
-    <div className="subcategory-list">
-      <div className="space-y-2">
-        {categories.map(category => (
-          <button
-            key={category.id}
-            data-category-id={category.id}
-            onClick={() => onCategorySelect(category.id)}
-            className={`group flex items-center w-full text-left px-4 py-3 rounded-lg text-sm transition-all duration-200 border ${category.id === selectedCategoryId
-              ? 'bg-sunfire-500/20 text-white border-sunfire-400 shadow-md shadow-sunfire-500/10 font-semibold'
-              : 'text-slate-300 hover:bg-sunfire-500/10 hover:text-white border-transparent hover:border-sunfire-500/50'
-            }`}
-          >
-            {/* Indikator */}
-            <span className={`flex-shrink-0 w-2 h-2 mr-3 rounded-full transition-colors ${category.id === selectedCategoryId ? 'bg-sunfire-300' : 'bg-slate-500 group-hover:bg-sunfire-400'}`}></span>
-            
-            {/* Naziv kategorije */}
-            <span className="flex-1">{category.name}</span>
-            
-            {/* Broj proizvoda */}
-            {category.productCount && (
-              <span className={`ml-3 px-2 py-0.5 text-xs rounded-full transition-colors ${category.id === selectedCategoryId 
-                ? 'bg-sunfire-500/30 text-sunfire-100' 
-                : 'bg-slate-700 text-slate-300 group-hover:bg-sunfire-500/20 group-hover:text-sunfire-200'
-              }`}>
-                {category.productCount}
-              </span>
+  const [expanded, setExpanded] = useState<Record<string, boolean>>({});
+
+  // Initialize expanded nodes from expandIds when provided
+  useEffect(() => {
+    if (expandIds && expandIds.length > 0) {
+      setExpanded(prev => {
+        const next: Record<string, boolean> = { ...prev };
+        for (const id of expandIds) next[id] = true;
+        return next;
+      });
+    }
+  }, [expandIds]);
+
+  const toggle = (id: string) => {
+    setExpanded(prev => ({ ...prev, [id]: !prev[id] }));
+  };
+
+  const renderNodes = (nodes: Category[], depth = 0) => (
+    <div className={depth === 0 ? 'space-y-2' : 'space-y-1 ml-3'}>
+      {nodes.map(category => {
+        const hasChildren = !!(category.children && category.children.length > 0);
+        const isOpen = !!expanded[category.id];
+        const isSelected = category.id === selectedCategoryId;
+        return (
+          <div key={category.id} className="w-full">
+            <div className={`flex items-center w-full text-left px-3 py-2 rounded-lg text-sm transition-all duration-200 border ${
+              isSelected
+                ? 'bg-sunfire-500/20 text-white border-sunfire-400 shadow-md shadow-sunfire-500/10 font-semibold'
+                : 'text-slate-300 hover:bg-sunfire-500/10 hover:text-white border-transparent hover:border-sunfire-500/50'
+            }`}>
+              {/* Chevron za expand/collapse */}
+              <button
+                type="button"
+                aria-label={isOpen ? 'Sažmi' : 'Proširi'}
+                onClick={(e) => { e.stopPropagation(); if (hasChildren) toggle(category.id); }}
+                className={`mr-2 p-1 rounded hover:bg-sunfire-500/10 ${hasChildren ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+              >
+                {isOpen ? <ChevronDown className="h-4 w-4" /> : <ChevronRight className="h-4 w-4" />}
+              </button>
+
+              {/* Indikator */}
+              <span className={`flex-shrink-0 w-2 h-2 mr-3 rounded-full transition-colors ${isSelected ? 'bg-sunfire-300' : 'bg-slate-500'}`}></span>
+
+              {/* Naziv (klik za odabir) */}
+              <button
+                type="button"
+                onClick={() => {
+                  onCategorySelect(category.id);
+                  if (hasChildren && !isOpen) setExpanded(prev => ({ ...prev, [category.id]: true }));
+                }}
+                className="flex-1 text-left truncate"
+              >
+                {category.name}
+              </button>
+
+              {/* Broj proizvoda */}
+              {category.productCount && (
+                <span className={`ml-3 px-2 py-0.5 text-xs rounded-full transition-colors ${isSelected
+                  ? 'bg-sunfire-500/30 text-sunfire-100'
+                  : 'bg-slate-700 text-slate-300'
+                }`}>
+                  {category.productCount}
+                </span>
+              )}
+            </div>
+
+            {/* Djeca */}
+            {hasChildren && isOpen && (
+              <div className="mt-1">
+                {renderNodes(category.children!, depth + 1)}
+              </div>
             )}
-          </button>
-        ))}
-      </div>
+          </div>
+        );
+      })}
     </div>
   );
+
+  return <div className="subcategory-list">{renderNodes(categories, 0)}</div>;
 };
 
 import { VehicleBrand } from '@/generated/prisma/client';
@@ -185,26 +233,29 @@ export default function HierarchicalFilters({
   };
 
   // Odabrana glavna kategorija izvedena iz filters.categoryId i stabla kategorija
-  const selectedMainCategory = useMemo(() => {
-    if (!filters.categoryId) return null;
-    
-    const selectedCat = findCategoryById(categories, filters.categoryId);
-    if (!selectedCat) return null;
-
-    // Ako je odabrana kategorija podkategorija (ima parentId), 
-    // pronađi i vrati njenog roditelja kao glavnu kategoriju.
-    if (selectedCat.parentId) {
-      // Iteriramo kroz glavne kategorije da pronađemo roditelja
-      for (const mainCat of mainCategories) {
-        if (mainCat.id === selectedCat.parentId) {
-          return mainCat;
-        }
+  // Pomoćna: pronađi put od root do zadanog ID-a
+  const findPathToId = (nodes: Category[], targetId: string, path: Category[] = []): Category[] | null => {
+    for (const node of nodes) {
+      const newPath = [...path, node];
+      if (node.id === targetId) return newPath;
+      if (node.children && node.children.length > 0) {
+        const res = findPathToId(node.children, targetId, newPath);
+        if (res) return res;
       }
     }
-    
-    // Ako odabrana kategorija nema roditelja, ona je glavna kategorija.
-    return selectedCat;
-  }, [categories, mainCategories, filters.categoryId]);
+    return null;
+  };
+
+  const selectedPath = useMemo(() => {
+    if (!filters.categoryId) return null;
+    return findPathToId(mainCategories, filters.categoryId) || null;
+  }, [mainCategories, filters.categoryId]);
+
+  const selectedMainCategory = useMemo(() => {
+    if (!selectedPath || selectedPath.length === 0) return null;
+    // prvi element u putu iz mainCategories je glavna kategorija
+    return selectedPath[0] || null;
+  }, [selectedPath]);
 
   // Izvedi tip vozila iz odabrane glavne kategorije
   const derivedVehicleType = useMemo<'PASSENGER' | 'COMMERCIAL' | 'ALL'>(() => {
@@ -381,6 +432,8 @@ export default function HierarchicalFilters({
                     if (data.generationId) {
                       // Ispravak: Poziv s ispravnim argumentima
                       updateFilter('generationId', data.generationId, 'Vozilo', `Odabrano`);
+                      // Ako postoji specificirani motor, propagiraj i engineId; inače očisti engineId
+                      updateFilter('engineId', data.engineId || '', 'Motor');
                     }
                   }}
                   compact={true}
@@ -409,6 +462,7 @@ export default function HierarchicalFilters({
                 categories={selectedMainCategory.children}
                 selectedCategoryId={filters.categoryId}
                 onCategorySelect={handleSubcategorySelect}
+                expandIds={selectedPath?.map(c => c.id)}
               />
             </div>
           )}

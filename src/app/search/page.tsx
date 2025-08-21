@@ -3,23 +3,29 @@ import { db as prisma } from '@/lib/db';
 import SearchPageClient from './_components/SearchPageClient';
 
 async function getFilterData() {
-  const categories = await prisma.category.findMany({
-    where: { parentId: null },
+  // Dohvati sve kategorije i izgradi punu hijerarhiju (sve dubine)
+  const allCategories = await prisma.category.findMany({
     include: { children: true },
   });
   const brands = await prisma.vehicleBrand.findMany();
-  
-  // Type mapping funkcija za kategorije
-  const mapCategories = (cats: any[]): any[] => {
-    return cats.map(cat => ({
-      ...cat,
-      children: mapCategories(cat.children || [])
-    }));
+
+  // Korijenske kategorije (bez parenta)
+  const rootCategories = allCategories.filter(cat => cat.parentId === null);
+
+  // Rekurzivno izgradi hijerarhiju iz ravne liste koristeći parentId veze
+  const buildHierarchy = (categories: typeof allCategories): any[] => {
+    return categories.map(category => {
+      const children = allCategories.filter(c => c.parentId === category.id);
+      return {
+        ...category,
+        children: children.length > 0 ? buildHierarchy(children) : []
+      };
+    });
   };
 
-  return { 
-    categories: mapCategories(categories), 
-    brands 
+  return {
+    categories: buildHierarchy(rootCategories),
+    brands,
   };
 }
 

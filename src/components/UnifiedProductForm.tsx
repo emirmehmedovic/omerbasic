@@ -56,6 +56,9 @@ type ExtendedProduct = {
         };
       };
     };
+    engine?: {
+      id: string;
+    } | null;
   }>;
 };
 import { Input } from '@/components/ui/input';
@@ -103,7 +106,7 @@ export const UnifiedProductForm = ({ initialData, categories }: UnifiedProductFo
           length: initialData.length ? String(initialData.length) : '',
           unitOfMeasure: initialData.unitOfMeasure ?? '',
           stock: initialData.stock ? String(initialData.stock) : '0',
-          generationIds: [], // TODO: Učitati postojeće veze
+          generationIds: initialData.vehicleFitments?.map(f => f.engine?.id ? `${f.generationId}::${f.engine.id}` : f.generationId) || [],
           categoryAttributes: {}, // Dinamički atributi kategorije
         }
       : {
@@ -130,6 +133,11 @@ export const UnifiedProductForm = ({ initialData, categories }: UnifiedProductFo
   });
 
   const selectedCategoryId = form.watch('categoryId');
+
+  // Explicitno registrujemo polje generationIds kako bi ušlo u payload i kada nije renderovano
+  useEffect(() => {
+    form.register('generationIds');
+  }, [form]);
 
   // Funkcija za dohvaćanje atributa kategorije
   const fetchCategoryAttributes = async (categoryId: string) => {
@@ -192,6 +200,12 @@ export const UnifiedProductForm = ({ initialData, categories }: UnifiedProductFo
         ...formData,
         price: parseFloat(formData.price),
       });
+
+      // Debug: provjera da li saljemo generationIds
+      if (process.env.NODE_ENV !== 'production') {
+        // eslint-disable-next-line no-console
+        console.log('[UnifiedProductForm] generationIds to send:', apiData.generationIds);
+      }
 
       if (initialData) {
         // Ažuriranje postojećeg proizvoda
@@ -656,8 +670,8 @@ export const UnifiedProductForm = ({ initialData, categories }: UnifiedProductFo
               Odaberite sva vozila s kojima je ovaj proizvod kompatibilan. Možete dodati više vozila.
             </p>
             <MultiVehicleSelector 
-              onGenerationsChange={(ids: string[]) => form.setValue('generationIds', ids)}
-              initialGenerationIds={initialData?.vehicleFitments?.map(fit => fit.generationId) || []} 
+              onGenerationsChange={(ids: string[]) => form.setValue('generationIds', ids, { shouldDirty: true, shouldTouch: true })}
+              initialGenerationIds={initialData?.vehicleFitments?.map(fit => fit.engine?.id ? `${fit.generationId}::${fit.engine.id}` : fit.generationId) || []}
             />
           </div>
         )}

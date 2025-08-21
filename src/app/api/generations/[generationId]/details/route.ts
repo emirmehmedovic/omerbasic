@@ -1,20 +1,11 @@
 import { NextResponse } from 'next/server';
 import { db } from '@/lib/db';
-import { authOptions } from '@/lib/auth';
-import { getServerSession } from 'next-auth';
 
 export async function GET(
   req: Request,
   { params }: { params: Promise<{ generationId: string }> }
 ) {
   try {
-    const session = await getServerSession(authOptions);
-
-    // Provjera autentikacije
-    if (!session) {
-      return new NextResponse("Unauthorized", { status: 401 });
-    }
-
     const { generationId } = await params;
 
     // Dohvati generaciju s povezanim modelom i brendom

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { ChevronDown, ChevronRight, Settings } from 'lucide-react';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -43,9 +43,9 @@ export function CategoryManager({ initialCategories }: CategoryManagerProps) {
     },
   });
 
-  const openModalForNew = () => {
+  const openModalForNew = (parentId?: string) => {
     setEditingCategory(null);
-    reset({ name: '', parentId: '' });
+    reset({ name: '', parentId: parentId ?? '' });
     setIsModalOpen(true);
   };
 
@@ -123,6 +123,21 @@ export function CategoryManager({ initialCategories }: CategoryManagerProps) {
   const totalCategories = countAllCategories(categories);
   const displayedCategories = showAllCategories ? categories : topLevelCategories;
 
+  // Flatten all categories for the parent selector with indentation by level
+  type FlatCategory = { id: string; name: string; level: number };
+  const flattenCategories = (cats: CategoryWithChildren[], level = 0): FlatCategory[] => {
+    const result: FlatCategory[] = [];
+    for (const c of cats) {
+      result.push({ id: c.id, name: c.name, level });
+      if (c.children && c.children.length > 0) {
+        result.push(...flattenCategories(c.children, level + 1));
+      }
+    }
+    return result;
+  };
+
+  const flattenedForSelect = useMemo(() => flattenCategories(topLevelCategories), [categories]);
+
   return (
     <div className="bg-gradient-to-r from-white/95 to-gray-50/95 backdrop-blur-sm rounded-2xl border border-amber/20 shadow-sm overflow-hidden">
       <div className="bg-gradient-to-r from-white/90 to-gray-50/90 border-b border-amber/20 px-6 py-4">
@@ -151,7 +166,7 @@ export function CategoryManager({ initialCategories }: CategoryManagerProps) {
             </div>
           </div>
           <button 
-            onClick={openModalForNew} 
+            onClick={() => openModalForNew()} 
             className="bg-gradient-to-r from-amber via-orange to-brown text-white hover:from-amber/90 hover:via-orange/90 hover:to-brown/90 shadow-lg hover:scale-105 transition-all duration-200 rounded-xl px-4 py-2 text-sm font-medium flex items-center gap-2"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -170,6 +185,7 @@ export function CategoryManager({ initialCategories }: CategoryManagerProps) {
               category={category} 
               onEdit={openModalForEdit} 
               onDelete={onDelete} 
+              onAddSubcategory={openModalForNew}
               level={0} 
             />
           ))}
@@ -220,8 +236,10 @@ export function CategoryManager({ initialCategories }: CategoryManagerProps) {
                   className="w-full bg-white border-amber/30 focus:border-amber rounded-xl transition-all duration-200 text-gray-900 px-3 py-2"
                 >
                   <option value="">-- Nema nadređene kategorije --</option>
-                  {categories.map(cat => (
-                    <option key={cat.id} value={cat.id} disabled={cat.id === editingCategory?.id}>{cat.name}</option>
+                  {flattenedForSelect.map(cat => (
+                    <option key={cat.id} value={cat.id} disabled={cat.id === editingCategory?.id}>
+                      {`${'— '.repeat(cat.level)}${cat.name}`}
+                    </option>
                   ))}
                 </select>
               </div>
@@ -250,10 +268,11 @@ export function CategoryManager({ initialCategories }: CategoryManagerProps) {
 }
 
 // Pomoćna rekurzivna komponenta za prikaz stavke stabla
-function CategoryItem({ category, onEdit, onDelete, level }: {
+function CategoryItem({ category, onEdit, onDelete, onAddSubcategory, level }: {
   category: CategoryWithChildren;
   onEdit: (category: CategoryWithChildren) => void;
   onDelete: (id: string) => void;
+  onAddSubcategory: (parentId?: string) => void;
   level: number;
 }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -321,6 +340,12 @@ function CategoryItem({ category, onEdit, onDelete, level }: {
           >
             Uredi
           </button>
+          <button
+            onClick={() => onAddSubcategory(category.id)}
+            className="text-sm bg-gradient-to-r from-amber/90 via-orange/90 to-brown/90 text-white hover:from-amber hover:via-orange hover:to-brown px-2 py-1 rounded-lg transition-all duration-200 shadow-sm"
+          >
+            Dodaj podkategoriju
+          </button>
           <button 
             onClick={() => onDelete(category.id)} 
             className="text-sm text-red-600 hover:text-red-800 hover:bg-red-50 px-2 py-1 rounded-lg transition-all duration-200"
@@ -338,7 +363,7 @@ function CategoryItem({ category, onEdit, onDelete, level }: {
       {isOpen && (
         <div className="mt-2 space-y-2 ml-4">
           {category.children?.map(child => (
-            <CategoryItem key={child.id} category={child} onEdit={onEdit} onDelete={onDelete} level={level + 1} />
+            <CategoryItem key={child.id} category={child} onEdit={onEdit} onDelete={onDelete} onAddSubcategory={onAddSubcategory} level={level + 1} />
           ))}
         </div>
       )}

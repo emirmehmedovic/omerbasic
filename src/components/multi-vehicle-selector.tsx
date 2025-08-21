@@ -13,10 +13,16 @@ interface MultiVehicleSelectorProps {
 
 // Tip za prikaz odabranog vozila
 interface SelectedVehicle {
-  id: string;
-  displayName: string;
+  id: string; // composite: generationId or generationId::engineId
+  brandName: string;
+  modelName: string;
+  generationName: string;
+  period?: string | null;
   engineId?: string;
-  engineDisplayName?: string;
+  engineType?: string | null;
+  engineCapacity?: number | null;
+  enginePowerHP?: number | null;
+  engineCode?: string | null;
 }
 
 const MultiVehicleSelector = ({ 
@@ -36,25 +42,49 @@ const MultiVehicleSelector = ({
   // Stanje za praćenje odabranih vozila
   const [selectedVehicles, setSelectedVehicles] = useState<SelectedVehicle[]>([]);
   
-  // Učitaj inicijalne generacije ako su dostavljene
+  // Učitaj inicijalne generacije/motore ako su dostavljeni (podržava ID-jeve oblika genId ili genId::engineId)
   useEffect(() => {
     if (initialGenerationIds && initialGenerationIds.length > 0) {
       const loadInitialGenerations = async () => {
         try {
           const loadedVehicles: SelectedVehicle[] = [];
           
-          for (const genId of initialGenerationIds) {
+          for (const composite of initialGenerationIds) {
+            const [genId, engId] = composite.split('::');
             const res = await fetch(`/api/generations/${genId}/details`);
             if (res.ok) {
               const data = await res.json();
+              // Build structured vehicle row
+              let engineData: Partial<SelectedVehicle> = {};
+              if (engId) {
+                try {
+                  const engRes = await fetch(`/api/engines/${engId}`);
+                  if (engRes.ok) {
+                    const engine: VehicleEngine = await engRes.json();
+                    engineData = {
+                      engineId: engine.id,
+                      engineType: engine.engineType,
+                      engineCapacity: engine.engineCapacity,
+                      enginePowerHP: engine.enginePowerHP,
+                      engineCode: engine.engineCode,
+                    };
+                  }
+                } catch {}
+              }
               loadedVehicles.push({
-                id: genId,
-                displayName: `${data.brand.name} ${data.model.name} ${data.name} (${data.period})`
+                id: composite,
+                brandName: data.brand.name,
+                modelName: data.model.name,
+                generationName: data.name,
+                period: data.period ?? null,
+                ...engineData,
               });
             }
           }
           
           setSelectedVehicles(loadedVehicles);
+          // Propagiraj inicijalne (kompozitne) ID-jeve roditelju
+          onGenerationsChange(initialGenerationIds);
         } catch (error) {
           console.error('Error loading initial generations:', error);
         }
@@ -131,7 +161,7 @@ const MultiVehicleSelector = ({
     if (!selectedGeneration) return;
     
     // Kreiraj jedinstveni ID koji uključuje generaciju i motor
-    const vehicleId = selectedEngine ? `${selectedGeneration}-${selectedEngine}` : selectedGeneration;
+    const vehicleId = selectedEngine ? `${selectedGeneration}::${selectedEngine}` : selectedGeneration;
     
     // Provjeri da li je već dodano
     if (selectedVehicles.some(v => v.id === vehicleId)) {
@@ -154,17 +184,23 @@ const MultiVehicleSelector = ({
     const engine = selectedEngine ? engines.find(e => e.id === selectedEngine) : null;
     
     // Kreiraj prikaz za odabrano vozilo
-    const engineInfo = engine ? ` - ${engine.engineType} ${engine.engineCapacity}cc ${engine.enginePowerHP}KS` : '';
     const newVehicle: SelectedVehicle = {
       id: vehicleId,
-      displayName: `${brand.name} ${model.name} ${generation.name} (${generation.period})${engineInfo}`,
-      engineId: selectedEngine || undefined,
-      engineDisplayName: engine ? `${engine.engineType} ${engine.engineCapacity}cc ${engine.enginePowerHP}KS` : undefined
+      brandName: brand.name,
+      modelName: model.name,
+      generationName: generation.name,
+      period: generation.period,
+      engineId: engine?.id || undefined,
+      engineType: engine?.engineType ?? null,
+      engineCapacity: engine?.engineCapacity ?? null,
+      enginePowerHP: engine?.enginePowerHP ?? null,
+      engineCode: engine?.engineCode ?? null,
     };
     
     // Dodaj u listu i obavijesti roditelja
     const updatedVehicles = [...selectedVehicles, newVehicle];
     setSelectedVehicles(updatedVehicles);
+    // Emitiraj kompozitne ID-jeve (genId ili genId-engineId) da bi backend znao engine
     onGenerationsChange(updatedVehicles.map(v => v.id));
     
     // Resetiraj odabir za novo dodavanje
@@ -176,6 +212,7 @@ const MultiVehicleSelector = ({
   const removeVehicle = (id: string) => {
     const updatedVehicles = selectedVehicles.filter(v => v.id !== id);
     setSelectedVehicles(updatedVehicles);
+    // Emitiraj kompozitne ID-jeve
     onGenerationsChange(updatedVehicles.map(v => v.id));
   };
 
@@ -258,7 +295,7 @@ const MultiVehicleSelector = ({
           <option value="" className="text-gray-900">Motor (opciono)</option>
           {engines.map((engine) => (
             <option key={engine.id} value={engine.id} className="text-gray-900">
-              {`${engine.engineType} ${engine.engineCapacity}cc ${engine.enginePowerHP}KS`}
+              {`${engine.engineType || ''} ${engine.engineCapacity ?? ''}cc ${engine.enginePowerHP ?? ''}KS ${engine.engineCode ? '('+engine.engineCode+')' : ''}`.trim()}
             </option>
           ))}
         </select>
@@ -274,23 +311,45 @@ const MultiVehicleSelector = ({
         </Button>
       </div>
 
-      {/* Selected Vehicles List */}
+      {/* Selected Vehicles Table */}
       {selectedVehicles.length > 0 && (
         <div className="mt-4">
-          <h4 className="text-sm font-medium mb-2">Odabrana vozila:</h4>
-          <div className="flex flex-wrap gap-2">
-            {selectedVehicles.map(vehicle => (
-              <Badge key={vehicle.id} variant="secondary" className="flex items-center gap-1 py-1 px-2">
-                {vehicle.displayName}
-                <button 
-                  type="button" 
-                  onClick={() => removeVehicle(vehicle.id)}
-                  className="ml-1 text-gray-500 hover:text-gray-700"
-                >
-                  <X size={14} />
-                </button>
-              </Badge>
-            ))}
+          <h4 className="text-sm font-medium mb-2">Povezana vozila</h4>
+          <div className="overflow-x-auto rounded-md border border-gray-200">
+            <table className="min-w-full divide-y divide-gray-200 text-sm">
+              <thead className="bg-gray-50">
+                <tr>
+                  <th className="px-3 py-2 text-left font-medium text-gray-700">Brend</th>
+                  <th className="px-3 py-2 text-left font-medium text-gray-700">Model</th>
+                  <th className="px-3 py-2 text-left font-medium text-gray-700">Generacija</th>
+                  <th className="px-3 py-2 text-left font-medium text-gray-700">Period</th>
+                  <th className="px-3 py-2 text-left font-medium text-gray-700">Motor</th>
+                  <th className="px-3 py-2 text-left font-medium text-gray-700">Broj motora</th>
+                  <th className="px-3 py-2"></th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-100 bg-white">
+                {selectedVehicles.map((v) => (
+                  <tr key={v.id}>
+                    <td className="px-3 py-2 text-gray-900">{v.brandName}</td>
+                    <td className="px-3 py-2 text-gray-900">{v.modelName}</td>
+                    <td className="px-3 py-2 text-gray-900">{v.generationName}</td>
+                    <td className="px-3 py-2 text-gray-900">{v.period || '-'}</td>
+                    <td className="px-3 py-2 text-gray-900">{v.engineType ? `${v.engineType} ${v.engineCapacity ?? ''}cc ${v.enginePowerHP ?? ''}KS` : '-'}</td>
+                    <td className="px-3 py-2 text-gray-900">{v.engineCode || '-'}</td>
+                    <td className="px-3 py-2 text-right">
+                      <button
+                        type="button"
+                        onClick={() => removeVehicle(v.id)}
+                        className="inline-flex items-center gap-1 rounded-md border border-gray-300 px-2 py-1 text-xs text-gray-700 hover:bg-gray-50"
+                      >
+                        <X size={14} /> Ukloni
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       )}

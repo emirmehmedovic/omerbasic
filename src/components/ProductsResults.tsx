@@ -27,6 +27,7 @@ type Product = {
 export type ProductFilters = {
   categoryId?: string;
   generationId?: string;
+  engineId?: string;
   minPrice?: string;
   maxPrice?: string;
   q?: string;
@@ -51,6 +52,7 @@ export default function ProductsResults({ filters }: Props) {
     const params = new URLSearchParams();
     if (filters.categoryId) params.set("categoryId", String(filters.categoryId));
     if (filters.generationId) params.set("generationId", String(filters.generationId));
+    if (filters.engineId) params.set("engineId", String(filters.engineId));
     if (filters.minPrice) params.set("minPrice", String(filters.minPrice));
     if (filters.maxPrice) params.set("maxPrice", String(filters.maxPrice));
     if (filters.q) params.set("q", String(filters.q));

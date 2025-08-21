@@ -9,6 +9,7 @@ async function getProduct(id: string) {
     include: {
       vehicleFitments: {
         include: {
+          engine: true,
           generation: {
             include: {
               vehicleEngines: true,

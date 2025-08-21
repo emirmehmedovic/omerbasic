@@ -231,7 +231,18 @@ export default function VehicleSelector({
         setEngines(enginesData || []);
         
         const engineIdFromUrl = searchParams.get("engineId");
-        if (engineIdFromUrl) setSelectedEngineId(engineIdFromUrl);
+        if (engineIdFromUrl && engineIdFromUrl !== 'all') {
+          const existsInThisGen = Array.isArray(enginesData) && enginesData.some((e: any) => e.id === engineIdFromUrl);
+          if (existsInThisGen) {
+            setSelectedEngineId(engineIdFromUrl);
+          } else {
+            // URL engine doesn't belong to this generation -> default to 'all'
+            setSelectedEngineId('all');
+          }
+        } else {
+          // Default to 'all' so user doesn't have to select it manually
+          setSelectedEngineId('all');
+        }
         
 
 
@@ -301,6 +312,8 @@ export default function VehicleSelector({
           compact ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-4" : "grid-cols-1 md:grid-cols-2"
         )}>
           {/* Odabir brenda */}
+          <div className="flex flex-col">
+            <span className="text-xs text-slate-300 mb-1">Marka</span>
           <Select
             value={selectedBrandId}
             onValueChange={setSelectedBrandId}
@@ -319,8 +332,11 @@ export default function VehicleSelector({
               )}
             </SelectContent>
           </Select>
+          </div>
           
           {/* Odabir modela */}
+          <div className="flex flex-col">
+            <span className="text-xs text-slate-300 mb-1">Model</span>
           <Select
             value={selectedModelId}
             onValueChange={setSelectedModelId}
@@ -339,8 +355,11 @@ export default function VehicleSelector({
               )}
             </SelectContent>
           </Select>
+          </div>
           
           {/* Odabir generacije */}
+          <div className="flex flex-col">
+            <span className="text-xs text-slate-300 mb-1">Generacija</span>
           <Select
             value={selectedGenerationId}
             onValueChange={setSelectedGenerationId}
@@ -359,8 +378,11 @@ export default function VehicleSelector({
               )}
             </SelectContent>
           </Select>
+          </div>
           
           {/* Odabir motora */}
+          <div className="flex flex-col">
+            <span className="text-xs text-slate-300 mb-1">Motor</span>
           <Select
             value={selectedEngineId}
             onValueChange={setSelectedEngineId}
@@ -382,6 +404,7 @@ export default function VehicleSelector({
               )}
             </SelectContent>
           </Select>
+          </div>
         </div>
         
         {onVehicleSelect && (
