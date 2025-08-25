@@ -624,3 +624,23 @@ model FeaturedProduct {
 
   @@unique([productId])
 }
+
+// -----------------------------
+// Advertising Screens (simple)
+// -----------------------------
+
+enum AdMediaType {
+  IMAGE
+  VIDEO
+}
+
+model AdvertisingScreen {
+  id         String      @id @default(cuid())
+  name       String
+  slug       String      @unique
+  isActive   Boolean     @default(true)
+  mediaType  AdMediaType
+  mediaUrl   String
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+}

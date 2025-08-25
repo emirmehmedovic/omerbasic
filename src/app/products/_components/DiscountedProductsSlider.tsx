@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useMemo, useState } from "react";
-import useEmblaCarousel from "embla-carousel-react";
 import { ProductCard } from "@/components/ProductCard";
 
 type FeaturedProduct = {
@@ -14,44 +13,36 @@ type FeaturedProduct = {
   product: any; // we pass straight into ProductCard; it tolerates missing category
 };
 
-function chunk<T>(arr: T[], size: number): T[][] {
-  const out: T[][] = [];
-  for (let i = 0; i < arr.length; i += size) out.push(arr.slice(i, i + size));
-  return out;
-}
-
-function CategorySlider({ title, items }: { title: string; items: FeaturedProduct[] }) {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, inViewThreshold: 0.5 });
-
-  const slides = useMemo(() => chunk(items, 12), [items]);
-
-  useEffect(() => {
-    if (!emblaApi) return;
-    const interval = setInterval(() => emblaApi.scrollNext(), 4000);
-    return () => clearInterval(interval);
-  }, [emblaApi]);
-
-  if (items.length === 0) return null;
-
-  return (
-    <div className="rounded-2xl p-4 bg-gradient-to-t from-black/60 to-transparent border border-white/10">
-      <div className="flex items-center justify-between mb-3">
-        <h3 className="text-white font-semibold text-lg">Akcija na {title}</h3>
-        <div className="text-xs text-slate-400">{items.length} proizvoda</div>
-      </div>
-      <div className="overflow-hidden" ref={emblaRef}>
-        <div className="flex">
-          {slides.map((group, idx) => (
-            <div key={idx} className="flex-[0_0_100%] px-1">
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                {group.map((fp) => (
-                  <ProductCard key={fp.id} product={fp.product} />
-                ))}
-              </div>
-            </div>
-          ))}
+function AutoScrollRow({ items, speed = 60 }: { items: FeaturedProduct[]; speed?: number }) {
+  if (!items.length) return null;
+  // Duplicate content to create a seamless loop
+  const row = (
+    <div className="flex gap-4 px-1">
+      {items.map((fp) => (
+        <div key={`card-${fp.id}`} className="w-[220px] sm:w-[240px] md:w-[260px] flex-shrink-0">
+          <ProductCard product={fp.product} />
         </div>
+      ))}
+    </div>
+  );
+
+  // Using styled-jsx for keyframes local to this component
+  return (
+    <div className="overflow-hidden relative">
+      <div className="marquee flex" style={{ ['--duration' as any]: `${speed}s` }}>
+        {row}
+        {row}
       </div>
+      <style jsx>{`
+        .marquee {
+          width: max-content;
+          animation: scroll-left var(--duration) linear infinite;
+        }
+        @keyframes scroll-left {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+      `}</style>
     </div>
   );
 }
@@ -107,11 +98,27 @@ export default function DiscountedProductsSlider() {
 
   if (items.length === 0) return null;
 
+  // Single block containing all categories as separate horizontally auto-scrolling rows
   return (
-    <div className="space-y-6">
-      {byCategory.map(([cat, arr]) => (
-        <CategorySlider key={cat} title={cat} items={arr} />
-      ))}
+    <div className="rounded-2xl p-4 md:p-6 bg-gradient-to-t from-black/60 to-transparent border border-white/10">
+      <div className="flex items-center justify-between mb-4">
+        <h3 className="text-white font-semibold text-lg">Istaknuti proizvodi</h3>
+        <div className="text-xs text-slate-400">{items.length} proizvoda</div>
+      </div>
+      <div className="space-y-6">
+        {byCategory.map(([cat, arr], idx) => (
+          <div key={cat}>
+            <div className="flex items-center justify-between mb-2">
+              <div className="text-sm font-medium text-white/90">{cat}</div>
+              <div className="text-[10px] uppercase tracking-wider text-slate-400">{arr.length} kom</div>
+            </div>
+            <AutoScrollRow items={arr} speed={45 + Math.min(30, Math.max(0, 12 - Math.floor(arr.length / 2)))} />
+            {idx < byCategory.length - 1 && (
+              <div className="border-t border-white/10 mt-4" />
+            )}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

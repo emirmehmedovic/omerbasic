@@ -4,7 +4,7 @@ import { Fragment } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Dialog, Transition } from '@headlessui/react';
-import { LayoutDashboard, ShoppingCart, Package, Users2, List, LogOut, X, Car, Tags, Search, BarChart, ClipboardList, FileText, MessageSquare, Star } from 'lucide-react';
+import { LayoutDashboard, ShoppingCart, Package, Users2, List, LogOut, X, Car, Tags, Search, BarChart, ClipboardList, FileText, MessageSquare, Star, MonitorPlay } from 'lucide-react';
 import { signOut } from 'next-auth/react';
 import Image from 'next/image';
 
@@ -25,6 +25,7 @@ const sidebarItems = [
   { name: 'Zahtjevi', href: '/admin/requests', icon: MessageSquare },
   { name: 'Featured Proizvodi', href: '/admin/featured-products', icon: Star },
   { name: 'Napredna pretraga', href: '/admin/advanced-search', icon: Search },
+  { name: 'Reklamni Ekrani', href: '/admin/ads-screens', icon: MonitorPlay },
 ];
 
 interface SidebarProps {
