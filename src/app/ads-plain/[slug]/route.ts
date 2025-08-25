@@ -2,9 +2,9 @@ import { db } from '@/lib/db';
 
 export const dynamic = 'force-dynamic';
 
-export async function GET(_req: Request, ctx: { params: { slug: string } }) {
+export async function GET(_req: Request, { params }: any) {
   try {
-    const slug = ctx?.params?.slug;
+    const slug = params?.slug;
     if (!slug) return notFoundResponse('Missing slug');
 
     const screen = await db.advertisingScreen.findUnique({ where: { slug } });
