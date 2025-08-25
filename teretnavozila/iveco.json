@@ -1,0 +1,301 @@
+[
+    {
+      "name": "Iveco",
+      "type": "COMMERCIAL",
+      "models": [
+        {
+          "name": "S-Way",
+          "generations": [
+            {
+              "name": "S-Way",
+              "period": "2019-Present",
+              "bodyStyles": ["Tractor 4x2", "Tractor 6x2", "Rigid"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 8710,
+                  "enginePower_kW": [228, 250, 265],
+                  "enginePower_HP": [310, 340, 360],
+                  "engineCodes": ["Cursor 9"],
+                  "description": "Euro 6d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 11120,
+                  "enginePower_kW": [309, 338, 353],
+                  "enginePower_HP": [420, 460, 480],
+                  "engineCodes": ["Cursor 11"],
+                  "description": "Euro 6d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 12882,
+                  "enginePower_kW": [375, 420],
+                  "enginePower_HP": [510, 570],
+                  "engineCodes": ["Cursor 13"],
+                  "description": "Euro 6d"
+                },
+                {
+                  "engineType": "CNG",
+                  "engineCapacity_cm3": 8710,
+                  "enginePower_kW": [250],
+                  "enginePower_HP": [340],
+                  "engineCodes": ["Cursor 9 NP"],
+                  "description": "Natural Power (CNG)"
+                },
+                {
+                  "engineType": "LNG",
+                  "engineCapacity_cm3": 12882,
+                  "enginePower_kW": [338],
+                  "enginePower_HP": [460],
+                  "engineCodes": ["Cursor 13 NP"],
+                  "description": "Natural Power (LNG)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Stralis",
+          "generations": [
+            {
+              "name": "Stralis Hi-Way / Hi-Road",
+              "period": "2012-2019",
+              "bodyStyles": ["Tractor 4x2", "Tractor 6x2", "Rigid"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 8710,
+                  "enginePower_kW": [228, 243, 265, 294],
+                  "enginePower_HP": [310, 330, 360, 400],
+                  "engineCodes": ["Cursor 9"],
+                  "description": "Euro 6"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 11120,
+                  "enginePower_kW": [309, 338, 353],
+                  "enginePower_HP": [420, 460, 480],
+                  "engineCodes": ["Cursor 11"],
+                  "description": "Euro 6"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 12882,
+                  "enginePower_kW": [375, 412],
+                  "enginePower_HP": [510, 560],
+                  "engineCodes": ["Cursor 13"],
+                  "description": "Euro 6"
+                }
+              ]
+            },
+            {
+              "name": "Stralis (First Generation)",
+              "period": "2002-2012",
+              "bodyStyles": ["Tractor", "Rigid"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 7790,
+                  "enginePower_kW": [228, 259],
+                  "enginePower_HP": [310, 352],
+                  "engineCodes": ["Cursor 8"],
+                  "description": "Euro 3/4/5"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 10308,
+                  "enginePower_kW": [316, 331],
+                  "enginePower_HP": [430, 450],
+                  "engineCodes": ["Cursor 10"],
+                  "description": "Euro 3/4/5"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 12882,
+                  "enginePower_kW": [368, 397, 412],
+                  "enginePower_HP": [500, 540, 560],
+                  "engineCodes": ["Cursor 13"],
+                  "description": "Euro 3/4/5"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "X-Way",
+          "generations": [
+            {
+              "name": "X-Way",
+              "period": "2020-Present",
+              "bodyStyles": ["Tipper 8x4", "Mixer 8x4", "Rigid"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 8710,
+                  "enginePower_kW": [265],
+                  "enginePower_HP": [360],
+                  "engineCodes": ["Cursor 9"],
+                  "description": "Euro 6d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 11120,
+                  "enginePower_kW": [353],
+                  "enginePower_HP": [480],
+                  "engineCodes": ["Cursor 11"],
+                  "description": "Euro 6d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 12882,
+                  "enginePower_kW": [420],
+                  "enginePower_HP": [570],
+                  "engineCodes": ["Cursor 13"],
+                  "description": "Euro 6d"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Trakker",
+          "generations": [
+            {
+              "name": "Trakker",
+              "period": "2004-2020",
+              "bodyStyles": ["Tipper 8x4", "Rigid 6x6", "Tractor 6x4"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 7790,
+                  "enginePower_kW": [228, 259],
+                  "enginePower_HP": [310, 352],
+                  "engineCodes": ["Cursor 8"],
+                  "description": "Euro 5"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 12882,
+                  "enginePower_kW": [302, 331, 368],
+                  "enginePower_HP": [410, 450, 500],
+                  "engineCodes": ["Cursor 13"],
+                  "description": "Euro 5/6"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Eurocargo",
+          "generations": [
+            {
+              "name": "Eurocargo (Third Generation)",
+              "period": "2015-Present",
+              "bodyStyles": ["Rigid 4x2", "Rigid 4x4"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 4485,
+                  "enginePower_kW": [118, 137, 152],
+                  "enginePower_HP": [160, 186, 207],
+                  "engineCodes": ["Tector 5"],
+                  "description": "Euro 6"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 6728,
+                  "enginePower_kW": [185, 206, 235],
+                  "enginePower_HP": [252, 280, 320],
+                  "engineCodes": ["Tector 7"],
+                  "description": "Euro 6"
+                }
+              ]
+            },
+            {
+              "name": "Eurocargo (Second Generation)",
+              "period": "2002-2015",
+              "bodyStyles": ["Rigid 4x2", "Rigid 4x4"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 3920,
+                  "enginePower_kW": [103, 110, 125, 134],
+                  "enginePower_HP": [140, 150, 170, 182],
+                  "engineCodes": ["Tector 4 (F4AE)"],
+                  "description": "Euro 3/4/5"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 5880,
+                  "enginePower_kW": [160, 185, 220],
+                  "enginePower_HP": [217, 251, 299],
+                  "engineCodes": ["Tector 6 (F4AE)"],
+                  "description": "Euro 3/4/5"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Daily",
+          "generations": [
+            {
+              "name": "Daily (Sixth Generation)",
+              "period": "2014-Present",
+              "bodyStyles": ["Van", "Chassis Cab"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 2287,
+                  "enginePower_kW": [85, 107, 115],
+                  "enginePower_HP": [116, 146, 156],
+                  "engineCodes": ["F1A"],
+                  "description": "Euro 6"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 2998,
+                  "enginePower_kW": [132, 154],
+                  "enginePower_HP": [180, 210],
+                  "engineCodes": ["F1C"],
+                  "description": "Euro 6"
+                },
+                {
+                  "engineType": "CNG",
+                  "engineCapacity_cm3": 2998,
+                  "enginePower_kW": [100],
+                  "enginePower_HP": [136],
+                  "engineCodes": ["F1C"],
+                  "description": "Natural Power (CNG)"
+                }
+              ]
+            },
+            {
+              "name": "Daily (Fifth Generation)",
+              "period": "2006-2014",
+              "bodyStyles": ["Van", "Chassis Cab"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 2287,
+                  "enginePower_kW": [78, 93],
+                  "enginePower_HP": [106, 126],
+                  "engineCodes": ["F1A"],
+                  "description": "Euro 4/5"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 2998,
+                  "enginePower_kW": [107, 129],
+                  "enginePower_HP": [146, 176],
+                  "engineCodes": ["F1C"],
+                  "description": "Euro 4/5"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]

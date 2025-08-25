@@ -1,0 +1,251 @@
+[
+    {
+      "name": "MAN",
+      "type": "COMMERCIAL",
+      "models": [
+        {
+          "name": "TGX",
+          "generations": [
+            {
+              "name": "TGX (First Generation)",
+              "period": "2007-2020",
+              "bodyStyles": ["Tractor 4x2", "Tractor 6x2", "Tractor 6x4"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 10518,
+                  "enginePower_kW": [235, 265, 294, 324],
+                  "enginePower_HP": [320, 360, 400, 440],
+                  "engineCodes": ["D2066"],
+                  "description": "Euro 4/5/EEV"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 12419,
+                  "enginePower_kW": [324, 353, 397],
+                  "enginePower_HP": [440, 480, 540],
+                  "engineCodes": ["D2676"],
+                  "description": "Euro 4/5/EEV"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 12419,
+                  "enginePower_kW": [338, 368, 397, 427],
+                  "enginePower_HP": [460, 500, 540, 580],
+                  "engineCodes": ["D2676"],
+                  "description": "Euro 6"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 15256,
+                  "enginePower_kW": [382, 412, 471],
+                  "enginePower_HP": [520, 560, 640],
+                  "engineCodes": ["D3876"],
+                  "description": "Euro 6"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 16162,
+                  "enginePower_kW": [397, 441, 500],
+                  "enginePower_HP": [540, 600, 680],
+                  "engineCodes": ["D2868"],
+                  "description": "V8, Euro 5"
+                }
+              ]
+            },
+            {
+              "name": "TGX (New Generation)",
+              "period": "2020-Present",
+              "bodyStyles": ["Tractor 4x2", "Tractor 6x2", "Tractor 6x4"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 12419,
+                  "enginePower_kW": [316, 346, 375],
+                  "enginePower_HP": [430, 470, 510],
+                  "engineCodes": ["D2676"],
+                  "description": "Euro 6d/e"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 15256,
+                  "enginePower_kW": [397, 427, 471],
+                  "enginePower_HP": [540, 580, 640],
+                  "engineCodes": ["D3876"],
+                  "description": "Euro 6d/e"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "TGS",
+          "generations": [
+            {
+              "name": "TGS",
+              "period": "2007-Present",
+              "bodyStyles": ["Tractor", "Rigid", "Tipper", "Mixer"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 10518,
+                  "enginePower_kW": [235, 265, 294, 324],
+                  "enginePower_HP": [320, 360, 400, 440],
+                  "engineCodes": ["D2066"],
+                  "description": "Euro 5/6"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 12419,
+                  "enginePower_kW": [353, 397],
+                  "enginePower_HP": [480, 540],
+                  "engineCodes": ["D2676"],
+                  "description": "Euro 5/6"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "TGM",
+          "generations": [
+            {
+              "name": "TGM",
+              "period": "2005-Present",
+              "bodyStyles": ["Rigid 4x2", "Rigid 6x2", "Rigid 4x4"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 6871,
+                  "enginePower_kW": [184, 213, 240],
+                  "enginePower_HP": [250, 290, 326],
+                  "engineCodes": ["D0836"],
+                  "description": "Euro 5/6"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "TGL",
+          "generations": [
+            {
+              "name": "TGL",
+              "period": "2005-Present",
+              "bodyStyles": ["Rigid 4x2"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 4580,
+                  "enginePower_kW": [110, 132, 162],
+                  "enginePower_HP": [150, 180, 220],
+                  "engineCodes": ["D0834"],
+                  "description": "Euro 5/6"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 6871,
+                  "enginePower_kW": [184],
+                  "enginePower_HP": [250],
+                  "engineCodes": ["D0836"],
+                  "description": "Euro 5/6"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "TGA",
+          "generations": [
+            {
+              "name": "TGA",
+              "period": "2000-2007",
+              "bodyStyles": ["Tractor", "Rigid", "Tipper"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 10518,
+                  "enginePower_kW": [228, 257, 287, 316],
+                  "enginePower_HP": [310, 350, 390, 430],
+                  "engineCodes": ["D2066"],
+                  "description": "Euro 3/4"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 11967,
+                  "enginePower_kW": [228, 257, 287, 316, 353],
+                  "enginePower_HP": [310, 350, 390, 430, 480],
+                  "engineCodes": ["D2866"],
+                  "description": "Euro 3"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 12816,
+                  "enginePower_kW": [338, 368],
+                  "enginePower_HP": [460, 500],
+                  "engineCodes": ["D2876"],
+                  "description": "Euro 3"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "F2000",
+          "generations": [
+            {
+              "name": "F2000 Evolution",
+              "period": "1994-2001",
+              "bodyStyles": ["Tractor", "Rigid"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 11967,
+                  "enginePower_kW": [265, 294, 343],
+                  "enginePower_HP": [360, 400, 460],
+                  "engineCodes": ["D2866"],
+                  "description": "Euro 2/3"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 12816,
+                  "enginePower_kW": [375, 441],
+                  "enginePower_HP": [510, 600],
+                  "engineCodes": ["D2876"],
+                  "description": "Euro 2/3"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "M2000 / L2000",
+          "generations": [
+            {
+              "name": "M2000 / L2000 Evolution",
+              "period": "1994-2005",
+              "bodyStyles": ["Rigid"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 4580,
+                  "enginePower_kW": [103, 114, 132, 162],
+                  "enginePower_HP": [140, 155, 180, 220],
+                  "engineCodes": ["D0824", "D0834"],
+                  "description": "Euro 2/3"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 6871,
+                  "enginePower_kW": [162, 191, 206],
+                  "enginePower_HP": [220, 260, 280],
+                  "engineCodes": ["D0826", "D0836"],
+                  "description": "Euro 2/3"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]

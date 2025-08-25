@@ -1,0 +1,128 @@
+[
+    {
+      "name": "Renault Trucks",
+      "type": "COMMERCIAL",
+      "models": [
+        {
+          "name": "T-series",
+          "generations": [
+            {
+              "name": "Range T",
+              "period": "2013-Present",
+              "bodyStyles": ["Tractor 4x2", "Tractor 6x2", "Tractor 6x4"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 10837,
+                  "enginePower_kW": [279, 316, 338],
+                  "enginePower_HP": [380, 430, 460],
+                  "engineCodes": ["DTI 11"],
+                  "description": "Euro 6"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 12777,
+                  "enginePower_kW": [324, 353, 382],
+                  "enginePower_HP": [440, 480, 520],
+                  "engineCodes": ["DTI 13", "DTI 13 TC (Turbo Compound)"],
+                  "description": "Euro 6"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "K-series",
+          "generations": [
+            {
+              "name": "Range K",
+              "period": "2013-Present",
+              "bodyStyles": ["Tipper 8x4", "Tractor 6x4", "Rigid 6x6"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 10837,
+                  "enginePower_kW": [279, 316, 338],
+                  "enginePower_HP": [380, 430, 460],
+                  "engineCodes": ["DTI 11"],
+                  "description": "Euro 6"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 12777,
+                  "enginePower_kW": [324, 353, 382],
+                  "enginePower_HP": [440, 480, 520],
+                  "engineCodes": ["DTI 13"],
+                  "description": "Euro 6"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "C-series",
+          "generations": [
+            {
+              "name": "Range C",
+              "period": "2013-Present",
+              "bodyStyles": ["Tractor", "Rigid", "Tipper", "Mixer"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 7698,
+                  "enginePower_kW": [206, 235],
+                  "enginePower_HP": [280, 320],
+                  "engineCodes": ["DTI 8"],
+                  "description": "Euro 6"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 10837,
+                  "enginePower_kW": [279, 316, 338],
+                  "enginePower_HP": [380, 430, 460],
+                  "engineCodes": ["DTI 11"],
+                  "description": "Euro 6"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 12777,
+                  "enginePower_kW": [324, 353, 382],
+                  "enginePower_HP": [440, 480, 520],
+                  "engineCodes": ["DTI 13"],
+                  "description": "Euro 6"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "D-series",
+          "generations": [
+            {
+              "name": "Range D",
+              "period": "2013-Present",
+              "bodyStyles": ["Rigid 4x2", "Rigid 6x2"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 5132,
+                  "enginePower_kW": [154, 169],
+                  "enginePower_HP": [210, 230],
+                  "engineCodes": ["DTI 5"],
+                  "description": "Euro 6"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 7698,
+                  "enginePower_kW": [184, 206, 235],
+                  "enginePower_HP": [250, 280, 320],
+                  "engineCodes": ["DTI 8"],
+                  "description": "Euro 6"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]

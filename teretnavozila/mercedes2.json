@@ -1,0 +1,300 @@
+[
+    {
+      "name": "Mercedes-Benz Trucks",
+      "type": "COMMERCIAL",
+      "models": [
+        {
+          "name": "Actros",
+          "generations": [
+            {
+              "name": "Actros (MP1)",
+              "period": "1996-2003",
+              "bodyStyles": ["Tractor", "Rigid"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 11946,
+                  "enginePower_kW": [230, 260, 290, 315],
+                  "enginePower_HP": [313, 354, 394, 428],
+                  "engineCodes": ["OM501LA (V6)"],
+                  "description": "Euro 2/3"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 15928,
+                  "enginePower_kW": [350, 390, 420],
+                  "enginePower_HP": [476, 530, 571],
+                  "engineCodes": ["OM502LA (V8)"],
+                  "description": "Euro 2/3"
+                }
+              ]
+            },
+            {
+              "name": "Actros (MP2/MP3)",
+              "period": "2003-2011",
+              "bodyStyles": ["Tractor", "Rigid"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 11946,
+                  "enginePower_kW": [235, 265, 295, 320, 335, 350],
+                  "enginePower_HP": [320, 360, 401, 435, 456, 476],
+                  "engineCodes": ["OM501LA (V6)"],
+                  "description": "Euro 3/4/5"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 15928,
+                  "enginePower_kW": [375, 405, 440],
+                  "enginePower_HP": [510, 551, 598],
+                  "engineCodes": ["OM502LA (V8)"],
+                  "description": "Euro 3/4/5"
+                }
+              ]
+            },
+            {
+              "name": "Actros (MP4)",
+              "period": "2011-2019",
+              "bodyStyles": ["Tractor 4x2", "Tractor 6x2", "Rigid"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 10677,
+                  "enginePower_kW": [240, 265, 290, 315],
+                  "enginePower_HP": [326, 360, 394, 428],
+                  "engineCodes": ["OM470"],
+                  "description": "Euro 6"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 12809,
+                  "enginePower_kW": [310, 330, 350, 375],
+                  "enginePower_HP": [421, 449, 476, 510],
+                  "engineCodes": ["OM471"],
+                  "description": "Euro 6"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 15569,
+                  "enginePower_kW": [380, 425, 460],
+                  "enginePower_HP": [517, 578, 625],
+                  "engineCodes": ["OM473"],
+                  "description": "Euro 6"
+                }
+              ]
+            },
+            {
+              "name": "Actros (MP5)",
+              "period": "2019-Present",
+              "bodyStyles": ["Tractor 4x2", "Tractor 6x2", "Rigid"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 10677,
+                  "enginePower_kW": [290, 315, 335],
+                  "enginePower_HP": [394, 428, 455],
+                  "engineCodes": ["OM470"],
+                  "description": "Euro 6d/e"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 12809,
+                  "enginePower_kW": [330, 350, 390],
+                  "enginePower_HP": [449, 476, 530],
+                  "engineCodes": ["OM471"],
+                  "description": "Euro 6d/e"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 15569,
+                  "enginePower_kW": [380, 425, 460],
+                  "enginePower_HP": [517, 578, 625],
+                  "engineCodes": ["OM473"],
+                  "description": "Euro 6d/e"
+                },
+                {
+                  "engineType": "Electric",
+                  "engineCapacity_cm3": 0,
+                  "enginePower_kW": [400],
+                  "enginePower_HP": [544],
+                  "engineCodes": ["eAxle"],
+                  "description": "eActros"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Arocs",
+          "generations": [
+            {
+              "name": "Arocs",
+              "period": "2013-Present",
+              "bodyStyles": ["Tipper 8x4", "Mixer 8x4", "Tractor", "Rigid"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 7698,
+                  "enginePower_kW": [175, 200, 220, 260],
+                  "enginePower_HP": [238, 272, 299, 354],
+                  "engineCodes": ["OM936"],
+                  "description": "Euro 6"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 10677,
+                  "enginePower_kW": [240, 265, 290, 315],
+                  "enginePower_HP": [326, 360, 394, 428],
+                  "engineCodes": ["OM470"],
+                  "description": "Euro 6"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 12809,
+                  "enginePower_kW": [310, 330, 350, 375],
+                  "enginePower_HP": [421, 449, 476, 510],
+                  "engineCodes": ["OM471"],
+                  "description": "Euro 6"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Atego",
+          "generations": [
+            {
+              "name": "Atego 1/2",
+              "period": "1998-2013",
+              "bodyStyles": ["Rigid 4x2", "Rigid 4x4"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 4249,
+                  "enginePower_kW": [90, 115, 130],
+                  "enginePower_HP": [122, 156, 177],
+                  "engineCodes": ["OM904LA"],
+                  "description": "Euro 3/4/5"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 6374,
+                  "enginePower_kW": [175, 210],
+                  "enginePower_HP": [238, 286],
+                  "engineCodes": ["OM906LA"],
+                  "description": "Euro 3/4/5"
+                }
+              ]
+            },
+            {
+              "name": "Atego 3",
+              "period": "2013-Present",
+              "bodyStyles": ["Rigid 4x2"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 5132,
+                  "enginePower_kW": [115, 130, 155, 170],
+                  "enginePower_HP": [156, 177, 211, 231],
+                  "engineCodes": ["OM934"],
+                  "description": "Euro 6"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 7698,
+                  "enginePower_kW": [175, 200, 220],
+                  "enginePower_HP": [238, 272, 299],
+                  "engineCodes": ["OM936"],
+                  "description": "Euro 6"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Axor",
+          "generations": [
+            {
+              "name": "Axor",
+              "period": "2001-2013",
+              "bodyStyles": ["Tractor 4x2", "Rigid"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 6374,
+                  "enginePower_kW": [175, 210, 240],
+                  "enginePower_HP": [238, 286, 326],
+                  "engineCodes": ["OM906LA"],
+                  "description": "Euro 3/4/5"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 11946,
+                  "enginePower_kW": [265, 295, 315],
+                  "enginePower_HP": [360, 401, 428],
+                  "engineCodes": ["OM457LA"],
+                  "description": "Euro 3/4/5"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Econic",
+          "generations": [
+            {
+              "name": "Econic NGT / Diesel",
+              "period": "2013-Present",
+              "bodyStyles": ["Low-entry cab 4x2", "Low-entry cab 6x4", "Low-entry cab 8x4"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 7698,
+                  "enginePower_kW": [220, 260],
+                  "enginePower_HP": [299, 354],
+                  "engineCodes": ["OM936"],
+                  "description": "Euro 6 Diesel"
+                },
+                {
+                  "engineType": "CNG",
+                  "engineCapacity_cm3": 7698,
+                  "enginePower_kW": [222],
+                  "enginePower_HP": [302],
+                  "engineCodes": ["M936G"],
+                  "description": "Euro 6 NGT (Natural Gas)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Unimog",
+          "generations": [
+            {
+              "name": "Unimog (Implement Carrier)",
+              "period": "2013-Present",
+              "bodyStyles": ["Implement Carrier"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 5132,
+                  "enginePower_kW": [115, 130, 155, 170],
+                  "enginePower_HP": [156, 177, 211, 231],
+                  "engineCodes": ["OM934"],
+                  "description": "U 216 - U 530"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 7698,
+                  "enginePower_kW": [220],
+                  "enginePower_HP": [299],
+                  "engineCodes": ["OM936"],
+                  "description": "U 430 / U 530"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]

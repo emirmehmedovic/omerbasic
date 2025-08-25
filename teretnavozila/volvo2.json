@@ -1,0 +1,323 @@
+[
+    {
+      "name": "Volvo Trucks",
+      "type": "COMMERCIAL",
+      "models": [
+        {
+          "name": "FH",
+          "generations": [
+            {
+              "name": "FH (First & Second Generation)",
+              "period": "1993-2012",
+              "bodyStyles": ["Tractor 4x2", "Tractor 6x2", "Tractor 6x4"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 12130,
+                  "enginePower_kW": [279, 309, 338],
+                  "enginePower_HP": [380, 420, 460],
+                  "engineCodes": ["D12C", "D12D"],
+                  "description": "FH12, Euro 2/3"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 12777,
+                  "enginePower_kW": [309, 338, 368, 397],
+                  "enginePower_HP": [420, 460, 500, 540],
+                  "engineCodes": ["D13A", "D13B", "D13C"],
+                  "description": "Euro 4/5"
+                }
+              ]
+            },
+            {
+              "name": "FH (Third Generation)",
+              "period": "2012-2020",
+              "bodyStyles": ["Tractor 4x2", "Tractor 6x2", "Tractor 6x4"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 12777,
+                  "enginePower_kW": [309, 338, 368, 397],
+                  "enginePower_HP": [420, 460, 500, 540],
+                  "engineCodes": ["D13K"],
+                  "description": "Euro 6"
+                },
+                {
+                  "engineType": "LNG",
+                  "engineCapacity_cm3": 12777,
+                  "enginePower_kW": [309, 338],
+                  "enginePower_HP": [420, 460],
+                  "engineCodes": ["G13C"],
+                  "description": "Euro 6 LNG"
+                }
+              ]
+            },
+            {
+              "name": "FH (Fourth Generation)",
+              "period": "2020-Present",
+              "bodyStyles": ["Tractor 4x2", "Tractor 6x2", "Tractor 6x4"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 12777,
+                  "enginePower_kW": [309, 338, 368, 397],
+                  "enginePower_HP": [420, 460, 500, 540],
+                  "engineCodes": ["D13K", "D13TC (Turbo Compound)"],
+                  "description": "Euro 6 Step D/E"
+                },
+                {
+                  "engineType": "Electric",
+                  "engineCapacity_cm3": 0,
+                  "enginePower_kW": [330, 490],
+                  "enginePower_HP": [449, 666],
+                  "engineCodes": ["Electric Motor"],
+                  "description": "Volvo FH Electric"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "FH16",
+          "generations": [
+            {
+              "name": "FH16 (First & Second Generation)",
+              "period": "1993-2012",
+              "bodyStyles": ["Tractor 4x2", "Tractor 6x4", "Tractor 8x4"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 16120,
+                  "enginePower_kW": [382, 449],
+                  "enginePower_HP": [520, 610],
+                  "engineCodes": ["D16C"],
+                  "description": "Euro 3"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 16123,
+                  "enginePower_kW": [428, 485, 515],
+                  "enginePower_HP": [580, 660, 700],
+                  "engineCodes": ["D16G"],
+                  "description": "Euro 5"
+                }
+              ]
+            },
+            {
+              "name": "FH16 (Third Generation)",
+              "period": "2012-Present",
+              "bodyStyles": ["Tractor 4x2", "Tractor 6x4", "Tractor 8x4"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 16123,
+                  "enginePower_kW": [405, 479, 552],
+                  "enginePower_HP": [550, 650, 750],
+                  "engineCodes": ["D16K"],
+                  "description": "Euro 6"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "FM",
+          "generations": [
+            {
+              "name": "FM (First & Second Generation)",
+              "period": "1998-2013",
+              "bodyStyles": ["Tractor", "Rigid", "Tipper", "Mixer"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 9364,
+                  "enginePower_kW": [221, 250, 280],
+                  "enginePower_HP": [300, 340, 380],
+                  "engineCodes": ["D9A", "D9B"],
+                  "description": "FM9, Euro 3/4/5"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 10837,
+                  "enginePower_kW": [243, 272, 302, 332],
+                  "enginePower_HP": [330, 370, 410, 450],
+                  "engineCodes": ["D11B", "D11C"],
+                  "description": "Euro 5"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 12130,
+                  "enginePower_kW": [250, 279, 309],
+                  "enginePower_HP": [340, 380, 420],
+                  "engineCodes": ["D12D"],
+                  "description": "FM12, Euro 3"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 12777,
+                  "enginePower_kW": [294, 324, 353],
+                  "enginePower_HP": [400, 440, 480],
+                  "engineCodes": ["D13A", "D13B"],
+                  "description": "Euro 4/5"
+                }
+              ]
+            },
+            {
+              "name": "FM (Fourth Generation)",
+              "period": "2013-2020",
+              "bodyStyles": ["Tractor", "Rigid", "Tipper", "Mixer"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 10837,
+                  "enginePower_kW": [243, 272, 302, 332],
+                  "enginePower_HP": [330, 370, 410, 450],
+                  "engineCodes": ["D11K"],
+                  "description": "Euro 6"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 12777,
+                  "enginePower_kW": [309, 338, 368],
+                  "enginePower_HP": [420, 460, 500],
+                  "engineCodes": ["D13K"],
+                  "description": "Euro 6"
+                }
+              ]
+            },
+            {
+              "name": "FM (Fifth Generation)",
+              "period": "2020-Present",
+              "bodyStyles": ["Tractor", "Rigid"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 10837,
+                  "enginePower_kW": [279, 316, 338],
+                  "enginePower_HP": [380, 430, 460],
+                  "engineCodes": ["D11K"],
+                  "description": "Euro 6 Step E"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 12777,
+                  "enginePower_kW": [338, 368],
+                  "enginePower_HP": [460, 500],
+                  "engineCodes": ["D13K", "D13TC (Turbo Compound)"],
+                  "description": "Euro 6 Step E"
+                },
+                {
+                  "engineType": "Electric",
+                  "engineCapacity_cm3": 0,
+                  "enginePower_kW": [330],
+                  "enginePower_HP": [449],
+                  "engineCodes": ["Electric Motor"],
+                  "description": "Volvo FM Electric"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "FMX",
+          "generations": [
+            {
+              "name": "FMX",
+              "period": "2010-Present",
+              "bodyStyles": ["Tipper 8x4", "Mixer 8x4", "Rigid 6x6"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 10837,
+                  "enginePower_kW": [243, 279, 316, 338],
+                  "enginePower_HP": [330, 380, 430, 460],
+                  "engineCodes": ["D11K"],
+                  "description": "Euro 6"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 12777,
+                  "enginePower_kW": [309, 338, 368, 397],
+                  "enginePower_HP": [420, 460, 500, 540],
+                  "engineCodes": ["D13K"],
+                  "description": "Euro 6"
+                },
+                {
+                  "engineType": "Electric",
+                  "engineCapacity_cm3": 0,
+                  "enginePower_kW": [330],
+                  "enginePower_HP": [449],
+                  "engineCodes": ["Electric Motor"],
+                  "description": "Volvo FMX Electric"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "FE",
+          "generations": [
+            {
+              "name": "FE",
+              "period": "2006-Present",
+              "bodyStyles": ["Rigid 4x2", "Rigid 6x2", "Tractor 4x2"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 7146,
+                  "enginePower_kW": [177, 206, 235],
+                  "enginePower_HP": [240, 280, 320],
+                  "engineCodes": ["D7E"],
+                  "description": "Euro 5"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 7698,
+                  "enginePower_kW": [184, 206, 235],
+                  "enginePower_HP": [250, 280, 320],
+                  "engineCodes": ["D8K"],
+                  "description": "Euro 6"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "FL",
+          "generations": [
+            {
+              "name": "FL",
+              "period": "2006-Present",
+              "bodyStyles": ["Rigid 4x2"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 5132,
+                  "enginePower_kW": [154, 177],
+                  "enginePower_HP": [210, 240],
+                  "engineCodes": ["D5K"],
+                  "description": "Euro 6"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 7698,
+                  "enginePower_kW": [184, 206],
+                  "enginePower_HP": [250, 280],
+                  "engineCodes": ["D8K"],
+                  "description": "Euro 6"
+                },
+                {
+                  "engineType": "Electric",
+                  "engineCapacity_cm3": 0,
+                  "enginePower_kW": [130],
+                  "enginePower_HP": [177],
+                  "engineCodes": ["Electric Motor"],
+                  "description": "Volvo FL Electric"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]

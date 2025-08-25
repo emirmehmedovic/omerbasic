@@ -1,0 +1,189 @@
+[
+    {
+      "name": "DAF",
+      "type": "COMMERCIAL",
+      "models": [
+        {
+          "name": "XF / XG / XG+",
+          "generations": [
+            {
+              "name": "New Generation (XF, XG, XG+)",
+              "period": "2021-Present",
+              "bodyStyles": ["Tractor 4x2", "Tractor 6x2", "Rigid"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 10800,
+                  "enginePower_kW": [291, 320, 355],
+                  "enginePower_HP": [396, 435, 483],
+                  "engineCodes": ["PACCAR MX-11"],
+                  "description": "Euro 6"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 12900,
+                  "enginePower_kW": [355, 390],
+                  "enginePower_HP": [483, 530],
+                  "engineCodes": ["PACCAR MX-13"],
+                  "description": "Euro 6"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "XF",
+          "generations": [
+            {
+              "name": "XF106",
+              "period": "2013-2021",
+              "bodyStyles": ["Tractor 4x2", "Tractor 6x2", "Rigid"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 10800,
+                  "enginePower_kW": [291, 320, 340],
+                  "enginePower_HP": [396, 435, 462],
+                  "engineCodes": ["PACCAR MX-11"],
+                  "description": "Euro 6"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 12900,
+                  "enginePower_kW": [303, 340, 375, 390],
+                  "enginePower_HP": [412, 462, 510, 530],
+                  "engineCodes": ["PACCAR MX-13"],
+                  "description": "Euro 6"
+                }
+              ]
+            },
+            {
+              "name": "XF105",
+              "period": "2005-2013",
+              "bodyStyles": ["Tractor 4x2", "Tractor 6x2", "Rigid"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 12900,
+                  "enginePower_kW": [300, 340, 375],
+                  "enginePower_HP": [408, 462, 510],
+                  "engineCodes": ["PACCAR MX"],
+                  "description": "Euro 4/5"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "CF",
+          "generations": [
+            {
+              "name": "CF (Euro 6)",
+              "period": "2013-Present",
+              "bodyStyles": ["Tractor", "Rigid", "Tipper", "Mixer"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 10800,
+                  "enginePower_kW": [220, 252, 270, 300, 330],
+                  "enginePower_HP": [299, 343, 367, 408, 449],
+                  "engineCodes": ["PACCAR MX-11"],
+                  "description": "Euro 6"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 12900,
+                  "enginePower_kW": [303, 340, 375],
+                  "enginePower_HP": [412, 462, 510],
+                  "engineCodes": ["PACCAR MX-13"],
+                  "description": "Euro 6"
+                }
+              ]
+            },
+            {
+              "name": "CF65 / CF75 / CF85",
+              "period": "2001-2013",
+              "bodyStyles": ["Tractor", "Rigid"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 6700,
+                  "enginePower_kW": [184, 210, 228],
+                  "enginePower_HP": [250, 286, 310],
+                  "engineCodes": ["PACCAR PR"],
+                  "description": "Euro 4/5"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 9200,
+                  "enginePower_kW": [184, 228, 265],
+                  "enginePower_HP": [250, 310, 360],
+                  "engineCodes": ["PACCAR PR"],
+                  "description": "Euro 3/4/5"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 12900,
+                  "enginePower_kW": [265, 300, 340, 375],
+                  "enginePower_HP": [360, 408, 462, 510],
+                  "engineCodes": ["PACCAR MX"],
+                  "description": "Euro 4/5"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "LF",
+          "generations": [
+            {
+              "name": "LF (Euro 6)",
+              "period": "2013-Present",
+              "bodyStyles": ["Rigid 4x2"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 4500,
+                  "enginePower_kW": [112, 134, 157],
+                  "enginePower_HP": [152, 182, 213],
+                  "engineCodes": ["PACCAR PX-5"],
+                  "description": "Euro 6"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 6700,
+                  "enginePower_kW": [172, 194, 217, 239],
+                  "enginePower_HP": [234, 264, 295, 325],
+                  "engineCodes": ["PACCAR PX-7"],
+                  "description": "Euro 6"
+                }
+              ]
+            },
+            {
+              "name": "LF45 / LF55",
+              "period": "2001-2013",
+              "bodyStyles": ["Rigid 4x2"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 4500,
+                  "enginePower_kW": [103, 118, 136, 154],
+                  "enginePower_HP": [140, 160, 185, 209],
+                  "engineCodes": ["PACCAR FR"],
+                  "description": "Euro 3/4/5"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 6700,
+                  "enginePower_kW": [165, 184, 221],
+                  "enginePower_HP": [224, 250, 300],
+                  "engineCodes": ["PACCAR GR"],
+                  "description": "Euro 3/4/5"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]

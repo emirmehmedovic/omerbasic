@@ -1,0 +1,261 @@
+[
+    {
+      "name": "Scania",
+      "type": "COMMERCIAL",
+      "models": [
+        {
+          "name": "L-series",
+          "generations": [
+            {
+              "name": "L-series (New Generation)",
+              "period": "2017-Present",
+              "bodyStyles": ["Low-entry cab Rigid 4x2", "Low-entry cab Rigid 6x2"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 9291,
+                  "enginePower_kW": [206, 235, 265],
+                  "enginePower_HP": [280, 320, 360],
+                  "engineCodes": ["DC09"],
+                  "description": "Euro 6 (5-cylinder)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "P-series",
+          "generations": [
+            {
+              "name": "P-series (PGR)",
+              "period": "2004-2018",
+              "bodyStyles": ["Tractor", "Rigid"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 8867,
+                  "enginePower_kW": [169, 198, 228],
+                  "enginePower_HP": [230, 270, 310],
+                  "engineCodes": ["DC9"],
+                  "description": "Euro 4/5"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 12742,
+                  "enginePower_kW": [279, 309],
+                  "enginePower_HP": [380, 420],
+                  "engineCodes": ["DC13"],
+                  "description": "Euro 5/6"
+                }
+              ]
+            },
+            {
+              "name": "P-series (New Generation)",
+              "period": "2017-Present",
+              "bodyStyles": ["Rigid", "Tractor"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 7000,
+                  "enginePower_kW": [184, 206, 235],
+                  "enginePower_HP": [250, 280, 320],
+                  "engineCodes": ["DC07"],
+                  "description": "Euro 6"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 9291,
+                  "enginePower_kW": [206, 235, 265],
+                  "enginePower_HP": [280, 320, 360],
+                  "engineCodes": ["DC09"],
+                  "description": "Euro 6"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "G-series",
+          "generations": [
+            {
+              "name": "G-series (PGR)",
+              "period": "2007-2018",
+              "bodyStyles": ["Tractor", "Rigid", "Tipper"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 8867,
+                  "enginePower_kW": [206, 235],
+                  "enginePower_HP": [280, 320],
+                  "engineCodes": ["DC9"],
+                  "description": "Euro 5/6"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 12742,
+                  "enginePower_kW": [294, 324, 353],
+                  "enginePower_HP": [400, 440, 480],
+                  "engineCodes": ["DC13"],
+                  "description": "Euro 5/6"
+                }
+              ]
+            },
+            {
+              "name": "G-series (New Generation)",
+              "period": "2017-Present",
+              "bodyStyles": ["Tractor", "Rigid", "Tipper"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 12742,
+                  "enginePower_kW": [272, 302, 331, 368],
+                  "enginePower_HP": [370, 410, 450, 500],
+                  "engineCodes": ["DC13"],
+                  "description": "Euro 6"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "R-series",
+          "generations": [
+            {
+              "name": "R-series (PGR)",
+              "period": "2004-2018",
+              "bodyStyles": ["Tractor", "Rigid"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 12742,
+                  "enginePower_kW": [279, 309, 324, 353],
+                  "enginePower_HP": [380, 420, 440, 480],
+                  "engineCodes": ["DC13"],
+                  "description": "Euro 4/5/6"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 15607,
+                  "enginePower_kW": [368, 412],
+                  "enginePower_HP": [500, 560],
+                  "engineCodes": ["DC16 (V8)"],
+                  "description": "Euro 4/5"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 16353,
+                  "enginePower_kW": [382, 427, 537],
+                  "enginePower_HP": [520, 580, 730],
+                  "engineCodes": ["DC16 (V8)"],
+                  "description": "Euro 6"
+                }
+              ]
+            },
+            {
+              "name": "R-series (New Generation)",
+              "period": "2016-Present",
+              "bodyStyles": ["Tractor", "Rigid"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 12742,
+                  "enginePower_kW": [272, 302, 331, 368, 397],
+                  "enginePower_HP": [370, 410, 450, 500, 540],
+                  "engineCodes": ["DC13"],
+                  "description": "Euro 6"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 16353,
+                  "enginePower_kW": [382, 427, 478, 566],
+                  "enginePower_HP": [520, 580, 650, 770],
+                  "engineCodes": ["DC16 (V8)"],
+                  "description": "Euro 6"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "S-series",
+          "generations": [
+            {
+              "name": "S-series (New Generation)",
+              "period": "2016-Present",
+              "bodyStyles": ["Tractor"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 12742,
+                  "enginePower_kW": [368, 397],
+                  "enginePower_HP": [500, 540],
+                  "engineCodes": ["DC13"],
+                  "description": "Euro 6"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 16353,
+                  "enginePower_kW": [382, 427, 478, 566],
+                  "enginePower_HP": [520, 580, 650, 770],
+                  "engineCodes": ["DC16 (V8)"],
+                  "description": "Euro 6"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "4-series",
+          "generations": [
+            {
+              "name": "4-series",
+              "period": "1995-2004",
+              "bodyStyles": ["Tractor", "Rigid", "Tipper"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 8974,
+                  "enginePower_kW": [169, 191, 221],
+                  "enginePower_HP": [230, 260, 300],
+                  "engineCodes": ["DSC9"],
+                  "description": "Euro 2/3"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 11021,
+                  "enginePower_kW": [250, 280],
+                  "enginePower_HP": [340, 380],
+                  "engineCodes": ["DSC11"],
+                  "description": "Euro 2"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 11705,
+                  "enginePower_kW": [309, 338],
+                  "enginePower_HP": [420, 460],
+                  "engineCodes": ["DSC12"],
+                  "description": "Euro 3"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 14190,
+                  "enginePower_kW": [338, 375],
+                  "enginePower_HP": [460, 510],
+                  "engineCodes": ["DSC14 (V8)"],
+                  "description": "Euro 2"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity_cm3": 15607,
+                  "enginePower_kW": [353, 427],
+                  "enginePower_HP": [480, 580],
+                  "engineCodes": ["DC16 (V8)"],
+                  "description": "Euro 3"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
