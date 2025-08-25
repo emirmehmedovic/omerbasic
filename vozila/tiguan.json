@@ -1,0 +1,306 @@
+[
+    {
+      "name": "Volkswagen",
+      "type": "PASSENGER",
+      "models": [
+        {
+          "name": "Tiguan",
+          "generations": [
+            {
+              "name": "Tiguan I (5N)",
+              "period": "2007-2016",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1390,
+                  "enginePowerKW": 90,
+                  "enginePowerHP": 122,
+                  "engineCode": "CAXA",
+                  "description": "1.4 TSI BlueMotion"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1390,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "BWK/CAVA",
+                  "description": "1.4 TSI (Twin-charged)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1390,
+                  "enginePowerKW": 118,
+                  "enginePowerHP": 160,
+                  "engineCode": "CAVD/CTHA",
+                  "description": "1.4 TSI (Twin-charged)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "CAWA/CCZC",
+                  "description": "2.0 TSI/TFSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 132,
+                  "enginePowerHP": 180,
+                  "engineCode": "CCZD/CCTA",
+                  "description": "2.0 TSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 147,
+                  "enginePowerHP": 200,
+                  "engineCode": "CAWB/CCZA",
+                  "description": "2.0 TSI/TFSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 155,
+                  "enginePowerHP": 211,
+                  "engineCode": "CCZB",
+                  "description": "2.0 TSI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 81,
+                  "enginePowerHP": 110,
+                  "engineCode": "CFFD",
+                  "description": "2.0 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "CBAB/CFFB/CLJA",
+                  "description": "2.0 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "CBBB/CFGB",
+                  "description": "2.0 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 130,
+                  "enginePowerHP": 177,
+                  "engineCode": "CFGC",
+                  "description": "2.0 TDI"
+                }
+              ]
+            },
+            {
+              "name": "Tiguan II (AD/BW)",
+              "period": "2016-2024",
+              "bodyStyles": ["SUV", "SUV Long (Allspace)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1395,
+                  "enginePowerKW": 92,
+                  "enginePowerHP": 125,
+                  "engineCode": "CZCA",
+                  "description": "1.4 TSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1395,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "CZDA/CZEA",
+                  "description": "1.4 TSI ACT"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1498,
+                  "enginePowerKW": 96,
+                  "enginePowerHP": 130,
+                  "engineCode": "DACB",
+                  "description": "1.5 TSI Evo"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1498,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "DADA/DPCA",
+                  "description": "1.5 TSI Evo ACT"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 132,
+                  "enginePowerHP": 180,
+                  "engineCode": "CZPA",
+                  "description": "2.0 TSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 140,
+                  "enginePowerHP": 190,
+                  "engineCode": "DNLA",
+                  "description": "2.0 TSI (Facelift)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 169,
+                  "enginePowerHP": 230,
+                  "engineCode": "DKTA",
+                  "description": "2.0 TSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 180,
+                  "enginePowerHP": 245,
+                  "engineCode": "DNPA",
+                  "description": "2.0 TSI (Facelift)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 235,
+                  "enginePowerHP": 320,
+                  "engineCode": "DNFG",
+                  "description": "R 2.0 TSI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 115,
+                  "engineCode": "DGDB",
+                  "description": "1.6 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "DFGA/DBGC",
+                  "description": "2.0 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 140,
+                  "enginePowerHP": 190,
+                  "engineCode": "DFHA",
+                  "description": "2.0 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 147,
+                  "enginePowerHP": 200,
+                  "engineCode": "DTSB",
+                  "description": "2.0 TDI (Facelift)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 176,
+                  "enginePowerHP": 240,
+                  "engineCode": "CUAA",
+                  "description": "2.0 BiTDI"
+                },
+                {
+                  "engineType": "Plug-in Hybrid",
+                  "engineCapacity": 1395,
+                  "enginePowerKW": 115,
+                  "enginePowerHP": 156,
+                  "engineCode": "DGEA",
+                  "description": "eHybrid 1.4 TSI (System: 180kW/245HP)"
+                }
+              ]
+            },
+            {
+              "name": "Tiguan III (CT)",
+              "period": "2023-Present",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Mild Hybrid",
+                  "engineCapacity": 1498,
+                  "enginePowerKW": 96,
+                  "enginePowerHP": 130,
+                  "engineCode": "—",
+                  "description": "1.5 eTSI mHEV"
+                },
+                {
+                  "engineType": "Mild Hybrid",
+                  "engineCapacity": 1498,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "—",
+                  "description": "1.5 eTSI mHEV"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 150,
+                  "enginePowerHP": 204,
+                  "engineCode": "—",
+                  "description": "2.0 TSI 4Motion"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 195,
+                  "enginePowerHP": 265,
+                  "engineCode": "—",
+                  "description": "2.0 TSI 4Motion"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "—",
+                  "description": "2.0 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 142,
+                  "enginePowerHP": 193,
+                  "engineCode": "—",
+                  "description": "2.0 TDI 4Motion"
+                },
+                {
+                  "engineType": "Plug-in Hybrid",
+                  "engineCapacity": 1498,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "—",
+                  "description": "eHybrid 1.5 TSI (System: 150kW/204HP)"
+                },
+                {
+                  "engineType": "Plug-in Hybrid",
+                  "engineCapacity": 1498,
+                  "enginePowerKW": 130,
+                  "enginePowerHP": 177,
+                  "engineCode": "—",
+                  "description": "eHybrid 1.5 TSI (System: 200kW/272HP)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]

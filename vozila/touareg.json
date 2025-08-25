@@ -1,0 +1,234 @@
+[
+    {
+      "name": "Volkswagen",
+      "type": "PASSENGER",
+      "models": [
+        {
+          "name": "Touareg",
+          "generations": [
+            {
+              "name": "Touareg I (7L)",
+              "period": "2002-2010",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 3189,
+                  "enginePowerKW": 162,
+                  "enginePowerHP": 220,
+                  "engineCode": "AZZ/BKJ/BMV",
+                  "description": "3.2 VR6"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 3189,
+                  "enginePowerKW": 177,
+                  "enginePowerHP": 241,
+                  "engineCode": "BMX/BRJ",
+                  "description": "3.2 VR6"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 3597,
+                  "enginePowerKW": 206,
+                  "enginePowerHP": 280,
+                  "engineCode": "BHK",
+                  "description": "3.6 VR6 FSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 4172,
+                  "enginePowerKW": 228,
+                  "enginePowerHP": 310,
+                  "engineCode": "AXQ",
+                  "description": "4.2 V8"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 4163,
+                  "enginePowerKW": 257,
+                  "enginePowerHP": 350,
+                  "engineCode": "BAR",
+                  "description": "4.2 V8 FSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 5998,
+                  "enginePowerKW": 331,
+                  "enginePowerHP": 450,
+                  "engineCode": "BJN/CFRA",
+                  "description": "6.0 W12"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2461,
+                  "enginePowerKW": 128,
+                  "enginePowerHP": 174,
+                  "engineCode": "BAC/BPE",
+                  "description": "2.5 R5 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2967,
+                  "enginePowerKW": 165,
+                  "enginePowerHP": 225,
+                  "engineCode": "BKS/CATA",
+                  "description": "3.0 V6 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2967,
+                  "enginePowerKW": 176,
+                  "enginePowerHP": 240,
+                  "engineCode": "CASA/CASB",
+                  "description": "3.0 V6 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 4921,
+                  "enginePowerKW": 230,
+                  "enginePowerHP": 313,
+                  "engineCode": "AYH/BLE/BWF",
+                  "description": "5.0 V10 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 4921,
+                  "enginePowerKW": 258,
+                  "enginePowerHP": 351,
+                  "engineCode": "CBWA",
+                  "description": "R50 5.0 V10 TDI"
+                }
+              ]
+            },
+            {
+              "name": "Touareg II (7P)",
+              "period": "2010-2018",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 3597,
+                  "enginePowerKW": 206,
+                  "enginePowerHP": 280,
+                  "engineCode": "CGRA",
+                  "description": "3.6 VR6 FSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 4163,
+                  "enginePowerKW": 265,
+                  "enginePowerHP": 360,
+                  "engineCode": "CGNA",
+                  "description": "4.2 V8 FSI"
+                },
+                {
+                  "engineType": "Hybrid",
+                  "engineCapacity": 2995,
+                  "enginePowerKW": 245,
+                  "enginePowerHP": 333,
+                  "engineCode": "CGEA/CGFA",
+                  "description": "3.0 V6 TSI Hybrid (ICE part)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2967,
+                  "enginePowerKW": 150,
+                  "enginePowerHP": 204,
+                  "engineCode": "CASD/CJMA",
+                  "description": "3.0 V6 TDI BlueMotion"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2967,
+                  "enginePowerKW": 180,
+                  "enginePowerHP": 245,
+                  "engineCode": "CJGD/CRCA",
+                  "description": "3.0 V6 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2967,
+                  "enginePowerKW": 193,
+                  "enginePowerHP": 262,
+                  "engineCode": "CVVA",
+                  "description": "3.0 V6 TDI (Facelift)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 4134,
+                  "enginePowerKW": 250,
+                  "enginePowerHP": 340,
+                  "engineCode": "CKDA",
+                  "description": "4.2 V8 TDI"
+                }
+              ]
+            },
+            {
+              "name": "Touareg III (CR)",
+              "period": "2018-Present",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 185,
+                  "enginePowerHP": 252,
+                  "engineCode": "CYRC",
+                  "description": "2.0 TSI (China)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2995,
+                  "enginePowerKW": 250,
+                  "enginePowerHP": 340,
+                  "engineCode": "DCBE",
+                  "description": "3.0 V6 TSI"
+                },
+                {
+                  "engineType": "Plug-in Hybrid",
+                  "engineCapacity": 2995,
+                  "enginePowerKW": 250,
+                  "enginePowerHP": 340,
+                  "engineCode": "DCBE",
+                  "description": "3.0 V6 TSI eHybrid (System: 280kW/381HP)"
+                },
+                {
+                  "engineType": "Plug-in Hybrid",
+                  "engineCapacity": 2995,
+                  "enginePowerKW": 250,
+                  "enginePowerHP": 340,
+                  "engineCode": "DCBE",
+                  "description": "R 3.0 V6 TSI (System: 340kW/462HP)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2967,
+                  "enginePowerKW": 170,
+                  "enginePowerHP": 231,
+                  "engineCode": "DENA",
+                  "description": "3.0 V6 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2967,
+                  "enginePowerKW": 210,
+                  "enginePowerHP": 286,
+                  "engineCode": "DCXA",
+                  "description": "3.0 V6 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 3956,
+                  "enginePowerKW": 310,
+                  "enginePowerHP": 421,
+                  "engineCode": "DMVB",
+                  "description": "4.0 V8 TDI"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]

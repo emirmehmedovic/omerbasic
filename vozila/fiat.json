@@ -1,0 +1,581 @@
+[
+    {
+      "name": "Fiat",
+      "type": "PASSENGER",
+      "models": [
+        {
+          "name": "500",
+          "generations": [
+            {
+              "name": "500 (Type 312)",
+              "period": "2007-Present",
+              "bodyStyles": ["Hatchback", "Cabriolet (500C)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1242,
+                  "enginePowerKW": 51,
+                  "enginePowerHP": 69,
+                  "engineCode": "169A4000 (FIRE)",
+                  "description": "1.2 8V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 875,
+                  "enginePowerKW": 63,
+                  "enginePowerHP": 85,
+                  "engineCode": "312A2000 (TwinAir)",
+                  "description": "0.9 TwinAir Turbo"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1368,
+                  "enginePowerKW": 74,
+                  "enginePowerHP": 100,
+                  "engineCode": "169A3000 (FIRE)",
+                  "description": "1.4 16V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1368,
+                  "enginePowerKW": 118,
+                  "enginePowerHP": 160,
+                  "engineCode": "312A1000 (T-Jet)",
+                  "description": "Abarth 1.4 T-Jet"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1248,
+                  "enginePowerKW": 70,
+                  "enginePowerHP": 95,
+                  "engineCode": "199B1000 (MultiJet)",
+                  "description": "1.3 MultiJet"
+                },
+                {
+                  "engineType": "Mild Hybrid",
+                  "engineCapacity": 999,
+                  "enginePowerKW": 51,
+                  "enginePowerHP": 70,
+                  "engineCode": "FireFly",
+                  "description": "1.0 Hybrid"
+                }
+              ]
+            },
+            {
+              "name": "500e (Electric)",
+              "period": "2020-Present",
+              "bodyStyles": ["Hatchback", "Cabriolet"],
+              "engines": [
+                {
+                  "engineType": "Electric",
+                  "engineCapacity": 0,
+                  "enginePowerKW": 70,
+                  "enginePowerHP": 95,
+                  "engineCode": "—",
+                  "description": "Electric (24 kWh)"
+                },
+                {
+                  "engineType": "Electric",
+                  "engineCapacity": 0,
+                  "enginePowerKW": 87,
+                  "enginePowerHP": 118,
+                  "engineCode": "—",
+                  "description": "Electric (42 kWh)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "500L",
+          "generations": [
+            {
+              "name": "500L",
+              "period": "2012-2022",
+              "bodyStyles": ["MPV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 875,
+                  "enginePowerKW": 77,
+                  "enginePowerHP": 105,
+                  "engineCode": "312A2000 (TwinAir)",
+                  "description": "0.9 TwinAir"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1368,
+                  "enginePowerKW": 88,
+                  "enginePowerHP": 120,
+                  "engineCode": "940B7000 (T-Jet)",
+                  "description": "1.4 T-Jet"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1248,
+                  "enginePowerKW": 70,
+                  "enginePowerHP": 95,
+                  "engineCode": "199B1000 (MultiJet)",
+                  "description": "1.3 MultiJet II"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 88,
+                  "enginePowerHP": 120,
+                  "engineCode": "940C1000 (MultiJet)",
+                  "description": "1.6 MultiJet II"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "500X",
+          "generations": [
+            {
+              "name": "500X",
+              "period": "2014-Present",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 999,
+                  "enginePowerKW": 88,
+                  "enginePowerHP": 120,
+                  "engineCode": "FireFly Turbo",
+                  "description": "1.0 T3"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1332,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "FireFly Turbo",
+                  "description": "1.3 T4"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 81,
+                  "enginePowerHP": 110,
+                  "engineCode": "E.torQ",
+                  "description": "1.6 E-torQ"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 96,
+                  "enginePowerHP": 130,
+                  "engineCode": "MultiJet II",
+                  "description": "1.6 MultiJet"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1956,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "MultiJet II",
+                  "description": "2.0 MultiJet"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Bravo",
+          "generations": [
+            {
+              "name": "Bravo II (Type 198)",
+              "period": "2007-2014",
+              "bodyStyles": ["Hatchback"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1368,
+                  "enginePowerKW": 88,
+                  "enginePowerHP": 120,
+                  "engineCode": "198A4000 (T-Jet)",
+                  "description": "1.4 T-Jet"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1368,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "198A7000 (MultiAir)",
+                  "description": "1.4 MultiAir"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 88,
+                  "enginePowerHP": 120,
+                  "engineCode": "198A2000 (MultiJet)",
+                  "description": "1.6 MultiJet"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1910,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "937A5000 (MultiJet)",
+                  "description": "1.9 MultiJet 16V"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1956,
+                  "enginePowerKW": 121,
+                  "enginePowerHP": 165,
+                  "engineCode": "198A5000 (MultiJet)",
+                  "description": "2.0 MultiJet"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Panda",
+          "generations": [
+            {
+              "name": "Panda (169)",
+              "period": "2003-2012",
+              "bodyStyles": ["Hatchback", "4x4"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1108,
+                  "enginePowerKW": 40,
+                  "enginePowerHP": 54,
+                  "engineCode": "187A1000 (FIRE)",
+                  "description": "1.1 8V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1242,
+                  "enginePowerKW": 44,
+                  "enginePowerHP": 60,
+                  "engineCode": "188A4000 (FIRE)",
+                  "description": "1.2 8V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1368,
+                  "enginePowerKW": 74,
+                  "enginePowerHP": 100,
+                  "engineCode": "169A3000 (FIRE)",
+                  "description": "100HP 1.4 16V"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1248,
+                  "enginePowerKW": 51,
+                  "enginePowerHP": 70,
+                  "engineCode": "188A9000 (MultiJet)",
+                  "description": "1.3 MultiJet"
+                }
+              ]
+            },
+            {
+              "name": "Panda (319)",
+              "period": "2011-Present",
+              "bodyStyles": ["Hatchback", "4x4", "Cross"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 875,
+                  "enginePowerKW": 63,
+                  "enginePowerHP": 85,
+                  "engineCode": "312A2000 (TwinAir)",
+                  "description": "0.9 TwinAir Turbo"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1242,
+                  "enginePowerKW": 51,
+                  "enginePowerHP": 69,
+                  "engineCode": "169A4000 (FIRE)",
+                  "description": "1.2 8V"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1248,
+                  "enginePowerKW": 70,
+                  "enginePowerHP": 95,
+                  "engineCode": "330A1000 (MultiJet)",
+                  "description": "1.3 MultiJet II"
+                },
+                {
+                  "engineType": "Mild Hybrid",
+                  "engineCapacity": 999,
+                  "enginePowerKW": 51,
+                  "enginePowerHP": 70,
+                  "engineCode": "FireFly",
+                  "description": "1.0 Hybrid"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Punto",
+          "generations": [
+            {
+              "name": "Punto (188)",
+              "period": "1999-2010",
+              "bodyStyles": ["Hatchback (3-door)", "Hatchback (5-door)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1242,
+                  "enginePowerKW": 44,
+                  "enginePowerHP": 60,
+                  "engineCode": "188A4000 (FIRE)",
+                  "description": "1.2 8V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1242,
+                  "enginePowerKW": 59,
+                  "enginePowerHP": 80,
+                  "engineCode": "188A5000 (FIRE)",
+                  "description": "1.2 16V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1747,
+                  "enginePowerKW": 96,
+                  "enginePowerHP": 130,
+                  "engineCode": "183A1000",
+                  "description": "HGT 1.8 16V"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1910,
+                  "enginePowerKW": 59,
+                  "enginePowerHP": 80,
+                  "engineCode": "188A2000 (JTD)",
+                  "description": "1.9 JTD"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1248,
+                  "enginePowerKW": 51,
+                  "enginePowerHP": 70,
+                  "engineCode": "188A9000 (MultiJet)",
+                  "description": "1.3 MultiJet"
+                }
+              ]
+            },
+            {
+              "name": "Grande Punto / Punto Evo",
+              "period": "2005-2012",
+              "bodyStyles": ["Hatchback (3-door)", "Hatchback (5-door)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1368,
+                  "enginePowerKW": 70,
+                  "enginePowerHP": 95,
+                  "engineCode": "350A1000 (StarJet)",
+                  "description": "1.4 16V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1368,
+                  "enginePowerKW": 88,
+                  "enginePowerHP": 120,
+                  "engineCode": "198A4000 (T-Jet)",
+                  "description": "1.4 T-Jet"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1368,
+                  "enginePowerKW": 99,
+                  "enginePowerHP": 135,
+                  "engineCode": "955A2000 (MultiAir)",
+                  "description": "1.4 MultiAir"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1248,
+                  "enginePowerKW": 66,
+                  "enginePowerHP": 90,
+                  "engineCode": "199A3000 (MultiJet)",
+                  "description": "1.3 MultiJet"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1910,
+                  "enginePowerKW": 96,
+                  "enginePowerHP": 130,
+                  "engineCode": "939A1000 (MultiJet)",
+                  "description": "1.9 MultiJet"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Stilo",
+          "generations": [
+            {
+              "name": "Stilo",
+              "period": "2001-2007",
+              "bodyStyles": ["Hatchback (3-door)", "Hatchback (5-door)", "Wagon (MultiWagon)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1596,
+                  "enginePowerKW": 76,
+                  "enginePowerHP": 103,
+                  "engineCode": "182B6000",
+                  "description": "1.6 16V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1747,
+                  "enginePowerKW": 98,
+                  "enginePowerHP": 133,
+                  "engineCode": "192A4000",
+                  "description": "1.8 16V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2446,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "192A2000",
+                  "description": "Abarth 2.4 20V (5-cylinder)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1910,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 115,
+                  "engineCode": "192A1000 (JTD)",
+                  "description": "1.9 JTD"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1910,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "192A5000 (JTDm)",
+                  "description": "1.9 MultiJet 16V"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Tipo",
+          "generations": [
+            {
+              "name": "Tipo (Type 356)",
+              "period": "2015-Present",
+              "bodyStyles": ["Sedan", "Hatchback", "Wagon"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1368,
+                  "enginePowerKW": 70,
+                  "enginePowerHP": 95,
+                  "engineCode": "FIRE",
+                  "description": "1.4 16V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1368,
+                  "enginePowerKW": 88,
+                  "enginePowerHP": 120,
+                  "engineCode": "T-Jet",
+                  "description": "1.4 T-Jet"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1248,
+                  "enginePowerKW": 70,
+                  "enginePowerHP": 95,
+                  "engineCode": "MultiJet II",
+                  "description": "1.3 MultiJet"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 96,
+                  "enginePowerHP": 130,
+                  "engineCode": "MultiJet II",
+                  "description": "1.6 MultiJet"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Doblo",
+          "generations": [
+            {
+              "name": "Doblo II",
+              "period": "2010-2022",
+              "bodyStyles": ["MPV (Panorama)", "Van (Cargo)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1368,
+                  "enginePowerKW": 88,
+                  "enginePowerHP": 120,
+                  "engineCode": "198A4000 (T-Jet)",
+                  "description": "1.4 T-Jet"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 77,
+                  "enginePowerHP": 105,
+                  "engineCode": "198A3000 (MultiJet)",
+                  "description": "1.6 MultiJet"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1956,
+                  "enginePowerKW": 99,
+                  "enginePowerHP": 135,
+                  "engineCode": "263A1000 (MultiJet)",
+                  "description": "2.0 MultiJet"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Freemont",
+          "generations": [
+            {
+              "name": "Freemont",
+              "period": "2011-2016",
+              "bodyStyles": ["SUV/MPV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 3604,
+                  "enginePowerKW": 206,
+                  "enginePowerHP": 280,
+                  "engineCode": "Pentastar",
+                  "description": "3.6 V6"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1956,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "939B5000 (MultiJet)",
+                  "description": "2.0 MultiJet"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]

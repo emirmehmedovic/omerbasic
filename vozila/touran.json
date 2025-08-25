@@ -1,0 +1,210 @@
+[
+    {
+      "name": "Volkswagen",
+      "type": "PASSENGER",
+      "models": [
+        {
+          "name": "Touran",
+          "generations": [
+            {
+              "name": "1T (2003–2015)",
+              "period": "2003-2015",
+              "bodyStyles": ["MPV 5-vrata"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacityCC": 1197,
+                  "enginePowerKW": 77,
+                  "enginePowerHP": 105,
+                  "engineCode": "CBZB",
+                  "description": "1.2 TSI",
+                  "torqueNm": 175
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacityCC": 1390,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "BMY/CAVC",
+                  "description": "1.4 TSI",
+                  "torqueNm": 220,
+                  "years": "2006-2010"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacityCC": 1390,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "BLG/CAVB",
+                  "description": "1.4 TSI",
+                  "torqueNm": 240,
+                  "years": "2007-2015"
+                },
+                {
+                  "engineType": "Petrol (CNG)",
+                  "engineCapacityCC": 1390,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "CDGA",
+                  "description": "1.4 TSI EcoFuel",
+                  "torqueNm": 220,
+                  "years": "2009-2015"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacityCC": 1595,
+                  "enginePowerKW": 75,
+                  "enginePowerHP": 102,
+                  "engineCode": "BGU/BSE/BSF",
+                  "description": "1.6 MPI",
+                  "torqueNm": 148,
+                  "years": "2003-2010"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacityCC": 1598,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 115,
+                  "engineCode": "BAG/BLF/BLP",
+                  "description": "1.6 FSI",
+                  "torqueNm": 155,
+                  "years": "2003-2006"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacityCC": 1984,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "AXW/BLR/BLX/BVY",
+                  "description": "2.0 FSI",
+                  "torqueNm": 200,
+                  "years": "2003-2006"
+                },
+                {
+                  "engineType": "Petrol (CNG)",
+                  "engineCapacityCC": 1984,
+                  "enginePowerKW": 80,
+                  "enginePowerHP": 109,
+                  "engineCode": "BSX",
+                  "description": "2.0 EcoFuel",
+                  "torqueNm": 160,
+                  "years": "2006-2009"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacityCC": 1598,
+                  "enginePowerKW": 66,
+                  "enginePowerHP": 90,
+                  "engineCode": "CAYB",
+                  "description": "1.6 TDI",
+                  "torqueNm": 230,
+                  "years": "2010-2015"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacityCC": 1598,
+                  "enginePowerKW": 77,
+                  "enginePowerHP": 105,
+                  "engineCode": "CAYC",
+                  "description": "1.6 TDI",
+                  "torqueNm": 250,
+                  "years": "2010-2015"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacityCC": 1896,
+                  "enginePowerKW": 66,
+                  "enginePowerHP": 90,
+                  "engineCode": "BRU/BXF/BXJ",
+                  "description": "1.9 TDI",
+                  "torqueNm": 210,
+                  "years": "2004-2010"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacityCC": 1896,
+                  "enginePowerKW": 74,
+                  "enginePowerHP": 100,
+                  "engineCode": "AVQ",
+                  "description": "1.9 TDI",
+                  "torqueNm": 250,
+                  "years": "2003-2004"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacityCC": 1896,
+                  "enginePowerKW": 77,
+                  "enginePowerHP": 105,
+                  "engineCode": "BJB/BKC/BXE/BLS",
+                  "description": "1.9 TDI",
+                  "torqueNm": 250,
+                  "years": "2004-2010"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacityCC": 1968,
+                  "enginePowerKW": 100,
+                  "enginePowerHP": 136,
+                  "engineCode": "AZV",
+                  "description": "2.0 TDI",
+                  "torqueNm": 320,
+                  "years": "2003-2004"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacityCC": 1968,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "BKD",
+                  "description": "2.0 TDI",
+                  "torqueNm": 320,
+                  "years": "2004-2010"
+                },
+                {
+                  "engineType": "Diesel (DPF)",
+                  "engineCapacityCC": 1968,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "BMM",
+                  "description": "2.0 TDI DPF",
+                  "torqueNm": 320,
+                  "years": "2005-2010"
+                },
+                {
+                  "engineType": "Diesel (DPF)",
+                  "engineCapacityCC": 1968,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "CBAB",
+                  "description": "2.0 TDI DPF",
+                  "torqueNm": 320,
+                  "years": "2010-2015"
+                },
+                {
+                  "engineType": "Diesel (DPF)",
+                  "engineCapacityCC": 1968,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "BMN",
+                  "description": "2.0 TDI DPF",
+                  "torqueNm": 350,
+                  "years": "2005-2010"
+                },
+                {
+                  "engineType": "Diesel (DPF)",
+                  "engineCapacityCC": 1968,
+                  "enginePowerKW": 130,
+                  "enginePowerHP": 177,
+                  "engineCode": "CFJB",
+                  "description": "2.0 TDI DPF",
+                  "torqueNm": 380,
+                  "years": "2012-2015"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+  

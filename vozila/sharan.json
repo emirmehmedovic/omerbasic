@@ -1,0 +1,218 @@
+[
+    {
+      "name": "Volkswagen",
+      "type": "PASSENGER",
+      "models": [
+        {
+          "name": "Sharan",
+          "generations": [
+            {
+              "name": "Sharan I (7M)",
+              "period": "1995-2000",
+              "bodyStyles": ["MPV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1781,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "AJH",
+                  "description": "1.8T 20V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 115,
+                  "engineCode": "ADY",
+                  "description": "2.0 MPI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2792,
+                  "enginePowerKW": 128,
+                  "enginePowerHP": 174,
+                  "engineCode": "AAA/AMY",
+                  "description": "2.8 VR6 12V"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1896,
+                  "enginePowerKW": 66,
+                  "enginePowerHP": 90,
+                  "engineCode": "1Z/AHU",
+                  "description": "1.9 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1896,
+                  "enginePowerKW": 81,
+                  "enginePowerHP": 110,
+                  "engineCode": "AFN/AVG",
+                  "description": "1.9 TDI"
+                }
+              ]
+            },
+            {
+              "name": "Sharan I Facelift (7M)",
+              "period": "2000-2010",
+              "bodyStyles": ["MPV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1781,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "AWC/AWT",
+                  "description": "1.8T 20V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 115,
+                  "engineCode": "ATM",
+                  "description": "2.0 MPI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2792,
+                  "enginePowerKW": 150,
+                  "enginePowerHP": 204,
+                  "engineCode": "AYL",
+                  "description": "2.8 V6 24V"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1896,
+                  "enginePowerKW": 66,
+                  "enginePowerHP": 90,
+                  "engineCode": "ANU",
+                  "description": "1.9 TDI PD"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1896,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 115,
+                  "engineCode": "AUY/BVK",
+                  "description": "1.9 TDI PD"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1896,
+                  "enginePowerKW": 96,
+                  "enginePowerHP": 130,
+                  "engineCode": "ASZ",
+                  "description": "1.9 TDI PD"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1896,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "BTB",
+                  "description": "1.9 TDI PD"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "BRT",
+                  "description": "2.0 TDI PD"
+                }
+              ]
+            },
+            {
+              "name": "Sharan II (7N)",
+              "period": "2010-2022",
+              "bodyStyles": ["MPV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1390,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "CAVA/CTHA",
+                  "description": "1.4 TSI (Twin-charged)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1395,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "CZDA",
+                  "description": "1.4 TSI BlueMotion (Facelift)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 147,
+                  "enginePowerHP": 200,
+                  "engineCode": "CCZA",
+                  "description": "2.0 TSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 162,
+                  "enginePowerHP": 220,
+                  "engineCode": "DEDA",
+                  "description": "2.0 TSI (Facelift)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 115,
+                  "engineCode": "CFFE",
+                  "description": "2.0 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "CFFB",
+                  "description": "2.0 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "CUVC/DFLA",
+                  "description": "2.0 TDI (Facelift)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "CFGB",
+                  "description": "2.0 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 130,
+                  "enginePowerHP": 177,
+                  "engineCode": "CFGC",
+                  "description": "2.0 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 135,
+                  "enginePowerHP": 184,
+                  "engineCode": "CUWA/DFLB",
+                  "description": "2.0 TDI (Facelift)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]

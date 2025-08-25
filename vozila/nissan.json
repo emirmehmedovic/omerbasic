@@ -1,0 +1,362 @@
+[
+    {
+      "name": "Nissan",
+      "type": "PASSENGER",
+      "models": [
+        {
+          "name": "350Z / 370Z",
+          "generations": [
+            {
+              "name": "350Z (Z33)",
+              "period": "2002-2009",
+              "bodyStyles": ["Coupe", "Roadster"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 3498,
+                  "enginePowerKW": 221,
+                  "enginePowerHP": 300,
+                  "engineCode": "VQ35DE",
+                  "description": "3.5 V6"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 3498,
+                  "enginePowerKW": 230,
+                  "enginePowerHP": 313,
+                  "engineCode": "VQ35HR",
+                  "description": "3.5 V6 HR"
+                }
+              ]
+            },
+            {
+              "name": "370Z (Z34)",
+              "period": "2009-2020",
+              "bodyStyles": ["Coupe", "Roadster"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 3696,
+                  "enginePowerKW": 241,
+                  "enginePowerHP": 328,
+                  "engineCode": "VQ37VHR",
+                  "description": "3.7 V6"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "GT-R",
+          "generations": [
+            {
+              "name": "GT-R (R35)",
+              "period": "2007-Present",
+              "bodyStyles": ["Coupe"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 3799,
+                  "enginePowerKW": 404,
+                  "enginePowerHP": 550,
+                  "engineCode": "VR38DETT",
+                  "description": "3.8 V6 Twin-Turbo"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 3799,
+                  "enginePowerKW": 441,
+                  "enginePowerHP": 600,
+                  "engineCode": "VR38DETT",
+                  "description": "Nismo 3.8 V6 Twin-Turbo"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Juke",
+          "generations": [
+            {
+              "name": "Juke (F15)",
+              "period": "2010-2019",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 86,
+                  "enginePowerHP": 117,
+                  "engineCode": "HR16DE",
+                  "description": "1.6"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1618,
+                  "enginePowerKW": 140,
+                  "enginePowerHP": 190,
+                  "engineCode": "MR16DDT",
+                  "description": "1.6 DIG-T"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1618,
+                  "enginePowerKW": 160,
+                  "enginePowerHP": 218,
+                  "engineCode": "MR16DDT",
+                  "description": "Nismo RS 1.6 DIG-T"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1461,
+                  "enginePowerKW": 81,
+                  "enginePowerHP": 110,
+                  "engineCode": "K9K (Renault)",
+                  "description": "1.5 dCi"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Leaf",
+          "generations": [
+            {
+              "name": "Leaf (ZE0/ZE1)",
+              "period": "2010-Present",
+              "bodyStyles": ["Hatchback"],
+              "engines": [
+                {
+                  "engineType": "Electric",
+                  "engineCapacity": 0,
+                  "enginePowerKW": 80,
+                  "enginePowerHP": 109,
+                  "engineCode": "EM57",
+                  "description": "Electric (24/30 kWh)"
+                },
+                {
+                  "engineType": "Electric",
+                  "engineCapacity": 0,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "EM57",
+                  "description": "Electric (40 kWh)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Micra",
+          "generations": [
+            {
+              "name": "Micra (K12)",
+              "period": "2002-2010",
+              "bodyStyles": ["Hatchback (3-door)", "Hatchback (5-door)", "Coupe-Cabriolet (C+C)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1240,
+                  "enginePowerKW": 59,
+                  "enginePowerHP": 80,
+                  "engineCode": "CR12DE",
+                  "description": "1.2"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1386,
+                  "enginePowerKW": 65,
+                  "enginePowerHP": 88,
+                  "engineCode": "CR14DE",
+                  "description": "1.4"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1461,
+                  "enginePowerKW": 63,
+                  "enginePowerHP": 86,
+                  "engineCode": "K9K (Renault)",
+                  "description": "1.5 dCi"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Navara",
+          "generations": [
+            {
+              "name": "Navara (D40)",
+              "period": "2004-2015",
+              "bodyStyles": ["Pickup"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2488,
+                  "enginePowerKW": 140,
+                  "enginePowerHP": 190,
+                  "engineCode": "YD25DDTi",
+                  "description": "2.5 dCi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2993,
+                  "enginePowerKW": 170,
+                  "enginePowerHP": 231,
+                  "engineCode": "V9X (Renault)",
+                  "description": "3.0 dCi V6"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Note",
+          "generations": [
+            {
+              "name": "Note (E11)",
+              "period": "2006-2013",
+              "bodyStyles": ["MPV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1386,
+                  "enginePowerKW": 65,
+                  "enginePowerHP": 88,
+                  "engineCode": "CR14DE",
+                  "description": "1.4"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 81,
+                  "enginePowerHP": 110,
+                  "engineCode": "HR16DE",
+                  "description": "1.6"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1461,
+                  "enginePowerKW": 76,
+                  "enginePowerHP": 103,
+                  "engineCode": "K9K (Renault)",
+                  "description": "1.5 dCi"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Qashqai",
+          "generations": [
+            {
+              "name": "Qashqai (J10)",
+              "period": "2007-2013",
+              "bodyStyles": ["SUV", "SUV (+2)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 86,
+                  "enginePowerHP": 117,
+                  "engineCode": "HR16DE",
+                  "description": "1.6"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1997,
+                  "enginePowerKW": 104,
+                  "enginePowerHP": 141,
+                  "engineCode": "MR20DE",
+                  "description": "2.0"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1461,
+                  "enginePowerKW": 78,
+                  "enginePowerHP": 106,
+                  "engineCode": "K9K (Renault)",
+                  "description": "1.5 dCi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 96,
+                  "enginePowerHP": 130,
+                  "engineCode": "R9M (Renault)",
+                  "description": "1.6 dCi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "M9R (Renault)",
+                  "description": "2.0 dCi"
+                }
+              ]
+            },
+            {
+              "name": "Qashqai (J11)",
+              "period": "2013-2021",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1197,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 115,
+                  "engineCode": "H5FT (Renault)",
+                  "description": "1.2 DIG-T"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1618,
+                  "enginePowerKW": 120,
+                  "enginePowerHP": 163,
+                  "engineCode": "MR16DDT",
+                  "description": "1.6 DIG-T"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1461,
+                  "enginePowerKW": 81,
+                  "enginePowerHP": 110,
+                  "engineCode": "K9K (Renault)",
+                  "description": "1.5 dCi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 96,
+                  "enginePowerHP": 130,
+                  "engineCode": "R9M (Renault)",
+                  "description": "1.6 dCi"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "X-Trail",
+          "generations": [
+            {
+              "name": "X-Trail (T31)",
+              "period": "2007-2014",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 127,
+                  "enginePowerHP": 173,
+                  "engineCode": "M9R (Renault)",
+                  "description": "2.0 dCi"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]

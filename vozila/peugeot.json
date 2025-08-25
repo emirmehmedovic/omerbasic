@@ -1,0 +1,750 @@
+[
+    {
+      "name": "Peugeot",
+      "type": "PASSENGER",
+      "models": [
+        {
+          "name": "206",
+          "generations": [
+            {
+              "name": "206",
+              "period": "1998-2009",
+              "bodyStyles": ["Hatchback (3-door)", "Hatchback (5-door)", "Wagon (SW)", "Coupe-Cabriolet (CC)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1124,
+                  "enginePowerKW": 44,
+                  "enginePowerHP": 60,
+                  "engineCode": "TU1JP",
+                  "description": "1.1i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1360,
+                  "enginePowerKW": 55,
+                  "enginePowerHP": 75,
+                  "engineCode": "TU3JP",
+                  "description": "1.4i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1587,
+                  "enginePowerKW": 80,
+                  "enginePowerHP": 109,
+                  "engineCode": "TU5JP4",
+                  "description": "1.6 16V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1997,
+                  "enginePowerKW": 100,
+                  "enginePowerHP": 136,
+                  "engineCode": "EW10J4",
+                  "description": "2.0 16V GTi"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1997,
+                  "enginePowerKW": 130,
+                  "enginePowerHP": 177,
+                  "engineCode": "EW10J4S",
+                  "description": "2.0 16V RC"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1398,
+                  "enginePowerKW": 50,
+                  "enginePowerHP": 68,
+                  "engineCode": "DV4TD",
+                  "description": "1.4 HDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1560,
+                  "enginePowerKW": 80,
+                  "enginePowerHP": 109,
+                  "engineCode": "DV6TED4",
+                  "description": "1.6 HDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1997,
+                  "enginePowerKW": 66,
+                  "enginePowerHP": 90,
+                  "engineCode": "DW10TD",
+                  "description": "2.0 HDi"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "207",
+          "generations": [
+            {
+              "name": "207",
+              "period": "2006-2014",
+              "bodyStyles": ["Hatchback (3-door)", "Hatchback (5-door)", "Wagon (SW)", "Coupe-Cabriolet (CC)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1397,
+                  "enginePowerKW": 70,
+                  "enginePowerHP": 95,
+                  "engineCode": "EP3",
+                  "description": "1.4 VTi"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 88,
+                  "enginePowerHP": 120,
+                  "engineCode": "EP6",
+                  "description": "1.6 VTi"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "EP6DT",
+                  "description": "1.6 THP"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 128,
+                  "enginePowerHP": 175,
+                  "engineCode": "EP6DTS",
+                  "description": "1.6 THP RC"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1398,
+                  "enginePowerKW": 50,
+                  "enginePowerHP": 68,
+                  "engineCode": "DV4TD",
+                  "description": "1.4 HDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1560,
+                  "enginePowerKW": 66,
+                  "enginePowerHP": 90,
+                  "engineCode": "DV6ATED4",
+                  "description": "1.6 HDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1560,
+                  "enginePowerKW": 82,
+                  "enginePowerHP": 112,
+                  "engineCode": "DV6TED4",
+                  "description": "1.6 HDi"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "208",
+          "generations": [
+            {
+              "name": "208 I",
+              "period": "2012-2019",
+              "bodyStyles": ["Hatchback (3-door)", "Hatchback (5-door)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1199,
+                  "enginePowerKW": 60,
+                  "enginePowerHP": 82,
+                  "engineCode": "EB2",
+                  "description": "1.2 VTi"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1199,
+                  "enginePowerKW": 81,
+                  "enginePowerHP": 110,
+                  "engineCode": "EB2DT",
+                  "description": "1.2 PureTech"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 147,
+                  "enginePowerHP": 200,
+                  "engineCode": "EP6CDTX",
+                  "description": "GTi 1.6 THP"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1398,
+                  "enginePowerKW": 50,
+                  "enginePowerHP": 68,
+                  "engineCode": "DV4C",
+                  "description": "1.4 HDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1560,
+                  "enginePowerKW": 73,
+                  "enginePowerHP": 99,
+                  "engineCode": "DV6FD",
+                  "description": "1.6 BlueHDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1560,
+                  "enginePowerKW": 88,
+                  "enginePowerHP": 120,
+                  "engineCode": "DV6FC",
+                  "description": "1.6 BlueHDi"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "307",
+          "generations": [
+            {
+              "name": "307",
+              "period": "2001-2008",
+              "bodyStyles": ["Hatchback", "Wagon (SW/Break)", "Coupe-Cabriolet (CC)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1587,
+                  "enginePowerKW": 80,
+                  "enginePowerHP": 109,
+                  "engineCode": "TU5JP4",
+                  "description": "1.6 16V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1997,
+                  "enginePowerKW": 100,
+                  "enginePowerHP": 136,
+                  "engineCode": "EW10J4",
+                  "description": "2.0 16V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1997,
+                  "enginePowerKW": 130,
+                  "enginePowerHP": 177,
+                  "engineCode": "EW10J4S",
+                  "description": "2.0 16V Feline"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1560,
+                  "enginePowerKW": 80,
+                  "enginePowerHP": 109,
+                  "engineCode": "DV6TED4",
+                  "description": "1.6 HDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1997,
+                  "enginePowerKW": 66,
+                  "enginePowerHP": 90,
+                  "engineCode": "DW10TD",
+                  "description": "2.0 HDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1997,
+                  "enginePowerKW": 100,
+                  "enginePowerHP": 136,
+                  "engineCode": "DW10BTED4",
+                  "description": "2.0 HDi"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "308",
+          "generations": [
+            {
+              "name": "308 I (T7)",
+              "period": "2007-2013",
+              "bodyStyles": ["Hatchback", "Wagon (SW)", "Coupe-Cabriolet (CC)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 88,
+                  "enginePowerHP": 120,
+                  "engineCode": "EP6",
+                  "description": "1.6 VTi"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "EP6DT",
+                  "description": "1.6 THP"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 147,
+                  "enginePowerHP": 200,
+                  "engineCode": "EP6CDTX",
+                  "description": "GTi 1.6 THP"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1560,
+                  "enginePowerKW": 82,
+                  "enginePowerHP": 112,
+                  "engineCode": "DV6C",
+                  "description": "1.6 HDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1997,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "DW10B",
+                  "description": "2.0 HDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1997,
+                  "enginePowerKW": 120,
+                  "enginePowerHP": 163,
+                  "engineCode": "DW10CTED4",
+                  "description": "2.0 HDi"
+                }
+              ]
+            },
+            {
+              "name": "308 II (T9)",
+              "period": "2013-2021",
+              "bodyStyles": ["Hatchback", "Wagon (SW)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1199,
+                  "enginePowerKW": 96,
+                  "enginePowerHP": 130,
+                  "engineCode": "EB2DTS",
+                  "description": "1.2 PureTech"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 151,
+                  "enginePowerHP": 205,
+                  "engineCode": "EP6FDTX",
+                  "description": "GT 1.6 THP"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 200,
+                  "enginePowerHP": 272,
+                  "engineCode": "EP6FDTR",
+                  "description": "GTi 1.6 THP"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1560,
+                  "enginePowerKW": 88,
+                  "enginePowerHP": 120,
+                  "engineCode": "DV6FC",
+                  "description": "1.6 BlueHDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1997,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "DW10FD",
+                  "description": "2.0 BlueHDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1997,
+                  "enginePowerKW": 133,
+                  "enginePowerHP": 181,
+                  "engineCode": "DW10FC",
+                  "description": "GT 2.0 BlueHDi"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "407",
+          "generations": [
+            {
+              "name": "407",
+              "period": "2004-2010",
+              "bodyStyles": ["Sedan", "Wagon (SW)", "Coupe"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1997,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "EW10A",
+                  "description": "2.0 16V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2230,
+                  "enginePowerKW": 120,
+                  "enginePowerHP": 163,
+                  "engineCode": "EW12J4",
+                  "description": "2.2 16V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2946,
+                  "enginePowerKW": 155,
+                  "enginePowerHP": 211,
+                  "engineCode": "ES9A",
+                  "description": "3.0 V6"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1560,
+                  "enginePowerKW": 80,
+                  "enginePowerHP": 109,
+                  "engineCode": "DV6TED4",
+                  "description": "1.6 HDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1997,
+                  "enginePowerKW": 100,
+                  "enginePowerHP": 136,
+                  "engineCode": "DW10BTED4",
+                  "description": "2.0 HDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2179,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "DW12BTED4",
+                  "description": "2.2 HDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2720,
+                  "enginePowerKW": 150,
+                  "enginePowerHP": 204,
+                  "engineCode": "DT17",
+                  "description": "2.7 V6 HDi"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "508",
+          "generations": [
+            {
+              "name": "508 I",
+              "period": "2010-2018",
+              "bodyStyles": ["Sedan", "Wagon (SW)", "All-road (RXH)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 115,
+                  "enginePowerHP": 156,
+                  "engineCode": "EP6CDT",
+                  "description": "1.6 THP"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1560,
+                  "enginePowerKW": 84,
+                  "enginePowerHP": 114,
+                  "engineCode": "DV6C",
+                  "description": "1.6 e-HDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1997,
+                  "enginePowerKW": 120,
+                  "enginePowerHP": 163,
+                  "engineCode": "DW10CTED4",
+                  "description": "2.0 HDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1997,
+                  "enginePowerKW": 133,
+                  "enginePowerHP": 181,
+                  "engineCode": "DW10FC",
+                  "description": "2.0 BlueHDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2179,
+                  "enginePowerKW": 150,
+                  "enginePowerHP": 204,
+                  "engineCode": "DW12C",
+                  "description": "GT 2.2 HDi"
+                },
+                {
+                  "engineType": "Hybrid",
+                  "engineCapacity": 1997,
+                  "enginePowerKW": 120,
+                  "enginePowerHP": 163,
+                  "engineCode": "DW10CTED4",
+                  "description": "HYbrid4 (System 200HP)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "2008",
+          "generations": [
+            {
+              "name": "2008 I",
+              "period": "2013-2019",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1199,
+                  "enginePowerKW": 60,
+                  "enginePowerHP": 82,
+                  "engineCode": "EB2F",
+                  "description": "1.2 PureTech"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1199,
+                  "enginePowerKW": 81,
+                  "enginePowerHP": 110,
+                  "engineCode": "EB2DT",
+                  "description": "1.2 PureTech Turbo"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1560,
+                  "enginePowerKW": 73,
+                  "enginePowerHP": 99,
+                  "engineCode": "DV6FD",
+                  "description": "1.6 BlueHDi"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "3008",
+          "generations": [
+            {
+              "name": "3008 I",
+              "period": "2008-2016",
+              "bodyStyles": ["MPV/Crossover"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 115,
+                  "enginePowerHP": 156,
+                  "engineCode": "EP6CDT",
+                  "description": "1.6 THP"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1560,
+                  "enginePowerKW": 82,
+                  "enginePowerHP": 112,
+                  "engineCode": "DV6C",
+                  "description": "1.6 HDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1997,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "DW10B",
+                  "description": "2.0 HDi"
+                }
+              ]
+            },
+            {
+              "name": "3008 II",
+              "period": "2016-2023",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1199,
+                  "enginePowerKW": 96,
+                  "enginePowerHP": 130,
+                  "engineCode": "EB2DTS",
+                  "description": "1.2 PureTech"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 133,
+                  "enginePowerHP": 181,
+                  "engineCode": "EP6FADTXD",
+                  "description": "1.6 PureTech"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1499,
+                  "enginePowerKW": 96,
+                  "enginePowerHP": 130,
+                  "engineCode": "DV5RC",
+                  "description": "1.5 BlueHDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1997,
+                  "enginePowerKW": 133,
+                  "enginePowerHP": 181,
+                  "engineCode": "DW10FC",
+                  "description": "2.0 BlueHDi"
+                },
+                {
+                  "engineType": "Plug-in Hybrid",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 133,
+                  "enginePowerHP": 181,
+                  "engineCode": "EP6FADTXD",
+                  "description": "Hybrid (System 225HP)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "5008",
+          "generations": [
+            {
+              "name": "5008 I",
+              "period": "2009-2017",
+              "bodyStyles": ["MPV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 115,
+                  "enginePowerHP": 156,
+                  "engineCode": "EP6CDT",
+                  "description": "1.6 THP"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1560,
+                  "enginePowerKW": 82,
+                  "enginePowerHP": 112,
+                  "engineCode": "DV6C",
+                  "description": "1.6 HDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1997,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "DW10B",
+                  "description": "2.0 HDi"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Partner",
+          "generations": [
+            {
+              "name": "Partner II",
+              "period": "2008-2018",
+              "bodyStyles": ["Van", "Minibus (Tepee)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 88,
+                  "enginePowerHP": 120,
+                  "engineCode": "EP6C",
+                  "description": "1.6 VTi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1560,
+                  "enginePowerKW": 55,
+                  "enginePowerHP": 75,
+                  "engineCode": "DV6ETED",
+                  "description": "1.6 HDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1560,
+                  "enginePowerKW": 82,
+                  "enginePowerHP": 112,
+                  "engineCode": "DV6C",
+                  "description": "1.6 HDi"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "RCZ",
+          "generations": [
+            {
+              "name": "RCZ",
+              "period": "2010-2015",
+              "bodyStyles": ["Coupe"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 115,
+                  "enginePowerHP": 156,
+                  "engineCode": "EP6CDT",
+                  "description": "1.6 THP 156"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 147,
+                  "enginePowerHP": 200,
+                  "engineCode": "EP6CDTX",
+                  "description": "1.6 THP 200"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 199,
+                  "enginePowerHP": 270,
+                  "engineCode": "EP6CDTR",
+                  "description": "R 1.6 THP"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1997,
+                  "enginePowerKW": 120,
+                  "enginePowerHP": 163,
+                  "engineCode": "DW10CTED4",
+                  "description": "2.0 HDi"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]

@@ -1,0 +1,435 @@
+[
+    {
+      "name": "Honda",
+      "type": "PASSENGER",
+      "models": [
+        {
+          "name": "Accord",
+          "generations": [
+            {
+              "name": "Accord (CL/CM - Euro)",
+              "period": "2002-2008",
+              "bodyStyles": ["Sedan", "Wagon (Tourer)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 114,
+                  "enginePowerHP": 155,
+                  "engineCode": "K20A6",
+                  "description": "2.0 i-VTEC"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2354,
+                  "enginePowerKW": 140,
+                  "enginePowerHP": 190,
+                  "engineCode": "K24A3",
+                  "description": "2.4 i-VTEC Type S"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2204,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "N22A1",
+                  "description": "2.2 i-CTDi"
+                }
+              ]
+            },
+            {
+              "name": "Accord (CU/CW - Euro)",
+              "period": "2008-2015",
+              "bodyStyles": ["Sedan", "Wagon (Tourer)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1997,
+                  "enginePowerKW": 115,
+                  "enginePowerHP": 156,
+                  "engineCode": "R20A3",
+                  "description": "2.0 i-VTEC"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2354,
+                  "enginePowerKW": 148,
+                  "enginePowerHP": 201,
+                  "engineCode": "K24Z3",
+                  "description": "2.4 i-VTEC"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2199,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "N22B1",
+                  "description": "2.2 i-DTEC"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2199,
+                  "enginePowerKW": 132,
+                  "enginePowerHP": 180,
+                  "engineCode": "N22B2",
+                  "description": "2.2 i-DTEC Type S"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Civic",
+          "generations": [
+            {
+              "name": "Civic (Gen 7 - EP/EU)",
+              "period": "2001-2005",
+              "bodyStyles": ["Hatchback (3-door)", "Hatchback (5-door)", "Coupe"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1396,
+                  "enginePowerKW": 66,
+                  "enginePowerHP": 90,
+                  "engineCode": "D14Z6",
+                  "description": "1.4 i-DSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1590,
+                  "enginePowerKW": 81,
+                  "enginePowerHP": 110,
+                  "engineCode": "D16V1",
+                  "description": "1.6 i-VTEC"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 147,
+                  "enginePowerHP": 200,
+                  "engineCode": "K20A2",
+                  "description": "Type R 2.0 i-VTEC"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1686,
+                  "enginePowerKW": 74,
+                  "enginePowerHP": 100,
+                  "engineCode": "4EE2 (Isuzu)",
+                  "description": "1.7 CTDi"
+                }
+              ]
+            },
+            {
+              "name": "Civic (Gen 8 - FN/FK)",
+              "period": "2006-2011",
+              "bodyStyles": ["Hatchback (3-door Type S)", "Hatchback (5-door)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1339,
+                  "enginePowerKW": 61,
+                  "enginePowerHP": 83,
+                  "engineCode": "L13A7",
+                  "description": "1.4 i-DSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1799,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "R18A2",
+                  "description": "1.8 i-VTEC"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 148,
+                  "enginePowerHP": 201,
+                  "engineCode": "K20Z4",
+                  "description": "Type R 2.0 i-VTEC"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2204,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "N22A2",
+                  "description": "2.2 i-CTDi"
+                }
+              ]
+            },
+            {
+              "name": "Civic (Gen 9)",
+              "period": "2012-2017",
+              "bodyStyles": ["Hatchback", "Wagon (Tourer)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1798,
+                  "enginePowerKW": 104,
+                  "enginePowerHP": 142,
+                  "engineCode": "R18Z4",
+                  "description": "1.8 i-VTEC"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1996,
+                  "enginePowerKW": 228,
+                  "enginePowerHP": 310,
+                  "engineCode": "K20C1",
+                  "description": "Type R 2.0 VTEC Turbo"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1597,
+                  "enginePowerKW": 88,
+                  "enginePowerHP": 120,
+                  "engineCode": "N16A1",
+                  "description": "1.6 i-DTEC"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2199,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "N22B4",
+                  "description": "2.2 i-DTEC"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "CR-V",
+          "generations": [
+            {
+              "name": "CR-V (Gen 2)",
+              "period": "2002-2006",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "K20A4",
+                  "description": "2.0 i-VTEC"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2204,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "N22A2",
+                  "description": "2.2 i-CTDi"
+                }
+              ]
+            },
+            {
+              "name": "CR-V (Gen 3)",
+              "period": "2007-2012",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1997,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "R20A2",
+                  "description": "2.0 i-VTEC"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2199,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "N22B3",
+                  "description": "2.2 i-DTEC"
+                }
+              ]
+            },
+            {
+              "name": "CR-V (Gen 4)",
+              "period": "2012-2018",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1997,
+                  "enginePowerKW": 114,
+                  "enginePowerHP": 155,
+                  "engineCode": "R20A9",
+                  "description": "2.0 i-VTEC"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1597,
+                  "enginePowerKW": 88,
+                  "enginePowerHP": 120,
+                  "engineCode": "N16A1",
+                  "description": "1.6 i-DTEC"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1597,
+                  "enginePowerKW": 118,
+                  "enginePowerHP": 160,
+                  "engineCode": "N16A2",
+                  "description": "1.6 i-DTEC Bi-Turbo"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "FR-V",
+          "generations": [
+            {
+              "name": "FR-V",
+              "period": "2004-2009",
+              "bodyStyles": ["MPV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1799,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "R18A1",
+                  "description": "1.8 i-VTEC"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "K20A9",
+                  "description": "2.0 i-VTEC"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2204,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "N22A1",
+                  "description": "2.2 i-CTDi"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "HR-V",
+          "generations": [
+            {
+              "name": "HR-V (Gen 2)",
+              "period": "2015-2021",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1498,
+                  "enginePowerKW": 96,
+                  "enginePowerHP": 130,
+                  "engineCode": "L15B1",
+                  "description": "1.5 i-VTEC"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1498,
+                  "enginePowerKW": 134,
+                  "enginePowerHP": 182,
+                  "engineCode": "L15B7",
+                  "description": "1.5 VTEC Turbo Sport"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1597,
+                  "enginePowerKW": 88,
+                  "enginePowerHP": 120,
+                  "engineCode": "N16A1",
+                  "description": "1.6 i-DTEC"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Insight",
+          "generations": [
+            {
+              "name": "Insight (Gen 2)",
+              "period": "2009-2014",
+              "bodyStyles": ["Hatchback"],
+              "engines": [
+                {
+                  "engineType": "Hybrid",
+                  "engineCapacity": 1339,
+                  "enginePowerKW": 65,
+                  "enginePowerHP": 88,
+                  "engineCode": "LDA3",
+                  "description": "1.3 IMA (Integrated Motor Assist)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Jazz",
+          "generations": [
+            {
+              "name": "Jazz (Gen 2)",
+              "period": "2008-2015",
+              "bodyStyles": ["Hatchback"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1198,
+                  "enginePowerKW": 66,
+                  "enginePowerHP": 90,
+                  "engineCode": "L12B1",
+                  "description": "1.2 i-VTEC"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1339,
+                  "enginePowerKW": 73,
+                  "enginePowerHP": 100,
+                  "engineCode": "L13Z1",
+                  "description": "1.4 i-VTEC"
+                },
+                {
+                  "engineType": "Hybrid",
+                  "engineCapacity": 1339,
+                  "enginePowerKW": 65,
+                  "enginePowerHP": 88,
+                  "engineCode": "LDA3",
+                  "description": "1.3 IMA Hybrid"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "S2000",
+          "generations": [
+            {
+              "name": "S2000 (AP1)",
+              "period": "1999-2009",
+              "bodyStyles": ["Roadster"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1997,
+                  "enginePowerKW": 177,
+                  "enginePowerHP": 240,
+                  "engineCode": "F20C",
+                  "description": "2.0 VTEC"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]

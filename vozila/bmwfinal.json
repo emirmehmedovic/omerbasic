@@ -1,0 +1,2468 @@
+[
+    {
+      "name": "BMW",
+      "type": "PASSENGER",
+      "models": [
+        {
+          "name": "1 Series",
+          "generations": [
+            {
+              "name": "1 Series (E87)",
+              "period": "2004-2011",
+              "bodyStyles": ["Hatchback (3-door, 5-door)", "Coupe (E82)", "Cabriolet (E88)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1596,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 115,
+                  "engineCode": "N45B16",
+                  "description": "116i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 90,
+                  "enginePowerHP": 122,
+                  "engineCode": "N43B20",
+                  "description": "116i (2.0)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 105,
+                  "enginePowerHP": 143,
+                  "engineCode": "N43B20",
+                  "description": "118i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "N43B20",
+                  "description": "120i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2996,
+                  "enginePowerKW": 160,
+                  "enginePowerHP": 218,
+                  "engineCode": "N52B30",
+                  "description": "125i (straight-six)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2996,
+                  "enginePowerKW": 190,
+                  "enginePowerHP": 258,
+                  "engineCode": "N52B30",
+                  "description": "130i (straight-six)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2979,
+                  "enginePowerKW": 225,
+                  "enginePowerHP": 306,
+                  "engineCode": "N54B30",
+                  "description": "135i (twin-turbo straight-six)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2979,
+                  "enginePowerKW": 250,
+                  "enginePowerHP": 340,
+                  "engineCode": "N54B30T0",
+                  "description": "1M Coupe"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 116,
+                  "engineCode": "N47D20",
+                  "description": "116d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 105,
+                  "enginePowerHP": 143,
+                  "engineCode": "N47D20",
+                  "description": "118d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 130,
+                  "enginePowerHP": 177,
+                  "engineCode": "N47D20",
+                  "description": "120d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 150,
+                  "enginePowerHP": 204,
+                  "engineCode": "N47D20",
+                  "description": "123d (twin-turbo)"
+                }
+              ]
+            },
+            {
+              "name": "1 Series (F20)",
+              "period": "2011-2019",
+              "bodyStyles": ["Hatchback (3-door, 5-door)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 75,
+                  "enginePowerHP": 102,
+                  "engineCode": "N13B16",
+                  "description": "114i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 100,
+                  "enginePowerHP": 136,
+                  "engineCode": "N13B16",
+                  "description": "116i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "N13B16",
+                  "description": "118i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1499,
+                  "enginePowerKW": 100,
+                  "enginePowerHP": 136,
+                  "engineCode": "B38B15",
+                  "description": "118i (3-cylinder LCI)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 135,
+                  "enginePowerHP": 184,
+                  "engineCode": "B48B20",
+                  "description": "120i (LCI)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 165,
+                  "enginePowerHP": 224,
+                  "engineCode": "B48B20",
+                  "description": "125i (LCI)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2979,
+                  "enginePowerKW": 235,
+                  "enginePowerHP": 320,
+                  "engineCode": "N55B30",
+                  "description": "M135i (straight-six)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2998,
+                  "enginePowerKW": 250,
+                  "enginePowerHP": 340,
+                  "engineCode": "B58B30",
+                  "description": "M140i (straight-six)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1496,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 116,
+                  "engineCode": "B37D15",
+                  "description": "116d (3-cylinder LCI)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 116,
+                  "engineCode": "N47D20",
+                  "description": "116d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 105,
+                  "enginePowerHP": 143,
+                  "engineCode": "N47D20",
+                  "description": "118d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "B47D20",
+                  "description": "118d (LCI)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 135,
+                  "enginePowerHP": 184,
+                  "engineCode": "N47D20",
+                  "description": "120d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 140,
+                  "enginePowerHP": 190,
+                  "engineCode": "B47D20",
+                  "description": "120d (LCI)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 165,
+                  "enginePowerHP": 224,
+                  "engineCode": "B47D20",
+                  "description": "125d (LCI)"
+                }
+              ]
+            },
+            {
+              "name": "1 Series (F40)",
+              "period": "2019-Present",
+              "bodyStyles": ["Hatchback (5-door)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1499,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "B38A15",
+                  "description": "118i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 225,
+                  "enginePowerHP": 306,
+                  "engineCode": "B48A20",
+                  "description": "M135i xDrive"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1496,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 116,
+                  "engineCode": "B37C15",
+                  "description": "116d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "B47C20",
+                  "description": "118d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 140,
+                  "enginePowerHP": 190,
+                  "engineCode": "B47C20",
+                  "description": "120d"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "2 Series",
+          "generations": [
+            {
+              "name": "2 Series Coupe/Cabrio (F22)",
+              "period": "2014-2021",
+              "bodyStyles": ["Coupe (F22)", "Cabriolet (F23)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1499,
+                  "enginePowerKW": 100,
+                  "enginePowerHP": 136,
+                  "engineCode": "B38B15",
+                  "description": "218i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 135,
+                  "enginePowerHP": 184,
+                  "engineCode": "B48B20",
+                  "description": "220i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2998,
+                  "enginePowerKW": 250,
+                  "enginePowerHP": 340,
+                  "engineCode": "B58B30",
+                  "description": "M240i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2979,
+                  "enginePowerKW": 272,
+                  "enginePowerHP": 370,
+                  "engineCode": "N55B30T0",
+                  "description": "M2"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "B47D20",
+                  "description": "218d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 140,
+                  "enginePowerHP": 190,
+                  "engineCode": "B47D20",
+                  "description": "220d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 165,
+                  "enginePowerHP": 224,
+                  "engineCode": "B47D20",
+                  "description": "225d"
+                }
+              ]
+            },
+            {
+              "name": "2 Series Active Tourer (F45)",
+              "period": "2014-2021",
+              "bodyStyles": ["MPV (Active Tourer)", "MPV (Gran Tourer)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1499,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "B38A15",
+                  "description": "218i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 141,
+                  "enginePowerHP": 192,
+                  "engineCode": "B48A20",
+                  "description": "220i"
+                },
+                {
+                  "engineType": "Plug-in Hybrid",
+                  "engineCapacity": 1499,
+                  "enginePowerKW": 100,
+                  "enginePowerHP": 136,
+                  "engineCode": "B38A15",
+                  "description": "225xe (System 224HP)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1496,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 116,
+                  "engineCode": "B37C15",
+                  "description": "216d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "B47C20",
+                  "description": "218d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 140,
+                  "enginePowerHP": 190,
+                  "engineCode": "B47C20",
+                  "description": "220d"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "3 Series",
+          "generations": [
+            {
+              "name": "3 Series (E46)",
+              "period": "1998-2006",
+              "bodyStyles": ["Sedan", "Wagon (Touring)", "Coupe", "Cabriolet", "Compact"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1895,
+                  "enginePowerKW": 77,
+                  "enginePowerHP": 105,
+                  "engineCode": "M43TUB19",
+                  "description": "316i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1895,
+                  "enginePowerKW": 87,
+                  "enginePowerHP": 118,
+                  "engineCode": "M43TUB19",
+                  "description": "318i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 105,
+                  "enginePowerHP": 143,
+                  "engineCode": "N42B20/N46B20",
+                  "description": "318i (Valvetronic)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2171,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "M54B22",
+                  "description": "320i (straight-six)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2494,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "M52TUB25",
+                  "description": "323i (straight-six)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2494,
+                  "enginePowerKW": 141,
+                  "enginePowerHP": 192,
+                  "engineCode": "M54B25",
+                  "description": "325i (straight-six)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2793,
+                  "enginePowerKW": 142,
+                  "enginePowerHP": 193,
+                  "engineCode": "M52TUB28",
+                  "description": "328i (straight-six)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2979,
+                  "enginePowerKW": 170,
+                  "enginePowerHP": 231,
+                  "engineCode": "M54B30",
+                  "description": "330i (straight-six)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 3246,
+                  "enginePowerKW": 252,
+                  "enginePowerHP": 343,
+                  "engineCode": "S54B32",
+                  "description": "M3 (straight-six)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1951,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 116,
+                  "engineCode": "M47D20",
+                  "description": "318d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1951,
+                  "enginePowerKW": 100,
+                  "enginePowerHP": 136,
+                  "engineCode": "M47D20",
+                  "description": "320d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "M47TUD20",
+                  "description": "320d (Common Rail)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2926,
+                  "enginePowerKW": 135,
+                  "enginePowerHP": 184,
+                  "engineCode": "M57D30",
+                  "description": "330d (straight-six)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2993,
+                  "enginePowerKW": 150,
+                  "enginePowerHP": 204,
+                  "engineCode": "M57TUD30",
+                  "description": "330d (straight-six)"
+                }
+              ]
+            },
+            {
+              "name": "3 Series (E90)",
+              "period": "2005-2012",
+              "bodyStyles": ["Sedan (E90)", "Wagon (E91)", "Coupe (E92)", "Cabriolet (E93)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1599,
+                  "enginePowerKW": 90,
+                  "enginePowerHP": 122,
+                  "engineCode": "N43B16",
+                  "description": "316i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 105,
+                  "enginePowerHP": 143,
+                  "engineCode": "N43B20",
+                  "description": "318i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 127,
+                  "enginePowerHP": 173,
+                  "engineCode": "N43B20",
+                  "description": "320i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2497,
+                  "enginePowerKW": 160,
+                  "enginePowerHP": 218,
+                  "engineCode": "N52B25",
+                  "description": "325i (straight-six)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2996,
+                  "enginePowerKW": 200,
+                  "enginePowerHP": 272,
+                  "engineCode": "N53B30",
+                  "description": "330i (straight-six)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2979,
+                  "enginePowerKW": 225,
+                  "enginePowerHP": 306,
+                  "engineCode": "N54B30",
+                  "description": "335i (twin-turbo straight-six)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 3999,
+                  "enginePowerKW": 309,
+                  "enginePowerHP": 420,
+                  "engineCode": "S65B40",
+                  "description": "M3 (V8)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 90,
+                  "enginePowerHP": 122,
+                  "engineCode": "M47TUD20",
+                  "description": "318d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 105,
+                  "enginePowerHP": 143,
+                  "engineCode": "N47D20",
+                  "description": "318d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 120,
+                  "enginePowerHP": 163,
+                  "engineCode": "M47TUD20",
+                  "description": "320d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 130,
+                  "enginePowerHP": 177,
+                  "engineCode": "N47D20",
+                  "description": "320d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 135,
+                  "enginePowerHP": 184,
+                  "engineCode": "N47D20",
+                  "description": "320d (EfficientDynamics)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2993,
+                  "enginePowerKW": 145,
+                  "enginePowerHP": 197,
+                  "engineCode": "M57TU2D30",
+                  "description": "325d (straight-six)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2993,
+                  "enginePowerKW": 150,
+                  "enginePowerHP": 204,
+                  "engineCode": "N57D30",
+                  "description": "325d (straight-six)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2993,
+                  "enginePowerKW": 170,
+                  "enginePowerHP": 231,
+                  "engineCode": "M57TU2D30",
+                  "description": "330d (straight-six)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2993,
+                  "enginePowerKW": 180,
+                  "enginePowerHP": 245,
+                  "engineCode": "N57D30",
+                  "description": "330d (straight-six)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2993,
+                  "enginePowerKW": 210,
+                  "enginePowerHP": 286,
+                  "engineCode": "M57TU2D30",
+                  "description": "335d (twin-turbo straight-six)"
+                }
+              ]
+            },
+            {
+              "name": "3 Series (F30)",
+              "period": "2012-2019",
+              "bodyStyles": ["Sedan (F30)", "Wagon (F31)", "Gran Turismo (F34)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 100,
+                  "enginePowerHP": 136,
+                  "engineCode": "N13B16",
+                  "description": "316i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1499,
+                  "enginePowerKW": 100,
+                  "enginePowerHP": 136,
+                  "engineCode": "B38B15",
+                  "description": "318i (3-cylinder)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 135,
+                  "enginePowerHP": 184,
+                  "engineCode": "N20B20",
+                  "description": "320i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1997,
+                  "enginePowerKW": 180,
+                  "enginePowerHP": 245,
+                  "engineCode": "N20B20",
+                  "description": "328i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 185,
+                  "enginePowerHP": 252,
+                  "engineCode": "B48B20",
+                  "description": "330i (LCI)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2979,
+                  "enginePowerKW": 225,
+                  "enginePowerHP": 306,
+                  "engineCode": "N55B30",
+                  "description": "335i (straight-six)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2998,
+                  "enginePowerKW": 240,
+                  "enginePowerHP": 326,
+                  "engineCode": "B58B30",
+                  "description": "340i (straight-six LCI)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2979,
+                  "enginePowerKW": 317,
+                  "enginePowerHP": 431,
+                  "engineCode": "S55B30",
+                  "description": "M3 (twin-turbo straight-six)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 116,
+                  "engineCode": "N47D20",
+                  "description": "316d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 105,
+                  "enginePowerHP": 143,
+                  "engineCode": "N47D20",
+                  "description": "318d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 120,
+                  "enginePowerHP": 163,
+                  "engineCode": "B47D20",
+                  "description": "320d EfficientDynamics"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 135,
+                  "enginePowerHP": 184,
+                  "engineCode": "N47D20",
+                  "description": "320d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 140,
+                  "enginePowerHP": 190,
+                  "engineCode": "B47D20",
+                  "description": "320d (LCI)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 160,
+                  "enginePowerHP": 218,
+                  "engineCode": "N47D20",
+                  "description": "325d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2993,
+                  "enginePowerKW": 190,
+                  "enginePowerHP": 258,
+                  "engineCode": "N57D30",
+                  "description": "330d (straight-six)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2993,
+                  "enginePowerKW": 230,
+                  "enginePowerHP": 313,
+                  "engineCode": "N57D30",
+                  "description": "335d (twin-turbo straight-six)"
+                }
+              ]
+            },
+            {
+              "name": "3 Series (G20)",
+              "period": "2019-Present",
+              "bodyStyles": ["Sedan (G20)", "Wagon (G21)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 115,
+                  "enginePowerHP": 156,
+                  "engineCode": "B48B20",
+                  "description": "318i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 135,
+                  "enginePowerHP": 184,
+                  "engineCode": "B48B20",
+                  "description": "320i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 190,
+                  "enginePowerHP": 258,
+                  "engineCode": "B48B20",
+                  "description": "330i"
+                },
+                {
+                  "engineType": "Plug-in Hybrid",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 135,
+                  "enginePowerHP": 184,
+                  "engineCode": "B48B20",
+                  "description": "330e (System 292HP)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2998,
+                  "enginePowerKW": 275,
+                  "enginePowerHP": 374,
+                  "engineCode": "B58B30",
+                  "description": "M340i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2993,
+                  "enginePowerKW": 375,
+                  "enginePowerHP": 510,
+                  "engineCode": "S58B30T0",
+                  "description": "M3 Competition"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "B47D20",
+                  "description": "318d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 140,
+                  "enginePowerHP": 190,
+                  "engineCode": "B47D20",
+                  "description": "320d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2993,
+                  "enginePowerKW": 210,
+                  "enginePowerHP": 286,
+                  "engineCode": "B57D30",
+                  "description": "330d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2993,
+                  "enginePowerKW": 250,
+                  "enginePowerHP": 340,
+                  "engineCode": "B57D30",
+                  "description": "M340d"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "4 Series",
+          "generations": [
+            {
+              "name": "4 Series (F32)",
+              "period": "2013-2020",
+              "bodyStyles": ["Coupe (F32)", "Cabriolet (F33)", "Gran Coupe (F36)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 135,
+                  "enginePowerHP": 184,
+                  "engineCode": "B48B20",
+                  "description": "420i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 185,
+                  "enginePowerHP": 252,
+                  "engineCode": "B48B20",
+                  "description": "430i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2998,
+                  "enginePowerKW": 240,
+                  "enginePowerHP": 326,
+                  "engineCode": "B58B30",
+                  "description": "440i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2979,
+                  "enginePowerKW": 317,
+                  "enginePowerHP": 431,
+                  "engineCode": "S55B30",
+                  "description": "M4"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 140,
+                  "enginePowerHP": 190,
+                  "engineCode": "B47D20",
+                  "description": "420d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2993,
+                  "enginePowerKW": 190,
+                  "enginePowerHP": 258,
+                  "engineCode": "N57D30",
+                  "description": "430d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2993,
+                  "enginePowerKW": 230,
+                  "enginePowerHP": 313,
+                  "engineCode": "N57D30",
+                  "description": "435d"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "5 Series",
+          "generations": [
+            {
+              "name": "5 Series (E39)",
+              "period": "1995-2004",
+              "bodyStyles": ["Sedan", "Wagon (Touring)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1991,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "M52TUB20",
+                  "description": "520i (straight-six)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2171,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "M54B22",
+                  "description": "520i (straight-six Facelift)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2494,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "M52TUB25",
+                  "description": "523i (straight-six)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2494,
+                  "enginePowerKW": 141,
+                  "enginePowerHP": 192,
+                  "engineCode": "M54B25",
+                  "description": "525i (straight-six Facelift)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2793,
+                  "enginePowerKW": 142,
+                  "enginePowerHP": 193,
+                  "engineCode": "M52TUB28",
+                  "description": "528i (straight-six)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2979,
+                  "enginePowerKW": 170,
+                  "enginePowerHP": 231,
+                  "engineCode": "M54B30",
+                  "description": "530i (straight-six Facelift)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 3498,
+                  "enginePowerKW": 180,
+                  "enginePowerHP": 245,
+                  "engineCode": "M62TUB35",
+                  "description": "535i (V8)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 4398,
+                  "enginePowerKW": 210,
+                  "enginePowerHP": 286,
+                  "engineCode": "M62TUB44",
+                  "description": "540i (V8)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 4941,
+                  "enginePowerKW": 294,
+                  "enginePowerHP": 400,
+                  "engineCode": "S62B50",
+                  "description": "M5 (V8)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2497,
+                  "enginePowerKW": 105,
+                  "enginePowerHP": 143,
+                  "engineCode": "M51TUD25",
+                  "description": "525tds"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1951,
+                  "enginePowerKW": 100,
+                  "enginePowerHP": 136,
+                  "engineCode": "M47D20",
+                  "description": "520d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2497,
+                  "enginePowerKW": 120,
+                  "enginePowerHP": 163,
+                  "engineCode": "M57D25",
+                  "description": "525d (straight-six)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2926,
+                  "enginePowerKW": 135,
+                  "enginePowerHP": 184,
+                  "engineCode": "M57D30",
+                  "description": "530d (straight-six)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2926,
+                  "enginePowerKW": 142,
+                  "enginePowerHP": 193,
+                  "engineCode": "M57D30",
+                  "description": "530d (straight-six Facelift)"
+                }
+              ]
+            },
+            {
+              "name": "5 Series (E60)",
+              "period": "2003-2010",
+              "bodyStyles": ["Sedan (E60)", "Wagon (E61)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2171,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "M54B22",
+                  "description": "520i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "N43B20",
+                  "description": "520i (4-cylinder LCI)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2497,
+                  "enginePowerKW": 141,
+                  "enginePowerHP": 192,
+                  "engineCode": "M54B25",
+                  "description": "525i (straight-six)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2497,
+                  "enginePowerKW": 160,
+                  "enginePowerHP": 218,
+                  "engineCode": "N52B25",
+                  "description": "525i (straight-six)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2979,
+                  "enginePowerKW": 170,
+                  "enginePowerHP": 231,
+                  "engineCode": "M54B30",
+                  "description": "530i (straight-six)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2996,
+                  "enginePowerKW": 200,
+                  "enginePowerHP": 272,
+                  "engineCode": "N53B30",
+                  "description": "530i (straight-six LCI)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2979,
+                  "enginePowerKW": 225,
+                  "enginePowerHP": 306,
+                  "engineCode": "N54B30",
+                  "description": "535i (twin-turbo straight-six)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 4398,
+                  "enginePowerKW": 245,
+                  "enginePowerHP": 333,
+                  "engineCode": "N62B44",
+                  "description": "545i (V8)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 4799,
+                  "enginePowerKW": 270,
+                  "enginePowerHP": 367,
+                  "engineCode": "N62B48",
+                  "description": "550i (V8)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 4999,
+                  "enginePowerKW": 373,
+                  "enginePowerHP": 507,
+                  "engineCode": "S85B50",
+                  "description": "M5 (V10)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 120,
+                  "enginePowerHP": 163,
+                  "engineCode": "M47TUD20",
+                  "description": "520d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 130,
+                  "enginePowerHP": 177,
+                  "engineCode": "N47D20",
+                  "description": "520d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2497,
+                  "enginePowerKW": 130,
+                  "enginePowerHP": 177,
+                  "engineCode": "M57TUD25",
+                  "description": "525d (straight-six)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2993,
+                  "enginePowerKW": 160,
+                  "enginePowerHP": 218,
+                  "engineCode": "M57TUD30",
+                  "description": "530d (straight-six)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2993,
+                  "enginePowerKW": 173,
+                  "enginePowerHP": 235,
+                  "engineCode": "M57TU2D30",
+                  "description": "530d (straight-six)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2993,
+                  "enginePowerKW": 210,
+                  "enginePowerHP": 286,
+                  "engineCode": "M57TU2D30",
+                  "description": "535d (twin-turbo straight-six)"
+                }
+              ]
+            },
+            {
+              "name": "5 Series (F10)",
+              "period": "2010-2017",
+              "bodyStyles": ["Sedan (F10)", "Wagon (F11)", "Gran Turismo (F07)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1997,
+                  "enginePowerKW": 135,
+                  "enginePowerHP": 184,
+                  "engineCode": "N20B20",
+                  "description": "520i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1997,
+                  "enginePowerKW": 180,
+                  "enginePowerHP": 245,
+                  "engineCode": "N20B20",
+                  "description": "528i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2979,
+                  "enginePowerKW": 225,
+                  "enginePowerHP": 306,
+                  "engineCode": "N55B30",
+                  "description": "535i (straight-six)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 4395,
+                  "enginePowerKW": 330,
+                  "enginePowerHP": 450,
+                  "engineCode": "N63TUB44",
+                  "description": "550i (V8)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 4395,
+                  "enginePowerKW": 412,
+                  "enginePowerHP": 560,
+                  "engineCode": "S63TUB44",
+                  "description": "M5 (twin-turbo V8)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 105,
+                  "enginePowerHP": 143,
+                  "engineCode": "N47D20",
+                  "description": "518d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "B47D20",
+                  "description": "518d (LCI)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 135,
+                  "enginePowerHP": 184,
+                  "engineCode": "N47D20",
+                  "description": "520d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 140,
+                  "enginePowerHP": 190,
+                  "engineCode": "B47D20",
+                  "description": "520d (LCI)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2993,
+                  "enginePowerKW": 150,
+                  "enginePowerHP": 204,
+                  "engineCode": "N57D30",
+                  "description": "525d (straight-six)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 160,
+                  "enginePowerHP": 218,
+                  "engineCode": "N47D20",
+                  "description": "525d (4-cylinder LCI)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2993,
+                  "enginePowerKW": 180,
+                  "enginePowerHP": 245,
+                  "engineCode": "N57D30",
+                  "description": "530d (straight-six)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2993,
+                  "enginePowerKW": 190,
+                  "enginePowerHP": 258,
+                  "engineCode": "N57D30",
+                  "description": "530d (straight-six LCI)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2993,
+                  "enginePowerKW": 220,
+                  "enginePowerHP": 299,
+                  "engineCode": "N57D30T0",
+                  "description": "535d (twin-turbo straight-six)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2993,
+                  "enginePowerKW": 230,
+                  "enginePowerHP": 313,
+                  "engineCode": "N57D30T1",
+                  "description": "535d (twin-turbo straight-six LCI)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2993,
+                  "enginePowerKW": 280,
+                  "enginePowerHP": 381,
+                  "engineCode": "N57S",
+                  "description": "M550d (tri-turbo straight-six)"
+                }
+              ]
+            },
+            {
+              "name": "5 Series (G30)",
+              "period": "2017-2023",
+              "bodyStyles": ["Sedan (G30)", "Wagon (G31)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 135,
+                  "enginePowerHP": 184,
+                  "engineCode": "B48B20",
+                  "description": "520i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 185,
+                  "enginePowerHP": 252,
+                  "engineCode": "B48B20",
+                  "description": "530i"
+                },
+                {
+                  "engineType": "Plug-in Hybrid",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 135,
+                  "enginePowerHP": 184,
+                  "engineCode": "B48B20",
+                  "description": "530e (System 252HP)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2998,
+                  "enginePowerKW": 250,
+                  "enginePowerHP": 340,
+                  "engineCode": "B58B30",
+                  "description": "540i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 4395,
+                  "enginePowerKW": 390,
+                  "enginePowerHP": 530,
+                  "engineCode": "N63B44",
+                  "description": "M550i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 4395,
+                  "enginePowerKW": 460,
+                  "enginePowerHP": 625,
+                  "engineCode": "S63B44T4",
+                  "description": "M5 Competition"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 140,
+                  "enginePowerHP": 190,
+                  "engineCode": "B47D20",
+                  "description": "520d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 170,
+                  "enginePowerHP": 231,
+                  "engineCode": "B47D20",
+                  "description": "525d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2993,
+                  "enginePowerKW": 195,
+                  "enginePowerHP": 265,
+                  "engineCode": "B57D30",
+                  "description": "530d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2993,
+                  "enginePowerKW": 235,
+                  "enginePowerHP": 320,
+                  "engineCode": "B57D30",
+                  "description": "540d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2993,
+                  "enginePowerKW": 294,
+                  "enginePowerHP": 400,
+                  "engineCode": "B57D30S0",
+                  "description": "M550d (quad-turbo)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "6 Series",
+          "generations": [
+            {
+              "name": "6 Series (E63)",
+              "period": "2003-2010",
+              "bodyStyles": ["Coupe (E63)", "Cabriolet (E64)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2996,
+                  "enginePowerKW": 200,
+                  "enginePowerHP": 272,
+                  "engineCode": "N53B30",
+                  "description": "630i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 4799,
+                  "enginePowerKW": 270,
+                  "enginePowerHP": 367,
+                  "engineCode": "N62B48",
+                  "description": "650i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 4999,
+                  "enginePowerKW": 373,
+                  "enginePowerHP": 507,
+                  "engineCode": "S85B50",
+                  "description": "M6 (V10)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2993,
+                  "enginePowerKW": 210,
+                  "enginePowerHP": 286,
+                  "engineCode": "M57TU2D30",
+                  "description": "635d"
+                }
+              ]
+            },
+            {
+              "name": "6 Series (F12)",
+              "period": "2011-2018",
+              "bodyStyles": ["Coupe (F13)", "Cabriolet (F12)", "Gran Coupe (F06)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2998,
+                  "enginePowerKW": 235,
+                  "enginePowerHP": 320,
+                  "engineCode": "N55B30",
+                  "description": "640i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 4395,
+                  "enginePowerKW": 330,
+                  "enginePowerHP": 450,
+                  "engineCode": "N63B44",
+                  "description": "650i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 4395,
+                  "enginePowerKW": 412,
+                  "enginePowerHP": 560,
+                  "engineCode": "S63B44",
+                  "description": "M6"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2993,
+                  "enginePowerKW": 230,
+                  "enginePowerHP": 313,
+                  "engineCode": "N57D30",
+                  "description": "640d"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "7 Series",
+          "generations": [
+            {
+              "name": "7 Series (E65)",
+              "period": "2001-2008",
+              "bodyStyles": ["Sedan"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2979,
+                  "enginePowerKW": 170,
+                  "enginePowerHP": 231,
+                  "engineCode": "M54B30",
+                  "description": "730i (straight-six)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2996,
+                  "enginePowerKW": 190,
+                  "enginePowerHP": 258,
+                  "engineCode": "N52B30",
+                  "description": "730i (straight-six Facelift)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 4398,
+                  "enginePowerKW": 245,
+                  "enginePowerHP": 333,
+                  "engineCode": "N62B44",
+                  "description": "745i (V8)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 4799,
+                  "enginePowerKW": 270,
+                  "enginePowerHP": 367,
+                  "engineCode": "N62B48",
+                  "description": "750i (V8 Facelift)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 5972,
+                  "enginePowerKW": 327,
+                  "enginePowerHP": 445,
+                  "engineCode": "N73B60",
+                  "description": "760i (V12)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2993,
+                  "enginePowerKW": 170,
+                  "enginePowerHP": 231,
+                  "engineCode": "M57TU2D30",
+                  "description": "730d (straight-six)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 4423,
+                  "enginePowerKW": 242,
+                  "enginePowerHP": 329,
+                  "engineCode": "M67D44",
+                  "description": "745d (V8)"
+                }
+              ]
+            },
+            {
+              "name": "7 Series (F01)",
+              "period": "2008-2015",
+              "bodyStyles": ["Sedan"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2979,
+                  "enginePowerKW": 235,
+                  "enginePowerHP": 320,
+                  "engineCode": "N54B30",
+                  "description": "740i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 4395,
+                  "enginePowerKW": 330,
+                  "enginePowerHP": 450,
+                  "engineCode": "N63B44",
+                  "description": "750i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 5972,
+                  "enginePowerKW": 400,
+                  "enginePowerHP": 544,
+                  "engineCode": "N74B60",
+                  "description": "760i"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2993,
+                  "enginePowerKW": 190,
+                  "enginePowerHP": 258,
+                  "engineCode": "N57D30",
+                  "description": "730d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2993,
+                  "enginePowerKW": 230,
+                  "enginePowerHP": 313,
+                  "engineCode": "N57D30",
+                  "description": "740d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2993,
+                  "enginePowerKW": 280,
+                  "enginePowerHP": 381,
+                  "engineCode": "N57S",
+                  "description": "750d"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "X1",
+          "generations": [
+            {
+              "name": "X1 (E84)",
+              "period": "2009-2015",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "N46B20",
+                  "description": "sDrive18i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1997,
+                  "enginePowerKW": 135,
+                  "enginePowerHP": 184,
+                  "engineCode": "N20B20",
+                  "description": "sDrive20i / xDrive20i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1997,
+                  "enginePowerKW": 180,
+                  "enginePowerHP": 245,
+                  "engineCode": "N20B20",
+                  "description": "xDrive28i"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 105,
+                  "enginePowerHP": 143,
+                  "engineCode": "N47D20",
+                  "description": "sDrive18d / xDrive18d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 130,
+                  "enginePowerHP": 177,
+                  "engineCode": "N47D20",
+                  "description": "sDrive20d / xDrive20d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 160,
+                  "enginePowerHP": 218,
+                  "engineCode": "N47D20",
+                  "description": "xDrive25d (twin-turbo)"
+                }
+              ]
+            },
+            {
+              "name": "X1 (F48)",
+              "period": "2015-2022",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1499,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "B38A15",
+                  "description": "sDrive18i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 141,
+                  "enginePowerHP": 192,
+                  "engineCode": "B48A20",
+                  "description": "sDrive20i / xDrive20i"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1496,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 116,
+                  "engineCode": "B37C15",
+                  "description": "sDrive16d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "B47C20",
+                  "description": "sDrive18d / xDrive18d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 140,
+                  "enginePowerHP": 190,
+                  "engineCode": "B47C20",
+                  "description": "xDrive20d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 170,
+                  "enginePowerHP": 231,
+                  "engineCode": "B47C20",
+                  "description": "xDrive25d"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "X2",
+          "generations": [
+            {
+              "name": "X2 (F39)",
+              "period": "2018-2023",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1499,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "B38A15",
+                  "description": "sDrive18i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 225,
+                  "enginePowerHP": 306,
+                  "engineCode": "B48A20",
+                  "description": "M35i"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 140,
+                  "enginePowerHP": 190,
+                  "engineCode": "B47C20",
+                  "description": "xDrive20d"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "X3",
+          "generations": [
+            {
+              "name": "X3 (E83)",
+              "period": "2003-2010",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "N46B20",
+                  "description": "2.0i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2494,
+                  "enginePowerKW": 141,
+                  "enginePowerHP": 192,
+                  "engineCode": "M54B25",
+                  "description": "2.5i (straight-six)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2996,
+                  "enginePowerKW": 200,
+                  "enginePowerHP": 272,
+                  "engineCode": "N52B30",
+                  "description": "3.0si (straight-six)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "M47TUD20",
+                  "description": "2.0d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 130,
+                  "enginePowerHP": 177,
+                  "engineCode": "N47D20",
+                  "description": "xDrive20d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2993,
+                  "enginePowerKW": 160,
+                  "enginePowerHP": 218,
+                  "engineCode": "M57TU2D30",
+                  "description": "3.0d (straight-six)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2993,
+                  "enginePowerKW": 210,
+                  "enginePowerHP": 286,
+                  "engineCode": "M57TU2D30",
+                  "description": "3.0sd (twin-turbo straight-six)"
+                }
+              ]
+            },
+            {
+              "name": "X3 (F25)",
+              "period": "2010-2017",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1997,
+                  "enginePowerKW": 135,
+                  "enginePowerHP": 184,
+                  "engineCode": "N20B20",
+                  "description": "sDrive20i / xDrive20i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1997,
+                  "enginePowerKW": 180,
+                  "enginePowerHP": 245,
+                  "engineCode": "N20B20",
+                  "description": "xDrive28i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2979,
+                  "enginePowerKW": 225,
+                  "enginePowerHP": 306,
+                  "engineCode": "N55B30",
+                  "description": "xDrive35i"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "B47D20",
+                  "description": "sDrive18d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 140,
+                  "enginePowerHP": 190,
+                  "engineCode": "B47D20",
+                  "description": "xDrive20d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2993,
+                  "enginePowerKW": 190,
+                  "enginePowerHP": 258,
+                  "engineCode": "N57D30",
+                  "description": "xDrive30d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2993,
+                  "enginePowerKW": 230,
+                  "enginePowerHP": 313,
+                  "engineCode": "N57D30",
+                  "description": "xDrive35d"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "X4",
+          "generations": [
+            {
+              "name": "X4 (F26)",
+              "period": "2014-2018",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1997,
+                  "enginePowerKW": 180,
+                  "enginePowerHP": 245,
+                  "engineCode": "N20B20",
+                  "description": "xDrive28i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2979,
+                  "enginePowerKW": 272,
+                  "enginePowerHP": 370,
+                  "engineCode": "N55B30T0",
+                  "description": "M40i"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 140,
+                  "enginePowerHP": 190,
+                  "engineCode": "B47D20",
+                  "description": "xDrive20d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2993,
+                  "enginePowerKW": 190,
+                  "enginePowerHP": 258,
+                  "engineCode": "N57D30",
+                  "description": "xDrive30d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2993,
+                  "enginePowerKW": 230,
+                  "enginePowerHP": 313,
+                  "engineCode": "N57D30",
+                  "description": "xDrive35d"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "X5",
+          "generations": [
+            {
+              "name": "X5 (E53)",
+              "period": "1999-2006",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2979,
+                  "enginePowerKW": 170,
+                  "enginePowerHP": 231,
+                  "engineCode": "M54B30",
+                  "description": "3.0i (straight-six)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 4398,
+                  "enginePowerKW": 210,
+                  "enginePowerHP": 286,
+                  "engineCode": "M62TUB44",
+                  "description": "4.4i (V8)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 4619,
+                  "enginePowerKW": 255,
+                  "enginePowerHP": 347,
+                  "engineCode": "M62B46",
+                  "description": "4.6is (V8)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 4799,
+                  "enginePowerKW": 265,
+                  "enginePowerHP": 360,
+                  "engineCode": "N62B48",
+                  "description": "4.8is (V8)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2926,
+                  "enginePowerKW": 135,
+                  "enginePowerHP": 184,
+                  "engineCode": "M57D30",
+                  "description": "3.0d (straight-six)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2993,
+                  "enginePowerKW": 160,
+                  "enginePowerHP": 218,
+                  "engineCode": "M57TUD30",
+                  "description": "3.0d (straight-six)"
+                }
+              ]
+            },
+            {
+              "name": "X5 (E70)",
+              "period": "2006-2013",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2996,
+                  "enginePowerKW": 200,
+                  "enginePowerHP": 272,
+                  "engineCode": "N52B30",
+                  "description": "3.0si / xDrive30i (straight-six)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2979,
+                  "enginePowerKW": 225,
+                  "enginePowerHP": 306,
+                  "engineCode": "N55B30",
+                  "description": "xDrive35i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 4799,
+                  "enginePowerKW": 261,
+                  "enginePowerHP": 355,
+                  "engineCode": "N62B48",
+                  "description": "4.8i / xDrive48i (V8)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 4395,
+                  "enginePowerKW": 300,
+                  "enginePowerHP": 408,
+                  "engineCode": "N63B44",
+                  "description": "xDrive50i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 4395,
+                  "enginePowerKW": 408,
+                  "enginePowerHP": 555,
+                  "engineCode": "S63B44",
+                  "description": "X5 M (twin-turbo V8)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2993,
+                  "enginePowerKW": 173,
+                  "enginePowerHP": 235,
+                  "engineCode": "M57TU2D30",
+                  "description": "3.0d / xDrive30d (straight-six)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2993,
+                  "enginePowerKW": 180,
+                  "enginePowerHP": 245,
+                  "engineCode": "N57D30",
+                  "description": "xDrive30d (LCI)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2993,
+                  "enginePowerKW": 210,
+                  "enginePowerHP": 286,
+                  "engineCode": "M57TU2D30",
+                  "description": "3.0sd / xDrive35d (twin-turbo straight-six)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2993,
+                  "enginePowerKW": 225,
+                  "enginePowerHP": 306,
+                  "engineCode": "N57D30",
+                  "description": "xDrive40d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2993,
+                  "enginePowerKW": 280,
+                  "enginePowerHP": 381,
+                  "engineCode": "N57S",
+                  "description": "M50d (tri-turbo straight-six)"
+                }
+              ]
+            },
+            {
+              "name": "X5 (F15)",
+              "period": "2013-2018",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1997,
+                  "enginePowerKW": 180,
+                  "enginePowerHP": 245,
+                  "engineCode": "N20B20",
+                  "description": "xDrive28i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2979,
+                  "enginePowerKW": 225,
+                  "enginePowerHP": 306,
+                  "engineCode": "N55B30",
+                  "description": "xDrive35i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 4395,
+                  "enginePowerKW": 330,
+                  "enginePowerHP": 450,
+                  "engineCode": "N63B44",
+                  "description": "xDrive50i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 4395,
+                  "enginePowerKW": 423,
+                  "enginePowerHP": 575,
+                  "engineCode": "S63B44T2",
+                  "description": "X5 M"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 170,
+                  "enginePowerHP": 231,
+                  "engineCode": "B47D20",
+                  "description": "sDrive25d / xDrive25d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2993,
+                  "enginePowerKW": 190,
+                  "enginePowerHP": 258,
+                  "engineCode": "N57D30",
+                  "description": "xDrive30d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2993,
+                  "enginePowerKW": 230,
+                  "enginePowerHP": 313,
+                  "engineCode": "N57D30",
+                  "description": "xDrive40d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2993,
+                  "enginePowerKW": 280,
+                  "enginePowerHP": 381,
+                  "engineCode": "N57S",
+                  "description": "M50d"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "X6",
+          "generations": [
+            {
+              "name": "X6 (E71)",
+              "period": "2008-2014",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2979,
+                  "enginePowerKW": 225,
+                  "enginePowerHP": 306,
+                  "engineCode": "N54B30",
+                  "description": "xDrive35i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 4395,
+                  "enginePowerKW": 300,
+                  "enginePowerHP": 408,
+                  "engineCode": "N63B44",
+                  "description": "xDrive50i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 4395,
+                  "enginePowerKW": 408,
+                  "enginePowerHP": 555,
+                  "engineCode": "S63B44",
+                  "description": "X6 M"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2993,
+                  "enginePowerKW": 173,
+                  "enginePowerHP": 235,
+                  "engineCode": "M57D30",
+                  "description": "xDrive30d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2993,
+                  "enginePowerKW": 225,
+                  "enginePowerHP": 306,
+                  "engineCode": "N57D30",
+                  "description": "xDrive40d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2993,
+                  "enginePowerKW": 280,
+                  "enginePowerHP": 381,
+                  "engineCode": "N57S",
+                  "description": "M50d"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Z4",
+          "generations": [
+            {
+              "name": "Z4 (E85)",
+              "period": "2002-2008",
+              "bodyStyles": ["Roadster", "Coupe (E86)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2171,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "M54B22",
+                  "description": "2.2i (straight-six)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2494,
+                  "enginePowerKW": 141,
+                  "enginePowerHP": 192,
+                  "engineCode": "M54B25",
+                  "description": "2.5i (straight-six)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2979,
+                  "enginePowerKW": 170,
+                  "enginePowerHP": 231,
+                  "engineCode": "M54B30",
+                  "description": "3.0i (straight-six)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2996,
+                  "enginePowerKW": 195,
+                  "enginePowerHP": 265,
+                  "engineCode": "N52B30",
+                  "description": "3.0si (straight-six)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 3246,
+                  "enginePowerKW": 252,
+                  "enginePowerHP": 343,
+                  "engineCode": "S54B32",
+                  "description": "Z4 M (straight-six)"
+                }
+              ]
+            },
+            {
+              "name": "Z4 (E89)",
+              "period": "2009-2016",
+              "bodyStyles": ["Roadster"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1997,
+                  "enginePowerKW": 135,
+                  "enginePowerHP": 184,
+                  "engineCode": "N20B20",
+                  "description": "sDrive20i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2979,
+                  "enginePowerKW": 225,
+                  "enginePowerHP": 306,
+                  "engineCode": "N54B30",
+                  "description": "sDrive35i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2979,
+                  "enginePowerKW": 250,
+                  "enginePowerHP": 340,
+                  "engineCode": "N54B30T0",
+                  "description": "sDrive35is"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "i3",
+          "generations": [
+            {
+              "name": "i3 (I01)",
+              "period": "2013-2022",
+              "bodyStyles": ["Hatchback"],
+              "engines": [
+                {
+                  "engineType": "Electric",
+                  "engineCapacity": 0,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "IB1",
+                  "description": "i3 (60 Ah / 94 Ah / 120 Ah)"
+                },
+                {
+                  "engineType": "Hybrid",
+                  "engineCapacity": 647,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "IB1 + W20K06",
+                  "description": "i3 with Range Extender (REx)"
+                },
+                {
+                  "engineType": "Electric",
+                  "engineCapacity": 0,
+                  "enginePowerKW": 135,
+                  "enginePowerHP": 184,
+                  "engineCode": "IB1P25",
+                  "description": "i3s"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "i4",
+          "generations": [
+            {
+              "name": "i4 (G26)",
+              "period": "2021-Present",
+              "bodyStyles": ["Gran Coupe"],
+              "engines": [
+                {
+                  "engineType": "Electric",
+                  "engineCapacity": 0,
+                  "enginePowerKW": 210,
+                  "enginePowerHP": 286,
+                  "engineCode": "—",
+                  "description": "eDrive35"
+                },
+                {
+                  "engineType": "Electric",
+                  "engineCapacity": 0,
+                  "enginePowerKW": 250,
+                  "enginePowerHP": 340,
+                  "engineCode": "—",
+                  "description": "eDrive40"
+                },
+                {
+                  "engineType": "Electric",
+                  "engineCapacity": 0,
+                  "enginePowerKW": 400,
+                  "enginePowerHP": 544,
+                  "engineCode": "—",
+                  "description": "M50"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "iX",
+          "generations": [
+            {
+              "name": "iX (I20)",
+              "period": "2021-Present",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Electric",
+                  "engineCapacity": 0,
+                  "enginePowerKW": 240,
+                  "enginePowerHP": 326,
+                  "engineCode": "—",
+                  "description": "xDrive40"
+                },
+                {
+                  "engineType": "Electric",
+                  "engineCapacity": 0,
+                  "enginePowerKW": 385,
+                  "enginePowerHP": 523,
+                  "engineCode": "—",
+                  "description": "xDrive50"
+                },
+                {
+                  "engineType": "Electric",
+                  "engineCapacity": 0,
+                  "enginePowerKW": 455,
+                  "enginePowerHP": 619,
+                  "engineCode": "—",
+                  "description": "M60"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]

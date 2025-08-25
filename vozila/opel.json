@@ -1,0 +1,735 @@
+[
+    {
+      "name": "Opel",
+      "type": "PASSENGER",
+      "models": [
+        {
+          "name": "Adam",
+          "generations": [
+            {
+              "name": "Adam",
+              "period": "2012-2019",
+              "bodyStyles": ["Hatchback (3-door)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1229,
+                  "enginePowerKW": 51,
+                  "enginePowerHP": 70,
+                  "engineCode": "A12XEL",
+                  "description": "1.2"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1398,
+                  "enginePowerKW": 74,
+                  "enginePowerHP": 100,
+                  "engineCode": "A14XER",
+                  "description": "1.4"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 999,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 115,
+                  "engineCode": "B10XFT",
+                  "description": "1.0 Turbo"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1364,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "B14NEH",
+                  "description": "S 1.4 Turbo"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Astra",
+          "generations": [
+            {
+              "name": "Astra G",
+              "period": "1998-2004",
+              "bodyStyles": ["Hatchback", "Sedan", "Wagon (Caravan)", "Coupe", "Cabriolet"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 74,
+                  "enginePowerHP": 101,
+                  "engineCode": "X16XEL/Z16XE",
+                  "description": "1.6 16V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1796,
+                  "enginePowerKW": 92,
+                  "enginePowerHP": 125,
+                  "engineCode": "Z18XE",
+                  "description": "1.8 16V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 147,
+                  "enginePowerHP": 200,
+                  "engineCode": "Z20LET",
+                  "description": "2.0 Turbo OPC"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1686,
+                  "enginePowerKW": 55,
+                  "enginePowerHP": 75,
+                  "engineCode": "X17DTL",
+                  "description": "1.7 DTI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 74,
+                  "enginePowerHP": 101,
+                  "engineCode": "Y20DTH",
+                  "description": "2.0 DTI"
+                }
+              ]
+            },
+            {
+              "name": "Astra H",
+              "period": "2004-2010",
+              "bodyStyles": ["Hatchback (3-door GTC)", "Hatchback (5-door)", "Wagon (Caravan)", "Sedan", "Coupe-Cabriolet (TwinTop)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 115,
+                  "engineCode": "Z16XER",
+                  "description": "1.6 Twinport"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1796,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "Z18XER",
+                  "description": "1.8"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 147,
+                  "enginePowerHP": 200,
+                  "engineCode": "Z20LER",
+                  "description": "2.0 Turbo"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 177,
+                  "enginePowerHP": 240,
+                  "engineCode": "Z20LEH",
+                  "description": "OPC 2.0 Turbo"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1686,
+                  "enginePowerKW": 81,
+                  "enginePowerHP": 110,
+                  "engineCode": "Z17DTJ",
+                  "description": "1.7 CDTI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1910,
+                  "enginePowerKW": 88,
+                  "enginePowerHP": 120,
+                  "engineCode": "Z19DT",
+                  "description": "1.9 CDTI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1910,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "Z19DTH",
+                  "description": "1.9 CDTI"
+                }
+              ]
+            },
+            {
+              "name": "Astra J",
+              "period": "2009-2015",
+              "bodyStyles": ["Hatchback (3-door GTC)", "Hatchback (5-door)", "Wagon (Sports Tourer)", "Sedan"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1364,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "A14NET",
+                  "description": "1.4 Turbo"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 132,
+                  "enginePowerHP": 180,
+                  "engineCode": "A16LET",
+                  "description": "1.6 Turbo"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 206,
+                  "enginePowerHP": 280,
+                  "engineCode": "A20NFT",
+                  "description": "OPC 2.0 Turbo"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1686,
+                  "enginePowerKW": 96,
+                  "enginePowerHP": 130,
+                  "engineCode": "A17DTR",
+                  "description": "1.7 CDTI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1956,
+                  "enginePowerKW": 118,
+                  "enginePowerHP": 160,
+                  "engineCode": "A20DTH",
+                  "description": "2.0 CDTI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1956,
+                  "enginePowerKW": 143,
+                  "enginePowerHP": 195,
+                  "engineCode": "A20DTR",
+                  "description": "2.0 BiTurbo CDTI"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Cascada",
+          "generations": [
+            {
+              "name": "Cascada",
+              "period": "2013-2019",
+              "bodyStyles": ["Cabriolet"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1364,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "A14NET",
+                  "description": "1.4 Turbo"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 147,
+                  "enginePowerHP": 200,
+                  "engineCode": "A16SHT",
+                  "description": "1.6 SIDI Turbo"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1956,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "B20DTH",
+                  "description": "2.0 CDTI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1956,
+                  "enginePowerKW": 143,
+                  "enginePowerHP": 195,
+                  "engineCode": "A20DTR",
+                  "description": "2.0 BiTurbo CDTI"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Corsa",
+          "generations": [
+            {
+              "name": "Corsa C",
+              "period": "2000-2006",
+              "bodyStyles": ["Hatchback (3-door)", "Hatchback (5-door)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 998,
+                  "enginePowerKW": 44,
+                  "enginePowerHP": 60,
+                  "engineCode": "Z10XEP",
+                  "description": "1.0 Twinport (3-cylinder)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1229,
+                  "enginePowerKW": 59,
+                  "enginePowerHP": 80,
+                  "engineCode": "Z12XEP",
+                  "description": "1.2 Twinport"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1364,
+                  "enginePowerKW": 66,
+                  "enginePowerHP": 90,
+                  "engineCode": "Z14XEP",
+                  "description": "1.4 Twinport"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1248,
+                  "enginePowerKW": 51,
+                  "enginePowerHP": 70,
+                  "engineCode": "Z13DT",
+                  "description": "1.3 CDTI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1686,
+                  "enginePowerKW": 74,
+                  "enginePowerHP": 100,
+                  "engineCode": "Y17DTH",
+                  "description": "1.7 DTI"
+                }
+              ]
+            },
+            {
+              "name": "Corsa D",
+              "period": "2006-2014",
+              "bodyStyles": ["Hatchback (3-door)", "Hatchback (5-door)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1229,
+                  "enginePowerKW": 63,
+                  "enginePowerHP": 85,
+                  "engineCode": "A12XER",
+                  "description": "1.2"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1398,
+                  "enginePowerKW": 74,
+                  "enginePowerHP": 100,
+                  "engineCode": "A14XER",
+                  "description": "1.4"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "Z16LEL",
+                  "description": "GSi 1.6 Turbo"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 141,
+                  "enginePowerHP": 192,
+                  "engineCode": "Z16LER",
+                  "description": "OPC 1.6 Turbo"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1248,
+                  "enginePowerKW": 70,
+                  "enginePowerHP": 95,
+                  "engineCode": "A13DTE",
+                  "description": "1.3 CDTI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1686,
+                  "enginePowerKW": 96,
+                  "enginePowerHP": 130,
+                  "engineCode": "A17DTS",
+                  "description": "1.7 CDTI"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Insignia",
+          "generations": [
+            {
+              "name": "Insignia A",
+              "period": "2008-2017",
+              "bodyStyles": ["Sedan", "Hatchback", "Wagon (Sports Tourer)", "Country Tourer"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1796,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "A18XER",
+                  "description": "1.8"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "A16XHT",
+                  "description": "1.6 SIDI Turbo"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 184,
+                  "enginePowerHP": 250,
+                  "engineCode": "A20NHT",
+                  "description": "2.0 Turbo"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2792,
+                  "enginePowerKW": 239,
+                  "enginePowerHP": 325,
+                  "engineCode": "A28NER",
+                  "description": "OPC 2.8 V6 Turbo"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1956,
+                  "enginePowerKW": 118,
+                  "enginePowerHP": 160,
+                  "engineCode": "A20DTH",
+                  "description": "2.0 CDTI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1956,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "B20DTH",
+                  "description": "2.0 CDTI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1956,
+                  "enginePowerKW": 143,
+                  "enginePowerHP": 195,
+                  "engineCode": "A20DTR",
+                  "description": "2.0 BiTurbo CDTI"
+                }
+              ]
+            },
+            {
+              "name": "Insignia B",
+              "period": "2017-2022",
+              "bodyStyles": ["Sedan (Grand Sport)", "Wagon (Sports Tourer)", "Country Tourer"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1490,
+                  "enginePowerKW": 121,
+                  "enginePowerHP": 165,
+                  "engineCode": "B15XFT",
+                  "description": "1.5 Turbo"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 191,
+                  "enginePowerHP": 260,
+                  "engineCode": "B20NFT",
+                  "description": "2.0 Turbo"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 100,
+                  "enginePowerHP": 136,
+                  "engineCode": "B16DTH",
+                  "description": "1.6 CDTI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1956,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "B20DTH",
+                  "description": "2.0 CDTI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1956,
+                  "enginePowerKW": 154,
+                  "enginePowerHP": 210,
+                  "engineCode": "B20DTR",
+                  "description": "2.0 BiTurbo CDTI"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Meriva",
+          "generations": [
+            {
+              "name": "Meriva B",
+              "period": "2010-2017",
+              "bodyStyles": ["MPV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1398,
+                  "enginePowerKW": 74,
+                  "enginePowerHP": 100,
+                  "engineCode": "A14XER",
+                  "description": "1.4"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1364,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "A14NET",
+                  "description": "1.4 Turbo"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1248,
+                  "enginePowerKW": 70,
+                  "enginePowerHP": 95,
+                  "engineCode": "A13DTE",
+                  "description": "1.3 CDTI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 100,
+                  "enginePowerHP": 136,
+                  "engineCode": "B16DTH",
+                  "description": "1.6 CDTI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1686,
+                  "enginePowerKW": 96,
+                  "enginePowerHP": 130,
+                  "engineCode": "A17DTS",
+                  "description": "1.7 CDTI"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Mokka",
+          "generations": [
+            {
+              "name": "Mokka A",
+              "period": "2012-2019",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1364,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "A14NET",
+                  "description": "1.4 Turbo"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1796,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 115,
+                  "engineCode": "A18XER",
+                  "description": "1.8"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 100,
+                  "enginePowerHP": 136,
+                  "engineCode": "B16DTH",
+                  "description": "1.6 CDTI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1686,
+                  "enginePowerKW": 96,
+                  "enginePowerHP": 130,
+                  "engineCode": "A17DTS",
+                  "description": "1.7 CDTI"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Vectra",
+          "generations": [
+            {
+              "name": "Vectra C",
+              "period": "2002-2008",
+              "bodyStyles": ["Sedan", "Hatchback (GTS)", "Wagon (Caravan)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1796,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "Z18XER",
+                  "description": "1.8"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2198,
+                  "enginePowerKW": 114,
+                  "enginePowerHP": 155,
+                  "engineCode": "Z22YH",
+                  "description": "2.2 Direct"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 129,
+                  "enginePowerHP": 175,
+                  "engineCode": "Z20NET",
+                  "description": "2.0 Turbo"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2792,
+                  "enginePowerKW": 206,
+                  "enginePowerHP": 280,
+                  "engineCode": "Z28NET",
+                  "description": "OPC 2.8 V6 Turbo"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1910,
+                  "enginePowerKW": 88,
+                  "enginePowerHP": 120,
+                  "engineCode": "Z19DT",
+                  "description": "1.9 CDTI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1910,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "Z19DTH",
+                  "description": "1.9 CDTI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2958,
+                  "enginePowerKW": 135,
+                  "enginePowerHP": 184,
+                  "engineCode": "Y30DT",
+                  "description": "3.0 V6 CDTI"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Zafira",
+          "generations": [
+            {
+              "name": "Zafira B",
+              "period": "2005-2014",
+              "bodyStyles": ["MPV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1796,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "Z18XER",
+                  "description": "1.8"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 177,
+                  "enginePowerHP": 240,
+                  "engineCode": "Z20LEH",
+                  "description": "OPC 2.0 Turbo"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1910,
+                  "enginePowerKW": 88,
+                  "enginePowerHP": 120,
+                  "engineCode": "Z19DT",
+                  "description": "1.9 CDTI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1910,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "Z19DTH",
+                  "description": "1.9 CDTI"
+                }
+              ]
+            },
+            {
+              "name": "Zafira C (Tourer)",
+              "period": "2011-2019",
+              "bodyStyles": ["MPV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1364,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "A14NET",
+                  "description": "1.4 Turbo"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 147,
+                  "enginePowerHP": 200,
+                  "engineCode": "A16SHT",
+                  "description": "1.6 SIDI Turbo"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1956,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "B20DTH",
+                  "description": "2.0 CDTI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1956,
+                  "enginePowerKW": 143,
+                  "enginePowerHP": 195,
+                  "engineCode": "A20DTR",
+                  "description": "2.0 BiTurbo CDTI"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]

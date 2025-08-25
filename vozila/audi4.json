@@ -1,0 +1,274 @@
+[
+    {
+      "name": "Audi",
+      "type": "PASSENGER",
+      "models": [
+        {
+          "name": "A3",
+          "generations": [
+            {
+              "name": "A3 (8L)",
+              "period": "1996-2003",
+              "bodyStyles": [],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1595,
+                  "enginePowerKW": 75,
+                  "enginePowerHP": 102,
+                  "engineCode": "AVU/BFQ",
+                  "description": "1.6 MPI (Facelift)"
+                }
+              ]
+            },
+            {
+              "name": "A3 (8P)",
+              "period": "2003-2012",
+              "bodyStyles": [],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1390,
+                  "enginePowerKW": 118,
+                  "enginePowerHP": 160,
+                  "engineCode": "CAVD",
+                  "description": "1.4 TFSI (Twin-charged)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 66,
+                  "enginePowerHP": 90,
+                  "engineCode": "CAYB",
+                  "description": "1.6 TDI CR"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 100,
+                  "enginePowerHP": 136,
+                  "engineCode": "AZV",
+                  "description": "2.0 TDI PD"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "A4",
+          "generations": [
+            {
+              "name": "A4 (B5)",
+              "period": "1994-2001",
+              "bodyStyles": [],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1595,
+                  "enginePowerKW": 75,
+                  "enginePowerHP": 102,
+                  "engineCode": "ALZ",
+                  "description": "1.6 (Facelift)"
+                }
+              ]
+            },
+            {
+              "name": "A4 (B6)",
+              "period": "2000-2004",
+              "bodyStyles": [],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "AWA",
+                  "description": "2.0 FSI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1896,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 116,
+                  "engineCode": "BKE",
+                  "description": "1.9 TDI PD"
+                }
+              ]
+            },
+            {
+              "name": "A4 (B8)",
+              "period": "2008-2015",
+              "bodyStyles": [],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 155,
+                  "enginePowerHP": 211,
+                  "engineCode": "CDNC",
+                  "description": "2.0 TFSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 3197,
+                  "enginePowerKW": 195,
+                  "enginePowerHP": 265,
+                  "engineCode": "CALA",
+                  "description": "3.2 FSI V6"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 120,
+                  "enginePowerHP": 163,
+                  "engineCode": "CGLD",
+                  "description": "2.0 TDI ultra"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "CAHA",
+                  "description": "2.0 TDI"
+                }
+              ]
+            },
+            {
+              "name": "A4 (B9)",
+              "period": "2015-Present",
+              "bodyStyles": [],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 90,
+                  "enginePowerHP": 122,
+                  "engineCode": "DEZB",
+                  "description": "30 TDI (2.0)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "A6",
+          "generations": [
+            {
+              "name": "A6 (C5)",
+              "period": "1997-2004",
+              "bodyStyles": [],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1781,
+                  "enginePowerKW": 132,
+                  "enginePowerHP": 180,
+                  "engineCode": "AJL",
+                  "description": "1.8T"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2496,
+                  "enginePowerKW": 120,
+                  "enginePowerHP": 163,
+                  "engineCode": "BDG/BFC",
+                  "description": "2.5 V6 TDI"
+                }
+              ]
+            },
+            {
+              "name": "A6 (C6)",
+              "period": "2004-2011",
+              "bodyStyles": [],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 100,
+                  "enginePowerHP": 136,
+                  "engineCode": "CAGB",
+                  "description": "2.0 TDIe"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2698,
+                  "enginePowerKW": 140,
+                  "enginePowerHP": 190,
+                  "engineCode": "CANA",
+                  "description": "2.7 V6 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2967,
+                  "enginePowerKW": 155,
+                  "enginePowerHP": 211,
+                  "engineCode": "BMK",
+                  "description": "3.0 V6 TDI"
+                }
+              ]
+            },
+            {
+              "name": "A6 (C7)",
+              "period": "2011-2018",
+              "bodyStyles": [],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "CSUD",
+                  "description": "2.0 TDI ultra"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2967,
+                  "enginePowerKW": 160,
+                  "enginePowerHP": 218,
+                  "engineCode": "CRTF",
+                  "description": "3.0 V6 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2967,
+                  "enginePowerKW": 200,
+                  "enginePowerHP": 272,
+                  "engineCode": "CRTD",
+                  "description": "3.0 V6 TDI"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "TT",
+          "generations": [
+            {
+              "name": "TT (Mk1, 8N)",
+              "period": "1998-2006",
+              "bodyStyles": [],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1781,
+                  "enginePowerKW": 120,
+                  "enginePowerHP": 163,
+                  "engineCode": "BVP",
+                  "description": "1.8T"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1781,
+                  "enginePowerKW": 140,
+                  "enginePowerHP": 190,
+                  "engineCode": "BVR",
+                  "description": "1.8T quattro"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]

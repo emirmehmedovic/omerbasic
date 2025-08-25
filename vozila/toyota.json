@@ -1,0 +1,609 @@
+[
+    {
+      "name": "Toyota",
+      "type": "PASSENGER",
+      "models": [
+        {
+          "name": "Auris",
+          "generations": [
+            {
+              "name": "Auris (E150)",
+              "period": "2006-2012",
+              "bodyStyles": ["Hatchback (3-door)", "Hatchback (5-door)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1329,
+                  "enginePowerKW": 74,
+                  "enginePowerHP": 101,
+                  "engineCode": "1NR-FE",
+                  "description": "1.33 Dual VVT-i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 97,
+                  "enginePowerHP": 132,
+                  "engineCode": "1ZR-FAE",
+                  "description": "1.6 Valvematic"
+                },
+                {
+                  "engineType": "Hybrid",
+                  "engineCapacity": 1798,
+                  "enginePowerKW": 73,
+                  "enginePowerHP": 99,
+                  "engineCode": "2ZR-FXE",
+                  "description": "1.8 HSD (System 136HP)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1364,
+                  "enginePowerKW": 66,
+                  "enginePowerHP": 90,
+                  "engineCode": "1ND-TV",
+                  "description": "1.4 D-4D"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 93,
+                  "enginePowerHP": 126,
+                  "engineCode": "1AD-FTV",
+                  "description": "2.0 D-4D"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Avensis",
+          "generations": [
+            {
+              "name": "Avensis (T250)",
+              "period": "2003-2009",
+              "bodyStyles": ["Sedan", "Hatchback (Liftback)", "Wagon (Estate)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1794,
+                  "enginePowerKW": 95,
+                  "enginePowerHP": 129,
+                  "engineCode": "1ZZ-FE",
+                  "description": "1.8 VVT-i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 108,
+                  "enginePowerHP": 147,
+                  "engineCode": "1AZ-FSE",
+                  "description": "2.0 VVT-i D-4"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 116,
+                  "engineCode": "1CD-FTV",
+                  "description": "2.0 D-4D"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2231,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "2AD-FTV",
+                  "description": "2.2 D-4D"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2231,
+                  "enginePowerKW": 130,
+                  "enginePowerHP": 177,
+                  "engineCode": "2AD-FHV",
+                  "description": "2.2 D-CAT"
+                }
+              ]
+            },
+            {
+              "name": "Avensis (T270)",
+              "period": "2009-2018",
+              "bodyStyles": ["Sedan", "Wagon (Touring Sports)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1798,
+                  "enginePowerKW": 108,
+                  "enginePowerHP": 147,
+                  "engineCode": "2ZR-FAE",
+                  "description": "1.8 Valvematic"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1987,
+                  "enginePowerKW": 112,
+                  "enginePowerHP": 152,
+                  "engineCode": "3ZR-FAE",
+                  "description": "2.0 Valvematic"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 82,
+                  "enginePowerHP": 112,
+                  "engineCode": "N47 (BMW)",
+                  "description": "1.6 D-4D"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 105,
+                  "enginePowerHP": 143,
+                  "engineCode": "N47 (BMW)",
+                  "description": "2.0 D-4D"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2231,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "2AD-FTV",
+                  "description": "2.2 D-4D"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Aygo",
+          "generations": [
+            {
+              "name": "Aygo (AB10)",
+              "period": "2005-2014",
+              "bodyStyles": ["Hatchback (3-door)", "Hatchback (5-door)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 998,
+                  "enginePowerKW": 50,
+                  "enginePowerHP": 68,
+                  "engineCode": "1KR-FE",
+                  "description": "1.0 VVT-i"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "C-HR",
+          "generations": [
+            {
+              "name": "C-HR",
+              "period": "2016-2023",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1197,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 116,
+                  "engineCode": "8NR-FTS",
+                  "description": "1.2 Turbo"
+                },
+                {
+                  "engineType": "Hybrid",
+                  "engineCapacity": 1798,
+                  "enginePowerKW": 72,
+                  "enginePowerHP": 98,
+                  "engineCode": "2ZR-FXE",
+                  "description": "1.8 Hybrid (System 122HP)"
+                },
+                {
+                  "engineType": "Hybrid",
+                  "engineCapacity": 1987,
+                  "enginePowerKW": 112,
+                  "enginePowerHP": 152,
+                  "engineCode": "M20A-FXS",
+                  "description": "2.0 Hybrid (System 184HP)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Corolla",
+          "generations": [
+            {
+              "name": "Corolla (E120)",
+              "period": "2002-2007",
+              "bodyStyles": ["Hatchback", "Sedan", "Wagon"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1398,
+                  "enginePowerKW": 71,
+                  "enginePowerHP": 97,
+                  "engineCode": "4ZZ-FE",
+                  "description": "1.4 VVT-i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 81,
+                  "enginePowerHP": 110,
+                  "engineCode": "3ZZ-FE",
+                  "description": "1.6 VVT-i"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1364,
+                  "enginePowerKW": 66,
+                  "enginePowerHP": 90,
+                  "engineCode": "1ND-TV",
+                  "description": "1.4 D-4D"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 116,
+                  "engineCode": "1CD-FTV",
+                  "description": "2.0 D-4D"
+                }
+              ]
+            },
+            {
+              "name": "Corolla (E210)",
+              "period": "2018-Present",
+              "bodyStyles": ["Hatchback", "Sedan", "Wagon (Touring Sports)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1197,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 116,
+                  "engineCode": "8NR-FTS",
+                  "description": "1.2 Turbo"
+                },
+                {
+                  "engineType": "Hybrid",
+                  "engineCapacity": 1798,
+                  "enginePowerKW": 72,
+                  "enginePowerHP": 98,
+                  "engineCode": "2ZR-FXE",
+                  "description": "1.8 Hybrid (System 122HP)"
+                },
+                {
+                  "engineType": "Hybrid",
+                  "engineCapacity": 1987,
+                  "enginePowerKW": 112,
+                  "enginePowerHP": 152,
+                  "engineCode": "M20A-FXS",
+                  "description": "2.0 Hybrid (System 184HP)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "GT86",
+          "generations": [
+            {
+              "name": "GT86",
+              "period": "2012-2021",
+              "bodyStyles": ["Coupe"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 147,
+                  "enginePowerHP": 200,
+                  "engineCode": "4U-GSE (Subaru FA20)",
+                  "description": "2.0 Boxer D-4S"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Hilux",
+          "generations": [
+            {
+              "name": "Hilux (AN10/AN20/AN30)",
+              "period": "2005-2015",
+              "bodyStyles": ["Pickup"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2494,
+                  "enginePowerKW": 106,
+                  "enginePowerHP": 144,
+                  "engineCode": "2KD-FTV",
+                  "description": "2.5 D-4D"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2982,
+                  "enginePowerKW": 126,
+                  "enginePowerHP": 171,
+                  "engineCode": "1KD-FTV",
+                  "description": "3.0 D-4D"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Land Cruiser",
+          "generations": [
+            {
+              "name": "Land Cruiser (J120)",
+              "period": "2002-2009",
+              "bodyStyles": ["SUV (3-door)", "SUV (5-door)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 3956,
+                  "enginePowerKW": 183,
+                  "enginePowerHP": 249,
+                  "engineCode": "1GR-FE",
+                  "description": "4.0 V6 VVT-i"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2982,
+                  "enginePowerKW": 127,
+                  "enginePowerHP": 173,
+                  "engineCode": "1KD-FTV",
+                  "description": "3.0 D-4D"
+                }
+              ]
+            },
+            {
+              "name": "Land Cruiser (J150)",
+              "period": "2009-Present",
+              "bodyStyles": ["SUV (3-door)", "SUV (5-door)"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2982,
+                  "enginePowerKW": 140,
+                  "enginePowerHP": 190,
+                  "engineCode": "1KD-FTV",
+                  "description": "3.0 D-4D"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2755,
+                  "enginePowerKW": 150,
+                  "enginePowerHP": 204,
+                  "engineCode": "1GD-FTV",
+                  "description": "2.8 D-4D"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Prius",
+          "generations": [
+            {
+              "name": "Prius (XW20)",
+              "period": "2003-2009",
+              "bodyStyles": ["Hatchback (Liftback)"],
+              "engines": [
+                {
+                  "engineType": "Hybrid",
+                  "engineCapacity": 1497,
+                  "enginePowerKW": 57,
+                  "enginePowerHP": 77,
+                  "engineCode": "1NZ-FXE",
+                  "description": "1.5 HSD (System 110HP)"
+                }
+              ]
+            },
+            {
+              "name": "Prius (XW30)",
+              "period": "2009-2015",
+              "bodyStyles": ["Hatchback (Liftback)"],
+              "engines": [
+                {
+                  "engineType": "Hybrid",
+                  "engineCapacity": 1798,
+                  "enginePowerKW": 73,
+                  "enginePowerHP": 99,
+                  "engineCode": "2ZR-FXE",
+                  "description": "1.8 HSD (System 136HP)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "RAV4",
+          "generations": [
+            {
+              "name": "RAV4 (XA20)",
+              "period": "2000-2005",
+              "bodyStyles": ["SUV (3-door)", "SUV (5-door)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "1AZ-FE",
+                  "description": "2.0 VVT-i"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 116,
+                  "engineCode": "1CD-FTV",
+                  "description": "2.0 D-4D"
+                }
+              ]
+            },
+            {
+              "name": "RAV4 (XA30)",
+              "period": "2005-2012",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 116,
+                  "enginePowerHP": 158,
+                  "engineCode": "3ZR-FAE",
+                  "description": "2.0 Valvematic"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2231,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "2AD-FTV",
+                  "description": "2.2 D-4D"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2231,
+                  "enginePowerKW": 130,
+                  "enginePowerHP": 177,
+                  "engineCode": "2AD-FHV",
+                  "description": "2.2 D-CAT"
+                }
+              ]
+            },
+            {
+              "name": "RAV4 (XA50)",
+              "period": "2018-Present",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Hybrid",
+                  "engineCapacity": 2487,
+                  "enginePowerKW": 131,
+                  "enginePowerHP": 178,
+                  "engineCode": "A25A-FXS",
+                  "description": "2.5 Hybrid (System 218HP)"
+                },
+                {
+                  "engineType": "Plug-in Hybrid",
+                  "engineCapacity": 2487,
+                  "enginePowerKW": 136,
+                  "enginePowerHP": 185,
+                  "engineCode": "A25A-FXS",
+                  "description": "2.5 PHEV (System 306HP)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Supra",
+          "generations": [
+            {
+              "name": "Supra (J29/DB)",
+              "period": "2019-Present",
+              "bodyStyles": ["Coupe"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 190,
+                  "enginePowerHP": 258,
+                  "engineCode": "B48B20 (BMW)",
+                  "description": "2.0 Turbo"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2998,
+                  "enginePowerKW": 250,
+                  "enginePowerHP": 340,
+                  "engineCode": "B58B30 (BMW)",
+                  "description": "3.0 Turbo"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Yaris",
+          "generations": [
+            {
+              "name": "Yaris (XP90)",
+              "period": "2005-2011",
+              "bodyStyles": ["Hatchback (3-door)", "Hatchback (5-door)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 998,
+                  "enginePowerKW": 51,
+                  "enginePowerHP": 69,
+                  "engineCode": "1KR-FE",
+                  "description": "1.0 VVT-i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1329,
+                  "enginePowerKW": 74,
+                  "enginePowerHP": 101,
+                  "engineCode": "1NR-FE",
+                  "description": "1.33 Dual VVT-i"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1364,
+                  "enginePowerKW": 66,
+                  "enginePowerHP": 90,
+                  "engineCode": "1ND-TV",
+                  "description": "1.4 D-4D"
+                }
+              ]
+            },
+            {
+              "name": "Yaris (XP130)",
+              "period": "2011-2020",
+              "bodyStyles": ["Hatchback (3-door)", "Hatchback (5-door)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1329,
+                  "enginePowerKW": 73,
+                  "enginePowerHP": 99,
+                  "engineCode": "1NR-FKE",
+                  "description": "1.33 Dual VVT-i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1496,
+                  "enginePowerKW": 82,
+                  "enginePowerHP": 111,
+                  "engineCode": "2NR-FKE",
+                  "description": "1.5 VVT-iE"
+                },
+                {
+                  "engineType": "Hybrid",
+                  "engineCapacity": 1497,
+                  "enginePowerKW": 55,
+                  "enginePowerHP": 75,
+                  "engineCode": "1NZ-FXE",
+                  "description": "1.5 HSD (System 100HP)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1364,
+                  "enginePowerKW": 66,
+                  "enginePowerHP": 90,
+                  "engineCode": "1ND-TV",
+                  "description": "1.4 D-4D"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]

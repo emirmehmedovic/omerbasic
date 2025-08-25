@@ -1,0 +1,227 @@
+[
+    {
+      "name": "Mitsubishi",
+      "type": "PASSENGER",
+      "models": [
+        {
+          "name": "ASX",
+          "generations": [
+            {
+              "name": "ASX",
+              "period": "2010-Present",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1590,
+                  "enginePowerKW": 86,
+                  "enginePowerHP": 117,
+                  "engineCode": "4A92",
+                  "description": "1.6 MIVEC"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1798,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "4N13",
+                  "description": "1.8 DI-D"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2268,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "4N14",
+                  "description": "2.2 DI-D"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Colt",
+          "generations": [
+            {
+              "name": "Colt (Z30)",
+              "period": "2004-2012",
+              "bodyStyles": ["Hatchback (3-door)", "Hatchback (5-door)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1124,
+                  "enginePowerKW": 55,
+                  "enginePowerHP": 75,
+                  "engineCode": "3A91",
+                  "description": "1.1"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1332,
+                  "enginePowerKW": 70,
+                  "enginePowerHP": 95,
+                  "engineCode": "4A90",
+                  "description": "1.3"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1468,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "4G15T",
+                  "description": "CZT 1.5 Turbo"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1493,
+                  "enginePowerKW": 70,
+                  "enginePowerHP": 95,
+                  "engineCode": "OM639 (Mercedes)",
+                  "description": "1.5 DI-D"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Lancer",
+          "generations": [
+            {
+              "name": "Lancer",
+              "period": "2007-2017",
+              "bodyStyles": ["Sedan", "Hatchback (Sportback)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1798,
+                  "enginePowerKW": 105,
+                  "enginePowerHP": 143,
+                  "engineCode": "4B10",
+                  "description": "1.8 MIVEC"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 217,
+                  "enginePowerHP": 295,
+                  "engineCode": "4B11T",
+                  "description": "Evolution X 2.0 Turbo"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "BKD (VW)",
+                  "description": "2.0 DI-D (PD)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1798,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "4N13",
+                  "description": "1.8 DI-D"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Outlander",
+          "generations": [
+            {
+              "name": "Outlander II",
+              "period": "2006-2012",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2360,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "4B12",
+                  "description": "2.4 MIVEC"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "BSY (VW)",
+                  "description": "2.0 DI-D"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2179,
+                  "enginePowerKW": 115,
+                  "enginePowerHP": 156,
+                  "engineCode": "4HK (PSA)",
+                  "description": "2.2 DI-D"
+                }
+              ]
+            },
+            {
+              "name": "Outlander III",
+              "period": "2012-2021",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "4J11",
+                  "description": "2.0 MIVEC"
+                },
+                {
+                  "engineType": "Plug-in Hybrid",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 89,
+                  "enginePowerHP": 121,
+                  "engineCode": "4B11",
+                  "description": "PHEV (System 203HP)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2268,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "4N14",
+                  "description": "2.2 DI-D"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Pajero",
+          "generations": [
+            {
+              "name": "Pajero (V60)",
+              "period": "2000-2006",
+              "bodyStyles": ["SUV (3-door)", "SUV (5-door)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 3497,
+                  "enginePowerKW": 149,
+                  "enginePowerHP": 202,
+                  "engineCode": "6G74",
+                  "description": "3.5 V6 GDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 3200,
+                  "enginePowerKW": 121,
+                  "enginePowerHP": 165,
+                  "engineCode": "4M41",
+                  "description": "3.2 DI-D"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]

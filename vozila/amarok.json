@@ -1,0 +1,139 @@
+[
+    {
+      "name": "Volkswagen",
+      "type": "PASSENGER",
+      "models": [
+        {
+          "name": "Amarok",
+          "generations": [
+            {
+              "name": "Amarok I (2H)",
+              "period": "2010-2022",
+              "bodyStyles": ["Pickup"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 118,
+                  "enginePowerHP": 160,
+                  "engineCode": "CFPA",
+                  "description": "2.0 TSI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 90,
+                  "enginePowerHP": 122,
+                  "engineCode": "CDBA/CNFA",
+                  "description": "2.0 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "CNFB",
+                  "description": "2.0 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 120,
+                  "enginePowerHP": 163,
+                  "engineCode": "CDCA",
+                  "description": "2.0 BiTDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 132,
+                  "enginePowerHP": 180,
+                  "engineCode": "CNEA/CSHA",
+                  "description": "2.0 BiTDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2967,
+                  "enginePowerKW": 120,
+                  "enginePowerHP": 163,
+                  "engineCode": "DDXA",
+                  "description": "3.0 V6 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2967,
+                  "enginePowerKW": 150,
+                  "enginePowerHP": 204,
+                  "engineCode": "DDXB",
+                  "description": "3.0 V6 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2967,
+                  "enginePowerKW": 165,
+                  "enginePowerHP": 224,
+                  "engineCode": "DDXC",
+                  "description": "3.0 V6 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2967,
+                  "enginePowerKW": 190,
+                  "enginePowerHP": 258,
+                  "engineCode": "DDXE",
+                  "description": "3.0 V6 TDI (Overboost to 200kW)"
+                }
+              ]
+            },
+            {
+              "name": "Amarok II (NF)",
+              "period": "2022-Present",
+              "bodyStyles": ["Pickup"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2298,
+                  "enginePowerKW": 222,
+                  "enginePowerHP": 302,
+                  "engineCode": "—",
+                  "description": "2.3 TSI (Ford EcoBoost)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1996,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "—",
+                  "description": "2.0 TDI (Ford EcoBlue)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1996,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "—",
+                  "description": "2.0 TDI (Ford EcoBlue)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1996,
+                  "enginePowerKW": 154,
+                  "enginePowerHP": 209,
+                  "engineCode": "—",
+                  "description": "2.0 BiTDI (Ford EcoBlue)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2993,
+                  "enginePowerKW": 177,
+                  "enginePowerHP": 241,
+                  "engineCode": "—",
+                  "description": "3.0 V6 TDI (Ford Power Stroke)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]

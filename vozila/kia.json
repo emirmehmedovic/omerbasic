@@ -1,0 +1,571 @@
+[
+    {
+      "name": "Kia",
+      "type": "PASSENGER",
+      "models": [
+        {
+          "name": "Ceed",
+          "generations": [
+            {
+              "name": "Cee'd (ED)",
+              "period": "2006-2012",
+              "bodyStyles": ["Hatchback (5-door)", "Wagon (SW)", "Hatchback (pro_cee'd 3-door)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1396,
+                  "enginePowerKW": 80,
+                  "enginePowerHP": 109,
+                  "engineCode": "G4FA",
+                  "description": "1.4"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1591,
+                  "enginePowerKW": 93,
+                  "enginePowerHP": 126,
+                  "engineCode": "G4FC",
+                  "description": "1.6"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1975,
+                  "enginePowerKW": 105,
+                  "enginePowerHP": 143,
+                  "engineCode": "G4GC",
+                  "description": "2.0"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1582,
+                  "enginePowerKW": 66,
+                  "enginePowerHP": 90,
+                  "engineCode": "D4FB-L",
+                  "description": "1.6 CRDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1582,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 115,
+                  "engineCode": "D4FB",
+                  "description": "1.6 CRDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1991,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "D4EA",
+                  "description": "2.0 CRDi"
+                }
+              ]
+            },
+            {
+              "name": "Cee'd (JD)",
+              "period": "2012-2018",
+              "bodyStyles": ["Hatchback (5-door)", "Wagon (SW)", "Hatchback (pro_cee'd 3-door)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 998,
+                  "enginePowerKW": 88,
+                  "enginePowerHP": 120,
+                  "engineCode": "G3LC",
+                  "description": "1.0 T-GDi"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1396,
+                  "enginePowerKW": 73,
+                  "enginePowerHP": 99,
+                  "engineCode": "G4FA",
+                  "description": "1.4 MPI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1591,
+                  "enginePowerKW": 99,
+                  "enginePowerHP": 135,
+                  "engineCode": "G4FD",
+                  "description": "1.6 GDi"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1591,
+                  "enginePowerKW": 150,
+                  "enginePowerHP": 204,
+                  "engineCode": "G4FJ",
+                  "description": "GT 1.6 T-GDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1582,
+                  "enginePowerKW": 81,
+                  "enginePowerHP": 110,
+                  "engineCode": "D4FB",
+                  "description": "1.6 CRDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1582,
+                  "enginePowerKW": 100,
+                  "enginePowerHP": 136,
+                  "engineCode": "D4FB",
+                  "description": "1.6 CRDi"
+                }
+              ]
+            },
+            {
+              "name": "Ceed (CD)",
+              "period": "2018-Present",
+              "bodyStyles": ["Hatchback", "Wagon (SW)", "ProCeed (Shooting Brake)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 998,
+                  "enginePowerKW": 88,
+                  "enginePowerHP": 120,
+                  "engineCode": "G3LC",
+                  "description": "1.0 T-GDi"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1353,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "G4LD",
+                  "description": "1.4 T-GDi"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1482,
+                  "enginePowerKW": 118,
+                  "enginePowerHP": 160,
+                  "engineCode": "G4LH",
+                  "description": "1.5 T-GDi"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1591,
+                  "enginePowerKW": 150,
+                  "enginePowerHP": 204,
+                  "engineCode": "G4FJ",
+                  "description": "GT 1.6 T-GDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 100,
+                  "enginePowerHP": 136,
+                  "engineCode": "D4FE",
+                  "description": "1.6 CRDi"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Niro",
+          "generations": [
+            {
+              "name": "Niro (DE)",
+              "period": "2016-2022",
+              "bodyStyles": ["SUV/Crossover"],
+              "engines": [
+                {
+                  "engineType": "Hybrid",
+                  "engineCapacity": 1580,
+                  "enginePowerKW": 77,
+                  "enginePowerHP": 105,
+                  "engineCode": "G4LE",
+                  "description": "1.6 GDi Hybrid (System 141HP)"
+                },
+                {
+                  "engineType": "Plug-in Hybrid",
+                  "engineCapacity": 1580,
+                  "enginePowerKW": 77,
+                  "enginePowerHP": 105,
+                  "engineCode": "G4LE",
+                  "description": "1.6 GDi PHEV (System 141HP)"
+                },
+                {
+                  "engineType": "Electric",
+                  "engineCapacity": 0,
+                  "enginePowerKW": 150,
+                  "enginePowerHP": 204,
+                  "engineCode": "—",
+                  "description": "e-Niro (64 kWh)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Picanto",
+          "generations": [
+            {
+              "name": "Picanto (TA)",
+              "period": "2011-2017",
+              "bodyStyles": ["Hatchback (3-door)", "Hatchback (5-door)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 998,
+                  "enginePowerKW": 51,
+                  "enginePowerHP": 69,
+                  "engineCode": "G3LA",
+                  "description": "1.0"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1248,
+                  "enginePowerKW": 63,
+                  "enginePowerHP": 85,
+                  "engineCode": "G4LA",
+                  "description": "1.25"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Rio",
+          "generations": [
+            {
+              "name": "Rio (UB)",
+              "period": "2011-2017",
+              "bodyStyles": ["Hatchback (3-door)", "Hatchback (5-door)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1248,
+                  "enginePowerKW": 63,
+                  "enginePowerHP": 85,
+                  "engineCode": "G4LA",
+                  "description": "1.25"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1396,
+                  "enginePowerKW": 80,
+                  "enginePowerHP": 109,
+                  "engineCode": "G4FA",
+                  "description": "1.4"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1120,
+                  "enginePowerKW": 55,
+                  "enginePowerHP": 75,
+                  "engineCode": "D3FA",
+                  "description": "1.1 CRDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1396,
+                  "enginePowerKW": 66,
+                  "enginePowerHP": 90,
+                  "engineCode": "D4FC",
+                  "description": "1.4 CRDi"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Sorento",
+          "generations": [
+            {
+              "name": "Sorento (XM)",
+              "period": "2009-2015",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2359,
+                  "enginePowerKW": 128,
+                  "enginePowerHP": 174,
+                  "engineCode": "G4KE",
+                  "description": "2.4"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2199,
+                  "enginePowerKW": 145,
+                  "enginePowerHP": 197,
+                  "engineCode": "D4HB",
+                  "description": "2.2 CRDi"
+                }
+              ]
+            },
+            {
+              "name": "Sorento (UM)",
+              "period": "2015-2020",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2199,
+                  "enginePowerKW": 147,
+                  "enginePowerHP": 200,
+                  "engineCode": "D4HB",
+                  "description": "2.2 CRDi"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Sportage",
+          "generations": [
+            {
+              "name": "Sportage (JE)",
+              "period": "2004-2010",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1975,
+                  "enginePowerKW": 104,
+                  "enginePowerHP": 141,
+                  "engineCode": "G4GC",
+                  "description": "2.0"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1991,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "D4EA",
+                  "description": "2.0 CRDi"
+                }
+              ]
+            },
+            {
+              "name": "Sportage (SL)",
+              "period": "2010-2015",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1591,
+                  "enginePowerKW": 99,
+                  "enginePowerHP": 135,
+                  "engineCode": "G4FD",
+                  "description": "1.6 GDi"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 122,
+                  "enginePowerHP": 166,
+                  "engineCode": "G4KD",
+                  "description": "2.0"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1685,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 116,
+                  "engineCode": "D4FD",
+                  "description": "1.7 CRDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 135,
+                  "enginePowerHP": 184,
+                  "engineCode": "D4HA",
+                  "description": "2.0 CRDi"
+                }
+              ]
+            },
+            {
+              "name": "Sportage (QL)",
+              "period": "2015-2021",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1591,
+                  "enginePowerKW": 130,
+                  "enginePowerHP": 177,
+                  "engineCode": "G4FJ",
+                  "description": "1.6 T-GDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 100,
+                  "enginePowerHP": 136,
+                  "engineCode": "D4FE",
+                  "description": "1.6 CRDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 136,
+                  "enginePowerHP": 185,
+                  "engineCode": "D4HA",
+                  "description": "2.0 CRDi"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Stinger",
+          "generations": [
+            {
+              "name": "Stinger",
+              "period": "2017-2023",
+              "bodyStyles": ["Fastback"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 188,
+                  "enginePowerHP": 255,
+                  "engineCode": "G4KL",
+                  "description": "2.0 T-GDi"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 3342,
+                  "enginePowerKW": 272,
+                  "enginePowerHP": 370,
+                  "engineCode": "G6DP",
+                  "description": "GT 3.3 T-GDi V6"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2199,
+                  "enginePowerKW": 147,
+                  "enginePowerHP": 200,
+                  "engineCode": "D4HC",
+                  "description": "2.2 CRDi"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Stonic",
+          "generations": [
+            {
+              "name": "Stonic",
+              "period": "2017-Present",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 998,
+                  "enginePowerKW": 88,
+                  "enginePowerHP": 120,
+                  "engineCode": "G3LC",
+                  "description": "1.0 T-GDi"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1248,
+                  "enginePowerKW": 62,
+                  "enginePowerHP": 84,
+                  "engineCode": "G4LA",
+                  "description": "1.25 MPI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 81,
+                  "enginePowerHP": 110,
+                  "engineCode": "D4FB",
+                  "description": "1.6 CRDi"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Venga",
+          "generations": [
+            {
+              "name": "Venga",
+              "period": "2010-2019",
+              "bodyStyles": ["MPV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1396,
+                  "enginePowerKW": 66,
+                  "enginePowerHP": 90,
+                  "engineCode": "G4FA",
+                  "description": "1.4"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1591,
+                  "enginePowerKW": 92,
+                  "enginePowerHP": 125,
+                  "engineCode": "G4FC",
+                  "description": "1.6"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1582,
+                  "enginePowerKW": 94,
+                  "enginePowerHP": 128,
+                  "engineCode": "D4FB",
+                  "description": "1.6 CRDi"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "XCeed",
+          "generations": [
+            {
+              "name": "XCeed",
+              "period": "2019-Present",
+              "bodyStyles": ["SUV/Crossover"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1353,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "G4LD",
+                  "description": "1.4 T-GDi"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1591,
+                  "enginePowerKW": 150,
+                  "enginePowerHP": 204,
+                  "engineCode": "G4FJ",
+                  "description": "1.6 T-GDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 100,
+                  "enginePowerHP": 136,
+                  "engineCode": "D4FE",
+                  "description": "1.6 CRDi"
+                },
+                {
+                  "engineType": "Plug-in Hybrid",
+                  "engineCapacity": 1580,
+                  "enginePowerKW": 77,
+                  "enginePowerHP": 105,
+                  "engineCode": "G4LE",
+                  "description": "1.6 GDi PHEV (System 141HP)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]

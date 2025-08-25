@@ -1,0 +1,416 @@
+[
+    {
+      "name": "Dacia",
+      "type": "PASSENGER",
+      "models": [
+        {
+          "name": "Duster",
+          "generations": [
+            {
+              "name": "Duster I (HS)",
+              "period": "2010-2017",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 77,
+                  "enginePowerHP": 105,
+                  "engineCode": "K4M",
+                  "description": "1.6 16V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1197,
+                  "enginePowerKW": 92,
+                  "enginePowerHP": 125,
+                  "engineCode": "H5Ft",
+                  "description": "1.2 TCe"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1461,
+                  "enginePowerKW": 66,
+                  "enginePowerHP": 90,
+                  "engineCode": "K9K",
+                  "description": "1.5 dCi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1461,
+                  "enginePowerKW": 81,
+                  "enginePowerHP": 110,
+                  "engineCode": "K9K",
+                  "description": "1.5 dCi"
+                }
+              ]
+            },
+            {
+              "name": "Duster II (HM)",
+              "period": "2017-2024",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 84,
+                  "enginePowerHP": 115,
+                  "engineCode": "H4M",
+                  "description": "1.6 SCe"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 999,
+                  "enginePowerKW": 74,
+                  "enginePowerHP": 100,
+                  "engineCode": "H4D",
+                  "description": "1.0 TCe"
+                },
+                {
+                  "engineType": "LPG",
+                  "engineCapacity": 999,
+                  "enginePowerKW": 74,
+                  "enginePowerHP": 100,
+                  "engineCode": "H4D",
+                  "description": "1.0 TCe ECO-G (Bi-Fuel)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1332,
+                  "enginePowerKW": 96,
+                  "enginePowerHP": 130,
+                  "engineCode": "H5H",
+                  "description": "1.3 TCe"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1332,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "H5H",
+                  "description": "1.3 TCe"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1461,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 115,
+                  "engineCode": "K9K",
+                  "description": "1.5 Blue dCi"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Sandero",
+          "generations": [
+            {
+              "name": "Sandero I",
+              "period": "2008-2012",
+              "bodyStyles": ["Hatchback", "Stepway"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1390,
+                  "enginePowerKW": 55,
+                  "enginePowerHP": 75,
+                  "engineCode": "K7J",
+                  "description": "1.4 MPI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 64,
+                  "enginePowerHP": 87,
+                  "engineCode": "K7M",
+                  "description": "1.6 MPI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1461,
+                  "enginePowerKW": 63,
+                  "enginePowerHP": 85,
+                  "engineCode": "K9K",
+                  "description": "1.5 dCi"
+                }
+              ]
+            },
+            {
+              "name": "Sandero II",
+              "period": "2012-2020",
+              "bodyStyles": ["Hatchback", "Stepway"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1149,
+                  "enginePowerKW": 55,
+                  "enginePowerHP": 75,
+                  "engineCode": "D4F",
+                  "description": "1.2 16V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 898,
+                  "enginePowerKW": 66,
+                  "enginePowerHP": 90,
+                  "engineCode": "H4Bt",
+                  "description": "0.9 TCe"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1461,
+                  "enginePowerKW": 55,
+                  "enginePowerHP": 75,
+                  "engineCode": "K9K",
+                  "description": "1.5 dCi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1461,
+                  "enginePowerKW": 66,
+                  "enginePowerHP": 90,
+                  "engineCode": "K9K",
+                  "description": "1.5 dCi"
+                }
+              ]
+            },
+            {
+              "name": "Sandero III",
+              "period": "2020-Present",
+              "bodyStyles": ["Hatchback", "Stepway"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 999,
+                  "enginePowerKW": 49,
+                  "enginePowerHP": 67,
+                  "engineCode": "H4D",
+                  "description": "1.0 SCe"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 999,
+                  "enginePowerKW": 67,
+                  "enginePowerHP": 91,
+                  "engineCode": "H4D Turbo",
+                  "description": "1.0 TCe"
+                },
+                {
+                  "engineType": "LPG",
+                  "engineCapacity": 999,
+                  "enginePowerKW": 74,
+                  "enginePowerHP": 100,
+                  "engineCode": "H4D Turbo",
+                  "description": "1.0 TCe ECO-G (Bi-Fuel)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Logan",
+          "generations": [
+            {
+              "name": "Logan I",
+              "period": "2004-2012",
+              "bodyStyles": ["Sedan", "Wagon (MCV)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1390,
+                  "enginePowerKW": 55,
+                  "enginePowerHP": 75,
+                  "engineCode": "K7J",
+                  "description": "1.4 MPI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 64,
+                  "enginePowerHP": 87,
+                  "engineCode": "K7M",
+                  "description": "1.6 MPI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1461,
+                  "enginePowerKW": 50,
+                  "enginePowerHP": 68,
+                  "engineCode": "K9K",
+                  "description": "1.5 dCi"
+                }
+              ]
+            },
+            {
+              "name": "Logan II",
+              "period": "2012-2020",
+              "bodyStyles": ["Sedan", "Wagon (MCV)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1149,
+                  "enginePowerKW": 55,
+                  "enginePowerHP": 75,
+                  "engineCode": "D4F",
+                  "description": "1.2 16V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 898,
+                  "enginePowerKW": 66,
+                  "enginePowerHP": 90,
+                  "engineCode": "H4Bt",
+                  "description": "0.9 TCe"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1461,
+                  "enginePowerKW": 66,
+                  "enginePowerHP": 90,
+                  "engineCode": "K9K",
+                  "description": "1.5 dCi"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Jogger",
+          "generations": [
+            {
+              "name": "Jogger",
+              "period": "2021-Present",
+              "bodyStyles": ["MPV/Wagon"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 999,
+                  "enginePowerKW": 81,
+                  "enginePowerHP": 110,
+                  "engineCode": "H4D Turbo",
+                  "description": "TCe 110"
+                },
+                {
+                  "engineType": "LPG",
+                  "engineCapacity": 999,
+                  "enginePowerKW": 74,
+                  "enginePowerHP": 100,
+                  "engineCode": "H4D Turbo",
+                  "description": "ECO-G 100 (Bi-Fuel)"
+                },
+                {
+                  "engineType": "Hybrid",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "H4M",
+                  "description": "Hybrid 140 (System Power)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Spring",
+          "generations": [
+            {
+              "name": "Spring",
+              "period": "2021-Present",
+              "bodyStyles": ["SUV/Hatchback"],
+              "engines": [
+                {
+                  "engineType": "Electric",
+                  "engineCapacity": 0,
+                  "enginePowerKW": 33,
+                  "enginePowerHP": 45,
+                  "engineCode": "—",
+                  "description": "Electric 45"
+                },
+                {
+                  "engineType": "Electric",
+                  "engineCapacity": 0,
+                  "enginePowerKW": 48,
+                  "enginePowerHP": 65,
+                  "engineCode": "—",
+                  "description": "Electric 65"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Lodgy",
+          "generations": [
+            {
+              "name": "Lodgy",
+              "period": "2012-2022",
+              "bodyStyles": ["MPV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 75,
+                  "enginePowerHP": 102,
+                  "engineCode": "H4M",
+                  "description": "1.6 SCe"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1197,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 115,
+                  "engineCode": "H5Ft",
+                  "description": "1.2 TCe"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1461,
+                  "enginePowerKW": 79,
+                  "enginePowerHP": 107,
+                  "engineCode": "K9K",
+                  "description": "1.5 dCi"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Dokker",
+          "generations": [
+            {
+              "name": "Dokker",
+              "period": "2012-2021",
+              "bodyStyles": ["Van", "Leisure Activity Vehicle"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 75,
+                  "enginePowerHP": 102,
+                  "engineCode": "H4M",
+                  "description": "1.6 SCe"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1197,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 115,
+                  "engineCode": "H5Ft",
+                  "description": "1.2 TCe"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1461,
+                  "enginePowerKW": 66,
+                  "enginePowerHP": 90,
+                  "engineCode": "K9K",
+                  "description": "1.5 dCi"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]

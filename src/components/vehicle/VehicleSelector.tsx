@@ -10,6 +10,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Loader2, ChevronRight, Car } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -79,6 +80,11 @@ export default function VehicleSelector({
   const [selectedModelId, setSelectedModelId] = useState<string>("");
   const [selectedGenerationId, setSelectedGenerationId] = useState<string>("");
   const [selectedEngineId, setSelectedEngineId] = useState<string>("");
+  // Pretraga u dropdownima
+  const [brandQuery, setBrandQuery] = useState("");
+  const [modelQuery, setModelQuery] = useState("");
+  const [generationQuery, setGenerationQuery] = useState("");
+  const [engineQuery, setEngineQuery] = useState("");
   
   // Stanja za učitavanje
   const [loadingBrands, setLoadingBrands] = useState<boolean>(true);
@@ -104,6 +110,34 @@ export default function VehicleSelector({
   const modelsToRender = useMemo<VehicleModel[]>(() => uniqById(models), [models]);
   const generationsToRender = useMemo<VehicleGeneration[]>(() => uniqById(generations), [generations]);
   const enginesToRender = useMemo<VehicleEngine[]>(() => uniqById(engines), [engines]);
+
+  // Filtrirani popisi po upitu
+  const filteredBrands = useMemo(() => {
+    const q = brandQuery.trim().toLowerCase();
+    return q ? brandsToRender.filter(b => b.name.toLowerCase().includes(q)) : brandsToRender;
+  }, [brandQuery, brandsToRender]);
+  const filteredModels = useMemo(() => {
+    const q = modelQuery.trim().toLowerCase();
+    return q ? modelsToRender.filter(m => m.name.toLowerCase().includes(q)) : modelsToRender;
+  }, [modelQuery, modelsToRender]);
+  const filteredGenerations = useMemo(() => {
+    const q = generationQuery.trim().toLowerCase();
+    return q ? generationsToRender.filter(g => `${g.name} ${g.period ?? ''}`.toLowerCase().includes(q)) : generationsToRender;
+  }, [generationQuery, generationsToRender]);
+  const filteredEngines = useMemo(() => {
+    const q = engineQuery.trim().toLowerCase();
+    if (!q) return enginesToRender;
+    const desc = (e: VehicleEngine) => {
+      const parts: string[] = [];
+      if (e.engineType) parts.push(e.engineType);
+      if (e.engineCapacity) parts.push(`${(e.engineCapacity / 1000).toFixed(1)}l`);
+      if (e.enginePowerKW) parts.push(`${e.enginePowerKW}kw`);
+      if (e.enginePowerHP) parts.push(`${e.enginePowerHP}ks`);
+      if (e.engineCode) parts.push(e.engineCode);
+      return parts.join(" ");
+    };
+    return enginesToRender.filter(e => desc(e).toLowerCase().includes(q));
+  }, [engineQuery, enginesToRender]);
   
   // Učitavanje brendova vozila pri prvom renderiranju
   useEffect(() => {
@@ -326,9 +360,21 @@ export default function VehicleSelector({
               {loadingBrands ? (
                 <div className="flex items-center justify-center p-2"><Loader2 className="h-4 w-4 animate-spin mr-2 text-sunfire-400" />Učitavanje...</div>
               ) : (
-                brandsToRender.map((brand) => (
-                  <SelectItem key={brand.id} value={brand.id} className="focus:bg-sunfire-500/20 focus:text-slate-900">{brand.name}</SelectItem>
-                ))
+                <>
+                  <div className="p-2 sticky top-0 bg-slate-900/90 backdrop-blur z-10">
+                    <Input
+                      value={brandQuery}
+                      onChange={(e) => setBrandQuery(e.target.value)}
+                      placeholder="Pretraži marke..."
+                      className="h-8 text-sm bg-slate-800 border-slate-700 text-white placeholder:text-slate-400"
+                    />
+                  </div>
+                  <div className="max-h-72 overflow-y-auto">
+                    {filteredBrands.map((brand) => (
+                      <SelectItem key={brand.id} value={brand.id} className="focus:bg-sunfire-500/20 focus:text-slate-900">{brand.name}</SelectItem>
+                    ))}
+                  </div>
+                </>
               )}
             </SelectContent>
           </Select>
@@ -349,9 +395,21 @@ export default function VehicleSelector({
               {loadingModels ? (
                 <div className="flex items-center justify-center p-2"><Loader2 className="h-4 w-4 animate-spin mr-2 text-sunfire-400" />Učitavanje...</div>
               ) : (
-                modelsToRender.map((model) => (
-                  <SelectItem key={model.id} value={model.id} className="focus:bg-sunfire-500/20 focus:text-slate-900">{model.name}</SelectItem>
-                ))
+                <>
+                  <div className="p-2 sticky top-0 bg-slate-900/90 backdrop-blur z-10">
+                    <Input
+                      value={modelQuery}
+                      onChange={(e) => setModelQuery(e.target.value)}
+                      placeholder="Pretraži modele..."
+                      className="h-8 text-sm bg-slate-800 border-slate-700 text-white placeholder:text-slate-400"
+                    />
+                  </div>
+                  <div className="max-h-72 overflow-y-auto">
+                    {filteredModels.map((model) => (
+                      <SelectItem key={model.id} value={model.id} className="focus:bg-sunfire-500/20 focus:text-slate-900">{model.name}</SelectItem>
+                    ))}
+                  </div>
+                </>
               )}
             </SelectContent>
           </Select>
@@ -372,9 +430,21 @@ export default function VehicleSelector({
               {loadingGenerations ? (
                 <div className="flex items-center justify-center p-2"><Loader2 className="h-4 w-4 animate-spin mr-2 text-sunfire-400" />Učitavanje...</div>
               ) : (
-                generationsToRender.map((gen) => (
-                  <SelectItem key={gen.id} value={gen.id} className="focus:bg-sunfire-500/20 focus:text-slate-900">{gen.name} {gen.period && `(${gen.period})`}</SelectItem>
-                ))
+                <>
+                  <div className="p-2 sticky top-0 bg-slate-900/90 backdrop-blur z-10">
+                    <Input
+                      value={generationQuery}
+                      onChange={(e) => setGenerationQuery(e.target.value)}
+                      placeholder="Pretraži generacije..."
+                      className="h-8 text-sm bg-slate-800 border-slate-700 text-white placeholder:text-slate-400"
+                    />
+                  </div>
+                  <div className="max-h-72 overflow-y-auto">
+                    {filteredGenerations.map((gen) => (
+                      <SelectItem key={gen.id} value={gen.id} className="focus:bg-sunfire-500/20 focus:text-slate-900">{gen.name} {gen.period && `(${gen.period})`}</SelectItem>
+                    ))}
+                  </div>
+                </>
               )}
             </SelectContent>
           </Select>
@@ -396,10 +466,20 @@ export default function VehicleSelector({
                 <div className="flex items-center justify-center p-2"><Loader2 className="h-4 w-4 animate-spin mr-2 text-sunfire-400" />Učitavanje...</div>
               ) : (
                 <>
-                  <SelectItem value="all" className="focus:bg-sunfire-500/20 focus:text-slate-900">Svi motori</SelectItem>
-                  {enginesToRender.map((engine) => (
-                    <SelectItem key={engine.id} value={engine.id} className="focus:bg-sunfire-500/20 focus:text-slate-900">{formatEngineDescription(engine)}</SelectItem>
-                  ))}
+                  <div className="p-2 sticky top-0 bg-slate-900/90 backdrop-blur z-10">
+                    <Input
+                      value={engineQuery}
+                      onChange={(e) => setEngineQuery(e.target.value)}
+                      placeholder="Pretraži motore..."
+                      className="h-8 text-sm bg-slate-800 border-slate-700 text-white placeholder:text-slate-400"
+                    />
+                  </div>
+                  <div className="max-h-72 overflow-y-auto">
+                    <SelectItem value="all" className="focus:bg-sunfire-500/20 focus:text-slate-900">Svi motori</SelectItem>
+                    {filteredEngines.map((engine) => (
+                      <SelectItem key={engine.id} value={engine.id} className="focus:bg-sunfire-500/20 focus:text-slate-900">{formatEngineDescription(engine)}</SelectItem>
+                    ))}
+                  </div>
                 </>
               )}
             </SelectContent>

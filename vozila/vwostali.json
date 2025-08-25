@@ -1,0 +1,1000 @@
+[
+    {
+      "name": "Volkswagen",
+      "type": "PASSENGER",
+      "models": [
+        {
+          "name": "Beetle (New)",
+          "generations": [
+            {
+              "name": "Beetle (9C/1C)",
+              "period": "1997-2011",
+              "bodyStyles": ["Hatchback", "Cabriolet"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1390,
+                  "enginePowerKW": 55,
+                  "enginePowerHP": 75,
+                  "engineCode": "BCA",
+                  "description": "1.4 16V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1595,
+                  "enginePowerKW": 74,
+                  "enginePowerHP": 101,
+                  "engineCode": "AWH",
+                  "description": "1.6 MPI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1595,
+                  "enginePowerKW": 75,
+                  "enginePowerHP": 102,
+                  "engineCode": "AYD/BFS",
+                  "description": "1.6 MPI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1781,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "AGU/APH/AVC/AWU/AWV/BKF",
+                  "description": "1.8T 20V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1781,
+                  "enginePowerKW": 132,
+                  "enginePowerHP": 180,
+                  "engineCode": "AWP",
+                  "description": "1.8T 20V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 115,
+                  "engineCode": "AEG/APK/AQY/AZJ/BEV",
+                  "description": "2.0 MPI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2324,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "AQN",
+                  "description": "2.3 V5"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 3189,
+                  "enginePowerKW": 165,
+                  "enginePowerHP": 225,
+                  "engineCode": "AXJ",
+                  "description": "RSi 3.2 VR6"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1896,
+                  "enginePowerKW": 66,
+                  "enginePowerHP": 90,
+                  "engineCode": "ALH",
+                  "description": "1.9 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1896,
+                  "enginePowerKW": 74,
+                  "enginePowerHP": 101,
+                  "engineCode": "ATD/AXR",
+                  "description": "1.9 TDI PD"
+                }
+              ]
+            },
+            {
+              "name": "Beetle (A5)",
+              "period": "2011-2019",
+              "bodyStyles": ["Hatchback", "Cabriolet"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1197,
+                  "enginePowerKW": 77,
+                  "enginePowerHP": 105,
+                  "engineCode": "CBZB/CYVD",
+                  "description": "1.2 TSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1390,
+                  "enginePowerKW": 118,
+                  "enginePowerHP": 160,
+                  "engineCode": "CAVD/CTHD",
+                  "description": "1.4 TSI (Twin-charged)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1395,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "CZDA",
+                  "description": "1.4 TSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 147,
+                  "enginePowerHP": 200,
+                  "engineCode": "CCTA/CCZA",
+                  "description": "2.0 TSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 155,
+                  "enginePowerHP": 211,
+                  "engineCode": "CULC",
+                  "description": "2.0 TSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 162,
+                  "enginePowerHP": 220,
+                  "engineCode": "CPL",
+                  "description": "2.0 TSI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 77,
+                  "enginePowerHP": 105,
+                  "engineCode": "CAYC",
+                  "description": "1.6 TDI CR"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "CFFB/CJAA",
+                  "description": "2.0 TDI CR"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "CUUB",
+                  "description": "2.0 TDI CR"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "CC",
+          "generations": [
+            {
+              "name": "Passat CC / CC (35)",
+              "period": "2008-2017",
+              "bodyStyles": ["Coupe"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1390,
+                  "enginePowerKW": 118,
+                  "enginePowerHP": 160,
+                  "engineCode": "CTHD",
+                  "description": "1.4 TSI (Twin-charged)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1798,
+                  "enginePowerKW": 118,
+                  "enginePowerHP": 160,
+                  "engineCode": "BZB/CDAA",
+                  "description": "1.8 TSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 147,
+                  "enginePowerHP": 200,
+                  "engineCode": "CAWB/CCZA",
+                  "description": "2.0 TSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 155,
+                  "enginePowerHP": 211,
+                  "engineCode": "CCZB",
+                  "description": "2.0 TSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 3597,
+                  "enginePowerKW": 220,
+                  "enginePowerHP": 300,
+                  "engineCode": "BWS",
+                  "description": "3.6 VR6 FSI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "CBAB/CFFB",
+                  "description": "2.0 TDI CR"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "CUVC",
+                  "description": "2.0 TDI CR (Facelift)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "CBBB/CFGB",
+                  "description": "2.0 TDI CR"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 130,
+                  "enginePowerHP": 177,
+                  "engineCode": "CFGC",
+                  "description": "2.0 TDI CR"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 135,
+                  "enginePowerHP": 184,
+                  "engineCode": "CUWA",
+                  "description": "2.0 TDI CR (Facelift)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Eos",
+          "generations": [
+            {
+              "name": "Eos (1F)",
+              "period": "2006-2015",
+              "bodyStyles": ["Cabriolet"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1390,
+                  "enginePowerKW": 90,
+                  "enginePowerHP": 122,
+                  "engineCode": "CAXA",
+                  "description": "1.4 TSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1390,
+                  "enginePowerKW": 118,
+                  "enginePowerHP": 160,
+                  "engineCode": "CAVD/CTHD",
+                  "description": "1.4 TSI (Twin-charged)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 115,
+                  "engineCode": "BLF",
+                  "description": "1.6 FSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "BVY/BVZ",
+                  "description": "2.0 FSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 147,
+                  "enginePowerHP": 200,
+                  "engineCode": "BWA/CAWB",
+                  "description": "2.0 TFSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 155,
+                  "enginePowerHP": 211,
+                  "engineCode": "CCZB",
+                  "description": "2.0 TSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 3189,
+                  "enginePowerKW": 184,
+                  "enginePowerHP": 250,
+                  "engineCode": "AXZ",
+                  "description": "3.2 V6"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 3597,
+                  "enginePowerKW": 191,
+                  "enginePowerHP": 260,
+                  "engineCode": "CDVA",
+                  "description": "3.6 V6"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "BMM/CBAB",
+                  "description": "2.0 TDI"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "ID.3",
+          "generations": [
+            {
+              "name": "ID.3 (E11)",
+              "period": "2020-Present",
+              "bodyStyles": ["Hatchback"],
+              "engines": [
+                {
+                  "engineType": "Electric",
+                  "engineCapacity": 0,
+                  "enginePowerKW": 107,
+                  "enginePowerHP": 145,
+                  "engineCode": "APP 310",
+                  "description": "Pro (58 kWh)"
+                },
+                {
+                  "engineType": "Electric",
+                  "engineCapacity": 0,
+                  "enginePowerKW": 150,
+                  "enginePowerHP": 204,
+                  "engineCode": "APP 310",
+                  "description": "Pro Performance / Pro S (58 kWh / 77 kWh)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "ID.4",
+          "generations": [
+            {
+              "name": "ID.4 (E21)",
+              "period": "2020-Present",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Electric",
+                  "engineCapacity": 0,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "APP 310",
+                  "description": "Pro (77 kWh)"
+                },
+                {
+                  "engineType": "Electric",
+                  "engineCapacity": 0,
+                  "enginePowerKW": 150,
+                  "enginePowerHP": 204,
+                  "engineCode": "APP 310",
+                  "description": "Pro Performance (77 kWh)"
+                },
+                {
+                  "engineType": "Electric",
+                  "engineCapacity": 0,
+                  "enginePowerKW": 220,
+                  "enginePowerHP": 299,
+                  "engineCode": "APP 310 + AKA",
+                  "description": "GTX 4Motion (77 kWh)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Jetta",
+          "generations": [
+            {
+              "name": "Jetta V (1K)",
+              "period": "2005-2010",
+              "bodyStyles": ["Sedan"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1595,
+                  "enginePowerKW": 75,
+                  "enginePowerHP": 102,
+                  "engineCode": "BSE/BSF/CCSA",
+                  "description": "1.6 MPI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 115,
+                  "engineCode": "BLF",
+                  "description": "1.6 FSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1390,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "BMY",
+                  "description": "1.4 TSI (Twin-charged)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1390,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "BLG",
+                  "description": "1.4 TSI (Twin-charged)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "BVY/BVZ",
+                  "description": "2.0 FSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 147,
+                  "enginePowerHP": 200,
+                  "engineCode": "BWA/CAWB",
+                  "description": "2.0 TFSI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1896,
+                  "enginePowerKW": 77,
+                  "enginePowerHP": 105,
+                  "engineCode": "BKC/BXE/BLS",
+                  "description": "1.9 TDI PD"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "BMM/BKD",
+                  "description": "2.0 TDI PD"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "BMN",
+                  "description": "2.0 TDI PD"
+                }
+              ]
+            },
+            {
+              "name": "Jetta VI (162)",
+              "period": "2010-2018",
+              "bodyStyles": ["Sedan"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1197,
+                  "enginePowerKW": 77,
+                  "enginePowerHP": 105,
+                  "engineCode": "CBZB",
+                  "description": "1.2 TSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1390,
+                  "enginePowerKW": 90,
+                  "enginePowerHP": 122,
+                  "engineCode": "CAXA",
+                  "description": "1.4 TSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1390,
+                  "enginePowerKW": 118,
+                  "enginePowerHP": 160,
+                  "engineCode": "CAVD/CTHD",
+                  "description": "1.4 TSI (Twin-charged)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 155,
+                  "enginePowerHP": 211,
+                  "engineCode": "CCZB",
+                  "description": "2.0 TSI GLI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 77,
+                  "enginePowerHP": 105,
+                  "engineCode": "CAYC",
+                  "description": "1.6 TDI CR"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "CFFB",
+                  "description": "2.0 TDI CR"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Phaeton",
+          "generations": [
+            {
+              "name": "Phaeton (3D)",
+              "period": "2002-2016",
+              "bodyStyles": ["Sedan"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 3189,
+                  "enginePowerKW": 177,
+                  "enginePowerHP": 241,
+                  "engineCode": "AYT/BKL",
+                  "description": "3.2 VR6"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 3597,
+                  "enginePowerKW": 206,
+                  "enginePowerHP": 280,
+                  "engineCode": "CHNA",
+                  "description": "3.6 VR6 FSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 4172,
+                  "enginePowerKW": 246,
+                  "enginePowerHP": 335,
+                  "engineCode": "BGH/BGJ",
+                  "description": "4.2 V8"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 5998,
+                  "enginePowerKW": 309,
+                  "enginePowerHP": 420,
+                  "engineCode": "BAN",
+                  "description": "6.0 W12"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 5998,
+                  "enginePowerKW": 331,
+                  "enginePowerHP": 450,
+                  "engineCode": "BRN/BTT",
+                  "description": "6.0 W12"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2967,
+                  "enginePowerKW": 165,
+                  "enginePowerHP": 224,
+                  "engineCode": "BMK",
+                  "description": "3.0 V6 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2967,
+                  "enginePowerKW": 176,
+                  "enginePowerHP": 240,
+                  "engineCode": "CARA/CEXA",
+                  "description": "3.0 V6 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 4921,
+                  "enginePowerKW": 230,
+                  "enginePowerHP": 313,
+                  "engineCode": "AJS",
+                  "description": "5.0 V10 TDI"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "T-Cross",
+          "generations": [
+            {
+              "name": "T-Cross (C11)",
+              "period": "2018-Present",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 999,
+                  "enginePowerKW": 70,
+                  "enginePowerHP": 95,
+                  "engineCode": "DKLA",
+                  "description": "1.0 TSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 999,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 115,
+                  "engineCode": "DKRF",
+                  "description": "1.0 TSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1498,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "DADA/DPCA",
+                  "description": "1.5 TSI Evo ACT"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 70,
+                  "enginePowerHP": 95,
+                  "engineCode": "DGTD",
+                  "description": "1.6 TDI"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "T-Roc",
+          "generations": [
+            {
+              "name": "T-Roc (A11)",
+              "period": "2017-Present",
+              "bodyStyles": ["SUV", "Cabriolet"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 999,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 115,
+                  "engineCode": "CHZJ",
+                  "description": "1.0 TSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1498,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "DADA/DPCA",
+                  "description": "1.5 TSI Evo ACT"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 140,
+                  "enginePowerHP": 190,
+                  "engineCode": "CZPB/DKZA",
+                  "description": "2.0 TSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 221,
+                  "enginePowerHP": 300,
+                  "engineCode": "DNFE",
+                  "description": "R 2.0 TSI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 115,
+                  "engineCode": "DGTE",
+                  "description": "1.6 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "DFFA",
+                  "description": "2.0 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 140,
+                  "enginePowerHP": 190,
+                  "engineCode": "DFHA",
+                  "description": "2.0 TDI"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Transporter / Multivan",
+          "generations": [
+            {
+              "name": "T4",
+              "period": "1990-2003",
+              "bodyStyles": ["Van", "Minibus"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 62,
+                  "enginePowerHP": 84,
+                  "engineCode": "AAC",
+                  "description": "2.0"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2461,
+                  "enginePowerKW": 81,
+                  "enginePowerHP": 110,
+                  "engineCode": "AAF/ACU/AEU/APL",
+                  "description": "2.5"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2792,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "AES",
+                  "description": "2.8 VR6"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1896,
+                  "enginePowerKW": 50,
+                  "enginePowerHP": 68,
+                  "engineCode": "ABL",
+                  "description": "1.9 TD"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2370,
+                  "enginePowerKW": 57,
+                  "enginePowerHP": 78,
+                  "engineCode": "AAB",
+                  "description": "2.4 D"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2461,
+                  "enginePowerKW": 75,
+                  "enginePowerHP": 102,
+                  "engineCode": "ACV/AUF/AYC",
+                  "description": "2.5 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2461,
+                  "enginePowerKW": 111,
+                  "enginePowerHP": 151,
+                  "engineCode": "AHY/AXG",
+                  "description": "2.5 TDI"
+                }
+              ]
+            },
+            {
+              "name": "T5",
+              "period": "2003-2015",
+              "bodyStyles": ["Van", "Minibus"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 115,
+                  "engineCode": "AXA",
+                  "description": "2.0"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 3189,
+                  "enginePowerKW": 173,
+                  "enginePowerHP": 235,
+                  "engineCode": "BKK/CFLA",
+                  "description": "3.2 V6"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 150,
+                  "enginePowerHP": 204,
+                  "engineCode": "CJKA",
+                  "description": "2.0 TSI (Facelift)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1896,
+                  "enginePowerKW": 77,
+                  "enginePowerHP": 105,
+                  "engineCode": "AXB",
+                  "description": "1.9 TDI PD"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2461,
+                  "enginePowerKW": 96,
+                  "enginePowerHP": 130,
+                  "engineCode": "AXD",
+                  "description": "2.5 TDI PD"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2461,
+                  "enginePowerKW": 128,
+                  "enginePowerHP": 174,
+                  "engineCode": "AXE",
+                  "description": "2.5 TDI PD"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "CAAC",
+                  "description": "2.0 TDI CR (Facelift)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 132,
+                  "enginePowerHP": 180,
+                  "engineCode": "CFCA",
+                  "description": "2.0 BiTDI CR (Facelift)"
+                }
+              ]
+            },
+            {
+              "name": "T6 / T6.1",
+              "period": "2015-Present",
+              "bodyStyles": ["Van", "Minibus"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "CXXB",
+                  "description": "2.0 TSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 150,
+                  "enginePowerHP": 204,
+                  "engineCode": "CXXA",
+                  "description": "2.0 TSI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 75,
+                  "enginePowerHP": 102,
+                  "engineCode": "CAAB",
+                  "description": "2.0 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "CXHA",
+                  "description": "2.0 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 146,
+                  "enginePowerHP": 199,
+                  "engineCode": "CXEB",
+                  "description": "2.0 BiTDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 150,
+                  "enginePowerHP": 204,
+                  "engineCode": "CXEC",
+                  "description": "2.0 BiTDI"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "up!",
+          "generations": [
+            {
+              "name": "up! (121)",
+              "period": "2011-Present",
+              "bodyStyles": ["Hatchback"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 999,
+                  "enginePowerKW": 44,
+                  "enginePowerHP": 60,
+                  "engineCode": "CHYA",
+                  "description": "1.0 MPI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 999,
+                  "enginePowerKW": 55,
+                  "enginePowerHP": 75,
+                  "engineCode": "CHYB",
+                  "description": "1.0 MPI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 999,
+                  "enginePowerKW": 66,
+                  "enginePowerHP": 90,
+                  "engineCode": "CHZB",
+                  "description": "1.0 TSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 999,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 115,
+                  "engineCode": "DKRF",
+                  "description": "GTI 1.0 TSI"
+                },
+                {
+                  "engineType": "CNG",
+                  "engineCapacity": 999,
+                  "enginePowerKW": 50,
+                  "enginePowerHP": 68,
+                  "engineCode": "CPGA",
+                  "description": "1.0 EcoFuel"
+                },
+                {
+                  "engineType": "Electric",
+                  "engineCapacity": 0,
+                  "enginePowerKW": 61,
+                  "enginePowerHP": 83,
+                  "engineCode": "EABA",
+                  "description": "e-up!"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]

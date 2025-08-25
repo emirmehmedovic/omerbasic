@@ -1,0 +1,1699 @@
+[
+    {
+      "name": "Mercedes-Benz",
+      "type": "PASSENGER",
+      "models": [
+        {
+          "name": "A-Class",
+          "generations": [
+            {
+              "name": "A-Class (W168)",
+              "period": "1997-2004",
+              "bodyStyles": ["Hatchback"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1397,
+                  "enginePowerKW": 60,
+                  "enginePowerHP": 82,
+                  "engineCode": "M166.940",
+                  "description": "A 140"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 75,
+                  "enginePowerHP": 102,
+                  "engineCode": "M166.960",
+                  "description": "A 160"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1898,
+                  "enginePowerKW": 92,
+                  "enginePowerHP": 125,
+                  "engineCode": "M166.990",
+                  "description": "A 190"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1689,
+                  "enginePowerKW": 55,
+                  "enginePowerHP": 75,
+                  "engineCode": "OM668.940",
+                  "description": "A 170 CDI"
+                }
+              ]
+            },
+            {
+              "name": "A-Class (W169)",
+              "period": "2004-2012",
+              "bodyStyles": ["Hatchback (3-door)", "Hatchback (5-door)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1498,
+                  "enginePowerKW": 70,
+                  "enginePowerHP": 95,
+                  "engineCode": "M266.920",
+                  "description": "A 150 / A 160"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1699,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 116,
+                  "engineCode": "M266.940",
+                  "description": "A 170 / A 180"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2034,
+                  "enginePowerKW": 100,
+                  "enginePowerHP": 136,
+                  "engineCode": "M266.960",
+                  "description": "A 200"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2034,
+                  "enginePowerKW": 142,
+                  "enginePowerHP": 193,
+                  "engineCode": "M266.980",
+                  "description": "A 200 Turbo"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1991,
+                  "enginePowerKW": 60,
+                  "enginePowerHP": 82,
+                  "engineCode": "OM640.942",
+                  "description": "A 160 CDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1991,
+                  "enginePowerKW": 80,
+                  "enginePowerHP": 109,
+                  "engineCode": "OM640.940",
+                  "description": "A 180 CDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1991,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "OM640.941",
+                  "description": "A 200 CDI"
+                }
+              ]
+            },
+            {
+              "name": "A-Class (W176)",
+              "period": "2012-2018",
+              "bodyStyles": ["Hatchback"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1595,
+                  "enginePowerKW": 90,
+                  "enginePowerHP": 122,
+                  "engineCode": "M270.910",
+                  "description": "A 180"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1595,
+                  "enginePowerKW": 115,
+                  "enginePowerHP": 156,
+                  "engineCode": "M270.910",
+                  "description": "A 200"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1991,
+                  "enginePowerKW": 155,
+                  "enginePowerHP": 211,
+                  "engineCode": "M270.920",
+                  "description": "A 250"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1991,
+                  "enginePowerKW": 280,
+                  "enginePowerHP": 381,
+                  "engineCode": "M133.980",
+                  "description": "A 45 AMG"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1461,
+                  "enginePowerKW": 80,
+                  "enginePowerHP": 109,
+                  "engineCode": "OM607.951",
+                  "description": "A 180 d (Renault)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1796,
+                  "enginePowerKW": 100,
+                  "enginePowerHP": 136,
+                  "engineCode": "OM651.901",
+                  "description": "A 200 CDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2143,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "OM651.930",
+                  "description": "A 220 d"
+                }
+              ]
+            },
+            {
+              "name": "A-Class (W177)",
+              "period": "2018-Present",
+              "bodyStyles": ["Hatchback", "Sedan"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1332,
+                  "enginePowerKW": 100,
+                  "enginePowerHP": 136,
+                  "engineCode": "M282.914",
+                  "description": "A 180"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1332,
+                  "enginePowerKW": 120,
+                  "enginePowerHP": 163,
+                  "engineCode": "M282.914",
+                  "description": "A 200"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1991,
+                  "enginePowerKW": 165,
+                  "enginePowerHP": 224,
+                  "engineCode": "M260.920",
+                  "description": "A 250"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1991,
+                  "enginePowerKW": 225,
+                  "enginePowerHP": 306,
+                  "engineCode": "M260.920",
+                  "description": "AMG A 35"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1991,
+                  "enginePowerKW": 310,
+                  "enginePowerHP": 421,
+                  "engineCode": "M139.980",
+                  "description": "AMG A 45 S"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1461,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 116,
+                  "engineCode": "OM608.915",
+                  "description": "A 180 d (Renault)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1950,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "OM654q.920",
+                  "description": "A 200 d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1950,
+                  "enginePowerKW": 140,
+                  "enginePowerHP": 190,
+                  "engineCode": "OM654q.920",
+                  "description": "A 220 d"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "B-Class",
+          "generations": [
+            {
+              "name": "B-Class (W245)",
+              "period": "2005-2011",
+              "bodyStyles": ["MPV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1699,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 116,
+                  "engineCode": "M266.940",
+                  "description": "B 170 / B 180"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2034,
+                  "enginePowerKW": 142,
+                  "enginePowerHP": 193,
+                  "engineCode": "M266.980",
+                  "description": "B 200 Turbo"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1991,
+                  "enginePowerKW": 80,
+                  "enginePowerHP": 109,
+                  "engineCode": "OM640.940",
+                  "description": "B 180 CDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1991,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "OM640.941",
+                  "description": "B 200 CDI"
+                }
+              ]
+            },
+            {
+              "name": "B-Class (W246)",
+              "period": "2011-2018",
+              "bodyStyles": ["MPV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1595,
+                  "enginePowerKW": 115,
+                  "enginePowerHP": 156,
+                  "engineCode": "M270.910",
+                  "description": "B 200"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1991,
+                  "enginePowerKW": 155,
+                  "enginePowerHP": 211,
+                  "engineCode": "M270.920",
+                  "description": "B 250"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1796,
+                  "enginePowerKW": 100,
+                  "enginePowerHP": 136,
+                  "engineCode": "OM651.901",
+                  "description": "B 200 CDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2143,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "OM651.930",
+                  "description": "B 220 CDI"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "C-Class",
+          "generations": [
+            {
+              "name": "C-Class (W202)",
+              "period": "1993-2000",
+              "bodyStyles": ["Sedan", "Wagon (Estate)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1799,
+                  "enginePowerKW": 90,
+                  "enginePowerHP": 122,
+                  "engineCode": "M111.920",
+                  "description": "C 180"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 100,
+                  "enginePowerHP": 136,
+                  "engineCode": "M111.941",
+                  "description": "C 200"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 141,
+                  "enginePowerHP": 192,
+                  "engineCode": "M111.944",
+                  "description": "C 200 Kompressor"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2295,
+                  "enginePowerKW": 142,
+                  "enginePowerHP": 193,
+                  "engineCode": "M111.974",
+                  "description": "C 230 Kompressor"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2155,
+                  "enginePowerKW": 70,
+                  "enginePowerHP": 95,
+                  "engineCode": "OM604.910",
+                  "description": "C 220 Diesel"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2151,
+                  "enginePowerKW": 92,
+                  "enginePowerHP": 125,
+                  "engineCode": "OM611.960",
+                  "description": "C 220 CDI"
+                }
+              ]
+            },
+            {
+              "name": "C-Class (W203)",
+              "period": "2000-2007",
+              "bodyStyles": ["Sedan", "Wagon (Estate)", "Sportcoupe"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1796,
+                  "enginePowerKW": 105,
+                  "enginePowerHP": 143,
+                  "engineCode": "M271.946",
+                  "description": "C 180 Kompressor"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1796,
+                  "enginePowerKW": 120,
+                  "enginePowerHP": 163,
+                  "engineCode": "M271.940",
+                  "description": "C 200 Kompressor"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2496,
+                  "enginePowerKW": 150,
+                  "enginePowerHP": 204,
+                  "engineCode": "M272.920",
+                  "description": "C 230 (V6)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 3199,
+                  "enginePowerKW": 260,
+                  "enginePowerHP": 354,
+                  "engineCode": "M112.961",
+                  "description": "C 32 AMG Kompressor (V6)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 5439,
+                  "enginePowerKW": 270,
+                  "enginePowerHP": 367,
+                  "engineCode": "M113.988",
+                  "description": "C 55 AMG (V8)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2148,
+                  "enginePowerKW": 90,
+                  "enginePowerHP": 122,
+                  "engineCode": "OM646.962",
+                  "description": "C 200 CDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2148,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "OM646.963",
+                  "description": "C 220 CDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2685,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "OM612.962",
+                  "description": "C 270 CDI (I5)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2996,
+                  "enginePowerKW": 165,
+                  "enginePowerHP": 224,
+                  "engineCode": "OM642.910",
+                  "description": "C 320 CDI (V6)"
+                }
+              ]
+            },
+            {
+              "name": "C-Class (W204)",
+              "period": "2007-2014",
+              "bodyStyles": ["Sedan", "Wagon (Estate)", "Coupe"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1595,
+                  "enginePowerKW": 115,
+                  "enginePowerHP": 156,
+                  "engineCode": "M274.910",
+                  "description": "C 180 (Turbo)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1796,
+                  "enginePowerKW": 115,
+                  "enginePowerHP": 156,
+                  "engineCode": "M271.952",
+                  "description": "C 180 Kompressor"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1796,
+                  "enginePowerKW": 135,
+                  "enginePowerHP": 184,
+                  "engineCode": "M271.820",
+                  "description": "C 200 CGI BlueEFFICIENCY"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2996,
+                  "enginePowerKW": 170,
+                  "enginePowerHP": 231,
+                  "engineCode": "M272.947",
+                  "description": "C 280 / C 300 (V6)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 3498,
+                  "enginePowerKW": 225,
+                  "enginePowerHP": 306,
+                  "engineCode": "M276.957",
+                  "description": "C 350 BlueEFFICIENCY (V6)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 6208,
+                  "enginePowerKW": 336,
+                  "enginePowerHP": 457,
+                  "engineCode": "M156.985",
+                  "description": "C 63 AMG (6.2 V8)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2143,
+                  "enginePowerKW": 100,
+                  "enginePowerHP": 136,
+                  "engineCode": "OM651.913",
+                  "description": "C 200 CDI BlueEFFICIENCY"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2143,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "OM651.911",
+                  "description": "C 220 CDI BlueEFFICIENCY"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2143,
+                  "enginePowerKW": 150,
+                  "enginePowerHP": 204,
+                  "engineCode": "OM651.912",
+                  "description": "C 250 CDI BlueEFFICIENCY"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2987,
+                  "enginePowerKW": 195,
+                  "enginePowerHP": 265,
+                  "engineCode": "OM642.834",
+                  "description": "C 350 CDI BlueEFFICIENCY (V6)"
+                }
+              ]
+            },
+            {
+              "name": "C-Class (W205)",
+              "period": "2014-2021",
+              "bodyStyles": ["Sedan", "Wagon (Estate)", "Coupe", "Cabriolet"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1595,
+                  "enginePowerKW": 115,
+                  "enginePowerHP": 156,
+                  "engineCode": "M274.910",
+                  "description": "C 180"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1991,
+                  "enginePowerKW": 135,
+                  "enginePowerHP": 184,
+                  "engineCode": "M274.920",
+                  "description": "C 200"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1991,
+                  "enginePowerKW": 180,
+                  "enginePowerHP": 245,
+                  "engineCode": "M274.920",
+                  "description": "C 300"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2996,
+                  "enginePowerKW": 270,
+                  "enginePowerHP": 367,
+                  "engineCode": "M276.823",
+                  "description": "C 43 AMG 4MATIC (V6 Bi-Turbo)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 3982,
+                  "enginePowerKW": 350,
+                  "enginePowerHP": 476,
+                  "engineCode": "M177.980",
+                  "description": "C 63 AMG (V8 Bi-Turbo)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 3982,
+                  "enginePowerKW": 375,
+                  "enginePowerHP": 510,
+                  "engineCode": "M177.980",
+                  "description": "C 63 S AMG (V8 Bi-Turbo)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 100,
+                  "enginePowerHP": 136,
+                  "engineCode": "OM626.951",
+                  "description": "C 200 d (Renault)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2143,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "OM651.921",
+                  "description": "C 220 d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1950,
+                  "enginePowerKW": 143,
+                  "enginePowerHP": 194,
+                  "engineCode": "OM654.920",
+                  "description": "C 220 d (Facelift)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2143,
+                  "enginePowerKW": 150,
+                  "enginePowerHP": 204,
+                  "engineCode": "OM651.921",
+                  "description": "C 250 d"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "CLA-Class",
+          "generations": [
+            {
+              "name": "CLA-Class (C117)",
+              "period": "2013-2019",
+              "bodyStyles": ["Coupe", "Shooting Brake"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1595,
+                  "enginePowerKW": 115,
+                  "enginePowerHP": 156,
+                  "engineCode": "M270.910",
+                  "description": "CLA 200"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1991,
+                  "enginePowerKW": 155,
+                  "enginePowerHP": 211,
+                  "engineCode": "M270.920",
+                  "description": "CLA 250"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1991,
+                  "enginePowerKW": 280,
+                  "enginePowerHP": 381,
+                  "engineCode": "M133.980",
+                  "description": "CLA 45 AMG"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2143,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "OM651.930",
+                  "description": "CLA 220 d"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "CLS-Class",
+          "generations": [
+            {
+              "name": "CLS-Class (C219)",
+              "period": "2004-2010",
+              "bodyStyles": ["Coupe"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 3498,
+                  "enginePowerKW": 200,
+                  "enginePowerHP": 272,
+                  "engineCode": "M272.964",
+                  "description": "CLS 350 (V6)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 4966,
+                  "enginePowerKW": 225,
+                  "enginePowerHP": 306,
+                  "engineCode": "M113.967",
+                  "description": "CLS 500 (V8)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 5461,
+                  "enginePowerKW": 285,
+                  "enginePowerHP": 388,
+                  "engineCode": "M273.960",
+                  "description": "CLS 500 (V8 Facelift)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 5439,
+                  "enginePowerKW": 350,
+                  "enginePowerHP": 476,
+                  "engineCode": "M113.990",
+                  "description": "CLS 55 AMG Kompressor (V8)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 6208,
+                  "enginePowerKW": 378,
+                  "enginePowerHP": 514,
+                  "engineCode": "M156.983",
+                  "description": "CLS 63 AMG (6.2 V8)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2987,
+                  "enginePowerKW": 165,
+                  "enginePowerHP": 224,
+                  "engineCode": "OM642.920",
+                  "description": "CLS 320 CDI (V6)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "E-Class",
+          "generations": [
+            {
+              "name": "E-Class (W210)",
+              "period": "1995-2002",
+              "bodyStyles": ["Sedan", "Wagon (Estate)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 100,
+                  "enginePowerHP": 136,
+                  "engineCode": "M111.942",
+                  "description": "E 200"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 142,
+                  "enginePowerHP": 193,
+                  "engineCode": "M111.947",
+                  "description": "E 200 Kompressor"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2597,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "M112.914",
+                  "description": "E 240 V6"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 3199,
+                  "enginePowerKW": 165,
+                  "enginePowerHP": 224,
+                  "engineCode": "M112.941",
+                  "description": "E 320 V6"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 5439,
+                  "enginePowerKW": 260,
+                  "enginePowerHP": 354,
+                  "engineCode": "M113.980",
+                  "description": "E 55 AMG"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2151,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 116,
+                  "engineCode": "OM611.961",
+                  "description": "E 220 CDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2685,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "OM612.961",
+                  "description": "E 270 CDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 3226,
+                  "enginePowerKW": 145,
+                  "enginePowerHP": 197,
+                  "engineCode": "OM613.961",
+                  "description": "E 320 CDI"
+                }
+              ]
+            },
+            {
+              "name": "E-Class (W211)",
+              "period": "2002-2009",
+              "bodyStyles": ["Sedan", "Wagon (Estate)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1796,
+                  "enginePowerKW": 135,
+                  "enginePowerHP": 184,
+                  "engineCode": "M271.956",
+                  "description": "E 200 Kompressor"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2996,
+                  "enginePowerKW": 170,
+                  "enginePowerHP": 231,
+                  "engineCode": "M272.943",
+                  "description": "E 280 (V6)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 3498,
+                  "enginePowerKW": 200,
+                  "enginePowerHP": 272,
+                  "engineCode": "M272.964",
+                  "description": "E 350 (V6)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 5461,
+                  "enginePowerKW": 285,
+                  "enginePowerHP": 388,
+                  "engineCode": "M273.960",
+                  "description": "E 500 (V8)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 5439,
+                  "enginePowerKW": 350,
+                  "enginePowerHP": 476,
+                  "engineCode": "M113.990",
+                  "description": "E 55 AMG Kompressor (V8)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 6208,
+                  "enginePowerKW": 378,
+                  "enginePowerHP": 514,
+                  "engineCode": "M156.983",
+                  "description": "E 63 AMG (6.2 V8)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2148,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "OM646.961",
+                  "description": "E 220 CDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2685,
+                  "enginePowerKW": 130,
+                  "enginePowerHP": 177,
+                  "engineCode": "OM647.961",
+                  "description": "E 270 CDI (I5)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2987,
+                  "enginePowerKW": 165,
+                  "enginePowerHP": 224,
+                  "engineCode": "OM642.920",
+                  "description": "E 320 CDI (V6)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 3996,
+                  "enginePowerKW": 231,
+                  "enginePowerHP": 314,
+                  "engineCode": "OM629.910",
+                  "description": "E 420 CDI (V8)"
+                }
+              ]
+            },
+            {
+              "name": "E-Class (W212)",
+              "period": "2009-2016",
+              "bodyStyles": ["Sedan", "Wagon (Estate)", "Coupe (C207)", "Cabriolet (A207)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1796,
+                  "enginePowerKW": 135,
+                  "enginePowerHP": 184,
+                  "engineCode": "M271.860",
+                  "description": "E 200 CGI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1991,
+                  "enginePowerKW": 155,
+                  "enginePowerHP": 211,
+                  "engineCode": "M274.920",
+                  "description": "E 250 (Facelift)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 3498,
+                  "enginePowerKW": 225,
+                  "enginePowerHP": 306,
+                  "engineCode": "M276.952",
+                  "description": "E 350 (V6)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 4663,
+                  "enginePowerKW": 300,
+                  "enginePowerHP": 408,
+                  "engineCode": "M278.922",
+                  "description": "E 500 (V8 Bi-Turbo)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 5461,
+                  "enginePowerKW": 410,
+                  "enginePowerHP": 557,
+                  "engineCode": "M157.981",
+                  "description": "E 63 AMG (V8 Bi-Turbo)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2143,
+                  "enginePowerKW": 100,
+                  "enginePowerHP": 136,
+                  "engineCode": "OM651.925",
+                  "description": "E 200 CDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2143,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "OM651.924",
+                  "description": "E 220 CDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2143,
+                  "enginePowerKW": 150,
+                  "enginePowerHP": 204,
+                  "engineCode": "OM651.924",
+                  "description": "E 250 CDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2987,
+                  "enginePowerKW": 170,
+                  "enginePowerHP": 231,
+                  "engineCode": "OM642.850",
+                  "description": "E 300 CDI (V6)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2987,
+                  "enginePowerKW": 195,
+                  "enginePowerHP": 265,
+                  "engineCode": "OM642.858",
+                  "description": "E 350 CDI (V6)"
+                }
+              ]
+            },
+            {
+              "name": "E-Class (W213)",
+              "period": "2016-2023",
+              "bodyStyles": ["Sedan", "Wagon (Estate)", "All-Terrain", "Coupe", "Cabriolet"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1991,
+                  "enginePowerKW": 135,
+                  "enginePowerHP": 184,
+                  "engineCode": "M274.920",
+                  "description": "E 200"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2996,
+                  "enginePowerKW": 245,
+                  "enginePowerHP": 333,
+                  "engineCode": "M276.823",
+                  "description": "E 400 4MATIC"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2999,
+                  "enginePowerKW": 320,
+                  "enginePowerHP": 435,
+                  "engineCode": "M256.930",
+                  "description": "AMG E 53 4MATIC+"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 3982,
+                  "enginePowerKW": 450,
+                  "enginePowerHP": 612,
+                  "engineCode": "M177.980",
+                  "description": "AMG E 63 S 4MATIC+"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1950,
+                  "enginePowerKW": 143,
+                  "enginePowerHP": 194,
+                  "engineCode": "OM654.920",
+                  "description": "E 220 d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2925,
+                  "enginePowerKW": 210,
+                  "enginePowerHP": 286,
+                  "engineCode": "OM656.929",
+                  "description": "E 350 d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2925,
+                  "enginePowerKW": 250,
+                  "enginePowerHP": 340,
+                  "engineCode": "OM656.929",
+                  "description": "E 400 d 4MATIC"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "G-Class",
+          "generations": [
+            {
+              "name": "G-Class (W463)",
+              "period": "1990-2018",
+              "bodyStyles": ["SUV (3-door)", "SUV (5-door)", "Cabriolet"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 3199,
+                  "enginePowerKW": 158,
+                  "enginePowerHP": 215,
+                  "engineCode": "M112.945",
+                  "description": "G 320 (V6)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 4966,
+                  "enginePowerKW": 218,
+                  "enginePowerHP": 296,
+                  "engineCode": "M113.962",
+                  "description": "G 500 (V8)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 5439,
+                  "enginePowerKW": 350,
+                  "enginePowerHP": 476,
+                  "engineCode": "M113.993",
+                  "description": "G 55 AMG Kompressor (V8)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 5461,
+                  "enginePowerKW": 400,
+                  "enginePowerHP": 544,
+                  "engineCode": "M157.980",
+                  "description": "G 63 AMG (V8 Bi-Turbo)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2685,
+                  "enginePowerKW": 115,
+                  "enginePowerHP": 156,
+                  "engineCode": "OM612.966",
+                  "description": "G 270 CDI (I5)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 3996,
+                  "enginePowerKW": 184,
+                  "enginePowerHP": 250,
+                  "engineCode": "OM628.962",
+                  "description": "G 400 CDI (V8)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2987,
+                  "enginePowerKW": 180,
+                  "enginePowerHP": 245,
+                  "engineCode": "OM642.970",
+                  "description": "G 350 BlueTEC (V6)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "GLA-Class",
+          "generations": [
+            {
+              "name": "GLA-Class (X156)",
+              "period": "2014-2020",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1595,
+                  "enginePowerKW": 115,
+                  "enginePowerHP": 156,
+                  "engineCode": "M270.910",
+                  "description": "GLA 200"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1991,
+                  "enginePowerKW": 280,
+                  "enginePowerHP": 381,
+                  "engineCode": "M133.980",
+                  "description": "GLA 45 AMG"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2143,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "OM651.930",
+                  "description": "GLA 220 d"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "GLE / M-Class",
+          "generations": [
+            {
+              "name": "M-Class (W164)",
+              "period": "2005-2011",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 3498,
+                  "enginePowerKW": 200,
+                  "enginePowerHP": 272,
+                  "engineCode": "M272.967",
+                  "description": "ML 350 (V6)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 4966,
+                  "enginePowerKW": 225,
+                  "enginePowerHP": 306,
+                  "engineCode": "M113.964",
+                  "description": "ML 500 (V8)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 6208,
+                  "enginePowerKW": 375,
+                  "enginePowerHP": 510,
+                  "engineCode": "M156.980",
+                  "description": "ML 63 AMG (6.2 V8)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2987,
+                  "enginePowerKW": 140,
+                  "enginePowerHP": 190,
+                  "engineCode": "OM642.940",
+                  "description": "ML 280 CDI (V6)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2987,
+                  "enginePowerKW": 165,
+                  "enginePowerHP": 224,
+                  "engineCode": "OM642.940",
+                  "description": "ML 320 CDI (V6)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 3996,
+                  "enginePowerKW": 225,
+                  "enginePowerHP": 306,
+                  "engineCode": "OM629.912",
+                  "description": "ML 420 CDI (V8)"
+                }
+              ]
+            },
+            {
+              "name": "GLE / M-Class (W166)",
+              "period": "2011-2019",
+              "bodyStyles": ["SUV", "Coupe"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2996,
+                  "enginePowerKW": 270,
+                  "enginePowerHP": 367,
+                  "engineCode": "M276.821",
+                  "description": "GLE 43 AMG"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 5461,
+                  "enginePowerKW": 430,
+                  "enginePowerHP": 585,
+                  "engineCode": "M157.982",
+                  "description": "GLE 63 S AMG"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2143,
+                  "enginePowerKW": 150,
+                  "enginePowerHP": 204,
+                  "engineCode": "OM651.960",
+                  "description": "ML 250 BlueTEC / GLE 250 d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2987,
+                  "enginePowerKW": 190,
+                  "enginePowerHP": 258,
+                  "engineCode": "OM642.826",
+                  "description": "ML 350 BlueTEC / GLE 350 d"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "GLK-Class",
+          "generations": [
+            {
+              "name": "GLK-Class (X204)",
+              "period": "2008-2015",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2996,
+                  "enginePowerKW": 170,
+                  "enginePowerHP": 231,
+                  "engineCode": "M272.948",
+                  "description": "GLK 280 / GLK 300 (V6)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 3498,
+                  "enginePowerKW": 225,
+                  "enginePowerHP": 306,
+                  "engineCode": "M276.957",
+                  "description": "GLK 350 (V6)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2143,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "OM651.916",
+                  "description": "GLK 220 CDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2143,
+                  "enginePowerKW": 150,
+                  "enginePowerHP": 204,
+                  "engineCode": "OM651.912",
+                  "description": "GLK 250 CDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2987,
+                  "enginePowerKW": 195,
+                  "enginePowerHP": 265,
+                  "engineCode": "OM642.835",
+                  "description": "GLK 350 CDI (V6)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "S-Class",
+          "generations": [
+            {
+              "name": "S-Class (W140)",
+              "period": "1991-1998",
+              "bodyStyles": ["Sedan"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 3199,
+                  "enginePowerKW": 170,
+                  "enginePowerHP": 231,
+                  "engineCode": "M104.994",
+                  "description": "S 320 / 300 SE"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 4196,
+                  "enginePowerKW": 210,
+                  "enginePowerHP": 286,
+                  "engineCode": "M119.971",
+                  "description": "S 420 / 400 SE"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 4973,
+                  "enginePowerKW": 240,
+                  "enginePowerHP": 326,
+                  "engineCode": "M119.970",
+                  "description": "S 500 / 500 SE"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 5987,
+                  "enginePowerKW": 300,
+                  "enginePowerHP": 408,
+                  "engineCode": "M120.980",
+                  "description": "S 600 / 600 SEL"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2996,
+                  "enginePowerKW": 130,
+                  "enginePowerHP": 177,
+                  "engineCode": "OM606.961",
+                  "description": "S 300 Turbodiesel"
+                }
+              ]
+            },
+            {
+              "name": "S-Class (W220)",
+              "period": "1998-2005",
+              "bodyStyles": ["Sedan"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 3199,
+                  "enginePowerKW": 165,
+                  "enginePowerHP": 224,
+                  "engineCode": "M112.944",
+                  "description": "S 320 (V6)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 3724,
+                  "enginePowerKW": 180,
+                  "enginePowerHP": 245,
+                  "engineCode": "M112.972",
+                  "description": "S 350 (V6)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 4966,
+                  "enginePowerKW": 225,
+                  "enginePowerHP": 306,
+                  "engineCode": "M113.960",
+                  "description": "S 500 (V8)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 5439,
+                  "enginePowerKW": 368,
+                  "enginePowerHP": 500,
+                  "engineCode": "M113.991",
+                  "description": "S 55 AMG Kompressor (V8)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 5513,
+                  "enginePowerKW": 368,
+                  "enginePowerHP": 500,
+                  "engineCode": "M275.950",
+                  "description": "S 600 (V12 Bi-Turbo)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 3222,
+                  "enginePowerKW": 150,
+                  "enginePowerHP": 204,
+                  "engineCode": "OM648.960",
+                  "description": "S 320 CDI (I6)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 3996,
+                  "enginePowerKW": 191,
+                  "enginePowerHP": 260,
+                  "engineCode": "OM628.960",
+                  "description": "S 400 CDI (V8)"
+                }
+              ]
+            },
+            {
+              "name": "S-Class (W221)",
+              "period": "2005-2013",
+              "bodyStyles": ["Sedan"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 3498,
+                  "enginePowerKW": 225,
+                  "enginePowerHP": 306,
+                  "engineCode": "M276.950",
+                  "description": "S 350 BlueEFFICIENCY (V6)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 5461,
+                  "enginePowerKW": 285,
+                  "enginePowerHP": 388,
+                  "engineCode": "M273.961",
+                  "description": "S 500 / S 550 (V8)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 5513,
+                  "enginePowerKW": 380,
+                  "enginePowerHP": 517,
+                  "engineCode": "M275.953",
+                  "description": "S 600 (V12 Bi-Turbo)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 6208,
+                  "enginePowerKW": 386,
+                  "enginePowerHP": 525,
+                  "engineCode": "M156.984",
+                  "description": "S 63 AMG (6.2 V8)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 5980,
+                  "enginePowerKW": 463,
+                  "enginePowerHP": 630,
+                  "engineCode": "M275.982",
+                  "description": "S 65 AMG (V12 Bi-Turbo)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2143,
+                  "enginePowerKW": 150,
+                  "enginePowerHP": 204,
+                  "engineCode": "OM651.921",
+                  "description": "S 250 CDI BlueEFFICIENCY"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2987,
+                  "enginePowerKW": 190,
+                  "enginePowerHP": 258,
+                  "engineCode": "OM642.867",
+                  "description": "S 350 BlueTEC (V6)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 3996,
+                  "enginePowerKW": 235,
+                  "enginePowerHP": 320,
+                  "engineCode": "OM629.911",
+                  "description": "S 420 CDI / S 450 CDI (V8)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "SL-Class",
+          "generations": [
+            {
+              "name": "SL-Class (R230)",
+              "period": "2001-2011",
+              "bodyStyles": ["Roadster"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 3498,
+                  "enginePowerKW": 232,
+                  "enginePowerHP": 316,
+                  "engineCode": "M272.968",
+                  "description": "SL 350"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 5461,
+                  "enginePowerKW": 285,
+                  "enginePowerHP": 388,
+                  "engineCode": "M273.965",
+                  "description": "SL 500"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 5439,
+                  "enginePowerKW": 380,
+                  "enginePowerHP": 517,
+                  "engineCode": "M113.995",
+                  "description": "SL 55 AMG Kompressor"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 5980,
+                  "enginePowerKW": 450,
+                  "enginePowerHP": 612,
+                  "engineCode": "M275.954",
+                  "description": "SL 600"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 6208,
+                  "enginePowerKW": 386,
+                  "enginePowerHP": 525,
+                  "engineCode": "M156.981",
+                  "description": "SL 63 AMG"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "SLK / SLC-Class",
+          "generations": [
+            {
+              "name": "SLK-Class (R171)",
+              "period": "2004-2010",
+              "bodyStyles": ["Roadster"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1796,
+                  "enginePowerKW": 135,
+                  "enginePowerHP": 184,
+                  "engineCode": "M271.954",
+                  "description": "SLK 200 Kompressor"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2996,
+                  "enginePowerKW": 170,
+                  "enginePowerHP": 231,
+                  "engineCode": "M272.942",
+                  "description": "SLK 280 (V6)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 3498,
+                  "enginePowerKW": 224,
+                  "enginePowerHP": 305,
+                  "engineCode": "M272.969",
+                  "description": "SLK 350 (V6)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 5439,
+                  "enginePowerKW": 265,
+                  "enginePowerHP": 360,
+                  "engineCode": "M113.989",
+                  "description": "SLK 55 AMG (V8)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "V-Class / Vito",
+          "generations": [
+            {
+              "name": "Vito / Viano (W639)",
+              "period": "2003-2014",
+              "bodyStyles": ["Van", "Minibus"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 3498,
+                  "enginePowerKW": 190,
+                  "enginePowerHP": 258,
+                  "engineCode": "M272.978",
+                  "description": "3.5 (V6)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2148,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "OM646.982",
+                  "description": "115 CDI / 2.2 CDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2143,
+                  "enginePowerKW": 120,
+                  "enginePowerHP": 163,
+                  "engineCode": "OM651.940",
+                  "description": "116 CDI / 2.2 CDI (Facelift)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2987,
+                  "enginePowerKW": 165,
+                  "enginePowerHP": 224,
+                  "engineCode": "OM642.990",
+                  "description": "122 CDI / 3.0 CDI (V6)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "EQC",
+          "generations": [
+            {
+              "name": "EQC (N293)",
+              "period": "2019-2023",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Electric",
+                  "engineCapacity": 0,
+                  "enginePowerKW": 300,
+                  "enginePowerHP": 408,
+                  "engineCode": "—",
+                  "description": "EQC 400 4MATIC"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "EQS",
+          "generations": [
+            {
+              "name": "EQS (V297)",
+              "period": "2021-Present",
+              "bodyStyles": ["Sedan"],
+              "engines": [
+                {
+                  "engineType": "Electric",
+                  "engineCapacity": 0,
+                  "enginePowerKW": 245,
+                  "enginePowerHP": 333,
+                  "engineCode": "—",
+                  "description": "EQS 450+"
+                },
+                {
+                  "engineType": "Electric",
+                  "engineCapacity": 0,
+                  "enginePowerKW": 385,
+                  "enginePowerHP": 523,
+                  "engineCode": "—",
+                  "description": "EQS 580 4MATIC"
+                },
+                {
+                  "engineType": "Electric",
+                  "engineCapacity": 0,
+                  "enginePowerKW": 484,
+                  "enginePowerHP": 658,
+                  "engineCode": "—",
+                  "description": "AMG EQS 53 4MATIC+"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]

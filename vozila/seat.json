@@ -1,0 +1,772 @@
+[
+    {
+      "name": "SEAT",
+      "type": "PASSENGER",
+      "models": [
+        {
+          "name": "Alhambra",
+          "generations": [
+            {
+              "name": "Alhambra I (7M)",
+              "period": "2000-2010",
+              "bodyStyles": ["MPV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1781,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "AWC",
+                  "description": "1.8T 20V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 115,
+                  "engineCode": "ATM",
+                  "description": "2.0 MPI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2792,
+                  "enginePowerKW": 150,
+                  "enginePowerHP": 204,
+                  "engineCode": "AYL",
+                  "description": "2.8 V6 24V"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1896,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 115,
+                  "engineCode": "AUY/BVK",
+                  "description": "1.9 TDI PD"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1896,
+                  "enginePowerKW": 96,
+                  "enginePowerHP": 130,
+                  "engineCode": "ASZ",
+                  "description": "1.9 TDI PD"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1896,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "BTB",
+                  "description": "1.9 TDI PD"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "BRT",
+                  "description": "2.0 TDI PD"
+                }
+              ]
+            },
+            {
+              "name": "Alhambra II (7N)",
+              "period": "2010-2022",
+              "bodyStyles": ["MPV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1395,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "CZDA",
+                  "description": "1.4 TSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 162,
+                  "enginePowerHP": 220,
+                  "engineCode": "DEDA",
+                  "description": "2.0 TSI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "CUVC/DFLA",
+                  "description": "2.0 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 135,
+                  "enginePowerHP": 184,
+                  "engineCode": "CUWA/DFLB",
+                  "description": "2.0 TDI"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Altea",
+          "generations": [
+            {
+              "name": "Altea (5P)",
+              "period": "2004-2015",
+              "bodyStyles": ["MPV", "MPV XL", "Freetrack"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1595,
+                  "enginePowerKW": 75,
+                  "enginePowerHP": 102,
+                  "engineCode": "BGU/BSE/BSF/CCSA",
+                  "description": "1.6 MPI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1197,
+                  "enginePowerKW": 77,
+                  "enginePowerHP": 105,
+                  "engineCode": "CBZB",
+                  "description": "1.2 TSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1390,
+                  "enginePowerKW": 92,
+                  "enginePowerHP": 125,
+                  "engineCode": "CAXC",
+                  "description": "1.4 TSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1798,
+                  "enginePowerKW": 118,
+                  "enginePowerHP": 160,
+                  "engineCode": "BZB/CDAA",
+                  "description": "1.8 TSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 147,
+                  "enginePowerHP": 200,
+                  "engineCode": "BWA/CCZB",
+                  "description": "2.0 TFSI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 77,
+                  "enginePowerHP": 105,
+                  "engineCode": "CAYC",
+                  "description": "1.6 TDI CR"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1896,
+                  "enginePowerKW": 77,
+                  "enginePowerHP": 105,
+                  "engineCode": "BKC/BXE/BLS",
+                  "description": "1.9 TDI PD"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "BMM/CFHC",
+                  "description": "2.0 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "BMN/CEGA",
+                  "description": "2.0 TDI FR"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Arona",
+          "generations": [
+            {
+              "name": "Arona (KJ)",
+              "period": "2017-Present",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 999,
+                  "enginePowerKW": 70,
+                  "enginePowerHP": 95,
+                  "engineCode": "CHZL/DKLD",
+                  "description": "1.0 TSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 999,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 115,
+                  "engineCode": "CHZJ/DKJA",
+                  "description": "1.0 TSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1498,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "DADA/DPCA",
+                  "description": "1.5 TSI Evo"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 70,
+                  "enginePowerHP": 95,
+                  "engineCode": "DGTD",
+                  "description": "1.6 TDI"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Ateca",
+          "generations": [
+            {
+              "name": "Ateca",
+              "period": "2016-Present",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 999,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 115,
+                  "engineCode": "CHZJ",
+                  "description": "1.0 TSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1395,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "CZEA/CZDA",
+                  "description": "1.4 TSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1498,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "DADA/DPCA",
+                  "description": "1.5 TSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 140,
+                  "enginePowerHP": 190,
+                  "engineCode": "DKZA",
+                  "description": "2.0 TSI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 115,
+                  "engineCode": "DDYA/DGTE",
+                  "description": "1.6 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "DFFA",
+                  "description": "2.0 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 140,
+                  "enginePowerHP": 190,
+                  "engineCode": "DFHA",
+                  "description": "2.0 TDI"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Ibiza",
+          "generations": [
+            {
+              "name": "Ibiza (6L)",
+              "period": "2002-2008",
+              "bodyStyles": ["Hatchback (3-door)", "Hatchback (5-door)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1198,
+                  "enginePowerKW": 47,
+                  "enginePowerHP": 64,
+                  "engineCode": "AZQ/BME",
+                  "description": "1.2 12V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1390,
+                  "enginePowerKW": 55,
+                  "enginePowerHP": 75,
+                  "engineCode": "BBY/BKY",
+                  "description": "1.4 16V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1390,
+                  "enginePowerKW": 74,
+                  "enginePowerHP": 101,
+                  "engineCode": "BBZ",
+                  "description": "1.4 16V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1781,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "BJX/BKV",
+                  "description": "FR 1.8T"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1781,
+                  "enginePowerKW": 132,
+                  "enginePowerHP": 180,
+                  "engineCode": "BBU/BLZ",
+                  "description": "Cupra 1.8T"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1422,
+                  "enginePowerKW": 55,
+                  "enginePowerHP": 75,
+                  "engineCode": "AMF",
+                  "description": "1.4 TDI PD"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1896,
+                  "enginePowerKW": 74,
+                  "enginePowerHP": 101,
+                  "engineCode": "ATD/AXR",
+                  "description": "1.9 TDI PD"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1896,
+                  "enginePowerKW": 96,
+                  "enginePowerHP": 130,
+                  "engineCode": "ASZ/BLT",
+                  "description": "FR 1.9 TDI PD"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1896,
+                  "enginePowerKW": 118,
+                  "enginePowerHP": 160,
+                  "engineCode": "BPX/BUK",
+                  "description": "Cupra 1.9 TDI PD"
+                }
+              ]
+            },
+            {
+              "name": "Ibiza (6J)",
+              "period": "2008-2017",
+              "bodyStyles": ["Hatchback (3-door SC)", "Hatchback (5-door)", "Wagon (ST)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1197,
+                  "enginePowerKW": 66,
+                  "enginePowerHP": 90,
+                  "engineCode": "CBZC",
+                  "description": "1.2 TSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1197,
+                  "enginePowerKW": 77,
+                  "enginePowerHP": 105,
+                  "engineCode": "CBZB",
+                  "description": "1.2 TSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1390,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "CAVF",
+                  "description": "FR 1.4 TSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1390,
+                  "enginePowerKW": 132,
+                  "enginePowerHP": 180,
+                  "engineCode": "CAVE",
+                  "description": "Cupra 1.4 TSI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1199,
+                  "enginePowerKW": 55,
+                  "enginePowerHP": 75,
+                  "engineCode": "CFWA",
+                  "description": "1.2 TDI CR"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 66,
+                  "enginePowerHP": 90,
+                  "engineCode": "CAYB",
+                  "description": "1.6 TDI CR"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 77,
+                  "enginePowerHP": 105,
+                  "engineCode": "CAYC",
+                  "description": "1.6 TDI CR"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 105,
+                  "enginePowerHP": 143,
+                  "engineCode": "CFHD",
+                  "description": "FR 2.0 TDI CR"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Leon",
+          "generations": [
+            {
+              "name": "Leon (1M)",
+              "period": "1999-2006",
+              "bodyStyles": ["Hatchback"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1595,
+                  "enginePowerKW": 77,
+                  "enginePowerHP": 105,
+                  "engineCode": "AUS/AZD/BCB",
+                  "description": "1.6 16V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1781,
+                  "enginePowerKW": 132,
+                  "enginePowerHP": 180,
+                  "engineCode": "APP/AUQ",
+                  "description": "1.8T 20V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1781,
+                  "enginePowerKW": 165,
+                  "enginePowerHP": 225,
+                  "engineCode": "BAM",
+                  "description": "Cupra R 1.8T 20V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2792,
+                  "enginePowerKW": 150,
+                  "enginePowerHP": 204,
+                  "engineCode": "AUE/BDE",
+                  "description": "Cupra 4 2.8 V6"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1896,
+                  "enginePowerKW": 81,
+                  "enginePowerHP": 110,
+                  "engineCode": "AHF/ASV",
+                  "description": "1.9 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1896,
+                  "enginePowerKW": 96,
+                  "enginePowerHP": 130,
+                  "engineCode": "ASZ",
+                  "description": "1.9 TDI PD"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1896,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "ARL",
+                  "description": "Top Sport / FR 1.9 TDI PD"
+                }
+              ]
+            },
+            {
+              "name": "Leon (1P)",
+              "period": "2005-2012",
+              "bodyStyles": ["Hatchback"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1390,
+                  "enginePowerKW": 92,
+                  "enginePowerHP": 125,
+                  "engineCode": "CAXC",
+                  "description": "1.4 TSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1798,
+                  "enginePowerKW": 118,
+                  "enginePowerHP": 160,
+                  "engineCode": "BZB/CDAA",
+                  "description": "1.8 TSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 147,
+                  "enginePowerHP": 200,
+                  "engineCode": "BWA",
+                  "description": "FR 2.0 TFSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 177,
+                  "enginePowerHP": 240,
+                  "engineCode": "BWJ/CDLD",
+                  "description": "Cupra 2.0 TFSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 195,
+                  "enginePowerHP": 265,
+                  "engineCode": "CDLA",
+                  "description": "Cupra R 2.0 TFSI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1896,
+                  "enginePowerKW": 77,
+                  "enginePowerHP": 105,
+                  "engineCode": "BKC/BXE/BLS",
+                  "description": "1.9 TDI PD"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "BMM/CFHC",
+                  "description": "2.0 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "BMN/CEGA",
+                  "description": "FR 2.0 TDI"
+                }
+              ]
+            },
+            {
+              "name": "Leon (5F)",
+              "period": "2012-2020",
+              "bodyStyles": ["Hatchback (3-door SC)", "Hatchback (5-door)", "Wagon (ST)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1395,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "CZEA",
+                  "description": "1.4 TSI ACT"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1498,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "DADA",
+                  "description": "1.5 TSI Evo"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1798,
+                  "enginePowerKW": 132,
+                  "enginePowerHP": 180,
+                  "engineCode": "CJSA",
+                  "description": "FR 1.8 TSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 221,
+                  "enginePowerHP": 300,
+                  "engineCode": "CJXG",
+                  "description": "Cupra 300 2.0 TSI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 115,
+                  "engineCode": "DDYA",
+                  "description": "1.6 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "CKFC/CRMB",
+                  "description": "2.0 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 135,
+                  "enginePowerHP": 184,
+                  "engineCode": "CUNA",
+                  "description": "FR 2.0 TDI"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Tarraco",
+          "generations": [
+            {
+              "name": "Tarraco",
+              "period": "2018-Present",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1498,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "DADA/DPCA",
+                  "description": "1.5 TSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 140,
+                  "enginePowerHP": 190,
+                  "engineCode": "DKZA",
+                  "description": "2.0 TSI"
+                },
+                {
+                  "engineType": "Plug-in Hybrid",
+                  "engineCapacity": 1395,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "DGEA",
+                  "description": "e-HYBRID 1.4 TSI (System 245HP)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "DFGA",
+                  "description": "2.0 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 147,
+                  "enginePowerHP": 200,
+                  "engineCode": "DTSB",
+                  "description": "2.0 TDI"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Toledo",
+          "generations": [
+            {
+              "name": "Toledo (1M)",
+              "period": "1998-2004",
+              "bodyStyles": ["Sedan"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1595,
+                  "enginePowerKW": 77,
+                  "enginePowerHP": 105,
+                  "engineCode": "AUS/AZD/BCB",
+                  "description": "1.6 16V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1781,
+                  "enginePowerKW": 132,
+                  "enginePowerHP": 180,
+                  "engineCode": "AUQ",
+                  "description": "1.8T 20V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2324,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "AQN",
+                  "description": "2.3 V5"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1896,
+                  "enginePowerKW": 81,
+                  "enginePowerHP": 110,
+                  "engineCode": "AHF/ASV",
+                  "description": "1.9 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1896,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "ARL",
+                  "description": "1.9 TDI PD"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]

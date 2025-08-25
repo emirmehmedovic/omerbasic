@@ -1,0 +1,1817 @@
+[
+    {
+      "name": "Audi",
+      "type": "PASSENGER",
+      "models": [
+        {
+          "name": "A3",
+          "generations": [
+            {
+              "name": "A3 (8L)",
+              "period": "1996-2003",
+              "bodyStyles": ["Hatchback (3-door)", "Hatchback (5-door)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1595,
+                  "enginePowerKW": 74,
+                  "enginePowerHP": 101,
+                  "engineCode": "AEH/AKL/APF",
+                  "description": "1.6 MPI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1781,
+                  "enginePowerKW": 92,
+                  "enginePowerHP": 125,
+                  "engineCode": "AGN/APG",
+                  "description": "1.8 20V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1781,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "AGU/AQA/ARZ/AUM",
+                  "description": "1.8T 20V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1781,
+                  "enginePowerKW": 132,
+                  "enginePowerHP": 180,
+                  "engineCode": "AJQ/APP/ARY/AUQ",
+                  "description": "1.8T 20V quattro"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1781,
+                  "enginePowerKW": 154,
+                  "enginePowerHP": 210,
+                  "engineCode": "AMK/APY",
+                  "description": "S3 1.8T quattro"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1781,
+                  "enginePowerKW": 165,
+                  "enginePowerHP": 225,
+                  "engineCode": "BAM",
+                  "description": "S3 1.8T quattro"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1896,
+                  "enginePowerKW": 66,
+                  "enginePowerHP": 90,
+                  "engineCode": "AGR/ALH",
+                  "description": "1.9 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1896,
+                  "enginePowerKW": 81,
+                  "enginePowerHP": 110,
+                  "engineCode": "AHF/ASV",
+                  "description": "1.9 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1896,
+                  "enginePowerKW": 96,
+                  "enginePowerHP": 130,
+                  "engineCode": "ASZ",
+                  "description": "1.9 TDI PD"
+                }
+              ]
+            },
+            {
+              "name": "A3 (8P)",
+              "period": "2003-2012",
+              "bodyStyles": ["Hatchback (3-door)", "Sportback (5-door)", "Cabriolet"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1595,
+                  "enginePowerKW": 75,
+                  "enginePowerHP": 102,
+                  "engineCode": "BGU/BSE/BSF",
+                  "description": "1.6 MPI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 115,
+                  "engineCode": "BAG/BLP/BLF",
+                  "description": "1.6 FSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1197,
+                  "enginePowerKW": 77,
+                  "enginePowerHP": 105,
+                  "engineCode": "CBZB",
+                  "description": "1.2 TFSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1390,
+                  "enginePowerKW": 92,
+                  "enginePowerHP": 125,
+                  "engineCode": "CAXC",
+                  "description": "1.4 TFSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1798,
+                  "enginePowerKW": 118,
+                  "enginePowerHP": 160,
+                  "engineCode": "BYT/BZB/CDAA",
+                  "description": "1.8 TFSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "AXW/BLX/BLY/BMB",
+                  "description": "2.0 FSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 147,
+                  "enginePowerHP": 200,
+                  "engineCode": "AXX/BWA/CAWB/CCZA",
+                  "description": "2.0 TFSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 195,
+                  "enginePowerHP": 265,
+                  "engineCode": "BHZ/CDLA",
+                  "description": "S3 2.0 TFSI quattro"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2480,
+                  "enginePowerKW": 250,
+                  "enginePowerHP": 340,
+                  "engineCode": "CEPA",
+                  "description": "RS3 2.5 TFSI quattro"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 3189,
+                  "enginePowerKW": 184,
+                  "enginePowerHP": 250,
+                  "engineCode": "AXZ/BMJ",
+                  "description": "3.2 V6 quattro"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1896,
+                  "enginePowerKW": 77,
+                  "enginePowerHP": 105,
+                  "engineCode": "BKC/BXE/BLS",
+                  "description": "1.9 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 77,
+                  "enginePowerHP": 105,
+                  "engineCode": "CAYC",
+                  "description": "1.6 TDI CR"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "BKD/BMM/CBAB",
+                  "description": "2.0 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "BMN/CBBB",
+                  "description": "2.0 TDI"
+                }
+              ]
+            },
+            {
+              "name": "A3 (8V)",
+              "period": "2012-2020",
+              "bodyStyles": ["Hatchback (3-door)", "Sportback (5-door)", "Sedan", "Cabriolet"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1197,
+                  "enginePowerKW": 81,
+                  "enginePowerHP": 110,
+                  "engineCode": "CYVB",
+                  "description": "1.2 TFSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 999,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 115,
+                  "engineCode": "CHZD",
+                  "description": "1.0 TFSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1395,
+                  "enginePowerKW": 92,
+                  "enginePowerHP": 125,
+                  "engineCode": "CXSB",
+                  "description": "1.4 TFSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1395,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "CZEA",
+                  "description": "1.4 TFSI CoD"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1498,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "DADA",
+                  "description": "1.5 TFSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1798,
+                  "enginePowerKW": 132,
+                  "enginePowerHP": 180,
+                  "engineCode": "CJSA",
+                  "description": "1.8 TFSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 140,
+                  "enginePowerHP": 190,
+                  "engineCode": "CZPB",
+                  "description": "2.0 TFSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 221,
+                  "enginePowerHP": 300,
+                  "engineCode": "CJXC",
+                  "description": "S3 2.0 TFSI quattro"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2480,
+                  "enginePowerKW": 270,
+                  "enginePowerHP": 367,
+                  "engineCode": "CZGB",
+                  "description": "RS3 2.5 TFSI quattro"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2480,
+                  "enginePowerKW": 294,
+                  "enginePowerHP": 400,
+                  "engineCode": "DAZA",
+                  "description": "RS3 2.5 TFSI quattro"
+                },
+                {
+                  "engineType": "Plug-in Hybrid",
+                  "engineCapacity": 1395,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "CUKB",
+                  "description": "e-tron 1.4 TFSI (System 204HP)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 81,
+                  "enginePowerHP": 110,
+                  "engineCode": "CRKB/CXXB",
+                  "description": "1.6 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "CRBC/CRLB",
+                  "description": "2.0 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 135,
+                  "enginePowerHP": 184,
+                  "engineCode": "CUNA",
+                  "description": "2.0 TDI"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "A4",
+          "generations": [
+            {
+              "name": "A4 (B5)",
+              "period": "1994-2001",
+              "bodyStyles": ["Sedan", "Wagon (Avant)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1595,
+                  "enginePowerKW": 74,
+                  "enginePowerHP": 101,
+                  "engineCode": "ADP/AHL/ARM/ANA",
+                  "description": "1.6"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1781,
+                  "enginePowerKW": 92,
+                  "enginePowerHP": 125,
+                  "engineCode": "ADR/APT/ARG",
+                  "description": "1.8"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1781,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "AEB/APU/ANB/AWT",
+                  "description": "1.8T"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1781,
+                  "enginePowerKW": 132,
+                  "enginePowerHP": 180,
+                  "engineCode": "AJL",
+                  "description": "1.8T"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2598,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "ABC/ACZ",
+                  "description": "2.6 V6"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2771,
+                  "enginePowerKW": 128,
+                  "enginePowerHP": 174,
+                  "engineCode": "AAH",
+                  "description": "2.8 V6"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2771,
+                  "enginePowerKW": 142,
+                  "enginePowerHP": 193,
+                  "engineCode": "ACK/ALG/APR/AQD",
+                  "description": "2.8 V6 30V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2671,
+                  "enginePowerKW": 195,
+                  "enginePowerHP": 265,
+                  "engineCode": "AGB/AZB",
+                  "description": "S4 2.7 biturbo"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2671,
+                  "enginePowerKW": 280,
+                  "enginePowerHP": 381,
+                  "engineCode": "ASJ/AZR",
+                  "description": "RS4 2.7 biturbo"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1896,
+                  "enginePowerKW": 66,
+                  "enginePowerHP": 90,
+                  "engineCode": "1Z/AHU",
+                  "description": "1.9 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1896,
+                  "enginePowerKW": 81,
+                  "enginePowerHP": 110,
+                  "engineCode": "AFN/AVG",
+                  "description": "1.9 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1896,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 115,
+                  "engineCode": "AJM",
+                  "description": "1.9 TDI PD"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2496,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "AFB/AKN",
+                  "description": "2.5 V6 TDI"
+                }
+              ]
+            },
+            {
+              "name": "A4 (B6)",
+              "period": "2000-2004",
+              "bodyStyles": ["Sedan", "Wagon (Avant)", "Cabriolet"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1595,
+                  "enginePowerKW": 75,
+                  "enginePowerHP": 102,
+                  "engineCode": "ALZ",
+                  "description": "1.6"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1781,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "AVJ",
+                  "description": "1.8T"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1781,
+                  "enginePowerKW": 120,
+                  "enginePowerHP": 163,
+                  "engineCode": "BFB",
+                  "description": "1.8T"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1781,
+                  "enginePowerKW": 140,
+                  "enginePowerHP": 190,
+                  "engineCode": "BEX",
+                  "description": "1.8T quattro"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 96,
+                  "enginePowerHP": 130,
+                  "engineCode": "ALT",
+                  "description": "2.0"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2393,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "BDV",
+                  "description": "2.4 V6"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2976,
+                  "enginePowerKW": 162,
+                  "enginePowerHP": 220,
+                  "engineCode": "ASN",
+                  "description": "3.0 V6"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 4163,
+                  "enginePowerKW": 253,
+                  "enginePowerHP": 344,
+                  "engineCode": "BBK",
+                  "description": "S4 4.2 V8"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1896,
+                  "enginePowerKW": 74,
+                  "enginePowerHP": 101,
+                  "engineCode": "AVB",
+                  "description": "1.9 TDI PD"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1896,
+                  "enginePowerKW": 96,
+                  "enginePowerHP": 130,
+                  "engineCode": "AVF/AWX",
+                  "description": "1.9 TDI PD"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2496,
+                  "enginePowerKW": 114,
+                  "enginePowerHP": 155,
+                  "engineCode": "AYM",
+                  "description": "2.5 V6 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2496,
+                  "enginePowerKW": 120,
+                  "enginePowerHP": 163,
+                  "engineCode": "BCZ/BDG/BFC",
+                  "description": "2.5 V6 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2496,
+                  "enginePowerKW": 132,
+                  "enginePowerHP": 180,
+                  "engineCode": "AKE/BAU/BDH",
+                  "description": "2.5 V6 TDI"
+                }
+              ]
+            },
+            {
+              "name": "A4 (B7)",
+              "period": "2004-2008",
+              "bodyStyles": ["Sedan", "Wagon (Avant)", "Cabriolet"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1595,
+                  "enginePowerKW": 75,
+                  "enginePowerHP": 102,
+                  "engineCode": "ALZ",
+                  "description": "1.6"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1781,
+                  "enginePowerKW": 120,
+                  "enginePowerHP": 163,
+                  "engineCode": "BFB",
+                  "description": "1.8T"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 96,
+                  "enginePowerHP": 130,
+                  "engineCode": "ALT",
+                  "description": "2.0"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 147,
+                  "enginePowerHP": 200,
+                  "engineCode": "BGB/BWE",
+                  "description": "2.0 TFSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 162,
+                  "enginePowerHP": 220,
+                  "engineCode": "BUL",
+                  "description": "2.0 TFSI DTM"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 3123,
+                  "enginePowerKW": 188,
+                  "enginePowerHP": 255,
+                  "engineCode": "AUK",
+                  "description": "3.2 FSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 4163,
+                  "enginePowerKW": 253,
+                  "enginePowerHP": 344,
+                  "engineCode": "BBK",
+                  "description": "S4 4.2 V8"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 4163,
+                  "enginePowerKW": 309,
+                  "enginePowerHP": 420,
+                  "engineCode": "BNS",
+                  "description": "RS4 4.2 V8"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1896,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 115,
+                  "engineCode": "BKE/BRB",
+                  "description": "1.9 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "BPW/BLB/BRE",
+                  "description": "2.0 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "BRD",
+                  "description": "2.0 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2698,
+                  "enginePowerKW": 132,
+                  "enginePowerHP": 180,
+                  "engineCode": "BPP",
+                  "description": "2.7 V6 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2967,
+                  "enginePowerKW": 150,
+                  "enginePowerHP": 204,
+                  "engineCode": "BKN",
+                  "description": "3.0 V6 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2967,
+                  "enginePowerKW": 171,
+                  "enginePowerHP": 233,
+                  "engineCode": "ASB",
+                  "description": "3.0 V6 TDI"
+                }
+              ]
+            },
+            {
+              "name": "A4 (B8)",
+              "period": "2008-2015",
+              "bodyStyles": ["Sedan", "Wagon (Avant)", "Allroad"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1798,
+                  "enginePowerKW": 88,
+                  "enginePowerHP": 120,
+                  "engineCode": "CABA",
+                  "description": "1.8 TFSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1798,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "CJEB",
+                  "description": "1.8 TFSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 132,
+                  "enginePowerHP": 180,
+                  "engineCode": "CDHA",
+                  "description": "2.0 TFSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 165,
+                  "enginePowerHP": 225,
+                  "engineCode": "CNCD",
+                  "description": "2.0 TFSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2995,
+                  "enginePowerKW": 245,
+                  "enginePowerHP": 333,
+                  "engineCode": "CAKA/CCBA",
+                  "description": "S4 3.0 V6 TFSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 4163,
+                  "enginePowerKW": 331,
+                  "enginePowerHP": 450,
+                  "engineCode": "CFSA",
+                  "description": "RS4 4.2 V8 FSI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 100,
+                  "enginePowerHP": 136,
+                  "engineCode": "CAGB",
+                  "description": "2.0 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "CJCD",
+                  "description": "2.0 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 130,
+                  "enginePowerHP": 177,
+                  "engineCode": "CGLC",
+                  "description": "2.0 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 140,
+                  "enginePowerHP": 190,
+                  "engineCode": "CNHA",
+                  "description": "2.0 TDI ultra"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2698,
+                  "enginePowerKW": 140,
+                  "enginePowerHP": 190,
+                  "engineCode": "CAMA",
+                  "description": "2.7 V6 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2967,
+                  "enginePowerKW": 150,
+                  "enginePowerHP": 204,
+                  "engineCode": "CLAB",
+                  "description": "3.0 V6 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2967,
+                  "enginePowerKW": 180,
+                  "enginePowerHP": 245,
+                  "engineCode": "CDUC",
+                  "description": "3.0 V6 TDI"
+                }
+              ]
+            },
+            {
+              "name": "A4 (B9)",
+              "period": "2015-Present",
+              "bodyStyles": ["Sedan", "Wagon (Avant)", "Allroad"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1395,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "CVNA",
+                  "description": "35 TFSI (1.4)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "CVKB",
+                  "description": "35 TFSI (2.0)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 140,
+                  "enginePowerHP": 190,
+                  "engineCode": "CVLA",
+                  "description": "40 TFSI (2.0)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 185,
+                  "enginePowerHP": 252,
+                  "engineCode": "CYMC",
+                  "description": "45 TFSI (2.0)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2995,
+                  "enginePowerKW": 260,
+                  "enginePowerHP": 354,
+                  "engineCode": "CWGD",
+                  "description": "S4 3.0 V6 TFSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2894,
+                  "enginePowerKW": 331,
+                  "enginePowerHP": 450,
+                  "engineCode": "DECA",
+                  "description": "RS4 2.9 V6 TFSI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "CZHA/DEUA",
+                  "description": "35 TDI (2.0)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 140,
+                  "enginePowerHP": 190,
+                  "engineCode": "DESA/DETA",
+                  "description": "40 TDI (2.0)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2967,
+                  "enginePowerKW": 160,
+                  "enginePowerHP": 218,
+                  "engineCode": "CSWB",
+                  "description": "45 TDI (3.0)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2967,
+                  "enginePowerKW": 200,
+                  "enginePowerHP": 272,
+                  "engineCode": "CRTC",
+                  "description": "50 TDI (3.0)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2967,
+                  "enginePowerKW": 255,
+                  "enginePowerHP": 347,
+                  "engineCode": "DEWA",
+                  "description": "S4 3.0 V6 TDI"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "A6",
+          "generations": [
+            {
+              "name": "A6 (C5)",
+              "period": "1997-2004",
+              "bodyStyles": ["Sedan", "Wagon (Avant)", "Allroad"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1781,
+                  "enginePowerKW": 92,
+                  "enginePowerHP": 125,
+                  "engineCode": "AJP/AQE/ARH",
+                  "description": "1.8"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1781,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "AEB/APU/ANB/AWT",
+                  "description": "1.8T"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 96,
+                  "enginePowerHP": 130,
+                  "engineCode": "ALT",
+                  "description": "2.0"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2393,
+                  "enginePowerKW": 121,
+                  "enginePowerHP": 165,
+                  "engineCode": "AGA/ALF/AML/APS/ARJ",
+                  "description": "2.4 V6"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2671,
+                  "enginePowerKW": 184,
+                  "enginePowerHP": 250,
+                  "engineCode": "ARE/BES",
+                  "description": "2.7T V6 biturbo"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2771,
+                  "enginePowerKW": 142,
+                  "enginePowerHP": 193,
+                  "engineCode": "ACK/ALG/APR/AQD",
+                  "description": "2.8 V6"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 4172,
+                  "enginePowerKW": 220,
+                  "enginePowerHP": 300,
+                  "engineCode": "ARS/ASG/BAS",
+                  "description": "4.2 V8"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 4172,
+                  "enginePowerKW": 250,
+                  "enginePowerHP": 340,
+                  "engineCode": "ANK/AQJ",
+                  "description": "S6 4.2 V8"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 4172,
+                  "enginePowerKW": 331,
+                  "enginePowerHP": 450,
+                  "engineCode": "ASG/BCY",
+                  "description": "RS6 4.2 V8 biturbo"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1896,
+                  "enginePowerKW": 81,
+                  "enginePowerHP": 110,
+                  "engineCode": "AFN/AVG",
+                  "description": "1.9 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1896,
+                  "enginePowerKW": 96,
+                  "enginePowerHP": 130,
+                  "engineCode": "AVF/AWX",
+                  "description": "1.9 TDI PD"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2496,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "AFB/AKN",
+                  "description": "2.5 V6 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2496,
+                  "enginePowerKW": 132,
+                  "enginePowerHP": 180,
+                  "engineCode": "AKE/BAU/BDH",
+                  "description": "2.5 V6 TDI"
+                }
+              ]
+            },
+            {
+              "name": "A6 (C6)",
+              "period": "2004-2011",
+              "bodyStyles": ["Sedan", "Wagon (Avant)", "Allroad"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "BPJ/BYK",
+                  "description": "2.0 TFSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2393,
+                  "enginePowerKW": 130,
+                  "enginePowerHP": 177,
+                  "engineCode": "BDW",
+                  "description": "2.4 V6"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2773,
+                  "enginePowerKW": 154,
+                  "enginePowerHP": 210,
+                  "engineCode": "BSM",
+                  "description": "2.8 FSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2995,
+                  "enginePowerKW": 213,
+                  "enginePowerHP": 290,
+                  "engineCode": "CAJA",
+                  "description": "3.0 V6 TFSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 3123,
+                  "enginePowerKW": 188,
+                  "enginePowerHP": 255,
+                  "engineCode": "AUK",
+                  "description": "3.2 V6 FSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 4163,
+                  "enginePowerKW": 246,
+                  "enginePowerHP": 335,
+                  "engineCode": "BAT",
+                  "description": "4.2 V8"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 4163,
+                  "enginePowerKW": 257,
+                  "enginePowerHP": 350,
+                  "engineCode": "BVJ",
+                  "description": "4.2 V8 FSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 4991,
+                  "enginePowerKW": 320,
+                  "enginePowerHP": 435,
+                  "engineCode": "BXA",
+                  "description": "S6 5.2 V10 FSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 4991,
+                  "enginePowerKW": 426,
+                  "enginePowerHP": 580,
+                  "engineCode": "BUH",
+                  "description": "RS6 5.0 V10 TFSI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "BNA/BRF",
+                  "description": "2.0 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "CAHA",
+                  "description": "2.0 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2698,
+                  "enginePowerKW": 132,
+                  "enginePowerHP": 180,
+                  "engineCode": "BPP",
+                  "description": "2.7 V6 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2967,
+                  "enginePowerKW": 171,
+                  "enginePowerHP": 233,
+                  "engineCode": "ASB",
+                  "description": "3.0 V6 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2967,
+                  "enginePowerKW": 176,
+                  "enginePowerHP": 240,
+                  "engineCode": "CDYA/CDYC",
+                  "description": "3.0 V6 TDI"
+                }
+              ]
+            },
+            {
+              "name": "A6 (C7)",
+              "period": "2011-2018",
+              "bodyStyles": ["Sedan", "Wagon (Avant)", "Allroad"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1798,
+                  "enginePowerKW": 140,
+                  "enginePowerHP": 190,
+                  "engineCode": "CYGA",
+                  "description": "1.8 TFSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 132,
+                  "enginePowerHP": 180,
+                  "engineCode": "CDNB",
+                  "description": "2.0 TFSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2773,
+                  "enginePowerKW": 150,
+                  "enginePowerHP": 204,
+                  "engineCode": "CHVA",
+                  "description": "2.8 FSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2995,
+                  "enginePowerKW": 228,
+                  "enginePowerHP": 310,
+                  "engineCode": "CGXB",
+                  "description": "3.0 V6 TFSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 3993,
+                  "enginePowerKW": 309,
+                  "enginePowerHP": 420,
+                  "engineCode": "CEUC",
+                  "description": "S6 4.0 V8 TFSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 3993,
+                  "enginePowerKW": 412,
+                  "enginePowerHP": 560,
+                  "engineCode": "CRDB",
+                  "description": "RS6 4.0 V8 TFSI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 130,
+                  "enginePowerHP": 177,
+                  "engineCode": "CGLC",
+                  "description": "2.0 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 140,
+                  "enginePowerHP": 190,
+                  "engineCode": "CNHA",
+                  "description": "2.0 TDI ultra"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2967,
+                  "enginePowerKW": 150,
+                  "enginePowerHP": 204,
+                  "engineCode": "CLAA",
+                  "description": "3.0 V6 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2967,
+                  "enginePowerKW": 180,
+                  "enginePowerHP": 245,
+                  "engineCode": "CDUC",
+                  "description": "3.0 V6 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2967,
+                  "enginePowerKW": 230,
+                  "enginePowerHP": 313,
+                  "engineCode": "CGQB",
+                  "description": "3.0 V6 BiTDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2967,
+                  "enginePowerKW": 235,
+                  "enginePowerHP": 320,
+                  "engineCode": "CVUA",
+                  "description": "3.0 V6 BiTDI competition"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "A8",
+          "generations": [
+            {
+              "name": "A8 (D2)",
+              "period": "1994-2002",
+              "bodyStyles": ["Sedan"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2771,
+                  "enginePowerKW": 128,
+                  "enginePowerHP": 174,
+                  "engineCode": "AAH",
+                  "description": "2.8 V6"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2771,
+                  "enginePowerKW": 142,
+                  "enginePowerHP": 193,
+                  "engineCode": "ACK/APR/AQD",
+                  "description": "2.8 V6 30V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 3697,
+                  "enginePowerKW": 169,
+                  "enginePowerHP": 230,
+                  "engineCode": "AEW",
+                  "description": "3.7 V8"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 4172,
+                  "enginePowerKW": 220,
+                  "enginePowerHP": 300,
+                  "engineCode": "ABZ",
+                  "description": "4.2 V8"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 4172,
+                  "enginePowerKW": 265,
+                  "enginePowerHP": 360,
+                  "engineCode": "AQF/AUW",
+                  "description": "S8 4.2 V8"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 5998,
+                  "enginePowerKW": 309,
+                  "enginePowerHP": 420,
+                  "engineCode": "AZC",
+                  "description": "6.0 W12"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2496,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "AFB/AKN",
+                  "description": "2.5 V6 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 3328,
+                  "enginePowerKW": 165,
+                  "enginePowerHP": 225,
+                  "engineCode": "AKF",
+                  "description": "3.3 V8 TDI"
+                }
+              ]
+            },
+            {
+              "name": "A8 (D3)",
+              "period": "2002-2009",
+              "bodyStyles": ["Sedan"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2976,
+                  "enginePowerKW": 162,
+                  "enginePowerHP": 220,
+                  "engineCode": "ASN",
+                  "description": "3.0 V6"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 3123,
+                  "enginePowerKW": 191,
+                  "enginePowerHP": 260,
+                  "engineCode": "BHL",
+                  "description": "3.2 V6 FSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 4172,
+                  "enginePowerKW": 246,
+                  "enginePowerHP": 335,
+                  "engineCode": "BFM",
+                  "description": "4.2 V8"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 4163,
+                  "enginePowerKW": 257,
+                  "enginePowerHP": 350,
+                  "engineCode": "BVJ",
+                  "description": "4.2 V8 FSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 5204,
+                  "enginePowerKW": 331,
+                  "enginePowerHP": 450,
+                  "engineCode": "BSM",
+                  "description": "S8 5.2 V10 FSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 5998,
+                  "enginePowerKW": 331,
+                  "enginePowerHP": 450,
+                  "engineCode": "BHT",
+                  "description": "6.0 W12"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2967,
+                  "enginePowerKW": 171,
+                  "enginePowerHP": 233,
+                  "engineCode": "ASB",
+                  "description": "3.0 V6 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 4134,
+                  "enginePowerKW": 235,
+                  "enginePowerHP": 320,
+                  "engineCode": "BMC",
+                  "description": "4.2 V8 TDI"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Q3",
+          "generations": [
+            {
+              "name": "Q3 (8U)",
+              "period": "2011-2018",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1395,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "CHPB",
+                  "description": "1.4 TFSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "CCZC",
+                  "description": "2.0 TFSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 155,
+                  "enginePowerHP": 211,
+                  "engineCode": "CPSA",
+                  "description": "2.0 TFSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2480,
+                  "enginePowerKW": 228,
+                  "enginePowerHP": 310,
+                  "engineCode": "CEPA",
+                  "description": "RS Q3 2.5 TFSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2480,
+                  "enginePowerKW": 250,
+                  "enginePowerHP": 340,
+                  "engineCode": "CZGA",
+                  "description": "RS Q3 2.5 TFSI performance"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "CFFB",
+                  "description": "2.0 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 130,
+                  "enginePowerHP": 177,
+                  "engineCode": "CFGC",
+                  "description": "2.0 TDI"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Q5",
+          "generations": [
+            {
+              "name": "Q5 (8R)",
+              "period": "2008-2017",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 155,
+                  "enginePowerHP": 211,
+                  "engineCode": "CDNC",
+                  "description": "2.0 TFSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 169,
+                  "enginePowerHP": 230,
+                  "engineCode": "CNCE",
+                  "description": "2.0 TFSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2995,
+                  "enginePowerKW": 200,
+                  "enginePowerHP": 272,
+                  "engineCode": "CTUC",
+                  "description": "3.0 V6 TFSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2995,
+                  "enginePowerKW": 260,
+                  "enginePowerHP": 354,
+                  "engineCode": "CTVA",
+                  "description": "SQ5 3.0 V6 TFSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 3197,
+                  "enginePowerKW": 199,
+                  "enginePowerHP": 270,
+                  "engineCode": "CALB",
+                  "description": "3.2 V6 FSI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 105,
+                  "enginePowerHP": 143,
+                  "engineCode": "CAGA",
+                  "description": "2.0 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "CAHA",
+                  "description": "2.0 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2967,
+                  "enginePowerKW": 176,
+                  "enginePowerHP": 240,
+                  "engineCode": "CCWA",
+                  "description": "3.0 V6 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2967,
+                  "enginePowerKW": 230,
+                  "enginePowerHP": 313,
+                  "engineCode": "CGQB",
+                  "description": "SQ5 3.0 V6 BiTDI"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Q7",
+          "generations": [
+            {
+              "name": "Q7 (4L)",
+              "period": "2005-2015",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 3597,
+                  "enginePowerKW": 206,
+                  "enginePowerHP": 280,
+                  "engineCode": "BHK",
+                  "description": "3.6 FSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 4163,
+                  "enginePowerKW": 257,
+                  "enginePowerHP": 350,
+                  "engineCode": "BAR",
+                  "description": "4.2 FSI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2967,
+                  "enginePowerKW": 171,
+                  "enginePowerHP": 233,
+                  "engineCode": "BUG",
+                  "description": "3.0 V6 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2967,
+                  "enginePowerKW": 176,
+                  "enginePowerHP": 240,
+                  "engineCode": "CASA",
+                  "description": "3.0 V6 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 4134,
+                  "enginePowerKW": 240,
+                  "enginePowerHP": 326,
+                  "engineCode": "BTR",
+                  "description": "4.2 V8 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 5934,
+                  "enginePowerKW": 368,
+                  "enginePowerHP": 500,
+                  "engineCode": "CCGA",
+                  "description": "6.0 V12 TDI"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "R8",
+          "generations": [
+            {
+              "name": "R8 (Type 42)",
+              "period": "2007-2015",
+              "bodyStyles": ["Coupe", "Spyder"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 4163,
+                  "enginePowerKW": 309,
+                  "enginePowerHP": 420,
+                  "engineCode": "BYH",
+                  "description": "4.2 V8 FSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 5204,
+                  "enginePowerKW": 386,
+                  "enginePowerHP": 525,
+                  "engineCode": "BUJ",
+                  "description": "5.2 V10 FSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 5204,
+                  "enginePowerKW": 412,
+                  "enginePowerHP": 560,
+                  "engineCode": "CTYA",
+                  "description": "GT 5.2 V10 FSI"
+                }
+              ]
+            },
+            {
+              "name": "R8 (Type 4S)",
+              "period": "2015-2023",
+              "bodyStyles": ["Coupe", "Spyder"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 5204,
+                  "enginePowerKW": 397,
+                  "enginePowerHP": 540,
+                  "engineCode": "DKA",
+                  "description": "5.2 V10 FSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 5204,
+                  "enginePowerKW": 449,
+                  "enginePowerHP": 610,
+                  "engineCode": "DKA",
+                  "description": "5.2 V10 FSI plus"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 5204,
+                  "enginePowerKW": 456,
+                  "enginePowerHP": 620,
+                  "engineCode": "DMG",
+                  "description": "5.2 V10 FSI performance"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "TT",
+          "generations": [
+            {
+              "name": "TT (Mk1, 8N)",
+              "period": "1998-2006",
+              "bodyStyles": ["Coupe", "Roadster"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1781,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "AUM",
+                  "description": "1.8T"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1781,
+                  "enginePowerKW": 132,
+                  "enginePowerHP": 180,
+                  "engineCode": "AJQ/AUQ/APP",
+                  "description": "1.8T"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1781,
+                  "enginePowerKW": 165,
+                  "enginePowerHP": 225,
+                  "engineCode": "APX/BAM",
+                  "description": "1.8T quattro"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 3189,
+                  "enginePowerKW": 184,
+                  "enginePowerHP": 250,
+                  "engineCode": "BHE",
+                  "description": "3.2 VR6 quattro"
+                }
+              ]
+            },
+            {
+              "name": "TT (Mk2, 8J)",
+              "period": "2006-2014",
+              "bodyStyles": ["Coupe", "Roadster"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1798,
+                  "enginePowerKW": 118,
+                  "enginePowerHP": 160,
+                  "engineCode": "CDAA",
+                  "description": "1.8 TFSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 147,
+                  "enginePowerHP": 200,
+                  "engineCode": "BWA",
+                  "description": "2.0 TFSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 155,
+                  "enginePowerHP": 211,
+                  "engineCode": "CESA",
+                  "description": "2.0 TFSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 200,
+                  "enginePowerHP": 272,
+                  "engineCode": "CDLB",
+                  "description": "TTS 2.0 TFSI quattro"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2480,
+                  "enginePowerKW": 250,
+                  "enginePowerHP": 340,
+                  "engineCode": "CEPA",
+                  "description": "TT RS 2.5 TFSI quattro"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 3189,
+                  "enginePowerKW": 184,
+                  "enginePowerHP": 250,
+                  "engineCode": "BUB",
+                  "description": "3.2 V6 quattro"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "CBBB",
+                  "description": "2.0 TDI quattro"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "e-tron GT",
+          "generations": [
+            {
+              "name": "e-tron GT (FW)",
+              "period": "2021-Present",
+              "bodyStyles": ["Coupe"],
+              "engines": [
+                {
+                  "engineType": "Electric",
+                  "engineCapacity": 0,
+                  "enginePowerKW": 350,
+                  "enginePowerHP": 476,
+                  "engineCode": "—",
+                  "description": "e-tron GT quattro (Boost to 390kW)"
+                },
+                {
+                  "engineType": "Electric",
+                  "engineCapacity": 0,
+                  "enginePowerKW": 440,
+                  "enginePowerHP": 598,
+                  "engineCode": "—",
+                  "description": "RS e-tron GT (Boost to 475kW)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Q8 e-tron",
+          "generations": [
+            {
+              "name": "e-tron / Q8 e-tron (GE)",
+              "period": "2018-Present",
+              "bodyStyles": ["SUV", "Sportback"],
+              "engines": [
+                {
+                  "engineType": "Electric",
+                  "engineCapacity": 0,
+                  "enginePowerKW": 230,
+                  "enginePowerHP": 313,
+                  "engineCode": "—",
+                  "description": "50 quattro"
+                },
+                {
+                  "engineType": "Electric",
+                  "engineCapacity": 0,
+                  "enginePowerKW": 300,
+                  "enginePowerHP": 408,
+                  "engineCode": "—",
+                  "description": "55 quattro"
+                },
+                {
+                  "engineType": "Electric",
+                  "engineCapacity": 0,
+                  "enginePowerKW": 370,
+                  "enginePowerHP": 503,
+                  "engineCode": "—",
+                  "description": "S quattro"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]

@@ -1,0 +1,590 @@
+[
+    {
+      "name": "Volkswagen",
+      "type": "PASSENGER",
+      "models": [
+        {
+          "name": "Polo",
+          "generations": [
+            {
+              "name": "Polo III (6N)",
+              "period": "1994-1999",
+              "bodyStyles": ["Hatchback", "Sedan (Classic)", "Wagon (Variant)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 999,
+                  "enginePowerKW": 37,
+                  "enginePowerHP": 50,
+                  "engineCode": "AER/ALL",
+                  "description": "1.0 MPI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1298,
+                  "enginePowerKW": 40,
+                  "enginePowerHP": 55,
+                  "engineCode": "ADX",
+                  "description": "1.3 MPI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1390,
+                  "enginePowerKW": 44,
+                  "enginePowerHP": 60,
+                  "engineCode": "AEX/AKV/APQ",
+                  "description": "1.4 MPI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1390,
+                  "enginePowerKW": 74,
+                  "enginePowerHP": 100,
+                  "engineCode": "AFH",
+                  "description": "1.4 16V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 55,
+                  "enginePowerHP": 75,
+                  "engineCode": "AEA/AEE",
+                  "description": "1.6 MPI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1595,
+                  "enginePowerKW": 88,
+                  "enginePowerHP": 120,
+                  "engineCode": "AJV",
+                  "description": "1.6 16V GTI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1896,
+                  "enginePowerKW": 47,
+                  "enginePowerHP": 64,
+                  "engineCode": "AEY",
+                  "description": "1.9 SDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1896,
+                  "enginePowerKW": 66,
+                  "enginePowerHP": 90,
+                  "engineCode": "AHU/ALE",
+                  "description": "1.9 TDI"
+                }
+              ]
+            },
+            {
+              "name": "Polo III Facelift (6N2)",
+              "period": "1999-2002",
+              "bodyStyles": ["Hatchback", "Wagon (Variant)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 999,
+                  "enginePowerKW": 37,
+                  "enginePowerHP": 50,
+                  "engineCode": "ALD/AUC",
+                  "description": "1.0 MPI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1390,
+                  "enginePowerKW": 44,
+                  "enginePowerHP": 60,
+                  "engineCode": "AKK/AUD",
+                  "description": "1.4 MPI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1390,
+                  "enginePowerKW": 55,
+                  "enginePowerHP": 75,
+                  "engineCode": "APE/AUA",
+                  "description": "1.4 16V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1390,
+                  "enginePowerKW": 74,
+                  "enginePowerHP": 101,
+                  "engineCode": "AFK/AUB",
+                  "description": "1.4 16V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1595,
+                  "enginePowerKW": 92,
+                  "enginePowerHP": 125,
+                  "engineCode": "AVY",
+                  "description": "1.6 16V GTI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1422,
+                  "enginePowerKW": 55,
+                  "enginePowerHP": 75,
+                  "engineCode": "AMF",
+                  "description": "1.4 TDI PD"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1896,
+                  "enginePowerKW": 47,
+                  "enginePowerHP": 64,
+                  "engineCode": "ASY",
+                  "description": "1.9 SDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1896,
+                  "enginePowerKW": 66,
+                  "enginePowerHP": 90,
+                  "engineCode": "AGR/ALH",
+                  "description": "1.9 TDI"
+                }
+              ]
+            },
+            {
+              "name": "Polo IV (9N)",
+              "period": "2002-2005",
+              "bodyStyles": ["Hatchback", "Sedan"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1198,
+                  "enginePowerKW": 40,
+                  "enginePowerHP": 54,
+                  "engineCode": "AWY/BMD",
+                  "description": "1.2 MPI 6V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1198,
+                  "enginePowerKW": 47,
+                  "enginePowerHP": 64,
+                  "engineCode": "AZQ/BME",
+                  "description": "1.2 MPI 12V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1390,
+                  "enginePowerKW": 55,
+                  "enginePowerHP": 75,
+                  "engineCode": "AUA/BBY/BKY",
+                  "description": "1.4 16V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1390,
+                  "enginePowerKW": 63,
+                  "enginePowerHP": 86,
+                  "engineCode": "AXU",
+                  "description": "1.4 FSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1390,
+                  "enginePowerKW": 74,
+                  "enginePowerHP": 101,
+                  "engineCode": "AUB/BBZ",
+                  "description": "1.4 16V"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1422,
+                  "enginePowerKW": 55,
+                  "enginePowerHP": 75,
+                  "engineCode": "AMF/BAY",
+                  "description": "1.4 TDI PD"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1896,
+                  "enginePowerKW": 47,
+                  "enginePowerHP": 64,
+                  "engineCode": "ASY",
+                  "description": "1.9 SDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1896,
+                  "enginePowerKW": 74,
+                  "enginePowerHP": 101,
+                  "engineCode": "ATD/AXR",
+                  "description": "1.9 TDI PD"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1896,
+                  "enginePowerKW": 96,
+                  "enginePowerHP": 130,
+                  "engineCode": "ASZ/BLT",
+                  "description": "1.9 TDI PD"
+                }
+              ]
+            },
+            {
+              "name": "Polo IV Facelift (9N3)",
+              "period": "2005-2009",
+              "bodyStyles": ["Hatchback", "Sedan"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1198,
+                  "enginePowerKW": 44,
+                  "enginePowerHP": 60,
+                  "engineCode": "BBM",
+                  "description": "1.2 MPI 6V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1198,
+                  "enginePowerKW": 51,
+                  "enginePowerHP": 70,
+                  "engineCode": "BZG",
+                  "description": "1.2 MPI 12V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1390,
+                  "enginePowerKW": 59,
+                  "enginePowerHP": 80,
+                  "engineCode": "BUD",
+                  "description": "1.4 16V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 77,
+                  "enginePowerHP": 105,
+                  "engineCode": "BTS",
+                  "description": "1.6 16V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1781,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "BJX",
+                  "description": "1.8T GTI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1781,
+                  "enginePowerKW": 132,
+                  "enginePowerHP": 180,
+                  "engineCode": "BBU",
+                  "description": "1.8T GTI Cup Edition"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1422,
+                  "enginePowerKW": 51,
+                  "enginePowerHP": 70,
+                  "engineCode": "BNM/BWB",
+                  "description": "1.4 TDI PD"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1422,
+                  "enginePowerKW": 59,
+                  "enginePowerHP": 80,
+                  "engineCode": "BMS/BNV",
+                  "description": "1.4 TDI PD BlueMotion"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1896,
+                  "enginePowerKW": 74,
+                  "enginePowerHP": 101,
+                  "engineCode": "AXR",
+                  "description": "1.9 TDI PD"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1896,
+                  "enginePowerKW": 96,
+                  "enginePowerHP": 130,
+                  "engineCode": "BLT",
+                  "description": "1.9 TDI PD"
+                }
+              ]
+            },
+            {
+              "name": "Polo V (6R)",
+              "period": "2009-2014",
+              "bodyStyles": ["Hatchback", "Sedan"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1198,
+                  "enginePowerKW": 44,
+                  "enginePowerHP": 60,
+                  "engineCode": "CGPB",
+                  "description": "1.2 MPI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1198,
+                  "enginePowerKW": 51,
+                  "enginePowerHP": 70,
+                  "engineCode": "CGPA",
+                  "description": "1.2 MPI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1390,
+                  "enginePowerKW": 63,
+                  "enginePowerHP": 85,
+                  "engineCode": "CGGB/CLPA",
+                  "description": "1.4 MPI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1197,
+                  "enginePowerKW": 66,
+                  "enginePowerHP": 90,
+                  "engineCode": "CBZC",
+                  "description": "1.2 TSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1197,
+                  "enginePowerKW": 77,
+                  "enginePowerHP": 105,
+                  "engineCode": "CBZB",
+                  "description": "1.2 TSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1390,
+                  "enginePowerKW": 132,
+                  "enginePowerHP": 180,
+                  "engineCode": "CAVE",
+                  "description": "1.4 TSI GTI (Twin-charged)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1199,
+                  "enginePowerKW": 55,
+                  "enginePowerHP": 75,
+                  "engineCode": "CFWA",
+                  "description": "1.2 TDI CR BlueMotion"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 55,
+                  "enginePowerHP": 75,
+                  "engineCode": "CAYA",
+                  "description": "1.6 TDI CR"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 66,
+                  "enginePowerHP": 90,
+                  "engineCode": "CAYB",
+                  "description": "1.6 TDI CR"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 77,
+                  "enginePowerHP": 105,
+                  "engineCode": "CAYC/CLNA",
+                  "description": "1.6 TDI CR"
+                }
+              ]
+            },
+            {
+              "name": "Polo V Facelift (6C)",
+              "period": "2014-2017",
+              "bodyStyles": ["Hatchback"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 999,
+                  "enginePowerKW": 44,
+                  "enginePowerHP": 60,
+                  "engineCode": "CHYA",
+                  "description": "1.0 MPI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 999,
+                  "enginePowerKW": 55,
+                  "enginePowerHP": 75,
+                  "engineCode": "CHYB",
+                  "description": "1.0 MPI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 999,
+                  "enginePowerKW": 70,
+                  "enginePowerHP": 95,
+                  "engineCode": "CHZB",
+                  "description": "1.0 TSI BlueMotion"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 999,
+                  "enginePowerKW": 81,
+                  "enginePowerHP": 110,
+                  "engineCode": "CHZC",
+                  "description": "1.0 TSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1197,
+                  "enginePowerKW": 66,
+                  "enginePowerHP": 90,
+                  "engineCode": "CJZC",
+                  "description": "1.2 TSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1197,
+                  "enginePowerKW": 81,
+                  "enginePowerHP": 110,
+                  "engineCode": "CJZD",
+                  "description": "1.2 TSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1395,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "CZEA",
+                  "description": "1.4 TSI BlueGT ACT"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1798,
+                  "enginePowerKW": 141,
+                  "enginePowerHP": 192,
+                  "engineCode": "DAJA",
+                  "description": "1.8 TSI GTI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1422,
+                  "enginePowerKW": 55,
+                  "enginePowerHP": 75,
+                  "engineCode": "CUSA",
+                  "description": "1.4 TDI BlueMotion"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1422,
+                  "enginePowerKW": 66,
+                  "enginePowerHP": 90,
+                  "engineCode": "CUSB",
+                  "description": "1.4 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1422,
+                  "enginePowerKW": 77,
+                  "enginePowerHP": 105,
+                  "engineCode": "CUTA",
+                  "description": "1.4 TDI"
+                }
+              ]
+            },
+            {
+              "name": "Polo VI (AW/BZ)",
+              "period": "2017-Present",
+              "bodyStyles": ["Hatchback"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 999,
+                  "enginePowerKW": 59,
+                  "enginePowerHP": 80,
+                  "engineCode": "DSGB",
+                  "description": "1.0 MPI Evo"
+                },
+                {
+                  "engineType": "CNG",
+                  "engineCapacity": 999,
+                  "enginePowerKW": 66,
+                  "enginePowerHP": 90,
+                  "engineCode": "DBYA",
+                  "description": "1.0 TGI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 999,
+                  "enginePowerKW": 70,
+                  "enginePowerHP": 95,
+                  "engineCode": "DKLA/DLAC",
+                  "description": "1.0 TSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 999,
+                  "enginePowerKW": 81,
+                  "enginePowerHP": 110,
+                  "engineCode": "DPC",
+                  "description": "1.0 TSI (Facelift)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 999,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 115,
+                  "engineCode": "DKJA/DKRF",
+                  "description": "1.0 TSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1498,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "DADA/DPCA",
+                  "description": "1.5 TSI Evo ACT"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 147,
+                  "enginePowerHP": 200,
+                  "engineCode": "CZPC",
+                  "description": "2.0 TSI GTI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 152,
+                  "enginePowerHP": 207,
+                  "engineCode": "DNND",
+                  "description": "2.0 TSI GTI (Facelift)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 59,
+                  "enginePowerHP": 80,
+                  "engineCode": "DGTC",
+                  "description": "1.6 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 70,
+                  "enginePowerHP": 95,
+                  "engineCode": "DGTD",
+                  "description": "1.6 TDI"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]

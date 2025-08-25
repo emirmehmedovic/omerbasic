@@ -1,0 +1,242 @@
+[
+    {
+      "name": "Volkswagen",
+      "type": "PASSENGER",
+      "models": [
+        {
+          "name": "Scirocco",
+          "generations": [
+            {
+              "name": "Scirocco I (Typ 53)",
+              "period": "1974-1981",
+              "bodyStyles": ["Coupe"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1093,
+                  "enginePowerKW": 37,
+                  "enginePowerHP": 50,
+                  "engineCode": "FA",
+                  "description": "1.1"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1471,
+                  "enginePowerKW": 51,
+                  "enginePowerHP": 70,
+                  "engineCode": "JB",
+                  "description": "1.5"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1457,
+                  "enginePowerKW": 63,
+                  "enginePowerHP": 85,
+                  "engineCode": "FH",
+                  "description": "1.5"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1588,
+                  "enginePowerKW": 63,
+                  "enginePowerHP": 85,
+                  "engineCode": "FR",
+                  "description": "1.6"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1588,
+                  "enginePowerKW": 81,
+                  "enginePowerHP": 110,
+                  "engineCode": "EG",
+                  "description": "1.6 GTI/GLI"
+                }
+              ]
+            },
+            {
+              "name": "Scirocco II (Typ 53B)",
+              "period": "1981-1992",
+              "bodyStyles": ["Coupe"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1272,
+                  "enginePowerKW": 44,
+                  "enginePowerHP": 60,
+                  "engineCode": "GF",
+                  "description": "1.3"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1595,
+                  "enginePowerKW": 53,
+                  "enginePowerHP": 72,
+                  "engineCode": "EW",
+                  "description": "1.6"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1781,
+                  "enginePowerKW": 66,
+                  "enginePowerHP": 90,
+                  "engineCode": "EX",
+                  "description": "1.8"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1781,
+                  "enginePowerKW": 70,
+                  "enginePowerHP": 95,
+                  "engineCode": "JH",
+                  "description": "1.8 GT/GTL"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1781,
+                  "enginePowerKW": 82,
+                  "enginePowerHP": 112,
+                  "engineCode": "DX",
+                  "description": "1.8 GTI/GTX"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1781,
+                  "enginePowerKW": 95,
+                  "enginePowerHP": 129,
+                  "engineCode": "PL",
+                  "description": "1.8 16V (cat)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1781,
+                  "enginePowerKW": 102,
+                  "enginePowerHP": 139,
+                  "engineCode": "KR",
+                  "description": "1.8 16V"
+                }
+              ]
+            },
+            {
+              "name": "Scirocco III (Typ 13)",
+              "period": "2008-2017",
+              "bodyStyles": ["Coupe"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1390,
+                  "enginePowerKW": 90,
+                  "enginePowerHP": 122,
+                  "engineCode": "CAXA",
+                  "description": "1.4 TSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1395,
+                  "enginePowerKW": 92,
+                  "enginePowerHP": 125,
+                  "engineCode": "CZCA",
+                  "description": "1.4 TSI BlueMotion (Facelift)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1390,
+                  "enginePowerKW": 118,
+                  "enginePowerHP": 160,
+                  "engineCode": "CAVD/CTHD",
+                  "description": "1.4 TSI (Twin-charged)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 132,
+                  "enginePowerHP": 180,
+                  "engineCode": "CULC",
+                  "description": "2.0 TSI (Facelift)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 147,
+                  "enginePowerHP": 200,
+                  "engineCode": "CAWB",
+                  "description": "2.0 TSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 155,
+                  "enginePowerHP": 211,
+                  "engineCode": "CCZB",
+                  "description": "2.0 TSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 162,
+                  "enginePowerHP": 220,
+                  "engineCode": "CHHB",
+                  "description": "2.0 TSI GTS (Facelift)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 195,
+                  "enginePowerHP": 265,
+                  "engineCode": "CDLA",
+                  "description": "R 2.0 TSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 206,
+                  "enginePowerHP": 280,
+                  "engineCode": "CDLK",
+                  "description": "R 2.0 TSI (Facelift)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "CBDB/CFFB",
+                  "description": "2.0 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "CUUB/DFGA",
+                  "description": "2.0 TDI (Facelift)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "CBBB/CFGB",
+                  "description": "2.0 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 130,
+                  "enginePowerHP": 177,
+                  "engineCode": "CFGC",
+                  "description": "2.0 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 135,
+                  "enginePowerHP": 184,
+                  "engineCode": "CUWA",
+                  "description": "2.0 TDI (Facelift)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]

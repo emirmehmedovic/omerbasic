@@ -1,0 +1,844 @@
+[
+    {
+      "name": "Volvo",
+      "type": "PASSENGER",
+      "models": [
+        {
+          "name": "C30",
+          "generations": [
+            {
+              "name": "C30",
+              "period": "2006-2013",
+              "bodyStyles": ["Hatchback (3-door)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1596,
+                  "enginePowerKW": 74,
+                  "enginePowerHP": 100,
+                  "engineCode": "B4164S3",
+                  "description": "1.6"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1999,
+                  "enginePowerKW": 107,
+                  "enginePowerHP": 145,
+                  "engineCode": "B4204S3",
+                  "description": "2.0"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2435,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "B5244S4",
+                  "description": "2.4i (5-cylinder)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2521,
+                  "enginePowerKW": 169,
+                  "enginePowerHP": 230,
+                  "engineCode": "B5254T7",
+                  "description": "T5 (5-cylinder Turbo)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1560,
+                  "enginePowerKW": 80,
+                  "enginePowerHP": 109,
+                  "engineCode": "D4164T",
+                  "description": "1.6D (PSA/Ford)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1997,
+                  "enginePowerKW": 100,
+                  "enginePowerHP": 136,
+                  "engineCode": "D4204T",
+                  "description": "2.0D (PSA/Ford)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "D5204T5",
+                  "description": "D3 (5-cylinder)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2400,
+                  "enginePowerKW": 132,
+                  "enginePowerHP": 180,
+                  "engineCode": "D5244T8",
+                  "description": "D5 (5-cylinder)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "S40 / V50",
+          "generations": [
+            {
+              "name": "S40 II / V50",
+              "period": "2004-2012",
+              "bodyStyles": ["Sedan (S40)", "Wagon (V50)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1596,
+                  "enginePowerKW": 74,
+                  "enginePowerHP": 100,
+                  "engineCode": "B4164S3",
+                  "description": "1.6"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1798,
+                  "enginePowerKW": 92,
+                  "enginePowerHP": 125,
+                  "engineCode": "B4184S11",
+                  "description": "1.8"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2435,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "B5244S4",
+                  "description": "2.4i (5-cylinder)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2521,
+                  "enginePowerKW": 169,
+                  "enginePowerHP": 230,
+                  "engineCode": "B5254T7",
+                  "description": "T5 (5-cylinder Turbo)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1560,
+                  "enginePowerKW": 81,
+                  "enginePowerHP": 110,
+                  "engineCode": "D4164T",
+                  "description": "1.6D"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1997,
+                  "enginePowerKW": 100,
+                  "enginePowerHP": 136,
+                  "engineCode": "D4204T",
+                  "description": "2.0D"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2400,
+                  "enginePowerKW": 132,
+                  "enginePowerHP": 180,
+                  "engineCode": "D5244T8",
+                  "description": "D5 (5-cylinder)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "S60",
+          "generations": [
+            {
+              "name": "S60 I",
+              "period": "2000-2009",
+              "bodyStyles": ["Sedan"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2435,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "B5244S",
+                  "description": "2.4 (5-cylinder)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2435,
+                  "enginePowerKW": 147,
+                  "enginePowerHP": 200,
+                  "engineCode": "B5244T3",
+                  "description": "2.4T (5-cylinder)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2521,
+                  "enginePowerKW": 154,
+                  "enginePowerHP": 210,
+                  "engineCode": "B5254T2",
+                  "description": "2.5T (5-cylinder)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2319,
+                  "enginePowerKW": 184,
+                  "enginePowerHP": 250,
+                  "engineCode": "B5234T3",
+                  "description": "T5 (5-cylinder)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2521,
+                  "enginePowerKW": 221,
+                  "enginePowerHP": 300,
+                  "engineCode": "B5254T4",
+                  "description": "R (5-cylinder)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2401,
+                  "enginePowerKW": 120,
+                  "enginePowerHP": 163,
+                  "engineCode": "D5244T",
+                  "description": "D5 (5-cylinder)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2400,
+                  "enginePowerKW": 136,
+                  "enginePowerHP": 185,
+                  "engineCode": "D5244T4",
+                  "description": "D5 (5-cylinder)"
+                }
+              ]
+            },
+            {
+              "name": "S60 II",
+              "period": "2010-2018",
+              "bodyStyles": ["Sedan"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1596,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "B4164T3",
+                  "description": "T3"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1969,
+                  "enginePowerKW": 180,
+                  "enginePowerHP": 245,
+                  "engineCode": "B4204T11",
+                  "description": "T5 Drive-E"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2953,
+                  "enginePowerKW": 224,
+                  "enginePowerHP": 304,
+                  "engineCode": "B6304T4",
+                  "description": "T6 (6-cylinder)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1969,
+                  "enginePowerKW": 270,
+                  "enginePowerHP": 367,
+                  "engineCode": "B4204T43",
+                  "description": "Polestar"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1560,
+                  "enginePowerKW": 84,
+                  "enginePowerHP": 114,
+                  "engineCode": "D4162T",
+                  "description": "D2 Drive-E"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 120,
+                  "enginePowerHP": 163,
+                  "engineCode": "D5204T3",
+                  "description": "D3 (5-cylinder)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1969,
+                  "enginePowerKW": 140,
+                  "enginePowerHP": 190,
+                  "engineCode": "D4204T14",
+                  "description": "D4 Drive-E"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2400,
+                  "enginePowerKW": 158,
+                  "enginePowerHP": 215,
+                  "engineCode": "D5244T11",
+                  "description": "D5 (5-cylinder)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "S80",
+          "generations": [
+            {
+              "name": "S80 I",
+              "period": "1998-2006",
+              "bodyStyles": ["Sedan"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2435,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "B5244S",
+                  "description": "2.4 (5-cylinder)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2521,
+                  "enginePowerKW": 154,
+                  "enginePowerHP": 210,
+                  "engineCode": "B5254T2",
+                  "description": "2.5T (5-cylinder)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2922,
+                  "enginePowerKW": 144,
+                  "enginePowerHP": 196,
+                  "engineCode": "B6294S",
+                  "description": "2.9 (6-cylinder)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2783,
+                  "enginePowerKW": 200,
+                  "enginePowerHP": 272,
+                  "engineCode": "B6284T",
+                  "description": "T6 (6-cylinder Bi-Turbo)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2401,
+                  "enginePowerKW": 120,
+                  "enginePowerHP": 163,
+                  "engineCode": "D5244T",
+                  "description": "D5 (5-cylinder)"
+                }
+              ]
+            },
+            {
+              "name": "S80 II",
+              "period": "2006-2016",
+              "bodyStyles": ["Sedan"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 3192,
+                  "enginePowerKW": 175,
+                  "enginePowerHP": 238,
+                  "engineCode": "B6324S",
+                  "description": "3.2 (6-cylinder)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2953,
+                  "enginePowerKW": 224,
+                  "enginePowerHP": 304,
+                  "engineCode": "B6304T4",
+                  "description": "T6 (6-cylinder)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 4414,
+                  "enginePowerKW": 232,
+                  "enginePowerHP": 315,
+                  "engineCode": "B8444S",
+                  "description": "V8 (Yamaha)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1560,
+                  "enginePowerKW": 84,
+                  "enginePowerHP": 114,
+                  "engineCode": "D4162T",
+                  "description": "1.6D DRIVe"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1969,
+                  "enginePowerKW": 133,
+                  "enginePowerHP": 181,
+                  "engineCode": "D4204T5",
+                  "description": "D4 Drive-E"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2400,
+                  "enginePowerKW": 158,
+                  "enginePowerHP": 215,
+                  "engineCode": "D5244T11",
+                  "description": "D5 (5-cylinder)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "S90 / V90",
+          "generations": [
+            {
+              "name": "S90 / V90",
+              "period": "2016-Present",
+              "bodyStyles": ["Sedan (S90)", "Wagon (V90)", "Cross Country (V90)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1969,
+                  "enginePowerKW": 187,
+                  "enginePowerHP": 254,
+                  "engineCode": "B4204T23",
+                  "description": "T5"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1969,
+                  "enginePowerKW": 235,
+                  "enginePowerHP": 320,
+                  "engineCode": "B4204T27",
+                  "description": "T6"
+                },
+                {
+                  "engineType": "Plug-in Hybrid",
+                  "engineCapacity": 1969,
+                  "enginePowerKW": 235,
+                  "enginePowerHP": 320,
+                  "engineCode": "B4204T28",
+                  "description": "T8 Twin Engine (System 407HP)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1969,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "D4204T9",
+                  "description": "D3"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1969,
+                  "enginePowerKW": 140,
+                  "enginePowerHP": 190,
+                  "engineCode": "D4204T14",
+                  "description": "D4"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1969,
+                  "enginePowerKW": 173,
+                  "enginePowerHP": 235,
+                  "engineCode": "D4204T23",
+                  "description": "D5 PowerPulse"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "V40",
+          "generations": [
+            {
+              "name": "V40",
+              "period": "2012-2019",
+              "bodyStyles": ["Hatchback", "Cross Country"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1596,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "B4164T3",
+                  "description": "T3"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1969,
+                  "enginePowerKW": 112,
+                  "enginePowerHP": 152,
+                  "engineCode": "B4204T37",
+                  "description": "T3 Drive-E"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1969,
+                  "enginePowerKW": 180,
+                  "enginePowerHP": 245,
+                  "engineCode": "B4204T11",
+                  "description": "T5 Drive-E"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1560,
+                  "enginePowerKW": 84,
+                  "enginePowerHP": 114,
+                  "engineCode": "D4162T",
+                  "description": "D2"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1969,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "D4204T8",
+                  "description": "D3 Drive-E"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1969,
+                  "enginePowerKW": 140,
+                  "enginePowerHP": 190,
+                  "engineCode": "D4204T14",
+                  "description": "D4 Drive-E"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "V70 / XC70",
+          "generations": [
+            {
+              "name": "V70 II / XC70 I",
+              "period": "2000-2007",
+              "bodyStyles": ["Wagon (V70)", "Cross Country (XC70)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2435,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "B5244S",
+                  "description": "2.4"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2521,
+                  "enginePowerKW": 154,
+                  "enginePowerHP": 210,
+                  "engineCode": "B5254T2",
+                  "description": "2.5T"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2521,
+                  "enginePowerKW": 221,
+                  "enginePowerHP": 300,
+                  "engineCode": "B5254T4",
+                  "description": "R"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2401,
+                  "enginePowerKW": 120,
+                  "enginePowerHP": 163,
+                  "engineCode": "D5244T",
+                  "description": "D5"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2400,
+                  "enginePowerKW": 136,
+                  "enginePowerHP": 185,
+                  "engineCode": "D5244T4",
+                  "description": "D5"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "XC40",
+          "generations": [
+            {
+              "name": "XC40",
+              "period": "2017-Present",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1477,
+                  "enginePowerKW": 115,
+                  "enginePowerHP": 156,
+                  "engineCode": "B3154T",
+                  "description": "T3 (3-cylinder)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1969,
+                  "enginePowerKW": 140,
+                  "enginePowerHP": 190,
+                  "engineCode": "B4204T47",
+                  "description": "T4"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1969,
+                  "enginePowerKW": 182,
+                  "enginePowerHP": 247,
+                  "engineCode": "B4204T14",
+                  "description": "T5"
+                },
+                {
+                  "engineType": "Plug-in Hybrid",
+                  "engineCapacity": 1477,
+                  "enginePowerKW": 132,
+                  "enginePowerHP": 180,
+                  "engineCode": "B3154T5",
+                  "description": "T5 Recharge (System 262HP)"
+                },
+                {
+                  "engineType": "Electric",
+                  "engineCapacity": 0,
+                  "enginePowerKW": 170,
+                  "enginePowerHP": 231,
+                  "engineCode": "—",
+                  "description": "Recharge Single Motor"
+                },
+                {
+                  "engineType": "Electric",
+                  "engineCapacity": 0,
+                  "enginePowerKW": 300,
+                  "enginePowerHP": 408,
+                  "engineCode": "—",
+                  "description": "Recharge Twin Motor"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1969,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "D4204T16",
+                  "description": "D3"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1969,
+                  "enginePowerKW": 140,
+                  "enginePowerHP": 190,
+                  "engineCode": "D4204T12",
+                  "description": "D4"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "XC60",
+          "generations": [
+            {
+              "name": "XC60 I",
+              "period": "2008-2017",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1969,
+                  "enginePowerKW": 180,
+                  "enginePowerHP": 245,
+                  "engineCode": "B4204T11",
+                  "description": "T5 Drive-E"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2953,
+                  "enginePowerKW": 224,
+                  "enginePowerHP": 304,
+                  "engineCode": "B6304T4",
+                  "description": "T6 (6-cylinder)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 120,
+                  "enginePowerHP": 163,
+                  "engineCode": "D5204T3",
+                  "description": "D3 (5-cylinder)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1969,
+                  "enginePowerKW": 140,
+                  "enginePowerHP": 190,
+                  "engineCode": "D4204T14",
+                  "description": "D4 Drive-E"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2400,
+                  "enginePowerKW": 158,
+                  "enginePowerHP": 215,
+                  "engineCode": "D5244T11",
+                  "description": "D5 (5-cylinder)"
+                }
+              ]
+            },
+            {
+              "name": "XC60 II",
+              "period": "2017-Present",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1969,
+                  "enginePowerKW": 184,
+                  "enginePowerHP": 250,
+                  "engineCode": "B4204T26",
+                  "description": "T5"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1969,
+                  "enginePowerKW": 228,
+                  "enginePowerHP": 310,
+                  "engineCode": "B4204T29",
+                  "description": "T6"
+                },
+                {
+                  "engineType": "Plug-in Hybrid",
+                  "engineCapacity": 1969,
+                  "enginePowerKW": 235,
+                  "enginePowerHP": 320,
+                  "engineCode": "B4204T34",
+                  "description": "T8 Twin Engine (System 407HP)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1969,
+                  "enginePowerKW": 140,
+                  "enginePowerHP": 190,
+                  "engineCode": "D4204T14",
+                  "description": "D4"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1969,
+                  "enginePowerKW": 173,
+                  "enginePowerHP": 235,
+                  "engineCode": "D4204T23",
+                  "description": "D5 PowerPulse"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "XC90",
+          "generations": [
+            {
+              "name": "XC90 I",
+              "period": "2002-2014",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2521,
+                  "enginePowerKW": 154,
+                  "enginePowerHP": 210,
+                  "engineCode": "B5254T2",
+                  "description": "2.5T (5-cylinder)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2922,
+                  "enginePowerKW": 200,
+                  "enginePowerHP": 272,
+                  "engineCode": "B6294T",
+                  "description": "T6 (6-cylinder Bi-Turbo)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 4414,
+                  "enginePowerKW": 232,
+                  "enginePowerHP": 315,
+                  "engineCode": "B8444S",
+                  "description": "V8 (Yamaha)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2401,
+                  "enginePowerKW": 120,
+                  "enginePowerHP": 163,
+                  "engineCode": "D5244T",
+                  "description": "D5 (5-cylinder)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2400,
+                  "enginePowerKW": 147,
+                  "enginePowerHP": 200,
+                  "engineCode": "D5244T4",
+                  "description": "D5 (5-cylinder)"
+                }
+              ]
+            },
+            {
+              "name": "XC90 II",
+              "period": "2015-Present",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1969,
+                  "enginePowerKW": 187,
+                  "enginePowerHP": 254,
+                  "engineCode": "B4204T23",
+                  "description": "T5"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1969,
+                  "enginePowerKW": 235,
+                  "enginePowerHP": 320,
+                  "engineCode": "B4204T27",
+                  "description": "T6"
+                },
+                {
+                  "engineType": "Plug-in Hybrid",
+                  "engineCapacity": 1969,
+                  "enginePowerKW": 235,
+                  "enginePowerHP": 320,
+                  "engineCode": "B4204T28",
+                  "description": "T8 Twin Engine (System 407HP)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1969,
+                  "enginePowerKW": 140,
+                  "enginePowerHP": 190,
+                  "engineCode": "D4204T14",
+                  "description": "D4"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1969,
+                  "enginePowerKW": 173,
+                  "enginePowerHP": 235,
+                  "engineCode": "D4204T23",
+                  "description": "D5 PowerPulse"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]

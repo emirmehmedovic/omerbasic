@@ -1,0 +1,233 @@
+[
+    {
+      "name": "BMW",
+      "type": "PASSENGER",
+      "models": [
+        {
+          "name": "1 Series",
+          "generations": [
+            {
+              "name": "1 Series (F20)",
+              "period": "2011-2019",
+              "bodyStyles": [],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 135,
+                  "enginePowerHP": 184,
+                  "engineCode": "N47D20",
+                  "description": "120d"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "3 Series",
+          "generations": [
+            {
+              "name": "3 Series (E90)",
+              "period": "2005-2012",
+              "bodyStyles": [],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1599,
+                  "enginePowerKW": 90,
+                  "enginePowerHP": 122,
+                  "engineCode": "N43B16",
+                  "description": "316i"
+                }
+              ]
+            },
+            {
+              "name": "3 Series (F30)",
+              "period": "2012-2019",
+              "bodyStyles": [],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1997,
+                  "enginePowerKW": 180,
+                  "enginePowerHP": 245,
+                  "engineCode": "N20B20",
+                  "description": "328i"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 135,
+                  "enginePowerHP": 184,
+                  "engineCode": "N47D20",
+                  "description": "320d"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "5 Series",
+          "generations": [
+            {
+              "name": "5 Series (E39)",
+              "period": "1995-2004",
+              "bodyStyles": [],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1991,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "M52TUB20",
+                  "description": "520i (straight-six)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2793,
+                  "enginePowerKW": 142,
+                  "enginePowerHP": 193,
+                  "engineCode": "M52TUB28",
+                  "description": "528i (straight-six)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 3498,
+                  "enginePowerKW": 180,
+                  "enginePowerHP": 245,
+                  "engineCode": "M62TUB35",
+                  "description": "535i (V8)"
+                }
+              ]
+            },
+            {
+              "name": "5 Series (E60)",
+              "period": "2003-2010",
+              "bodyStyles": [],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2171,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "M54B22",
+                  "description": "520i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2497,
+                  "enginePowerKW": 141,
+                  "enginePowerHP": 192,
+                  "engineCode": "M54B25",
+                  "description": "525i (straight-six)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2979,
+                  "enginePowerKW": 170,
+                  "enginePowerHP": 231,
+                  "engineCode": "M54B30",
+                  "description": "530i (straight-six)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 4398,
+                  "enginePowerKW": 245,
+                  "enginePowerHP": 333,
+                  "engineCode": "N62B44",
+                  "description": "545i (V8)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 120,
+                  "enginePowerHP": 163,
+                  "engineCode": "M47TUD20",
+                  "description": "520d"
+                }
+              ]
+            },
+            {
+              "name": "5 Series (F10)",
+              "period": "2010-2017",
+              "bodyStyles": [],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 105,
+                  "enginePowerHP": 143,
+                  "engineCode": "N47D20",
+                  "description": "518d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "B47D20",
+                  "description": "518d (LCI)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2993,
+                  "enginePowerKW": 150,
+                  "enginePowerHP": 204,
+                  "engineCode": "N57D30",
+                  "description": "525d (straight-six)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2993,
+                  "enginePowerKW": 180,
+                  "enginePowerHP": 245,
+                  "engineCode": "N57D30",
+                  "description": "530d (straight-six)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "X3",
+          "generations": [
+            {
+              "name": "X3 (E83)",
+              "period": "2003-2010",
+              "bodyStyles": [],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "N46B20",
+                  "description": "2.0i"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "X5",
+          "generations": [
+            {
+              "name": "X5 (E70)",
+              "period": "2006-2013",
+              "bodyStyles": [],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2993,
+                  "enginePowerKW": 180,
+                  "enginePowerHP": 245,
+                  "engineCode": "N57D30",
+                  "description": "xDrive30d (LCI)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]

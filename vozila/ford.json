@@ -1,0 +1,675 @@
+[
+    {
+      "name": "Ford",
+      "type": "PASSENGER",
+      "models": [
+        {
+          "name": "Fiesta",
+          "generations": [
+            {
+              "name": "Fiesta Mk5 (Mk6 internationally)",
+              "period": "2002-2008",
+              "bodyStyles": ["Hatchback (3-door)", "Hatchback (5-door)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1242,
+                  "enginePowerKW": 55,
+                  "enginePowerHP": 75,
+                  "engineCode": "Zetec-SE",
+                  "description": "1.25"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1388,
+                  "enginePowerKW": 59,
+                  "enginePowerHP": 80,
+                  "engineCode": "Zetec-SE",
+                  "description": "1.4"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1596,
+                  "enginePowerKW": 74,
+                  "enginePowerHP": 100,
+                  "engineCode": "Zetec-SE",
+                  "description": "1.6"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1999,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "Duratec",
+                  "description": "ST 2.0"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1399,
+                  "enginePowerKW": 50,
+                  "enginePowerHP": 68,
+                  "engineCode": "Duratorq TDCi",
+                  "description": "1.4 TDCi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1560,
+                  "enginePowerKW": 66,
+                  "enginePowerHP": 90,
+                  "engineCode": "Duratorq TDCi",
+                  "description": "1.6 TDCi"
+                }
+              ]
+            },
+            {
+              "name": "Fiesta Mk6 (Mk7 internationally)",
+              "period": "2008-2017",
+              "bodyStyles": ["Hatchback (3-door)", "Hatchback (5-door)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 998,
+                  "enginePowerKW": 74,
+                  "enginePowerHP": 100,
+                  "engineCode": "EcoBoost",
+                  "description": "1.0 EcoBoost"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 998,
+                  "enginePowerKW": 92,
+                  "enginePowerHP": 125,
+                  "engineCode": "EcoBoost",
+                  "description": "1.0 EcoBoost"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1242,
+                  "enginePowerKW": 60,
+                  "enginePowerHP": 82,
+                  "engineCode": "Duratec",
+                  "description": "1.25"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1596,
+                  "enginePowerKW": 88,
+                  "enginePowerHP": 120,
+                  "engineCode": "Ti-VCT",
+                  "description": "1.6 Ti-VCT"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1596,
+                  "enginePowerKW": 134,
+                  "enginePowerHP": 182,
+                  "engineCode": "EcoBoost",
+                  "description": "ST 1.6 EcoBoost"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1498,
+                  "enginePowerKW": 70,
+                  "enginePowerHP": 95,
+                  "engineCode": "Duratorq TDCi",
+                  "description": "1.5 TDCi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1560,
+                  "enginePowerKW": 70,
+                  "enginePowerHP": 95,
+                  "engineCode": "Duratorq TDCi",
+                  "description": "1.6 TDCi"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Focus",
+          "generations": [
+            {
+              "name": "Focus Mk1",
+              "period": "1998-2004",
+              "bodyStyles": ["Hatchback", "Sedan", "Wagon"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1596,
+                  "enginePowerKW": 74,
+                  "enginePowerHP": 100,
+                  "engineCode": "Zetec-SE",
+                  "description": "1.6 16V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1796,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 115,
+                  "engineCode": "Zetec-E",
+                  "description": "1.8 16V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1988,
+                  "enginePowerKW": 127,
+                  "enginePowerHP": 173,
+                  "engineCode": "Duratec ST",
+                  "description": "ST170 2.0 16V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1988,
+                  "enginePowerKW": 158,
+                  "enginePowerHP": 215,
+                  "engineCode": "Duratec RS",
+                  "description": "RS 2.0 Turbo"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1753,
+                  "enginePowerKW": 66,
+                  "enginePowerHP": 90,
+                  "engineCode": "Endura-DI",
+                  "description": "1.8 TDDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1753,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 115,
+                  "engineCode": "Duratorq",
+                  "description": "1.8 TDCi"
+                }
+              ]
+            },
+            {
+              "name": "Focus Mk2",
+              "period": "2004-2011",
+              "bodyStyles": ["Hatchback", "Sedan", "Wagon", "Coupe-Cabriolet"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1596,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 115,
+                  "engineCode": "Ti-VCT",
+                  "description": "1.6 Ti-VCT"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1999,
+                  "enginePowerKW": 107,
+                  "enginePowerHP": 145,
+                  "engineCode": "Duratec HE",
+                  "description": "2.0"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2522,
+                  "enginePowerKW": 166,
+                  "enginePowerHP": 225,
+                  "engineCode": "Duratec ST",
+                  "description": "ST 2.5T (5-cylinder)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2522,
+                  "enginePowerKW": 224,
+                  "enginePowerHP": 305,
+                  "engineCode": "Duratec RS",
+                  "description": "RS 2.5T (5-cylinder)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1560,
+                  "enginePowerKW": 80,
+                  "enginePowerHP": 109,
+                  "engineCode": "Duratorq TDCi",
+                  "description": "1.6 TDCi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1753,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 115,
+                  "engineCode": "Duratorq TDCi",
+                  "description": "1.8 TDCi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1997,
+                  "enginePowerKW": 100,
+                  "enginePowerHP": 136,
+                  "engineCode": "Duratorq TDCi",
+                  "description": "2.0 TDCi"
+                }
+              ]
+            },
+            {
+              "name": "Focus Mk3",
+              "period": "2011-2018",
+              "bodyStyles": ["Hatchback", "Sedan", "Wagon"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 998,
+                  "enginePowerKW": 92,
+                  "enginePowerHP": 125,
+                  "engineCode": "EcoBoost",
+                  "description": "1.0 EcoBoost"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1498,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "EcoBoost",
+                  "description": "1.5 EcoBoost"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1999,
+                  "enginePowerKW": 184,
+                  "enginePowerHP": 250,
+                  "engineCode": "EcoBoost",
+                  "description": "ST 2.0 EcoBoost"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2261,
+                  "enginePowerKW": 257,
+                  "enginePowerHP": 350,
+                  "engineCode": "EcoBoost",
+                  "description": "RS 2.3 EcoBoost"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1560,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 115,
+                  "engineCode": "Duratorq TDCi",
+                  "description": "1.6 TDCi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1499,
+                  "enginePowerKW": 88,
+                  "enginePowerHP": 120,
+                  "engineCode": "Duratorq TDCi",
+                  "description": "1.5 TDCi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1997,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "Duratorq TDCi",
+                  "description": "2.0 TDCi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1997,
+                  "enginePowerKW": 136,
+                  "enginePowerHP": 185,
+                  "engineCode": "Duratorq TDCi",
+                  "description": "ST 2.0 TDCi"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Mondeo",
+          "generations": [
+            {
+              "name": "Mondeo Mk3",
+              "period": "2000-2007",
+              "bodyStyles": ["Sedan", "Hatchback", "Wagon"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1798,
+                  "enginePowerKW": 92,
+                  "enginePowerHP": 125,
+                  "engineCode": "Duratec HE",
+                  "description": "1.8"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1999,
+                  "enginePowerKW": 107,
+                  "enginePowerHP": 145,
+                  "engineCode": "Duratec HE",
+                  "description": "2.0"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2495,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "Duratec V6",
+                  "description": "2.5 V6"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2967,
+                  "enginePowerKW": 166,
+                  "enginePowerHP": 226,
+                  "engineCode": "Duratec ST",
+                  "description": "ST220 3.0 V6"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 115,
+                  "engineCode": "Duratorq",
+                  "description": "2.0 TDDi / TDCi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 96,
+                  "enginePowerHP": 130,
+                  "engineCode": "Duratorq",
+                  "description": "2.0 TDCi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2198,
+                  "enginePowerKW": 114,
+                  "enginePowerHP": 155,
+                  "engineCode": "Duratorq",
+                  "description": "2.2 TDCi"
+                }
+              ]
+            },
+            {
+              "name": "Mondeo Mk4",
+              "period": "2007-2014",
+              "bodyStyles": ["Sedan", "Hatchback", "Wagon"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1999,
+                  "enginePowerKW": 149,
+                  "enginePowerHP": 203,
+                  "engineCode": "EcoBoost",
+                  "description": "2.0 EcoBoost"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2521,
+                  "enginePowerKW": 162,
+                  "enginePowerHP": 220,
+                  "engineCode": "Duratec",
+                  "description": "2.5T (5-cylinder)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1753,
+                  "enginePowerKW": 92,
+                  "enginePowerHP": 125,
+                  "engineCode": "Duratorq TDCi",
+                  "description": "1.8 TDCi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1997,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "Duratorq TDCi",
+                  "description": "2.0 TDCi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1997,
+                  "enginePowerKW": 120,
+                  "enginePowerHP": 163,
+                  "engineCode": "Duratorq TDCi",
+                  "description": "2.0 TDCi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2179,
+                  "enginePowerKW": 147,
+                  "enginePowerHP": 200,
+                  "engineCode": "Duratorq TDCi",
+                  "description": "2.2 TDCi"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Kuga",
+          "generations": [
+            {
+              "name": "Kuga Mk1",
+              "period": "2008-2012",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2522,
+                  "enginePowerKW": 147,
+                  "enginePowerHP": 200,
+                  "engineCode": "Duratec",
+                  "description": "2.5T (5-cylinder)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1997,
+                  "enginePowerKW": 100,
+                  "enginePowerHP": 136,
+                  "engineCode": "Duratorq TDCi",
+                  "description": "2.0 TDCi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1997,
+                  "enginePowerKW": 120,
+                  "enginePowerHP": 163,
+                  "engineCode": "Duratorq TDCi",
+                  "description": "2.0 TDCi"
+                }
+              ]
+            },
+            {
+              "name": "Kuga Mk2",
+              "period": "2012-2019",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1498,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "EcoBoost",
+                  "description": "1.5 EcoBoost"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1596,
+                  "enginePowerKW": 134,
+                  "enginePowerHP": 182,
+                  "engineCode": "EcoBoost",
+                  "description": "1.6 EcoBoost"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1499,
+                  "enginePowerKW": 88,
+                  "enginePowerHP": 120,
+                  "engineCode": "Duratorq TDCi",
+                  "description": "1.5 TDCi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1997,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "Duratorq TDCi",
+                  "description": "2.0 TDCi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1997,
+                  "enginePowerKW": 132,
+                  "enginePowerHP": 180,
+                  "engineCode": "Duratorq TDCi",
+                  "description": "2.0 TDCi"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Puma",
+          "generations": [
+            {
+              "name": "Puma (Crossover)",
+              "period": "2019-Present",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Mild Hybrid",
+                  "engineCapacity": 998,
+                  "enginePowerKW": 92,
+                  "enginePowerHP": 125,
+                  "engineCode": "EcoBoost Hybrid",
+                  "description": "1.0 EcoBoost mHEV"
+                },
+                {
+                  "engineType": "Mild Hybrid",
+                  "engineCapacity": 998,
+                  "enginePowerKW": 114,
+                  "enginePowerHP": 155,
+                  "engineCode": "EcoBoost Hybrid",
+                  "description": "1.0 EcoBoost mHEV"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1497,
+                  "enginePowerKW": 147,
+                  "enginePowerHP": 200,
+                  "engineCode": "EcoBoost",
+                  "description": "ST 1.5 EcoBoost"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "S-MAX / Galaxy",
+          "generations": [
+            {
+              "name": "S-MAX Mk1 / Galaxy Mk2",
+              "period": "2006-2015",
+              "bodyStyles": ["MPV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1999,
+                  "enginePowerKW": 149,
+                  "enginePowerHP": 203,
+                  "engineCode": "EcoBoost",
+                  "description": "2.0 EcoBoost"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2521,
+                  "enginePowerKW": 162,
+                  "enginePowerHP": 220,
+                  "engineCode": "Duratec",
+                  "description": "2.5T (5-cylinder)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1997,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "Duratorq TDCi",
+                  "description": "2.0 TDCi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2179,
+                  "enginePowerKW": 147,
+                  "enginePowerHP": 200,
+                  "engineCode": "Duratorq TDCi",
+                  "description": "2.2 TDCi"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Ranger",
+          "generations": [
+            {
+              "name": "Ranger (T6)",
+              "period": "2011-2022",
+              "bodyStyles": ["Pickup"],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2198,
+                  "enginePowerKW": 118,
+                  "enginePowerHP": 160,
+                  "engineCode": "Duratorq TDCi",
+                  "description": "2.2 TDCi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 3198,
+                  "enginePowerKW": 147,
+                  "enginePowerHP": 200,
+                  "engineCode": "Duratorq TDCi",
+                  "description": "3.2 TDCi (5-cylinder)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1996,
+                  "enginePowerKW": 157,
+                  "enginePowerHP": 213,
+                  "engineCode": "EcoBlue",
+                  "description": "Raptor 2.0 Bi-Turbo"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Mustang",
+          "generations": [
+            {
+              "name": "Mustang (S550)",
+              "period": "2015-2023",
+              "bodyStyles": ["Coupe", "Convertible"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2261,
+                  "enginePowerKW": 233,
+                  "enginePowerHP": 317,
+                  "engineCode": "EcoBoost",
+                  "description": "2.3 EcoBoost"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 5038,
+                  "enginePowerKW": 310,
+                  "enginePowerHP": 421,
+                  "engineCode": "Coyote",
+                  "description": "GT 5.0 V8"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]

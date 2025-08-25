@@ -1,0 +1,100 @@
+[
+    {
+      "name": "Volkswagen",
+      "type": "PASSENGER",
+      "models": [
+        {
+          "name": "Arteon",
+          "generations": [
+            {
+              "name": "Arteon (3H)",
+              "period": "2017-2024",
+              "bodyStyles": ["Fastback", "Shooting Brake"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1498,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "DADA/DPCA",
+                  "description": "1.5 TSI Evo ACT"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 140,
+                  "enginePowerHP": 190,
+                  "engineCode": "CZPB/DKZA/DNNA",
+                  "description": "2.0 TSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 200,
+                  "enginePowerHP": 272,
+                  "engineCode": "DNFE",
+                  "description": "2.0 TSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 206,
+                  "enginePowerHP": 280,
+                  "engineCode": "DJHC/DNFG",
+                  "description": "2.0 TSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 235,
+                  "enginePowerHP": 320,
+                  "engineCode": "DNFG",
+                  "description": "R 2.0 TSI"
+                },
+                {
+                  "engineType": "Plug-in Hybrid",
+                  "engineCapacity": 1395,
+                  "enginePowerKW": 115,
+                  "enginePowerHP": 156,
+                  "engineCode": "DGEA",
+                  "description": "eHybrid 1.4 TSI (System: 160kW/218HP)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "DFGA/DTSB/DSRA",
+                  "description": "2.0 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 140,
+                  "enginePowerHP": 190,
+                  "engineCode": "DFHA",
+                  "description": "2.0 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 147,
+                  "enginePowerHP": 200,
+                  "engineCode": "DTSA/DTSB",
+                  "description": "2.0 TDI Evo"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 176,
+                  "enginePowerHP": 240,
+                  "engineCode": "CUAA",
+                  "description": "2.0 BiTDI"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]

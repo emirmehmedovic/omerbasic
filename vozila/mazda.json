@@ -1,0 +1,597 @@
+[
+    {
+      "name": "Mazda",
+      "type": "PASSENGER",
+      "models": [
+        {
+          "name": "Mazda2",
+          "generations": [
+            {
+              "name": "Mazda2 (DY)",
+              "period": "2002-2007",
+              "bodyStyles": ["Hatchback"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1242,
+                  "enginePowerKW": 55,
+                  "enginePowerHP": 75,
+                  "engineCode": "Zetec-S (Ford)",
+                  "description": "1.25 MZI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1388,
+                  "enginePowerKW": 59,
+                  "enginePowerHP": 80,
+                  "engineCode": "Zetec-S (Ford)",
+                  "description": "1.4 MZI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1596,
+                  "enginePowerKW": 74,
+                  "enginePowerHP": 100,
+                  "engineCode": "Zetec-S (Ford)",
+                  "description": "1.6 MZI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1399,
+                  "enginePowerKW": 50,
+                  "enginePowerHP": 68,
+                  "engineCode": "DLD-414 (PSA/Ford)",
+                  "description": "1.4 MZ-CD"
+                }
+              ]
+            },
+            {
+              "name": "Mazda2 (DE)",
+              "period": "2007-2014",
+              "bodyStyles": ["Hatchback (3-door)", "Hatchback (5-door)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1349,
+                  "enginePowerKW": 63,
+                  "enginePowerHP": 86,
+                  "engineCode": "ZJ-VE",
+                  "description": "1.3 MZR"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1498,
+                  "enginePowerKW": 76,
+                  "enginePowerHP": 103,
+                  "engineCode": "ZY-VE",
+                  "description": "1.5 MZR"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1560,
+                  "enginePowerKW": 66,
+                  "enginePowerHP": 90,
+                  "engineCode": "DLD-416 (PSA/Ford)",
+                  "description": "1.6 MZ-CD"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Mazda3",
+          "generations": [
+            {
+              "name": "Mazda3 (BK)",
+              "period": "2003-2009",
+              "bodyStyles": ["Hatchback", "Sedan"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 77,
+                  "enginePowerHP": 105,
+                  "engineCode": "Z6",
+                  "description": "1.6 MZR"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1999,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "LF-DE",
+                  "description": "2.0 MZR"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2261,
+                  "enginePowerKW": 191,
+                  "enginePowerHP": 260,
+                  "engineCode": "L3-VDT",
+                  "description": "MPS 2.3 MZR DISI Turbo"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1560,
+                  "enginePowerKW": 80,
+                  "enginePowerHP": 109,
+                  "engineCode": "DLD-416 (PSA/Ford)",
+                  "description": "1.6 MZ-CD"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 105,
+                  "enginePowerHP": 143,
+                  "engineCode": "RF7J",
+                  "description": "2.0 MZR-CD"
+                }
+              ]
+            },
+            {
+              "name": "Mazda3 (BL)",
+              "period": "2009-2013",
+              "bodyStyles": ["Hatchback", "Sedan"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 77,
+                  "enginePowerHP": 105,
+                  "engineCode": "Z6",
+                  "description": "1.6 MZR"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1999,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "LF-VDS",
+                  "description": "2.0 MZR DISI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2261,
+                  "enginePowerKW": 191,
+                  "enginePowerHP": 260,
+                  "engineCode": "L3-VDT",
+                  "description": "MPS 2.3 MZR DISI Turbo"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1560,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 115,
+                  "engineCode": "DLD-416 (PSA/Ford)",
+                  "description": "1.6 MZ-CD"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2184,
+                  "enginePowerKW": 136,
+                  "enginePowerHP": 185,
+                  "engineCode": "R2 2008",
+                  "description": "2.2 MZR-CD"
+                }
+              ]
+            },
+            {
+              "name": "Mazda3 (BM/BN)",
+              "period": "2013-2019",
+              "bodyStyles": ["Hatchback", "Sedan"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1496,
+                  "enginePowerKW": 74,
+                  "enginePowerHP": 100,
+                  "engineCode": "P5-VPS",
+                  "description": "1.5 Skyactiv-G"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 88,
+                  "enginePowerHP": 120,
+                  "engineCode": "PE-VPS",
+                  "description": "2.0 Skyactiv-G"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 121,
+                  "enginePowerHP": 165,
+                  "engineCode": "PE-VPS",
+                  "description": "2.0 Skyactiv-G"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2191,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "SH-VPTS",
+                  "description": "2.2 Skyactiv-D"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Mazda5",
+          "generations": [
+            {
+              "name": "Mazda5 (CR)",
+              "period": "2005-2010",
+              "bodyStyles": ["MPV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1798,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 115,
+                  "engineCode": "L8-DE",
+                  "description": "1.8 MZR"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1999,
+                  "enginePowerKW": 107,
+                  "enginePowerHP": 145,
+                  "engineCode": "LF-DE",
+                  "description": "2.0 MZR"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 105,
+                  "enginePowerHP": 143,
+                  "engineCode": "RF7J",
+                  "description": "2.0 MZR-CD"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Mazda6",
+          "generations": [
+            {
+              "name": "Mazda6 (GG/GY)",
+              "period": "2002-2008",
+              "bodyStyles": ["Sedan", "Hatchback (Liftback)", "Wagon"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1798,
+                  "enginePowerKW": 88,
+                  "enginePowerHP": 120,
+                  "engineCode": "L813",
+                  "description": "1.8 MZR"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1999,
+                  "enginePowerKW": 108,
+                  "enginePowerHP": 147,
+                  "engineCode": "LF-DE",
+                  "description": "2.0 MZR"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2261,
+                  "enginePowerKW": 122,
+                  "enginePowerHP": 166,
+                  "engineCode": "L3-VE",
+                  "description": "2.3 MZR"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2261,
+                  "enginePowerKW": 201,
+                  "enginePowerHP": 274,
+                  "engineCode": "L3-VDT",
+                  "description": "MPS 2.3 MZR DISI Turbo"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 105,
+                  "enginePowerHP": 143,
+                  "engineCode": "RF7J",
+                  "description": "2.0 MZR-CD"
+                }
+              ]
+            },
+            {
+              "name": "Mazda6 (GH)",
+              "period": "2007-2012",
+              "bodyStyles": ["Sedan", "Hatchback (Liftback)", "Wagon"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1999,
+                  "enginePowerKW": 114,
+                  "enginePowerHP": 155,
+                  "engineCode": "LF-DE",
+                  "description": "2.0 MZR DISI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2488,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "L5-VE",
+                  "description": "2.5 MZR"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2184,
+                  "enginePowerKW": 120,
+                  "enginePowerHP": 163,
+                  "engineCode": "R2 2008",
+                  "description": "2.2 MZR-CD"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2184,
+                  "enginePowerKW": 136,
+                  "enginePowerHP": 185,
+                  "engineCode": "R2 2008",
+                  "description": "2.2 MZR-CD"
+                }
+              ]
+            },
+            {
+              "name": "Mazda6 (GJ/GL)",
+              "period": "2012-Present",
+              "bodyStyles": ["Sedan", "Wagon"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 121,
+                  "enginePowerHP": 165,
+                  "engineCode": "PE-VPS",
+                  "description": "2.0 Skyactiv-G"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2488,
+                  "enginePowerKW": 141,
+                  "enginePowerHP": 192,
+                  "engineCode": "PY-VPS",
+                  "description": "2.5 Skyactiv-G"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2191,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "SH-VPTS",
+                  "description": "2.2 Skyactiv-D"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2191,
+                  "enginePowerKW": 129,
+                  "enginePowerHP": 175,
+                  "engineCode": "SH-VPTS",
+                  "description": "2.2 Skyactiv-D"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "CX-3",
+          "generations": [
+            {
+              "name": "CX-3 (DK)",
+              "period": "2015-Present",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 88,
+                  "enginePowerHP": 120,
+                  "engineCode": "PE-VPS",
+                  "description": "2.0 Skyactiv-G"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1499,
+                  "enginePowerKW": 77,
+                  "enginePowerHP": 105,
+                  "engineCode": "S5-DPTS",
+                  "description": "1.5 Skyactiv-D"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "CX-5",
+          "generations": [
+            {
+              "name": "CX-5 (KE)",
+              "period": "2012-2017",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 121,
+                  "enginePowerHP": 165,
+                  "engineCode": "PE-VPS",
+                  "description": "2.0 Skyactiv-G"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2191,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "SH-VPTS",
+                  "description": "2.2 Skyactiv-D"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2191,
+                  "enginePowerKW": 129,
+                  "enginePowerHP": 175,
+                  "engineCode": "SH-VPTS",
+                  "description": "2.2 Skyactiv-D"
+                }
+              ]
+            },
+            {
+              "name": "CX-5 (KF)",
+              "period": "2017-Present",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 121,
+                  "enginePowerHP": 165,
+                  "engineCode": "PE-VPS",
+                  "description": "2.0 Skyactiv-G"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2488,
+                  "enginePowerKW": 143,
+                  "enginePowerHP": 194,
+                  "engineCode": "PY-VPS",
+                  "description": "2.5 Skyactiv-G"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2191,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "SH-VPTR",
+                  "description": "2.2 Skyactiv-D"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2191,
+                  "enginePowerKW": 135,
+                  "enginePowerHP": 184,
+                  "engineCode": "SH-VPTS",
+                  "description": "2.2 Skyactiv-D"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "CX-30",
+          "generations": [
+            {
+              "name": "CX-30 (DM)",
+              "period": "2019-Present",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 90,
+                  "enginePowerHP": 122,
+                  "engineCode": "PE-VPH",
+                  "description": "2.0 Skyactiv-G M Hybrid"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 132,
+                  "enginePowerHP": 180,
+                  "engineCode": "HF-VPH",
+                  "description": "2.0 Skyactiv-X"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "MX-5",
+          "generations": [
+            {
+              "name": "MX-5 (NC)",
+              "period": "2005-2015",
+              "bodyStyles": ["Roadster", "Coupe (RHT)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1798,
+                  "enginePowerKW": 93,
+                  "enginePowerHP": 126,
+                  "engineCode": "L8-DE",
+                  "description": "1.8 MZR"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1999,
+                  "enginePowerKW": 118,
+                  "enginePowerHP": 160,
+                  "engineCode": "LF-VE",
+                  "description": "2.0 MZR"
+                }
+              ]
+            },
+            {
+              "name": "MX-5 (ND)",
+              "period": "2015-Present",
+              "bodyStyles": ["Roadster", "RF (Retractable Fastback)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1496,
+                  "enginePowerKW": 96,
+                  "enginePowerHP": 131,
+                  "engineCode": "P5-VPS",
+                  "description": "1.5 Skyactiv-G"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 135,
+                  "enginePowerHP": 184,
+                  "engineCode": "PE-VPS",
+                  "description": "2.0 Skyactiv-G"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "RX-8",
+          "generations": [
+            {
+              "name": "RX-8 (SE)",
+              "period": "2003-2012",
+              "bodyStyles": ["Coupe"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1308,
+                  "enginePowerKW": 141,
+                  "enginePowerHP": 192,
+                  "engineCode": "13B-MSP (Renesis)",
+                  "description": "1.3 Rotary"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1308,
+                  "enginePowerKW": 170,
+                  "enginePowerHP": 231,
+                  "engineCode": "13B-MSP (Renesis)",
+                  "description": "1.3 Rotary High Power"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]

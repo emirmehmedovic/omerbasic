@@ -1,0 +1,327 @@
+[
+    {
+      "name": "Chevrolet",
+      "type": "PASSENGER",
+      "models": [
+        {
+          "name": "Aveo",
+          "generations": [
+            {
+              "name": "Aveo (T250)",
+              "period": "2006-2011",
+              "bodyStyles": ["Hatchback", "Sedan"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1150,
+                  "enginePowerKW": 53,
+                  "enginePowerHP": 72,
+                  "engineCode": "B12S1",
+                  "description": "1.2"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1399,
+                  "enginePowerKW": 69,
+                  "enginePowerHP": 94,
+                  "engineCode": "F14D3",
+                  "description": "1.4"
+                }
+              ]
+            },
+            {
+              "name": "Aveo (T300)",
+              "period": "2011-2015",
+              "bodyStyles": ["Hatchback", "Sedan"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1229,
+                  "enginePowerKW": 63,
+                  "enginePowerHP": 86,
+                  "engineCode": "A12XER",
+                  "description": "1.2"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1398,
+                  "enginePowerKW": 74,
+                  "enginePowerHP": 100,
+                  "engineCode": "A14XER",
+                  "description": "1.4"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1364,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "A14NET",
+                  "description": "1.4 Turbo"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1248,
+                  "enginePowerKW": 70,
+                  "enginePowerHP": 95,
+                  "engineCode": "A13DTE",
+                  "description": "1.3 VCDi"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Captiva",
+          "generations": [
+            {
+              "name": "Captiva",
+              "period": "2006-2015",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2405,
+                  "enginePowerKW": 100,
+                  "enginePowerHP": 136,
+                  "engineCode": "Z24SED",
+                  "description": "2.4"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 3195,
+                  "enginePowerKW": 169,
+                  "enginePowerHP": 230,
+                  "engineCode": "LU1 (Alloytec)",
+                  "description": "3.2 V6"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1991,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "Z20S",
+                  "description": "2.0 VCDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2231,
+                  "enginePowerKW": 135,
+                  "enginePowerHP": 184,
+                  "engineCode": "Z22D1",
+                  "description": "2.2 VCDi (Facelift)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Cruze",
+          "generations": [
+            {
+              "name": "Cruze (J300)",
+              "period": "2009-2015",
+              "bodyStyles": ["Sedan", "Hatchback", "Wagon"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 91,
+                  "enginePowerHP": 124,
+                  "engineCode": "F16D4",
+                  "description": "1.6"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1796,
+                  "enginePowerKW": 104,
+                  "enginePowerHP": 141,
+                  "engineCode": "F18D4",
+                  "description": "1.8"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1364,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "A14NET",
+                  "description": "1.4 Turbo"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1686,
+                  "enginePowerKW": 96,
+                  "enginePowerHP": 130,
+                  "engineCode": "A17DTC",
+                  "description": "1.7 VCDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 120,
+                  "enginePowerHP": 163,
+                  "engineCode": "Z20D1",
+                  "description": "2.0 VCDi"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Epica",
+          "generations": [
+            {
+              "name": "Epica",
+              "period": "2006-2011",
+              "bodyStyles": ["Sedan"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1993,
+                  "enginePowerKW": 105,
+                  "enginePowerHP": 143,
+                  "engineCode": "X20D1 (XK)",
+                  "description": "2.0 (inline-6)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2492,
+                  "enginePowerKW": 115,
+                  "enginePowerHP": 156,
+                  "engineCode": "X25D1 (XK)",
+                  "description": "2.5 (inline-6)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1991,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "Z20S",
+                  "description": "2.0 VCDi"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Orlando",
+          "generations": [
+            {
+              "name": "Orlando",
+              "period": "2011-2015",
+              "bodyStyles": ["MPV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1796,
+                  "enginePowerKW": 104,
+                  "enginePowerHP": 141,
+                  "engineCode": "F18D4",
+                  "description": "1.8"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1364,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "A14NET",
+                  "description": "1.4 Turbo"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 120,
+                  "enginePowerHP": 163,
+                  "engineCode": "Z20D1",
+                  "description": "2.0 VCDi"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Spark",
+          "generations": [
+            {
+              "name": "Spark (M300)",
+              "period": "2009-2015",
+              "bodyStyles": ["Hatchback"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 995,
+                  "enginePowerKW": 50,
+                  "enginePowerHP": 68,
+                  "engineCode": "B10D1",
+                  "description": "1.0"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1206,
+                  "enginePowerKW": 60,
+                  "enginePowerHP": 82,
+                  "engineCode": "B12D1",
+                  "description": "1.2"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Camaro",
+          "generations": [
+            {
+              "name": "Camaro Gen 5",
+              "period": "2011-2015",
+              "bodyStyles": ["Coupe", "Convertible"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 6162,
+                  "enginePowerKW": 318,
+                  "enginePowerHP": 432,
+                  "engineCode": "LS3",
+                  "description": "6.2 V8"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Corvette",
+          "generations": [
+            {
+              "name": "Corvette (C6)",
+              "period": "2005-2013",
+              "bodyStyles": ["Coupe", "Convertible"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 6162,
+                  "enginePowerKW": 321,
+                  "enginePowerHP": 437,
+                  "engineCode": "LS3",
+                  "description": "6.2 V8"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 7011,
+                  "enginePowerKW": 377,
+                  "enginePowerHP": 512,
+                  "engineCode": "LS7",
+                  "description": "Z06 7.0 V8"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 6162,
+                  "enginePowerKW": 476,
+                  "enginePowerHP": 647,
+                  "engineCode": "LS9",
+                  "description": "ZR1 6.2 Supercharged V8"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]

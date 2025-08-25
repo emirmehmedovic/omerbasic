@@ -37,6 +37,7 @@ export const VehiclesClient = ({ initialVehicleBrands }: VehiclesClientProps) =>
   const [activeTab, setActiveTab] = useState("passenger");
   const [searchTerm, setSearchTerm] = useState("");
   const [expandedBrands, setExpandedBrands] = useState<Set<string>>(new Set());
+  const [expandedModels, setExpandedModels] = useState<Set<string>>(new Set());
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
 
@@ -105,6 +106,26 @@ export const VehiclesClient = ({ initialVehicleBrands }: VehiclesClientProps) =>
       router.refresh();
     } catch (error: any) {
       toast.error(error.message || "Greška prilikom dodavanja marke vozila");
+    }
+  };
+
+  const handleDeleteBrand = async (brandId: string) => {
+    if (!confirm("Jeste li sigurni da želite obrisati ovu marku i sve povezane modele i motore?")) {
+      return;
+    }
+
+    try {
+      const response = await fetch(`/api/vehicle-brands/${brandId}`, { method: "DELETE" });
+      if (!response.ok && response.status !== 204) {
+        const error = await response.json().catch(() => ({} as any));
+        throw new Error((error as any).error || "Greška prilikom brisanja marke vozila");
+      }
+
+      setVehicleBrands(prev => prev.filter(b => b.id !== brandId));
+      toast.success("Marka vozila uspješno obrisana");
+      router.refresh();
+    } catch (error: any) {
+      toast.error(error.message || "Greška prilikom brisanja marke vozila");
     }
   };
 
@@ -343,6 +364,15 @@ export const VehiclesClient = ({ initialVehicleBrands }: VehiclesClientProps) =>
                           <PlusCircle className="h-4 w-4 mr-2" />
                           Dodaj model
                         </Button>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => handleDeleteBrand(brand.id)}
+                          className="bg-gradient-to-r from-white/95 to-gray-50/95 backdrop-blur-sm text-red-600 hover:text-red-700 border-red-200 hover:border-red-300 rounded-lg transition-all duration-200 shadow-sm"
+                        >
+                          <Trash2 className="h-4 w-4 mr-2" />
+                          Obriši marku
+                        </Button>
                       </div>
                     </div>
                       </div>
@@ -363,9 +393,25 @@ export const VehiclesClient = ({ initialVehicleBrands }: VehiclesClientProps) =>
                                 <div className="bg-gradient-to-r from-amber/5 to-orange/5 border-b border-amber/20 px-4 py-3">
                                   <div className="flex items-center justify-between">
                                     <div className="flex items-center gap-2">
-                                      <svg className="w-4 h-4 text-amber" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                      </svg>
+                                      <Button
+                                        variant="outline"
+                                        size="sm"
+                                        onClick={() => {
+                                          const next = new Set(expandedModels);
+                                          if (next.has(model.id)) next.delete(model.id); else next.add(model.id);
+                                          setExpandedModels(next);
+                                        }}
+                                        className="bg-white/70 border-amber/30 hover:border-amber/50 rounded-md p-1"
+                                      >
+                                        <svg
+                                          className={`w-4 h-4 transition-transform duration-200 ${expandedModels.has(model.id) ? 'rotate-180' : ''}`}
+                                          fill="none"
+                                          stroke="currentColor"
+                                          viewBox="0 0 24 24"
+                                        >
+                                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                        </svg>
+                                      </Button>
                                       <h4 className="font-medium text-gray-900">{model.name}</h4>
                                     </div>
                                     <Button
@@ -385,21 +431,22 @@ export const VehiclesClient = ({ initialVehicleBrands }: VehiclesClientProps) =>
                                   </div>
                                   
                                 {/* Generations List */}
-                                <div className="p-4">
-                                  {model.generations.length === 0 ? (
-                                    <p className="text-gray-500 text-sm text-center py-2">Nema dodanih generacija</p>
-                                  ) : (
-                                    <div className="space-y-2">
-                                      {model.generations.map((generation) => (
-                                        <div key={generation.id} className="flex items-center justify-between p-3 bg-gradient-to-r from-white/60 to-gray-50/60 backdrop-blur-sm border border-amber/10 rounded-lg hover:border-amber/30 transition-all duration-200">
-                                          <div className="flex items-center gap-2">
-                                            <ChevronRight className="h-4 w-4 text-amber/70" />
-                                            <span className="text-sm font-medium text-gray-900">{generation.name}</span>
-                                            {generation.period && (
-                                              <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full">
-                                                {generation.period}
-                                              </span>
-                                            )}
+                                {expandedModels.has(model.id) && (
+                                  <div className="p-4">
+                                    {model.generations.length === 0 ? (
+                                      <p className="text-gray-500 text-sm text-center py-2">Nema dodanih generacija</p>
+                                    ) : (
+                                      <div className="space-y-2">
+                                        {model.generations.map((generation) => (
+                                          <div key={generation.id} className="flex items-center justify-between p-3 bg-gradient-to-r from-white/60 to-gray-50/60 backdrop-blur-sm border border-amber/10 rounded-lg hover:border-amber/30 transition-all duration-200">
+                                            <div className="flex items-center gap-2">
+                                              <ChevronRight className="h-4 w-4 text-amber/70" />
+                                              <span className="text-sm font-medium text-gray-900">{generation.name}</span>
+                                              {generation.period && (
+                                                <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full">
+                                                  {generation.period}
+                                                </span>
+                                              )}
                                     </div>
                                     <EngineButton generationId={generation.id} />
                                         </div>
@@ -407,6 +454,7 @@ export const VehiclesClient = ({ initialVehicleBrands }: VehiclesClientProps) =>
                                     </div>
                                   )}
                                 </div>
+                              )}
                               </div>
                           ))}
                           </div>
@@ -544,6 +592,15 @@ export const VehiclesClient = ({ initialVehicleBrands }: VehiclesClientProps) =>
                           <PlusCircle className="h-4 w-4 mr-2" />
                           Dodaj model
                         </Button>
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => handleDeleteBrand(brand.id)}
+                          className="bg-gradient-to-r from-white/95 to-gray-50/95 backdrop-blur-sm text-red-600 hover:text-red-700 border-red-200 hover:border-red-300 rounded-lg transition-all duration-200 shadow-sm"
+                        >
+                          <Trash2 className="h-4 w-4 mr-2" />
+                          Obriši marku
+                        </Button>
                       </div>
                     </div>
                       </div>
@@ -564,9 +621,25 @@ export const VehiclesClient = ({ initialVehicleBrands }: VehiclesClientProps) =>
                                 <div className="bg-gradient-to-r from-amber/5 to-orange/5 border-b border-amber/20 px-4 py-3">
                                   <div className="flex items-center justify-between">
                                     <div className="flex items-center gap-2">
-                                      <svg className="w-4 h-4 text-amber" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                      </svg>
+                                      <Button
+                                        variant="outline"
+                                        size="sm"
+                                        onClick={() => {
+                                          const next = new Set(expandedModels);
+                                          if (next.has(model.id)) next.delete(model.id); else next.add(model.id);
+                                          setExpandedModels(next);
+                                        }}
+                                        className="bg-white/70 border-amber/30 hover:border-amber/50 rounded-md p-1"
+                                      >
+                                        <svg
+                                          className={`w-4 h-4 transition-transform duration-200 ${expandedModels.has(model.id) ? 'rotate-180' : ''}`}
+                                          fill="none"
+                                          stroke="currentColor"
+                                          viewBox="0 0 24 24"
+                                        >
+                                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                        </svg>
+                                      </Button>
                                       <h4 className="font-medium text-gray-900">{model.name}</h4>
                                     </div>
                                     <Button
@@ -586,28 +659,30 @@ export const VehiclesClient = ({ initialVehicleBrands }: VehiclesClientProps) =>
                                   </div>
                                   
                                 {/* Generations List */}
-                                <div className="p-4">
-                                  {model.generations.length === 0 ? (
-                                    <p className="text-gray-500 text-sm text-center py-2">Nema dodanih generacija</p>
-                                  ) : (
-                                    <div className="space-y-2">
-                                      {model.generations.map((generation) => (
-                                        <div key={generation.id} className="flex items-center justify-between p-3 bg-gradient-to-r from-white/60 to-gray-50/60 backdrop-blur-sm border border-amber/10 rounded-lg hover:border-amber/30 transition-all duration-200">
-                                          <div className="flex items-center gap-2">
-                                            <ChevronRight className="h-4 w-4 text-amber/70" />
-                                            <span className="text-sm font-medium text-gray-900">{generation.name}</span>
-                                            {generation.period && (
-                                              <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full">
-                                                {generation.period}
-                                              </span>
-                                            )}
+                                {expandedModels.has(model.id) && (
+                                  <div className="p-4">
+                                    {model.generations.length === 0 ? (
+                                      <p className="text-gray-500 text-sm text-center py-2">Nema dodanih generacija</p>
+                                    ) : (
+                                      <div className="space-y-2">
+                                        {model.generations.map((generation) => (
+                                          <div key={generation.id} className="flex items-center justify-between p-3 bg-gradient-to-r from-white/60 to-gray-50/60 backdrop-blur-sm border border-amber/10 rounded-lg hover:border-amber/30 transition-all duration-200">
+                                            <div className="flex items-center gap-2">
+                                              <ChevronRight className="h-4 w-4 text-amber/70" />
+                                              <span className="text-sm font-medium text-gray-900">{generation.name}</span>
+                                              {generation.period && (
+                                                <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full">
+                                                  {generation.period}
+                                                </span>
+                                              )}
+                                            </div>
+                                            <EngineButton generationId={generation.id} />
+                                          </div>
+                                        ))}
                                       </div>
-                                      <EngineButton generationId={generation.id} />
-                                        </div>
-                                      ))}
-                                    </div>
-                                  )}
-                                </div>
+                                    )}
+                                  </div>
+                                )}
                               </div>
                           ))}
                           </div>

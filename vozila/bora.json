@@ -1,0 +1,172 @@
+[
+    {
+      "name": "Volkswagen",
+      "type": "PASSENGER",
+      "models": [
+        {
+          "name": "Bora",
+          "generations": [
+            {
+              "name": "Bora (1J)",
+              "period": "1998-2005",
+              "bodyStyles": ["Sedan", "Wagon"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1390,
+                  "enginePowerKW": 55,
+                  "enginePowerHP": 75,
+                  "engineCode": "AHW/AKQ/APE/AXP/BCA",
+                  "description": "1.4 16V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1595,
+                  "enginePowerKW": 74,
+                  "enginePowerHP": 101,
+                  "engineCode": "AEH/AKL/APF",
+                  "description": "1.6 MPI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1595,
+                  "enginePowerKW": 75,
+                  "enginePowerHP": 102,
+                  "engineCode": "AVU/BFQ",
+                  "description": "1.6 MPI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 77,
+                  "enginePowerHP": 105,
+                  "engineCode": "ATN/AUS/AZD/BCB",
+                  "description": "1.6 16V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 81,
+                  "enginePowerHP": 110,
+                  "engineCode": "BAD",
+                  "description": "1.6 FSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1781,
+                  "enginePowerKW": 92,
+                  "enginePowerHP": 125,
+                  "engineCode": "AGN/APG",
+                  "description": "1.8 20V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1781,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "AGU/ARZ/AUM",
+                  "description": "1.8T 20V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1781,
+                  "enginePowerKW": 132,
+                  "enginePowerHP": 180,
+                  "engineCode": "AUQ/AWP",
+                  "description": "1.8T 20V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 115,
+                  "engineCode": "APK/AQY/AZG/AZH",
+                  "description": "2.0 MPI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2324,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "AGZ",
+                  "description": "2.3 VR5 10V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2324,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "AQN",
+                  "description": "2.3 V5 20V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2792,
+                  "enginePowerKW": 150,
+                  "enginePowerHP": 204,
+                  "engineCode": "AQP/AUE/BDE",
+                  "description": "2.8 V6 24V 4Motion"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1896,
+                  "enginePowerKW": 50,
+                  "enginePowerHP": 68,
+                  "engineCode": "AGP/AQM",
+                  "description": "1.9 SDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1896,
+                  "enginePowerKW": 66,
+                  "enginePowerHP": 90,
+                  "engineCode": "AGR/ALH",
+                  "description": "1.9 TDI (VE)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1896,
+                  "enginePowerKW": 74,
+                  "enginePowerHP": 101,
+                  "engineCode": "ATD/AXR",
+                  "description": "1.9 TDI PD"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1896,
+                  "enginePowerKW": 81,
+                  "enginePowerHP": 110,
+                  "engineCode": "AHF/ASV",
+                  "description": "1.9 TDI (VE)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1896,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 115,
+                  "engineCode": "AJM/AUY",
+                  "description": "1.9 TDI PD"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1896,
+                  "enginePowerKW": 96,
+                  "enginePowerHP": 130,
+                  "engineCode": "ASZ",
+                  "description": "1.9 TDI PD"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1896,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "ARL",
+                  "description": "1.9 TDI PD"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]

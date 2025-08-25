@@ -1,0 +1,485 @@
+[
+    {
+      "name": "Renault",
+      "type": "PASSENGER",
+      "models": [
+        {
+          "name": "Captur",
+          "generations": [
+            {
+              "name": "Captur I",
+              "period": "2013-2019",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 898,
+                  "enginePowerKW": 66,
+                  "enginePowerHP": 90,
+                  "engineCode": "H4Bt",
+                  "description": "0.9 TCe"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1197,
+                  "enginePowerKW": 88,
+                  "enginePowerHP": 120,
+                  "engineCode": "H5Ft",
+                  "description": "1.2 TCe"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1461,
+                  "enginePowerKW": 66,
+                  "enginePowerHP": 90,
+                  "engineCode": "K9K",
+                  "description": "1.5 dCi"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Clio",
+          "generations": [
+            {
+              "name": "Clio II",
+              "period": "1998-2005",
+              "bodyStyles": ["Hatchback (3-door)", "Hatchback (5-door)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1149,
+                  "enginePowerKW": 55,
+                  "enginePowerHP": 75,
+                  "engineCode": "D4F",
+                  "description": "1.2 16V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 79,
+                  "enginePowerHP": 107,
+                  "engineCode": "K4M",
+                  "description": "1.6 16V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 132,
+                  "enginePowerHP": 179,
+                  "engineCode": "F4R",
+                  "description": "RS 2.0 16V"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1461,
+                  "enginePowerKW": 60,
+                  "enginePowerHP": 82,
+                  "engineCode": "K9K",
+                  "description": "1.5 dCi"
+                }
+              ]
+            },
+            {
+              "name": "Clio III",
+              "period": "2005-2012",
+              "bodyStyles": ["Hatchback (3-door)", "Hatchback (5-door)", "Wagon (Grandtour)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1149,
+                  "enginePowerKW": 74,
+                  "enginePowerHP": 101,
+                  "engineCode": "D4FT",
+                  "description": "1.2 TCe"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 82,
+                  "enginePowerHP": 111,
+                  "engineCode": "K4M",
+                  "description": "1.6 16V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 148,
+                  "enginePowerHP": 201,
+                  "engineCode": "F4R",
+                  "description": "RS 2.0 16V"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1461,
+                  "enginePowerKW": 78,
+                  "enginePowerHP": 106,
+                  "engineCode": "K9K",
+                  "description": "1.5 dCi"
+                }
+              ]
+            },
+            {
+              "name": "Clio IV",
+              "period": "2012-2019",
+              "bodyStyles": ["Hatchback (5-door)", "Wagon (Grandtour)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 898,
+                  "enginePowerKW": 66,
+                  "enginePowerHP": 90,
+                  "engineCode": "H4Bt",
+                  "description": "0.9 TCe"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1197,
+                  "enginePowerKW": 88,
+                  "enginePowerHP": 120,
+                  "engineCode": "H5Ft",
+                  "description": "1.2 TCe"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1618,
+                  "enginePowerKW": 147,
+                  "enginePowerHP": 200,
+                  "engineCode": "M5M",
+                  "description": "R.S. 1.6T"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1461,
+                  "enginePowerKW": 66,
+                  "enginePowerHP": 90,
+                  "engineCode": "K9K",
+                  "description": "1.5 dCi"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Kadjar",
+          "generations": [
+            {
+              "name": "Kadjar",
+              "period": "2015-2022",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1332,
+                  "enginePowerKW": 117,
+                  "enginePowerHP": 159,
+                  "engineCode": "H5H",
+                  "description": "1.3 TCe"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1461,
+                  "enginePowerKW": 81,
+                  "enginePowerHP": 110,
+                  "engineCode": "K9K",
+                  "description": "1.5 dCi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 96,
+                  "enginePowerHP": 130,
+                  "engineCode": "R9M",
+                  "description": "1.6 dCi"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Laguna",
+          "generations": [
+            {
+              "name": "Laguna III",
+              "period": "2007-2015",
+              "bodyStyles": ["Hatchback (Liftback)", "Wagon (Grandtour)", "Coupe"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1997,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "F4Rt",
+                  "description": "2.0T"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 3498,
+                  "enginePowerKW": 175,
+                  "enginePowerHP": 238,
+                  "engineCode": "V4Y",
+                  "description": "3.5 V6"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1461,
+                  "enginePowerKW": 81,
+                  "enginePowerHP": 110,
+                  "engineCode": "K9K",
+                  "description": "1.5 dCi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "M9R",
+                  "description": "2.0 dCi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 131,
+                  "enginePowerHP": 178,
+                  "engineCode": "M9R",
+                  "description": "GT 2.0 dCi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2998,
+                  "enginePowerKW": 173,
+                  "enginePowerHP": 235,
+                  "engineCode": "V9X",
+                  "description": "3.0 V6 dCi"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Mégane",
+          "generations": [
+            {
+              "name": "Mégane II",
+              "period": "2002-2008",
+              "bodyStyles": ["Hatchback", "Sedan", "Wagon (Grandtour)", "Coupe-Cabriolet (CC)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 83,
+                  "enginePowerHP": 113,
+                  "engineCode": "K4M",
+                  "description": "1.6 16V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 99,
+                  "enginePowerHP": 135,
+                  "engineCode": "F4R",
+                  "description": "2.0 16V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 165,
+                  "enginePowerHP": 225,
+                  "engineCode": "F4Rt",
+                  "description": "Renault Sport 2.0T"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1461,
+                  "enginePowerKW": 78,
+                  "enginePowerHP": 106,
+                  "engineCode": "K9K",
+                  "description": "1.5 dCi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1870,
+                  "enginePowerKW": 96,
+                  "enginePowerHP": 130,
+                  "engineCode": "F9Q",
+                  "description": "1.9 dCi"
+                }
+              ]
+            },
+            {
+              "name": "Mégane III",
+              "period": "2008-2016",
+              "bodyStyles": ["Hatchback (5-door)", "Wagon (Grandtour)", "Coupe (3-door)", "Coupe-Cabriolet (CC)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1197,
+                  "enginePowerKW": 97,
+                  "enginePowerHP": 132,
+                  "engineCode": "H5Ft",
+                  "description": "1.2 TCe"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1397,
+                  "enginePowerKW": 96,
+                  "enginePowerHP": 130,
+                  "engineCode": "H4Jt",
+                  "description": "1.4 TCe"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 195,
+                  "enginePowerHP": 265,
+                  "engineCode": "F4Rt",
+                  "description": "R.S. 2.0T"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1461,
+                  "enginePowerKW": 81,
+                  "enginePowerHP": 110,
+                  "engineCode": "K9K",
+                  "description": "1.5 dCi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 96,
+                  "enginePowerHP": 130,
+                  "engineCode": "R9M",
+                  "description": "1.6 dCi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 118,
+                  "enginePowerHP": 160,
+                  "engineCode": "M9R",
+                  "description": "GT 2.0 dCi"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Scénic / Grand Scénic",
+          "generations": [
+            {
+              "name": "Scénic II",
+              "period": "2003-2009",
+              "bodyStyles": ["MPV", "Grand MPV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 83,
+                  "enginePowerHP": 113,
+                  "engineCode": "K4M",
+                  "description": "1.6 16V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 120,
+                  "enginePowerHP": 163,
+                  "engineCode": "F4Rt",
+                  "description": "2.0T"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1461,
+                  "enginePowerKW": 78,
+                  "enginePowerHP": 106,
+                  "engineCode": "K9K",
+                  "description": "1.5 dCi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1870,
+                  "enginePowerKW": 96,
+                  "enginePowerHP": 130,
+                  "engineCode": "F9Q",
+                  "description": "1.9 dCi"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Talisman",
+          "generations": [
+            {
+              "name": "Talisman",
+              "period": "2015-2022",
+              "bodyStyles": ["Sedan", "Wagon (Grandtour)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1618,
+                  "enginePowerKW": 147,
+                  "enginePowerHP": 200,
+                  "engineCode": "M5M",
+                  "description": "1.6 TCe"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 118,
+                  "enginePowerHP": 160,
+                  "engineCode": "R9M",
+                  "description": "1.6 dCi Twin-Turbo"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1749,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "R9N",
+                  "description": "1.7 Blue dCi"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Zoe",
+          "generations": [
+            {
+              "name": "Zoe",
+              "period": "2012-Present",
+              "bodyStyles": ["Hatchback"],
+              "engines": [
+                {
+                  "engineType": "Electric",
+                  "engineCapacity": 0,
+                  "enginePowerKW": 68,
+                  "enginePowerHP": 92,
+                  "engineCode": "5AM",
+                  "description": "R90 (22/41 kWh)"
+                },
+                {
+                  "engineType": "Electric",
+                  "engineCapacity": 0,
+                  "enginePowerKW": 80,
+                  "enginePowerHP": 109,
+                  "engineCode": "5A",
+                  "description": "R110 (41/52 kWh)"
+                },
+                {
+                  "engineType": "Electric",
+                  "engineCapacity": 0,
+                  "enginePowerKW": 100,
+                  "enginePowerHP": 136,
+                  "engineCode": "5A",
+                  "description": "R135 (52 kWh)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]

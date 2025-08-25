@@ -1,0 +1,597 @@
+[
+    {
+      "name": "Citroen",
+      "type": "PASSENGER",
+      "models": [
+        {
+          "name": "C3",
+          "generations": [
+            {
+              "name": "C3 I",
+              "period": "2002-2009",
+              "bodyStyles": ["Hatchback", "Pluriel (Convertible)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1124,
+                  "enginePowerKW": 44,
+                  "enginePowerHP": 60,
+                  "engineCode": "TU1JP",
+                  "description": "1.1i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1360,
+                  "enginePowerKW": 54,
+                  "enginePowerHP": 73,
+                  "engineCode": "TU3JP",
+                  "description": "1.4i"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1587,
+                  "enginePowerKW": 80,
+                  "enginePowerHP": 109,
+                  "engineCode": "TU5JP4",
+                  "description": "1.6 16V"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1398,
+                  "enginePowerKW": 50,
+                  "enginePowerHP": 68,
+                  "engineCode": "DV4TD",
+                  "description": "1.4 HDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1560,
+                  "enginePowerKW": 66,
+                  "enginePowerHP": 90,
+                  "engineCode": "DV6ATED4",
+                  "description": "1.6 HDi"
+                }
+              ]
+            },
+            {
+              "name": "C3 II",
+              "period": "2009-2016",
+              "bodyStyles": ["Hatchback"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1397,
+                  "enginePowerKW": 70,
+                  "enginePowerHP": 95,
+                  "engineCode": "EP3C",
+                  "description": "1.4 VTi"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1199,
+                  "enginePowerKW": 60,
+                  "enginePowerHP": 82,
+                  "engineCode": "EB2",
+                  "description": "1.2 PureTech"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 88,
+                  "enginePowerHP": 120,
+                  "engineCode": "EP6C",
+                  "description": "1.6 VTi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1560,
+                  "enginePowerKW": 68,
+                  "enginePowerHP": 92,
+                  "engineCode": "DV6DTED",
+                  "description": "1.6 e-HDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1560,
+                  "enginePowerKW": 84,
+                  "enginePowerHP": 114,
+                  "engineCode": "DV6C",
+                  "description": "1.6 e-HDi"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "C4",
+          "generations": [
+            {
+              "name": "C4 I",
+              "period": "2004-2010",
+              "bodyStyles": ["Hatchback (3-door Coupe)", "Hatchback (5-door)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1587,
+                  "enginePowerKW": 80,
+                  "enginePowerHP": 109,
+                  "engineCode": "TU5JP4",
+                  "description": "1.6 16V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 88,
+                  "enginePowerHP": 120,
+                  "engineCode": "EP6",
+                  "description": "1.6 VTi"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1997,
+                  "enginePowerKW": 130,
+                  "enginePowerHP": 177,
+                  "engineCode": "EW10J4S",
+                  "description": "2.0 16V VTS"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1560,
+                  "enginePowerKW": 66,
+                  "enginePowerHP": 90,
+                  "engineCode": "DV6ATED4",
+                  "description": "1.6 HDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1560,
+                  "enginePowerKW": 80,
+                  "enginePowerHP": 109,
+                  "engineCode": "DV6TED4",
+                  "description": "1.6 HDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1997,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "DW10B",
+                  "description": "2.0 HDi"
+                }
+              ]
+            },
+            {
+              "name": "C4 II",
+              "period": "2010-2018",
+              "bodyStyles": ["Hatchback"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1199,
+                  "enginePowerKW": 96,
+                  "enginePowerHP": 130,
+                  "engineCode": "EB2DTS",
+                  "description": "1.2 PureTech"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 115,
+                  "enginePowerHP": 156,
+                  "engineCode": "EP6CDT",
+                  "description": "1.6 THP"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1560,
+                  "enginePowerKW": 84,
+                  "enginePowerHP": 114,
+                  "engineCode": "DV6C",
+                  "description": "1.6 e-HDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1560,
+                  "enginePowerKW": 88,
+                  "enginePowerHP": 120,
+                  "engineCode": "DV6FC",
+                  "description": "1.6 BlueHDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1997,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "DW10D",
+                  "description": "2.0 BlueHDi"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "C4 Cactus",
+          "generations": [
+            {
+              "name": "C4 Cactus",
+              "period": "2014-2020",
+              "bodyStyles": ["Hatchback/Crossover"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1199,
+                  "enginePowerKW": 60,
+                  "enginePowerHP": 82,
+                  "engineCode": "EB2F",
+                  "description": "1.2 PureTech"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1199,
+                  "enginePowerKW": 81,
+                  "enginePowerHP": 110,
+                  "engineCode": "EB2DT",
+                  "description": "1.2 PureTech Turbo"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1560,
+                  "enginePowerKW": 73,
+                  "enginePowerHP": 99,
+                  "engineCode": "DV6FD",
+                  "description": "1.6 BlueHDi"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "C4 Picasso / SpaceTourer",
+          "generations": [
+            {
+              "name": "C4 Picasso I",
+              "period": "2006-2013",
+              "bodyStyles": ["MPV (Picasso)", "MPV (Grand Picasso)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 115,
+                  "enginePowerHP": 156,
+                  "engineCode": "EP6CDT",
+                  "description": "1.6 THP"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1560,
+                  "enginePowerKW": 82,
+                  "enginePowerHP": 112,
+                  "engineCode": "DV6C",
+                  "description": "1.6 HDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1997,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "DW10B",
+                  "description": "2.0 HDi"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "C5",
+          "generations": [
+            {
+              "name": "C5 I",
+              "period": "2001-2008",
+              "bodyStyles": ["Hatchback (Liftback)", "Wagon (Break)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1997,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "EW10A",
+                  "description": "2.0 16V"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2946,
+                  "enginePowerKW": 152,
+                  "enginePowerHP": 207,
+                  "engineCode": "ES9J4S",
+                  "description": "3.0 V6"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1997,
+                  "enginePowerKW": 80,
+                  "enginePowerHP": 109,
+                  "engineCode": "DW10ATED",
+                  "description": "2.0 HDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2179,
+                  "enginePowerKW": 98,
+                  "enginePowerHP": 133,
+                  "engineCode": "DW12TED4",
+                  "description": "2.2 HDi"
+                }
+              ]
+            },
+            {
+              "name": "C5 II",
+              "period": "2008-2017",
+              "bodyStyles": ["Sedan", "Wagon (Tourer)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 115,
+                  "enginePowerHP": 156,
+                  "engineCode": "EP6CDT",
+                  "description": "1.6 THP"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1560,
+                  "enginePowerKW": 82,
+                  "enginePowerHP": 112,
+                  "engineCode": "DV6C",
+                  "description": "1.6 HDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1997,
+                  "enginePowerKW": 120,
+                  "enginePowerHP": 163,
+                  "engineCode": "DW10CTED4",
+                  "description": "2.0 HDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2179,
+                  "enginePowerKW": 150,
+                  "enginePowerHP": 204,
+                  "engineCode": "DW12C",
+                  "description": "2.2 HDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2992,
+                  "enginePowerKW": 177,
+                  "enginePowerHP": 241,
+                  "engineCode": "DT20C",
+                  "description": "3.0 V6 HDi"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "C6",
+          "generations": [
+            {
+              "name": "C6",
+              "period": "2005-2012",
+              "bodyStyles": ["Sedan"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2946,
+                  "enginePowerKW": 155,
+                  "enginePowerHP": 211,
+                  "engineCode": "ES9A",
+                  "description": "3.0 V6"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2179,
+                  "enginePowerKW": 125,
+                  "enginePowerHP": 170,
+                  "engineCode": "DW12BTED4",
+                  "description": "2.2 HDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2720,
+                  "enginePowerKW": 150,
+                  "enginePowerHP": 204,
+                  "engineCode": "DT17",
+                  "description": "2.7 V6 HDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2992,
+                  "enginePowerKW": 177,
+                  "enginePowerHP": 241,
+                  "engineCode": "DT20C",
+                  "description": "3.0 V6 HDi"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "DS3",
+          "generations": [
+            {
+              "name": "DS3",
+              "period": "2010-2016",
+              "bodyStyles": ["Hatchback (3-door)", "Cabrio"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 88,
+                  "enginePowerHP": 120,
+                  "engineCode": "EP6C",
+                  "description": "1.6 VTi"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 115,
+                  "enginePowerHP": 156,
+                  "engineCode": "EP6CDT",
+                  "description": "1.6 THP"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 152,
+                  "enginePowerHP": 207,
+                  "engineCode": "EP6CDTS",
+                  "description": "Racing 1.6 THP"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1560,
+                  "enginePowerKW": 82,
+                  "enginePowerHP": 112,
+                  "engineCode": "DV6C",
+                  "description": "1.6 e-HDi"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Berlingo",
+          "generations": [
+            {
+              "name": "Berlingo II",
+              "period": "2008-2018",
+              "bodyStyles": ["Van", "Minibus (Multispace)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 88,
+                  "enginePowerHP": 120,
+                  "engineCode": "EP6C",
+                  "description": "1.6 VTi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1560,
+                  "enginePowerKW": 66,
+                  "enginePowerHP": 90,
+                  "engineCode": "DV6ATED4",
+                  "description": "1.6 HDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1560,
+                  "enginePowerKW": 84,
+                  "enginePowerHP": 114,
+                  "engineCode": "DV6C",
+                  "description": "1.6 e-HDi"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "C3 Aircross",
+          "generations": [
+            {
+              "name": "C3 Aircross",
+              "period": "2017-Present",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1199,
+                  "enginePowerKW": 81,
+                  "enginePowerHP": 110,
+                  "engineCode": "EB2DT",
+                  "description": "1.2 PureTech"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1199,
+                  "enginePowerKW": 96,
+                  "enginePowerHP": 130,
+                  "engineCode": "EB2DTS",
+                  "description": "1.2 PureTech"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1560,
+                  "enginePowerKW": 88,
+                  "enginePowerHP": 120,
+                  "engineCode": "DV6FC",
+                  "description": "1.6 BlueHDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1499,
+                  "enginePowerKW": 81,
+                  "enginePowerHP": 110,
+                  "engineCode": "DV5RD",
+                  "description": "1.5 BlueHDi"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "C5 Aircross",
+          "generations": [
+            {
+              "name": "C5 Aircross",
+              "period": "2017-Present",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1199,
+                  "enginePowerKW": 96,
+                  "enginePowerHP": 130,
+                  "engineCode": "EB2DTS",
+                  "description": "1.2 PureTech"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 133,
+                  "enginePowerHP": 181,
+                  "engineCode": "EP6FADTXD",
+                  "description": "1.6 PureTech"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1499,
+                  "enginePowerKW": 96,
+                  "enginePowerHP": 130,
+                  "engineCode": "DV5RC",
+                  "description": "1.5 BlueHDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1997,
+                  "enginePowerKW": 130,
+                  "enginePowerHP": 177,
+                  "engineCode": "DW10FC",
+                  "description": "2.0 BlueHDi"
+                },
+                {
+                  "engineType": "Plug-in Hybrid",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 133,
+                  "enginePowerHP": 181,
+                  "engineCode": "EP6FADTXD",
+                  "description": "Hybrid (System 225HP)"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]

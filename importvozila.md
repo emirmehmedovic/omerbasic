@@ -1,0 +1,1 @@
+ npx tsx scripts/import-vehicles.ts vozila/bmw4.json

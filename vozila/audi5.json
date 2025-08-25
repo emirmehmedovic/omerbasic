@@ -1,0 +1,203 @@
+[
+    {
+      "name": "Audi",
+      "type": "PASSENGER",
+      "models": [
+        {
+          "name": "A1",
+          "generations": [
+            {
+              "name": "A1 (8X)",
+              "period": "2010-2018",
+              "bodyStyles": [],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1390,
+                  "enginePowerKW": 136,
+                  "enginePowerHP": 185,
+                  "engineCode": "CAVG",
+                  "description": "1.4 TFSI (Twin-charged)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "A3",
+          "generations": [
+            {
+              "name": "A3 (8P)",
+              "period": "2003-2012",
+              "bodyStyles": [],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 120,
+                  "enginePowerHP": 163,
+                  "engineCode": "BUY",
+                  "description": "2.0 TDI"
+                }
+              ]
+            },
+            {
+              "name": "A3 (8V)",
+              "period": "2012-2020",
+              "bodyStyles": [],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 115,
+                  "engineCode": "DDYA",
+                  "description": "1.6 TDI"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "A4",
+          "generations": [
+            {
+              "name": "A4 (B8)",
+              "period": "2008-2015",
+              "bodyStyles": [],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 105,
+                  "enginePowerHP": 143,
+                  "engineCode": "CAGA",
+                  "description": "2.0 TDI"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "A5",
+          "generations": [
+            {
+              "name": "A5 (8T)",
+              "period": "2007-2016",
+              "bodyStyles": [],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1798,
+                  "enginePowerKW": 130,
+                  "enginePowerHP": 177,
+                  "engineCode": "CJSB",
+                  "description": "1.8 TFSI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 132,
+                  "enginePowerHP": 180,
+                  "engineCode": "CDNB",
+                  "description": "2.0 TFSI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 100,
+                  "enginePowerHP": 136,
+                  "engineCode": "CGLD",
+                  "description": "2.0 TDIe"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 105,
+                  "enginePowerHP": 143,
+                  "engineCode": "CAGA",
+                  "description": "2.0 TDI"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 120,
+                  "enginePowerHP": 163,
+                  "engineCode": "CGLD",
+                  "description": "2.0 TDI ultra"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2967,
+                  "enginePowerKW": 150,
+                  "enginePowerHP": 204,
+                  "engineCode": "CLAB",
+                  "description": "3.0 V6 TDI"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "A6",
+          "generations": [
+            {
+              "name": "A6 (C7)",
+              "period": "2011-2018",
+              "bodyStyles": [],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1984,
+                  "enginePowerKW": 185,
+                  "enginePowerHP": 252,
+                  "engineCode": "CYNB",
+                  "description": "2.0 TFSI"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Q5",
+          "generations": [
+            {
+              "name": "Q5 (8R)",
+              "period": "2008-2017",
+              "bodyStyles": [],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1968,
+                  "enginePowerKW": 120,
+                  "enginePowerHP": 163,
+                  "engineCode": "CGLB",
+                  "description": "2.0 TDI"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Q7",
+          "generations": [
+            {
+              "name": "Q7 (4M)",
+              "period": "2015-Present",
+              "bodyStyles": [],
+              "engines": [
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2967,
+                  "enginePowerKW": 160,
+                  "enginePowerHP": 218,
+                  "engineCode": "CRTE",
+                  "description": "3.0 TDI ultra"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]

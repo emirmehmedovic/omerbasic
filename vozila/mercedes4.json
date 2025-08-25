@@ -1,0 +1,131 @@
+[
+    {
+      "name": "Mercedes-Benz",
+      "type": "PASSENGER",
+      "models": [
+        {
+          "name": "S-Class",
+          "generations": [
+            {
+              "name": "S-Class (W222)",
+              "period": "2013-2020",
+              "bodyStyles": ["Sedan", "Coupe (C217)", "Cabriolet (A217)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2996,
+                  "enginePowerKW": 245,
+                  "enginePowerHP": 333,
+                  "engineCode": "M276.824",
+                  "description": "S 400"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 4663,
+                  "enginePowerKW": 335,
+                  "enginePowerHP": 455,
+                  "engineCode": "M278.929",
+                  "description": "S 500"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 5461,
+                  "enginePowerKW": 430,
+                  "enginePowerHP": 585,
+                  "engineCode": "M157.985",
+                  "description": "AMG S 63"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 5980,
+                  "enginePowerKW": 463,
+                  "enginePowerHP": 630,
+                  "engineCode": "M279.980",
+                  "description": "AMG S 65"
+                },
+                {
+                  "engineType": "Plug-in Hybrid",
+                  "engineCapacity": 2996,
+                  "enginePowerKW": 245,
+                  "enginePowerHP": 333,
+                  "engineCode": "M276.824",
+                  "description": "S 500 e (System 442HP)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2143,
+                  "enginePowerKW": 150,
+                  "enginePowerHP": 204,
+                  "engineCode": "OM651.921",
+                  "description": "S 300 BlueTEC Hybrid"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2987,
+                  "enginePowerKW": 190,
+                  "enginePowerHP": 258,
+                  "engineCode": "OM642.867",
+                  "description": "S 350 BlueTEC / S 350 d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2925,
+                  "enginePowerKW": 250,
+                  "enginePowerHP": 340,
+                  "engineCode": "OM656.929",
+                  "description": "S 400 d (Facelift)"
+                }
+              ]
+            },
+            {
+              "name": "S-Class (W223)",
+              "period": "2020-Present",
+              "bodyStyles": ["Sedan"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2999,
+                  "enginePowerKW": 320,
+                  "enginePowerHP": 435,
+                  "engineCode": "M256.930",
+                  "description": "S 500 4MATIC (inline-6 mHEV)"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 3982,
+                  "enginePowerKW": 370,
+                  "enginePowerHP": 503,
+                  "engineCode": "M176.980",
+                  "description": "S 580 4MATIC (V8 mHEV)"
+                },
+                {
+                  "engineType": "Plug-in Hybrid",
+                  "engineCapacity": 2999,
+                  "enginePowerKW": 270,
+                  "enginePowerHP": 367,
+                  "engineCode": "M256.930",
+                  "description": "S 580 e (System 510HP)"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2925,
+                  "enginePowerKW": 210,
+                  "enginePowerHP": 286,
+                  "engineCode": "OM656.929",
+                  "description": "S 350 d"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2925,
+                  "enginePowerKW": 243,
+                  "enginePowerHP": 330,
+                  "engineCode": "OM656.929",
+                  "description": "S 400 d 4MATIC"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]

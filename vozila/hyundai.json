@@ -1,0 +1,641 @@
+[
+    {
+      "name": "Hyundai",
+      "type": "PASSENGER",
+      "models": [
+        {
+          "name": "i10",
+          "generations": [
+            {
+              "name": "i10 (PA)",
+              "period": "2007-2013",
+              "bodyStyles": ["Hatchback"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1086,
+                  "enginePowerKW": 49,
+                  "enginePowerHP": 67,
+                  "engineCode": "G4HG",
+                  "description": "1.1"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1248,
+                  "enginePowerKW": 63,
+                  "enginePowerHP": 86,
+                  "engineCode": "G4LA",
+                  "description": "1.2"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1120,
+                  "enginePowerKW": 55,
+                  "enginePowerHP": 75,
+                  "engineCode": "D3FA",
+                  "description": "1.1 CRDi"
+                }
+              ]
+            },
+            {
+              "name": "i10 (IA/BA)",
+              "period": "2013-2019",
+              "bodyStyles": ["Hatchback"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 998,
+                  "enginePowerKW": 49,
+                  "enginePowerHP": 67,
+                  "engineCode": "G3LA",
+                  "description": "1.0"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1248,
+                  "enginePowerKW": 64,
+                  "enginePowerHP": 87,
+                  "engineCode": "G4LA",
+                  "description": "1.2"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "i20",
+          "generations": [
+            {
+              "name": "i20 (PB)",
+              "period": "2008-2014",
+              "bodyStyles": ["Hatchback (3-door)", "Hatchback (5-door)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1248,
+                  "enginePowerKW": 63,
+                  "enginePowerHP": 86,
+                  "engineCode": "G4LA",
+                  "description": "1.2"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1396,
+                  "enginePowerKW": 74,
+                  "enginePowerHP": 100,
+                  "engineCode": "G4FA",
+                  "description": "1.4"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1120,
+                  "enginePowerKW": 55,
+                  "enginePowerHP": 75,
+                  "engineCode": "D3FA",
+                  "description": "1.1 CRDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1396,
+                  "enginePowerKW": 66,
+                  "enginePowerHP": 90,
+                  "engineCode": "D4FC",
+                  "description": "1.4 CRDi"
+                }
+              ]
+            },
+            {
+              "name": "i20 (GB/IB)",
+              "period": "2014-2020",
+              "bodyStyles": ["Hatchback (3-door Coupe)", "Hatchback (5-door)", "Active (Crossover)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 998,
+                  "enginePowerKW": 74,
+                  "enginePowerHP": 100,
+                  "engineCode": "G3LC",
+                  "description": "1.0 T-GDi"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1248,
+                  "enginePowerKW": 62,
+                  "enginePowerHP": 84,
+                  "engineCode": "G4LA",
+                  "description": "1.2"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1120,
+                  "enginePowerKW": 55,
+                  "enginePowerHP": 75,
+                  "engineCode": "D3FA",
+                  "description": "1.1 CRDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1396,
+                  "enginePowerKW": 66,
+                  "enginePowerHP": 90,
+                  "engineCode": "D4FC",
+                  "description": "1.4 CRDi"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "i30",
+          "generations": [
+            {
+              "name": "i30 (FD)",
+              "period": "2007-2012",
+              "bodyStyles": ["Hatchback", "Wagon (CW)"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1396,
+                  "enginePowerKW": 80,
+                  "enginePowerHP": 109,
+                  "engineCode": "G4FA",
+                  "description": "1.4"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1591,
+                  "enginePowerKW": 93,
+                  "enginePowerHP": 126,
+                  "engineCode": "G4FC",
+                  "description": "1.6"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1582,
+                  "enginePowerKW": 66,
+                  "enginePowerHP": 90,
+                  "engineCode": "D4FB",
+                  "description": "1.6 CRDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1582,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 116,
+                  "engineCode": "D4FB",
+                  "description": "1.6 CRDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1991,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "D4EA",
+                  "description": "2.0 CRDi"
+                }
+              ]
+            },
+            {
+              "name": "i30 (GD)",
+              "period": "2012-2017",
+              "bodyStyles": ["Hatchback (3-door)", "Hatchback (5-door)", "Wagon"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1396,
+                  "enginePowerKW": 73,
+                  "enginePowerHP": 99,
+                  "engineCode": "G4FA",
+                  "description": "1.4 MPI"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1591,
+                  "enginePowerKW": 99,
+                  "enginePowerHP": 135,
+                  "engineCode": "G4FD",
+                  "description": "1.6 GDi"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1591,
+                  "enginePowerKW": 137,
+                  "enginePowerHP": 186,
+                  "engineCode": "G4FJ",
+                  "description": "1.6 T-GDi Turbo"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1582,
+                  "enginePowerKW": 81,
+                  "enginePowerHP": 110,
+                  "engineCode": "D4FB",
+                  "description": "1.6 CRDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1582,
+                  "enginePowerKW": 100,
+                  "enginePowerHP": 136,
+                  "engineCode": "D4FB",
+                  "description": "1.6 CRDi"
+                }
+              ]
+            },
+            {
+              "name": "i30 (PD)",
+              "period": "2017-Present",
+              "bodyStyles": ["Hatchback", "Wagon", "Fastback"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 998,
+                  "enginePowerKW": 88,
+                  "enginePowerHP": 120,
+                  "engineCode": "G3LC",
+                  "description": "1.0 T-GDi"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1353,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "G4LD",
+                  "description": "1.4 T-GDi"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 202,
+                  "enginePowerHP": 275,
+                  "engineCode": "G4KH",
+                  "description": "N 2.0 T-GDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 115,
+                  "engineCode": "D4FE",
+                  "description": "1.6 CRDi"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "i40",
+          "generations": [
+            {
+              "name": "i40",
+              "period": "2011-2019",
+              "bodyStyles": ["Sedan", "Wagon"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1591,
+                  "enginePowerKW": 99,
+                  "enginePowerHP": 135,
+                  "engineCode": "G4FD",
+                  "description": "1.6 GDi"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1999,
+                  "enginePowerKW": 130,
+                  "enginePowerHP": 177,
+                  "engineCode": "G4NC",
+                  "description": "2.0 GDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1685,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 116,
+                  "engineCode": "D4FD",
+                  "description": "1.7 CRDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1685,
+                  "enginePowerKW": 104,
+                  "enginePowerHP": 141,
+                  "engineCode": "D4FD",
+                  "description": "1.7 CRDi"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Ioniq",
+          "generations": [
+            {
+              "name": "Ioniq",
+              "period": "2016-2022",
+              "bodyStyles": ["Hatchback (Liftback)"],
+              "engines": [
+                {
+                  "engineType": "Hybrid",
+                  "engineCapacity": 1580,
+                  "enginePowerKW": 77,
+                  "enginePowerHP": 105,
+                  "engineCode": "G4LE",
+                  "description": "Hybrid (System 141HP)"
+                },
+                {
+                  "engineType": "Plug-in Hybrid",
+                  "engineCapacity": 1580,
+                  "enginePowerKW": 77,
+                  "enginePowerHP": 105,
+                  "engineCode": "G4LE",
+                  "description": "Plug-in Hybrid (System 141HP)"
+                },
+                {
+                  "engineType": "Electric",
+                  "engineCapacity": 0,
+                  "enginePowerKW": 88,
+                  "enginePowerHP": 120,
+                  "engineCode": "—",
+                  "description": "Electric (28 kWh)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Kona",
+          "generations": [
+            {
+              "name": "Kona (OS)",
+              "period": "2017-2023",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 998,
+                  "enginePowerKW": 88,
+                  "enginePowerHP": 120,
+                  "engineCode": "G3LC",
+                  "description": "1.0 T-GDi"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1591,
+                  "enginePowerKW": 130,
+                  "enginePowerHP": 177,
+                  "engineCode": "G4FJ",
+                  "description": "1.6 T-GDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1598,
+                  "enginePowerKW": 100,
+                  "enginePowerHP": 136,
+                  "engineCode": "D4FE",
+                  "description": "1.6 CRDi"
+                },
+                {
+                  "engineType": "Electric",
+                  "engineCapacity": 0,
+                  "enginePowerKW": 150,
+                  "enginePowerHP": 204,
+                  "engineCode": "—",
+                  "description": "Electric (64 kWh)"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Santa Fe",
+          "generations": [
+            {
+              "name": "Santa Fe (CM)",
+              "period": "2006-2012",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2656,
+                  "enginePowerKW": 139,
+                  "enginePowerHP": 189,
+                  "engineCode": "G6EA",
+                  "description": "2.7 V6"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2188,
+                  "enginePowerKW": 114,
+                  "enginePowerHP": 155,
+                  "engineCode": "D4EB",
+                  "description": "2.2 CRDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2199,
+                  "enginePowerKW": 145,
+                  "enginePowerHP": 197,
+                  "engineCode": "D4HB",
+                  "description": "2.2 CRDi (Facelift)"
+                }
+              ]
+            },
+            {
+              "name": "Santa Fe (DM)",
+              "period": "2012-2018",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 2359,
+                  "enginePowerKW": 141,
+                  "enginePowerHP": 192,
+                  "engineCode": "G4KJ",
+                  "description": "2.4 GDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 110,
+                  "enginePowerHP": 150,
+                  "engineCode": "D4HA",
+                  "description": "2.0 CRDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 2199,
+                  "enginePowerKW": 147,
+                  "enginePowerHP": 200,
+                  "engineCode": "D4HB",
+                  "description": "2.2 CRDi"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Tucson / ix35",
+          "generations": [
+            {
+              "name": "Tucson (JM)",
+              "period": "2004-2009",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1975,
+                  "enginePowerKW": 104,
+                  "enginePowerHP": 141,
+                  "engineCode": "G4GC",
+                  "description": "2.0"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1991,
+                  "enginePowerKW": 103,
+                  "enginePowerHP": 140,
+                  "engineCode": "D4EA",
+                  "description": "2.0 CRDi"
+                }
+              ]
+            },
+            {
+              "name": "ix35 (LM)",
+              "period": "2009-2015",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1591,
+                  "enginePowerKW": 99,
+                  "enginePowerHP": 135,
+                  "engineCode": "G4FD",
+                  "description": "1.6 GDi"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1998,
+                  "enginePowerKW": 120,
+                  "enginePowerHP": 163,
+                  "engineCode": "G4KD",
+                  "description": "2.0"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1685,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 116,
+                  "engineCode": "D4FD",
+                  "description": "1.7 CRDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 135,
+                  "enginePowerHP": 184,
+                  "engineCode": "D4HA",
+                  "description": "2.0 CRDi"
+                }
+              ]
+            },
+            {
+              "name": "Tucson (TL)",
+              "period": "2015-2020",
+              "bodyStyles": ["SUV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1591,
+                  "enginePowerKW": 130,
+                  "enginePowerHP": 177,
+                  "engineCode": "G4FJ",
+                  "description": "1.6 T-GDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1685,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 116,
+                  "engineCode": "D4FD",
+                  "description": "1.7 CRDi"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 136,
+                  "enginePowerHP": 185,
+                  "engineCode": "D4HA",
+                  "description": "2.0 CRDi"
+                },
+                {
+                  "engineType": "Mild Hybrid",
+                  "engineCapacity": 1995,
+                  "enginePowerKW": 136,
+                  "enginePowerHP": 185,
+                  "engineCode": "D4HA",
+                  "description": "2.0 CRDi 48V"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "ix20",
+          "generations": [
+            {
+              "name": "ix20",
+              "period": "2010-2019",
+              "bodyStyles": ["MPV"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1396,
+                  "enginePowerKW": 66,
+                  "enginePowerHP": 90,
+                  "engineCode": "G4FA",
+                  "description": "1.4"
+                },
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1591,
+                  "enginePowerKW": 92,
+                  "enginePowerHP": 125,
+                  "engineCode": "G4FC",
+                  "description": "1.6"
+                },
+                {
+                  "engineType": "Diesel",
+                  "engineCapacity": 1582,
+                  "enginePowerKW": 85,
+                  "enginePowerHP": 116,
+                  "engineCode": "D4FB",
+                  "description": "1.6 CRDi"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Elantra",
+          "generations": [
+            {
+              "name": "Elantra (MD)",
+              "period": "2011-2016",
+              "bodyStyles": ["Sedan"],
+              "engines": [
+                {
+                  "engineType": "Petrol",
+                  "engineCapacity": 1591,
+                  "enginePowerKW": 97,
+                  "enginePowerHP": 132,
+                  "engineCode": "G4FG",
+                  "description": "1.6 MPI"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
