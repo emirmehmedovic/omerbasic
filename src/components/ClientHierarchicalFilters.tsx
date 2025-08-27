@@ -56,10 +56,34 @@ export default function ClientHierarchicalFilters({
     // Ažuriramo parametre na temelju novih filtera
     Object.keys(filters).forEach(key => {
       const value = filters[key];
-      if (value) {
-        params.set(key, String(value));
-      } else {
+      if (value === undefined || value === '' || value === null) {
         params.delete(key);
+        if (key === 'makeId') params.delete('brandId');
+        return;
+      }
+
+      // Posebno rukovanje za objektne vrijednosti (npr. specs)
+      if (typeof value === 'object') {
+        // Ako je prazan objekt, ukloni iz URL-a
+        if (key === 'specs') {
+          const hasAny = value && Object.keys(value).length > 0 && Object.values(value).some(v => v !== undefined && v !== '' && v !== null);
+          if (!hasAny) {
+            params.delete('specs');
+            return;
+          }
+          params.set('specs', JSON.stringify(value));
+          return;
+        }
+        // Za ostale objekte fallback na JSON
+        params.set(key, JSON.stringify(value));
+        return;
+      }
+
+      // Standardno postavljanje
+      params.set(key, String(value));
+      // Kompatibilnost: zrcali makeId u brandId
+      if (key === 'makeId') {
+        params.set('brandId', String(value));
       }
     });
 

@@ -160,11 +160,40 @@ export default function ProductCrossReferenceManager({
     }
   };
 
+  // Dohvat proizvoda po kategoriji (bez tekstualne pretrage)
+  const fetchProductsByCategory = async (categoryId: string) => {
+    if (!categoryId || categoryId === 'all') return;
+    try {
+      setIsSearching(true);
+      const params = new URLSearchParams({ page: '1', limit: '20', categoryId });
+      const res = await fetch(`/api/products?${params.toString()}`);
+      if (!res.ok) throw new Error('Greška prilikom dohvata proizvoda po kategoriji');
+      const items = await res.json();
+      const mapped = (Array.isArray(items) ? items : []).map((p: any) => ({
+        id: p.id,
+        name: p.name,
+        catalogNumber: p.catalogNumber,
+        oemNumber: p.oemNumber,
+      }));
+      setSearchResults(mapped.filter((product: any) => product.id !== productId));
+    } catch (e) {
+      console.error('Category products fetch error', e);
+      setSearchResults([]);
+    } finally {
+      setIsSearching(false);
+    }
+  };
+
   // Debounce funkcija za pretraživanje
   useEffect(() => {
     const timer = setTimeout(() => {
-      if (searchQuery) {
+      if (searchQuery && searchQuery.length >= 3) {
         searchProducts(searchQuery);
+      } else if (!searchQuery && selectedCategoryId !== 'all') {
+        // Ako nema teksta, ali je odabrana kategorija, prikaži proizvode iz kategorije
+        fetchProductsByCategory(selectedCategoryId);
+      } else {
+        setSearchResults([]);
       }
     }, 300);
 
@@ -417,14 +446,15 @@ export default function ProductCrossReferenceManager({
                           <DialogTrigger asChild>
                             <Button 
                               type="button" 
-                              variant="outline"
+                              // Make the button prominent (was outline/white and hard to see)
+                              className="bg-gradient-to-r from-amber via-orange to-brown text-white hover:from-amber/90 hover:via-orange/90 hover:to-brown/90 shadow-md"
                               onClick={() => setIsProductSearchOpen(true)}
                             >
                               <Search className="mr-2 h-4 w-4" />
                               Pretraži
                             </Button>
                           </DialogTrigger>
-                          <DialogContent className="sm:max-w-[700px] bg-white text-gray-900 border border-amber/20 shadow-xl">
+                          <DialogContent className="sm:max-w-[1000px] bg-white text-gray-900 border border-amber/20 shadow-xl max-h-[85vh] overflow-auto">
                             <DialogHeader>
                               <DialogTitle>Pretraži proizvode</DialogTitle>
                             </DialogHeader>
@@ -441,8 +471,15 @@ export default function ProductCrossReferenceManager({
                                 <div>
                                   <Select value={selectedCategoryId} onValueChange={(v) => {
                                     setSelectedCategoryId(v);
-                                    if (searchQuery && searchQuery.length >= 3) {
-                                      searchProducts(searchQuery);
+                                    if (v !== 'all') {
+                                      if (searchQuery && searchQuery.length >= 3) {
+                                        searchProducts(searchQuery);
+                                      } else {
+                                        fetchProductsByCategory(v);
+                                      }
+                                    } else {
+                                      // reset results when switching back to All without query
+                                      if (!searchQuery || searchQuery.length < 3) setSearchResults([]);
                                     }
                                   }}>
                                     <SelectTrigger className="bg-white border-amber/30 focus:border-amber rounded-xl text-gray-900">
@@ -459,14 +496,16 @@ export default function ProductCrossReferenceManager({
                                   </Select>
                                 </div>
                               </div>
-                              <div className="border rounded-md max-h-[300px] overflow-y-auto">
+                              <div className="border rounded-md max-h-[60vh] overflow-y-auto">
                                 {isSearching ? (
                                   <div className="text-center py-4">Pretraživanje...</div>
                                 ) : searchResults.length === 0 ? (
                                   <div className="text-center py-4">
-                                    {searchQuery.length >= 3
-                                      ? "Nema rezultata"
-                                      : "Unesite najmanje 3 znaka za pretragu"}
+                                    {selectedCategoryId !== 'all' && !searchQuery
+                                      ? 'Nema proizvoda u odabranoj kategoriji'
+                                      : searchQuery.length >= 3
+                                        ? 'Nema rezultata'
+                                        : 'Unesite najmanje 3 znaka za pretragu ili odaberite kategoriju'}
                                   </div>
                                 ) : (
                                   <Table>

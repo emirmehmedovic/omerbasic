@@ -42,10 +42,11 @@ interface DataTableProps<TData, TValue> {
   categories: CategoryWithChildren[];
   onSearch?: (q: string) => void;
   onCategoryChange?: (categoryId: string) => void;
-  hasMore?: boolean;
-  loadingMore?: boolean;
-  onLoadMore?: () => void;
   initialLoading?: boolean;
+  page: number;
+  totalPages: number;
+  totalCount: number;
+  onPageChange: (nextPage: number) => void;
 }
 
 export function DataTable<TData, TValue>({
@@ -54,10 +55,11 @@ export function DataTable<TData, TValue>({
   categories,
   onSearch,
   onCategoryChange,
-  hasMore,
-  loadingMore,
-  onLoadMore,
   initialLoading,
+  page,
+  totalPages,
+  totalCount,
+  onPageChange,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
@@ -146,18 +148,31 @@ export function DataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
-      <div className="flex items-center justify-center py-4 px-6">
-        {hasMore ? (
+      <div className="flex items-center justify-between py-4 px-6">
+        <div className="text-sm text-gray-600">Ukupno: {totalCount}</div>
+        <div className="flex items-center gap-3">
           <Button
             variant="outline"
             size="sm"
-            onClick={onLoadMore}
-            disabled={loadingMore}
+            onClick={() => onPageChange(page - 1)}
+            disabled={page <= 1}
             className="bg-gradient-to-r from-white/95 to-gray-50/95 backdrop-blur-sm text-gray-700 hover:from-white hover:to-gray-50 hover:shadow-sm border-amber/30 rounded-xl transition-all duration-200"
           >
-            {loadingMore ? 'Učitavanje...' : 'Učitaj još'}
+            Prethodna
           </Button>
-        ) : null}
+          <span className="text-sm text-gray-700">
+            Stranica {page} / {Math.max(totalPages, 1)}
+          </span>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => onPageChange(page + 1)}
+            disabled={page >= Math.max(totalPages, 1)}
+            className="bg-gradient-to-r from-white/95 to-gray-50/95 backdrop-blur-sm text-gray-700 hover:from-white hover:to-gray-50 hover:shadow-sm border-amber/30 rounded-xl transition-all duration-200"
+          >
+            Sljedeća
+          </Button>
+        </div>
       </div>
     </div>
   );

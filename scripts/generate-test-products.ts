@@ -4,9 +4,12 @@ import { db } from '../src/lib/db';
 /**
  * Generate one idempotent test Product per leaf category under a given root category
  * (default: all supported roots). Modified to generate 5 products for every
- * category and subcategory (not only leaves). For the "Putnička vozila" root,
- * link each created product to all generations of Volkswagen Golf and Passat
- * via ProductVehicleFitment (engine-agnostic).
+ * category and subcategory (not only leaves). Additionally:
+ * - For the "Putnička vozila" root: link each created product to a few RANDOM
+ *   passenger vehicle generations (engine-agnostic).
+ * - For the "Teretna vozila" root: link each created product to a few RANDOM
+ *   commercial vehicle generations (engine-agnostic).
+ * - For other roots (ADR, Autopraonice): do not create vehicle fitments.
  *
  * Usage:
  *   npx tsx scripts/generate-test-products.ts [rootName|--all]
@@ -21,6 +24,8 @@ import { db } from '../src/lib/db';
 
 const KNOWN_ROOTS = ['Putnička vozila', 'Teretna vozila', 'ADR', 'Autopraonice'] as const;
 const PRODUCTS_PER_CATEGORY = 5;
+const PASSENGER_FITMENTS_PER_PRODUCT = 3; // how many random generations per product
+const COMMERCIAL_FITMENTS_PER_PRODUCT = 2;
 
 async function getRootCategoryId(rootName: string): Promise<string> {
   const root = await db.category.findFirst({ where: { name: rootName, parentId: null } });
@@ -60,6 +65,26 @@ async function getGenerationsForModel(brandId: string, modelName: string) {
   if (!model) throw new Error(`Vehicle model not found for brandId=${brandId}: ${modelName}`);
   const generations = await db.vehicleGeneration.findMany({ where: { modelId: model.id } });
   return generations.map((g) => ({ id: g.id, name: g.name }));
+}
+
+async function getGenerationsByBrandType(type: 'PASSENGER' | 'COMMERCIAL') {
+  const brands = await db.vehicleBrand.findMany({ where: { type } , select: { id: true } });
+  if (!brands.length) return [] as Array<{ id: string; name: string }>;
+  const models = await db.vehicleModel.findMany({ where: { brandId: { in: brands.map(b => b.id) } }, select: { id: true } });
+  if (!models.length) return [] as Array<{ id: string; name: string }>;
+  const gens = await db.vehicleGeneration.findMany({ where: { modelId: { in: models.map(m => m.id) } } });
+  return gens.map(g => ({ id: g.id, name: g.name }));
+}
+
+function pickRandom<T>(arr: T[], count: number): T[] {
+  if (count <= 0 || arr.length === 0) return [];
+  const copy = [...arr];
+  // Fisher-Yates shuffle up to count
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+  return copy.slice(0, Math.min(count, copy.length));
 }
 
 async function upsertMultipleTestProductsForCategory(categoryId: string, categoryName: string, count: number) {
@@ -116,32 +141,39 @@ async function main() {
 
   console.log(`Generating ${PRODUCTS_PER_CATEGORY} test products for every category under roots: ${rootsToProcess.join(', ')}`);
 
-  // Prepare target generations (Golf, Passat) only if needed later
-  let vwId: string | null = null;
-  let golfGens: Array<{ id: string; name: string }> = [];
-  let passatGens: Array<{ id: string; name: string }> = [];
+  // Prepare generation pools per vehicle type on demand
+  let passengerPool: Array<{ id: string; name: string }> = [];
+  let commercialPool: Array<{ id: string; name: string }> = [];
 
   for (const rootName of rootsToProcess) {
     const rootId = await getRootCategoryId(rootName);
     const categories = await collectAllCategories(rootId);
     console.log(`[${rootName}] Found ${categories.length} categories (including non-leaf).`);
 
-    // Only prepare vehicle generations if we're handling Putnička vozila
-    const shouldLinkVehicles = rootName === 'Putnička vozila';
-    if (shouldLinkVehicles && golfGens.length === 0 && passatGens.length === 0) {
-      vwId = await findBrandId('Volkswagen');
-      golfGens = await getGenerationsForModel(vwId, 'Golf');
-      passatGens = await getGenerationsForModel(vwId, 'Passat');
+    const isPassenger = rootName === 'Putnička vozila';
+    const isCommercial = rootName === 'Teretna vozila';
+    if (isPassenger && passengerPool.length === 0) {
+      passengerPool = await getGenerationsByBrandType('PASSENGER');
+      if (!passengerPool.length) console.warn('No passenger vehicle generations found to link.');
+    }
+    if (isCommercial && commercialPool.length === 0) {
+      commercialPool = await getGenerationsByBrandType('COMMERCIAL');
+      if (!commercialPool.length) console.warn('No commercial vehicle generations found to link.');
     }
 
     let totalCreatedOrFound = 0;
     for (const cat of categories) {
       const products = await upsertMultipleTestProductsForCategory(cat.id, cat.name, PRODUCTS_PER_CATEGORY);
       totalCreatedOrFound += products.length;
-      if (shouldLinkVehicles) {
+      if (isPassenger) {
         for (const p of products) {
-          await ensureGenerationFitments(p.id, golfGens, 'Golf');
-          await ensureGenerationFitments(p.id, passatGens, 'Passat');
+          const sample = pickRandom(passengerPool, PASSENGER_FITMENTS_PER_PRODUCT);
+          await ensureGenerationFitments(p.id, sample, 'PASSENGER');
+        }
+      } else if (isCommercial) {
+        for (const p of products) {
+          const sample = pickRandom(commercialPool, COMMERCIAL_FITMENTS_PER_PRODUCT);
+          await ensureGenerationFitments(p.id, sample, 'COMMERCIAL');
         }
       }
     }

@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/lib/auth';
 import { productApiSchema } from '@/lib/validations/product';
 import { z } from 'zod';
 import { getCurrentUser } from '@/lib/session';
@@ -34,6 +36,10 @@ async function getCategoryAndChildrenIds(categoryId: string): Promise<string[]> 
 
 export async function GET(req: NextRequest) {
   try {
+    // B2B session context
+    const session = await getServerSession(authOptions);
+    const isB2B = session?.user?.role === 'B2B';
+    const discountPercentage = isB2B ? (session?.user?.discountPercentage || 0) : 0;
     const { searchParams } = new URL(req.url);
     const query = searchParams.get("q");
     const categoryId = searchParams.get("categoryId");
@@ -46,6 +52,8 @@ export async function GET(req: NextRequest) {
     const maxPrice = searchParams.get("maxPrice");
     const limit = Math.min(parseInt(searchParams.get("limit") || "24"), 100);
     const cursor = searchParams.get("cursor"); // keyset cursor = last item id
+    const pageParam = searchParams.get('page');
+    const page = pageParam ? Math.max(parseInt(pageParam || '1') || 1, 1) : null;
 
     let where: any = { isArchived: false };
 
@@ -77,7 +85,76 @@ export async function GET(req: NextRequest) {
       if (maxPrice) where.price.lte = parseFloat(maxPrice);
     }
 
-    // Keyset pagination: order by createdAt desc, then id desc; use id cursor
+    // If "page" is provided, use offset pagination and return totals in headers
+    if (page) {
+      const skip = (page - 1) * limit;
+      const [itemsRaw, total] = await Promise.all([
+        db.product.findMany({
+          where,
+          select: {
+            id: true,
+            name: true,
+            price: true,
+            stock: true,
+            imageUrl: true,
+            catalogNumber: true,
+            oemNumber: true,
+            categoryId: true,
+            createdAt: true,
+            updatedAt: true,
+            category: { select: { id: true, name: true, parentId: true } },
+          },
+          orderBy: [
+            { createdAt: 'desc' },
+            { id: 'desc' },
+          ],
+          skip,
+          take: limit,
+        }),
+        db.product.count({ where }),
+      ]);
+
+      // Apply featured/B2B pricing
+      const ids = itemsRaw.map(i => i.id);
+      const featured = ids.length ? await db.featuredProduct.findMany({
+        where: { productId: { in: ids }, isActive: true },
+      }) : [];
+      const fMap = new Map<string, any>();
+      for (const f of featured as any[]) fMap.set(f.productId, f);
+      const now = new Date();
+      const applyPricing = (p: typeof itemsRaw[number]) => {
+        const f = fMap.get(p.id) as any;
+        if (f && f.isDiscountActive) {
+          if (f.startsAt && now < new Date(f.startsAt)) {
+            // not started yet
+          } else if (f.endsAt && now > new Date(f.endsAt)) {
+            // expired
+          } else if (f.discountType && f.discountValue && f.discountValue > 0) {
+            let newPrice = p.price;
+            if (f.discountType === 'PERCENTAGE') newPrice = p.price * (1 - f.discountValue / 100);
+            else if (f.discountType === 'FIXED') newPrice = p.price - f.discountValue;
+            newPrice = Math.max(newPrice, 0);
+            return { ...p, originalPrice: p.price, price: parseFloat(newPrice.toFixed(2)), pricingSource: 'FEATURED' as const };
+          }
+        }
+        if (isB2B && discountPercentage > 0) {
+          const price = parseFloat((p.price * (1 - discountPercentage / 100)).toFixed(2));
+          return { ...p, originalPrice: p.price, price, pricingSource: 'B2B' as const };
+        }
+        return p;
+      };
+      const items = itemsRaw.map(applyPricing);
+
+      const totalPages = Math.max(Math.ceil(total / limit), 1);
+      const res = NextResponse.json(items);
+      res.headers.set('X-Total-Count', String(total));
+      res.headers.set('X-Total-Pages', String(totalPages));
+      res.headers.set('X-Page', String(page));
+      res.headers.set('X-Limit', String(limit));
+      return res;
+    }
+
+    // Otherwise fallback to keyset pagination with cursor
     const products = await db.product.findMany({
       where,
       select: {
@@ -109,7 +186,38 @@ export async function GET(req: NextRequest) {
       items = products.slice(0, limit);
     }
 
-    const res = NextResponse.json(items);
+    // Apply featured/B2B pricing
+    const ids = items.map(i => i.id);
+    const featured = ids.length ? await db.featuredProduct.findMany({
+      where: { productId: { in: ids }, isActive: true },
+    }) : [];
+    const fMap = new Map<string, any>();
+    for (const f of featured as any[]) fMap.set(f.productId, f);
+    const now = new Date();
+    const applyPricing = (p: typeof items[number]) => {
+      const f = fMap.get(p.id) as any;
+      if (f && f.isDiscountActive) {
+        if (f.startsAt && now < new Date(f.startsAt)) {
+          // not started
+        } else if (f.endsAt && now > new Date(f.endsAt)) {
+          // expired
+        } else if (f.discountType && f.discountValue && f.discountValue > 0) {
+          let newPrice = p.price;
+          if (f.discountType === 'PERCENTAGE') newPrice = p.price * (1 - f.discountValue / 100);
+          else if (f.discountType === 'FIXED') newPrice = p.price - f.discountValue;
+          newPrice = Math.max(newPrice, 0);
+          return { ...p, originalPrice: p.price, price: parseFloat(newPrice.toFixed(2)), pricingSource: 'FEATURED' as const };
+        }
+      }
+      if (isB2B && discountPercentage > 0) {
+        const price = parseFloat((p.price * (1 - discountPercentage / 100)).toFixed(2));
+        return { ...p, originalPrice: p.price, price, pricingSource: 'B2B' as const };
+      }
+      return p;
+    };
+    const pricedItems = items.map(applyPricing);
+
+    const res = NextResponse.json(pricedItems);
     if (nextCursor) res.headers.set('X-Next-Cursor', nextCursor);
     return res;
   } catch (error) {

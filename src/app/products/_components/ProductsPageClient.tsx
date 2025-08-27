@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import ClientHierarchicalFilters from '@/components/ClientHierarchicalFilters';
 import ProductsResults from '@/components/ProductsResults';
@@ -22,6 +22,8 @@ export default function ProductsPageClient({ filterData }: ProductsPageClientPro
   type FilterState = {
     categoryId?: string;
     generationId?: string;
+    engineId?: string;
+    makeId?: string;
     minPrice?: string;
     maxPrice?: string;
     q?: string;
@@ -33,6 +35,9 @@ export default function ProductsPageClient({ filterData }: ProductsPageClientPro
   const initialFilters: FilterState = {
     categoryId: searchParams.get('categoryId') || undefined,
     generationId: searchParams.get('generationId') || undefined,
+    engineId: searchParams.get('engineId') || undefined,
+    // Map brandId from URL to makeId expected by filters
+    makeId: searchParams.get('brandId') || searchParams.get('makeId') || undefined,
     minPrice: searchParams.get('minPrice') || undefined,
     maxPrice: searchParams.get('maxPrice') || undefined,
     q: searchParams.get('q') || undefined,
@@ -45,6 +50,29 @@ export default function ProductsPageClient({ filterData }: ProductsPageClientPro
   const handleFilterChange = (filters: Record<string, any>) => {
     setCurrentFilters(prev => ({ ...prev, ...filters }));
   };
+
+  // If we land with a makeId but no categoryId, default to Passenger category (static ID)
+  // so VehicleSelector is shown and brand is preselected.
+  const [categoryAutoApplied, setCategoryAutoApplied] = useState(false);
+  useEffect(() => {
+    if (categoryAutoApplied) return;
+    if (!currentFilters.makeId || currentFilters.categoryId) return;
+    const PASSENGER_CATEGORY_ID = 'cmer01ok30001rqbwu15hej6j';
+    const updated: FilterState = { ...currentFilters, categoryId: PASSENGER_CATEGORY_ID };
+    setCurrentFilters(updated);
+    const params = new URLSearchParams(searchParams);
+    params.set('makeId', String(updated.makeId));
+    params.set('brandId', String(updated.makeId || ''));
+    params.set('categoryId', String(PASSENGER_CATEGORY_ID));
+    if (updated.generationId) params.set('generationId', String(updated.generationId)); else params.delete('generationId');
+    if (updated.engineId) params.set('engineId', String(updated.engineId)); else params.delete('engineId');
+    if (updated.minPrice) params.set('minPrice', String(updated.minPrice)); else params.delete('minPrice');
+    if (updated.maxPrice) params.set('maxPrice', String(updated.maxPrice)); else params.delete('maxPrice');
+    if (updated.q) params.set('q', String(updated.q)); else params.delete('q');
+    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+    setCategoryAutoApplied(true);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [categoryAutoApplied, currentFilters, filterData.categories, pathname, router]);
 
   const handleRemoveFilter = (key: keyof FilterState) => {
     const updated: FilterState = { ...currentFilters } as any;

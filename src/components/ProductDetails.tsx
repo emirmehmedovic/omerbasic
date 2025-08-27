@@ -62,6 +62,7 @@ interface ProductDetailsProps {
   product: Product & { 
     category: Category | null; 
     originalPrice?: number;
+    pricingSource?: 'FEATURED' | 'B2B' | 'BASE';
     vehicleFitments?: VehicleFitment[];
     attributeValues?: ProductAttributeWithValue[];
     originalReferences?: ProductReference[];
@@ -73,7 +74,7 @@ interface ProductDetailsProps {
 
 // Prikaz kartice zamjenskog proizvoda za dati replacementId
 const ReplacementProductPreview: React.FC<{ id: string }> = ({ id }) => {
-  const [data, setData] = useState<(Product & { category: Category | null; originalPrice?: number }) | null>(null);
+  const [data, setData] = useState<(Product & { category: Category | null; originalPrice?: number; pricingSource?: 'FEATURED' | 'B2B' | 'BASE' }) | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -254,7 +255,7 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
                       {formatPrice(product.price)}
                     </p>
                     <span className="text-white text-sm font-medium px-2 py-1 rounded accent-bg">
-                      B2B cijena
+                      {product.pricingSource === 'FEATURED' ? 'Akcija' : 'B2B cijena'}
                     </span>
                   </div>
                   <p className="text-lg text-slate-500 line-through">

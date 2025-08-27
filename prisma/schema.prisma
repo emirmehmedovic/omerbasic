@@ -619,10 +619,21 @@ model FeaturedProduct {
   isActive        Boolean  @default(true)
   customTitle     String?  // Opcionalni custom naslov
   customImageUrl  String?  // Opcionalni custom image URL
+  // Globalni popust (vrijedi za sve kupce, nadjačava B2B popust)
+  isDiscountActive Boolean   @default(false)
+  discountType     DiscountType?
+  discountValue    Float?
+  startsAt         DateTime?
+  endsAt           DateTime?
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
 
   @@unique([productId])
+}
+
+enum DiscountType {
+  PERCENTAGE
+  FIXED
 }
 
 // -----------------------------

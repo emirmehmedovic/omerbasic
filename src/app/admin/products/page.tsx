@@ -12,18 +12,24 @@ export type CategoryWithChildren = Category & {
 
 const getData = unstable_cache(
   async () => {
-    const allCategories: CategoryWithChildren[] = await db.category.findMany({
-      include: {
-        children: {
-          include: { children: true }, // 2 levels deep
-        },
-      },
+    const flat: Category[] = await db.category.findMany({
       orderBy: { name: 'asc' },
     });
 
-    // Filter for top-level categories to pass to the client
-    const categories = allCategories.filter((c) => !c.parentId);
+    // Build full tree from flat list (no depth limit)
+    const byId = new Map<string, CategoryWithChildren>();
+    flat.forEach(c => byId.set(c.id, { ...c, children: [] }));
+    const roots: CategoryWithChildren[] = [];
+    byId.forEach((cat) => {
+      if (cat.parentId) {
+        const parent = byId.get(cat.parentId);
+        if (parent) parent.children = [...(parent.children || []), cat];
+      } else {
+        roots.push(cat);
+      }
+    });
 
+    const categories = roots;
     return { categories };
   },
   ['admin-products-categories'],

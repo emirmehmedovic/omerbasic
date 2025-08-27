@@ -12,9 +12,10 @@ interface ProductsClientProps {
 export const ProductsClient = ({ categories }: ProductsClientProps) => {
   const PAGE_SIZE = 24;
   const [items, setItems] = useState<ProductWithCategory[]>([]);
-  const [nextCursor, setNextCursor] = useState<string | null>(null);
+  const [page, setPage] = useState<number>(1);
+  const [totalPages, setTotalPages] = useState<number>(1);
+  const [totalCount, setTotalCount] = useState<number>(0);
   const [loading, setLoading] = useState(false);
-  const [loadingMore, setLoadingMore] = useState(false);
   const [q, setQ] = useState<string>('');
   const [categoryId, setCategoryId] = useState<string>('');
   const currentControllerRef = useRef<AbortController | null>(null);
@@ -26,7 +27,7 @@ export const ProductsClient = ({ categories }: ProductsClientProps) => {
     return p;
   }, [q, categoryId]);
 
-  const fetchPage = async (cursor: string | null, append: boolean) => {
+  const fetchPage = async (targetPage: number) => {
     // cancel previous in-flight request
     if (currentControllerRef.current) {
       currentControllerRef.current.abort();
@@ -36,7 +37,7 @@ export const ProductsClient = ({ categories }: ProductsClientProps) => {
 
     const params = new URLSearchParams(baseParams.toString());
     params.set('limit', String(PAGE_SIZE));
-    if (cursor) params.set('cursor', cursor);
+    params.set('page', String(targetPage));
 
     const url = `/api/products?${params}`;
 
@@ -55,11 +56,15 @@ export const ProductsClient = ({ categories }: ProductsClientProps) => {
 
     const res = await attempt(2);
     if (!res.ok) throw new Error(`Greška pri dohvaćanju (${res.status})`);
-    const newCursor = res.headers.get('X-Next-Cursor');
     const data = await res.json();
+    const hdrTotalPages = parseInt(res.headers.get('X-Total-Pages') || '1') || 1;
+    const hdrTotalCount = parseInt(res.headers.get('X-Total-Count') || '0') || 0;
+    const hdrPage = parseInt(res.headers.get('X-Page') || String(targetPage)) || targetPage;
     if (controller.signal.aborted) return; // ignore setState after abort
-    setNextCursor(newCursor);
-    setItems(prev => append ? [...prev, ...data] : data);
+    setItems(data);
+    setTotalPages(hdrTotalPages);
+    setTotalCount(hdrTotalCount);
+    setPage(hdrPage);
   };
 
   useEffect(() => {
@@ -67,7 +72,7 @@ export const ProductsClient = ({ categories }: ProductsClientProps) => {
     (async () => {
       setLoading(true);
       try {
-        await fetchPage(null, false);
+        await fetchPage(1);
       } catch (e) {
         if ((e as any)?.name !== 'AbortError') console.error(e);
       } finally {
@@ -82,21 +87,23 @@ export const ProductsClient = ({ categories }: ProductsClientProps) => {
 
   const onSearch = (query: string) => {
     setQ(query);
+    setPage(1);
   };
 
   const onCategoryChange = (id: string) => {
     setCategoryId(id);
+    setPage(1);
   };
 
-  const onLoadMore = async () => {
-    if (!nextCursor) return;
-    setLoadingMore(true);
+  const onPageChange = async (next: number) => {
+    if (next < 1 || next > totalPages) return;
+    setLoading(true);
     try {
-      await fetchPage(nextCursor, true);
+      await fetchPage(next);
     } catch (e) {
       console.error(e);
     } finally {
-      setLoadingMore(false);
+      setLoading(false);
     }
   };
 
@@ -107,10 +114,11 @@ export const ProductsClient = ({ categories }: ProductsClientProps) => {
       categories={categories}
       onSearch={onSearch}
       onCategoryChange={onCategoryChange}
-      hasMore={Boolean(nextCursor)}
-      loadingMore={loadingMore}
-      onLoadMore={onLoadMore}
       initialLoading={loading}
+      page={page}
+      totalPages={totalPages}
+      totalCount={totalCount}
+      onPageChange={onPageChange}
     />
   );
 };

@@ -3,6 +3,8 @@ import { revalidateTag } from 'next/cache';
 import { db } from '@/lib/db';
 import { updateProductSchema } from '@/lib/validations/product';
 import { z } from 'zod';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/lib/auth';
 
 export async function GET(
   req: Request,
@@ -55,7 +57,38 @@ export async function GET(
       }
     });
 
-    return NextResponse.json(productWithFitments ?? product);
+    // Pricing: featured override, otherwise B2B
+    const session = await getServerSession(authOptions);
+    const isB2B = (session as any)?.user?.role === 'B2B';
+    const discountPercentage = isB2B ? ((session as any)?.user?.discountPercentage || 0) : 0;
+
+    const base = (productWithFitments ?? product)! as any;
+    let priced = base;
+    try {
+      const f = await db.featuredProduct.findFirst({ where: { productId, isActive: true } });
+      const now = new Date();
+      if (f && (f as any).isDiscountActive) {
+        const startsAt = (f as any).startsAt;
+        const endsAt = (f as any).endsAt;
+        const notStarted = startsAt && now < new Date(startsAt);
+        const expired = endsAt && now > new Date(endsAt);
+        const discountType = (f as any).discountType;
+        const discountValue = (f as any).discountValue;
+        if (!notStarted && !expired && discountType && discountValue && discountValue > 0) {
+          let newPrice = base.price as number;
+          if (discountType === 'PERCENTAGE') newPrice = base.price * (1 - discountValue / 100);
+          else if (discountType === 'FIXED') newPrice = base.price - discountValue;
+          newPrice = Math.max(newPrice, 0);
+          priced = { ...base, originalPrice: base.price, price: parseFloat(newPrice.toFixed(2)), pricingSource: 'FEATURED' };
+        }
+      }
+    } catch {}
+    if (priced === base && isB2B && discountPercentage > 0) {
+      const newPrice = parseFloat((base.price * (1 - discountPercentage / 100)).toFixed(2));
+      priced = { ...base, originalPrice: base.price, price: newPrice, pricingSource: 'B2B' };
+    }
+
+    return NextResponse.json(priced);
   } catch (error) {
     console.error('[PRODUCT_GET]', error);
     return new NextResponse('Internal error', { status: 500 });

@@ -33,6 +33,14 @@ import {
   SelectTrigger, 
   SelectValue 
 } from "@/components/ui/select";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
 interface Product {
   id: string;
@@ -42,6 +50,9 @@ interface Product {
   catalogNumber: string;
   stock: number;
   isArchived: boolean;
+  // Optional fields set by API when a featured discount is applied
+  originalPrice?: number;
+  pricingSource?: 'FEATURED' | 'B2B' | 'BASE';
 }
 
 interface FeaturedProduct {
@@ -54,6 +65,12 @@ interface FeaturedProduct {
   customImageUrl?: string;
   createdAt: string;
   updatedAt: string;
+  // Discount fields
+  isDiscountActive?: boolean | null;
+  discountType?: 'PERCENTAGE' | 'FIXED' | null;
+  discountValue?: number | null;
+  startsAt?: string | null;
+  endsAt?: string | null;
 }
 
 export default function FeaturedProductsClient() {
@@ -66,10 +83,24 @@ export default function FeaturedProductsClient() {
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
   const [editingProduct, setEditingProduct] = useState<FeaturedProduct | null>(null);
 
+  // Modal search states (for Add dialog)
+  const [modalSearchQuery, setModalSearchQuery] = useState("");
+  const [modalIsSearching, setModalIsSearching] = useState(false);
+  const [modalSearchResults, setModalSearchResults] = useState<Product[]>([]);
+  const [modalCategoryOptions, setModalCategoryOptions] = useState<{ id: string; label: string }[]>([]);
+  const [modalSelectedCategoryId, setModalSelectedCategoryId] = useState<string>("all");
+
   // Form states
   const [customTitle, setCustomTitle] = useState("");
   const [customImageUrl, setCustomImageUrl] = useState("");
   const [displayOrder, setDisplayOrder] = useState(0);
+
+  // Discount states
+  const [isDiscountActive, setIsDiscountActive] = useState(false);
+  const [discountType, setDiscountType] = useState<'PERCENTAGE' | 'FIXED' | ''>('');
+  const [discountValue, setDiscountValue] = useState<string>('');
+  const [startsAt, setStartsAt] = useState<string>('');
+  const [endsAt, setEndsAt] = useState<string>('');
 
   // Dohvati podatke
   useEffect(() => {
@@ -100,6 +131,87 @@ export default function FeaturedProductsClient() {
     fetchData();
   }, []);
 
+  // Helpers: search and fetch by category for modal
+  const modalSearchProducts = async (q: string) => {
+    if (!q || q.length < 3) {
+      setModalSearchResults([]);
+      return;
+    }
+    try {
+      setModalIsSearching(true);
+      const params = new URLSearchParams({ q, mode: 'basic' });
+      if (modalSelectedCategoryId && modalSelectedCategoryId !== 'all') params.set('categoryId', modalSelectedCategoryId);
+      const resp = await fetch(`/api/products/search?${params.toString()}`);
+      if (!resp.ok) throw new Error('Greška prilikom pretraživanja proizvoda');
+      const data = await resp.json();
+      // Exclude already featured
+      const featuredIds = new Set(featuredProducts.map(fp => fp.productId));
+      setModalSearchResults(data.filter((p: any) => !featuredIds.has(p.id)));
+    } catch (e) {
+      console.error('Modal search error', e);
+      setModalSearchResults([]);
+    } finally {
+      setModalIsSearching(false);
+    }
+  };
+
+  const modalFetchProductsByCategory = async (categoryId: string) => {
+    if (!categoryId || categoryId === 'all') return;
+    try {
+      setModalIsSearching(true);
+      const params = new URLSearchParams({ page: '1', limit: '20', categoryId });
+      const resp = await fetch(`/api/products?${params.toString()}`);
+      if (!resp.ok) throw new Error('Greška pri dohvatu proizvoda po kategoriji');
+      const items = await resp.json();
+      const featuredIds = new Set(featuredProducts.map(fp => fp.productId));
+      setModalSearchResults((Array.isArray(items) ? items : []).filter((p: any) => !featuredIds.has(p.id)));
+    } catch (e) {
+      console.error('Modal category fetch error', e);
+      setModalSearchResults([]);
+    } finally {
+      setModalIsSearching(false);
+    }
+  };
+
+  // Load categories once when Add dialog opens
+  useEffect(() => {
+    const loadCats = async () => {
+      try {
+        const res = await fetch('/api/categories/hierarchy');
+        if (!res.ok) throw new Error('Greška pri dohvaćanju kategorija');
+        const data = await res.json();
+        const flat: { id: string; label: string }[] = [];
+        const walk = (nodes: any[], depth: number) => {
+          for (const n of nodes) {
+            const prefix = depth > 0 ? '— '.repeat(depth) : '';
+            flat.push({ id: n.id, label: `${prefix}${n.name}` });
+            if (n.children && n.children.length) walk(n.children, depth + 1);
+          }
+        };
+        walk(Array.isArray(data) ? data : [], 0);
+        setModalCategoryOptions(flat);
+      } catch (e) {
+        console.error('Categories load error', e);
+      }
+    };
+    if (isAddDialogOpen && modalCategoryOptions.length === 0) loadCats();
+  }, [isAddDialogOpen, modalCategoryOptions.length]);
+
+  // Debounce search in modal
+  useEffect(() => {
+    if (!isAddDialogOpen) return;
+    const t = setTimeout(() => {
+      if (modalSearchQuery && modalSearchQuery.length >= 3) {
+        modalSearchProducts(modalSearchQuery);
+      } else if (!modalSearchQuery && modalSelectedCategoryId !== 'all') {
+        modalFetchProductsByCategory(modalSelectedCategoryId);
+      } else {
+        setModalSearchResults([]);
+      }
+    }, 300);
+    return () => clearTimeout(t);
+  }, [isAddDialogOpen, modalSearchQuery, modalSelectedCategoryId]);
+
   const handleAddProduct = async () => {
     if (!selectedProduct) return;
 
@@ -114,6 +226,11 @@ export default function FeaturedProductsClient() {
           customTitle: customTitle || undefined,
           customImageUrl: customImageUrl || undefined,
           displayOrder: displayOrder,
+          isDiscountActive,
+          discountType: isDiscountActive ? (discountType || undefined) : undefined,
+          discountValue: isDiscountActive && discountValue ? Number(discountValue) : undefined,
+          startsAt: isDiscountActive && startsAt ? new Date(startsAt).toISOString() : undefined,
+          endsAt: isDiscountActive && endsAt ? new Date(endsAt).toISOString() : undefined,
         }),
       });
 
@@ -141,6 +258,11 @@ export default function FeaturedProductsClient() {
           customTitle: customTitle || undefined,
           customImageUrl: customImageUrl || undefined,
           displayOrder: displayOrder,
+          isDiscountActive,
+          discountType: isDiscountActive ? (discountType || undefined) : undefined,
+          discountValue: isDiscountActive && discountValue ? Number(discountValue) : undefined,
+          startsAt: isDiscountActive && startsAt ? new Date(startsAt).toISOString() : undefined,
+          endsAt: isDiscountActive && endsAt ? new Date(endsAt).toISOString() : undefined,
         }),
       });
 
@@ -253,6 +375,11 @@ export default function FeaturedProductsClient() {
     setCustomImageUrl("");
     setDisplayOrder(0);
     setEditingProduct(null);
+    setIsDiscountActive(false);
+    setDiscountType('');
+    setDiscountValue('');
+    setStartsAt('');
+    setEndsAt('');
   };
 
   const openEditDialog = (product: FeaturedProduct) => {
@@ -260,6 +387,15 @@ export default function FeaturedProductsClient() {
     setCustomTitle(product.customTitle || "");
     setCustomImageUrl(product.customImageUrl || "");
     setDisplayOrder(product.displayOrder);
+    setIsDiscountActive(!!product.isDiscountActive);
+    setDiscountType((product.discountType as any) || '');
+    setDiscountValue(
+      product.discountValue !== null && product.discountValue !== undefined
+        ? String(product.discountValue)
+        : ''
+    );
+    setStartsAt(product.startsAt ? String(product.startsAt).slice(0, 16) : '');
+    setEndsAt(product.endsAt ? String(product.endsAt).slice(0, 16) : '');
     setIsEditDialogOpen(true);
   };
 
@@ -324,31 +460,101 @@ export default function FeaturedProductsClient() {
                 Dodaj proizvod
               </Button>
             </DialogTrigger>
-            <DialogContent className="bg-gradient-to-r from-white/95 to-gray-50/95 backdrop-blur-sm border border-amber/20 shadow-lg rounded-2xl">
+            <DialogContent className="bg-gradient-to-r from-white/95 to-gray-50/95 backdrop-blur-sm border border-amber/20 shadow-lg rounded-2xl sm:max-w-[1000px] max-h-[85vh] overflow-auto">
               <DialogHeader>
                 <DialogTitle className="text-xl font-bold bg-gradient-to-r from-gray-900 via-amber to-orange bg-clip-text text-transparent">
                   Dodaj proizvod u featured listu
                 </DialogTitle>
               </DialogHeader>
-              <div className="space-y-4">
-                <div>
-                  <label className="text-sm font-medium text-gray-700 mb-2 block">Odaberi proizvod</label>
-                  <Select onValueChange={(value) => {
-                    const product = availableProducts.find(p => p.id === value);
-                    setSelectedProduct(product || null);
-                  }}>
-                    <SelectTrigger className="bg-white border-amber/30 focus:border-amber rounded-lg transition-all duration-200 text-gray-900">
-                      <SelectValue placeholder="Odaberi proizvod..." />
-                    </SelectTrigger>
-                    <SelectContent className="bg-white border-amber/20">
-                      {filteredProducts.map((product) => (
-                        <SelectItem key={product.id} value={product.id} className="text-gray-900">
-                          {product.name} - {product.catalogNumber}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
+              <div className="space-y-4 pt-2">
+                {/* Search and category filter */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+                  <div className="md:col-span-2">
+                    <Input
+                      placeholder="Pretraži po nazivu, katalogu ili OEM broju..."
+                      value={modalSearchQuery}
+                      onChange={(e) => setModalSearchQuery(e.target.value)}
+                      className="bg-white border-amber/30 focus:border-amber rounded-xl transition-all duration-200 text-gray-900 placeholder:text-gray-500"
+                    />
+                  </div>
+                  <div>
+                    <Select value={modalSelectedCategoryId} onValueChange={(v) => {
+                      setModalSelectedCategoryId(v);
+                      if (v !== 'all') {
+                        if (modalSearchQuery && modalSearchQuery.length >= 3) {
+                          modalSearchProducts(modalSearchQuery);
+                        } else {
+                          modalFetchProductsByCategory(v);
+                        }
+                      } else {
+                        if (!modalSearchQuery || modalSearchQuery.length < 3) setModalSearchResults([]);
+                      }
+                    }}>
+                      <SelectTrigger className="bg-white border-amber/30 focus:border-amber rounded-xl text-gray-900">
+                        <SelectValue placeholder="Sve kategorije" />
+                      </SelectTrigger>
+                      <SelectContent className="bg-white max-h-80 overflow-auto">
+                        <SelectItem value="all" className="text-gray-700">Sve kategorije</SelectItem>
+                        {modalCategoryOptions.map(opt => (
+                          <SelectItem key={opt.id} value={opt.id} className="text-gray-700">
+                            {opt.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
                 </div>
+
+                {/* Results table */}
+                <div className="border rounded-md max-h-[60vh] overflow-y-auto">
+                  {modalIsSearching ? (
+                    <div className="text-center py-4">Pretraživanje...</div>
+                  ) : modalSearchResults.length === 0 ? (
+                    <div className="text-center py-4">
+                      {modalSelectedCategoryId !== 'all' && !modalSearchQuery
+                        ? 'Nema proizvoda u odabranoj kategoriji'
+                        : modalSearchQuery.length >= 3
+                          ? 'Nema rezultata'
+                          : 'Unesite najmanje 3 znaka za pretragu ili odaberite kategoriju'}
+                    </div>
+                  ) : (
+                    <Table className="text-gray-900">
+                      <TableHeader>
+                        <TableRow>
+                          <TableHead className="text-gray-700">Naziv</TableHead>
+                          <TableHead className="text-gray-700">Kataloški broj</TableHead>
+                          <TableHead className="text-gray-700">OEM broj</TableHead>
+                          <TableHead className="text-gray-700"></TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                        {modalSearchResults.map((product: any) => (
+                          <TableRow key={product.id}>
+                            <TableCell className="text-gray-900">{product.name}</TableCell>
+                            <TableCell className="text-gray-900">{product.catalogNumber}</TableCell>
+                            <TableCell className="text-gray-900">{product.oemNumber || '-'}</TableCell>
+                            <TableCell className="text-gray-900">
+                              <Button
+                                type="button"
+                                size="sm"
+                                onClick={() => setSelectedProduct(product)}
+                              >
+                                Odaberi
+                              </Button>
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  )}
+                </div>
+
+                {/* Selected product summary */}
+                {selectedProduct && (
+                  <div className="p-3 rounded-md border border-amber/20 bg-white text-sm text-gray-800">
+                    Odabrano: <strong>{selectedProduct.name}</strong> • {selectedProduct.catalogNumber}
+                  </div>
+                )}
 
                 <div>
                   <label className="text-sm font-medium text-gray-700 mb-2 block">Custom naslov (opcionalno)</label>
@@ -358,6 +564,66 @@ export default function FeaturedProductsClient() {
                     placeholder="Ostavi prazno za default naslov"
                     className="bg-white border-amber/30 focus:border-amber rounded-lg transition-all duration-200 text-gray-900 placeholder:text-gray-500"
                   />
+                </div>
+
+                {/* Discount controls */}
+                <div className="space-y-3">
+                  <div className="flex items-center gap-2">
+                    <input
+                      id="discount-active"
+                      type="checkbox"
+                      className="h-4 w-4"
+                      checked={isDiscountActive}
+                      onChange={(e) => setIsDiscountActive(e.target.checked)}
+                    />
+                    <label htmlFor="discount-active" className="text-sm font-medium text-gray-800">Aktiviraj sniženje za sve kupce</label>
+                  </div>
+                  {isDiscountActive && (
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+                      <div>
+                        <label className="text-sm text-gray-700">Tip popusta</label>
+                        <Select value={discountType} onValueChange={(v: any) => setDiscountType(v)}>
+                          <SelectTrigger className="bg-white border-amber/30 focus:border-amber rounded-xl text-gray-900">
+                            <SelectValue placeholder="Odaberi tip" />
+                          </SelectTrigger>
+                          <SelectContent className="bg-white">
+                            <SelectItem value="PERCENTAGE" className="text-gray-800">Postotak (%)</SelectItem>
+                            <SelectItem value="FIXED" className="text-gray-800">Fiksni iznos</SelectItem>
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <div>
+                        <label className="text-sm text-gray-700">Vrijednost</label>
+                        <Input
+                          type="number"
+                          min="0"
+                          step="0.01"
+                          value={discountValue}
+                          onChange={(e) => setDiscountValue(e.target.value)}
+                          placeholder={discountType === 'PERCENTAGE' ? 'npr. 15' : 'npr. 10.00'}
+                          className="bg-white border-amber/30 focus:border-amber rounded-xl text-gray-900"
+                        />
+                      </div>
+                      <div>
+                        <label className="text-sm text-gray-700">Početak (opcionalno)</label>
+                        <Input
+                          type="datetime-local"
+                          value={startsAt}
+                          onChange={(e) => setStartsAt(e.target.value)}
+                          className="bg-white border-amber/30 focus:border-amber rounded-xl text-gray-900"
+                        />
+                      </div>
+                      <div>
+                        <label className="text-sm text-gray-700">Kraj (opcionalno)</label>
+                        <Input
+                          type="datetime-local"
+                          value={endsAt}
+                          onChange={(e) => setEndsAt(e.target.value)}
+                          className="bg-white border-amber/30 focus:border-amber rounded-xl text-gray-900"
+                        />
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 <div>
@@ -444,12 +710,26 @@ export default function FeaturedProductsClient() {
                               {featuredProduct.customTitle || featuredProduct.product.name}
                             </h3>
                             <p className="text-sm text-gray-600">
-                              {featuredProduct.product.catalogNumber} • {featuredProduct.product.price.toFixed(2)} KM
+                              {featuredProduct.product.catalogNumber} • {featuredProduct.product.originalPrice ? (
+                                <>
+                                  <span className="line-through text-gray-400 mr-2">
+                                    {featuredProduct.product.originalPrice.toFixed(2)} KM
+                                  </span>
+                                  <span className="font-semibold text-gray-900">
+                                    {featuredProduct.product.price.toFixed(2)} KM
+                                  </span>
+                                </>
+                              ) : (
+                                <>{featuredProduct.product.price.toFixed(2)} KM</>
+                              )}
                             </p>
                             <div className="flex items-center gap-2 mt-1">
                               <Badge variant={featuredProduct.isActive ? "default" : "secondary"} className="text-xs">
                                 {featuredProduct.isActive ? "Aktivan" : "Neaktivan"}
                               </Badge>
+                              {featuredProduct.product.originalPrice && (
+                                <Badge className="text-xs bg-amber text-white">Akcija</Badge>
+                              )}
                               <span className="text-xs text-gray-500">
                                 Redoslijed: {featuredProduct.displayOrder}
                               </span>
@@ -516,7 +796,7 @@ export default function FeaturedProductsClient() {
 
       {/* Edit Dialog */}
       <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
-        <DialogContent className="bg-gradient-to-r from-white/95 to-gray-50/95 backdrop-blur-sm border border-amber/20 shadow-lg rounded-2xl">
+        <DialogContent className="bg-gradient-to-r from-white/95 to-gray-50/95 backdrop-blur-sm border border-amber/20 shadow-lg rounded-2xl sm:max-w-[1100px] w-[95vw] max-h-[85vh] overflow-auto">
           <DialogHeader>
             <DialogTitle className="text-xl font-bold bg-gradient-to-r from-gray-900 via-amber to-orange bg-clip-text text-transparent">
               Uredi featured proizvod
@@ -538,6 +818,66 @@ export default function FeaturedProductsClient() {
                 placeholder="Ostavi prazno za default naslov"
                 className="bg-white border-amber/30 focus:border-amber rounded-lg transition-all duration-200 text-gray-900 placeholder:text-gray-500"
               />
+            </div>
+
+            {/* Discount controls (Edit) */}
+            <div className="space-y-3">
+              <div className="flex items-center gap-2">
+                <input
+                  id="edit-discount-active"
+                  type="checkbox"
+                  className="h-4 w-4"
+                  checked={isDiscountActive}
+                  onChange={(e) => setIsDiscountActive(e.target.checked)}
+                />
+                <label htmlFor="edit-discount-active" className="text-sm font-medium text-gray-800">Aktiviraj sniženje za sve kupce</label>
+              </div>
+              {isDiscountActive && (
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+                  <div>
+                    <label className="text-sm text-gray-700">Tip popusta</label>
+                    <Select value={discountType} onValueChange={(v: any) => setDiscountType(v)}>
+                      <SelectTrigger className="bg-white border-amber/30 focus:border-amber rounded-xl text-gray-900">
+                        <SelectValue placeholder="Odaberi tip" />
+                      </SelectTrigger>
+                      <SelectContent className="bg-white">
+                        <SelectItem value="PERCENTAGE" className="text-gray-800">Postotak (%)</SelectItem>
+                        <SelectItem value="FIXED" className="text-gray-800">Fiksni iznos</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div>
+                    <label className="text-sm text-gray-700">Vrijednost</label>
+                    <Input
+                      type="number"
+                      min="0"
+                      step="0.01"
+                      value={discountValue}
+                      onChange={(e) => setDiscountValue(e.target.value)}
+                      placeholder={discountType === 'PERCENTAGE' ? 'npr. 15' : 'npr. 10.00'}
+                      className="bg-white border-amber/30 focus:border-amber rounded-xl text-gray-900"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-sm text-gray-700">Početak (opcionalno)</label>
+                    <Input
+                      type="datetime-local"
+                      value={startsAt}
+                      onChange={(e) => setStartsAt(e.target.value)}
+                      className="bg-white border-amber/30 focus:border-amber rounded-xl text-gray-900"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-sm text-gray-700">Kraj (opcionalno)</label>
+                    <Input
+                      type="datetime-local"
+                      value={endsAt}
+                      onChange={(e) => setEndsAt(e.target.value)}
+                      className="bg-white border-amber/30 focus:border-amber rounded-xl text-gray-900"
+                    />
+                  </div>
+                </div>
+              )}
             </div>
 
             <div>

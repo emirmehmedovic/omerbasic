@@ -54,10 +54,10 @@ export function CategoryCombobox({ categories, value, onChange }: CategoryCombob
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[250px] p-0 bg-white/95 backdrop-blur-sm border-gray-200 rounded-xl shadow-xl">
+      <PopoverContent className="w-[250px] p-0 bg-white/95 backdrop-blur-sm border-gray-200 rounded-xl shadow-xl z-50">
         <Command>
           <CommandInput placeholder="Pronađi kategoriju..." />
-          <CommandList>
+          <CommandList className="max-h-80 overflow-auto">
             <CommandEmpty>Nema rezultata.</CommandEmpty>
             <CommandGroup>
                 <CommandItem

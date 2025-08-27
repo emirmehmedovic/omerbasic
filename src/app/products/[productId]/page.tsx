@@ -3,12 +3,13 @@ import { notFound } from 'next/navigation';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import { ProductDetails } from '@/components/ProductDetails';
-import { type Product } from '@/generated/prisma/client';
+import { type Product, type Category } from '@/generated/prisma/client';
 
-// Tip za proizvod s B2B popustom
+// Tip za proizvod s potencijalnim popustom
 type ProductWithDiscount = Product & {
-  category: { id: string; name: string; parentId: string | null };
+  category: Category | null;
   originalPrice?: number;
+  pricingSource?: 'FEATURED' | 'B2B' | 'BASE';
 };
 
 interface ProductPageProps {
@@ -75,15 +76,41 @@ const ProductPage = async ({ params }: ProductPageProps) => {
     notFound(); // Prikazuje 404 stranicu ako proizvod nije pronađen
   }
   
-  // Primijeni B2B popust ako je potrebno
-  let productWithDiscount = product;
-  if (isB2B && discountPercentage > 0) {
-    productWithDiscount = {
-      ...product,
-      originalPrice: product.price,
-      price: parseFloat((product.price * (1 - discountPercentage / 100)).toFixed(2))
-    } as any; // Koristimo as any za rješavanje TypeScript greške
-  }
+  // Primijeni FEATURED popust (globalni override) s rasporedom; ako nije aktivan, tek onda B2B fallback
+  let productWithDiscount = product as ProductWithDiscount;
+  try {
+    const fp = await db.featuredProduct.findUnique({
+      where: { productId },
+      select: {
+        isActive: true,
+        isDiscountActive: true,
+        discountType: true,
+        discountValue: true,
+        startsAt: true,
+        endsAt: true,
+      },
+    });
+    const now = new Date();
+    const featuredApplies = !!fp && fp.isActive !== false && !!fp.isDiscountActive && (!fp.startsAt || fp.startsAt <= now) && (!fp.endsAt || fp.endsAt >= now) && !!fp.discountType && !!fp.discountValue;
+    if (featuredApplies) {
+      const original = Number(product.price);
+      let discounted = original;
+      if (fp!.discountType === 'PERCENTAGE') {
+        discounted = Math.max(0, original * (1 - Number(fp!.discountValue) / 100));
+      } else if (fp!.discountType === 'FIXED') {
+        discounted = Math.max(0, original - Number(fp!.discountValue));
+      }
+      discounted = Math.round(discounted * 100) / 100;
+      productWithDiscount = { ...(product as any), originalPrice: original, price: discounted, pricingSource: 'FEATURED' } as any;
+    } else if (isB2B && discountPercentage > 0) {
+      productWithDiscount = {
+        ...product,
+        originalPrice: product.price,
+        price: parseFloat((product.price * (1 - discountPercentage / 100)).toFixed(2)),
+        pricingSource: 'B2B',
+      } as any;
+    }
+  } catch {}
 
   return (
     <div className="min-h-screen bg-app relative">

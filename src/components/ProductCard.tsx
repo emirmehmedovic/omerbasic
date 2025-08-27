@@ -10,7 +10,7 @@ import { ShoppingCart } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 interface ProductCardProps {
-  product: Product & { category: Category | null } & { originalPrice?: number };
+  product: Product & { category: Category | null } & { originalPrice?: number; pricingSource?: 'FEATURED' | 'B2B' | 'BASE' };
 }
 
 const formatPrice = (price: number) => {
@@ -29,6 +29,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
   const hasDiscount = !!product.originalPrice;
   const originalPrice = product.originalPrice;
   const discountedPrice = product.price;
+  const discountLabel = hasDiscount ? (product.pricingSource === 'FEATURED' ? 'Akcija' : 'B2B cijena') : undefined;
 
   useEffect(() => {
     setIsMounted(true);
@@ -80,7 +81,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
         {hasDiscount && (
           <div className="absolute top-3 right-3 z-20">
             <span className="bg-sunfire-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg shadow-sunfire-500/20">
-              B2B cijena
+              {discountLabel}
             </span>
           </div>
         )}

@@ -8,16 +8,22 @@ import { cn } from '@/lib/utils';
 import { ProductCard } from '@/components/ProductCard';
 import { DiscountCarousel } from '@/components/DiscountCarousel';
 import { FeaturedBrands } from '@/components/FeaturedBrands';
+import BrandStrip from '@/components/BrandStrip';
 
 const MAIN_CATEGORIES = ["Teretna vozila", "Putnička vozila", "ADR oprema", "Autopraonice"];
 
 const getMainCategories = unstable_cache(
   async () => {
-    return db.category.findMany({
+    const cats = await db.category.findMany({
       where: {
         name: { in: MAIN_CATEGORIES }
       },
     });
+    // Deduplicate by name in case DB contains duplicates (e.g., Autopraonice added twice)
+    const uniqueByName = Array.from(new Map(cats.map(c => [c.name, c])).values());
+    // Sort to match the order defined in MAIN_CATEGORIES
+    uniqueByName.sort((a, b) => MAIN_CATEGORIES.indexOf(a.name) - MAIN_CATEGORIES.indexOf(b.name));
+    return uniqueByName;
   },
   ['home-main-categories'],
   { tags: ['categories'] }
@@ -316,10 +322,12 @@ export default async function HomePage() {
           </div>
         </section>
 
+        
+
         {/* Main Categories Section */}
         <section className="mb-32">
           <div className="flex items-center justify-between mb-12">
-            <h2 className="text-4xl font-bold tracking-tight text-slate-900">Kategorije</h2>
+            <h2 className="text-4xl font-bold tracking-tight text-white">Kategorije</h2>
             <Button asChild variant="ghost" className="text-orange hover:text-brown hover:bg-orange/5">
               <Link href="/products" className="flex items-center gap-1">
                 Sve kategorije
@@ -338,6 +346,35 @@ export default async function HomePage() {
             ))}
           </div>
         </section>
+
+        {/* Brand Strips: passenger + commercial (below categories) */}
+        {(() => {
+          const PASSENGER_CATEGORY_ID = 'cmer01ok30001rqbwu15hej6j';
+          const COMMERCIAL_CATEGORY_ID = 'cmer01z6s0001rqcokur4f0bn';
+          return (
+            <section className="mb-32">
+              {/* Passenger label */}
+              <div className="my-6 flex items-center gap-3">
+                <div className="h-px flex-1 bg-white/20" />
+                <span className="text-sm text-white">Putnička vozila</span>
+                <div className="h-px flex-1 bg-white/20" />
+              </div>
+
+              {/* Passenger brand strip (horizontal scroll) */}
+              <BrandStrip layout="row" appearance="passenger" title="Dijelovi za popularne putničke automobile" prefillCategoryId={PASSENGER_CATEGORY_ID} />
+
+              {/* Visual separator */}
+              <div className="my-6 flex items-center gap-3">
+                <div className="h-px flex-1 bg-white/20" />
+                <span className="text-sm text-white">Teretna vozila</span>
+                <div className="h-px flex-1 bg-white/20" />
+              </div>
+
+              {/* Commercial brand strip (horizontal scroll) */}
+              <BrandStrip layout="row" appearance="commercial" title="Dijelovi za popularna teretna vozila" variant="commercial" prefillCategoryId={COMMERCIAL_CATEGORY_ID} />
+            </section>
+          );
+        })()}
 
         {/* Promotions Section - Bento Layout */}
         <section className="mb-32">

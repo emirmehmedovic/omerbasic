@@ -22,6 +22,7 @@ type Product = {
   categoryId: string;
   category: Category | null;
   originalPrice?: number;
+  pricingSource?: 'FEATURED' | 'B2B' | 'BASE';
 };
 
 export type ProductFilters = {
@@ -48,6 +49,9 @@ export default function ProductsResults({ filters }: Props) {
   const [nextCursor, setNextCursor] = useState<string | null>(null);
   const PAGE_SIZE = 24;
   const { addToCart } = useCart();
+
+  const formatPrice = (price: number) =>
+    new Intl.NumberFormat('bs-BA', { style: 'currency', currency: 'BAM' }).format(price);
 
   const baseParams = useMemo(() => {
     const params = new URLSearchParams();
@@ -217,7 +221,19 @@ export default function ProductsResults({ filters }: Props) {
                     <h3 className="text-lg font-semibold text-white mb-2 line-clamp-2">{p.name}</h3>
                   </div>
                   <div className="text-left sm:text-right w-full sm:w-48 flex-shrink-0 mt-4 sm:mt-0 sm:ml-6">
-                    <p className="text-xl font-bold text-sunfire-400 mb-3">{p.price.toFixed(2)} BAM</p>
+                    {p.originalPrice ? (
+                      <div className="flex flex-col items-start sm:items-end">
+                        <div className="mb-1">
+                          <span className="bg-sunfire-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
+                            {p.pricingSource === 'FEATURED' ? 'Akcija' : 'B2B cijena'}
+                          </span>
+                        </div>
+                        <p className="text-sm line-through text-slate-500">{formatPrice(p.originalPrice)}</p>
+                        <p className="text-xl font-bold text-sunfire-400">{formatPrice(p.price)}</p>
+                      </div>
+                    ) : (
+                      <p className="text-xl font-bold text-sunfire-400 mb-3">{formatPrice(p.price)}</p>
+                    )}
                     <button 
                       onClick={(e) => {
                         e.preventDefault();

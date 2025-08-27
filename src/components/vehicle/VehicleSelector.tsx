@@ -13,6 +13,22 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Loader2, ChevronRight, Car } from "lucide-react";
 import { cn } from "@/lib/utils";
+import Audi from "@/components/icons/audi";
+import Volkswagen from "@/components/icons/volkswagen";
+import Mercedes from "@/components/icons/mercedes";
+import Bmw from "@/components/icons/bmw";
+import Volvo from "@/components/icons/volvo";
+import Seat from "@/components/icons/seat";
+import Skoda from "@/components/icons/skoda";
+import Opel from "@/components/icons/opel";
+import Citroen from "@/components/icons/citroen";
+import Kia from "@/components/icons/kia";
+import Peugeot from "@/components/icons/peugeot";
+import Scania from "@/components/icons/scania";
+import Man from "@/components/icons/man";
+import Daf from "@/components/icons/daf";
+import Iveco from "@/components/icons/iveco";
+import Renault from "@/components/icons/renault";
 
 // Tipovi za vozila
 type VehicleBrand = {
@@ -106,10 +122,87 @@ export default function VehicleSelector({
   };
 
   // Deduplirani prikazi za mape (sprječava React key warning kod duplikata)
-  const brandsToRender = useMemo<VehicleBrand[]>(() => uniqById(allBrands.filter((b: VehicleBrand) => vehicleType === 'ALL' || b.type === vehicleType)), [allBrands, vehicleType]);
+  const brandsToRender = useMemo<VehicleBrand[]>(
+    () => {
+      let filtered = allBrands.filter((b: VehicleBrand) => 
+        vehicleType === 'ALL' || !b.type || b.type === vehicleType
+      );
+      // Always include the selected brand even if it doesn't match the filter
+      if (selectedBrandId) {
+        const sel = allBrands.find(b => b.id === selectedBrandId);
+        if (sel && !filtered.some(b => b.id === sel.id)) {
+          filtered = [...filtered, sel];
+        }
+      }
+      return uniqById(filtered);
+    },
+    [allBrands, vehicleType, selectedBrandId]
+  );
   const modelsToRender = useMemo<VehicleModel[]>(() => uniqById(models), [models]);
   const generationsToRender = useMemo<VehicleGeneration[]>(() => uniqById(generations), [generations]);
   const enginesToRender = useMemo<VehicleEngine[]>(() => uniqById(engines), [engines]);
+
+  // Helper: normalize string (lowercase, remove diacritics)
+  const normalize = (s: string) =>
+    s
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .trim();
+
+  // Popular brands to show as quick-access icons (only those we have icons for)
+  const popularBrands = useMemo(
+    () => [
+      { key: 'volkswagen', label: 'Volkswagen', Icon: Volkswagen },
+      { key: 'audi', label: 'Audi', Icon: Audi },
+      { key: 'bmw', label: 'BMW', Icon: Bmw },
+      { key: 'mercedes', label: 'Mercedes', Icon: Mercedes },
+      { key: 'opel', label: 'Opel', Icon: Opel },
+      { key: 'peugeot', label: 'Peugeot', Icon: Peugeot },
+      { key: 'seat', label: 'Seat', Icon: Seat },
+      { key: 'skoda', label: 'Škoda', Icon: Skoda },
+      { key: 'citroen', label: 'Citroën', Icon: Citroen },
+      { key: 'volvo', label: 'Volvo', Icon: Volvo },
+      { key: 'kia', label: 'Kia', Icon: Kia },
+    ],
+    []
+  );
+
+  const popularCommercialBrands = useMemo(
+    () => [
+      { key: 'volvo', label: 'Volvo', Icon: Volvo },
+      { key: 'scania', label: 'Scania', Icon: Scania },
+      { key: 'daf', label: 'DAF', Icon: Daf },
+      { key: 'man', label: 'MAN', Icon: Man },
+      { key: 'iveco', label: 'Iveco', Icon: Iveco },
+      { key: 'renault', label: 'Renault', Icon: Renault },
+      { key: 'mercedes', label: 'Mercedes', Icon: Mercedes },
+    ],
+    []
+  );
+
+  // Build a map from normalized brand name to brand id for quick lookup (with aliases)
+  const brandNameToId = useMemo(() => {
+    const map = new Map<string, string>();
+    const aliases = new Map<string, string>([
+      ["mercedes-benz", "mercedes"],
+      ["vw", "volkswagen"],
+      // Truck brand variants -> canonical keys used in strips
+      ["volvo trucks", "volvo"],
+      ["mercedes-benz trucks", "mercedes"],
+      ["mercedes trucks", "mercedes"],
+    ]);
+    for (const b of brandsToRender) {
+      const norm = normalize(b.name);
+      map.set(norm, b.id);
+      // apply aliases: if name matches an alias key, also set the alias target
+      const aliasTarget = aliases.get(norm);
+      if (aliasTarget) {
+        map.set(aliasTarget, b.id);
+      }
+    }
+    return map;
+  }, [brandsToRender]);
 
   // Filtrirani popisi po upitu
   const filteredBrands = useMemo(() => {
@@ -150,7 +243,7 @@ export default function VehicleSelector({
         const data = await response.json();
         setAllBrands(Array.isArray(data) ? data : []);
         
-        const brandIdFromUrl = searchParams.get("brandId");
+        const brandIdFromUrl = searchParams.get("brandId") || searchParams.get("makeId");
         if (brandIdFromUrl) {
           setSelectedBrandId(brandIdFromUrl);
         }
@@ -164,15 +257,24 @@ export default function VehicleSelector({
     fetchBrands();
   }, []);
 
-  // Kad se promijeni vehicleType, filtriraj brendove i resetiraj odabire
+  // Kad se promijeni vehicleType, filtriraj brendove; zadrži odabran brend ako je i dalje valjan
   useEffect(() => {
-    const filtered = allBrands.filter((b) => vehicleType === 'ALL' || b.type === vehicleType);
+    let filtered = allBrands.filter((b) => vehicleType === 'ALL' || !b.type || b.type === vehicleType);
+    // include selected brand if missing due to type filter
+    if (selectedBrandId && !filtered.some(b => b.id === selectedBrandId)) {
+      const sel = allBrands.find(b => b.id === selectedBrandId);
+      if (sel) filtered = [...filtered, sel];
+    }
     setBrands(filtered);
-    setSelectedBrandId("");
-    setSelectedModelId("");
-    setSelectedGenerationId("");
-    setSelectedEngineId("");
-  }, [vehicleType, allBrands]);
+    const stillValid = !!selectedBrandId && allBrands.some(b => b.id === selectedBrandId);
+    if (!stillValid) {
+      // Resetiraj samo ako prethodni brend više nije valjan u novom tipu
+      setSelectedBrandId("");
+      setSelectedModelId("");
+      setSelectedGenerationId("");
+      setSelectedEngineId("");
+    }
+  }, [vehicleType, allBrands, selectedBrandId]);
   
   // Učitavanje modela kada se odabere brend
   useEffect(() => {
@@ -340,13 +442,45 @@ export default function VehicleSelector({
         </div>
       )}
       
-      <div className="space-y-4 p-4 bg-slate-900/50 rounded-lg border border-slate-800">
+      <div className="space-y-6 p-5 bg-slate-900/50 rounded-lg border border-slate-800">
+        {/* Popular brand icons strip */}
+        <div className="mt-0">
+          <div className="text-xs text-slate-300 mb-3">
+            {vehicleType === 'COMMERCIAL' ? 'Popularne marke (teretna)' : 'Popularne marke'}
+          </div>
+          <div className="flex gap-4 overflow-x-auto pb-2">
+            {(vehicleType === 'COMMERCIAL' ? popularCommercialBrands : popularBrands).map(({ key, label, Icon }) => {
+              const id = brandNameToId.get(key);
+              const isDisabled = !id;
+              const isActive = !!id && id === selectedBrandId;
+              return (
+                <button
+                  key={key}
+                  type="button"
+                  onClick={() => id && setSelectedBrandId(id)}
+                  disabled={isDisabled}
+                  className={cn(
+                    "flex items-center gap-2 px-4 py-3 rounded-lg border transition-colors",
+                    "bg-slate-800/50 border-slate-700 text-white hover:border-sunfire-400",
+                    isActive && "border-sunfire-400 bg-sunfire-500/10",
+                    isDisabled && "opacity-40 cursor-not-allowed"
+                  )}
+                >
+                  <Icon size={24} color="#fff" />
+                  <span className="text-sm whitespace-nowrap leading-none">{label}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
         <div className={cn(
           "grid gap-4",
           compact ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-4" : "grid-cols-1 md:grid-cols-2"
         )}>
           {/* Odabir brenda */}
           <div className="flex flex-col">
+            <div className="h-5 mb-1" />
             <span className="text-xs text-slate-300 mb-1">Marka</span>
           <Select
             value={selectedBrandId}
@@ -382,6 +516,9 @@ export default function VehicleSelector({
           
           {/* Odabir modela */}
           <div className="flex flex-col">
+            <div className="h-5 mb-1 text-sunfire-300 text-xs font-medium">
+              {selectedBrandId && !selectedModelId ? 'Sada izaberite model' : null}
+            </div>
             <span className="text-xs text-slate-300 mb-1">Model</span>
           <Select
             value={selectedModelId}
@@ -417,6 +554,7 @@ export default function VehicleSelector({
           
           {/* Odabir generacije */}
           <div className="flex flex-col">
+            <div className="h-5 mb-1" />
             <span className="text-xs text-slate-300 mb-1">Generacija</span>
           <Select
             value={selectedGenerationId}
@@ -452,6 +590,7 @@ export default function VehicleSelector({
           
           {/* Odabir motora */}
           <div className="flex flex-col">
+            <div className="h-5 mb-1" />
             <span className="text-xs text-slate-300 mb-1">Motor</span>
           <Select
             value={selectedEngineId}

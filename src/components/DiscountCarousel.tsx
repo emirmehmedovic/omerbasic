@@ -12,6 +12,8 @@ interface FeaturedProduct {
     name: string;
     price: number;
     imageUrl?: string;
+    originalPrice?: number;
+    pricingSource?: 'FEATURED' | 'B2B' | 'BASE';
   };
   displayOrder: number;
   isActive: boolean;
@@ -88,10 +90,24 @@ export const DiscountCarousel = () => {
                 <h3 className="text-2xl font-bold mb-2">
                   {featuredProduct.customTitle || featuredProduct.product.name}
                 </h3>
-                <div className="flex items-baseline gap-3">
-                  <p className="text-3xl font-bold accent-text">
-                    {featuredProduct.product.price.toFixed(2)} KM
-                  </p>
+                <div className="flex items-center gap-4">
+                  {featuredProduct.product.originalPrice ? (
+                    <>
+                      <span className="bg-sunfire-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg shadow-sunfire-500/20">
+                        Akcija
+                      </span>
+                      <p className="text-xl line-through text-slate-300">
+                        {featuredProduct.product.originalPrice.toFixed(2)} KM
+                      </p>
+                      <p className="text-3xl font-bold accent-text">
+                        {featuredProduct.product.price.toFixed(2)} KM
+                      </p>
+                    </>
+                  ) : (
+                    <p className="text-3xl font-bold accent-text">
+                      {featuredProduct.product.price.toFixed(2)} KM
+                    </p>
+                  )}
                 </div>
               </div>
             </div>

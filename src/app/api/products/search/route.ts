@@ -1,4 +1,6 @@
 import { NextResponse } from "next/server";
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/lib/auth';
 import { SIMILARITY_THRESHOLD, NAME_WEIGHT, CATALOG_WEIGHT } from '@/lib/search-constants';
 import { db } from "@/lib/db";
 import { 
@@ -17,6 +19,10 @@ export const revalidate = 30;
 
 export async function GET(req: Request) {
   try {
+    // Session for B2B context
+    const session = await getServerSession(authOptions);
+    const isB2B = (session as any)?.user?.role === 'B2B';
+    const discountPercentage = isB2B ? ((session as any)?.user?.discountPercentage || 0) : 0;
     const { searchParams } = new URL(req.url);
     const query = searchParams.get("q");
     const mode = searchParams.get("mode") || "basic";
@@ -53,12 +59,12 @@ export async function GET(req: Request) {
       let rows: any[];
       if (categoryId) {
         rows = await db.$queryRaw<any>`
-          WITH RECURSIVE cte AS (
-            SELECT ${categoryId}::uuid AS id
+          WITH RECURSIVE cte(id) AS (
+            SELECT c."id" FROM "Category" c WHERE c."id"::text = ${categoryId}
             UNION ALL
-            SELECT c."id"
-            FROM "Category" c
-            JOIN cte ON c."parentId" = cte.id
+            SELECT c2."id"
+            FROM "Category" c2
+            JOIN cte ON c2."parentId" = cte.id
           )
           SELECT p.id, p.name, p."catalogNumber", p."oemNumber", p.price, p."imageUrl", p."categoryId"
           FROM "Product" p
@@ -101,7 +107,34 @@ export async function GET(req: Request) {
         `;
       }
 
-      return NextResponse.json(rows);
+      // Apply featured/B2B pricing on rows
+      const ids = rows.map(r => r.id);
+      const featured = ids.length ? await db.featuredProduct.findMany({
+        where: { productId: { in: ids }, isActive: true },
+      }) : [];
+      const fMap = new Map<string, any>();
+      for (const f of featured as any[]) fMap.set(f.productId, f);
+      const now = new Date();
+      const priced = rows.map((p: any) => {
+        const f = fMap.get(p.id) as any;
+        if (f && f.isDiscountActive) {
+          const notStarted = f.startsAt && now < new Date(f.startsAt);
+          const expired = f.endsAt && now > new Date(f.endsAt);
+          if (!notStarted && !expired && f.discountType && f.discountValue && f.discountValue > 0) {
+            let newPrice = p.price;
+            if (f.discountType === 'PERCENTAGE') newPrice = p.price * (1 - f.discountValue / 100);
+            else if (f.discountType === 'FIXED') newPrice = p.price - f.discountValue;
+            newPrice = Math.max(newPrice, 0);
+            return { ...p, originalPrice: p.price, price: parseFloat(newPrice.toFixed(2)), pricingSource: 'FEATURED' };
+          }
+        }
+        if (isB2B && discountPercentage > 0) {
+          const price = parseFloat((p.price * (1 - discountPercentage / 100)).toFixed(2));
+          return { ...p, originalPrice: p.price, price, pricingSource: 'B2B' };
+        }
+        return p;
+      });
+      return NextResponse.json(priced);
     }
     
     // Napredna pretraga
@@ -126,7 +159,34 @@ export async function GET(req: Request) {
 
       // Izvršavanje napredne pretrage
       const results = await advancedSearch(params);
-      return NextResponse.json(results);
+      const items = (results?.items || []) as any[];
+      const ids = items.map(i => i.id);
+      const featured = ids.length ? await db.featuredProduct.findMany({
+        where: { productId: { in: ids }, isActive: true },
+      }) : [];
+      const fMap = new Map<string, any>();
+      for (const f of featured as any[]) fMap.set(f.productId, f);
+      const now = new Date();
+      const pricedItems = items.map((p: any) => {
+        const f = fMap.get(p.id) as any;
+        if (f && f.isDiscountActive) {
+          const notStarted = f.startsAt && now < new Date(f.startsAt);
+          const expired = f.endsAt && now > new Date(f.endsAt);
+          if (!notStarted && !expired && f.discountType && f.discountValue && f.discountValue > 0) {
+            let newPrice = p.price;
+            if (f.discountType === 'PERCENTAGE') newPrice = p.price * (1 - f.discountValue / 100);
+            else if (f.discountType === 'FIXED') newPrice = p.price - f.discountValue;
+            newPrice = Math.max(newPrice, 0);
+            return { ...p, originalPrice: p.price, price: parseFloat(newPrice.toFixed(2)), pricingSource: 'FEATURED' };
+          }
+        }
+        if (isB2B && discountPercentage > 0) {
+          const price = parseFloat((p.price * (1 - discountPercentage / 100)).toFixed(2));
+          return { ...p, originalPrice: p.price, price, pricingSource: 'B2B' };
+        }
+        return p;
+      });
+      return NextResponse.json({ ...results, items: pricedItems });
     }
 
     return NextResponse.json(
