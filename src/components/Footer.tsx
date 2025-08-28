@@ -58,8 +58,8 @@ const Footer = () => {
                 <Car className="w-full h-full text-white" />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-white">Omer Basic</h3>
-                <p className="text-slate-400 text-sm">Autodijelovi</p>
+                <h3 className="text-xl font-bold text-white">TP Omerbašić</h3>
+                <p className="text-slate-400 text-sm">Autodijelovi – Putnička i Teretna vozila, ADR, Autopraonice</p>
               </div>
             </div>
             
@@ -135,9 +135,7 @@ const Footer = () => {
                   <MapPin className="w-4 h-4 text-amber" />
                 </div>
                 <div>
-                  <p className="text-slate-300 text-sm">
-                    Sarajevo, Bosna i Hercegovina
-                  </p>
+                  <p className="text-slate-300 text-sm">Rosulje bb, Jelah</p>
                 </div>
               </div>
               
@@ -146,7 +144,11 @@ const Footer = () => {
                   <Phone className="w-4 h-4 text-amber" />
                 </div>
                 <div>
-                  <p className="text-slate-300 text-sm">+387 xx xxx xxx</p>
+                  <p className="text-slate-300 text-sm">
+                    <a href="tel:+38732666658" className="hover:text-white transition-colors">032/666-658</a>
+                    {' '}•{' '}
+                    <a href="tel:+38761962359" className="hover:text-white transition-colors">061-962-359</a>
+                  </p>
                 </div>
               </div>
               
@@ -155,7 +157,9 @@ const Footer = () => {
                   <Mail className="w-4 h-4 text-amber" />
                 </div>
                 <div>
-                  <p className="text-slate-300 text-sm">info@omerbasic.ba</p>
+                  <p className="text-slate-300 text-sm">
+                    <a href="mailto:veleprodajatpo@gmail.com" className="hover:text-white transition-colors">veleprodajatpo@gmail.com</a>
+                  </p>
                 </div>
               </div>
               
@@ -164,10 +168,7 @@ const Footer = () => {
                   <Clock className="w-4 h-4 text-amber" />
                 </div>
                 <div>
-                  <p className="text-slate-300 text-sm">
-                    Pon - Pet: 08:00 - 16:00<br />
-                    Sub: 08:00 - 12:00
-                  </p>
+                  <p className="text-slate-300 text-sm">Radno vrijeme: 08:00 – 18:00</p>
                 </div>
               </div>
             </div>
@@ -211,7 +212,7 @@ const Footer = () => {
         <div className="border-t border-white/10 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-slate-400 text-sm">
-              © 2025 Omer Basic. Sva prava zadržana.
+              © 2025 TP Omerbašić. Sva prava zadržana.
             </div>
             
             <div className="flex flex-wrap gap-6 text-sm">

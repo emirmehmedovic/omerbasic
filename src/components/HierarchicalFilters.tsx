@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef, useMemo } from 'react';
-import { X, Filter, Car, Settings, Layers, Truck, ShieldCheck, SprayCan, LifeBuoy, Droplets, Box, ChevronRight, ChevronDown } from 'lucide-react';
+import { X, Filter, Car, Settings, Layers, Truck, ShieldCheck, SprayCan, LifeBuoy, Droplets, Box, ChevronRight, ChevronDown, Search } from 'lucide-react';
 import VehicleSelector from './vehicle/VehicleSelector';
 import TechnicalSpecsFilter from './TechnicalSpecsFilter';
 import { Button } from './ui/button';
@@ -108,11 +108,11 @@ const SubcategoryList = ({
         const isSelected = category.id === selectedCategoryId;
         return (
           <div key={category.id} className="w-full">
-            <div className={`flex items-center w-full text-left px-3 py-2 rounded-lg text-sm transition-all duration-200 border ${
+            <div className={`flex items-center w-full text-left rounded-lg text-sm transition-all duration-200 border ${
               isSelected
                 ? 'bg-sunfire-500/20 text-white border-sunfire-400 shadow-md shadow-sunfire-500/10 font-semibold'
                 : 'text-slate-300 hover:bg-sunfire-500/10 hover:text-white border-transparent hover:border-sunfire-500/50'
-            }`}>
+            } ${depth === 0 ? 'px-3 py-2 lg:px-3.5 lg:py-2.5 bg-white/5 hover:bg-white/10' : 'px-3 py-2'}`}>
               {/* Chevron za expand/collapse */}
               <button
                 type="button"
@@ -133,7 +133,7 @@ const SubcategoryList = ({
                   onCategorySelect(category.id);
                   if (hasChildren && !isOpen) setExpanded(prev => ({ ...prev, [category.id]: true }));
                 }}
-                className="flex-1 text-left truncate"
+                className={`flex-1 text-left truncate ${depth === 0 ? 'text-[0.95rem] font-medium' : ''}`}
               >
                 {category.name}
               </button>
@@ -161,7 +161,15 @@ const SubcategoryList = ({
     </div>
   );
 
-  return <div className="subcategory-list">{renderNodes(categories, 0)}</div>;
+  return (
+    <div
+      className="subcategory-list max-h-[95vh] overflow-y-auto pr-2"
+      style={{ maxHeight: '95vh', overflowY: 'auto' }}
+      data-test="hf-subcat-v2"
+    >
+      {renderNodes(categories, 0)}
+    </div>
+  );
 };
 
 import { VehicleBrand } from '@/generated/prisma/client';
@@ -184,6 +192,8 @@ export default function HierarchicalFilters({
   // Stanje za kategorije
   const [mainCategories, setMainCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(false);
+  // Pretraga podkategorija
+  const [catSearch, setCatSearch] = useState('');
   
   // Odabrana glavna kategorija će se izračunati ispod nakon što definiramo filters stanje
   
@@ -256,6 +266,36 @@ export default function HierarchicalFilters({
     // prvi element u putu iz mainCategories je glavna kategorija
     return selectedPath[0] || null;
   }, [selectedPath]);
+
+  // Filtriranje stabla kategorija po pretrazi (prikazuje samo grane koje se poklapaju)
+  const { filteredSubcategories, expandIdsForSearch } = useMemo(() => {
+    const result = { filteredSubcategories: [] as Category[], expandIdsForSearch: new Set<string>() };
+    if (!selectedMainCategory || !catSearch.trim()) return result;
+
+    const q = catSearch.trim().toLowerCase();
+
+    const filterTree = (nodes: Category[], ancestors: string[]): Category[] => {
+      const out: Category[] = [];
+      for (const node of nodes) {
+        const name = (node.name || '').toLowerCase();
+        const children = node.children ? filterTree(node.children, [...ancestors, node.id]) : [];
+        const isMatch = name.includes(q);
+        if (isMatch || children.length > 0) {
+          // Ako postoji poklapanje u potomcima, proširi sve pretke
+          if (isMatch || children.length > 0) {
+            for (const a of ancestors) result.expandIdsForSearch.add(a);
+            // Također proširi i sam čvor da bi potomci bili vidljivi
+            result.expandIdsForSearch.add(node.id);
+          }
+          out.push({ ...node, children });
+        }
+      }
+      return out;
+    };
+
+    result.filteredSubcategories = filterTree(selectedMainCategory.children || [], [selectedMainCategory.id]);
+    return result;
+  }, [selectedMainCategory, catSearch]);
 
   // Izvedi tip vozila iz odabrane glavne kategorije
   const derivedVehicleType = useMemo<'PASSENGER' | 'COMMERCIAL' | 'ALL'>(() => {
@@ -370,10 +410,12 @@ export default function HierarchicalFilters({
           <div className="main-categories">
             <div className="rounded-2xl p-6 text-white bg-gradient-to-t from-black/60 to-transparent border border-white/10 mb-6">
               <h3 className="text-xl font-bold text-white mb-6 text-center">Kategorije proizvoda</h3>
-              <div className="flex flex-wrap justify-center gap-4">
-                {mainCategories.map((category) => {
+              <div className="w-full">
+                <div className="flex w-full rounded-xl border border-white/10 overflow-x-auto flex-nowrap snap-x snap-mandatory">
+                {mainCategories.map((category, idx) => {
                   const categoryIcons: { [key: string]: React.ComponentType<{ className?: string }> } = {
                     'teretna vozila': Truck,
+                    // default fallback for Putnička vozila will be replaced by custom SVG below
                     'putnička vozila': Car,
                     'adr oprema': ShieldCheck,
                     'autopraonice': SprayCan,
@@ -381,37 +423,74 @@ export default function HierarchicalFilters({
                     'motorna ulja': Droplets,
                   };
 
-                  const Icon = categoryIcons[category.name.toLowerCase()] || Box;
+                  const nameLc = category.name.toLowerCase();
+                  const usePassengerSvg = nameLc.includes('putnič') || nameLc.includes('putnick');
+                  const useCommercialSvg = nameLc.includes('teret');
+                  const useAdrSvg = nameLc.includes('adr');
+                  const useWashSvg = nameLc.includes('autopraon');
+                  const useTyresSvg = nameLc.includes('gume');
+                  const useOilsSvg = nameLc.includes('ulja') || nameLc.includes('maziv');
+                  const Icon = categoryIcons[nameLc] || Box;
                   const isSelected = selectedMainCategory?.id === category.id;
 
                   return (
                     <button
                       key={category.id}
                       onClick={() => handleMainCategorySelect(category)}
-                      className={`
-                        group relative flex flex-col items-center justify-center p-4 rounded-xl border text-center w-32 h-28 text-white transform-gpu transition-transform duration-300 hover:scale-105
-                        ${isSelected
-                          ? 'accent-bg-is-selected border-transparent shadow-lg scale-105'
-                          : 'bg-black/30 border-white/20 hover-pulse-sunfire'
-                        }
+                      className={`group relative isolate z-0 flex flex-1 items-center justify-center px-3 py-2 sm:px-4 sm:py-3 md:py-4 text-white border-r border-white/10 transition-colors transition-shadow snap-start
+                        ${isSelected ? 'accent-bg-is-selected' : 'bg-black/30 hover-pulse-sunfire'}
+                        ${idx === 0 ? 'rounded-l-xl' : ''}
+                        ${idx === mainCategories.length - 1 ? 'rounded-r-xl border-r-0' : ''}
+                        hover:ring-2 hover:ring-sunfire-400/60
                       `}
                     >
-                      {/* Icon Container */}
-                      <div className="flex items-center justify-center w-12 h-12 rounded-lg mb-2 transition-all duration-300">
-                        <Icon className={`
-                          w-7 h-7 transition-all duration-300 ease-in-out
-                          ${isSelected ? 'text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]' : 'text-white/80 group-hover:text-sunfire-200 group-hover:drop-shadow-[0_0_15px_rgba(255,217,128,1)]'}
-                        `} />
+                      {/* Inner content scales on hover to preserve connected pill edges */}
+                      <div className="flex flex-col items-center gap-2 transition-transform duration-300 ease-in-out group-hover:scale-[1.03]">
+                        {usePassengerSvg ? (
+                          <img
+                            src="/images/putnicka-vozila.svg"
+                            alt="Putnička vozila"
+                            className={`w-12 h-12 sm:w-16 sm:h-16 md:w-[5.25rem] md:h-[5.25rem] lg:w-[6rem] lg:h-[6rem] ${isSelected ? 'opacity-100 drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]' : 'opacity-80 group-hover:opacity-100 group-hover:drop-shadow-[0_0_15px_rgba(255,217,128,1)]'}`}
+                          />
+                        ) : useCommercialSvg ? (
+                          <img
+                            src="/images/teretna-vozila.svg"
+                            alt="Teretna vozila"
+                            className={`w-12 h-12 sm:w-16 sm:h-16 md:w-[5.25rem] md:h-[5.25rem] lg:w-[6rem] lg:h-[6rem] ${isSelected ? 'opacity-100 drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]' : 'opacity-80 group-hover:opacity-100 group-hover:drop-shadow-[0_0_15px_rgba(255,217,128,1)]'}`}
+                          />
+                        ) : useAdrSvg ? (
+                          <img
+                            src="/images/adr.svg"
+                            alt="ADR oprema"
+                            className={`w-12 h-12 sm:w-16 sm:h-16 md:w-[5.25rem] md:h-[5.25rem] lg:w-[6rem] lg:h-[6rem] ${isSelected ? 'opacity-100 drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]' : 'opacity-80 group-hover:opacity-100 group-hover:drop-shadow-[0_0_15px_rgba(255,217,128,1)]'}`}
+                          />
+                        ) : useWashSvg ? (
+                          <img
+                            src="/images/autopraonice.svg"
+                            alt="Autopraonice"
+                            className={`w-12 h-12 sm:w-16 sm:h-16 md:w-[5.25rem] md:h-[5.25rem] lg:w-[6rem] lg:h-[6rem] ${isSelected ? 'opacity-100 drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]' : 'opacity-80 group-hover:opacity-100 group-hover:drop-shadow-[0_0_15px_rgba(255,217,128,1)]'}`}
+                          />
+                        ) : useTyresSvg ? (
+                          <img
+                            src="/images/gume.svg"
+                            alt="Gume"
+                            className={`w-12 h-12 sm:w-16 sm:h-16 md:w-[5.25rem] md:h-[5.25rem] lg:w-[6rem] lg:h-[6rem] ${isSelected ? 'opacity-100 drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]' : 'opacity-80 group-hover:opacity-100 group-hover:drop-shadow-[0_0_15px_rgba(255,217,128,1)]'}`}
+                          />
+                        ) : useOilsSvg ? (
+                          <img
+                            src="/images/uljaimaziva.svg"
+                            alt="Ulja i maziva"
+                            className={`w-12 h-12 sm:w-16 sm:h-16 md:w-[5.25rem] md:h-[5.25rem] lg:w-[6rem] lg:h-[6rem] ${isSelected ? 'opacity-100 drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]' : 'opacity-80 group-hover:opacity-100 group-hover:drop-shadow-[0_0_15px_rgba(255,217,128,1)]'}`}
+                          />
+                        ) : (
+                          <Icon className={`w-12 h-12 sm:w-16 sm:h-16 md:w-[5.25rem] md:h-[5.25rem] lg:w-[6rem] lg:h-[6rem] transition-all duration-300 ease-in-out ${isSelected ? 'text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]' : 'text-white/80 group-hover:text-sunfire-200 group-hover:drop-shadow-[0_0_15px_rgba(255,217,128,1)]'}`} />
+                        )}
+                        <span className="text-xs sm:text-sm md:text-[0.95rem] font-bold text-white text-center leading-tight">{category.name}</span>
                       </div>
-                      
-                      {/* Name */}
-                      <span className="text-sm font-bold transition-colors duration-300 text-white">
-                        {category.name}
-                      </span>
                     </button>
                   );
                 })}
-
+                </div>
               </div>
             </div>
           </div>
@@ -450,19 +529,42 @@ export default function HierarchicalFilters({
         <div className="sidebar-filters space-y-6">
           {/* Podkategorije ako postoje */}
           {selectedMainCategory.children && selectedMainCategory.children.length > 0 && (
-            <div className="bg-gradient-to-t from-black/60 to-transparent p-6 rounded-2xl border border-sunfire-500/30">
-              <div className="flex items-center mb-4">
-                <div className="p-2 rounded-lg mr-3 bg-sunfire-500/10 shadow-lg shadow-sunfire-500/10">
-                  <Layers className="h-5 w-5 text-sunfire-300" />
+            <div className="bg-gradient-to-t from-black/60 to-transparent p-6 rounded-2xl border border-sunfire-500/30" data-test="hf-panel-v2">
+              <div className="sticky top-0 z-10 -mx-6 px-6 pt-2 pb-3 bg-black/40 backdrop-blur border-b border-white/10 rounded-t-2xl">
+                <div className="flex items-center mb-2">
+                  <div className="p-2 rounded-lg mr-3 bg-sunfire-500/10 shadow-lg shadow-sunfire-500/10">
+                    <Layers className="h-5 w-5 text-sunfire-300" />
+                  </div>
+                  <h3 className="font-bold text-white text-xl">Podkategorije</h3>
                 </div>
-                <h3 className="font-bold text-white text-xl">Podkategorije</h3>
+                {/* Search input */}
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-white/60" />
+                  <input
+                    type="text"
+                    value={catSearch}
+                    onChange={(e) => setCatSearch(e.target.value)}
+                    placeholder="Pretraži kategorije…"
+                    className="w-full pl-9 pr-8 py-2 rounded-md bg-white/10 text-white placeholder-white/60 border border-white/20 focus:outline-none focus:ring-2 focus:ring-sunfire-400/60 focus:border-sunfire-400/50"
+                  />
+                  {catSearch && (
+                    <button
+                      type="button"
+                      onClick={() => setCatSearch('')}
+                      aria-label="Očisti pretragu"
+                      className="absolute right-2 top-1/2 -translate-y-1/2 text-white/70 hover:text-white"
+                    >
+                      <X className="h-4 w-4" />
+                    </button>
+                  )}
+                </div>
               </div>
               <SubcategoryList 
                 key={selectedMainCategory.id}
-                categories={selectedMainCategory.children}
+                categories={catSearch.trim() ? filteredSubcategories : selectedMainCategory.children}
                 selectedCategoryId={filters.categoryId}
                 onCategorySelect={handleSubcategorySelect}
-                expandIds={selectedPath?.map(c => c.id)}
+                expandIds={catSearch.trim() ? Array.from(expandIdsForSearch) : selectedPath?.map(c => c.id)}
               />
             </div>
           )}

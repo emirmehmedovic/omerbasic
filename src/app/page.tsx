@@ -3,7 +3,7 @@ import { unstable_cache } from 'next/cache';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Truck, ShieldCheck, Wrench, Package, Search, ChevronRight, Star, Users, Award, Phone, MessageCircle, Mail, Zap, TrendingUp, Clock } from 'lucide-react';
+import { ArrowRight, Truck, ShieldCheck, Wrench, Package, Search, ChevronRight, Star, Users, Award, Phone, MessageCircle, Mail, Zap, TrendingUp, Clock, MapPin } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { ProductCard } from '@/components/ProductCard';
 import { DiscountCarousel } from '@/components/DiscountCarousel';
@@ -147,6 +147,23 @@ const MainCategoryCard = ({ category, imageUrl }: { category: { id: string; name
           fill
           className="object-cover scale-110 transition-all duration-700 ease-in-out group-hover:scale-125 group-hover:rotate-2"
         />
+      {/* JSON-LD: WebSite SearchAction */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'WebSite',
+            name: 'TP Omerbašić',
+            url: (process as any).env?.NEXT_PUBLIC_SITE_URL || 'https://example.com',
+            potentialAction: {
+              '@type': 'SearchAction',
+              target: `${(process as any).env?.NEXT_PUBLIC_SITE_URL || 'https://example.com'}/search?q={search_term_string}`,
+              'query-input': 'required name=search_term_string',
+            },
+          }),
+        }}
+      />
         <div className={`absolute inset-0 bg-gradient-to-br ${getBgGradient(category.name)} opacity-90 mix-blend-multiply transition-opacity duration-500 group-hover:opacity-95`}></div>
       </div>
 
@@ -204,6 +221,29 @@ export default async function HomePage() {
 
   return (
     <main className="bg-app font-sans min-h-screen">
+      {/* JSON-LD: Organization / LocalBusiness */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': ['Organization', 'AutoPartsStore', 'LocalBusiness'],
+            name: 'TP Omerbašić',
+            email: 'mailto:veleprodajatpo@gmail.com',
+            telephone: ['+387-32-666-658', '+387-61-962-359'],
+            address: {
+              '@type': 'PostalAddress',
+              streetAddress: 'Rosulje bb',
+              addressLocality: 'Jelah',
+              addressCountry: 'BA',
+            },
+            openingHours: 'Mo-Sa 08:00-18:00',
+            description:
+              'Autodijelovi za putnička i teretna vozila, ADR oprema i oprema za autopraonice. TP Omerbašić, Rosulje bb, Jelah.',
+            areaServed: 'Bosnia and Herzegovina',
+          }),
+        }}
+      />
       {/* Decorative elements */}
       <div className="fixed top-20 left-20 w-72 h-72 bg-amber/20 rounded-full blur-3xl -z-10"></div>
       <div className="fixed bottom-20 right-20 w-96 h-96 bg-orange/10 rounded-full blur-3xl -z-10"></div>
@@ -275,12 +315,12 @@ export default async function HomePage() {
                 {/* Quick Contact */}
                 <div className="flex gap-2">
                   <Button asChild size="lg" className="aspect-square p-0 bg-white/20 backdrop-blur-md border border-white/30 text-white hover:bg-white/30 rounded-full">
-                    <Link href="tel:+38761234567">
+                    <Link href="tel:+38732666658">
                       <Phone className="w-5 h-5" />
                     </Link>
                   </Button>
                   <Button asChild size="lg" className="aspect-square p-0 bg-white/20 backdrop-blur-md border border-white/30 text-white hover:bg-white/30 rounded-full">
-                    <Link href="mailto:info@omerbasic.ba">
+                    <Link href="mailto:veleprodajatpo@gmail.com">
                       <Mail className="w-5 h-5" />
                     </Link>
                   </Button>
@@ -318,6 +358,42 @@ export default async function HomePage() {
 
               {/* Customer Testimonial */}
               <TestimonialCard />
+            </div>
+          </div>
+        </section>
+
+        {/* Contact/Location quick bar */}
+        <section className="mb-16">
+          <div className="glass-card rounded-2xl p-5 border border-white/20 bg-white/5 backdrop-blur-xl">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-white">
+              <div className="flex items-center gap-3">
+                <Phone className="w-5 h-5 text-amber" />
+                <div className="text-sm">
+                  <div className="font-semibold">Pozovite nas</div>
+                  <div className="text-white/90">032/666-658 • 061-962-359</div>
+                </div>
+              </div>
+              <div className="flex items-center gap-3">
+                <Mail className="w-5 h-5 text-amber" />
+                <div className="text-sm">
+                  <div className="font-semibold">Pošaljite email</div>
+                  <Link href="mailto:veleprodajatpo@gmail.com" className="text-white/90 hover:text-amber transition-colors">veleprodajatpo@gmail.com</Link>
+                </div>
+              </div>
+              <div className="flex items-center gap-3">
+                <Clock className="w-5 h-5 text-amber" />
+                <div className="text-sm">
+                  <div className="font-semibold">Radno vrijeme</div>
+                  <div className="text-white/90">08:00 – 18:00</div>
+                </div>
+              </div>
+              <div className="flex items-center gap-3">
+                <MapPin className="w-5 h-5 text-amber" />
+                <div className="text-sm">
+                  <div className="font-semibold">Adresa</div>
+                  <Link href="https://maps.google.com/?q=Rosulje+bb,+Jelah" target="_blank" className="text-white/90 hover:text-amber transition-colors">Rosulje bb, Jelah</Link>
+                </div>
+              </div>
             </div>
           </div>
         </section>

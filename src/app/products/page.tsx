@@ -1,7 +1,9 @@
 import { Suspense } from 'react';
+import type { Metadata } from 'next';
 import { db as prisma } from '@/lib/db';
 import { unstable_cache } from 'next/cache';
 import ProductsPageClient from './_components/ProductsPageClient';
+import Link from 'next/link';
 
 const getFilterData = unstable_cache(
   async () => {
@@ -40,6 +42,12 @@ const getFilterData = unstable_cache(
   ['products-filter-data'],
   { tags: ['categories'] }
 );
+
+export const metadata: Metadata = {
+  title: 'Autodijelovi – Putnička i Teretna vozila, ADR, Autopraonice',
+  description:
+    'TP Omerbašić – Autodijelovi za putnička i teretna vozila, ADR oprema i oprema za autopraonice. Rosulje bb, Jelah. Pozovite: 032/666-658, 061-962-359. Radno vrijeme: 08:00–18:00.',
+};
 
 function ProductsLoading() {
   return (

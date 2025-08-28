@@ -4,6 +4,7 @@ import { useState, FormEvent, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { Search, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { isLikelyVin } from '@/lib/vin/validate';
 
 export function SearchBar() {
   const [query, setQuery] = useState('');
@@ -14,8 +15,16 @@ export function SearchBar() {
   const handleSearch = (e: FormEvent) => {
     e.preventDefault();
     if (!query.trim()) return;
+    const q = query.trim();
+    // If input looks like a VIN, redirect to VIN flow
+    if (isLikelyVin(q)) {
+      const params = new URLSearchParams();
+      params.set('code', q.toUpperCase());
+      router.push(`/vin?${params.toString()}`);
+      return;
+    }
     const params = new URLSearchParams();
-    params.set('q', query);
+    params.set('q', q);
     router.push(`/search?${params.toString()}`);
   };
 
@@ -74,7 +83,7 @@ export function SearchBar() {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           onFocus={() => setIsFocused(true)}
-          placeholder="Pretraži po nazivu, kataloškom broju..."
+          placeholder="Pretraži po nazivu, kataloškom broju ili VIN (17)..."
           className="w-full px-3 py-2.5 text-slate-700 bg-transparent border-none focus:outline-none focus:ring-0 placeholder:text-slate-400 text-sm"
         />
         
