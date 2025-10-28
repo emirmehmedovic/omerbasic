@@ -70,7 +70,7 @@ export default function OrdersTable({ orders }: OrdersTableProps) {
                   <span 
                     className={`px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full transition-all duration-200 ${
                       order.status === 'PENDING' 
-                        ? 'bg-amber-600 text-white shadow-sm' 
+                        ? 'bg-sunfire-600 text-white shadow-sm' 
                         : order.status === 'PROCESSING'
                         ? 'bg-blue-600 text-white shadow-sm'
                         : order.status === 'SHIPPED'

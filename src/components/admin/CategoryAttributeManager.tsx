@@ -513,7 +513,7 @@ export default function CategoryAttributeManager({
                     <TableCell className="text-gray-900 font-medium">{attribute.name}</TableCell>
                     <TableCell className="text-gray-700">{attribute.label}</TableCell>
                     <TableCell>
-                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-800">
+                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-sunfire-100 text-sunfire-800">
                         {attribute.type}
                       </span>
                     </TableCell>

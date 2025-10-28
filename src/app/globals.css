@@ -4,7 +4,36 @@
 
 @layer base {
   body {
-    @apply bg-slate-950 text-slate-50;
+    background:
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(12, 54, 102, 0.04) 2px,
+        rgba(12, 54, 102, 0.04) 4px
+      ),
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 2px,
+        rgba(12, 54, 102, 0.04) 2px,
+        rgba(12, 54, 102, 0.04) 4px
+      ),
+      linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.8) 0%,
+        rgba(232, 242, 255, 0.7) 50%,
+        rgba(255, 255, 255, 0.8) 100%
+      ),
+      radial-gradient(
+        ellipse at 50% 20%,
+        rgba(170, 205, 255, 0.15) 0%,
+        rgba(255, 255, 255, 0.6) 45%,
+        transparent 70%
+      ),
+      #f8fafc;
+    color: hsl(var(--foreground));
+    min-height: 100vh;
   }
 }
 
@@ -23,29 +52,29 @@
   }
   /* App background using OKLab metal blue with subtle vignette */
   .bg-app {
-    /* Vignette gradients */
+    /* Light vignette */
     background:
-      radial-gradient(1400px 700px at 20% 10%, rgba(10, 25, 47, 0.85) 0%, rgba(10, 22, 39, 0.55) 55%, rgba(10, 22, 39, 0.25) 80%, rgba(10, 22, 39, 0.05) 95%),
-      radial-gradient(1100px 600px at 85% 85%, rgba(7, 18, 36, 0.78) 0%, rgba(7, 18, 36, 0.48) 60%, rgba(7, 18, 36, 0.20) 85%, rgba(7, 18, 36, 0.06) 96%),
-      linear-gradient(180deg, rgba(5, 12, 24, 0.96), rgba(5, 12, 24, 0.96));
+      radial-gradient(1200px 600px at 10% 10%, rgba(232, 242, 255, 0.7) 0%, rgba(248, 250, 252, 0.8) 60%, rgba(248, 250, 252, 1) 100%),
+      radial-gradient(900px 500px at 85% 85%, rgba(255, 255, 255, 0.8) 0%, rgba(248, 250, 252, 0.9) 70%, rgba(248, 250, 252, 1) 100%),
+      linear-gradient(180deg, #ffffff, #f8fafc);
     background-blend-mode: normal;
   }
 
   /* Frosted glass card without border */
   .glass-card {
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
-    @apply backdrop-blur-xl shadow-xl border border-white/10;
+    background: linear-gradient(to top, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.6));
+    @apply backdrop-blur-xl shadow-lg border border-slate-200;
     @apply transition-all duration-300;
   }
 
   .glass-card:hover {
-    @apply shadow-2xl border-slate-600 transition-all;
+    @apply shadow-xl border-slate-300 transition-all;
   }
 
   /* High-contrast glass for headers */
   .glass-header {
-    @apply bg-slate-900/40 backdrop-blur-2xl shadow-2xl border border-white/20;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    @apply bg-white/80 backdrop-blur-xl shadow-lg border border-slate-200;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
   }
 
   /* Dark slate accent helpers */
@@ -248,125 +277,42 @@
 
     --radius: 0.5rem;
   }
- 
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
- 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
- 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
- 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
- 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
- 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
- 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
- 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
- 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-  }
 }
 
-/* Utilities for new theme */
-@layer utilities {
-  /* App background using OKLab metal blue with subtle vignette */
-  .bg-app {
-    /* Vignette gradients */
-    background:
-      radial-gradient(1400px 700px at 20% 10%, rgba(10, 25, 47, 0.85) 0%, rgba(10, 22, 39, 0.55) 55%, rgba(10, 22, 39, 0.25) 80%, rgba(10, 22, 39, 0.05) 95%),
-      radial-gradient(1100px 600px at 85% 85%, rgba(7, 18, 36, 0.78) 0%, rgba(7, 18, 36, 0.48) 60%, rgba(7, 18, 36, 0.20) 85%, rgba(7, 18, 36, 0.06) 96%),
-      linear-gradient(180deg, rgba(5, 12, 24, 0.96), rgba(5, 12, 24, 0.96));
-    background-blend-mode: normal;
-  }
-
-  /* Frosted glass card without border */
-  .glass-card {
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
-    @apply backdrop-blur-xl shadow-xl border border-white/10;
-    @apply transition-all duration-300;
-  }
-
-  .glass-card:hover {
-    @apply shadow-2xl border-slate-600 transition-all;
-  }
-
-  /* High-contrast glass for headers */
-  .glass-header {
-    @apply bg-slate-900/40 backdrop-blur-2xl shadow-2xl border border-white/20;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-  }
-
-  /* Dark slate accent helpers */
-  .accent-text {
-    /* Fallback accent text color */
-    color: #e26d2d;
-  }
-  .accent-bg {
-    background: linear-gradient(135deg, var(--sunfire-a30) 0%, var(--sunfire-a20) 100%);
-    border: 1px solid var(--sunfire-a20);
-  }
-
-  @keyframes pulse-sunfire {
-    0%, 100% {
-      border-color: #ff8a3d; /* Brighter sunfire */
-      box-shadow: 0 0 15px 2px rgba(255, 138, 61, 0.5);
-    }
-    50% {
-      border-color: #ffbe8a; /* Even brighter sunfire */
-      box-shadow: 0 0 25px 8px rgba(255, 190, 138, 0.7);
-    }
-  }
-
-  .hover-pulse-sunfire:hover {
-    animation: pulse-sunfire 1.5s ease-in-out infinite;
-  }
-}
+/* removed dark-only duplicate utilities */
 
 @layer components {
   /* Dark theme overrides for react-calendar */
   .react-calendar-dark.react-calendar {
-    @apply w-full border-none bg-transparent p-2;
+    @apply w-full border border-slate-200 bg-white p-2 rounded-lg shadow-sm;
   }
 
   .react-calendar-dark.react-calendar .react-calendar__navigation button {
-    @apply text-slate-300 hover:bg-slate-700 rounded-md min-w-10 h-10 flex items-center justify-center transition-colors;
+    @apply text-slate-700 hover:bg-slate-100 rounded-md min-w-10 h-10 flex items-center justify-center transition-colors;
   }
 
   .react-calendar-dark.react-calendar .react-calendar__navigation button:disabled {
-    @apply text-slate-600 bg-transparent hover:bg-transparent;
+    @apply text-slate-300 bg-transparent hover:bg-transparent;
   }
 
   .react-calendar-dark.react-calendar .react-calendar__navigation__label {
-    @apply font-bold text-lg text-white rounded-md hover:bg-slate-800 px-4 h-10 flex items-center justify-center transition-colors;
+    @apply font-bold text-lg text-slate-800 rounded-md hover:bg-slate-100 px-4 h-10 flex items-center justify-center transition-colors;
   }
 
   .react-calendar-dark.react-calendar .react-calendar__month-view__weekdays__weekday abbr {
-    @apply no-underline text-slate-400 font-medium uppercase text-xs text-center;
+    @apply no-underline text-slate-500 font-medium uppercase text-xs text-center;
   }
 
   .react-calendar-dark.react-calendar .react-calendar__tile {
-    @apply text-white bg-transparent rounded-md hover:bg-slate-700/50 h-10 transition-colors;
+    @apply text-slate-800 bg-transparent rounded-md hover:bg-slate-100 h-10 transition-colors;
   }
 
   .react-calendar-dark.react-calendar .react-calendar__tile:disabled {
-    @apply text-slate-600 bg-transparent hover:bg-transparent;
+    @apply text-slate-300 bg-transparent hover:bg-transparent;
   }
 
   .react-calendar-dark.react-calendar .react-calendar__tile--now {
-    @apply bg-sunfire-500/20 text-sunfire-300 font-bold;
+    @apply bg-sunfire-100 text-sunfire-700 font-bold;
   }
 
   .react-calendar-dark.react-calendar .react-calendar__tile--active {
@@ -374,7 +320,7 @@
   }
 
   .react-calendar-dark.react-calendar .react-calendar__tile--range {
-    @apply bg-sunfire-500/30 text-white rounded-none;
+    @apply bg-sunfire-200 text-slate-800 rounded-none;
   }
 
   .react-calendar-dark.react-calendar .react-calendar__tile--rangeStart,
@@ -391,6 +337,6 @@
   }
 
   .react-calendar-dark.react-calendar .react-calendar__month-view__days__day--neighboringMonth {
-    @apply text-slate-500;
+    @apply text-slate-400;
   }
 }

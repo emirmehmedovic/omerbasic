@@ -23,6 +23,7 @@ type Product = {
   category: Category | null;
   originalPrice?: number;
   pricingSource?: 'FEATURED' | 'B2B' | 'BASE';
+  oemNumber?: string | null;
 };
 
 export type ProductFilters = {
@@ -110,12 +111,12 @@ export default function ProductsResults({ filters }: Props) {
 
   if (loading) {
     return (
-      <div className="bg-gradient-to-t from-black/60 to-transparent p-8 rounded-2xl border border-sunfire-500/30 shadow-lg shadow-sunfire-500/10">
+      <div className="p-8 rounded-2xl bg-white border border-slate-200 shadow-sm">
         <div className="flex items-center justify-center mb-6">
-          <div className="bg-sunfire-500/10 p-3 rounded-xl mr-4">
+          <div className="bg-sunfire-100 p-3 rounded-xl mr-4">
             <div className="animate-spin w-6 h-6 border-2 border-sunfire-400 border-t-transparent rounded-full"></div>
           </div>
-          <p className="text-lg text-white font-medium">Proizvodi se učitavaju...</p>
+          <p className="text-lg text-slate-800 font-medium">Proizvodi se učitavaju...</p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {Array(8)
@@ -123,14 +124,14 @@ export default function ProductsResults({ filters }: Props) {
             .map((_, index) => (
               <div
                 key={index}
-                className="bg-slate-900/50 rounded-2xl p-5 transition-all duration-300 animate-scale-in"
+                className="bg-white rounded-2xl p-5 border border-slate-200 transition-all duration-300 animate-scale-in"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 <div className="animate-pulse">
-                  <div className="h-44 bg-slate-800 rounded-xl mb-4"></div>
-                  <div className="h-5 w-3/4 bg-slate-800 rounded-lg mb-3"></div>
-                  <div className="h-4 w-1/2 bg-slate-800 rounded-lg mb-3"></div>
-                  <div className="h-7 w-1/3 bg-sunfire-500/20 rounded-lg"></div>
+                  <div className="h-44 bg-slate-100 rounded-xl mb-4"></div>
+                  <div className="h-5 w-3/4 bg-slate-100 rounded-lg mb-3"></div>
+                  <div className="h-4 w-1/2 bg-slate-100 rounded-lg mb-3"></div>
+                  <div className="h-7 w-1/3 bg-sunfire-100 rounded-lg"></div>
                 </div>
               </div>
             ))}
@@ -141,10 +142,10 @@ export default function ProductsResults({ filters }: Props) {
 
   if (error) {
     return (
-      <div className="bg-red-900/50 border border-red-500/50 text-red-300 rounded-xl p-8">
+      <div className="bg-red-50 border border-red-200 text-red-700 rounded-xl p-8">
         <div className="flex items-center justify-center">
-          <div className="bg-red-500/10 p-3 rounded-xl mr-4">
-            <svg className="w-6 h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="bg-red-100 p-3 rounded-xl mr-4">
+            <svg className="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
           </div>
@@ -155,33 +156,33 @@ export default function ProductsResults({ filters }: Props) {
   }
 
   return (
-    <div className="bg-gradient-to-t from-black/60 to-transparent p-8 rounded-2xl border border-sunfire-500/30 shadow-lg shadow-sunfire-500/10">
+    <div className="p-8 rounded-2xl bg-white border border-slate-200 shadow-sm">
       {products.length === 0 ? (
         <div className="text-center py-12">
-          <div className="bg-sunfire-500/10 p-4 rounded-xl inline-flex mb-4">
-            <svg className="w-8 h-8 text-sunfire-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="bg-sunfire-100 p-4 rounded-xl inline-flex mb-4">
+            <svg className="w-8 h-8 text-sunfire-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
           </div>
-          <p className="text-lg text-slate-300 font-medium">Nema proizvoda za odabrane filtere</p>
-          <p className="text-sm text-slate-400 mt-2">Pokušajte promijeniti filtere ili kategoriju</p>
+          <p className="text-lg text-slate-800 font-medium">Nema proizvoda za odabrane filtere</p>
+          <p className="text-sm text-slate-500 mt-2">Pokušajte promijeniti filtere ili kategoriju</p>
         </div>
       ) : (
         <>
           <div className="flex items-center justify-between mb-6">
-            <h2 className="text-xl font-semibold text-white">
+            <h2 className="text-xl font-semibold text-slate-900">
               Pronađeno {products.length} proizvoda
             </h2>
             <div className="flex items-center gap-4">
-              <div className="flex items-center text-sm text-sunfire-300">
+              <div className="flex items-center text-sm text-slate-600">
                 <div className="w-2 h-2 rounded-full mr-2 bg-sunfire-400"></div>
                 Rezultati pretrage
               </div>
-              <div className="flex items-center gap-1 rounded-lg bg-slate-900/50 p-1 border border-slate-700">
-                <button onClick={() => setView('grid')} className={`p-1.5 rounded-md transition-colors ${view === 'grid' ? 'bg-sunfire-500 text-white' : 'text-slate-400 hover:bg-slate-800 hover:text-white'}`}>
+              <div className="flex items-center gap-1 rounded-lg bg-white p-1 border border-slate-200 shadow-sm">
+                <button onClick={() => setView('grid')} className={`p-1.5 rounded-md transition-colors ${view === 'grid' ? 'bg-sunfire-500 text-white' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'}`}>
                   <LayoutGrid className="h-5 w-5" />
                 </button>
-                <button onClick={() => setView('list')} className={`p-1.5 rounded-md transition-colors ${view === 'list' ? 'bg-sunfire-500 text-white' : 'text-slate-400 hover:bg-slate-800 hover:text-white'}`}>
+                <button onClick={() => setView('list')} className={`p-1.5 rounded-md transition-colors ${view === 'list' ? 'bg-sunfire-500 text-white' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'}`}>
                   <List className="h-5 w-5" />
                 </button>
               </div>
@@ -205,7 +206,7 @@ export default function ProductsResults({ filters }: Props) {
                 <Link
                   href={`/products/${p.id}`}
                   key={p.id}
-                  className="animate-fade-in flex flex-col sm:flex-row sm:items-center bg-gradient-to-br from-slate-900 to-slate-950 p-4 rounded-lg border border-transparent hover:border-sunfire-500/50 transition-all duration-300 hover:scale-[1.02]"
+                  className="animate-fade-in flex flex-col sm:flex-row sm:items-center bg-white p-4 rounded-lg border border-slate-200 hover:shadow-md transition-all duration-300 hover:scale-[1.01]"
                   style={{ animationDelay: `${index * 50}ms` }}
                 >
                   <div className="relative w-full sm:w-24 h-32 sm:h-24 flex-shrink-0 mb-4 sm:mb-0 sm:mr-6">
@@ -217,8 +218,16 @@ export default function ProductsResults({ filters }: Props) {
                     />
                   </div>
                   <div className="flex-grow">
-                    <p className="text-sm text-sunfire-300 mb-1">{p.category?.name || 'Kategorija'}</p>
-                    <h3 className="text-lg font-semibold text-white mb-2 line-clamp-2">{p.name}</h3>
+                    <p className="text-sm text-slate-600 mb-1">{p.category?.name || 'Kategorija'}</p>
+                    <h3 className="text-lg font-semibold text-slate-900 mb-2 line-clamp-2">{p.name}</h3>
+                    {p.oemNumber && (
+                      <div className="mb-1">
+                        <span className="inline-flex items-center gap-1 text-[11px] font-medium text-slate-600 bg-slate-50 border border-slate-200 rounded-md px-2 py-0.5">
+                          <span className="text-slate-500">OEM</span>
+                          <span className="font-mono tracking-tight text-slate-700">{p.oemNumber}</span>
+                        </span>
+                      </div>
+                    )}
                   </div>
                   <div className="text-left sm:text-right w-full sm:w-48 flex-shrink-0 mt-4 sm:mt-0 sm:ml-6">
                     {p.originalPrice ? (
@@ -229,10 +238,10 @@ export default function ProductsResults({ filters }: Props) {
                           </span>
                         </div>
                         <p className="text-sm line-through text-slate-500">{formatPrice(p.originalPrice)}</p>
-                        <p className="text-xl font-bold text-sunfire-400">{formatPrice(p.price)}</p>
+                        <p className="text-xl font-bold text-sunfire-600">{formatPrice(p.price)}</p>
                       </div>
                     ) : (
-                      <p className="text-xl font-bold text-sunfire-400 mb-3">{formatPrice(p.price)}</p>
+                      <p className="text-xl font-bold text-sunfire-600 mb-3">{formatPrice(p.price)}</p>
                     )}
                     <button 
                       onClick={(e) => {
@@ -241,7 +250,7 @@ export default function ProductsResults({ filters }: Props) {
                         addToCart(p as any);
                         toast.success(`${p.name} je dodan u košaricu!`);
                       }}
-                      className="bg-sunfire-500 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-sunfire-600 transition-colors w-full"
+                      className="bg-sunfire-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-sunfire-700 transition-colors w-full"
                     >
                       Dodaj u košaricu
                     </button>
@@ -256,7 +265,7 @@ export default function ProductsResults({ filters }: Props) {
               <button
                 onClick={loadMore}
                 disabled={loadingMore}
-                className={`px-5 py-2.5 rounded-md text-sm font-semibold border transition-colors ${loadingMore ? 'bg-slate-800 text-slate-400 border-slate-700' : 'bg-sunfire-500 text-white border-sunfire-500 hover:bg-sunfire-600'}`}
+                className={`px-5 py-2.5 rounded-md text-sm font-semibold border transition-colors ${loadingMore ? 'bg-slate-100 text-slate-500 border-slate-200' : 'bg-sunfire-600 text-white border-sunfire-600 hover:bg-sunfire-700'}`}
               >
                 {loadingMore ? 'Učitavanje…' : 'Učitaj više'}
               </button>

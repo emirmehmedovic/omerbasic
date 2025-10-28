@@ -6,7 +6,7 @@ import { Search, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { isLikelyVin } from '@/lib/vin/validate';
 
-export function SearchBar() {
+export function SearchBar({ className }: { className?: string }) {
   const [query, setQuery] = useState('');
   const [isFocused, setIsFocused] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -53,17 +53,16 @@ export function SearchBar() {
     <form 
       onSubmit={handleSearch} 
       className={cn(
-        "relative w-full max-w-md mx-auto transition-all duration-300",
-        isFocused ? "scale-105" : ""
+        "relative w-full max-w-[720px] transition-all duration-300", 
+        isFocused ? "scale-[1.02]" : "",
+        className
       )}
     >
       <div 
         className={cn(
           "flex items-center relative overflow-hidden transition-all duration-300",
-          isFocused 
-            ? "bg-white/90 shadow-lg border border-white/50" 
-            : "bg-white/50 shadow border border-white/30",
-          "backdrop-blur-md rounded-full"
+          "bg-white/90 border border-slate-200 shadow-md",
+          "rounded-full"
         )}
       >
         <div className="pl-4">

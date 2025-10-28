@@ -1,4 +1,6 @@
 const { PrismaClient } = require('../src/generated/prisma/client');
+const fs = require('fs');
+const path = require('path');
 const db = new PrismaClient();
 
 // --- PODACI --- 
@@ -14,12 +16,261 @@ const specificProductsData = [
     { kategorija: "Autopraonice", podkategorija: "Mašine i uređaji", naziv: "Visokotlačni perač Karcher HD 5/15", opis: "Industrijski perač za profesionalne autopraonice, 150 bara pritisak.", cijena: 749.00, sifra: "AP-MAS-HD515", dostupnost: false },
 ];
 
-const randomCategoryData = [
-    { naziv: "Teretna vozila", podkategorije: [ { naziv: "Dijelovi šasije", stavke: ["Opruge i amortizeri", "Poluosovine", "Zračni jastuci", "Spojnice i vučni sistemi"] }, { naziv: "Motor i dijelovi motora", stavke: ["Klipovi", "Ležajevi radilice", "Brtve i zaptivke", "Turbine", "Interkuleri"] }, { naziv: "Sistem kočenja", stavke: ["Kočione obloge", "Diskovi", "Doboši", "Pneumatski sistemi kočenja"] }, { naziv: "Elektrika i elektronika", stavke: ["Alternatori", "Akumulatori", "Senzori", "Kablovi"] }, { naziv: "Karoserija i kabina", stavke: ["Retrovizori", "Farovi", "Zadnja svjetla", "Brisači"] }, { naziv: "Prijenos snage", stavke: ["Mjenjači", "Kvačila", "Diferencijali"] }, { naziv: "Rashladni sistem", stavke: ["Hladnjaci", "Crijeva", "Vodene pumpe"] } ] },
-    { naziv: "Putnička vozila", podkategorije: [ { naziv: "Motor i dijelovi motora", stavke: ["Filteri", "Remeni", "Brtve", "Uljne pumpe"] }, { naziv: "Podvozje i šasija", stavke: ["Amortizeri", "Vilice", "Krajnice", "Stabilizatori"] }, { naziv: "Kočioni sistem", stavke: ["Disk pločice", "Diskovi", "Kočne čeljusti", "ABS senzori"] }, { naziv: "Električni sistem", stavke: ["Akumulatori", "Svjećice", "Grijači", "ECU moduli"] }, { naziv: "Unutrašnjost vozila", stavke: ["Presvlake", "Patosnice", "Upravljači", "Instrument table"] }, { naziv: "Karoserijski dijelovi", stavke: ["Branici", "Vrata", "Haube", "Farovi", "Stop svjetla"] }, { naziv: "Izduvni sistem", stavke: ["Auspusi", "Lambda sonde", "Katalizatori"] } ] },
-    { naziv: "ADR oprema", podkategorije: [ { naziv: "Zaštitna oprema", stavke: ["Prsluci", "Rukavice", "Zaštitne naočale"] }, { naziv: "Oprema za označavanje", stavke: ["ADR tablice", "Naljepnice", "Reflektirajuće trake"] }, { naziv: "Prva pomoć i sigurnost", stavke: ["Kutije prve pomoći", "Aparati za gašenje", "Dekontaminacija"] }, { naziv: "Spremnici i posude", stavke: ["Kanisteri", "Torbe za otpad"] }, { naziv: "Dokumentacija i pribor", stavke: ["Držači dokumenata", "Ploče za signalizaciju", "Uputstva"] } ] },
-    { naziv: "Autopraonice", podkategorije: [ { naziv: "Detergenti i hemikalije", stavke: ["Šamponi", "Aktivne pjene", "Sredstva za felge", "Vosak"] }, { naziv: "Oprema i pribor", stavke: ["Četke", "Spužve", "Mikrofiber krpe", "Pištolji"] }, { naziv: "Mašine i uređaji", stavke: ["Visokotlačni perači", "Usisivači", "Automatske četke"] }, { naziv: "Održavanje i servis", stavke: ["Rezervni dijelovi", "Filteri", "Crijeva", "Pumpe"] }, { naziv: "Zaštita i dodatna oprema", stavke: ["Pregrade", "PVC zavjese", "LED rasvjeta"] } ] }
+// --- ART CSV MAPIRANJE ---
+
+const CSV_FILE_PATH = path.join(__dirname, '../proizvodi-csv/ART.csv');
+const PUBLIC_DIR = path.join(__dirname, '../public');
+const PRODUCT_IMAGES_DIR = path.join(PUBLIC_DIR, 'images/products_pictures');
+
+type CategoryMapping = { parent: string; sub: string };
+
+const categoryCodeMap: Record<string, CategoryMapping> = {
+  '14184': { parent: 'Putnička vozila', sub: 'Podvozje i šasija' },
+  '14186': { parent: 'Putnička vozila', sub: 'Podvozje i šasija' },
+  '14440': { parent: 'Putnička vozila', sub: 'Podvozje i šasija' },
+  '14444': { parent: 'Putnička vozila', sub: 'Podvozje i šasija' },
+  '18264': { parent: 'Putnička vozila', sub: 'Podvozje i šasija' },
+  '19604': { parent: 'Putnička vozila', sub: 'Podvozje i šasija' },
+  '19605': { parent: 'Putnička vozila', sub: 'Podvozje i šasija' },
+  '21408': { parent: 'Putnička vozila', sub: 'Kočioni sistem' },
+  '22865': { parent: 'Putnička vozila', sub: 'Kočioni sistem' },
+  '22866': { parent: 'Putnička vozila', sub: 'Kočioni sistem' },
+  '23366': { parent: 'Putnička vozila', sub: 'Podvozje i šasija' },
+  '23822': { parent: 'Putnička vozila', sub: 'Kočioni sistem' },
+  '23824': { parent: 'Putnička vozila', sub: 'Kočioni sistem' },
+  '27095': { parent: 'Putnička vozila', sub: 'Podvozje i šasija' },
+  '50764': { parent: 'Putnička vozila', sub: 'Električni sistem' },
+  '50777': { parent: 'Putnička vozila', sub: 'Električni sistem' },
+  '50778': { parent: 'Putnička vozila', sub: 'Električni sistem' },
+  '50946': { parent: 'Putnička vozila', sub: 'Kočioni sistem' },
+  '51425': { parent: 'Putnička vozila', sub: 'Električni sistem' },
+  '51487': { parent: 'Putnička vozila', sub: 'Kočioni sistem' },
+  '51488': { parent: 'Putnička vozila', sub: 'Kočioni sistem' },
+};
+
+const keywordCategoryMap: { keywords: string[]; category: CategoryMapping }[] = [
+  {
+    keywords: ['KRAJNIK', 'KUGLA', 'SPONA', 'ŠTANGICA', 'STANGICA', 'OS', 'SELEN', 'MANDZETA', 'MANDŽETA', 'GLAVČINA', 'GLEŽAJ', 'LEŽAJ', 'LEZ', 'REMENICA'],
+    category: { parent: 'Putnička vozila', sub: 'Podvozje i šasija' },
+  },
+  {
+    keywords: ['SAJLA', 'DISK', 'PAKNE', 'KOČ', 'KOC', 'ABS', 'KOČION', 'FSL', 'FDB'],
+    category: { parent: 'Putnička vozila', sub: 'Kočioni sistem' },
+  },
+  {
+    keywords: ['FIL', 'FILTER', 'REMEN', 'ZUP', 'PUMPA', 'TERMOSTAT', 'NATEZAČ', 'NATEZAC', 'BRTV', 'ULJE', 'ULJA', 'NAVOJ', 'ZAMAŠNJAK', 'ZAMASNJAK', 'KLIZAČ', 'KLIZAC', 'BPV', 'BKM', 'REMENICE'],
+    category: { parent: 'Putnička vozila', sub: 'Motor i dijelovi motora' },
+  },
+  {
+    keywords: ['SENZOR', 'PREKIDAČ', 'PREKIDAC', 'ŽARULJA', 'ZARULJA', 'GRIJAČ', 'GRIJAC', 'AKUMULATOR', 'METLICE AERO', 'METLICE BOSCH', 'METLICA', 'LAMPA', 'XENON'],
+    category: { parent: 'Putnička vozila', sub: 'Električni sistem' },
+  },
+  {
+    keywords: ['METLICE', 'BRISAČ', 'BRISAC', 'TABLICA', 'REFLEKT', 'KABLOVI ZA START', 'PASTA ZA PRANJE', 'BRTVENA MASA'],
+    category: { parent: 'Putnička vozila', sub: 'Karoserija i kabina' },
+  },
 ];
+
+const fallbackCategory: CategoryMapping = { parent: 'Putnička vozila', sub: 'Ostalo' };
+
+function parseCsv(content: string): string[][] {
+  const rows: string[][] = [];
+  let current: string[] = [];
+  let value = '';
+  let inQuotes = false;
+
+  const pushValue = () => {
+    current.push(value.trim());
+    value = '';
+  };
+
+  const pushRow = () => {
+    if (current.length === 0) return;
+    rows.push(current);
+    current = [];
+  };
+
+  for (let i = 0; i < content.length; i++) {
+    const char = content[i];
+    const next = content[i + 1];
+
+    if (char === '"') {
+      if (inQuotes && next === '"') {
+        value += '"';
+        i++;
+      } else {
+        inQuotes = !inQuotes;
+      }
+    } else if (char === ';' && !inQuotes) {
+      pushValue();
+    } else if ((char === '\n' || char === '\r') && !inQuotes) {
+      if (char === '\r' && next === '\n') i++;
+      pushValue();
+      if (current.some(cell => cell !== '')) {
+        pushRow();
+      } else {
+        current = [];
+      }
+    } else {
+      value += char;
+    }
+  }
+
+  pushValue();
+  if (current.some(cell => cell !== '')) pushRow();
+
+  return rows.map((row) => {
+    const lastIndex = row.length - 1;
+    if (lastIndex >= 0 && row[lastIndex] === '') {
+      return row.slice(0, lastIndex);
+    }
+    return row;
+  });
+}
+
+function resolveCategory({ katbro, katbroStaro, name }: { katbro?: string; katbroStaro?: string; name?: string }): CategoryMapping {
+  const candidates = [katbro, katbroStaro].filter((value): value is string => Boolean(value));
+  for (const code of candidates) {
+    if (categoryCodeMap[code]) return categoryCodeMap[code];
+  }
+
+  const upperName = (name || '').toUpperCase();
+  for (const mapping of keywordCategoryMap) {
+    if (mapping.keywords.some(keyword => upperName.includes(keyword))) {
+      return mapping.category;
+    }
+  }
+
+  return fallbackCategory;
+}
+
+async function ensureCategory(parentName: string, subName: string) {
+  let parent = await db.category.findFirst({
+    where: { name: parentName, parentId: null },
+  });
+
+  if (!parent) {
+    parent = await db.category.create({ data: { name: parentName } });
+  }
+
+  let subCategory = await db.category.findFirst({
+    where: { name: subName, parentId: parent.id },
+  });
+
+  if (!subCategory) {
+    subCategory = await db.category.create({ data: { name: subName, parentId: parent.id } });
+  }
+
+  return subCategory;
+}
+
+async function seedCsvProducts() {
+  console.log('Početak uvoza ART CSV proizvoda...');
+
+  if (!fs.existsSync(CSV_FILE_PATH)) {
+    console.warn(`CSV datoteka nije pronađena: ${CSV_FILE_PATH}`);
+    return;
+  }
+
+  const content = fs.readFileSync(CSV_FILE_PATH, 'utf-8');
+  const rows = parseCsv(content);
+
+  if (rows.length === 0) {
+    console.warn('CSV datoteka je prazna.');
+    return;
+  }
+
+  const headers = rows[0].map((h) => h.trim());
+  const columnIndex = headers.reduce<Record<string, number>>((acc, header, index) => {
+    acc[header] = index;
+    return acc;
+  }, {});
+
+  const requiredColumns = ['SIFART', 'IMEART', 'KATBRO', 'KATBRO_STARO', 'OEM', 'OEM_STARO', 'BROJ'];
+  for (const column of requiredColumns) {
+    if (columnIndex[column] === undefined) {
+      console.error(`Nedostaje kolona '${column}' u CSV datoteci.`);
+      return;
+    }
+  }
+
+  let created = 0;
+  let updated = 0;
+  const warnings: string[] = [];
+
+  for (let i = 1; i < rows.length; i++) {
+    const row = rows[i];
+    if (!row || row.length === 0) continue;
+
+    const get = (column: string): string => {
+      const value = row[columnIndex[column]];
+      return value ? value.trim() : '';
+    };
+
+    const sifart = get('SIFART');
+    const imeart = get('IMEART');
+    const katbro = get('KATBRO');
+    const katbroStaro = get('KATBRO_STARO');
+    const oem = get('OEM') || get('OEM_STARO');
+    const broj = get('BROJ');
+
+    if (!sifart) {
+      warnings.push(`Red ${i + 1}: nedostaje SIFART, preskačem.`);
+      continue;
+    }
+
+    const { parent, sub } = resolveCategory({ katbro, katbroStaro, name: imeart });
+    const category = await ensureCategory(parent, sub);
+
+    const price = parseFloat(broj.replace(',', '.'));
+    const validPrice = Number.isFinite(price) ? price : 0;
+
+    const normalizedOem = (oem || '').replace(/[^0-9A-Za-z]/g, '').toUpperCase();
+    let imageUrl: string | null = null;
+    if (normalizedOem) {
+      const imagePath = path.join(PRODUCT_IMAGES_DIR, `${normalizedOem}.jpg`);
+      if (fs.existsSync(imagePath)) {
+        const relativeToPublic = path.relative(PUBLIC_DIR, imagePath).split(path.sep).join('/');
+        imageUrl = `/${relativeToPublic}`;
+      }
+    }
+
+    try {
+      const result = await db.product.upsert({
+        where: { catalogNumber: sifart },
+        update: {
+          name: imeart || sifart,
+          description: imeart || null,
+          oemNumber: oem || null,
+          price: validPrice,
+          categoryId: category.id,
+          imageUrl: imageUrl || undefined,
+        },
+        create: {
+          name: imeart || sifart,
+          description: imeart || null,
+          price: validPrice,
+          stock: 0,
+          catalogNumber: sifart,
+          oemNumber: oem || null,
+          categoryId: category.id,
+          imageUrl,
+        },
+      });
+
+      if (result.createdAt.getTime() === result.updatedAt.getTime()) created++;
+      else updated++;
+    } catch (error: any) {
+      console.error(`Greška pri upisu proizvoda '${sifart}':`, error.message || error);
+    }
+  }
+
+  console.log(`Uvoz CSV proizvoda završen. Kreirano: ${created}, ažurirano: ${updated}.`);
+  if (warnings.length) {
+    console.warn('Upozorenja tijekom uvoza:');
+    warnings.forEach(w => console.warn(`  - ${w}`));
+  }
+}
 
 // --- FUNKCIJE ZA SEEDANJE ---
 
@@ -28,11 +279,7 @@ async function seedSpecificProducts() {
   let createdCount = 0;
   for (const p of specificProductsData) {
     try {
-      const subCategory = await db.category.findFirst({ where: { name: p.podkategorija, parent: { name: p.kategorija } } });
-      if (!subCategory) {
-        console.warn(`Kategorija '${p.podkategorija}' unutar '${p.kategorija}' nije pronađena. Preskačem: ${p.naziv}`);
-        continue;
-      }
+      const subCategory = await ensureCategory(p.kategorija, p.podkategorija);
       const imageUrl = '/uploads/products/1752933222430-315966082.jpg';
       const product = await db.product.upsert({
         where: { catalogNumber: p.sifra },
@@ -57,43 +304,6 @@ async function seedSpecificProducts() {
     }
   }
   console.log(`Unos specifičnih proizvoda završen. Kreirano: ${createdCount}.`);
-}
-
-async function seedRandomData() {
-  console.log('Početak seedanja nasumičnih podataka...');
-  console.log('Brisanje postojećih podataka...');
-  await db.product.deleteMany({});
-  await db.category.deleteMany({});
-
-  console.log('Kreiranje kategorija...');
-  for (const cat of randomCategoryData) {
-    const parent = await db.category.create({ data: { name: cat.naziv } });
-    for (const subCat of cat.podkategorije) {
-      await db.category.create({ data: { name: subCat.naziv, parentId: parent.id } });
-    }
-  }
-
-  console.log('Kreiranje 100 nasumičnih proizvoda...');
-  const subCategories = await db.category.findMany({ where: { parentId: { not: null } } });
-  const allItems = randomCategoryData.flatMap(c => c.podkategorije.flatMap(s => s.stavke));
-  const brands = ['VW', 'Mercedes', 'BMW', 'Audi', 'MAN', 'Scania', 'Volvo'];
-  const models = ['Golf', 'Passat', 'C-Class', 'A4', 'TGX', 'R-serija', 'FH'];
-  const products = Array.from({ length: 100 }, () => {
-    const brand = brands[Math.floor(Math.random() * brands.length)];
-    const model = models[Math.floor(Math.random() * models.length)];
-    const name = allItems[Math.floor(Math.random() * allItems.length)];
-    return {
-      name: `${name} za ${brand} ${model}`,
-      description: `Kvalitetan ${name.toLowerCase()} za ${brand} ${model}.`,
-      price: parseFloat((Math.random() * 450 + 5).toFixed(2)),
-      stock: Math.floor(Math.random() * 100),
-      imageUrl: `/images/placeholders/placeholder.png`,
-      categoryId: subCategories[Math.floor(Math.random() * subCategories.length)].id,
-      catalogNumber: `CAT-${Math.random().toString(36).substring(2, 11).toUpperCase()}`,
-    };
-  });
-  await db.product.createMany({ data: products });
-  console.log('Seedanje nasumičnih podataka završeno.');
 }
 
 const vehicleData = {
@@ -248,12 +458,16 @@ async function main() {
     await seedSpecificProducts();
   }
 
+  if (flags.csv) {
+    await seedCsvProducts();
+  }
+
   if (flags.link) {
     await linkProductsToVehicles();
   }
 
-  if (!flags.vehicles && !flags.products && !flags.link) {
-    console.log('Molimo navedite flag za seedanje: --vehicles, --products, ili --link');
+  if (!flags.vehicles && !flags.products && !flags.link && !flags.csv) {
+    console.log('Molimo navedite flag za seedanje: --vehicles, --products, --link ili --csv');
   }
 }
 

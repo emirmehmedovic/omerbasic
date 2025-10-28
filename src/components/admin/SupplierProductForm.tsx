@@ -334,7 +334,7 @@ export const SupplierProductForm = ({
                       <Badge
                         key={product.id}
                         variant="secondary"
-                        className="bg-gradient-to-r from-amber/10 to-orange/10 text-amber-800 border border-amber/20 px-3 py-1 rounded-lg flex items-center gap-2"
+                        className="bg-gradient-to-r from-amber/10 to-orange/10 text-sunfire-800 border border-amber/20 px-3 py-1 rounded-lg flex items-center gap-2"
                       >
                         <span className="text-sm">{product.name}</span>
                         <span className="text-xs text-gray-500">({product.category?.name || 'Bez kategorije'})</span>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import {
   Select,
@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Loader2, ChevronRight, Car } from "lucide-react";
+import { Loader2, ChevronRight, Car, CheckCircle2, Circle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Audi from "@/components/icons/audi";
 import Volkswagen from "@/components/icons/volkswagen";
@@ -72,16 +72,21 @@ interface VehicleSelectorProps {
   className?: string;
   compact?: boolean;
   vehicleType?: 'PASSENGER' | 'COMMERCIAL' | 'ALL';
+  appearance?: 'light' | 'dark';
+  variant?: 'card' | 'embedded';
 }
 
 export default function VehicleSelector({
   onVehicleSelect,
   className,
   compact = false,
-  vehicleType = 'ALL'
+  vehicleType = 'ALL',
+  appearance = 'dark',
+  variant = 'card'
 }: VehicleSelectorProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const bootstrappedFromGenRef = useRef(false);
   
   // Stanja za odabir vozila
   const [allBrands, setAllBrands] = useState<VehicleBrand[]>([]);
@@ -311,7 +316,7 @@ export default function VehicleSelector({
     
     fetchModels();
   }, [selectedBrandId]);
-  
+
   // Učitavanje generacija kada se odabere model
   useEffect(() => {
     if (!selectedModelId) {
@@ -345,6 +350,31 @@ export default function VehicleSelector({
     
     fetchGenerations();
   }, [selectedModelId]);
+
+  // Bootstrap iz generationId u URL-u: ako imamo generationId u URL-u, a model nije postavljen,
+  // dohvatimo generaciju da bismo izveli model i brend i postavili state lancežno
+  useEffect(() => {
+    const genIdFromUrl = searchParams.get('generationId');
+    if (!genIdFromUrl) return;
+    if (bootstrappedFromGenRef.current) return;
+    if (selectedModelId) return; // već postavljen kroz standardni tok
+    (async () => {
+      try {
+        const res = await fetch(`/api/generations/${genIdFromUrl}`);
+        if (!res.ok) return;
+        const gen = await res.json();
+        const modelId = gen?.model?.id;
+        const brandId = gen?.model?.brand?.id;
+        if (brandId && brandId !== selectedBrandId) setSelectedBrandId(brandId);
+        if (modelId && modelId !== selectedModelId) setSelectedModelId(modelId);
+        setSelectedGenerationId(genIdFromUrl);
+        bootstrappedFromGenRef.current = true;
+      } catch (e) {
+        console.error('Bootstrap from generationId failed', e);
+      }
+    })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   
   // Učitavanje motora i stilova karoserije kada se odabere generacija
   useEffect(() => {
@@ -397,16 +427,25 @@ export default function VehicleSelector({
   // Handler za pretragu proizvoda po vozilu
   const handleSearch = () => {
     if (!selectedGenerationId) return;
-    
     const params = new URLSearchParams(searchParams);
-    
-    if (selectedGenerationId) params.set("generationId", selectedGenerationId);
-    else params.delete("generationId");
-
-    if (selectedEngineId && selectedEngineId !== 'all') params.set("engineId", selectedEngineId);
-    else params.delete("engineId");
-
-
+    if (selectedBrandId) {
+      params.set("brandId", selectedBrandId);
+      params.set("makeId", selectedBrandId);
+    } else {
+      params.delete("brandId");
+      params.delete("makeId");
+    }
+    if (selectedGenerationId) params.set("generationId", selectedGenerationId); else params.delete("generationId");
+    if (selectedEngineId && selectedEngineId !== 'all') params.set("engineId", selectedEngineId); else params.delete("engineId");
+    // Heuristic: set categoryId based on selected brand type if known so products page doesn't need a second redirect
+    const selBrand = allBrands.find(b => b.id === selectedBrandId);
+    const PASSENGER_CATEGORY_ID = 'cmer01ok30001rqbwu15hej6j';
+    const COMMERCIAL_CATEGORY_ID = 'cmer01z6s0001rqcokur4f0bn';
+    if (selBrand?.type === 'PASSENGER') params.set('categoryId', PASSENGER_CATEGORY_ID);
+    else if (selBrand?.type === 'COMMERCIAL') params.set('categoryId', COMMERCIAL_CATEGORY_ID);
+    else if (!params.get('categoryId')) params.set('categoryId', PASSENGER_CATEGORY_ID);
+    // Remove free-text query if present
+    params.delete('q');
 
     if (onVehicleSelect) {
       onVehicleSelect({
@@ -414,7 +453,7 @@ export default function VehicleSelector({
         engineId: selectedEngineId !== 'all' ? selectedEngineId : undefined,
       });
     } else {
-      router.push(`/products/advanced-search?${params.toString()}`);
+      router.push(`/products?${params.toString()}`);
     }
   };
   
@@ -429,26 +468,78 @@ export default function VehicleSelector({
     return parts.join(" ");
   };
   
-  const selectTriggerClasses = "w-full bg-slate-800/60 border-sunfire-500/60 hover:border-sunfire-400 focus:border-sunfire-400 focus:ring-2 focus:ring-sunfire-500/80 text-white data-[placeholder]:text-white transition-all duration-300";
+  const isLight = appearance === 'light';
+  const wrapperClass = variant === 'embedded'
+    ? ""
+    : isLight
+      ? "p-6 rounded-2xl bg-white border border-slate-200"
+      : "bg-gradient-to-t from-black/60 to-transparent p-6 rounded-2xl";
+  const headingTextClass = isLight ? "text-slate-900" : "text-white";
+  const panelClass = variant === 'embedded'
+    ? "space-y-4"
+    : isLight
+      ? "space-y-6 p-5 bg-white rounded-lg border border-slate-200"
+      : "space-y-6 p-5 bg-slate-900/50 rounded-lg border border-slate-800";
+  const labelMutedClass = isLight ? "text-slate-600" : "text-slate-300";
+  const pillBaseClass = isLight
+    ? "flex items-center gap-2 px-4 py-3 rounded-lg border transition-colors bg-white border-slate-200 text-slate-800 hover:border-sunfire-400"
+    : "flex items-center gap-2 px-4 py-3 rounded-lg border transition-colors bg-slate-800/50 border-slate-700 text-white hover:border-sunfire-400";
+  const pillActiveClass = isLight ? "border-sunfire-400 bg-sunfire-50" : "border-sunfire-400 bg-sunfire-500/10";
+  const stickyHeaderClass = isLight ? "p-2 sticky top-0 bg-white z-10" : "p-2 sticky top-0 bg-slate-900/90 backdrop-blur z-10";
+  const searchInputClass = isLight
+    ? "h-8 text-sm bg-white border-slate-300 text-slate-900 placeholder:text-slate-500"
+    : "h-8 text-sm bg-slate-800 border-slate-700 text-white placeholder:text-slate-400";
+  const selectTriggerClasses = isLight
+    ? "w-full h-11 bg-white border-slate-300 hover:border-sunfire-400 focus:border-sunfire-400 focus:ring-2 focus:ring-sunfire-200 text-slate-900 data-[placeholder]:text-slate-500 transition-all duration-300 truncate"
+    : "w-full h-11 bg-slate-800/60 border-sunfire-500/60 hover:border-sunfire-400 focus:border-sunfire-400 focus:ring-2 focus:ring-sunfire-500/80 text-white data-[placeholder]:text-white transition-all duration-300 truncate";
 
   return (
-    <div className={cn("bg-gradient-to-t from-black/60 to-transparent p-6 rounded-2xl", className)}>
-      {!compact && (
+    <div className={cn(wrapperClass, className)}>
+      {!compact && variant !== 'embedded' && (
         <div className="flex items-center mb-4">
           <div className="p-2 rounded-lg mr-3 bg-sunfire-500/10 shadow-lg shadow-sunfire-500/10">
              <Car className="h-6 w-6 text-sunfire-300" />
           </div>
-          <h3 className="text-xl font-bold text-white">Odabir vozila</h3>
+          <h3 className={cn("text-xl font-bold", headingTextClass)}>Odabir vozila</h3>
         </div>
       )}
+      {/* Step chips header (visual only) */}
+      <div className="mb-3">
+        {(() => {
+          const brandDone = !!selectedBrandId;
+          const modelDone = !!selectedModelId;
+          const generationDone = !!selectedGenerationId;
+          const engineDone = !!selectedEngineId && selectedEngineId !== 'all';
+          const stepTextBase = isLight ? "text-slate-700" : "text-slate-200";
+          const chipBase = isLight ? "bg-white border border-slate-200" : "bg-slate-900/60 border border-slate-700";
+          const activeRing = "ring-1 ring-sunfire-400/60";
+          const Chip = ({ label, done, active }: { label: string; done: boolean; active?: boolean }) => (
+            <span className={cn("inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs", chipBase, active && activeRing)}>
+              {done ? <CheckCircle2 className="w-3.5 h-3.5 text-sunfire-400" /> : <Circle className="w-3.5 h-3.5 opacity-50" />}
+              <span className={stepTextBase}>{label}</span>
+            </span>
+          );
+          return (
+            <div className={cn("flex items-center gap-2 flex-wrap", isLight ? "text-slate-600" : "text-slate-300")}> 
+              <Chip label="Marka" done={brandDone} active={!brandDone} />
+              <ChevronRight className={cn("w-4 h-4", isLight ? "text-slate-400" : "text-slate-500")} />
+              <Chip label="Model" done={modelDone} active={brandDone && !modelDone} />
+              <ChevronRight className={cn("w-4 h-4", isLight ? "text-slate-400" : "text-slate-500")} />
+              <Chip label="Generacija" done={generationDone} active={modelDone && !generationDone} />
+              <ChevronRight className={cn("w-4 h-4", isLight ? "text-slate-400" : "text-slate-500")} />
+              <Chip label="Motor" done={engineDone} active={generationDone && !engineDone} />
+            </div>
+          );
+        })()}
+      </div>
       
-      <div className="space-y-6 p-5 bg-slate-900/50 rounded-lg border border-slate-800">
+      <div className={panelClass}>
         {/* Popular brand icons strip */}
         <div className="mt-0">
-          <div className="text-xs text-slate-300 mb-3">
+          <div className={cn("text-xs mb-3", labelMutedClass)}>
             {vehicleType === 'COMMERCIAL' ? 'Popularne marke (teretna)' : 'Popularne marke'}
           </div>
-          <div className="flex gap-4 overflow-x-auto pb-2">
+          <div className={cn("flex gap-3 pb-1", variant === 'embedded' ? "flex-wrap" : "overflow-x-auto") }>
             {(vehicleType === 'COMMERCIAL' ? popularCommercialBrands : popularBrands).map(({ key, label, Icon }) => {
               const id = brandNameToId.get(key);
               const isDisabled = !id;
@@ -460,14 +551,13 @@ export default function VehicleSelector({
                   onClick={() => id && setSelectedBrandId(id)}
                   disabled={isDisabled}
                   className={cn(
-                    "flex items-center gap-2 px-4 py-3 rounded-lg border transition-colors",
-                    "bg-slate-800/50 border-slate-700 text-white hover:border-sunfire-400",
-                    isActive && "border-sunfire-400 bg-sunfire-500/10",
+                    pillBaseClass,
+                    isActive && pillActiveClass,
                     isDisabled && "opacity-40 cursor-not-allowed"
                   )}
                 >
-                  <Icon size={24} color="#fff" />
-                  <span className="text-sm whitespace-nowrap leading-none">{label}</span>
+                  <Icon size={24} color={isLight ? "#0f172a" : "#ffffff"} />
+                  <span className={cn("text-sm whitespace-nowrap leading-none", isLight ? "text-slate-800" : "text-white")}>{label}</span>
                 </button>
               );
             })}
@@ -488,19 +578,19 @@ export default function VehicleSelector({
             disabled={loadingBrands}
           >
             <SelectTrigger className={selectTriggerClasses}>
-              <SelectValue placeholder="Marka" />
+              <SelectValue placeholder="Marka" className="truncate" />
             </SelectTrigger>
             <SelectContent>
               {loadingBrands ? (
                 <div className="flex items-center justify-center p-2"><Loader2 className="h-4 w-4 animate-spin mr-2 text-sunfire-400" />Učitavanje...</div>
               ) : (
                 <>
-                  <div className="p-2 sticky top-0 bg-slate-900/90 backdrop-blur z-10">
+                  <div className={stickyHeaderClass}>
                     <Input
                       value={brandQuery}
                       onChange={(e) => setBrandQuery(e.target.value)}
                       placeholder="Pretraži marke..."
-                      className="h-8 text-sm bg-slate-800 border-slate-700 text-white placeholder:text-slate-400"
+                      className={searchInputClass}
                     />
                   </div>
                   <div className="max-h-72 overflow-y-auto">
@@ -526,19 +616,19 @@ export default function VehicleSelector({
             disabled={!selectedBrandId || loadingModels}
           >
             <SelectTrigger className={selectTriggerClasses}>
-              <SelectValue placeholder="Model" />
+              <SelectValue placeholder="Model" className="truncate" />
             </SelectTrigger>
             <SelectContent>
               {loadingModels ? (
                 <div className="flex items-center justify-center p-2"><Loader2 className="h-4 w-4 animate-spin mr-2 text-sunfire-400" />Učitavanje...</div>
               ) : (
                 <>
-                  <div className="p-2 sticky top-0 bg-slate-900/90 backdrop-blur z-10">
+                  <div className={stickyHeaderClass}>
                     <Input
                       value={modelQuery}
                       onChange={(e) => setModelQuery(e.target.value)}
                       placeholder="Pretraži modele..."
-                      className="h-8 text-sm bg-slate-800 border-slate-700 text-white placeholder:text-slate-400"
+                      className={searchInputClass}
                     />
                   </div>
                   <div className="max-h-72 overflow-y-auto">
@@ -562,19 +652,19 @@ export default function VehicleSelector({
             disabled={!selectedModelId || loadingGenerations}
           >
             <SelectTrigger className={selectTriggerClasses}>
-              <SelectValue placeholder="Generacija" />
+              <SelectValue placeholder="Generacija" className="truncate" />
             </SelectTrigger>
             <SelectContent>
               {loadingGenerations ? (
                 <div className="flex items-center justify-center p-2"><Loader2 className="h-4 w-4 animate-spin mr-2 text-sunfire-400" />Učitavanje...</div>
               ) : (
                 <>
-                  <div className="p-2 sticky top-0 bg-slate-900/90 backdrop-blur z-10">
+                  <div className={stickyHeaderClass}>
                     <Input
                       value={generationQuery}
                       onChange={(e) => setGenerationQuery(e.target.value)}
                       placeholder="Pretraži generacije..."
-                      className="h-8 text-sm bg-slate-800 border-slate-700 text-white placeholder:text-slate-400"
+                      className={searchInputClass}
                     />
                   </div>
                   <div className="max-h-72 overflow-y-auto">
@@ -598,19 +688,19 @@ export default function VehicleSelector({
             disabled={!selectedGenerationId || loadingEngines}
           >
             <SelectTrigger className={selectTriggerClasses}>
-              <SelectValue placeholder="Motor" />
+              <SelectValue placeholder="Motor" className="truncate" />
             </SelectTrigger>
             <SelectContent>
               {loadingEngines ? (
                 <div className="flex items-center justify-center p-2"><Loader2 className="h-4 w-4 animate-spin mr-2 text-sunfire-400" />Učitavanje...</div>
               ) : (
                 <>
-                  <div className="p-2 sticky top-0 bg-slate-900/90 backdrop-blur z-10">
+                  <div className={stickyHeaderClass}>
                     <Input
                       value={engineQuery}
                       onChange={(e) => setEngineQuery(e.target.value)}
                       placeholder="Pretraži motore..."
-                      className="h-8 text-sm bg-slate-800 border-slate-700 text-white placeholder:text-slate-400"
+                      className={searchInputClass}
                     />
                   </div>
                   <div className="max-h-72 overflow-y-auto">
@@ -626,18 +716,16 @@ export default function VehicleSelector({
           </div>
         </div>
         
-        {onVehicleSelect && (
-          <div className="flex justify-end mt-6">
-            <Button 
-              onClick={handleSearch} 
-              disabled={!selectedGenerationId}
-              className="bg-sunfire-500 hover:bg-sunfire-600 text-white font-bold py-2 px-4 rounded-lg shadow-lg hover:shadow-xl shadow-sunfire-500/20 hover:shadow-sunfire-500/40 transition-all duration-300 transform hover:-translate-y-0.5 flex items-center gap-2 disabled:bg-sunfire-500/50 disabled:cursor-not-allowed border border-sunfire-400 hover:border-sunfire-300"
-            >
-              Primijeni filtere
-              <ChevronRight className="h-4 w-4" />
-            </Button>
-          </div>
-        )}
+        <div className="flex justify-end mt-4">
+          <Button 
+            onClick={handleSearch} 
+            disabled={!selectedGenerationId}
+            className="bg-sunfire-600 hover:bg-sunfire-700 text-white font-semibold py-2 px-5 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 flex items-center gap-2 disabled:bg-sunfire-500/50 disabled:cursor-not-allowed"
+          >
+            Pretraži
+            <ChevronRight className="h-4 w-4" />
+          </Button>
+        </div>
       </div>
     </div>
   );

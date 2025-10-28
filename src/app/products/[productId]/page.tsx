@@ -22,8 +22,21 @@ interface ProductPageProps {
 function ProductDetailHeader({ productName }: { productName: string }) {
   return (
     <div className="mb-8">
-      <div className="rounded-2xl p-8 text-white bg-gradient-to-t from-black/60 to-transparent border border-white/10 flex items-center justify-center h-full transform-gpu transition-transform duration-300 hover:scale-105 hover-pulse-sunfire">
-        <h1 className="font-bold text-4xl accent-text text-center">{productName}</h1>
+      <div className="relative overflow-hidden rounded-2xl p-8 bg-white border border-slate-200 shadow-sm flex items-center justify-center h-full transform-gpu transition-transform duration-300 hover:scale-[1.01]">
+        {/* Light grid overlay */}
+        <div
+          className="pointer-events-none absolute inset-0 z-0 opacity-65"
+          style={{
+            backgroundImage:
+              'linear-gradient(to right, rgba(100,116,139,0.14) 1px, transparent 1px), linear-gradient(to bottom, rgba(100,116,139,0.14) 1px, transparent 1px)',
+            backgroundSize: '2px 2px',
+            maskImage: 'radial-gradient(ellipse at center, black 92%, transparent 100%)',
+            WebkitMaskImage: 'radial-gradient(ellipse at center, black 92%, transparent 100%)',
+          }}
+        />
+        <h1 className="relative z-10 font-bold text-4xl text-slate-900 text-center tracking-tight">
+          {productName}
+        </h1>
       </div>
     </div>
   );

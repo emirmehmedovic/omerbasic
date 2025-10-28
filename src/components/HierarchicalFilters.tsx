@@ -110,21 +110,21 @@ const SubcategoryList = ({
           <div key={category.id} className="w-full">
             <div className={`flex items-center w-full text-left rounded-lg text-sm transition-all duration-200 border ${
               isSelected
-                ? 'bg-sunfire-500/20 text-white border-sunfire-400 shadow-md shadow-sunfire-500/10 font-semibold'
-                : 'text-slate-300 hover:bg-sunfire-500/10 hover:text-white border-transparent hover:border-sunfire-500/50'
-            } ${depth === 0 ? 'px-3 py-2 lg:px-3.5 lg:py-2.5 bg-white/5 hover:bg-white/10' : 'px-3 py-2'}`}>
+                ? 'bg-sunfire-50 text-slate-900 border-sunfire-300 shadow-sm font-semibold'
+                : 'text-slate-700 hover:bg-sunfire-50 hover:text-slate-900 border-slate-200'
+            } ${depth === 0 ? 'px-3 py-2 lg:px-3.5 lg:py-2.5 bg-white' : 'px-3 py-2 bg-white'}`}>
               {/* Chevron za expand/collapse */}
               <button
                 type="button"
                 aria-label={isOpen ? 'Sažmi' : 'Proširi'}
                 onClick={(e) => { e.stopPropagation(); if (hasChildren) toggle(category.id); }}
-                className={`mr-2 p-1 rounded hover:bg-sunfire-500/10 ${hasChildren ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+                className={`mr-2 p-1 rounded hover:bg-sunfire-50 ${hasChildren ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
               >
-                {isOpen ? <ChevronDown className="h-4 w-4" /> : <ChevronRight className="h-4 w-4" />}
+                {isOpen ? <ChevronDown className="h-4 w-4 text-slate-500" /> : <ChevronRight className="h-4 w-4 text-slate-500" />}
               </button>
 
               {/* Indikator */}
-              <span className={`flex-shrink-0 w-2 h-2 mr-3 rounded-full transition-colors ${isSelected ? 'bg-sunfire-300' : 'bg-slate-500'}`}></span>
+              <span className={`flex-shrink-0 w-2 h-2 mr-3 rounded-full transition-colors ${isSelected ? 'bg-sunfire-400' : 'bg-slate-300'}`}></span>
 
               {/* Naziv (klik za odabir) */}
               <button
@@ -141,8 +141,8 @@ const SubcategoryList = ({
               {/* Broj proizvoda */}
               {category.productCount && (
                 <span className={`ml-3 px-2 py-0.5 text-xs rounded-full transition-colors ${isSelected
-                  ? 'bg-sunfire-500/30 text-sunfire-100'
-                  : 'bg-slate-700 text-slate-300'
+                  ? 'bg-sunfire-100 text-sunfire-700'
+                  : 'bg-slate-100 text-slate-700'
                 }`}>
                   {category.productCount}
                 </span>
@@ -210,15 +210,37 @@ export default function HierarchicalFilters({
     specs: initialFilters.specs || {}
   });
 
-  // Sinkroniziraj lokalne filtere kada se promijeni initialFilters
+  // Sinkroniziraj lokalne filtere kada se promijene pojedinačne vrijednosti initialFilters,
+  // ali nemoj prebrisati korisnički izbor s praznim vrijednostima.
   useEffect(() => {
-    setFilters(prevFilters => ({
-      ...prevFilters,
-      ...initialFilters,
-      categoryId: initialFilters.categoryId || '',
-      generationId: initialFilters.generationId || '',
+    setFilters(prev => ({
+      ...prev,
+      ...(initialFilters || {}),
+      categoryId: initialFilters.categoryId !== undefined ? initialFilters.categoryId : prev.categoryId,
+      generationId: initialFilters.generationId !== undefined ? initialFilters.generationId : prev.generationId,
+      engineId: initialFilters.engineId !== undefined ? initialFilters.engineId : prev.engineId,
+      specs: initialFilters.specs !== undefined ? initialFilters.specs : prev.specs,
     }));
-  }, [initialFilters]);
+
+    // Inicijalizuj aktivne filtere samo kada initialFilters eksplicitno sadrži vrijednosti
+    const chips: { id: string; type: string; label: string }[] = [];
+    if (initialFilters.categoryId) {
+      const cat = findCategoryById(categories, initialFilters.categoryId);
+      if (cat) chips.push({ id: `Kategorija-${initialFilters.categoryId}`, type: 'Kategorija', label: cat.name });
+    }
+    if (initialFilters.generationId) {
+      chips.push({ id: `Vozilo-${initialFilters.generationId}`, type: 'Vozilo', label: 'Odabrano vozilo' });
+    }
+    if (initialFilters.engineId) {
+      chips.push({ id: `Motor-${initialFilters.engineId}`, type: 'Motor', label: 'Specifičan motor' });
+    }
+    if (chips.length) setActiveFilters(chips);
+  }, [
+    initialFilters?.categoryId,
+    initialFilters?.generationId,
+    initialFilters?.engineId,
+    JSON.stringify(initialFilters?.specs)
+  ]);
 
   // Postavljanje glavnih kategorija iz propsa
   useEffect(() => {
@@ -262,15 +284,25 @@ export default function HierarchicalFilters({
   }, [mainCategories, filters.categoryId]);
 
   const selectedMainCategory = useMemo(() => {
+    // 1) Direktno poklapanje po ID-u u glavnim kategorijama
+    const direct = mainCategories.find((c) => c.id === (filters.categoryId as any));
+    if (direct) return direct;
+    // 2) Fallback na izračunatu putanju (ako je dostupna)
     if (!selectedPath || selectedPath.length === 0) return null;
-    // prvi element u putu iz mainCategories je glavna kategorija
     return selectedPath[0] || null;
-  }, [selectedPath]);
+  }, [mainCategories, filters.categoryId, selectedPath]);
+
+  // Osiguraj da uvijek imamo puni čvor glavne kategorije sa djecom (iz stabla)
+  const selectedMainCategoryFull = useMemo(() => {
+    if (!selectedMainCategory) return null;
+    // Pretraži kroz cijelo stablo polazeći od root-ova (mainCategories)
+    return findCategoryById(mainCategories, selectedMainCategory.id) || selectedMainCategory;
+  }, [selectedMainCategory, mainCategories]);
 
   // Filtriranje stabla kategorija po pretrazi (prikazuje samo grane koje se poklapaju)
   const { filteredSubcategories, expandIdsForSearch } = useMemo(() => {
     const result = { filteredSubcategories: [] as Category[], expandIdsForSearch: new Set<string>() };
-    if (!selectedMainCategory || !catSearch.trim()) return result;
+    if (!selectedMainCategoryFull || !catSearch.trim()) return result;
 
     const q = catSearch.trim().toLowerCase();
 
@@ -293,20 +325,20 @@ export default function HierarchicalFilters({
       return out;
     };
 
-    result.filteredSubcategories = filterTree(selectedMainCategory.children || [], [selectedMainCategory.id]);
+    result.filteredSubcategories = filterTree(selectedMainCategoryFull.children || [], [selectedMainCategoryFull.id]);
     return result;
-  }, [selectedMainCategory, catSearch]);
+  }, [selectedMainCategoryFull, catSearch]);
 
   // Izvedi tip vozila iz odabrane glavne kategorije
   const derivedVehicleType = useMemo<'PASSENGER' | 'COMMERCIAL' | 'ALL'>(() => {
-    if (!selectedMainCategory) return 'ALL';
-    const n = (selectedMainCategory.name || '').toLowerCase();
+    if (!selectedMainCategoryFull) return 'ALL';
+    const n = (selectedMainCategoryFull.name || '').toLowerCase();
     // Ako naziv sadrži "teret", tretiramo kao COMMERCIAL
     if (n.includes('teret')) return 'COMMERCIAL';
     // Ako naziv sadrži "putnič"/"putnick", tretiramo kao PASSENGER
     if (n.includes('putnič') || n.includes('putnick') || n.includes('putnic')) return 'PASSENGER';
     return 'ALL';
-  }, [selectedMainCategory]);
+  }, [selectedMainCategoryFull]);
 
   // Funkcija za ažuriranje filtera
   const updateFilter = (key: string, value: any, type: string, label?: string) => {
@@ -343,7 +375,7 @@ export default function HierarchicalFilters({
 
   // Funkcija za odabir glavne kategorije
   const handleMainCategorySelect = (category: Category) => {
-    // Ispravak: Koristimo 'categoryId' kao ključ, a 'Kategorija' kao tip za prikaz
+    // Koristi isti pristup kao u staroj verziji: samo postavi categoryId preko updateFilter
     updateFilter('categoryId', category.id, 'Kategorija', category.name);
     console.log('Selected main category:', category.id, category.name);
   };
@@ -408,10 +440,21 @@ export default function HierarchicalFilters({
         <div className="top-filters">
           {/* Clean glavne kategorije */}
           <div className="main-categories">
-            <div className="rounded-2xl p-6 text-white bg-gradient-to-t from-black/60 to-transparent border border-white/10 mb-6">
-              <h3 className="text-xl font-bold text-white mb-6 text-center">Kategorije proizvoda</h3>
-              <div className="w-full">
-                <div className="flex w-full rounded-xl border border-white/10 overflow-x-auto flex-nowrap snap-x snap-mandatory">
+            <div className="relative overflow-hidden rounded-2xl p-6 bg-white border border-slate-200 mb-6">
+              {/* Dense grid background overlay (match homepage) */}
+              <div
+                className="pointer-events-none absolute inset-0 z-0 opacity-65"
+                style={{
+                  backgroundImage:
+                    "linear-gradient(to right, rgba(100,116,139,0.14) 1px, transparent 1px), linear-gradient(to bottom, rgba(100,116,139,0.14) 1px, transparent 1px)",
+                  backgroundSize: "2px 2px",
+                  maskImage: "radial-gradient(ellipse at center, black 92%, transparent 100%)",
+                  WebkitMaskImage: "radial-gradient(ellipse at center, black 92%, transparent 100%)",
+                }}
+              />
+              <h3 className="relative z-10 text-xl font-bold text-slate-900 mb-6 text-center">Kategorije proizvoda</h3>
+              <div className="relative z-10 w-full">
+                <div className="flex w-full rounded-xl border border-slate-200 overflow-x-auto flex-nowrap snap-x snap-mandatory">
                 {mainCategories.map((category, idx) => {
                   const categoryIcons: { [key: string]: React.ComponentType<{ className?: string }> } = {
                     'teretna vozila': Truck,
@@ -437,55 +480,56 @@ export default function HierarchicalFilters({
                     <button
                       key={category.id}
                       onClick={() => handleMainCategorySelect(category)}
-                      className={`group relative isolate z-0 flex flex-1 items-center justify-center px-3 py-2 sm:px-4 sm:py-3 md:py-4 text-white border-r border-white/10 transition-colors transition-shadow snap-start
-                        ${isSelected ? 'accent-bg-is-selected' : 'bg-black/30 hover-pulse-sunfire'}
+                      className={`group relative z-10 flex flex-1 items-center justify-center px-3 py-2 sm:px-4 sm:py-3 md:py-4 text-slate-900 border-r border-slate-200 transition-colors transition-shadow snap-start
+                        bg-white hover:bg-sunfire-50 hover:ring-2 hover:ring-sunfire-400/60
                         ${idx === 0 ? 'rounded-l-xl' : ''}
                         ${idx === mainCategories.length - 1 ? 'rounded-r-xl border-r-0' : ''}
-                        hover:ring-2 hover:ring-sunfire-400/60
                       `}
                     >
                       {/* Inner content scales on hover to preserve connected pill edges */}
-                      <div className="flex flex-col items-center gap-2 transition-transform duration-300 ease-in-out group-hover:scale-[1.03]">
-                        {usePassengerSvg ? (
-                          <img
-                            src="/images/putnicka-vozila.svg"
-                            alt="Putnička vozila"
-                            className={`w-12 h-12 sm:w-16 sm:h-16 md:w-[5.25rem] md:h-[5.25rem] lg:w-[6rem] lg:h-[6rem] ${isSelected ? 'opacity-100 drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]' : 'opacity-80 group-hover:opacity-100 group-hover:drop-shadow-[0_0_15px_rgba(255,217,128,1)]'}`}
-                          />
-                        ) : useCommercialSvg ? (
-                          <img
-                            src="/images/teretna-vozila.svg"
-                            alt="Teretna vozila"
-                            className={`w-12 h-12 sm:w-16 sm:h-16 md:w-[5.25rem] md:h-[5.25rem] lg:w-[6rem] lg:h-[6rem] ${isSelected ? 'opacity-100 drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]' : 'opacity-80 group-hover:opacity-100 group-hover:drop-shadow-[0_0_15px_rgba(255,217,128,1)]'}`}
-                          />
-                        ) : useAdrSvg ? (
-                          <img
-                            src="/images/adr.svg"
-                            alt="ADR oprema"
-                            className={`w-12 h-12 sm:w-16 sm:h-16 md:w-[5.25rem] md:h-[5.25rem] lg:w-[6rem] lg:h-[6rem] ${isSelected ? 'opacity-100 drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]' : 'opacity-80 group-hover:opacity-100 group-hover:drop-shadow-[0_0_15px_rgba(255,217,128,1)]'}`}
-                          />
-                        ) : useWashSvg ? (
-                          <img
-                            src="/images/autopraonice.svg"
-                            alt="Autopraonice"
-                            className={`w-12 h-12 sm:w-16 sm:h-16 md:w-[5.25rem] md:h-[5.25rem] lg:w-[6rem] lg:h-[6rem] ${isSelected ? 'opacity-100 drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]' : 'opacity-80 group-hover:opacity-100 group-hover:drop-shadow-[0_0_15px_rgba(255,217,128,1)]'}`}
-                          />
-                        ) : useTyresSvg ? (
-                          <img
-                            src="/images/gume.svg"
-                            alt="Gume"
-                            className={`w-12 h-12 sm:w-16 sm:h-16 md:w-[5.25rem] md:h-[5.25rem] lg:w-[6rem] lg:h-[6rem] ${isSelected ? 'opacity-100 drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]' : 'opacity-80 group-hover:opacity-100 group-hover:drop-shadow-[0_0_15px_rgba(255,217,128,1)]'}`}
-                          />
-                        ) : useOilsSvg ? (
-                          <img
-                            src="/images/uljaimaziva.svg"
-                            alt="Ulja i maziva"
-                            className={`w-12 h-12 sm:w-16 sm:h-16 md:w-[5.25rem] md:h-[5.25rem] lg:w-[6rem] lg:h-[6rem] ${isSelected ? 'opacity-100 drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]' : 'opacity-80 group-hover:opacity-100 group-hover:drop-shadow-[0_0_15px_rgba(255,217,128,1)]'}`}
-                          />
-                        ) : (
-                          <Icon className={`w-12 h-12 sm:w-16 sm:h-16 md:w-[5.25rem] md:h-[5.25rem] lg:w-[6rem] lg:h-[6rem] transition-all duration-300 ease-in-out ${isSelected ? 'text-white drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]' : 'text-white/80 group-hover:text-sunfire-200 group-hover:drop-shadow-[0_0_15px_rgba(255,217,128,1)]'}`} />
-                        )}
-                        <span className="text-xs sm:text-sm md:text-[0.95rem] font-bold text-white text-center leading-tight">{category.name}</span>
+                      <div className="flex flex-col items-center gap-3 transition-transform duration-300 ease-in-out group-hover:scale-[1.03]">
+                        <div className="flex items-center justify-center rounded-2xl bg-[#0c1c3a] shadow-sm w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28">
+                          {usePassengerSvg ? (
+                            <img
+                              src="/images/putnicka-vozila.svg"
+                              alt="Putnička vozila"
+                              className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 opacity-90"
+                            />
+                          ) : useCommercialSvg ? (
+                            <img
+                              src="/images/teretna-vozila.svg"
+                              alt="Teretna vozila"
+                              className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 opacity-90"
+                            />
+                          ) : useAdrSvg ? (
+                            <img
+                              src="/images/adr.svg"
+                              alt="ADR oprema"
+                              className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 opacity-90"
+                            />
+                          ) : useWashSvg ? (
+                            <img
+                              src="/images/autopraonice.svg"
+                              alt="Autopraonice"
+                              className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 opacity-90"
+                            />
+                          ) : useTyresSvg ? (
+                            <img
+                              src="/images/gume.svg"
+                              alt="Gume"
+                              className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 opacity-90"
+                            />
+                          ) : useOilsSvg ? (
+                            <img
+                              src="/images/uljaimaziva.svg"
+                              alt="Ulja i maziva"
+                              className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 opacity-90"
+                            />
+                          ) : (
+                            <Icon className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 text-white" />
+                          )}
+                        </div>
+                        <span className="text-xs sm:text-sm md:text-[0.95rem] font-bold text-slate-900 text-center leading-tight">{category.name}</span>
                       </div>
                     </button>
                   );
@@ -498,15 +542,27 @@ export default function HierarchicalFilters({
           {/* Clean odabir vozila (prikaži samo za Teretna/Putnička) */}
           {derivedVehicleType !== 'ALL' && (
             <div className="vehicle-selector">
-              <div className="bg-gradient-to-t from-black/60 to-transparent p-6 rounded-2xl">
-                <div className="flex items-center mb-4">
-                  <div className="p-2 rounded-lg mr-3">
-                    <Car className="h-6 w-6 text-sunfire-300" />
+              <div className="relative overflow-hidden rounded-2xl p-6 bg-white border border-slate-200">
+                {/* Grid overlay */}
+                <div
+                  className="pointer-events-none absolute inset-0 z-0 opacity-65"
+                  style={{
+                    backgroundImage:
+                      "linear-gradient(to right, rgba(100,116,139,0.14) 1px, transparent 1px), linear-gradient(to bottom, rgba(100,116,139,0.14) 1px, transparent 1px)",
+                    backgroundSize: "2px 2px",
+                    maskImage: "radial-gradient(ellipse at center, black 92%, transparent 100%)",
+                    WebkitMaskImage: "radial-gradient(ellipse at center, black 92%, transparent 100%)",
+                  }}
+                />
+                <div className="relative z-10">
+                  <div className="flex items-center mb-4">
+                    <div className="p-2 rounded-lg mr-3 bg-sunfire-500/10 shadow-lg shadow-sunfire-500/10">
+                      <Car className="h-6 w-6 text-sunfire-300" />
+                    </div>
+                    <h3 className="text-xl font-bold text-slate-900">Odabir vozila</h3>
                   </div>
-                  <h3 className="text-xl font-bold text-white">Odabir vozila</h3>
-                </div>
-                
-                <VehicleSelector 
+                  
+                  <VehicleSelector 
                   onVehicleSelect={(data) => {
                     if (data.generationId) {
                       // Ispravak: Poziv s ispravnim argumentima
@@ -516,8 +572,10 @@ export default function HierarchicalFilters({
                     }
                   }}
                   compact={true}
+                  appearance="light"
                   vehicleType={derivedVehicleType}
                 />
+                </div>
               </div>
             </div>
           )}
@@ -525,78 +583,92 @@ export default function HierarchicalFilters({
       )}
       
       {/* Clean sidebar sa podkategorijama i filterima */}
-      {renderSidebarContent && selectedMainCategory && (
+      {renderSidebarContent && selectedMainCategoryFull && (
         <div className="sidebar-filters space-y-6">
           {/* Podkategorije ako postoje */}
-          {selectedMainCategory.children && selectedMainCategory.children.length > 0 && (
-            <div className="bg-gradient-to-t from-black/60 to-transparent p-6 rounded-2xl border border-sunfire-500/30" data-test="hf-panel-v2">
-              <div className="sticky top-0 z-10 -mx-6 px-6 pt-2 pb-3 bg-black/40 backdrop-blur border-b border-white/10 rounded-t-2xl">
-                <div className="flex items-center mb-2">
-                  <div className="p-2 rounded-lg mr-3 bg-sunfire-500/10 shadow-lg shadow-sunfire-500/10">
-                    <Layers className="h-5 w-5 text-sunfire-300" />
-                  </div>
-                  <h3 className="font-bold text-white text-xl">Podkategorije</h3>
-                </div>
-                {/* Search input */}
-                <div className="relative">
-                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-white/60" />
-                  <input
-                    type="text"
-                    value={catSearch}
-                    onChange={(e) => setCatSearch(e.target.value)}
-                    placeholder="Pretraži kategorije…"
-                    className="w-full pl-9 pr-8 py-2 rounded-md bg-white/10 text-white placeholder-white/60 border border-white/20 focus:outline-none focus:ring-2 focus:ring-sunfire-400/60 focus:border-sunfire-400/50"
-                  />
-                  {catSearch && (
-                    <button
-                      type="button"
-                      onClick={() => setCatSearch('')}
-                      aria-label="Očisti pretragu"
-                      className="absolute right-2 top-1/2 -translate-y-1/2 text-white/70 hover:text-white"
-                    >
-                      <X className="h-4 w-4" />
-                    </button>
-                  )}
-                </div>
-              </div>
-              <SubcategoryList 
-                key={selectedMainCategory.id}
-                categories={catSearch.trim() ? filteredSubcategories : selectedMainCategory.children}
-                selectedCategoryId={filters.categoryId}
-                onCategorySelect={handleSubcategorySelect}
-                expandIds={catSearch.trim() ? Array.from(expandIdsForSearch) : selectedPath?.map(c => c.id)}
+          {selectedMainCategoryFull.children && selectedMainCategoryFull.children.length > 0 && (
+            <div className="relative overflow-hidden p-6 rounded-2xl bg-white border border-slate-200" data-test="hf-panel-v2">
+              {/* Light grid overlay */}
+              <div
+                className="pointer-events-none absolute inset-0 z-0 opacity-65"
+                style={{
+                  backgroundImage:
+                    'linear-gradient(to right, rgba(100,116,139,0.14) 1px, transparent 1px), linear-gradient(to bottom, rgba(100,116,139,0.14) 1px, transparent 1px)',
+                  backgroundSize: '2px 2px',
+                  maskImage: 'radial-gradient(ellipse at center, black 92%, transparent 100%)',
+                  WebkitMaskImage: 'radial-gradient(ellipse at center, black 92%, transparent 100%)',
+                }}
               />
+              <div className="relative z-10">
+                <div className="sticky top-0 z-10 -mx-6 px-6 pt-2 pb-3 bg-white/80 backdrop-blur border-b border-slate-200 rounded-t-2xl">
+                  <div className="flex items-center mb-2">
+                    <div className="p-2 rounded-lg mr-3 bg-sunfire-500/10 shadow-lg shadow-sunfire-500/10">
+                      <Layers className="h-5 w-5 text-sunfire-300" />
+                    </div>
+                    <h3 className="font-bold text-slate-900 text-xl">Podkategorije</h3>
+                  </div>
+                  {/* Search input */}
+                  <div className="relative">
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-500" />
+                    <input
+                      type="text"
+                      value={catSearch}
+                      onChange={(e) => setCatSearch(e.target.value)}
+                      placeholder="Pretraži kategorije…"
+                      className="w-full pl-9 pr-8 py-2 rounded-md bg-white text-slate-900 placeholder:text-slate-500 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-sunfire-300 focus:border-sunfire-300"
+                    />
+                    {catSearch && (
+                      <button
+                        type="button"
+                        onClick={() => setCatSearch('')}
+                        aria-label="Očisti pretragu"
+                        className="absolute right-2 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-700"
+                      >
+                        <X className="h-4 w-4" />
+                      </button>
+                    )}
+                  </div>
+                </div>
+                <SubcategoryList 
+                  key={selectedMainCategoryFull.id}
+                  categories={catSearch.trim() ? filteredSubcategories : selectedMainCategoryFull.children}
+                  selectedCategoryId={filters.categoryId}
+                  onCategorySelect={handleSubcategorySelect}
+                  expandIds={catSearch.trim() ? Array.from(expandIdsForSearch) : selectedPath?.map(c => c.id)}
+                />
+              </div>
             </div>
           )}
-          
+
           {/* Tehničke specifikacije */}
           <div className="technical-specs">
-            <div className="bg-gradient-to-t from-black/60 to-transparent p-6 rounded-2xl border border-sunfire-500/30">
-            <div className="flex items-center mb-4">
-                <div className="p-2 rounded-lg mr-3 bg-sunfire-500/10 shadow-lg shadow-sunfire-500/10">
-                  <Settings className="h-5 w-5 text-sunfire-300" />
+            <div className="relative overflow-hidden p-6 rounded-2xl bg-white border border-slate-200">
+              {/* Light grid overlay */}
+              <div
+                className="pointer-events-none absolute inset-0 z-0 opacity-65"
+                style={{
+                  backgroundImage:
+                    'linear-gradient(to right, rgba(100,116,139,0.14) 1px, transparent 1px), linear-gradient(to bottom, rgba(100,116,139,0.14) 1px, transparent 1px)',
+                  backgroundSize: '2px 2px',
+                  maskImage: 'radial-gradient(ellipse at center, black 92%, transparent 100%)',
+                  WebkitMaskImage: 'radial-gradient(ellipse at center, black 92%, transparent 100%)',
+                }}
+              />
+              <div className="relative z-10">
+                <div className="flex items-center mb-4">
+                  <div className="p-2 rounded-lg mr-3 bg-sunfire-500/10 shadow-lg shadow-sunfire-500/10">
+                    <Settings className="h-5 w-5 text-sunfire-300" />
+                  </div>
+                  <h3 className="font-bold text-slate-900 text-xl">Tehničke specifikacije</h3>
+                </div>
+                <TechnicalSpecsFilter 
+                  categoryId={filters.categoryId as any}
+                  onSpecsChange={(newSpecs: Record<string, string | number>) => {
+                    setFilters(prev => ({ ...prev, specs: newSpecs }));
+                  }}
+                  selectedSpecs={filters.specs as any}
+                />
               </div>
-                <h3 className="font-bold text-white text-xl">Tehničke specifikacije</h3>
-            </div>
-            <TechnicalSpecsFilter 
-              categoryId={filters.categoryId}
-              onSpecsChange={(specs) => {
-                // Ispravak: Poziv s ispravnim argumentima
-                updateFilter('specs', specs, 'Specifikacija'); // Ne treba label jer se specifikacije ne prikazuju kao jedan tag
-                
-                // Dodaj aktivne filtere za specifikacije
-                Object.entries(specs).forEach(([key, value]) => {
-                  if (value) {
-                    const label = `${key}: ${value}`;
-                    setActiveFilters(prev => {
-                      const filtered = prev.filter(f => f.id !== `specs-${key}`);
-                      return [...filtered, { id: `specs-${key}`, type: 'Specifikacija', label }];
-                    });
-                  }
-                });
-              }}
-              selectedSpecs={filters.specs}
-            />
             </div>
           </div>
         </div>

@@ -4,34 +4,87 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import { productApiSchema } from '@/lib/validations/product';
 import { z } from 'zod';
-import { getCurrentUser } from '@/lib/session';
 import { revalidateTag } from 'next/cache';
 
 // Enable ISR-style caching for this route per-URL for 60 seconds
 export const revalidate = 60;
 
 // Pomoćna funkcija za dohvat kategorije i svih njenih podkategorija (potomaka)
+type CategoryTreeCache = {
+  expires: number;
+  childrenByParent: Map<string, string[]>;
+};
+
+type CategoryIdsCacheEntry = {
+  expires: number;
+  ids: string[];
+};
+
+const CATEGORY_CACHE_TTL = 60_000; // 60s
+const ENABLE_QUERY_LOG = process.env.PRISMA_LOG_QUERIES === 'true';
+let categoryTreeCache: CategoryTreeCache | null = null;
+const categoryIdsCache = new Map<string, CategoryIdsCacheEntry>();
+
+async function getCategoryTree(): Promise<Map<string, string[]>> {
+  const now = Date.now();
+  if (!categoryTreeCache || categoryTreeCache.expires < now) {
+    const categoryArgs = {
+      select: { id: true, parentId: true },
+    } as const;
+    logQuery('Category', 'findMany', categoryArgs);
+    const categories = await db.category.findMany(categoryArgs);
+
+    const childrenByParent = new Map<string, string[]>();
+    for (const cat of categories) {
+      if (!cat.parentId) continue;
+      const arr = childrenByParent.get(cat.parentId) ?? [];
+      arr.push(cat.id);
+      childrenByParent.set(cat.parentId, arr);
+    }
+
+    categoryTreeCache = {
+      expires: now + CATEGORY_CACHE_TTL,
+      childrenByParent,
+    };
+    categoryIdsCache.clear();
+  }
+
+  return categoryTreeCache.childrenByParent;
+}
+
 async function getCategoryAndChildrenIds(categoryId: string): Promise<string[]> {
-  const allIds: string[] = [categoryId];
-  const queue: string[] = [categoryId];
+  const now = Date.now();
+  const cached = categoryIdsCache.get(categoryId);
+  if (cached && cached.expires > now) {
+    return cached.ids;
+  }
 
-  while (queue.length > 0) {
-    const currentId = queue.shift();
-    if (!currentId) continue;
+  const childrenByParent = await getCategoryTree();
+  const stack = [categoryId];
+  const idSet = new Set<string>();
 
-    const children = await db.category.findMany({
-      where: { parentId: currentId },
-      select: { id: true },
-    });
-
-    const childrenIds = children.map(c => c.id);
-    if (childrenIds.length > 0) {
-        allIds.push(...childrenIds);
-        queue.push(...childrenIds);
+  while (stack.length > 0) {
+    const current = stack.pop();
+    if (!current) continue;
+    if (!idSet.has(current)) {
+      idSet.add(current);
+    }
+    const children = childrenByParent.get(current);
+    if (children && children.length) {
+      for (const child of children) {
+        if (!idSet.has(child)) stack.push(child);
+      }
     }
   }
 
-  return allIds;
+  const ids = Array.from(idSet);
+  categoryIdsCache.set(categoryId, { ids, expires: now + CATEGORY_CACHE_TTL });
+  return ids;
+}
+
+function logQuery(model: string, operation: string, args: unknown) {
+  if (!ENABLE_QUERY_LOG) return;
+  console.info(`[PRISMA][${model}.${operation}]`, JSON.stringify(args));
 }
 
 export async function GET(req: NextRequest) {
@@ -88,30 +141,34 @@ export async function GET(req: NextRequest) {
     // If "page" is provided, use offset pagination and return totals in headers
     if (page) {
       const skip = (page - 1) * limit;
+      const productFindManyArgs: Parameters<typeof db.product.findMany>[0] = {
+        where,
+        select: {
+          id: true,
+          name: true,
+          price: true,
+          stock: true,
+          imageUrl: true,
+          catalogNumber: true,
+          oemNumber: true,
+          categoryId: true,
+          createdAt: true,
+          updatedAt: true,
+          category: { select: { id: true, name: true, parentId: true } },
+        },
+        orderBy: [
+          { createdAt: 'desc' },
+          { id: 'desc' },
+        ],
+        skip,
+        take: limit,
+      };
+      logQuery('Product', 'findMany', productFindManyArgs);
+      const countArgs: Parameters<typeof db.product.count>[0] = { where };
+      logQuery('Product', 'count', countArgs);
       const [itemsRaw, total] = await Promise.all([
-        db.product.findMany({
-          where,
-          select: {
-            id: true,
-            name: true,
-            price: true,
-            stock: true,
-            imageUrl: true,
-            catalogNumber: true,
-            oemNumber: true,
-            categoryId: true,
-            createdAt: true,
-            updatedAt: true,
-            category: { select: { id: true, name: true, parentId: true } },
-          },
-          orderBy: [
-            { createdAt: 'desc' },
-            { id: 'desc' },
-          ],
-          skip,
-          take: limit,
-        }),
-        db.product.count({ where }),
+        db.product.findMany(productFindManyArgs),
+        db.product.count(countArgs),
       ]);
 
       // Apply featured/B2B pricing
@@ -155,7 +212,7 @@ export async function GET(req: NextRequest) {
     }
 
     // Otherwise fallback to keyset pagination with cursor
-    const products = await db.product.findMany({
+    const cursorFindManyArgs: Parameters<typeof db.product.findMany>[0] = {
       where,
       select: {
         id: true,
@@ -175,8 +232,15 @@ export async function GET(req: NextRequest) {
         { id: 'desc' },
       ],
       take: limit + 1, // fetch one extra to know if there's next page
-      ...(cursor ? { cursor: { id: cursor }, skip: 1 } : {}),
-    });
+    };
+
+    if (cursor) {
+      cursorFindManyArgs.cursor = { id: cursor };
+      cursorFindManyArgs.skip = 1;
+    }
+
+    logQuery('Product', 'findMany', cursorFindManyArgs);
+    const products = await db.product.findMany(cursorFindManyArgs);
 
     let nextCursor: string | null = null;
     let items = products;

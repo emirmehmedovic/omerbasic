@@ -41,59 +41,63 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="relative bg-app border-t border-white/10 mt-20">
-      {/* Decorative elements */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-amber/5 rounded-full blur-3xl -z-10"></div>
-      <div className="absolute bottom-0 right-0 w-72 h-72 bg-orange/5 rounded-full blur-3xl -z-10"></div>
-      
-      <div className="container mx-auto px-4 py-16">
-        
-        {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-12">
+    <footer className="relative bg-transparent mt-20">
+      <div className="container mx-auto px-4 py-12">
+        <div className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-8 md:p-10">
+          {/* Dense grid background overlay */}
+          <div
+            className="pointer-events-none absolute inset-0 z-0 opacity-65"
+            style={{
+              backgroundImage:
+                "linear-gradient(to right, rgba(100,116,139,0.12) 1px, transparent 1px), linear-gradient(to bottom, rgba(100,116,139,0.12) 1px, transparent 1px)",
+              backgroundSize: "4px 4px",
+              maskImage: "radial-gradient(ellipse at center, black 90%, transparent 100%)",
+              WebkitMaskImage: "radial-gradient(ellipse at center, black 90%, transparent 100%)",
+            }}
+          />
+
+          {/* Main Footer Content */}
+          <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-12">
           
           {/* Company Info */}
           <div className="space-y-6">
             <div className="flex items-center space-x-3">
-              <div className="relative w-12 h-12 rounded-xl bg-gradient-to-br from-amber via-orange to-brown p-3">
-                <Car className="w-full h-full text-white" />
-              </div>
-              <div>
-                <h3 className="text-xl font-bold text-white">TP Omerbašić</h3>
-                <p className="text-slate-400 text-sm">Autodijelovi – Putnička i Teretna vozila, ADR, Autopraonice</p>
-              </div>
+              <Link href="/" className="flex items-center space-x-2">
+                <Image src="/images/omerbasic.png" alt="Omerbasic Auto Dijelovi Logo" width={180} height={40} />
+              </Link>
             </div>
             
-            <p className="text-slate-300 text-sm leading-relaxed">
+            <p className="text-slate-700 text-sm leading-relaxed">
               Vaš pouzdani partner za kvalitetne autodijelove. Pružamo stručnu podršku i brzu dostavu za sve vaše potrebe.
             </p>
             
             <div className="flex space-x-4">
-              <a href="#" className="group relative w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center transition-all duration-300 hover:bg-gradient-to-br hover:from-amber hover:via-orange hover:to-brown hover:border-white/40">
-                <Facebook className="w-5 h-5 text-slate-300 group-hover:text-white transition-colors" />
+              <a href="#" className="group relative w-10 h-10 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center transition-all duration-300 hover:bg-sunfire-50 hover:border-sunfire-200">
+                <Facebook className="w-5 h-5 text-slate-600 group-hover:text-sunfire-700 transition-colors" />
               </a>
-              <a href="#" className="group relative w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center transition-all duration-300 hover:bg-gradient-to-br hover:from-amber hover:via-orange hover:to-brown hover:border-white/40">
-                <Instagram className="w-5 h-5 text-slate-300 group-hover:text-white transition-colors" />
+              <a href="#" className="group relative w-10 h-10 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center transition-all duration-300 hover:bg-sunfire-50 hover:border-sunfire-200">
+                <Instagram className="w-5 h-5 text-slate-600 group-hover:text-sunfire-700 transition-colors" />
               </a>
-              <a href="#" className="group relative w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center transition-all duration-300 hover:bg-gradient-to-br hover:from-amber hover:via-orange hover:to-brown hover:border-white/40">
-                <Linkedin className="w-5 h-5 text-slate-300 group-hover:text-white transition-colors" />
+              <a href="#" className="group relative w-10 h-10 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center transition-all duration-300 hover:bg-sunfire-50 hover:border-sunfire-200">
+                <Linkedin className="w-5 h-5 text-slate-600 group-hover:text-sunfire-700 transition-colors" />
               </a>
             </div>
           </div>
 
           {/* Quick Links */}
           <div className="space-y-6">
-            <h4 className="text-lg font-semibold text-white relative">
+            <h4 className="text-lg font-semibold text-slate-900 relative">
               Brze veze
-              <div className="absolute -bottom-2 left-0 w-8 h-1 bg-gradient-to-r from-amber to-orange rounded-full"></div>
+              <div className="absolute -bottom-2 left-0 w-8 h-1 bg-sunfire-500/70 rounded-full"></div>
             </h4>
             <ul className="space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.name}>
                   <Link 
                     href={link.href}
-                    className="group flex items-center text-slate-400 hover:text-white transition-colors duration-300"
+                    className="group flex items-center text-slate-600 hover:text-slate-900 transition-colors duration-300"
                   >
-                    <ArrowRight className="w-4 h-4 mr-2 opacity-0 group-hover:opacity-100 transform translate-x-0 group-hover:translate-x-1 transition-all duration-300" />
+                    <ArrowRight className="w-4 h-4 mr-2 text-sunfire-600 opacity-0 group-hover:opacity-100 transform translate-x-0 group-hover:translate-x-1 transition-all duration-300" />
                     {link.name}
                   </Link>
                 </li>
@@ -103,18 +107,18 @@ const Footer = () => {
 
           {/* Categories */}
           <div className="space-y-6">
-            <h4 className="text-lg font-semibold text-white relative">
+            <h4 className="text-lg font-semibold text-slate-900 relative">
               Kategorije
-              <div className="absolute -bottom-2 left-0 w-8 h-1 bg-gradient-to-r from-amber to-orange rounded-full"></div>
+              <div className="absolute -bottom-2 left-0 w-8 h-1 bg-sunfire-500/70 rounded-full"></div>
             </h4>
             <ul className="space-y-3">
               {mainCategories.map((category) => (
                 <li key={category.name}>
                   <Link 
                     href={category.href}
-                    className="group flex items-center text-slate-400 hover:text-white transition-colors duration-300"
+                    className="group flex items-center text-slate-600 hover:text-slate-900 transition-colors duration-300"
                   >
-                    <ArrowRight className="w-4 h-4 mr-2 opacity-0 group-hover:opacity-100 transform translate-x-0 group-hover:translate-x-1 transition-all duration-300" />
+                    <ArrowRight className="w-4 h-4 mr-2 text-sunfire-600 opacity-0 group-hover:opacity-100 transform translate-x-0 group-hover:translate-x-1 transition-all duration-300" />
                     {category.name}
                   </Link>
                 </li>
@@ -124,94 +128,63 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div className="space-y-6">
-            <h4 className="text-lg font-semibold text-white relative">
+            <h4 className="text-lg font-semibold text-slate-900 relative">
               Kontakt
-              <div className="absolute -bottom-2 left-0 w-8 h-1 bg-gradient-to-r from-amber to-orange rounded-full"></div>
+              <div className="absolute -bottom-2 left-0 w-8 h-1 bg-sunfire-500/70 rounded-full"></div>
             </h4>
             
             <div className="space-y-4">
               <div className="flex items-start space-x-3">
-                <div className="mt-1 p-2 rounded-lg bg-white/10 backdrop-blur-md border border-white/20">
-                  <MapPin className="w-4 h-4 text-amber" />
+                <div className="mt-1 p-2 rounded-lg bg-sunfire-100 border border-sunfire-200">
+                  <MapPin className="w-4 h-4 text-sunfire-700" />
                 </div>
                 <div>
-                  <p className="text-slate-300 text-sm">Rosulje bb, Jelah</p>
+                  <p className="text-slate-700 text-sm">Rosulje bb, Jelah</p>
                 </div>
               </div>
               
               <div className="flex items-start space-x-3">
-                <div className="mt-1 p-2 rounded-lg bg-white/10 backdrop-blur-md border border-white/20">
-                  <Phone className="w-4 h-4 text-amber" />
+                <div className="mt-1 p-2 rounded-lg bg-sunfire-100 border border-sunfire-200">
+                  <Phone className="w-4 h-4 text-sunfire-700" />
                 </div>
                 <div>
-                  <p className="text-slate-300 text-sm">
-                    <a href="tel:+38732666658" className="hover:text-white transition-colors">032/666-658</a>
+                  <p className="text-slate-700 text-sm">
+                    <a href="tel:+38732666658" className="hover:text-sunfire-700 transition-colors">032/666-658</a>
                     {' '}•{' '}
-                    <a href="tel:+38761962359" className="hover:text-white transition-colors">061-962-359</a>
+                    <a href="tel:+38761962359" className="hover:text-sunfire-700 transition-colors">061-962-359</a>
                   </p>
                 </div>
               </div>
               
               <div className="flex items-start space-x-3">
-                <div className="mt-1 p-2 rounded-lg bg-white/10 backdrop-blur-md border border-white/20">
-                  <Mail className="w-4 h-4 text-amber" />
+                <div className="mt-1 p-2 rounded-lg bg-sunfire-100 border border-sunfire-200">
+                  <Mail className="w-4 h-4 text-sunfire-700" />
                 </div>
                 <div>
-                  <p className="text-slate-300 text-sm">
-                    <a href="mailto:veleprodajatpo@gmail.com" className="hover:text-white transition-colors">veleprodajatpo@gmail.com</a>
+                  <p className="text-slate-700 text-sm">
+                    <a href="mailto:veleprodajatpo@gmail.com" className="hover:text-sunfire-700 transition-colors">veleprodajatpo@gmail.com</a>
                   </p>
                 </div>
               </div>
               
               <div className="flex items-start space-x-3">
-                <div className="mt-1 p-2 rounded-lg bg-white/10 backdrop-blur-md border border-white/20">
-                  <Clock className="w-4 h-4 text-amber" />
+                <div className="mt-1 p-2 rounded-lg bg-sunfire-100 border border-sunfire-200">
+                  <Clock className="w-4 h-4 text-sunfire-700" />
                 </div>
                 <div>
-                  <p className="text-slate-300 text-sm">Radno vrijeme: 08:00 – 18:00</p>
+                  <p className="text-slate-700 text-sm">Radno vrijeme: 08:00 – 18:00</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Trust Badges */}
-        <div className="border-t border-white/10 py-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="flex items-center gap-3 p-4 rounded-xl bg-white/5 backdrop-blur-md border border-white/10">
-              <div className="p-2 rounded-full bg-gradient-to-br from-amber to-orange">
-                <Truck className="h-5 w-5 text-white" />
-              </div>
-              <span className="font-medium text-slate-300">Brza dostava</span>
-            </div>
-            
-            <div className="flex items-center gap-3 p-4 rounded-xl bg-white/5 backdrop-blur-md border border-white/10">
-              <div className="p-2 rounded-full bg-gradient-to-br from-amber to-orange">
-                <Shield className="h-5 w-5 text-white" />
-              </div>
-              <span className="font-medium text-slate-300">Sigurna kupovina</span>
-            </div>
-            
-            <div className="flex items-center gap-3 p-4 rounded-xl bg-white/5 backdrop-blur-md border border-white/10">
-              <div className="p-2 rounded-full bg-gradient-to-br from-amber to-orange">
-                <Wrench className="h-5 w-5 text-white" />
-              </div>
-              <span className="font-medium text-slate-300">Stručna podrška</span>
-            </div>
-            
-            <div className="flex items-center gap-3 p-4 rounded-xl bg-white/5 backdrop-blur-md border border-white/10">
-              <div className="p-2 rounded-full bg-gradient-to-br from-amber to-orange">
-                <Car className="h-5 w-5 text-white" />
-              </div>
-              <span className="font-medium text-slate-300">Originalni dijelovi</span>
-            </div>
-          </div>
-        </div>
+        
 
         {/* Bottom Bar */}
-        <div className="border-t border-white/10 pt-8">
+        <div className="relative z-10 border-t border-slate-200 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className="text-slate-400 text-sm">
+            <div className="text-slate-600 text-sm">
               © 2025 TP Omerbašić. Sva prava zadržana.
             </div>
             
@@ -220,13 +193,14 @@ const Footer = () => {
                 <Link 
                   key={link.name}
                   href={link.href}
-                  className="text-slate-400 hover:text-white transition-colors duration-300"
+                  className="text-slate-600 hover:text-slate-900 transition-colors duration-300"
                 >
                   {link.name}
                 </Link>
               ))}
             </div>
           </div>
+        </div>
         </div>
       </div>
     </footer>

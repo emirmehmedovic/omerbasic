@@ -100,10 +100,10 @@ const ReplacementProductPreview: React.FC<{ id: string }> = ({ id }) => {
 
   if (loading) {
     return (
-      <div className="rounded-xl border border-slate-700 bg-slate-900/40 p-4">
-        <div className="h-40 w-full rounded-lg bg-slate-800 animate-pulse mb-3" />
-        <div className="h-4 w-2/3 rounded bg-slate-800 animate-pulse mb-2" />
-        <div className="h-4 w-1/3 rounded bg-slate-800 animate-pulse" />
+      <div className="rounded-xl border border-slate-200 bg-white p-4">
+        <div className="h-40 w-full rounded-lg bg-slate-100 animate-pulse mb-3" />
+        <div className="h-4 w-2/3 rounded bg-slate-100 animate-pulse mb-2" />
+        <div className="h-4 w-1/3 rounded bg-slate-100 animate-pulse" />
       </div>
     );
   }
@@ -222,10 +222,21 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
   return (
     <div className="space-y-6">
       {/* Clean hero section */}
-      <div className="glass-card rounded-xl p-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+      <div className="relative overflow-hidden rounded-2xl p-8 bg-white border border-slate-200 shadow-sm">
+        {/* Light grid overlay */}
+        <div
+          className="pointer-events-none absolute inset-0 z-0 opacity-65"
+          style={{
+            backgroundImage:
+              'linear-gradient(to right, rgba(100,116,139,0.14) 1px, transparent 1px), linear-gradient(to bottom, rgba(100,116,139,0.14) 1px, transparent 1px)',
+            backgroundSize: '2px 2px',
+            maskImage: 'radial-gradient(ellipse at center, black 92%, transparent 100%)',
+            WebkitMaskImage: 'radial-gradient(ellipse at center, black 92%, transparent 100%)',
+          }}
+        />
+        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
           {/* Product Image */}
-          <div className="relative h-80 lg:h-96 w-full overflow-hidden rounded-lg">
+          <div className="relative h-80 lg:h-96 w-full overflow-hidden rounded-xl border border-slate-200 shadow-sm">
             <Image
               src={product.imageUrl || 'https://placehold.co/600x400.png?text=Slika+nije+dostupna'}
               alt={product.name}
@@ -237,24 +248,46 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
           {/* Product Info */}
           <div>
             {/* Category Badge */}
-            <div className="inline-flex items-center px-3 py-1 bg-sunfire-a5 text-sunfire-a11 rounded-lg mb-4 text-sm font-medium">
+            <div className="inline-flex items-center px-3 py-1 bg-sunfire-100 text-sunfire-700 rounded-lg mb-4 text-sm font-medium">
               {product.category?.name || 'Nekategorizirano'}
             </div>
             
             {/* Product Title */}
-            <h1 className="text-3xl lg:text-4xl font-bold text-slate-200 mb-6 leading-tight">
+            <h1 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-6 leading-tight">
               {product.name}
             </h1>
+
+            {/* Meta chips: OEM, Kataloški, Lager */}
+            <div className="flex flex-wrap items-center gap-2 mb-6">
+              {product.oemNumber && (
+                <span className="inline-flex items-center gap-1 text-xs font-medium text-slate-700 bg-slate-50 border border-slate-200 rounded-md px-2 py-1">
+                  <span className="text-slate-500">OEM</span>
+                  <span className="font-mono tracking-tight text-slate-900">{product.oemNumber}</span>
+                </span>
+              )}
+              {product.catalogNumber && (
+                <span className="inline-flex items-center gap-1 text-xs font-medium text-slate-700 bg-slate-50 border border-slate-200 rounded-md px-2 py-1">
+                  <span className="text-slate-500">Kataloški</span>
+                  <span className="font-mono tracking-tight text-slate-900">{product.catalogNumber}</span>
+                </span>
+              )}
+              {typeof product.stock === 'number' && (
+                <span className="inline-flex items-center gap-1 text-xs font-medium text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-md px-2 py-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                  Na stanju: {product.stock}
+                </span>
+              )}
+            </div>
             
             {/* Price Section */}
             <div className="mb-6">
               {product.originalPrice ? (
                 <div className="space-y-2">
                   <div className="flex items-center space-x-3">
-                    <p className="text-3xl font-bold accent-text">
+                    <p className="text-3xl font-bold text-sunfire-600">
                       {formatPrice(product.price)}
                     </p>
-                    <span className="text-white text-sm font-medium px-2 py-1 rounded accent-bg">
+                    <span className="text-white text-sm font-medium px-2 py-1 rounded bg-sunfire-600">
                       {product.pricingSource === 'FEATURED' ? 'Akcija' : 'B2B cijena'}
                     </span>
                   </div>
@@ -266,21 +299,21 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
                   </p>
                 </div>
               ) : (
-                <p className="text-3xl font-bold accent-text">
+                <p className="text-3xl font-bold text-sunfire-600">
                   {formatPrice(product.price)}
                 </p>
               )}
             </div>
             
             {/* Description */}
-            <p className="text-slate-600 text-lg leading-relaxed mb-8">
+            <p className="text-slate-700 text-lg leading-relaxed mb-8">
               {product.description}
             </p>
             
             {/* Clean Add to Cart Button */}
             <button
               onClick={handleAddToCart}
-              className="w-full accent-bg text-white font-bold py-4 px-8 rounded-lg shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center space-x-3"
+              className="w-full bg-sunfire-600 text-white font-bold py-4 px-8 rounded-lg shadow-sm hover:shadow-md transition-all duration-200 flex items-center justify-center space-x-3"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-1.5 6M7 13l1.5-6M17 21a2 2 0 100-4 2 2 0 000 4zM9 21a2 2 0 100-4 2 2 0 000 4z" />
@@ -295,24 +328,24 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
       <div>
         <Tabs defaultValue="compatibility" className="w-full">
           {/* Clean tab navigation */}
-          <TabsList className="grid w-full grid-cols-3 glass-card rounded-xl p-1">
+          <TabsList className="grid w-full grid-cols-3 rounded-xl p-1 bg-white border border-slate-200">
             <TabsTrigger 
               value="compatibility"
-              className="flex items-center space-x-2 py-3 px-4 rounded-lg font-medium text-slate-300 data-[state=active]:accent-bg data-[state=active]:text-white transition-all duration-200"
+              className="flex items-center space-x-2 py-3 px-4 rounded-lg font-medium text-slate-700 data-[state=active]:bg-sunfire-600 data-[state=active]:text-white transition-all duration-200"
             >
               <Car className="h-4 w-4" />
               <span>Kompatibilnost</span>
             </TabsTrigger>
             <TabsTrigger 
               value="specifications"
-              className="flex items-center space-x-2 py-3 px-4 rounded-lg font-medium text-slate-300 data-[state=active]:accent-bg data-[state=active]:text-white transition-all duration-200"
+              className="flex items-center space-x-2 py-3 px-4 rounded-lg font-medium text-slate-700 data-[state=active]:bg-sunfire-600 data-[state=active]:text-white transition-all duration-200"
             >
               <Settings className="h-4 w-4" />
               <span>Specifikacije</span>
             </TabsTrigger>
             <TabsTrigger 
               value="references"
-              className="flex items-center space-x-2 py-3 px-4 rounded-lg font-medium text-slate-300 data-[state=active]:accent-bg data-[state=active]:text-white transition-all duration-200"
+              className="flex items-center space-x-2 py-3 px-4 rounded-lg font-medium text-slate-700 data-[state=active]:bg-sunfire-600 data-[state=active]:text-white transition-all duration-200"
             >
               <Tag className="h-4 w-4" />
               <span>Reference i zamjenski proizvodi</span>
@@ -320,17 +353,17 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
           </TabsList>
           
           {/* Clean compatibility tab */}
-          <TabsContent value="compatibility" className="glass-card rounded-xl p-6 mt-4">
+          <TabsContent value="compatibility" className="rounded-2xl p-6 mt-4 bg-white border border-slate-200 shadow-sm">
             {product.vehicleFitments && product.vehicleFitments.length > 0 ? (
               <div>
                 <div className="flex items-center justify-between mb-6">
                   <div className="flex items-center space-x-3">
-                    <div className="accent-bg p-3 rounded-xl shadow-lg">
-                      <Car className="h-6 w-6 text-white" />
+                    <div className="bg-sunfire-100 p-3 rounded-xl shadow-sm">
+                      <Car className="h-6 w-6 text-sunfire-700" />
                     </div>
-                    <h3 className="text-2xl font-bold text-slate-200">Kompatibilna vozila</h3>
+                    <h3 className="text-2xl font-bold text-slate-900">Kompatibilna vozila</h3>
                   </div>
-                  <div className="text-white px-4 py-2 rounded-xl font-bold shadow-lg accent-bg">
+                  <div className="text-slate-900 px-4 py-2 rounded-xl font-bold shadow-sm bg-slate-100">
                     {product.vehicleFitments.length} {product.vehicleFitments.length === 1 ? 'vozilo' : 'vozila'}
                   </div>
                 </div>
@@ -349,36 +382,36 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
                   });
                   
                   return Object.entries(groupedFitments).map(([brandModelName, fitments]) => (
-                    <div key={brandModelName} className="mb-6 border rounded-2xl overflow-hidden">
-                      <div className="bg-gradient-to-r from-slate-800 to-slate-900 px-6 py-4">
-                        <h4 className="font-bold text-white text-lg">{brandModelName}</h4>
+                    <div key={brandModelName} className="mb-6 border border-slate-200 rounded-2xl overflow-hidden bg-white">
+                      <div className="px-6 py-4 bg-slate-50 border-b border-slate-200">
+                        <h4 className="font-bold text-slate-900 text-lg">{brandModelName}</h4>
                       </div>
                       
                       <div className="p-4 space-y-4">
                         {fitments.map((fitment) => (
-                          <div key={fitment.id} className="bg-slate-800/50 rounded-lg p-4 transition-all duration-200 hover:bg-slate-800/80 hover:shadow-lg">
+                          <div key={fitment.id} className="bg-white rounded-lg p-4 border border-slate-200 transition-all duration-200 hover:shadow-sm">
                             <div className="flex justify-between items-start">
                               <div>
-                                <p className="font-bold text-white">{fitment.generation.name}</p>
-                                <p className="text-sm text-slate-400">{formatCompatibilityPeriod(fitment)}</p>
+                                <p className="font-bold text-slate-900">{fitment.generation.name}</p>
+                                <p className="text-sm text-slate-600">{formatCompatibilityPeriod(fitment)}</p>
                               </div>
-                              {fitment.isUniversal && <Badge variant="secondary">Univerzalni dio</Badge>}
+                              {fitment.isUniversal && <Badge variant="secondary" className="bg-slate-100 text-slate-700 border border-slate-200">Univerzalni dio</Badge>}
                             </div>
                             <div className="mt-3 grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3 text-sm">
                               <div>
-                                <p className="font-semibold text-slate-300">Motor</p>
+                                <p className="font-semibold text-slate-700">Motor</p>
                                 {fitment.engine ? (
-                                  <p className="text-slate-400">{formatEngineDescription(fitment.engine)}</p>
+                                  <p className="text-slate-600">{formatEngineDescription(fitment.engine)}</p>
                                 ) : (
                                   <p className="text-slate-500 italic">Svi motori</p>
                                 )}
                               </div>
                               <div>
-                                <p className="font-semibold text-slate-300">Karoserija</p>
+                                <p className="font-semibold text-slate-700">Karoserija</p>
                                 {fitment.bodyStyles && fitment.bodyStyles.length > 0 ? (
                                   <div className="flex flex-wrap gap-1 mt-1">
                                     {fitment.bodyStyles.map((style, index) => (
-                                      <Badge key={index} variant="outline" className="text-xs">{style}</Badge>
+                                      <Badge key={index} variant="outline" className="text-xs border-slate-200 text-slate-700">{style}</Badge>
                                     ))}
                                   </div>
                                 ) : (
@@ -387,7 +420,7 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
                               </div>
                               <div>
                                 <div className="flex items-center gap-2">
-                                  <p className="font-semibold text-slate-300">Pozicija ugradnje</p>
+                                  <p className="font-semibold text-slate-700">Pozicija ugradnje</p>
                                   <span title="Mjesto ugradnje dijela (npr. Prednja/Zadnja, Lijeva/Desna, Unutarnja/Vanjska).">
                                     <Info className="h-4 w-4 text-slate-500" />
                                   </span>
@@ -395,7 +428,7 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
                                 {splitPosition(fitment.position).length > 0 ? (
                                   <div className="flex flex-wrap gap-1 mt-1">
                                     {splitPosition(fitment.position).map((p, idx) => (
-                                      <Badge key={idx} variant="outline" className="text-xs">
+                                      <Badge key={idx} variant="outline" className="text-xs border-slate-200 text-slate-700">
                                         {normalizePositionToken(p)}
                                       </Badge>
                                     ))}
@@ -406,8 +439,8 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
                               </div>
                               {fitment.fitmentNotes && (
                                 <div>
-                                  <p className="font-semibold text-slate-300">Napomene</p>
-                                  <p className="text-slate-400">{fitment.fitmentNotes}</p>
+                                  <p className="font-semibold text-slate-700">Napomene</p>
+                                  <p className="text-slate-600">{fitment.fitmentNotes}</p>
                                 </div>
                               )}
                             </div>
@@ -421,25 +454,25 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
                 <div className="mt-6 flex items-center justify-between">
                   <Link 
                     href="/products/vehicle-compatibility" 
-                    className="inline-flex items-center text-sm font-medium text-indigo-600 hover:text-indigo-500"
+                    className="inline-flex items-center text-sm font-medium text-sunfire-700 hover:text-sunfire-800"
                   >
                     <Car className="h-4 w-4 mr-1" />
                     Pretraži proizvode po vozilu
                   </Link>
                   
-                  <div className="text-xs text-gray-500">
+                  <div className="text-xs text-slate-500">
                     <Info className="h-3 w-3 inline-block mr-1" />
                     Provjerite kompatibilnost prije kupovine
                   </div>
                 </div>
               </div>
             ) : (
-              <div className="text-center py-8 text-gray-500">
-                <Car className="h-12 w-12 mx-auto text-gray-400" />
+              <div className="text-center py-8 text-slate-500">
+                <Car className="h-12 w-12 mx-auto text-slate-400" />
                 <p className="mt-2">Nema dostupnih informacija o kompatibilnosti s vozilima</p>
                 <Link 
                   href="/products/vehicle-compatibility" 
-                  className="inline-flex items-center mt-4 text-sm font-medium text-indigo-600 hover:text-indigo-500"
+                  className="inline-flex items-center mt-4 text-sm font-medium text-sunfire-700 hover:text-sunfire-800"
                 >
                   Pretraži proizvode po vozilu
                 </Link>
@@ -451,23 +484,23 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
             <div className="space-y-6">
               {/* Atributi kategorije */}
               {product.attributeValues && product.attributeValues.length > 0 && (
-                <div className="glass-card rounded-xl p-6">
+                <div className="rounded-2xl p-6 bg-white border border-slate-200 shadow-sm">
                   <div className="flex items-center space-x-3 mb-4">
-                    <div className="accent-bg p-3 rounded-xl shadow-lg">
-                      <Settings className="h-6 w-6 text-white" />
+                    <div className="bg-sunfire-100 p-3 rounded-xl shadow-sm">
+                      <Settings className="h-6 w-6 text-sunfire-700" />
                     </div>
-                    <h3 className="text-xl font-bold text-slate-200">Glavne karakteristike</h3>
+                    <h3 className="text-xl font-bold text-slate-900">Glavne karakteristike</h3>
                   </div>
                   <dl className="space-y-4">
                     {product.attributeValues.map((attributeValue) => (
-                      <div key={attributeValue.id} className="flex justify-between items-center bg-slate-800/50 px-4 py-3 rounded-lg">
-                        <dt className="text-sm font-semibold text-slate-300">
+                      <div key={attributeValue.id} className="flex justify-between items-center bg-slate-50 px-4 py-3 rounded-lg border border-slate-200">
+                        <dt className="text-sm font-semibold text-slate-700">
                           {attributeValue.attribute.label}
                         </dt>
-                        <dd className="text-sm text-white font-bold flex items-center">
+                        <dd className="text-sm text-slate-900 font-bold flex items-center">
                           {attributeValue.value}
                           {attributeValue.attribute.unit && (
-                            <span className="ml-2 text-xs text-sunfire-a40 bg-sunfire-a10/30 px-2 py-1 rounded-full font-mono">{attributeValue.attribute.unit}</span>
+                            <span className="ml-2 text-xs text-sunfire-700 bg-sunfire-100 px-2 py-1 rounded-full font-mono">{attributeValue.attribute.unit}</span>
                           )}
                         </dd>
                       </div>
@@ -480,15 +513,15 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 {/* Tehničke specifikacije */}
                 {product.technicalSpecs && Object.keys(product.technicalSpecs as Record<string, any>).length > 0 && (
-                  <div className="glass-card rounded-xl p-6">
-                    <h3 className="text-lg font-semibold mb-4 text-slate-200">Tehnički podaci</h3>
+                  <div className="rounded-2xl p-6 bg-white border border-slate-200 shadow-sm">
+                    <h3 className="text-lg font-semibold mb-4 text-slate-900">Tehnički podaci</h3>
                     <dl className="space-y-3">
                       {Object.entries(product.technicalSpecs as Record<string, any>)
                         .filter(([, value]) => value !== null && value !== undefined && value !== '')
                         .map(([key, value]) => (
-                          <div key={key} className="flex justify-between text-sm border-b border-slate-700/50 pb-2">
-                            <dt className="text-slate-400">{localizeTechKey(key)}</dt>
-                            <dd className="text-slate-200 font-medium">{localizeTechValue(key, value)}</dd>
+                          <div key={key} className="flex justify-between text-sm border-b border-slate-200 pb-2">
+                            <dt className="text-slate-600">{localizeTechKey(key)}</dt>
+                            <dd className="text-slate-900 font-medium">{localizeTechValue(key, value)}</dd>
                           </div>
                         ))}
                     </dl>
@@ -497,8 +530,8 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
 
                 {/* Dimenzije */}
                 {product.dimensions && Object.keys(product.dimensions as Record<string, any>).length > 0 && (
-                  <div className="glass-card rounded-xl p-6">
-                    <h3 className="text-lg font-semibold mb-4 text-slate-200">Dimenzije</h3>
+                  <div className="rounded-2xl p-6 bg-white border border-slate-200 shadow-sm">
+                    <h3 className="text-lg font-semibold mb-4 text-slate-900">Dimenzije</h3>
                     <dl className="space-y-3">
                       {Object.entries(product.dimensions as Record<string, any>)
                         .filter(([, value]) => value !== null && value !== undefined && value !== '')
@@ -506,9 +539,9 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
                           const formattedKey = key.charAt(0).toUpperCase() + key.slice(1).replace(/([A-Z])/g, ' $1');
                           const unit = key.includes('weight') ? 'kg' : 'mm';
                           return (
-                            <div key={key} className="flex justify-between text-sm border-b border-slate-700/50 pb-2">
-                              <dt className="text-slate-400">{formattedKey}</dt>
-                              <dd className="text-slate-200 font-medium">
+                            <div key={key} className="flex justify-between text-sm border-b border-slate-200 pb-2">
+                              <dt className="text-slate-600">{formattedKey}</dt>
+                              <dd className="text-slate-900 font-medium">
                                 {value} {unit}
                               </dd>
                             </div>
@@ -523,8 +556,8 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
               {(!product.attributeValues || product.attributeValues.length === 0) &&
                (!product.technicalSpecs || Object.keys(product.technicalSpecs as Record<string, any>).length === 0) &&
                (!product.dimensions || Object.keys(product.dimensions as Record<string, any>).length === 0) && (
-                <div className="glass-card rounded-xl p-6 mt-4 text-center py-12 text-slate-500">
-                  <Settings className="h-12 w-12 mx-auto text-slate-600" />
+                <div className="rounded-2xl p-6 mt-4 text-center py-12 text-slate-500 bg-white border border-slate-200 shadow-sm">
+                  <Settings className="h-12 w-12 mx-auto text-slate-500" />
                   <p className="mt-4">Nema dostupnih tehničkih specifikacija</p>
                 </div>
               )}
@@ -533,12 +566,12 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
           
           <TabsContent value="references" className="mt-4">
             <div className="space-y-6">
-              <div className="glass-card rounded-xl p-6">
+              <div className="rounded-2xl p-6 bg-white border border-slate-200 shadow-sm">
                 <div className="flex items-center space-x-3 mb-4">
-                  <div className="accent-bg p-3 rounded-xl shadow-lg">
-                    <BookCopy className="h-6 w-6 text-white" />
+                  <div className="bg-sunfire-100 p-3 rounded-xl shadow-sm">
+                    <BookCopy className="h-6 w-6 text-sunfire-700" />
                   </div>
-                  <h3 className="text-xl font-bold text-slate-200">Reference i zamjenski proizvodi</h3>
+                  <h3 className="text-xl font-bold text-slate-900">Reference i zamjenski proizvodi</h3>
                 </div>
                 {(product.originalReferences && product.originalReferences.length > 0) ? (
                   (() => {
@@ -559,14 +592,14 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
                     return (
                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                         {Object.entries(groupedReferences).map(([manufacturer, refs]) => (
-                          <div key={manufacturer} className="bg-slate-800/50 rounded-lg p-4">
-                            <h4 className="font-bold text-sunfire-a40 mb-3 border-b border-slate-700 pb-2">{manufacturer}</h4>
+                          <div key={manufacturer} className="bg-white rounded-lg p-4 border border-slate-200">
+                            <h4 className="font-bold text-slate-900 mb-3 border-b border-slate-200 pb-2">{manufacturer}</h4>
                             <ul className="space-y-2">
                               {refs.map(ref => (
-                                <li key={ref.id} className="text-sm text-slate-300 bg-slate-900/50 px-3 py-2 rounded-md">
+                                <li key={ref.id} className="text-sm text-slate-700 bg-slate-50 px-3 py-2 rounded-md border border-slate-200">
                                   <div className="flex items-center justify-between">
-                                    <span className="font-mono">{ref.referenceNumber}</span>
-                                    <Copy className="h-4 w-4 text-slate-500 hover:text-white cursor-pointer transition" onClick={() => copyToClipboard(ref.referenceNumber)} />
+                                    <span className="font-mono text-slate-900">{ref.referenceNumber}</span>
+                                    <Copy className="h-4 w-4 text-slate-500 hover:text-slate-700 cursor-pointer transition" onClick={() => copyToClipboard(ref.referenceNumber)} />
                                   </div>
                                   {ref.replacementId && (
                                     <div className="mt-3">
@@ -583,7 +616,7 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
                   })()
                 ) : (
                   <div className="text-center py-12 text-slate-500">
-                    <BookCopy className="h-12 w-12 mx-auto text-slate-600" />
+                    <BookCopy className="h-12 w-12 mx-auto text-slate-500" />
                     <p className="mt-4">Nema dostupnih referentnih brojeva</p>
                   </div>
                 )}
@@ -591,12 +624,12 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
 
               {/* Ako je ovaj proizvod zamjena za OEM broj(eve), prikaži i te veze */}
               {product.replacementFor && product.replacementFor.length > 0 && (
-                <div className="glass-card rounded-xl p-6">
+                <div className="rounded-2xl p-6 bg-white border border-slate-200 shadow-sm">
                   <div className="flex items-center space-x-3 mb-4">
-                    <div className="accent-bg p-3 rounded-xl shadow-lg">
-                      <Tag className="h-6 w-6 text-white" />
+                    <div className="bg-sunfire-100 p-3 rounded-xl shadow-sm">
+                      <Tag className="h-6 w-6 text-sunfire-700" />
                     </div>
-                    <h3 className="text-xl font-bold text-slate-200">Ovaj proizvod je zamjena za OEM</h3>
+                    <h3 className="text-xl font-bold text-slate-900">Ovaj proizvod je zamjena za OEM</h3>
                   </div>
                   {(() => {
                     const grouped = (product.replacementFor || []).reduce((acc, reference) => {
@@ -609,14 +642,14 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
                     return (
                       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                         {Object.entries(grouped).map(([manufacturer, refs]) => (
-                          <div key={manufacturer} className="bg-slate-800/50 rounded-lg p-4">
-                            <h4 className="font-bold text-sunfire-a40 mb-3 border-b border-slate-700 pb-2">{manufacturer}</h4>
+                          <div key={manufacturer} className="bg-white rounded-lg p-4 border border-slate-200">
+                            <h4 className="font-bold text-slate-900 mb-3 border-b border-slate-200 pb-2">{manufacturer}</h4>
                             <ul className="space-y-2">
                               {refs.map(ref => (
-                                <li key={ref.id} className="text-sm text-slate-300 bg-slate-900/50 px-3 py-2 rounded-md">
+                                <li key={ref.id} className="text-sm text-slate-700 bg-slate-50 px-3 py-2 rounded-md border border-slate-200">
                                   <div className="flex items-center justify-between">
-                                    <span className="font-mono">{ref.referenceNumber}</span>
-                                    <Copy className="h-4 w-4 text-slate-500 hover:text-white cursor-pointer transition" onClick={() => { navigator.clipboard.writeText(ref.referenceNumber); toast.success(`Kopirano: ${ref.referenceNumber}`); }} />
+                                    <span className="font-mono text-slate-900">{ref.referenceNumber}</span>
+                                    <Copy className="h-4 w-4 text-slate-500 hover:text-slate-700 cursor-pointer transition" onClick={() => { navigator.clipboard.writeText(ref.referenceNumber); toast.success(`Kopirano: ${ref.referenceNumber}`); }} />
                                   </div>
                                   {/* Prikaži karticu OEM proizvoda (productId) na koji je vezan ovaj ref */}
                                   {ref.productId && (

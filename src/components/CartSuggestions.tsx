@@ -49,14 +49,14 @@ export const CartSuggestions = ({ categoryIds, excludeProductIds }: CartSuggesti
 
   if (loading) {
     return (
-      <div className="glass-card rounded-xl p-6 mt-8">
-        <h2 className="text-2xl font-bold text-slate-200 mb-4">Možda će vas zanimati...</h2>
+      <div className="rounded-2xl p-6 mt-8 bg-white border border-slate-200 shadow-sm">
+        <h2 className="text-2xl font-bold text-slate-900 mb-4">Možda će vas zanimati...</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {[...Array(4)].map((_, i) => (
-            <div key={i} className="bg-slate-800/50 rounded-lg p-4 animate-pulse">
-              <div className="w-full h-40 bg-slate-700 rounded-md mb-4"></div>
-              <div className="h-4 bg-slate-700 rounded w-3/4 mb-2"></div>
-              <div className="h-6 bg-slate-700 rounded w-1/2"></div>
+            <div key={i} className="bg-white rounded-lg p-4 border border-slate-200 animate-pulse">
+              <div className="w-full h-40 bg-slate-100 rounded-md mb-4"></div>
+              <div className="h-4 bg-slate-100 rounded w-3/4 mb-2"></div>
+              <div className="h-6 bg-slate-100 rounded w-1/2"></div>
             </div>
           ))}
         </div>
@@ -69,11 +69,11 @@ export const CartSuggestions = ({ categoryIds, excludeProductIds }: CartSuggesti
   }
 
   return (
-    <div className="glass-card rounded-xl p-6 mt-8">
-      <h2 className="text-2xl font-bold text-slate-200 mb-6">Zaboravili ste nešto?</h2>
+    <div className="rounded-2xl p-6 mt-8 bg-white border border-slate-200 shadow-sm">
+      <h2 className="text-2xl font-bold text-slate-900 mb-6">Zaboravili ste nešto?</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {suggestions.map((product) => (
-          <div key={product.id} className="bg-slate-800/50 rounded-lg overflow-hidden flex flex-col group">
+          <div key={product.id} className="bg-white rounded-lg overflow-hidden flex flex-col group border border-slate-200 hover:shadow-sm transition">
             <Link href={`/products/${product.id}`} className="block">
               <div className="relative h-48 w-full">
                 <Image
@@ -85,16 +85,16 @@ export const CartSuggestions = ({ categoryIds, excludeProductIds }: CartSuggesti
               </div>
             </Link>
             <div className="p-4 flex flex-col flex-grow">
-              <h3 className="font-semibold text-slate-200 flex-grow">
-                <Link href={`/products/${product.id}`} className="hover:text-sunfire-a40 transition-colors">
+              <h3 className="font-semibold text-slate-900 flex-grow">
+                <Link href={`/products/${product.id}`} className="hover:text-sunfire-700 transition-colors">
                   {product.name}
                 </Link>
               </h3>
               <div className="mt-4 flex justify-between items-center">
-                <p className="text-lg font-bold text-sunfire-a40">{formatPrice(product.price)}</p>
+                <p className="text-lg font-bold text-sunfire-600">{formatPrice(product.price)}</p>
                 <button
                   onClick={() => handleAddToCart(product)}
-                  className="bg-sunfire-a10/30 text-sunfire-a40 p-2 rounded-full hover:bg-sunfire-a10/50 transition-colors"
+                  className="bg-sunfire-600 text-white p-2 rounded-full hover:bg-sunfire-700 transition-colors"
                   aria-label={`Dodaj ${product.name} u korpu`}
                 >
                   <ShoppingCart size={20} />

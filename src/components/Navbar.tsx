@@ -49,11 +49,22 @@ export function Navbar() {
     <nav className="relative z-50 py-3 transition-all duration-300">
       <div
         className={cn(
-          "container mx-auto transition-all duration-300 backdrop-blur-lg bg-white/70 shadow-sm",
+          "container mx-auto relative overflow-visible transition-all duration-300 backdrop-blur-lg bg-white/70 border border-slate-200 rounded-2xl ring-1 ring-sunfire-400/50 ring-offset-[1px] ring-offset-white shadow-[0_0_8px_rgba(255,138,61,0.10)]",
           menuOpen || searchOpen ? "rounded-t-2xl" : "rounded-2xl"
         )}
       >
-        <div className="flex justify-between items-center py-2 px-4">
+        {/* Dense grid background overlay */}
+        <div
+          className="pointer-events-none absolute inset-0 z-0 opacity-50"
+          style={{
+            backgroundImage:
+              "linear-gradient(to right, rgba(100,116,139,0.14) 1px, transparent 1px), linear-gradient(to bottom, rgba(100,116,139,0.14) 1px, transparent 1px)",
+            backgroundSize: "2px 2px",
+            maskImage: "radial-gradient(ellipse at center, black 92%, transparent 100%)",
+            WebkitMaskImage: "radial-gradient(ellipse at center, black 92%, transparent 100%)",
+          }}
+        />
+        <div className="relative z-10 flex justify-between items-center py-2 px-4">
           {/* Logo i branding */}
           <div className="flex items-center">
             <Link href="/" className="flex items-center space-x-2">

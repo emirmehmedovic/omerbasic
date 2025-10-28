@@ -126,7 +126,7 @@ export default async function OrderDetailsPage({ params }: { params: Promise<{ o
                       <div>
                         <div className="flex justify-between text-base font-medium text-gray-900">
                           <h3 className="text-lg">{item.product.name}</h3>
-                          <p className="ml-4 text-lg font-bold text-amber-600">{formatPrice(item.price * item.quantity)}</p>
+                          <p className="ml-4 text-lg font-bold text-sunfire-600">{formatPrice(item.price * item.quantity)}</p>
                         </div>
                         <p className="mt-1 text-sm text-gray-600">Cijena po komadu: {formatPrice(item.price)}</p>
                       </div>
@@ -175,7 +175,7 @@ export default async function OrderDetailsPage({ params }: { params: Promise<{ o
                 <span 
                   className={`px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full transition-all duration-200 ${
                     order.status === 'PENDING' 
-                      ? 'bg-amber-600 text-white shadow-sm' 
+                      ? 'bg-sunfire-600 text-white shadow-sm' 
                       : order.status === 'PROCESSING'
                       ? 'bg-blue-600 text-white shadow-sm'
                       : order.status === 'SHIPPED'
@@ -204,7 +204,7 @@ export default async function OrderDetailsPage({ params }: { params: Promise<{ o
               </div>
               <div className="flex justify-between font-bold text-lg pt-3 border-t border-amber/20">
                 <span className="text-gray-900">Ukupno:</span>
-                <span className="text-amber-600">{formatPrice(order.total)}</span>
+                <span className="text-sunfire-600">{formatPrice(order.total)}</span>
               </div>
             </div>
           </div>

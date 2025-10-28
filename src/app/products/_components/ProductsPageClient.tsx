@@ -147,6 +147,7 @@ export default function ProductsPageClient({ filterData }: ProductsPageClientPro
                 key="sidebar-filters"
                 initialFilters={currentFilters}
                 displayMode="sidebarOnly"
+                updateUrl={true}
                 onFilterChangeExternal={handleFilterChange}
                 categories={filterData.categories}
                 brands={filterData.brands}

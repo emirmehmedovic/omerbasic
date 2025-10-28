@@ -73,7 +73,7 @@ export function HierarchicalCategorySelector({
           className={cn(
             "w-full justify-start text-left font-normal h-auto p-3",
             level > 0 && "ml-4",
-            value === category.id && "bg-amber/10 text-amber-700"
+            value === category.id && "bg-sunfire/10 text-sunfire-700"
           )}
           onClick={() => {
             onValueChange(category.id);
@@ -89,7 +89,7 @@ export function HierarchicalCategorySelector({
               {category.name}
             </span>
             {value === category.id && (
-              <Check className="h-4 w-4 ml-2 text-amber-600" />
+              <Check className="h-4 w-4 ml-2 text-sunfire-600" />
             )}
           </div>
         </Button>

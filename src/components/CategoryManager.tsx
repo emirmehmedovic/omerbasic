@@ -291,7 +291,7 @@ function CategoryItem({ category, onEdit, onDelete, onAddSubcategory, level }: {
                 e.stopPropagation();
                 setIsOpen(!isOpen);
               }} 
-              className="p-1 rounded-full hover:bg-amber/10 transition-colors text-amber-600"
+              className="p-1 rounded-full hover:bg-sunfire/10 transition-colors text-sunfire-600"
             >
               {isOpen ? <ChevronDown className="h-4 w-4" /> : <ChevronRight className="h-4 w-4" />}
             </button>

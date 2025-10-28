@@ -62,19 +62,20 @@ export const ProductCard = ({ product }: ProductCardProps) => {
   return (
     <Link 
       href={`/products/${product.id}`} 
-      className="group relative flex flex-col overflow-hidden rounded-2xl transition-all duration-300 ease-in-out hover:scale-[1.03] bg-gradient-to-br from-slate-900 to-slate-950 border border-slate-800 hover:border-sunfire-500/50"
+      className="group relative block overflow-hidden rounded-2xl p-[1px] bg-gradient-to-br from-sunfire-200/60 to-transparent transition-transform duration-300 ease-in-out hover:scale-[1.02] focus:outline-none focus-visible:ring-2 focus-visible:ring-sunfire-300/60"
     >
+      <div className="rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-lg transition-shadow duration-300">
       {/* Frosted glass handled by utility classes */}
       
       {/* Product image */}
-      <div className="relative aspect-square w-full overflow-hidden rounded-t-2xl z-20">
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
+      <div className="relative aspect-square w-full overflow-hidden rounded-t-2xl z-20 shadow-inner">
+        <div className="absolute inset-0 bg-gradient-to-t from-white/10 to-transparent z-10"></div>
         <Image
           src={imageUrl}
           alt={product.name}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-110 z-0"
+          className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-110 group-hover:rotate-[0.25deg] z-0"
         />
         
         {/* Floating badge for discount */}
@@ -89,31 +90,41 @@ export const ProductCard = ({ product }: ProductCardProps) => {
       
       {/* Product info */}
       <div className="relative p-6 z-20 flex flex-col flex-grow">
-        <h3 className="text-base font-semibold text-white mb-1.5 line-clamp-2" title={product.name}>
+        <h3 className="text-base font-semibold text-slate-900 mb-1.5 line-clamp-2" title={product.name}>
           {product.name}
         </h3>
         
         {product?.category && (
-          <span className="text-xs text-sunfire-300 mb-3">
+          <span className="inline-flex items-center gap-1 text-xs font-medium text-slate-700 bg-slate-100 rounded-full px-2 py-0.5 mb-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-sunfire-400"></span>
             {product.category.name}
           </span>
         )}
 
-        <div className="flex items-end justify-between mt-auto pt-4">
+        {product?.oemNumber && (
+          <div className="mb-3">
+            <span className="inline-flex items-center gap-1 text-[11px] font-medium text-slate-600 bg-slate-50 border border-slate-200 rounded-md px-2 py-0.5">
+              <span className="text-slate-500">OEM</span>
+              <span className="font-mono tracking-tight text-slate-700">{product.oemNumber}</span>
+            </span>
+          </div>
+        )}
+
+        <div className="flex items-end justify-between mt-auto pt-4 border-t border-slate-100">
           <div>
             {/* Cijena s novim dizajnom */}
             {(hasDiscount || product.originalPrice) ? (
               <div className="flex flex-col">
                 <p className="text-sm line-through text-slate-500 mb-1">
-                  {isMounted ? formatPrice(originalPrice || product.originalPrice || product.price) : <span className="block h-4 w-16 animate-pulse rounded-md bg-slate-700" />}
+                  {isMounted ? formatPrice(originalPrice || product.originalPrice || product.price) : <span className="block h-4 w-16 animate-pulse rounded-md bg-slate-200" />}
                 </p>
-                <p className="text-xl font-bold text-sunfire-400">
-                  {isMounted ? formatPrice(hasDiscount ? discountedPrice : product.price) : <span className="block h-7 w-24 animate-pulse rounded-md bg-slate-700" />}
+                <p className="text-2xl font-extrabold text-sunfire-600 tracking-tight">
+                  {isMounted ? formatPrice(hasDiscount ? discountedPrice : product.price) : <span className="block h-7 w-24 animate-pulse rounded-md bg-slate-200" />}
                 </p>
               </div>
             ) : (
-              <p className="text-xl font-bold text-sunfire-400">
-                {isMounted ? formatPrice(product.price) : <span className="block h-7 w-24 animate-pulse rounded-md bg-slate-700" />}
+              <p className="text-2xl font-extrabold text-sunfire-600 tracking-tight">
+                {isMounted ? formatPrice(product.price) : <span className="block h-7 w-24 animate-pulse rounded-md bg-slate-200" />}
               </p>
             )}
           </div>
@@ -133,6 +144,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
           </button>
         </div>
       </div>
+      </div>
     </Link>
   );
-};
+}
