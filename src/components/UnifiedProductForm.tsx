@@ -21,6 +21,7 @@ type ExtendedProduct = {
   lowStockThreshold?: number | null;
   catalogNumber: string;
   oemNumber: string | null;
+  sku?: string | null;
   isFeatured: boolean;
   isArchived: boolean;
   categoryId: string;
@@ -368,6 +369,15 @@ export const UnifiedProductForm = ({ initialData, categories }: UnifiedProductFo
                 </FormItem>
               )}
             />
+            <div className="space-y-2">
+              <FormLabel className="text-gray-700 font-medium">SKU / ArtBroj</FormLabel>
+              <Input
+                value={initialData?.sku?.trim() ? initialData.sku : 'Nije postavljeno'}
+                disabled
+                readOnly
+                className="bg-slate-100 text-gray-700 border-amber/30 cursor-not-allowed"
+              />
+            </div>
           </div>
         </div>
 

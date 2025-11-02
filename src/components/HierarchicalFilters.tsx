@@ -16,9 +16,10 @@ export type Category = PrismaCategory & {
 };
 
 // Komponenta za prikaz aktivnih filtera
-const ActiveFilters = ({ filters, onRemove }: { 
+const ActiveFilters = ({ filters, onRemove, onClearAll }: { 
   filters: { id: string; type: string; label: string }[]; 
-  onRemove: (id: string) => void 
+  onRemove: (id: string) => void;
+  onClearAll?: () => void;
 }) => {
   if (filters.length === 0) return null;
   
@@ -60,7 +61,7 @@ const ActiveFilters = ({ filters, onRemove }: {
           </div>
           <button
             className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs font-semibold text-white bg-sunfire-500 hover:bg-sunfire-600 transition-colors shadow-sm"
-            onClick={() => sorted.forEach(f => onRemove(f.id))}
+            onClick={() => { if (onClearAll) onClearAll(); else sorted.forEach(f => onRemove(f.id)); }}
           >
             <X className="h-3.5 w-3.5" />
             Očisti sve
@@ -209,6 +210,8 @@ export default function HierarchicalFilters({
     engineId: initialFilters.engineId || '',
     specs: initialFilters.specs || {}
   });
+
+  const [vehicleSelectorResetKey, setVehicleSelectorResetKey] = useState(0);
 
   // Sinkroniziraj lokalne filtere kada se promijene pojedinačne vrijednosti initialFilters,
   // ali nemoj prebrisati korisnički izbor s praznim vrijednostima.
@@ -431,7 +434,29 @@ export default function HierarchicalFilters({
       {/* Aktivni filteri se prikazuju samo u 'full' modu */}
       {displayMode === 'full' && activeFilters.length > 0 && (
         <div className="mb-4">
-          <ActiveFilters filters={activeFilters} onRemove={removeFilter} />
+          <ActiveFilters 
+            filters={activeFilters} 
+            onRemove={removeFilter}
+            onClearAll={() => {
+              const rootId = selectedPath && selectedPath.length > 0 ? selectedPath[0].id : filters.categoryId;
+              const rootCat = rootId ? findCategoryById(categories, rootId) : null;
+              setFilters(prev => ({
+                ...prev,
+                categoryId: rootId || '',
+                makeId: '',
+                modelId: '',
+                generationId: '',
+                engineId: '',
+                specs: {}
+              }));
+              setActiveFilters(() => {
+                const chips: { id: string; type: string; label: string }[] = [];
+                if (rootId && rootCat) chips.push({ id: `Kategorija-${rootId}`, type: 'Kategorija', label: rootCat.name });
+                return chips;
+              });
+              setVehicleSelectorResetKey(k => k + 1);
+            }}
+          />
         </div>
       )}
       
@@ -563,6 +588,7 @@ export default function HierarchicalFilters({
                   </div>
                   
                   <VehicleSelector 
+                  key={`vehsel-${vehicleSelectorResetKey}-${filters.categoryId}`}
                   onVehicleSelect={(data) => {
                     if (data.generationId) {
                       // Ispravak: Poziv s ispravnim argumentima

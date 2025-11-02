@@ -7,15 +7,49 @@ import { categoryFormSchema } from '@/lib/validations/category';
 
 export async function GET() {
   try {
-    const categories = await db.category.findMany({
+    const flatCategories = await db.category.findMany({
+      orderBy: { name: 'asc' },
       include: {
-        children: true,
-      },
-      orderBy: {
-        name: 'asc',
+        _count: {
+          select: { products: true },
+        },
       },
     });
-    return NextResponse.json(categories);
+
+    type CategoryWithChildren = (typeof flatCategories)[number] & { children: CategoryWithChildren[] };
+
+    const byId = new Map<string, CategoryWithChildren>();
+    flatCategories.forEach((category) => {
+      byId.set(category.id, { ...category, children: [] });
+    });
+
+    const roots: CategoryWithChildren[] = [];
+
+    byId.forEach((category) => {
+      if (category.parentId) {
+        const parent = byId.get(category.parentId);
+        if (parent) {
+          parent.children = [...parent.children, category];
+        } else {
+          roots.push(category);
+        }
+      } else {
+        roots.push(category);
+      }
+    });
+
+    const sortChildrenRecursively = (categories: CategoryWithChildren[]) => {
+      categories.sort((a, b) => a.name.localeCompare(b.name));
+      categories.forEach((category) => {
+        if (category.children.length > 0) {
+          sortChildrenRecursively(category.children);
+        }
+      });
+    };
+
+    sortChildrenRecursively(roots);
+
+    return NextResponse.json(roots);
   } catch (error) {
     return new NextResponse('Internal Server Error', { status: 500 });
   }

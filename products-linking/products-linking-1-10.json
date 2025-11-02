@@ -1,0 +1,461 @@
+[
+  {
+    "oemNumber": "1J0422811A",
+    "partDescription": "Spojnica volana / Kraj spone (Lijeva)",
+    "compatibleVehicles": [
+      {
+        "name": "Volkswagen",
+        "type": "PASSENGER",
+        "models": [
+          {
+            "name": "Golf",
+            "generations": [{"name": "Mk4", "period": "1997–2003", "bodyStyles": ["Hatchback", "Wagon", "Cabriolet"], "engines": []}]
+          },
+          {
+            "name": "Bora",
+            "generations": [{"name": "Mk4 (1J)", "period": "1999–2005", "bodyStyles": ["Sedan", "Wagon"], "engines": []}]
+          },
+          {
+            "name": "New Beetle",
+            "generations": [{"name": "Type 9C", "period": "1997–2011", "bodyStyles": ["Hatchback", "Convertible"], "engines": []}]
+          }
+        ]
+      },
+      {
+        "name": "Audi",
+        "type": "PASSENGER",
+        "models": [
+          {
+            "name": "A3",
+            "generations": [{"name": "Mk1 (8L)", "period": "1996–2003", "bodyStyles": ["Hatchback (3-door)", "Hatchback (5-door)"], "engines": []}]
+          },
+          {
+            "name": "TT",
+            "generations": [{"name": "Mk1 (8N)", "period": "1998–2006", "bodyStyles": ["Coupé", "Roadster"], "engines": []}]
+          }
+        ]
+      },
+      {
+        "name": "SEAT",
+        "type": "PASSENGER",
+        "models": [
+          {
+            "name": "León",
+            "generations": [{"name": "Mk1 (1M)", "period": "1999–2006", "bodyStyles": ["Hatchback"], "engines": []}]
+          },
+          {
+            "name": "Toledo",
+            "generations": [{"name": "Mk2 (1M)", "period": "1998–2004", "bodyStyles": ["Sedan"], "engines": []}]
+          }
+        ]
+      },
+      {
+        "name": "Škoda",
+        "type": "PASSENGER",
+        "models": [
+          {
+            "name": "Octavia",
+            "generations": [{"name": "Mk1 (1U)", "period": "1996–2004", "bodyStyles": ["Liftback", "Wagon"], "engines": []}]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "oemNumber": "1J0422812",
+    "partDescription": "Spojnica volana / Kraj spone (Desna)",
+    "compatibleVehicles": [
+      {
+        "name": "Volkswagen",
+        "type": "PASSENGER",
+        "models": [
+          {
+            "name": "Golf",
+            "generations": [{"name": "Mk4", "period": "1997–2003", "bodyStyles": ["Hatchback", "Wagon", "Cabriolet"], "engines": []}]
+          },
+          {
+            "name": "Bora",
+            "generations": [{"name": "Mk4 (1J)", "period": "1999–2005", "bodyStyles": ["Sedan", "Wagon"], "engines": []}]
+          },
+          {
+            "name": "New Beetle",
+            "generations": [{"name": "Type 9C", "period": "1997–2011", "bodyStyles": ["Hatchback", "Convertible"], "engines": []}]
+          }
+        ]
+      },
+      {
+        "name": "Audi",
+        "type": "PASSENGER",
+        "models": [
+          {
+            "name": "A3",
+            "generations": [{"name": "Mk1 (8L)", "period": "1996–2003", "bodyStyles": ["Hatchback (3-door)", "Hatchback (5-door)"], "engines": []}]
+          },
+          {
+            "name": "TT",
+            "generations": [{"name": "Mk1 (8N)", "period": "1998–2006", "bodyStyles": ["Coupé", "Roadster"], "engines": []}]
+          }
+        ]
+      },
+      {
+        "name": "SEAT",
+        "type": "PASSENGER",
+        "models": [
+          {
+            "name": "León",
+            "generations": [{"name": "Mk1 (1M)", "period": "1999–2006", "bodyStyles": ["Hatchback"], "engines": []}]
+          },
+          {
+            "name": "Toledo",
+            "generations": [{"name": "Mk2 (1M)", "period": "1998–2004", "bodyStyles": ["Sedan"], "engines": []}]
+          }
+        ]
+      },
+      {
+        "name": "Škoda",
+        "type": "PASSENGER",
+        "models": [
+          {
+            "name": "Octavia",
+            "generations": [{"name": "Mk1 (1U)", "period": "1996–2004", "bodyStyles": ["Liftback", "Wagon"], "engines": []}]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "oemNumber": "1J0407365C",
+    "partDescription": "Kugla prednjeg točka (Lijeva)",
+    "compatibleVehicles": [
+      {
+        "name": "Volkswagen",
+        "type": "PASSENGER",
+        "models": [
+          {
+            "name": "Golf",
+            "generations": [{"name": "Mk4", "period": "1997–2003", "bodyStyles": ["Hatchback", "Wagon", "Cabriolet"], "engines": []}]
+          },
+          {
+            "name": "Bora",
+            "generations": [{"name": "Mk4 (1J)", "period": "1999–2005", "bodyStyles": ["Sedan", "Wagon"], "engines": []}]
+          },
+          {
+            "name": "New Beetle",
+            "generations": [{"name": "Type 9C", "period": "1997–2011", "bodyStyles": ["Hatchback", "Convertible"], "engines": []}]
+          }
+        ]
+      },
+      {
+        "name": "Audi",
+        "type": "PASSENGER",
+        "models": [
+          {
+            "name": "A3",
+            "generations": [{"name": "Mk1 (8L)", "period": "1996–2003", "bodyStyles": ["Hatchback (3-door)", "Hatchback (5-door)"], "engines": []}]
+          },
+          {
+            "name": "TT",
+            "generations": [{"name": "Mk1 (8N)", "period": "1998–2006", "bodyStyles": ["Coupé", "Roadster"], "engines": []}]
+          }
+        ]
+      },
+      {
+        "name": "SEAT",
+        "type": "PASSENGER",
+        "models": [
+          {
+            "name": "León",
+            "generations": [{"name": "Mk1 (1M)", "period": "1999–2006", "bodyStyles": ["Hatchback"], "engines": []}]
+          },
+          {
+            "name": "Toledo",
+            "generations": [{"name": "Mk2 (1M)", "period": "1998–2004", "bodyStyles": ["Sedan"], "engines": []}]
+          }
+        ]
+      },
+      {
+        "name": "Škoda",
+        "type": "PASSENGER",
+        "models": [
+          {
+            "name": "Octavia",
+            "generations": [{"name": "Mk1 (1U)", "period": "1996–2004", "bodyStyles": ["Liftback", "Wagon"], "engines": []}]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "oemNumber": "1J0407366C",
+    "partDescription": "Kugla prednjeg točka (Desna)",
+    "compatibleVehicles": [
+      {
+        "name": "Volkswagen",
+        "type": "PASSENGER",
+        "models": [
+          {
+            "name": "Golf",
+            "generations": [{"name": "Mk4", "period": "1997–2003", "bodyStyles": ["Hatchback", "Wagon", "Cabriolet"], "engines": []}]
+          },
+          {
+            "name": "Bora",
+            "generations": [{"name": "Mk4 (1J)", "period": "1999–2005", "bodyStyles": ["Sedan", "Wagon"], "engines": []}]
+          },
+          {
+            "name": "New Beetle",
+            "generations": [{"name": "Type 9C", "period": "1997–2011", "bodyStyles": ["Hatchback", "Convertible"], "engines": []}]
+          }
+        ]
+      },
+      {
+        "name": "Audi",
+        "type": "PASSENGER",
+        "models": [
+          {
+            "name": "A3",
+            "generations": [{"name": "Mk1 (8L)", "period": "1996–2003", "bodyStyles": ["Hatchback (3-door)", "Hatchback (5-door)"], "engines": []}]
+          },
+          {
+            "name": "TT",
+            "generations": [{"name": "Mk1 (8N)", "period": "1998–2006", "bodyStyles": ["Coupé", "Roadster"], "engines": []}]
+          }
+        ]
+      },
+      {
+        "name": "SEAT",
+        "type": "PASSENGER",
+        "models": [
+          {
+            "name": "León",
+            "generations": [{"name": "Mk1 (1M)", "period": "1999–2006", "bodyStyles": ["Hatchback"], "engines": []}]
+          },
+          {
+            "name": "Toledo",
+            "generations": [{"name": "Mk2 (1M)", "period": "1998–2004", "bodyStyles": ["Sedan"], "engines": []}]
+          }
+        ]
+      },
+      {
+        "name": "Škoda",
+        "type": "PASSENGER",
+        "models": [
+          {
+            "name": "Octavia",
+            "generations": [{"name": "Mk1 (1U)", "period": "1996–2004", "bodyStyles": ["Liftback", "Wagon"], "engines": []}]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "oemNumber": "350611",
+    "partDescription": "Spona stabilizatora (zamjena za OEM 1J0411315C)",
+    "compatibleVehicles": [
+      {
+        "name": "Volkswagen",
+        "type": "PASSENGER",
+        "models": [
+          {
+            "name": "Golf",
+            "generations": [{"name": "Mk4", "period": "1997–2003", "bodyStyles": ["Hatchback", "Wagon", "Cabriolet"], "engines": []}]
+          },
+          {
+            "name": "Bora",
+            "generations": [{"name": "Mk4 (1J)", "period": "1999–2005", "bodyStyles": ["Sedan", "Wagon"], "engines": []}]
+          },
+          {
+            "name": "New Beetle",
+            "generations": [{"name": "Type 9C", "period": "1997–2011", "bodyStyles": ["Hatchback", "Convertible"], "engines": []}]
+          }
+        ]
+      },
+      {
+        "name": "Audi",
+        "type": "PASSENGER",
+        "models": [
+          {
+            "name": "A3",
+            "generations": [{"name": "Mk1 (8L)", "period": "1996–2003", "bodyStyles": ["Hatchback (3-door)", "Hatchback (5-door)"], "engines": []}]
+          },
+          {
+            "name": "TT",
+            "generations": [{"name": "Mk1 (8N)", "period": "1998–2006", "bodyStyles": ["Coupé", "Roadster"], "engines": []}]
+          }
+        ]
+      },
+      {
+        "name": "SEAT",
+        "type": "PASSENGER",
+        "models": [
+          {
+            "name": "León",
+            "generations": [{"name": "Mk1 (1M)", "period": "1999–2006", "bodyStyles": ["Hatchback"], "engines": []}]
+          },
+          {
+            "name": "Toledo",
+            "generations": [{"name": "Mk2 (1M)", "period": "1998–2004", "bodyStyles": ["Sedan"], "engines": []}]
+          }
+        ]
+      },
+      {
+        "name": "Škoda",
+        "type": "PASSENGER",
+        "models": [
+          {
+            "name": "Octavia",
+            "generations": [{"name": "Mk1 (1U)", "period": "1996–2004", "bodyStyles": ["Liftback", "Wagon"], "engines": []}]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "oemNumber": "1J0411315C",
+    "partDescription": "Spona stabilizatora / K-linka",
+    "compatibleVehicles": [
+      {
+        "name": "Volkswagen",
+        "type": "PASSENGER",
+        "models": [
+          {
+            "name": "Golf",
+            "generations": [{"name": "Mk4", "period": "1997–2003", "bodyStyles": ["Hatchback", "Wagon", "Cabriolet"], "engines": []}]
+          },
+          {
+            "name": "Bora",
+            "generations": [{"name": "Mk4 (1J)", "period": "1999–2005", "bodyStyles": ["Sedan", "Wagon"], "engines": []}]
+          },
+          {
+            "name": "New Beetle",
+            "generations": [{"name": "Type 9C", "period": "1997–2011", "bodyStyles": ["Hatchback", "Convertible"], "engines": []}]
+          }
+        ]
+      },
+      {
+        "name": "Audi",
+        "type": "PASSENGER",
+        "models": [
+          {
+            "name": "A3",
+            "generations": [{"name": "Mk1 (8L)", "period": "1996–2003", "bodyStyles": ["Hatchback (3-door)", "Hatchback (5-door)"], "engines": []}]
+          },
+          {
+            "name": "TT",
+            "generations": [{"name": "Mk1 (8N)", "period": "1998–2006", "bodyStyles": ["Coupé", "Roadster"], "engines": []}]
+          }
+        ]
+      },
+      {
+        "name": "SEAT",
+        "type": "PASSENGER",
+        "models": [
+          {
+            "name": "León",
+            "generations": [{"name": "Mk1 (1M)", "period": "1999–2006", "bodyStyles": ["Hatchback"], "engines": []}]
+          },
+          {
+            "name": "Toledo",
+            "generations": [{"name": "Mk2 (1M)", "period": "1998–2004", "bodyStyles": ["Sedan"], "engines": []}]
+          }
+        ]
+      },
+      {
+        "name": "Škoda",
+        "type": "PASSENGER",
+        "models": [
+          {
+            "name": "Octavia",
+            "generations": [{"name": "Mk1 (1U)", "period": "1996–2004", "bodyStyles": ["Liftback", "Wagon"], "engines": []}]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "oemNumber": "7701474493",
+    "partDescription": "Spojnica volana / Kraj spone (Lijeva) - Renault",
+    "compatibleVehicles": [
+      {
+        "name": "Renault",
+        "type": "PASSENGER",
+        "models": [
+          {
+            "name": "Clio",
+            "generations": [{"name": "II", "period": "1998–2005", "bodyStyles": ["Hatchback"], "engines": []}]
+          },
+          {
+            "name": "Kangoo",
+            "generations": [{"name": "I", "period": "1997–2007", "bodyStyles": ["Van", "MPV"], "engines": []}]
+          },
+          {
+            "name": "Thalia",
+            "generations": [{"name": "I", "period": "1999–2008", "bodyStyles": ["Sedan"], "engines": []}]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "oemNumber": "7701474492",
+    "partDescription": "Spojnica volana / Kraj spone (Desna) - Renault",
+    "compatibleVehicles": [
+      {
+        "name": "Renault",
+        "type": "PASSENGER",
+        "models": [
+          {
+            "name": "Clio",
+            "generations": [{"name": "II", "period": "1998–2005", "bodyStyles": ["Hatchback"], "engines": []}]
+          },
+          {
+            "name": "Kangoo",
+            "generations": [{"name": "I", "period": "1997–2007", "bodyStyles": ["Van", "MPV"], "engines": []}]
+          },
+          {
+            "name": "Thalia",
+            "generations": [{"name": "I", "period": "1999–2008", "bodyStyles": ["Sedan"], "engines": []}]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "oemNumber": "8D0609721H",
+    "partDescription": "Sajla ručne kočnice (Desna)",
+    "compatibleVehicles": [
+      {
+        "name": "Audi",
+        "type": "PASSENGER",
+        "models": [
+          {
+            "name": "A4",
+            "generations": [{"name": "B5", "period": "1994–2001", "bodyStyles": ["Sedan", "Avant"], "engines": []}]
+          }
+        ]
+      },
+      {
+        "name": "Volkswagen",
+        "type": "PASSENGER",
+        "models": [
+          {
+            "name": "Passat",
+            "generations": [
+              {"name": "B5", "period": "1997–2000", "bodyStyles": ["Sedan", "Wagon"], "engines": []},
+              {"name": "B5.5", "period": "2000–2005", "bodyStyles": ["Sedan", "Wagon"], "engines": []}
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Škoda",
+        "type": "PASSENGER",
+        "models": [
+          {
+            "name": "Superb",
+            "generations": [{"name": "Mk1 (3U)", "period": "2001–2008", "bodyStyles": ["Sedan"], "engines": []}]
+          }
+        ]
+      }
+    ]
+  }
+]

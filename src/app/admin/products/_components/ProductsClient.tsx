@@ -38,6 +38,7 @@ export const ProductsClient = ({ categories }: ProductsClientProps) => {
     const params = new URLSearchParams(baseParams.toString());
     params.set('limit', String(PAGE_SIZE));
     params.set('page', String(targetPage));
+    params.set('includeOutOfStock', 'true');
 
     const url = `/api/products?${params}`;
 

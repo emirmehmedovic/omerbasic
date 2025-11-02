@@ -5,25 +5,46 @@ import { unstable_cache } from 'next/cache';
 const getCategories = unstable_cache(
   async (): Promise<CategoryWithChildren[]> => {
     const categories = await db.category.findMany({
+      orderBy: { name: 'asc' },
       include: {
-        children: {
-          include: { 
-            children: true,
-            _count: {
-              select: { products: true }
-            }
-          }, // Uključujemo i drugi nivo za potpunije stablo
-        },
         _count: {
-          select: { products: true }
-        }
-      },
-      orderBy: {
-        name: 'asc',
+          select: { products: true },
+        },
       },
     });
-    // Filtriramo samo top-level kategorije za prosljeđivanje
-    return categories.filter(c => !c.parentId);
+
+    const byId = new Map<string, CategoryWithChildren>();
+    categories.forEach((category) => {
+      byId.set(category.id, { ...category, children: [] });
+    });
+
+    const roots: CategoryWithChildren[] = [];
+
+    byId.forEach((category) => {
+      if (category.parentId) {
+        const parent = byId.get(category.parentId);
+        if (parent) {
+          parent.children = [...(parent.children || []), category];
+        } else {
+          roots.push(category);
+        }
+      } else {
+        roots.push(category);
+      }
+    });
+
+    const sortChildrenRecursively = (items: CategoryWithChildren[]) => {
+      items.sort((a, b) => a.name.localeCompare(b.name));
+      items.forEach((item) => {
+        if (item.children && item.children.length > 0) {
+          sortChildrenRecursively(item.children);
+        }
+      });
+    };
+
+    sortChildrenRecursively(roots);
+
+    return roots;
   },
   ['admin-categories'],
   { tags: ['categories'] }

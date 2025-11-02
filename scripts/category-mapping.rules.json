@@ -1,0 +1,46 @@
+{
+  "topLevel": {
+    "gumeCategoryId": "cmer06o3p0000rqhiworgct2x",
+    "uljaMazivaCategoryId": "cmettdpe1000grq36418fl22s",
+    "adrRootId": "cmer02alu0003rqdms29obwb6",
+    "ostaloCategoryId": "cmh08eej1002zome57z9pz2yc"
+  },
+  "roots": {
+    "passengerRootId": "cmer01ok30001rqbwu15hej6j",
+    "truckRootId": "cmer01z6s0001rqcokur4f0bn"
+  },
+  "groups": {
+    "50": { "passenger": "cmer01rpq002xrqbwdg2yw8kw" },
+    "38": { "passenger": "cmer01qbf001lrqbw59llz8xz", "truck": "cmer020nt001drqcoo51bijnm" },
+    "36": { "passenger": "cmer01q9e001jrqbwttqtnk0i", "truck": "cmer020k50019rqco899t8fmk" },
+    "37": { "passenger": "cmer01q7i001hrqbwj8voukmh", "truck": "cmer020ee0013rqcon05wi7my" },
+    "39": { "passenger": "cmer01qdc001nrqbw533tnilp", "truck": "cmer020pu001frqcohnw1unez" },
+    "71": { "passenger": "cmer01tvn0059rqbw3km5j4hk", "truck": "cmer02518005xrqcob5tssaje" },
+    "160": { "passenger": "cmer01tb1004nrqbwye721sgd", "truck": "cmer027ia008frqcopnper1kf" }
+  },
+  "keywords": {
+    "truckMarkers": [
+      "actros","atego","axor","daf","iveco","stralis","eurocargo","man","tga","tgs","tgx","scania","volvo fh","volvo fm","renault trucks","kamion","prikolica","semitrailer","perkins","john deere","jcb"
+    ],
+    "gumeMarkers": ["guma "," r","zr", "x", "zr"],
+    "uljaMarkers": ["5w", "10w", "0w", "ulje", "atf", "gear oil", "dot", "antifriz", "ad blue", "adblue", "ceratec", "liqui moly", "castrol", "mannol", "valvoline"],
+    "adrMarkers": ["adr", "naranč", "opasn", "ex ", "protivpož", "apsorber", "dekontamin", "oprema za zaštitu"],
+    "bodyworkMarkers": ["branik","maska","blatobran","retrovizor","svjetlo","stop","far"],
+    "coolingHosesMarkers": ["crijevo", "hlađen"],
+    "waterPumpMarkers": ["pumpa vode"],
+    "lightsMarkers": ["svjetlo", "far", "žmigavac", "pokazivač smjera"],
+    "filtersAir": ["filter zraka"],
+    "filtersCabin": ["filter kabine", "polenski"],
+    "filtersFuel": ["filter goriva", "filter nafte"],
+    "filtersOil": ["filter ulja"],
+    "brakesPads": ["pločice", "ploč"],
+    "amortizers": ["amort"],
+    "egrDpf": ["egr", "dpf", "scr", "urea"]
+  },
+  "specific": {
+    "bodyworkPassengerId": "cmer01vvf007brqbw7c4ytdr5",
+    "coolingHosesPassengerId": "cmer01qje001trqbwcbtwzxp7",
+    "waterPumpPassengerId": "cmer01qvh0021rqbwp7ru3z5l",
+    "lightsPassengerId": "cmer01wad007rrqbw8p4g5d7o"
+  }
+}

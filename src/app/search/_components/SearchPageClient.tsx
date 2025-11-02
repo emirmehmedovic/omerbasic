@@ -64,6 +64,52 @@ export default function SearchPageClient({ filterData }: SearchPageClientProps) 
     router.replace(`${pathname}?${params.toString()}`, { scroll: false });
   };
 
+  const handleClearAll = () => {
+    const params = new URLSearchParams(searchParams);
+    const currentCategoryId = params.get('categoryId') || undefined;
+
+    const findPath = (nodes: Category[], id: string, path: Category[] = []): Category[] | null => {
+      for (const node of nodes) {
+        const np = [...path, node];
+        if (node.id === id) return np;
+        if (node.children && node.children.length) {
+          const res = findPath(node.children, id, np);
+          if (res) return res;
+        }
+      }
+      return null;
+    };
+
+    let rootCategoryId: string | undefined = undefined;
+    if (currentCategoryId) {
+      const path = findPath(filterData.categories, currentCategoryId);
+      if (path && path.length) rootCategoryId = path[0].id;
+    } else {
+      // default to passenger main category if unknown
+      const PASSENGER_CATEGORY_ID = 'cmer01ok30001rqbwu15hej6j';
+      rootCategoryId = PASSENGER_CATEGORY_ID;
+    }
+
+    const next = new URLSearchParams();
+    if (rootCategoryId) next.set('categoryId', rootCategoryId);
+    // preserve q if present
+    const q = params.get('q');
+    if (q) next.set('q', q);
+    // remove vehicle-specific params
+    next.delete('brandId');
+    next.delete('makeId');
+    next.delete('modelId');
+    next.delete('generationId');
+    next.delete('engineId');
+    // remove price for now (optional): we can preserve if desired
+    const minPrice = params.get('minPrice');
+    const maxPrice = params.get('maxPrice');
+    if (minPrice) next.set('minPrice', minPrice);
+    if (maxPrice) next.set('maxPrice', maxPrice);
+
+    router.replace(`${pathname}?${next.toString()}`, { scroll: false });
+  };
+
   return (
     <div className="min-h-screen bg-app relative">
       <div className="container mx-auto px-4 py-6 max-w-7xl relative z-10">
@@ -98,7 +144,7 @@ export default function SearchPageClient({ filterData }: SearchPageClientProps) 
           </div>
           
           <div className="w-full lg:w-3/4">
-            <ProductsResults filters={currentFilters} />
+            <ProductsResults filters={currentFilters} onClearAll={handleClearAll} />
           </div>
         </div>
       </div>

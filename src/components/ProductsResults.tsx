@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { useRouter } from 'next/navigation';
 import { ProductCard } from "./ProductCard";
 import { LayoutGrid, List } from "lucide-react";
+import ProductEngineSummary from '@/components/ProductEngineSummary';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useCart } from '@/context/CartContext';
@@ -24,6 +26,7 @@ type Product = {
   originalPrice?: number;
   pricingSource?: 'FEATURED' | 'B2B' | 'BASE';
   oemNumber?: string | null;
+  stock?: number;
 };
 
 export type ProductFilters = {
@@ -33,23 +36,30 @@ export type ProductFilters = {
   minPrice?: string;
   maxPrice?: string;
   q?: string;
+  page?: string | number;
   [key: string]: any;
 };
 
 interface Props {
   filters: ProductFilters;
+  onClearAll?: () => void;
 }
 
-export default function ProductsResults({ filters }: Props) {
+export default function ProductsResults({ filters, onClearAll }: Props) {
   const [view, setView] = useState<'grid' | 'list'>('list');
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
-  const [loadingMore, setLoadingMore] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
-  const [hasMore, setHasMore] = useState<boolean>(false);
-  const [nextCursor, setNextCursor] = useState<string | null>(null);
+  const [localQuery, setLocalQuery] = useState<string>("");
+  const [page, setPage] = useState<number>(() => {
+    const initial = parseInt(String(filters.page ?? '1'), 10);
+    return Number.isFinite(initial) && initial > 0 ? initial : 1;
+  });
+  const [totalPages, setTotalPages] = useState<number>(1);
+  const [totalCount, setTotalCount] = useState<number>(0);
   const PAGE_SIZE = 24;
   const { addToCart } = useCart();
+  const router = useRouter();
 
   const formatPrice = (price: number) =>
     new Intl.NumberFormat('bs-BA', { style: 'currency', currency: 'BAM' }).format(price);
@@ -65,28 +75,45 @@ export default function ProductsResults({ filters }: Props) {
     return params;
   }, [filters]);
 
-  const fetchPage = async (cursor: string | null, append: boolean) => {
-    const params = new URLSearchParams(baseParams.toString());
+  const paramsString = baseParams.toString();
+
+  useEffect(() => {
+    setPage(1);
+  }, [paramsString]);
+
+  const fetchPagedResults = async (pageNumber: number) => {
+    const params = new URLSearchParams(paramsString);
     params.set('limit', String(PAGE_SIZE));
-    if (cursor) params.set('cursor', cursor);
+    params.set('page', String(pageNumber));
     const url = `/api/products?${params.toString()}`;
     const res = await fetch(url);
     if (!res.ok) throw new Error(`Greška pri dohvaćanju proizvoda (${res.status})`);
-    const newCursor = res.headers.get('X-Next-Cursor');
-    const data: Product[] = await res.json();
-    setHasMore(Boolean(newCursor));
-    setNextCursor(newCursor);
-    setProducts(prev => append ? [...prev, ...data] : data);
+    const totalPagesHeader = res.headers.get('X-Total-Pages');
+    const totalCountHeader = res.headers.get('X-Total-Count');
+    const items: Product[] = await res.json();
+    return {
+      items,
+      totalPages: Math.max(parseInt(totalPagesHeader || '1', 10) || 1, 1),
+      totalCount: parseInt(totalCountHeader || String(items.length), 10) || items.length,
+    };
   };
 
-  // Reset and load first page when filters change
+  // Fetch whenever filters or page change
   useEffect(() => {
     let cancelled = false;
+    setLoading(true);
+    setError(null);
     (async () => {
-      setLoading(true);
-      setError(null);
       try {
-        await fetchPage(null, false);
+        const { items, totalPages: total, totalCount: count } = await fetchPagedResults(page);
+        if (cancelled) return;
+        if (page > total && total > 0) {
+          setPage(total);
+          return;
+        }
+        setProducts(items);
+        setTotalPages(total);
+        setTotalCount(count);
       } catch (e: any) {
         if (!cancelled) setError(e.message || 'Greška pri učitavanju proizvoda');
       } finally {
@@ -94,20 +121,38 @@ export default function ProductsResults({ filters }: Props) {
       }
     })();
     return () => { cancelled = true; };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [baseParams.toString()]);
+  }, [page, paramsString]);
 
-  const loadMore = async () => {
-    setLoadingMore(true);
-    setError(null);
-    try {
-      await fetchPage(nextCursor, true);
-    } catch (e: any) {
-      setError(e.message || 'Greška pri učitavanju proizvoda');
-    } finally {
-      setLoadingMore(false);
-    }
+  const displayed = useMemo(() => {
+    const q = localQuery.trim().toLowerCase();
+    if (!q) return products;
+    const fieldMatch = (v?: string | null) => (v || '').toLowerCase().includes(q);
+    return products.filter(p => fieldMatch(p.name) || fieldMatch((p as any).oemNumber) || fieldMatch((p as any).catalogNumber));
+  }, [products, localQuery]);
+
+  const handleChangePage = (nextPage: number) => {
+    if (nextPage < 1 || nextPage > totalPages || nextPage === page) return;
+    setPage(nextPage);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
+
+  const pageNumbers = useMemo(() => {
+    if (totalPages <= 1) return [] as number[];
+    const delta = 2;
+    let start = Math.max(1, page - delta);
+    let end = Math.min(totalPages, page + delta);
+    if (page <= delta) {
+      end = Math.min(totalPages, 1 + delta * 2);
+    }
+    if (page > totalPages - delta) {
+      start = Math.max(1, totalPages - delta * 2);
+    }
+    const numbers: number[] = [];
+    for (let i = start; i <= end; i++) numbers.push(i);
+    if (!numbers.includes(1)) numbers.unshift(1);
+    if (!numbers.includes(totalPages)) numbers.push(totalPages);
+    return Array.from(new Set(numbers)).sort((a, b) => a - b);
+  }, [page, totalPages]);
 
   if (loading) {
     return (
@@ -132,6 +177,26 @@ export default function ProductsResults({ filters }: Props) {
                   <div className="h-5 w-3/4 bg-slate-100 rounded-lg mb-3"></div>
                   <div className="h-4 w-1/2 bg-slate-100 rounded-lg mb-3"></div>
                   <div className="h-7 w-1/3 bg-sunfire-100 rounded-lg"></div>
+                </div>
+                <div className="mt-2">
+                  <span className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-sunfire-50 border border-sunfire-200 text-[12px] text-sunfire-800">
+                    <svg className="h-4 w-4 text-sunfire-600" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                      <circle cx="12" cy="12" r="10" strokeWidth="2" />
+                      <path d="M12 8h.01" strokeWidth="2" strokeLinecap="round" />
+                      <path d="M11 12h1v4h1" strokeWidth="2" strokeLinecap="round" />
+                    </svg>
+                    Filtrira prikazane rezultate; pritisnite Enter ili kliknite Pretraži za globalnu pretragu.
+                  </span>
+                </div>
+                <div className="mt-2">
+                  <span className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-sunfire-50 border border-sunfire-200 text-[12px] text-sunfire-800">
+                    <svg className="h-4 w-4 text-sunfire-600" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                      <circle cx="12" cy="12" r="10" strokeWidth="2" />
+                      <path d="M12 8h.01" strokeWidth="2" strokeLinecap="round" />
+                      <path d="M11 12h1v4h1" strokeWidth="2" strokeLinecap="round" />
+                    </svg>
+                    Filtrira prikazane rezultate; pritisnite Enter ili kliknite Pretraži za globalnu pretragu.
+                  </span>
                 </div>
               </div>
             ))}
@@ -169,28 +234,92 @@ export default function ProductsResults({ filters }: Props) {
         </div>
       ) : (
         <>
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-xl font-semibold text-slate-900">
-              Pronađeno {products.length} proizvoda
-            </h2>
-            <div className="flex items-center gap-4">
-              <div className="flex items-center text-sm text-slate-600">
-                <div className="w-2 h-2 rounded-full mr-2 bg-sunfire-400"></div>
-                Rezultati pretrage
+          <div className="mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] items-start gap-4">
+              {/* Left: count + search */}
+              <div className="min-w-[280px]">
+                <div className="">
+                  <div className="relative flex items-center gap-2 bg-sunfire-50 border border-sunfire-200 rounded-lg px-2 py-2 shadow-sm">
+                  <input
+                    type="text"
+                    value={localQuery}
+                    onChange={(e) => setLocalQuery(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        const q = localQuery.trim();
+                        if (q) router.push(`/search?q=${encodeURIComponent(q)}`);
+                      }
+                    }}
+                    placeholder="Pretraži po imenu, OEM broju i kataloškom broju…"
+                    className="h-9 w-80 sm:w-96 max-w-[80vw] rounded-md border border-sunfire-200 bg-white pl-8 pr-16 text-sm text-slate-900 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-sunfire-300 focus:border-sunfire-300"
+                  />
+                  <svg className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-sunfire-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15z" />
+                  </svg>
+                  {localQuery && (
+                    <button
+                      type="button"
+                      aria-label="Očisti"
+                      className="absolute right-12 top-1/2 -translate-y-1/2 text-slate-600 hover:text-slate-800"
+                      onClick={() => setLocalQuery("")}
+                    >
+                      ×
+                    </button>
+                  )}
+                  <button
+                    type="button"
+                    className="h-9 px-3 rounded-md bg-sunfire-600 hover:bg-sunfire-700 text-white text-sm font-semibold shadow"
+                    onClick={() => {
+                      const q = localQuery.trim();
+                      if (q) router.push(`/search?q=${encodeURIComponent(q)}`);
+                    }}
+                  >
+                    Pretraži
+                  </button>
+                  </div>
+                  <div className="mt-2">
+                    <span className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-sunfire-50 border border-sunfire-200 text-[12px] text-sunfire-800">
+                      <svg className="h-4 w-4 text-sunfire-600" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <circle cx="12" cy="12" r="10" strokeWidth="2" />
+                        <path d="M12 8h.01" strokeWidth="2" strokeLinecap="round" />
+                        <path d="M11 12h1v4h1" strokeWidth="2" strokeLinecap="round" />
+                      </svg>
+                      Filtrira prikazane rezultate; pritisnite Enter ili kliknite Pretraži za globalnu pretragu.
+                    </span>
+                  </div>
+                </div>
+                <h2 className="mt-3 text-xl font-semibold text-slate-900">Pronađeno {totalCount} proizvoda</h2>
               </div>
-              <div className="flex items-center gap-1 rounded-lg bg-white p-1 border border-slate-200 shadow-sm">
-                <button onClick={() => setView('grid')} className={`p-1.5 rounded-md transition-colors ${view === 'grid' ? 'bg-sunfire-500 text-white' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'}`}>
-                  <LayoutGrid className="h-5 w-5" />
-                </button>
-                <button onClick={() => setView('list')} className={`p-1.5 rounded-md transition-colors ${view === 'list' ? 'bg-sunfire-500 text-white' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'}`}>
-                  <List className="h-5 w-5" />
-                </button>
+
+              {/* Right: label + clear + view toggle */}
+              <div className="flex items-center justify-end gap-3">
+                <div className="hidden md:flex items-center text-sm text-slate-600">
+                  <div className="w-2 h-2 rounded-full mr-2 bg-sunfire-400"></div>
+                  Rezultati pretrage
+                </div>
+                {onClearAll && (
+                  <button
+                    type="button"
+                    onClick={onClearAll}
+                    className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs font-semibold text-white bg-sunfire-600 hover:bg-sunfire-700 transition-colors shadow-sm"
+                  >
+                    Očisti sve
+                  </button>
+                )}
+                <div className="flex items-center gap-1 rounded-lg bg-white p-1 border border-slate-200 shadow-sm">
+                  <button onClick={() => setView('grid')} className={`p-1.5 rounded-md transition-colors ${view === 'grid' ? 'bg-sunfire-500 text-white' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'}`}>
+                    <LayoutGrid className="h-5 w-5" />
+                  </button>
+                  <button onClick={() => setView('list')} className={`p-1.5 rounded-md transition-colors ${view === 'list' ? 'bg-sunfire-500 text-white' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'}`}>
+                    <List className="h-5 w-5" />
+                  </button>
+                </div>
               </div>
             </div>
           </div>
           {view === 'grid' ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {products.map((p, index) => (
+              {displayed.map((p, index) => (
                 <div
                   key={p.id}
                   className="animate-scale-in"
@@ -202,7 +331,7 @@ export default function ProductsResults({ filters }: Props) {
             </div>
           ) : (
             <div className="flex flex-col gap-4">
-              {products.map((p, index) => (
+              {displayed.map((p, index) => (
                 <Link
                   href={`/products/${p.id}`}
                   key={p.id}
@@ -228,6 +357,7 @@ export default function ProductsResults({ filters }: Props) {
                         </span>
                       </div>
                     )}
+                    <ProductEngineSummary productId={p.id} maxInline={3} />
                   </div>
                   <div className="text-left sm:text-right w-full sm:w-48 flex-shrink-0 mt-4 sm:mt-0 sm:ml-6">
                     {p.originalPrice ? (
@@ -260,15 +390,45 @@ export default function ProductsResults({ filters }: Props) {
             </div>
           )}
 
-          {hasMore && (
-            <div className="mt-8 flex justify-center">
-              <button
-                onClick={loadMore}
-                disabled={loadingMore}
-                className={`px-5 py-2.5 rounded-md text-sm font-semibold border transition-colors ${loadingMore ? 'bg-slate-100 text-slate-500 border-slate-200' : 'bg-sunfire-600 text-white border-sunfire-600 hover:bg-sunfire-700'}`}
-              >
-                {loadingMore ? 'Učitavanje…' : 'Učitaj više'}
-              </button>
+          {totalPages > 1 && (
+            <div className="mt-8 flex flex-col items-center gap-3">
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => handleChangePage(page - 1)}
+                  disabled={page <= 1}
+                  className={`px-3 py-1.5 rounded-md border text-sm font-medium transition-colors ${page <= 1 ? 'bg-slate-100 text-slate-400 border-slate-200 cursor-not-allowed' : 'bg-white text-slate-700 border-slate-300 hover:bg-sunfire-50 hover:border-sunfire-300'}`}
+                >
+                  ← Prethodna
+                </button>
+                <div className="flex items-center gap-1">
+                  {pageNumbers.map((num, idx) => {
+                    const prev = pageNumbers[idx - 1];
+                    const needsEllipsis = idx > 0 && num - prev! > 1;
+                    return (
+                      <span key={`${num}-${idx}`} className="flex items-center">
+                        {needsEllipsis && <span className="px-1 text-slate-400">…</span>}
+                        <button
+                          type="button"
+                          onClick={() => handleChangePage(num)}
+                          className={`px-3 py-1.5 rounded-md border text-sm font-medium transition-colors ${num === page ? 'bg-sunfire-600 text-white border-sunfire-600' : 'bg-white text-slate-700 border-slate-300 hover:bg-sunfire-50 hover:border-sunfire-300'}`}
+                        >
+                          {num}
+                        </button>
+                      </span>
+                    );
+                  })}
+                </div>
+                <button
+                  type="button"
+                  onClick={() => handleChangePage(page + 1)}
+                  disabled={page >= totalPages}
+                  className={`px-3 py-1.5 rounded-md border text-sm font-medium transition-colors ${page >= totalPages ? 'bg-slate-100 text-slate-400 border-slate-200 cursor-not-allowed' : 'bg-white text-slate-700 border-slate-300 hover:bg-sunfire-50 hover:border-sunfire-300'}`}
+                >
+                  Sljedeća →
+                </button>
+              </div>
+              <p className="text-sm text-slate-600">Stranica {page} od {totalPages} &middot; Prikazano {displayed.length} / {totalCount}</p>
             </div>
           )}
         </>

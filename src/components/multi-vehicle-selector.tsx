@@ -38,6 +38,9 @@ const MultiVehicleSelector = ({
   const [selectedGeneration, setSelectedGeneration] = useState<string>('');
   const [engines, setEngines] = useState<VehicleEngine[]>([]);
   const [selectedEngine, setSelectedEngine] = useState<string>('');
+  // Bulk selection state
+  const [enginesByGeneration, setEnginesByGeneration] = useState<Record<string, VehicleEngine[]>>({});
+  const [bulkSelected, setBulkSelected] = useState<Record<string, { mode: 'none' | 'all' | 'selected'; engineIds: Set<string> }>>({});
   
   // Stanje za praćenje odabranih vozila
   const [selectedVehicles, setSelectedVehicles] = useState<SelectedVehicle[]>([]);
@@ -68,6 +71,7 @@ const MultiVehicleSelector = ({
                       enginePowerHP: engine.enginePowerHP,
                       engineCode: engine.engineCode,
                     };
+
                   }
                 } catch {}
               }
@@ -156,6 +160,16 @@ const MultiVehicleSelector = ({
     fetchEngines();
   }, [selectedGeneration]);
 
+  // Lazy load engines for a generation in bulk UI
+  const ensureEnginesLoaded = async (genId: string) => {
+    if (enginesByGeneration[genId]) return;
+    try {
+      const res = await fetch(`/api/generations/${genId}/engines`);
+      const data = await res.json();
+      setEnginesByGeneration(prev => ({ ...prev, [genId]: data }));
+    } catch {}
+  };
+
   // Dodaj vozilo u odabrana
   const addVehicle = () => {
     if (!selectedGeneration) return;
@@ -206,6 +220,54 @@ const MultiVehicleSelector = ({
     // Resetiraj odabir za novo dodavanje
     setSelectedGeneration('');
     setSelectedEngine('');
+  };
+
+  // Bulk add handler used by UI buttons
+  const handleAddBulk = () => {
+    const entries: SelectedVehicle[] = [];
+    for (const gen of generations) {
+      const bulk = bulkSelected[gen.id];
+      if (!bulk) continue;
+      const model = models.find(m => m.id === selectedModel);
+      const brand = brands.find(b => b.id === selectedBrand);
+      if (!model || !brand) continue;
+      const base: Omit<SelectedVehicle, 'id'> = {
+        brandName: brand.name,
+        modelName: model.name,
+        generationName: gen.name,
+        period: gen.period,
+        engineId: undefined,
+        engineType: null,
+        engineCapacity: null,
+        enginePowerHP: null,
+        engineCode: null,
+      };
+      if (bulk.mode === 'none') {
+        const id = gen.id;
+        if (!selectedVehicles.some(v => v.id === id)) entries.push({ id, ...base });
+      } else if (bulk.mode === 'all') {
+        const eList = enginesByGeneration[gen.id] || [];
+        for (const e of eList) {
+          const id = `${gen.id}::${e.id}`;
+          if (!selectedVehicles.some(v => v.id === id)) {
+            entries.push({ id, ...base, engineId: e.id, engineType: e.engineType, engineCapacity: e.engineCapacity ?? null, enginePowerHP: e.enginePowerHP ?? null, engineCode: e.engineCode ?? null });
+          }
+        }
+      } else if (bulk.mode === 'selected') {
+        const ids = Array.from(bulk.engineIds);
+        for (const engId of ids) {
+          const e = (enginesByGeneration[gen.id] || []).find(x => x.id === engId);
+          const id = `${gen.id}::${engId}`;
+          if (!selectedVehicles.some(v => v.id === id)) {
+            entries.push({ id, ...base, engineId: e?.id, engineType: e?.engineType ?? null, engineCapacity: e?.engineCapacity ?? null, enginePowerHP: e?.enginePowerHP ?? null, engineCode: e?.engineCode ?? null });
+          }
+        }
+      }
+    }
+    if (entries.length === 0) return;
+    const updated = [...selectedVehicles, ...entries];
+    setSelectedVehicles(updated);
+    onGenerationsChange(updated.map(v => v.id));
   };
 
   // Ukloni vozilo iz odabranih
@@ -310,6 +372,103 @@ const MultiVehicleSelector = ({
           Dodaj vozilo
         </Button>
       </div>
+
+      {/* Bulk selection for current model */}
+      {selectedModel && (
+        <div className="rounded-md border border-gray-200 p-3">
+          <div className="flex items-center justify-between mb-2">
+            <h4 className="text-sm font-medium">Brzi višestruki odabir generacija i motora</h4>
+            <div className="flex items-center gap-2">
+              <Button type="button" variant="outline" className="h-8" onClick={handleAddBulk}>Dodaj odabrano</Button>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-80 overflow-auto">
+            {generations.map((gen) => (
+              <div key={gen.id} className="border rounded p-2">
+                <label className="flex items-center gap-2 text-sm font-medium">
+                  <input
+                    type="checkbox"
+                    checked={Boolean(bulkSelected[gen.id])}
+                    onChange={async (e) => {
+                      if (e.target.checked) {
+                        setBulkSelected(prev => ({ ...prev, [gen.id]: { mode: 'none', engineIds: new Set() } }));
+                      } else {
+                        setBulkSelected(prev => { const cp = { ...prev }; delete cp[gen.id]; return cp; });
+                      }
+                    }}
+                  />
+                  <span>{gen.name}{gen.period ? ` (${gen.period})` : ''}</span>
+                </label>
+                {bulkSelected[gen.id] && (
+                  <div className="mt-2 space-y-2">
+                    <div className="flex items-center gap-3 text-xs">
+                      <label className="flex items-center gap-1">
+                        <input
+                          type="radio"
+                          name={`mode-${gen.id}`}
+                          checked={bulkSelected[gen.id].mode === 'none'}
+                          onChange={() => setBulkSelected(prev => ({ ...prev, [gen.id]: { ...prev[gen.id], mode: 'none' } }))}
+                        />
+                        <span>Generacija</span>
+                      </label>
+                      <label className="flex items-center gap-1">
+                        <input
+                          type="radio"
+                          name={`mode-${gen.id}`}
+                          checked={bulkSelected[gen.id].mode === 'all'}
+                          onChange={async () => {
+                            await ensureEnginesLoaded(gen.id);
+                            setBulkSelected(prev => ({ ...prev, [gen.id]: { ...prev[gen.id], mode: 'all' } }));
+                          }}
+                        />
+                        <span>Svi motori</span>
+                      </label>
+                      <label className="flex items-center gap-1">
+                        <input
+                          type="radio"
+                          name={`mode-${gen.id}`}
+                          checked={bulkSelected[gen.id].mode === 'selected'}
+                          onChange={async () => {
+                            await ensureEnginesLoaded(gen.id);
+                            setBulkSelected(prev => ({ ...prev, [gen.id]: { ...prev[gen.id], mode: 'selected' } }));
+                          }}
+                        />
+                        <span>Odabrani motori</span>
+                      </label>
+                    </div>
+                    {bulkSelected[gen.id].mode === 'selected' && (
+                      <div className="max-h-40 overflow-auto border rounded p-2">
+                        {(enginesByGeneration[gen.id] || []).map((e) => (
+                          <label key={e.id} className="flex items-center gap-2 text-xs py-0.5">
+                            <input
+                              type="checkbox"
+                              checked={bulkSelected[gen.id].engineIds.has(e.id)}
+                              onChange={(ev) => setBulkSelected(prev => {
+                                const curr = prev[gen.id];
+                                const nextSet = new Set(curr.engineIds);
+                                if (ev.target.checked) nextSet.add(e.id); else nextSet.delete(e.id);
+                                return { ...prev, [gen.id]: { ...curr, engineIds: nextSet } };
+                              })}
+                            />
+                            <span>{`${e.engineType || ''} ${e.engineCapacity ?? ''}cc ${e.enginePowerHP ?? ''}KS ${e.engineCode ? '('+e.engineCode+')' : ''}`.trim()}</span>
+                          </label>
+                        ))}
+                        {(enginesByGeneration[gen.id] || []).length === 0 && (
+                          <div className="text-xs text-gray-500">Nema motora</div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+            ))}
+            {generations.length === 0 && <div className="text-sm text-gray-500">Nema generacija za ovaj model.</div>}
+          </div>
+          <div className="mt-2 text-right">
+            <Button type="button" onClick={handleAddBulk}>Dodaj odabrano</Button>
+          </div>
+        </div>
+      )}
 
       {/* Selected Vehicles Table */}
       {selectedVehicles.length > 0 && (

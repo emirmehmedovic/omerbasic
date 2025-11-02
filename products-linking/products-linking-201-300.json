@@ -1,0 +1,292 @@
+[
+  {
+    "oemNumber": "03L121011G",
+    "partDescription": "Vodena pumpa (za 2.0 TDI Common Rail motore)",
+    "compatibleVehicles": [
+      {"name": "Volkswagen", "type": "PASSENGER", "models": [{"name": "Golf Mk6"}, {"name": "Passat B6/B7"}, {"name": "Tiguan"}]},
+      {"name": "Audi", "type": "PASSENGER", "models": [{"name": "A3 8P"}, {"name": "A4 B8"}, {"name": "Q5"}]},
+      {"name": "Škoda", "type": "PASSENGER", "models": [{"name": "Octavia Mk2"}, {"name": "Superb Mk2"}]}
+    ]
+  },
+  {
+    "oemNumber": "1,201E+11 / 1201C4",
+    "partDescription": "Vodena pumpa (prvi broj je vjerovatno greška u formatiranju iz Excela). Za 1.9D (XUD) motore.",
+    "compatibleVehicles": [
+      {"name": "Peugeot", "type": "PASSENGER", "models": [{"name": "306"}, {"name": "Partner"}]},
+      {"name": "Citroën", "type": "PASSENGER", "models": [{"name": "Berlingo"}, {"name": "Xsara"}, {"name": "Jumpy"}]}
+    ]
+  },
+  {
+    "oemNumber": "8E0501611",
+    "partDescription": "Glavčina zadnjeg točka (Hub assembly)",
+    "compatibleVehicles": [
+      {"name": "Audi", "type": "PASSENGER", "models": [{"name": "A4", "generations": [{"name": "B6/B7", "period": "2001-2008"}]}]}
+    ]
+  },
+  {
+    "oemNumber": "4A0498625",
+    "partDescription": "Set ležaja prednjeg točka",
+    "compatibleVehicles": [
+      {"name": "Audi", "type": "PASSENGER", "models": [{"name": "100/A6", "generations": [{"name": "C4", "period": "1991-1997"}]}]}
+    ]
+  },
+  {
+    "oemNumber": "55187100",
+    "partDescription": "Zatezač zupčastog remena (za 2.2 / 2.3 / 3.0 JTD/HDi motore)",
+    "compatibleVehicles": [
+      {"name": "Fiat", "type": "PASSENGER", "models": [{"name": "Ducato"}]},
+      {"name": "Peugeot", "type": "PASSENGER", "models": [{"name": "Boxer"}]},
+      {"name": "Citroën", "type": "PASSENGER", "models": [{"name": "Jumper"}]}
+    ]
+  },
+  {
+    "oemNumber": "1606389",
+    "partDescription": "Ležaj točka",
+    "compatibleVehicles": [
+      {"name": "Fiat", "type": "PASSENGER", "models": [{"name": "Punto", "generations": [{"name": "Mk1 (176)", "period": "1993-1999"}]}]}
+    ]
+  },
+  {
+    "oemNumber": "VKMC01250-1",
+    "partDescription": "Set zupčastog remena sa vodenom pumpom (SKF Aftermarket) za 1.9 TDI PD motore",
+    "compatibleVehicles": [
+      {"name": "Volkswagen", "type": "PASSENGER", "models": [{"name": "Golf Mk4"}, {"name": "Bora"}, {"name": "Passat B5.5"}]},
+      {"name": "Audi", "type": "PASSENGER", "models": [{"name": "A3 8L"}, {"name": "A4 B6"}]}
+    ]
+  },
+  {
+    "oemNumber": "71771591 / 71771574",
+    "partDescription": "Set zupčastog remena sa vodenom pumpom (za 1.9 JTD/JTDM 8V motore)",
+    "compatibleVehicles": [
+      {"name": "Fiat", "type": "PASSENGER", "models": [{"name": "Stilo"}, {"name": "Bravo II"}, {"name": "Grande Punto"}]},
+      {"name": "Alfa Romeo", "type": "PASSENGER", "models": [{"name": "147"}, {"name": "156"}, {"name": "GT"}]}
+    ]
+  },
+  {
+    "oemNumber": "1609524780 / VKMC03247",
+    "partDescription": "Set zupčastog remena sa vodenom pumpom (za 1.6 HDi / TDCi motore)",
+    "compatibleVehicles": [
+      {"name": "Peugeot", "type": "PASSENGER", "models": [{"name": "207"}, {"name": "307"}, {"name": "308"}]},
+      {"name": "Citroën", "type": "PASSENGER", "models": [{"name": "C3"}, {"name": "C4"}, {"name": "Berlingo"}]},
+      {"name": "Ford", "type": "PASSENGER", "models": [{"name": "Focus Mk2"}, {"name": "Fiesta Mk6"}]}
+    ]
+  },
+  {
+    "oemNumber": "1609525680",
+    "partDescription": "Set zupčastog remena sa vodenom pumpom (za 2.0 HDi motore)",
+    "compatibleVehicles": [
+      {"name": "Peugeot", "type": "PASSENGER", "models": [{"name": "307"}, {"name": "407"}, {"name": "Expert"}]},
+      {"name": "Citroën", "type": "PASSENGER", "models": [{"name": "C4"}, {"name": "C5"}, {"name": "Jumpy"}]}
+    ]
+  },
+  {
+    "oemNumber": "VKMC06127 / VKMC06129 / VKMC06134-1 / VKMC06134-2",
+    "partDescription": "Set zupčastog remena sa vodenom pumpom (SKF Aftermarket, različite verzije za Opel motore)",
+    "compatibleVehicles": [
+      {"name": "Opel", "type": "PASSENGER", "models": [
+          {"description": "Za 1.6 i 1.8 benzinske motore (Astra G/H, Zafira A/B, Vectra C)"},
+          {"description": "Za 1.7 CDTI dizel motore (Astra H, Corsa D, Meriva A)"}
+      ]}
+    ]
+  },
+  {
+    "oemNumber": "530050330",
+    "partDescription": "Set zupčastog remena sa vodenom pumpom (INA Aftermarket) za 2.0 FSI motore",
+    "compatibleVehicles": [
+      {"name": "Volkswagen", "type": "PASSENGER", "models": [{"name": "Golf Mk5"}, {"name": "Jetta A5"}, {"name": "Passat B6"}]},
+      {"name": "Audi", "type": "PASSENGER", "models": [{"name": "A3 8P"}, {"name": "A4 B7"}]}
+    ]
+  },
+  {
+    "oemNumber": "6Q0927803B / 6Q0927804B",
+    "partDescription": "ABS Senzor (Prednji lijevi / Prednji desni)",
+    "compatibleVehicles": [
+      {"name": "Volkswagen", "type": "PASSENGER", "models": [{"name": "Polo", "generations": [{"name": "9N"}]}, {"name": "Fox"}]},
+      {"name": "Škoda", "type": "PASSENGER", "models": [{"name": "Fabia", "generations": [{"name": "6Y"}]}]},
+      {"name": "SEAT", "type": "PASSENGER", "models": [{"name": "Ibiza", "generations": [{"name": "6L"}]}]}
+    ]
+  },
+  {
+    "oemNumber": "1J0609721E",
+    "partDescription": "Sajla ručne kočnice",
+    "compatibleVehicles": [
+      {"name": "Volkswagen", "type": "PASSENGER", "models": [{"name": "Golf Mk4 (za vozila sa 4motion/quattro)"}]}
+    ]
+  },
+  {
+    "oemNumber": "074906461 / 074906461B",
+    "partDescription": "MAF Senzor / Mjerač protoka zraka",
+    "compatibleVehicles": [
+      {"name": "Volkswagen", "type": "PASSENGER", "models": [{"name": "Transporter T4 (za 2.5 TDI motore)"}, {"name": "LT"}]},
+      {"name": "Audi", "type": "PASSENGER", "models": [{"name": "A6 C4 (za 2.5 TDI motore)"}]}
+    ]
+  },
+  {
+    "oemNumber": "6110940048",
+    "partDescription": "MAF Senzor / Mjerač protoka zraka",
+    "compatibleVehicles": [
+      {"name": "Mercedes-Benz", "type": "PASSENGER", "models": [{"name": "C-Class (W203)"}, {"name": "E-Class (W210)"}, {"name": "Sprinter"}, {"description": "Za CDI motore"}]}
+    ]
+  },
+  {
+    "oemNumber": "1K0598611 / 8D0498625",
+    "partDescription": "Set ležaja točka (1K... je zadnji za Mk5 platformu, 8D... je prednji za B5 platformu)",
+    "compatibleVehicles": [
+      {"description": "1K0598611 (Zadnji): VW Golf Mk5, Audi A3 8P, Skoda Octavia Mk2"},
+      {"description": "8D0498625 (Prednji): Audi A4 B5, VW Passat B5"}
+    ]
+  },
+  {
+    "oemNumber": "3B0953235B",
+    "partDescription": "Prekidač za sva četiri žmigavca",
+    "compatibleVehicles": [
+      {"name": "Volkswagen", "type": "PASSENGER", "models": [{"name": "Passat", "generations": [{"name": "B5/B5.5"}]}]}
+    ]
+  },
+  {
+    "oemNumber": "1J0927803 / 1J0927804",
+    "partDescription": "ABS Senzor (Prednji lijevi / Prednji desni)",
+    "compatibleVehicles": [
+      {"name": "Volkswagen", "type": "PASSENGER", "models": [{"name": "Golf Mk4"}, {"name": "Bora"}, {"name": "New Beetle"}]},
+      {"name": "Audi", "type": "PASSENGER", "models": [{"name": "A3 8L"}, {"name": "TT 8N"}]}
+    ]
+  },
+  {
+    "oemNumber": "835632 / 652605 / 652614 / 97307468",
+    "partDescription": "Alternator (Valeo i drugi zamjenski brojevi)",
+    "compatibleVehicles": [
+      {"description": "Različite primjene za PSA (Peugeot/Citroën) i Opel vozila."}
+    ]
+  },
+  {
+    "oemNumber": "1J0422810B / 1J0422807A",
+    "partDescription": "Aksijalni zglob / Spona letve volana",
+    "compatibleVehicles": [
+      {"name": "Volkswagen", "type": "PASSENGER", "models": [{"name": "Golf Mk4"}, {"name": "Bora"}]}
+    ]
+  },
+  {
+    "oemNumber": "8D0498998S1",
+    "partDescription": "Set ramena prednjeg ovjesa (kompletan set 'vilica')",
+    "compatibleVehicles": [
+      {"name": "Audi", "type": "PASSENGER", "models": [{"name": "A4 B5"}, {"name": "A6 C5"}]},
+      {"name": "Volkswagen", "type": "PASSENGER", "models": [{"name": "Passat B5/B5.5"}]}
+    ]
+  },
+  {
+    "oemNumber": "0831N1 / 7700107249",
+    "partDescription": "Zupčasti remen (PSA/Renault)",
+    "compatibleVehicles": [
+      {"name": "Peugeot", "type": "PASSENGER", "models": [{"name": "206"}, {"name": "307"}, {"description": "Za TU benzinske motore"}]},
+      {"name": "Renault", "type": "PASSENGER", "models": [{"name": "Clio"}, {"name": "Megane"}, {"description": "Za K-type benzinske motore"}]}
+    ]
+  },
+  {
+    "oemNumber": "045109243B / 30777409",
+    "partDescription": "Zatezač zupčastog remena (VAG/Volvo)",
+    "compatibleVehicles": [
+      {"name": "Volkswagen", "type": "PASSENGER", "models": [{"name": "Polo 9N (1.4 TDI)"}]},
+      {"name": "Volvo", "type": "PASSENGER", "models": [{"name": "S40/V50 (1.6D)"}]}
+    ]
+  },
+  {
+    "oemNumber": "028198119C / 38198119",
+    "partDescription": "Set zupčastog remena (za 1.9 SDI/TDI non-PD motore)",
+    "compatibleVehicles": [
+      {"name": "Volkswagen", "type": "PASSENGER", "models": [{"name": "Golf Mk3"}, {"name": "Caddy Mk2"}]}
+    ]
+  },
+  {
+    "oemNumber": "7701468411 / 7701468883",
+    "partDescription": "Set zupčastog remena",
+    "compatibleVehicles": [
+      {"name": "Renault", "type": "PASSENGER", "models": [{"name": "Clio"}, {"name": "Megane"}, {"name": "Kangoo"}, {"description": "Za 1.9D/dTi motore"}]}
+    ]
+  },
+  {
+    "oemNumber": "1J0998003 / 1J0998002 / 3B0998002B",
+    "partDescription": "Set za reparaciju mehanizma brisača",
+    "compatibleVehicles": [
+      {"name": "Volkswagen", "type": "PASSENGER", "models": [{"name": "Golf Mk4"}, {"name": "Passat B5"}]}
+    ]
+  },
+  {
+    "oemNumber": "Bosch Wiper Blades (3397...)",
+    "partDescription": "Bosch Aerotwin ili standardne metlice brisača. Kompatibilnost zavisi od modela.",
+    "compatibleVehicles": [
+      {"description": "3397004755: VW Golf Mk5, Jetta A5"},
+      {"description": "3397118948: Peugeot 307"},
+      {"description": "3397118925: VW Passat B6"},
+      {"description": "3397001583: BMW Serije 3 (E46)"},
+      {"description": "Ostali brojevi su za širok spektar vozila (Ford, Fiat, Mercedes, itd.)"}
+    ]
+  },
+  {
+    "oemNumber": "Metlice Brisača (OEM)",
+    "partDescription": "OEM metlice brisača ili ruke brisača.",
+    "compatibleVehicles": [
+      {"description": "1K1955425 / 5J7955425: VW Golf Mk5 / Skoda Fabia Mk2 (Zadnji brisač)"},
+      {"description": "357955425 / 161955427: VW Golf Mk2/Mk3"},
+      {"description": "4B1955425B: Audi A6 C5"},
+      {"description": "6423A5 / 6426LV / 6426CE: Peugeot/Citroën modeli"}
+    ]
+  },
+  {
+    "oemNumber": "TQ-X... / PASTATQ1500G",
+    "partDescription": "Nestandardni / Interni kodovi dobavljača. Vjerovatno se odnose na tehničke hemikalije (paste) ili specifične dijelove.",
+    "compatibleVehicles": [
+      {"description": "Nije moguće utvrditi kompatibilnost sa vozilima."}
+    ]
+  },
+  {
+    "oemNumber": "7784,00 BOB / 77841,00 BOB / etc.",
+    "partDescription": "Ovo nisu brojevi dijelova. Izgledaju kao cijene u valuti (BOB je kod za Bolivijski bolivijano) ili interni kodovi magacina.",
+    "compatibleVehicles": [
+      {"description": "Nije primjenjivo."}
+    ]
+  },
+  {
+    "oemNumber": "70-31453-00 / D176404A2",
+    "partDescription": "Univerzalna zaptivna masa (Victor Reinz Reinzosil / VW OEM zaptivna masa)",
+    "compatibleVehicles": [
+      {"description": "Univerzalna primjena za zaptivanje kartera, poklopaca ventila, itd."}
+    ]
+  },
+  {
+    "oemNumber": "705705 / 70-31414-10",
+    "partDescription": "Dihtung kartera (Elring / Victor Reinz)",
+    "compatibleVehicles": [
+      {"name": "Volkswagen", "type": "PASSENGER", "models": [{"name": "Golf"}, {"name": "Passat"}, {"description": "Za 1.6 / 1.8 / 2.0 benzinske motore"}]}
+    ]
+  },
+  {
+    "oemNumber": "603123 / 603130 / 2851 / 2849",
+    "partDescription": "Cilindar kvačila (glavni ili pomoćni) i setovi za reparaciju",
+    "compatibleVehicles": [
+      {"description": "Široka primjena, najčešće za starije evropske modele (Fiat, Lancia, Alfa Romeo)."}
+    ]
+  },
+  {
+    "oemNumber": "1987479107",
+    "partDescription": "Kočiono ulje (Bosch DOT 4)",
+    "compatibleVehicles": [
+      {"description": "Univerzalna primjena za sva vozila koja zahtijevaju DOT 4 specifikaciju."}
+    ]
+  },
+  {
+    "oemNumber": "8029042 / 8029043 / 8029044",
+    "partDescription": "Setovi diskova i pločica (vjerovatno Brembo ili sličan aftermarket proizvođač)",
+    "compatibleVehicles": [
+      {"description": "Specifično za model, potrebno je provjeriti katalog proizvođača."}
+    ]
+  },
+  {
+    "oemNumber": "N10140105",
+    "partDescription": "Grijač motora (Glow Plug)",
+    "compatibleVehicles": [
+      {"name": "Volkswagen", "type": "PASSENGER", "models": [{"name": "Golf Mk4"}, {"name": "Passat B5"}]},
+      {"name": "Audi", "type": "PASSENGER", "models": [{"name": "A3 8L"}, {"name": "A4 B5/B6"}]},
+      {"description": "Za 1.9 TDI motore (ne-PD i PD)"}
+    ]
+  }
+]

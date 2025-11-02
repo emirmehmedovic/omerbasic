@@ -40,6 +40,7 @@ export const VehiclesClient = ({ initialVehicleBrands }: VehiclesClientProps) =>
   const [expandedModels, setExpandedModels] = useState<Set<string>>(new Set());
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
+  const [selectedGenByModel, setSelectedGenByModel] = useState<Record<string, string>>({});
 
   // Filtriranje marki po tipu vozila i pretrazi
   const filteredPassengerBrands = vehicleBrands.filter(brand => 
@@ -427,6 +428,34 @@ export const VehiclesClient = ({ initialVehicleBrands }: VehiclesClientProps) =>
                                       <PlusCircle className="h-3 w-3 mr-1" />
                                       Dodaj generaciju
                                     </Button>
+                                    {model.generations.length > 0 && (
+                                      <div className="flex items-center gap-2">
+                                        <Select
+                                          value={selectedGenByModel[model.id] || model.generations[0]?.id}
+                                          onValueChange={(val) => setSelectedGenByModel(prev => ({ ...prev, [model.id]: val }))}
+                                        >
+                                          <SelectTrigger className="h-8 w-48">
+                                            <SelectValue placeholder="Odaberite generaciju" />
+                                          </SelectTrigger>
+                                          <SelectContent>
+                                            {model.generations.map((g) => (
+                                              <SelectItem key={g.id} value={g.id}>{g.name}{g.period ? ` (${g.period})` : ''}</SelectItem>
+                                            ))}
+                                          </SelectContent>
+                                        </Select>
+                                        <Button
+                                          variant="outline"
+                                          size="sm"
+                                          onClick={() => {
+                                            const targetId = selectedGenByModel[model.id] || model.generations[0]?.id;
+                                            if (targetId) router.push(`/admin/vehicles/link?generationId=${targetId}`);
+                                          }}
+                                          className="bg-gradient-to-r from-white/95 to-gray-50/95 backdrop-blur-sm text-gray-700 hover:from-white hover:to-gray-50 border-amber/30 hover:border-amber/50 rounded-lg transition-all duration-200 shadow-sm text-xs"
+                                        >
+                                          Poveži proizvode
+                                        </Button>
+                                      </div>
+                                    )}
                                   </div>
                                   </div>
                                   
@@ -667,17 +696,27 @@ export const VehiclesClient = ({ initialVehicleBrands }: VehiclesClientProps) =>
                                       <div className="space-y-2">
                                         {model.generations.map((generation) => (
                                           <div key={generation.id} className="flex items-center justify-between p-3 bg-gradient-to-r from-white/60 to-gray-50/60 backdrop-blur-sm border border-amber/10 rounded-lg hover:border-amber/30 transition-all duration-200">
-                                            <div className="flex items-center gap-2">
-                                              <ChevronRight className="h-4 w-4 text-amber/70" />
-                                              <span className="text-sm font-medium text-gray-900">{generation.name}</span>
-                                              {generation.period && (
-                                                <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full">
-                                                  {generation.period}
-                                                </span>
-                                              )}
+                                              <div className="flex items-center gap-2">
+                                                <ChevronRight className="h-4 w-4 text-amber/70" />
+                                                <span className="text-sm font-medium text-gray-900">{generation.name}</span>
+                                                {generation.period && (
+                                                  <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded-full">
+                                                    {generation.period}
+                                                  </span>
+                                                )}
+                                              </div>
+                                              <div className="flex items-center gap-2">
+                                                <Button
+                                                  variant="outline"
+                                                  size="sm"
+                                                  className="bg-white/70 border-amber/30 hover:border-amber/50 rounded-md"
+                                                  onClick={() => router.push(`/admin/vehicles/link?generationId=${generation.id}`)}
+                                                >
+                                                  Poveži proizvode
+                                                </Button>
+                                                <EngineButton generationId={generation.id} />
+                                              </div>
                                             </div>
-                                            <EngineButton generationId={generation.id} />
-                                          </div>
                                         ))}
                                       </div>
                                     )}

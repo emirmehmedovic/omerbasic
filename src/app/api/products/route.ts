@@ -107,14 +107,20 @@ export async function GET(req: NextRequest) {
     const cursor = searchParams.get("cursor"); // keyset cursor = last item id
     const pageParam = searchParams.get('page');
     const page = pageParam ? Math.max(parseInt(pageParam || '1') || 1, 1) : null;
+    const includeOutOfStock = searchParams.get('includeOutOfStock') === 'true';
 
     let where: any = { isArchived: false };
+
+    if (!includeOutOfStock) {
+      where.stock = { gt: 0 };
+    }
 
     if (query) {
       where.OR = [
         { name: { contains: query, mode: "insensitive" } },
         { catalogNumber: { contains: query, mode: "insensitive" } },
         { oemNumber: { contains: query, mode: "insensitive" } },
+        { sku: { contains: query, mode: "insensitive" } },
         { description: { contains: query, mode: "insensitive" } },
       ];
     }
@@ -124,12 +130,20 @@ export async function GET(req: NextRequest) {
       where.categoryId = { in: categoryIds };
     }
 
-    if (generationId || engineId) {
-      // Build fitment filter depending on provided params
-      const fitmentFilter: any = {};
-      if (generationId) fitmentFilter.generationId = generationId;
-      if (engineId) fitmentFilter.engineId = engineId;
-      where.vehicleFitments = { some: fitmentFilter };
+    if (generationId && engineId) {
+      where.vehicleFitments = {
+        some: {
+          OR: [
+            { generationId, engineId },
+            { generationId, engineId: null },
+            { isUniversal: true },
+          ],
+        },
+      } as any;
+    } else if (generationId) {
+      where.vehicleFitments = { some: { generationId } } as any;
+    } else if (engineId) {
+      where.vehicleFitments = { some: { engineId } } as any;
     }
 
     if (minPrice || maxPrice) {

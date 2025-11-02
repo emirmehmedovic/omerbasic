@@ -346,6 +346,12 @@ function CategoryItem({ category, onEdit, onDelete, onAddSubcategory, level }: {
           >
             Dodaj podkategoriju
           </button>
+          <Link
+            href={`/admin/categories/${category.id}/assign-products`}
+            className="text-sm text-amber-600 hover:text-amber-800 hover:bg-amber-50 px-2 py-1 rounded-lg transition-all duration-200"
+          >
+            Poveži proizvode
+          </Link>
           <button 
             onClick={() => onDelete(category.id)} 
             className="text-sm text-red-600 hover:text-red-800 hover:bg-red-50 px-2 py-1 rounded-lg transition-all duration-200"

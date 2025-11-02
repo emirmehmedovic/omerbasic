@@ -367,99 +367,76 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
                     {product.vehicleFitments.length} {product.vehicleFitments.length === 1 ? 'vozilo' : 'vozila'}
                   </div>
                 </div>
-                
-                {/* Grupiranje po marki i modelu za bolji pregled */}
+
                 {(() => {
-                  // Grupiranje vozila po marki i modelu
-                  const groupedFitments: Record<string, typeof product.vehicleFitments> = {};
-                  
-                  product.vehicleFitments.forEach(fitment => {
-                    const brandModelKey = `${fitment.generation.model.brand.name} ${fitment.generation.model.name}`;
-                    if (!groupedFitments[brandModelKey]) {
-                      groupedFitments[brandModelKey] = [];
-                    }
-                    groupedFitments[brandModelKey].push(fitment);
+                  const rows = [...product.vehicleFitments].sort((a, b) => {
+                    const ab = a.generation.model.brand.name.localeCompare(b.generation.model.brand.name);
+                    if (ab !== 0) return ab;
+                    const am = a.generation.model.name.localeCompare(b.generation.model.name);
+                    if (am !== 0) return am;
+                    const ag = a.generation.name.localeCompare(b.generation.name);
+                    if (ag !== 0) return ag;
+                    const ae = (a.engine?.engineCode || '').localeCompare(b.engine?.engineCode || '');
+                    return ae;
                   });
-                  
-                  return Object.entries(groupedFitments).map(([brandModelName, fitments]) => (
-                    <div key={brandModelName} className="mb-6 border border-slate-200 rounded-2xl overflow-hidden bg-white">
-                      <div className="px-6 py-4 bg-slate-50 border-b border-slate-200">
-                        <h4 className="font-bold text-slate-900 text-lg">{brandModelName}</h4>
-                      </div>
-                      
-                      <div className="p-4 space-y-4">
-                        {fitments.map((fitment) => (
-                          <div key={fitment.id} className="bg-white rounded-lg p-4 border border-slate-200 transition-all duration-200 hover:shadow-sm">
-                            <div className="flex justify-between items-start">
-                              <div>
-                                <p className="font-bold text-slate-900">{fitment.generation.name}</p>
-                                <p className="text-sm text-slate-600">{formatCompatibilityPeriod(fitment)}</p>
-                              </div>
-                              {fitment.isUniversal && <Badge variant="secondary" className="bg-slate-100 text-slate-700 border border-slate-200">Univerzalni dio</Badge>}
-                            </div>
-                            <div className="mt-3 grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3 text-sm">
-                              <div>
-                                <p className="font-semibold text-slate-700">Motor</p>
-                                {fitment.engine ? (
-                                  <p className="text-slate-600">{formatEngineDescription(fitment.engine)}</p>
+
+                  const bodyStylesText = (bs?: string[]) => bs && bs.length ? bs.join(', ') : 'Sve karoserije';
+                  const positionText = (pos?: string | null) => {
+                    const parts = splitPosition(pos);
+                    return parts.length ? parts.map(normalizePositionToken).join(', ') : 'Nije specificirano';
+                  };
+
+                  return (
+                    <div className="overflow-x-auto rounded-2xl border border-slate-200">
+                      <table className="min-w-full text-sm">
+                        <thead className="bg-slate-50/80 backdrop-blur border-b border-slate-200">
+                          <tr>
+                            <th className="text-left px-4 py-3 font-semibold text-slate-700">Marka</th>
+                            <th className="text-left px-4 py-3 font-semibold text-slate-700">Model</th>
+                            <th className="text-left px-4 py-3 font-semibold text-slate-700">Generacija</th>
+                            <th className="text-left px-4 py-3 font-semibold text-slate-700">Period</th>
+                            <th className="text-left px-4 py-3 font-semibold text-slate-700">Motor</th>
+                            <th className="text-left px-4 py-3 font-semibold text-slate-700">Karoserija</th>
+                            <th className="text-left px-4 py-3 font-semibold text-slate-700">Pozicija</th>
+                            <th className="text-left px-4 py-3 font-semibold text-slate-700">Napomene</th>
+                          </tr>
+                        </thead>
+                        <tbody className="divide-y divide-slate-200">
+                          {rows.map((fitment) => (
+                            <tr key={fitment.id} className="hover:bg-slate-50/60 transition-colors">
+                              <td className="px-4 py-3 text-slate-900 font-medium">{fitment.generation.model.brand.name}</td>
+                              <td className="px-4 py-3 text-slate-900">{fitment.generation.model.name}</td>
+                              <td className="px-4 py-3 text-slate-900">{fitment.generation.name}</td>
+                              <td className="px-4 py-3 text-slate-600">{formatCompatibilityPeriod(fitment)}</td>
+                              <td className="px-4 py-3 text-slate-900">
+                                {fitment.isUniversal ? (
+                                  <Badge variant="secondary" className="bg-slate-100 text-slate-700 border border-slate-200">Univerzalni dio</Badge>
+                                ) : fitment.engine ? (
+                                  <span>{formatEngineDescription(fitment.engine)}</span>
                                 ) : (
-                                  <p className="text-slate-500 italic">Svi motori</p>
+                                  <span className="text-slate-500">Svi motori</span>
                                 )}
-                              </div>
-                              <div>
-                                <p className="font-semibold text-slate-700">Karoserija</p>
-                                {fitment.bodyStyles && fitment.bodyStyles.length > 0 ? (
-                                  <div className="flex flex-wrap gap-1 mt-1">
-                                    {fitment.bodyStyles.map((style, index) => (
-                                      <Badge key={index} variant="outline" className="text-xs border-slate-200 text-slate-700">{style}</Badge>
-                                    ))}
-                                  </div>
-                                ) : (
-                                  <p className="text-slate-500 italic">Sve karoserije</p>
-                                )}
-                              </div>
-                              <div>
-                                <div className="flex items-center gap-2">
-                                  <p className="font-semibold text-slate-700">Pozicija ugradnje</p>
-                                  <span title="Mjesto ugradnje dijela (npr. Prednja/Zadnja, Lijeva/Desna, Unutarnja/Vanjska).">
-                                    <Info className="h-4 w-4 text-slate-500" />
-                                  </span>
-                                </div>
-                                {splitPosition(fitment.position).length > 0 ? (
-                                  <div className="flex flex-wrap gap-1 mt-1">
-                                    {splitPosition(fitment.position).map((p, idx) => (
-                                      <Badge key={idx} variant="outline" className="text-xs border-slate-200 text-slate-700">
-                                        {normalizePositionToken(p)}
-                                      </Badge>
-                                    ))}
-                                  </div>
-                                ) : (
-                                  <p className="text-slate-500 italic">Sve pozicije (nije specificirano)</p>
-                                )}
-                              </div>
-                              {fitment.fitmentNotes && (
-                                <div>
-                                  <p className="font-semibold text-slate-700">Napomene</p>
-                                  <p className="text-slate-600">{fitment.fitmentNotes}</p>
-                                </div>
-                              )}
-                            </div>
-                          </div>
-                        ))}
-                      </div>
+                              </td>
+                              <td className="px-4 py-3 text-slate-900">{bodyStylesText(fitment.bodyStyles)}</td>
+                              <td className="px-4 py-3 text-slate-900">{positionText(fitment.position)}</td>
+                              <td className="px-4 py-3 text-slate-700 max-w-[420px]">{fitment.fitmentNotes || ''}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
                     </div>
-                  ));
+                  );
                 })()}
-                
+
                 <div className="mt-6 flex items-center justify-between">
-                  <Link 
-                    href="/products/vehicle-compatibility" 
+                  <Link
+                    href="/products/vehicle-compatibility"
                     className="inline-flex items-center text-sm font-medium text-sunfire-700 hover:text-sunfire-800"
                   >
                     <Car className="h-4 w-4 mr-1" />
                     Pretraži proizvode po vozilu
                   </Link>
-                  
+
                   <div className="text-xs text-slate-500">
                     <Info className="h-3 w-3 inline-block mr-1" />
                     Provjerite kompatibilnost prije kupovine
@@ -470,8 +447,8 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
               <div className="text-center py-8 text-slate-500">
                 <Car className="h-12 w-12 mx-auto text-slate-400" />
                 <p className="mt-2">Nema dostupnih informacija o kompatibilnosti s vozilima</p>
-                <Link 
-                  href="/products/vehicle-compatibility" 
+                <Link
+                  href="/products/vehicle-compatibility"
                   className="inline-flex items-center mt-4 text-sm font-medium text-sunfire-700 hover:text-sunfire-800"
                 >
                   Pretraži proizvode po vozilu

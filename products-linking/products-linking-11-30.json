@@ -1,0 +1,662 @@
+[
+  {
+    "oemNumber": "1H0609721",
+    "partDescription": "Sajla ručne kočnice (za doboš kočnice)",
+    "compatibleVehicles": [
+      {
+        "name": "Volkswagen",
+        "type": "PASSENGER",
+        "models": [
+          {
+            "name": "Golf",
+            "generations": [{"name": "Mk3", "period": "1992–1999", "bodyStyles": ["Hatchback", "Wagon"], "engines": []}]
+          },
+          {
+            "name": "Vento",
+            "generations": [{"name": "A3", "period": "1992–1999", "bodyStyles": ["Sedan"], "engines": []}]
+          }
+        ]
+      },
+      {
+        "name": "SEAT",
+        "type": "PASSENGER",
+        "models": [
+          {
+            "name": "Cordoba",
+            "generations": [{"name": "Mk1 (6K)", "period": "1993–2002", "bodyStyles": ["Sedan", "Wagon"], "engines": []}]
+          },
+          {
+            "name": "Ibiza",
+            "generations": [{"name": "Mk2 (6K)", "period": "1993–2002", "bodyStyles": ["Hatchback"], "engines": []}]
+          },
+          {
+            "name": "Toledo",
+            "generations": [{"name": "Mk1 (1L)", "period": "1991–1999", "bodyStyles": ["Liftback"], "engines": []}]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "oemNumber": "1H0609721A",
+    "partDescription": "Sajla ručne kočnice (za doboš kočnice)",
+    "compatibleVehicles": [
+      {
+        "name": "Volkswagen",
+        "type": "PASSENGER",
+        "models": [
+          {
+            "name": "Golf",
+            "generations": [{"name": "Mk3", "period": "1992–1999", "bodyStyles": ["Hatchback", "Wagon"], "engines": []}]
+          },
+          {
+            "name": "Vento",
+            "generations": [{"name": "A3", "period": "1992–1999", "bodyStyles": ["Sedan"], "engines": []}]
+          }
+        ]
+      },
+      {
+        "name": "SEAT",
+        "type": "PASSENGER",
+        "models": [
+          {
+            "name": "Cordoba",
+            "generations": [{"name": "Mk1 (6K)", "period": "1993–2002", "bodyStyles": ["Sedan", "Wagon"], "engines": []}]
+          },
+          {
+            "name": "Ibiza",
+            "generations": [{"name": "Mk2 (6K)", "period": "1993–2002", "bodyStyles": ["Hatchback"], "engines": []}]
+          },
+          {
+            "name": "Toledo",
+            "generations": [{"name": "Mk1 (1L)", "period": "1991–1999", "bodyStyles": ["Liftback"], "engines": []}]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "oemNumber": "1J0411336D",
+    "partDescription": "Nosač balans štange / Selen balans štange",
+    "compatibleVehicles": [
+      {
+        "name": "Volkswagen",
+        "type": "PASSENGER",
+        "models": [
+          {
+            "name": "Golf",
+            "generations": [{"name": "Mk4", "period": "1997–2003", "bodyStyles": ["Hatchback", "Wagon"], "engines": []}]
+          },
+          {
+            "name": "Bora",
+            "generations": [{"name": "Mk4 (1J)", "period": "1999–2005", "bodyStyles": ["Sedan", "Wagon"], "engines": []}]
+          },
+          {
+            "name": "New Beetle",
+            "generations": [{"name": "Type 9C", "period": "1997–2011", "bodyStyles": ["Hatchback", "Convertible"], "engines": []}]
+          }
+        ]
+      },
+      {
+        "name": "Audi",
+        "type": "PASSENGER",
+        "models": [
+          {
+            "name": "A3",
+            "generations": [{"name": "Mk1 (8L)", "period": "1996–2003", "bodyStyles": ["Hatchback"], "engines": []}]
+          }
+        ]
+      },
+      {
+        "name": "SEAT",
+        "type": "PASSENGER",
+        "models": [
+          {
+            "name": "León",
+            "generations": [{"name": "Mk1 (1M)", "period": "1999–2006", "bodyStyles": ["Hatchback"], "engines": []}]
+          },
+          {
+            "name": "Toledo",
+            "generations": [{"name": "Mk2 (1M)", "period": "1998–2004", "bodyStyles": ["Sedan"], "engines": []}]
+          }
+        ]
+      },
+      {
+        "name": "Škoda",
+        "type": "PASSENGER",
+        "models": [
+          {
+            "name": "Octavia",
+            "generations": [{"name": "Mk1 (1U)", "period": "1996–2004", "bodyStyles": ["Liftback", "Wagon"], "engines": []}]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "oemNumber": "7H0927804",
+    "partDescription": "ABS Senzor (Prednji desni)",
+    "compatibleVehicles": [
+      {
+        "name": "Volkswagen",
+        "type": "PASSENGER",
+        "models": [
+          {
+            "name": "Transporter",
+            "generations": [{"name": "T5", "period": "2003–2015", "bodyStyles": ["Van", "Kombi"], "engines": []}]
+          },
+          {
+            "name": "Multivan",
+            "generations": [{"name": "T5", "period": "2003–2015", "bodyStyles": ["MPV"], "engines": []}]
+          },
+          {
+            "name": "Touareg",
+            "generations": [{"name": "Mk1 (7L)", "period": "2002–2010", "bodyStyles": ["SUV"], "engines": []}]
+          },
+          {
+            "name": "Amarok",
+            "generations": [{"name": "Mk1", "period": "2010–2022", "bodyStyles": ["Pickup"], "engines": []}]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "oemNumber": "7H0927803",
+    "partDescription": "ABS Senzor (Prednji lijevi)",
+    "compatibleVehicles": [
+      {
+        "name": "Volkswagen",
+        "type": "PASSENGER",
+        "models": [
+          {
+            "name": "Transporter",
+            "generations": [{"name": "T5", "period": "2003–2015", "bodyStyles": ["Van", "Kombi"], "engines": []}]
+          },
+          {
+            "name": "Multivan",
+            "generations": [{"name": "T5", "period": "2003–2015", "bodyStyles": ["MPV"], "engines": []}]
+          },
+          {
+            "name": "Touareg",
+            "generations": [{"name": "Mk1 (7L)", "period": "2002–2010", "bodyStyles": ["SUV"], "engines": []}]
+          },
+          {
+            "name": "Amarok",
+            "generations": [{"name": "Mk1", "period": "2010–2022", "bodyStyles": ["Pickup"], "engines": []}]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "oemNumber": "1K0411315D",
+    "partDescription": "Spona stabilizatora / K-linka",
+    "compatibleVehicles": [
+      {
+        "name": "Volkswagen",
+        "type": "PASSENGER",
+        "models": [
+          {
+            "name": "Golf",
+            "generations": [
+              {"name": "Mk5", "period": "2003–2009", "bodyStyles": ["Hatchback", "Wagon"], "engines": []},
+              {"name": "Mk6", "period": "2008–2012", "bodyStyles": ["Hatchback", "Wagon"], "engines": []}
+            ]
+          },
+          {
+            "name": "Jetta",
+            "generations": [{"name": "A5/A6", "period": "2005–2018", "bodyStyles": ["Sedan"], "engines": []}]
+          },
+          {
+            "name": "Passat",
+            "generations": [
+                {"name": "B6", "period": "2005–2010", "bodyStyles": ["Sedan", "Wagon"], "engines": []},
+                {"name": "B7", "period": "2010–2015", "bodyStyles": ["Sedan", "Wagon"], "engines": []}
+            ]
+          },
+          { "name": "Eos", "generations": [{"name": "Mk1", "period": "2006–2015", "bodyStyles": ["Convertible"], "engines": []}] },
+          { "name": "Scirocco", "generations": [{"name": "Mk3", "period": "2008–2017", "bodyStyles": ["Coupé"], "engines": []}] },
+          { "name": "Tiguan", "generations": [{"name": "Mk1", "period": "2007–2018", "bodyStyles": ["SUV"], "engines": []}] }
+        ]
+      },
+      {
+        "name": "Audi",
+        "type": "PASSENGER",
+        "models": [
+          {"name": "A3", "generations": [{"name": "Mk2 (8P)", "period": "2003–2013", "bodyStyles": ["Hatchback", "Sportback", "Cabriolet"], "engines": []}]},
+          {"name": "Q3", "generations": [{"name": "Mk1 (8U)", "period": "2011–2018", "bodyStyles": ["SUV"], "engines": []}]},
+          {"name": "TT", "generations": [{"name": "Mk2 (8J)", "period": "2006–2014", "bodyStyles": ["Coupé", "Roadster"], "engines": []}]}
+        ]
+      },
+      {
+        "name": "SEAT",
+        "type": "PASSENGER",
+        "models": [
+          {"name": "León", "generations": [{"name": "Mk2 (1P)", "period": "2005–2012", "bodyStyles": ["Hatchback"], "engines": []}]},
+          {"name": "Altea", "generations": [{"name": "5P", "period": "2004–2015", "bodyStyles": ["MPV"], "engines": []}]},
+          {"name": "Toledo", "generations": [{"name": "Mk3 (5P)", "period": "2004–2009", "bodyStyles": ["MPV"], "engines": []}]}
+        ]
+      },
+      {
+        "name": "Škoda",
+        "type": "PASSENGER",
+        "models": [
+          {"name": "Octavia", "generations": [{"name": "Mk2 (1Z)", "period": "2004–2013", "bodyStyles": ["Liftback", "Wagon"], "engines": []}]},
+          {"name": "Superb", "generations": [{"name": "Mk2 (3T)", "period": "2008–2015", "bodyStyles": ["Liftback", "Wagon"], "engines": []}]},
+          {"name": "Yeti", "generations": [{"name": "5L", "period": "2009–2017", "bodyStyles": ["SUV"], "engines": []}]}
+        ]
+      }
+    ]
+  },
+  {
+    "oemNumber": "1K0407365C",
+    "partDescription": "Kugla prednjeg točka (Lijeva)",
+    "compatibleVehicles": [
+      {
+        "name": "Volkswagen",
+        "type": "PASSENGER",
+        "models": [
+          {
+            "name": "Golf",
+            "generations": [
+              {"name": "Mk5", "period": "2003–2009", "bodyStyles": ["Hatchback", "Wagon"], "engines": []},
+              {"name": "Mk6", "period": "2008–2012", "bodyStyles": ["Hatchback", "Wagon"], "engines": []}
+            ]
+          },
+          {
+            "name": "Jetta",
+            "generations": [{"name": "A5/A6", "period": "2005–2018", "bodyStyles": ["Sedan"], "engines": []}]
+          },
+          {
+            "name": "Passat",
+            "generations": [
+                {"name": "B6", "period": "2005–2010", "bodyStyles": ["Sedan", "Wagon"], "engines": []}
+            ]
+          },
+          { "name": "Eos", "generations": [{"name": "Mk1", "period": "2006–2015", "bodyStyles": ["Convertible"], "engines": []}] },
+          { "name": "Scirocco", "generations": [{"name": "Mk3", "period": "2008–2017", "bodyStyles": ["Coupé"], "engines": []}] },
+          { "name": "Tiguan", "generations": [{"name": "Mk1", "period": "2007–2018", "bodyStyles": ["SUV"], "engines": []}] }
+        ]
+      },
+      {
+        "name": "Audi",
+        "type": "PASSENGER",
+        "models": [
+          {"name": "A3", "generations": [{"name": "Mk2 (8P)", "period": "2003–2013", "bodyStyles": ["Hatchback", "Sportback", "Cabriolet"], "engines": []}]}
+        ]
+      },
+      {
+        "name": "SEAT",
+        "type": "PASSENGER",
+        "models": [
+          {"name": "León", "generations": [{"name": "Mk2 (1P)", "period": "2005–2012", "bodyStyles": ["Hatchback"], "engines": []}]},
+          {"name": "Altea", "generations": [{"name": "5P", "period": "2004–2015", "bodyStyles": ["MPV"], "engines": []}]},
+          {"name": "Toledo", "generations": [{"name": "Mk3 (5P)", "period": "2004–2009", "bodyStyles": ["MPV"], "engines": []}]}
+        ]
+      },
+      {
+        "name": "Škoda",
+        "type": "PASSENGER",
+        "models": [
+          {"name": "Octavia", "generations": [{"name": "Mk2 (1Z)", "period": "2004–2013", "bodyStyles": ["Liftback", "Wagon"], "engines": []}]},
+          {"name": "Superb", "generations": [{"name": "Mk2 (3T)", "period": "2008–2015", "bodyStyles": ["Liftback", "Wagon"], "engines": []}]}
+        ]
+      }
+    ]
+  },
+    {
+    "oemNumber": "1K0407366C",
+    "partDescription": "Kugla prednjeg točka (Desna)",
+    "compatibleVehicles": [
+      {
+        "name": "Volkswagen",
+        "type": "PASSENGER",
+        "models": [
+          {
+            "name": "Golf",
+            "generations": [
+              {"name": "Mk5", "period": "2003–2009", "bodyStyles": ["Hatchback", "Wagon"], "engines": []},
+              {"name": "Mk6", "period": "2008–2012", "bodyStyles": ["Hatchback", "Wagon"], "engines": []}
+            ]
+          },
+          {
+            "name": "Jetta",
+            "generations": [{"name": "A5/A6", "period": "2005–2018", "bodyStyles": ["Sedan"], "engines": []}]
+          },
+          {
+            "name": "Passat",
+            "generations": [
+                {"name": "B6", "period": "2005–2010", "bodyStyles": ["Sedan", "Wagon"], "engines": []}
+            ]
+          },
+          { "name": "Eos", "generations": [{"name": "Mk1", "period": "2006–2015", "bodyStyles": ["Convertible"], "engines": []}] },
+          { "name": "Scirocco", "generations": [{"name": "Mk3", "period": "2008–2017", "bodyStyles": ["Coupé"], "engines": []}] },
+          { "name": "Tiguan", "generations": [{"name": "Mk1", "period": "2007–2018", "bodyStyles": ["SUV"], "engines": []}] }
+        ]
+      },
+      {
+        "name": "Audi",
+        "type": "PASSENGER",
+        "models": [
+          {"name": "A3", "generations": [{"name": "Mk2 (8P)", "period": "2003–2013", "bodyStyles": ["Hatchback", "Sportback", "Cabriolet"], "engines": []}]}
+        ]
+      },
+      {
+        "name": "SEAT",
+        "type": "PASSENGER",
+        "models": [
+          {"name": "León", "generations": [{"name": "Mk2 (1P)", "period": "2005–2012", "bodyStyles": ["Hatchback"], "engines": []}]},
+          {"name": "Altea", "generations": [{"name": "5P", "period": "2004–2015", "bodyStyles": ["MPV"], "engines": []}]},
+          {"name": "Toledo", "generations": [{"name": "Mk3 (5P)", "period": "2004–2009", "bodyStyles": ["MPV"], "engines": []}]}
+        ]
+      },
+      {
+        "name": "Škoda",
+        "type": "PASSENGER",
+        "models": [
+          {"name": "Octavia", "generations": [{"name": "Mk2 (1Z)", "period": "2004–2013", "bodyStyles": ["Liftback", "Wagon"], "engines": []}]},
+          {"name": "Superb", "generations": [{"name": "Mk2 (3T)", "period": "2008–2015", "bodyStyles": ["Liftback", "Wagon"], "engines": []}]}
+        ]
+      }
+    ]
+  },
+  {
+    "oemNumber": "1H0609721D",
+    "partDescription": "Sajla ručne kočnice (za disk kočnice)",
+    "compatibleVehicles": [
+      {
+        "name": "Volkswagen",
+        "type": "PASSENGER",
+        "models": [
+          {
+            "name": "Golf",
+            "generations": [{"name": "Mk3", "period": "1992–1999", "bodyStyles": ["Hatchback", "Wagon"], "engines": []}]
+          },
+          {
+            "name": "Vento",
+            "generations": [{"name": "A3", "period": "1992–1999", "bodyStyles": ["Sedan"], "engines": []}]
+          }
+        ]
+      },
+      {
+        "name": "SEAT",
+        "type": "PASSENGER",
+        "models": [
+          {
+            "name": "Cordoba",
+            "generations": [{"name": "Mk1 (6K)", "period": "1993–2002", "bodyStyles": ["Sedan", "Wagon"], "engines": []}]
+          },
+          {
+            "name": "Ibiza",
+            "generations": [{"name": "Mk2 (6K)", "period": "1993–2002", "bodyStyles": ["Hatchback"], "engines": []}]
+          },
+          {
+            "name": "Toledo",
+            "generations": [{"name": "Mk1 (1L)", "period": "1991–1999", "bodyStyles": ["Liftback"], "engines": []}]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "oemNumber": "1H0609721E",
+    "partDescription": "Sajla ručne kočnice (za disk kočnice)",
+    "compatibleVehicles": [
+      {
+        "name": "Volkswagen",
+        "type": "PASSENGER",
+        "models": [
+          {
+            "name": "Golf",
+            "generations": [{"name": "Mk3", "period": "1992–1999", "bodyStyles": ["Hatchback", "Wagon"], "engines": []}]
+          },
+          {
+            "name": "Vento",
+            "generations": [{"name": "A3", "period": "1992–1999", "bodyStyles": ["Sedan"], "engines": []}]
+          }
+        ]
+      },
+      {
+        "name": "SEAT",
+        "type": "PASSENGER",
+        "models": [
+          {
+            "name": "Cordoba",
+            "generations": [{"name": "Mk1 (6K)", "period": "1993–2002", "bodyStyles": ["Sedan", "Wagon"], "engines": []}]
+          },
+          {
+            "name": "Ibiza",
+            "generations": [{"name": "Mk2 (6K)", "period": "1993–2002", "bodyStyles": ["Hatchback"], "engines": []}]
+          },
+          {
+            "name": "Toledo",
+            "generations": [{"name": "Mk1 (1L)", "period": "1991–1999", "bodyStyles": ["Liftback"], "engines": []}]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "oemNumber": "3B0609722F",
+    "partDescription": "Sajla ručne kočnice (Desna)",
+    "compatibleVehicles": [
+      {
+        "name": "Volkswagen",
+        "type": "PASSENGER",
+        "models": [
+          {
+            "name": "Passat",
+            "generations": [
+              {"name": "B5", "period": "1997–2000", "bodyStyles": ["Sedan", "Wagon"], "engines": []},
+              {"name": "B5.5", "period": "2000–2005", "bodyStyles": ["Sedan", "Wagon"], "engines": []}
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Škoda",
+        "type": "PASSENGER",
+        "models": [
+          {
+            "name": "Superb",
+            "generations": [{"name": "Mk1 (3U)", "period": "2001–2008", "bodyStyles": ["Sedan"], "engines": []}]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "oemNumber": "3B0609721F",
+    "partDescription": "Sajla ručne kočnice (Lijeva)",
+    "compatibleVehicles": [
+      {
+        "name": "Volkswagen",
+        "type": "PASSENGER",
+        "models": [
+          {
+            "name": "Passat",
+            "generations": [
+              {"name": "B5", "period": "1997–2000", "bodyStyles": ["Sedan", "Wagon"], "engines": []},
+              {"name": "B5.5", "period": "2000–2005", "bodyStyles": ["Sedan", "Wagon"], "engines": []}
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Škoda",
+        "type": "PASSENGER",
+        "models": [
+          {
+            "name": "Superb",
+            "generations": [{"name": "Mk1 (3U)", "period": "2001–2008", "bodyStyles": ["Sedan"], "engines": []}]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "oemNumber": "1J0422810B",
+    "partDescription": "Aksijalni zglob / Spona letve volana",
+    "compatibleVehicles": [
+      {
+        "name": "Volkswagen",
+        "type": "PASSENGER",
+        "models": [
+          {"name": "Golf", "generations": [{"name": "Mk4", "period": "1997–2003", "bodyStyles": ["Hatchback", "Wagon"], "engines": []}]},
+          {"name": "Bora", "generations": [{"name": "Mk4 (1J)", "period": "1999–2005", "bodyStyles": ["Sedan", "Wagon"], "engines": []}]}
+        ]
+      },
+      {
+        "name": "Audi",
+        "type": "PASSENGER",
+        "models": [
+          {"name": "A3", "generations": [{"name": "Mk1 (8L)", "period": "1996–2003", "bodyStyles": ["Hatchback"], "engines": []}]}
+        ]
+      },
+      {
+        "name": "SEAT",
+        "type": "PASSENGER",
+        "models": [
+          {"name": "León", "generations": [{"name": "Mk1 (1M)", "period": "1999–2006", "bodyStyles": ["Hatchback"], "engines": []}]},
+          {"name": "Toledo", "generations": [{"name": "Mk2 (1M)", "period": "1998–2004", "bodyStyles": ["Sedan"], "engines": []}]}
+        ]
+      },
+      {
+        "name": "Škoda",
+        "type": "PASSENGER",
+        "models": [
+          {"name": "Octavia", "generations": [{"name": "Mk1 (1U)", "period": "1996–2004", "bodyStyles": ["Liftback", "Wagon"], "engines": []}]}
+        ]
+      }
+    ]
+  },
+  {
+    "oemNumber": "4B0953503H",
+    "partDescription": "Ručica žmigavca i brisača",
+    "compatibleVehicles": [
+      {
+        "name": "Volkswagen",
+        "type": "PASSENGER",
+        "models": [
+          {"name": "Golf", "generations": [{"name": "Mk4", "period": "1997–2003", "bodyStyles": ["Hatchback", "Wagon"], "engines": []}]},
+          {"name": "Bora", "generations": [{"name": "Mk4 (1J)", "period": "1999–2005", "bodyStyles": ["Sedan", "Wagon"], "engines": []}]},
+          {"name": "Passat", "generations": [{"name": "B5.5", "period": "2000–2005", "bodyStyles": ["Sedan", "Wagon"], "engines": []}]}
+        ]
+      },
+      {
+        "name": "Audi",
+        "type": "PASSENGER",
+        "models": [
+          {"name": "A3", "generations": [{"name": "Mk1 (8L)", "period": "1996–2003", "bodyStyles": ["Hatchback"], "engines": []}]},
+          {"name": "A6", "generations": [{"name": "C5", "period": "1997–2004", "bodyStyles": ["Sedan", "Avant"], "engines": []}]}
+        ]
+      },
+      {
+        "name": "Škoda",
+        "type": "PASSENGER",
+        "models": [
+          {"name": "Octavia", "generations": [{"name": "Mk1 (1U)", "period": "1996–2004", "bodyStyles": ["Liftback", "Wagon"], "engines": []}]},
+          {"name": "Superb", "generations": [{"name": "Mk1 (3U)", "period": "2001–2008", "bodyStyles": ["Sedan"], "engines": []}]}
+        ]
+      }
+    ]
+  },
+  {
+    "oemNumber": "8L0953513G",
+    "partDescription": "Ručica žmigavca (sa tempomatom)",
+    "compatibleVehicles": [
+      {
+        "name": "Audi",
+        "type": "PASSENGER",
+        "models": [
+          {"name": "A3", "generations": [{"name": "Mk1 (8L)", "period": "1996–2003", "bodyStyles": ["Hatchback"], "engines": []}]},
+          {"name": "A6", "generations": [{"name": "C5", "period": "1997–2004", "bodyStyles": ["Sedan", "Avant"], "engines": []}]}
+        ]
+      },
+      {
+        "name": "Volkswagen",
+        "type": "PASSENGER",
+        "models": [
+          {"name": "Golf", "generations": [{"name": "Mk4", "period": "1997–2003", "bodyStyles": ["Hatchback", "Wagon"], "engines": []}]},
+          {"name": "Bora", "generations": [{"name": "Mk4 (1J)", "period": "1999–2005", "bodyStyles": ["Sedan", "Wagon"], "engines": []}]}
+        ]
+      }
+    ]
+  },
+  {
+    "oemNumber": "8L0953513J",
+    "partDescription": "Ručica žmigavca (bez tempomata)",
+    "compatibleVehicles": [
+      {
+        "name": "Audi",
+        "type": "PASSENGER",
+        "models": [
+          {"name": "A3", "generations": [{"name": "Mk1 (8L)", "period": "1996–2003", "bodyStyles": ["Hatchback"], "engines": []}]},
+          {"name": "TT", "generations": [{"name": "Mk1 (8N)", "period": "1998–2006", "bodyStyles": ["Coupé", "Roadster"], "engines": []}]}
+        ]
+      },
+      {
+        "name": "Volkswagen",
+        "type": "PASSENGER",
+        "models": [
+          {"name": "Golf", "generations": [{"name": "Mk4", "period": "1997–2003", "bodyStyles": ["Hatchback", "Wagon"], "engines": []}]}
+        ]
+      }
+    ]
+  },
+  {
+    "oemNumber": "1J0927807B",
+    "partDescription": "ABS Senzor (Zadnji, lijevi/desni)",
+    "compatibleVehicles": [
+      {
+        "name": "Volkswagen",
+        "type": "PASSENGER",
+        "models": [
+          {"name": "Golf", "generations": [{"name": "Mk4", "period": "1997–2003", "bodyStyles": ["Hatchback", "Wagon"], "engines": []}]},
+          {"name": "Bora", "generations": [{"name": "Mk4 (1J)", "period": "1999–2005", "bodyStyles": ["Sedan", "Wagon"], "engines": []}]},
+          {"name": "New Beetle", "generations": [{"name": "Type 9C", "period": "1997–2011", "bodyStyles": ["Hatchback", "Convertible"], "engines": []}]}
+        ]
+      },
+      {
+        "name": "Audi",
+        "type": "PASSENGER",
+        "models": [
+          {"name": "A3", "generations": [{"name": "Mk1 (8L)", "period": "1996–2003", "bodyStyles": ["Hatchback"], "engines": []}]}
+        ]
+      },
+      {
+        "name": "SEAT",
+        "type": "PASSENGER",
+        "models": [
+          {"name": "León", "generations": [{"name": "Mk1 (1M)", "period": "1999–2006", "bodyStyles": ["Hatchback"], "engines": []}]},
+          {"name": "Toledo", "generations": [{"name": "Mk2 (1M)", "period": "1998–2004", "bodyStyles": ["Sedan"], "engines": []}]}
+        ]
+      },
+      {
+        "name": "Škoda",
+        "type": "PASSENGER",
+        "models": [
+          {"name": "Octavia", "generations": [{"name": "Mk1 (1U)", "period": "1996–2004", "bodyStyles": ["Liftback", "Wagon"], "engines": []}]}
+        ]
+      }
+    ]
+  },
+  {
+    "oemNumber": "1241212",
+    "partDescription": "Kućište termostata (Opel)",
+    "compatibleVehicles": [
+      {
+        "name": "Opel",
+        "type": "PASSENGER",
+        "models": [
+          {"name": "Astra", "generations": [{"name": "G", "period": "1998–2009", "bodyStyles": ["Hatchback", "Sedan", "Wagon", "Coupé"], "engines": []}]},
+          {"name": "Zafira", "generations": [{"name": "A", "period": "1999–2005", "bodyStyles": ["MPV"], "engines": []}]},
+          {"name": "Vectra", "generations": [{"name": "B", "period": "1995–2002", "bodyStyles": ["Sedan", "Hatchback", "Wagon"], "engines": []}, {"name": "C", "period": "2002–2008", "bodyStyles": ["Sedan", "Hatchback", "Wagon"], "engines": []}]},
+          {"name": "Corsa", "generations": [{"name": "C", "period": "2000–2006", "bodyStyles": ["Hatchback"], "engines": []}]},
+          {"name": "Meriva", "generations": [{"name": "A", "period": "2003–2010", "bodyStyles": ["MPV"], "engines": []}]}
+        ]
+      }
+    ]
+  }
+]

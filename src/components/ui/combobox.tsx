@@ -28,6 +28,7 @@ interface ComboboxProps {
   value: string;
   onChange: (value: string) => void;
   placeholder?: string;
+  searchPlaceholder?: string;
   emptyMessage?: string;
   disabled?: boolean;
 }
@@ -37,12 +38,14 @@ export function Combobox({
   value,
   onChange,
   placeholder = "Odaberite...",
+  searchPlaceholder,
   emptyMessage = "Nema rezultata",
   disabled = false,
 }: ComboboxProps) {
   const [open, setOpen] = React.useState(false);
 
   const selectedOption = options.find((option) => option.value === value);
+  const resolvedSearchPlaceholder = searchPlaceholder ?? "Pretraži...";
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -60,7 +63,7 @@ export function Combobox({
       </PopoverTrigger>
       <PopoverContent className="w-full p-0">
         <Command>
-          <CommandInput placeholder={`Pretraži ${placeholder.toLowerCase()}...`} />
+          <CommandInput placeholder={resolvedSearchPlaceholder} />
           <CommandEmpty>{emptyMessage}</CommandEmpty>
           <CommandGroup className="max-h-60 overflow-auto">
             {options.map((option) => (

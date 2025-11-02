@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import type { Category, Product } from '@/generated/prisma/client';
+import ProductEngineSummary from '@/components/ProductEngineSummary';
 import { useSession } from 'next-auth/react';
 import { useCart } from '@/context/CartContext';
 import { toast } from 'react-hot-toast';
@@ -109,6 +110,9 @@ export const ProductCard = ({ product }: ProductCardProps) => {
             </span>
           </div>
         )}
+
+        {/* Compact engine summary with hover mini-modal */}
+        <ProductEngineSummary productId={product.id} maxInline={2} />
 
         <div className="flex items-end justify-between mt-auto pt-4 border-t border-slate-100">
           <div>

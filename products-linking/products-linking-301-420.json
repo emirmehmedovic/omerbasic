@@ -1,0 +1,368 @@
+[
+  {
+    "oemNumber": "1275580",
+    "partDescription": "Bobina / Indukcioni kalem",
+    "compatibleVehicles": [
+      {"name": "Volvo", "type": "PASSENGER", "models": [{"name": "S40/V50", "period": "2004-2012"}, {"name": "C30", "period": "2006-2013"}, {"name": "S60", "period": "2000-2009"}]}
+    ]
+  },
+  {
+    "oemNumber": "N10591602 / N10579802 / N10140101 / 03L963319",
+    "partDescription": "Grijač motora (Glow Plug) za TDI motore",
+    "compatibleVehicles": [
+      {"name": "Volkswagen", "type": "PASSENGER", "models": [{"name": "Golf Mk4/Mk5/Mk6"}, {"name": "Passat B5/B6"}, {"name": "Touran"}]},
+      {"name": "Audi", "type": "PASSENGER", "models": [{"name": "A3 8L/8P"}, {"name": "A4 B6/B7/B8"}]},
+      {"name": "Škoda", "type": "PASSENGER", "models": [{"name": "Octavia Mk1/Mk2"}, {"name": "Superb Mk1/Mk2"}]}
+    ]
+  },
+  {
+    "oemNumber": "596064",
+    "partDescription": "Grijač motora (Glow Plug) za HDi motore",
+    "compatibleVehicles": [
+      {"name": "Peugeot", "type": "PASSENGER", "models": [{"name": "206"}, {"name": "307"}, {"name": "407"}]},
+      {"name": "Citroën", "type": "PASSENGER", "models": [{"name": "C3"}, {"name": "C4"}, {"name": "C5"}]}
+    ]
+  },
+  {
+    "oemNumber": "1987479004",
+    "partDescription": "Kočiono ulje (Bosch DOT 4)",
+    "compatibleVehicles": [{"description": "Univerzalna primjena za vozila koja zahtijevaju DOT 4 specifikaciju."}]
+  },
+  {
+    "oemNumber": "531006110",
+    "partDescription": "Zatezač (španer) zupčastog remena (INA Aftermarket)",
+    "compatibleVehicles": [
+      {"name": "Renault", "type": "PASSENGER", "models": [{"name": "Clio II"}, {"name": "Megane I"}, {"name": "Kangoo I"}]}
+    ]
+  },
+  {
+    "oemNumber": "71-34359-00",
+    "partDescription": "Dihtung poklopca ventila (Victor Reinz) za 1.9 TDI PD motore",
+    "compatibleVehicles": [
+      {"name": "Volkswagen", "type": "PASSENGER", "models": [{"name": "Golf Mk4"}, {"name": "Passat B5.5"}]},
+      {"name": "Audi", "type": "PASSENGER", "models": [{"name": "A4 B6"}, {"name": "A6 C5"}]}
+    ]
+  },
+  {
+    "oemNumber": "530047010",
+    "partDescription": "Set zupčastog remena (INA Aftermarket) za 1.4 16V i 1.6 16V VAG motore",
+    "compatibleVehicles": [
+      {"name": "Volkswagen", "type": "PASSENGER", "models": [{"name": "Golf Mk4"}, {"name": "Polo 6N2/9N"}]},
+      {"name": "Škoda", "type": "PASSENGER", "models": [{"name": "Fabia 6Y"}, {"name": "Octavia 1U"}]}
+    ]
+  },
+  {
+    "oemNumber": "1J0501541C",
+    "partDescription": "Selen blok zadnjeg mosta",
+    "compatibleVehicles": [
+      {"name": "Volkswagen", "type": "PASSENGER", "models": [{"name": "Golf Mk4"}, {"name": "Bora"}, {"name": "New Beetle"}]},
+      {"name": "Audi", "type": "PASSENGER", "models": [{"name": "A3 8L"}, {"name": "TT 8N"}]}
+    ]
+  },
+  {
+    "oemNumber": "357407182",
+    "partDescription": "Selen blok prednje vilice (zadnji)",
+    "compatibleVehicles": [
+      {"name": "Volkswagen", "type": "PASSENGER", "models": [{"name": "Golf Mk2/Mk3"}, {"name": "Passat B3/B4"}]}
+    ]
+  },
+  {
+    "oemNumber": "1J0407181",
+    "partDescription": "Selen blok prednje vilice (zadnji)",
+    "compatibleVehicles": [
+      {"name": "Volkswagen", "type": "PASSENGER", "models": [{"name": "Golf Mk4"}]},
+      {"name": "Audi", "type": "PASSENGER", "models": [{"name": "A3 8L"}]}
+    ]
+  },
+  {
+    "oemNumber": "6K...",
+    "partDescription": "Nestandardni brojevi, vjerovatno interni kodovi dobavljača ili setovi za reparaciju. Bez dodatnog konteksta, teško je odrediti tačnu primjenu.",
+    "compatibleVehicles": [{"description": "Nije moguće precizno utvrditi kompatibilnost."}]
+  },
+  {
+    "oemNumber": "4F0819439A",
+    "partDescription": "Filter kabine / polena",
+    "compatibleVehicles": [
+      {"name": "Audi", "type": "PASSENGER", "models": [{"name": "A6", "generations": [{"name": "C6", "period": "2004-2011"}]}]}
+    ]
+  },
+  {
+    "oemNumber": "522412",
+    "partDescription": "Hladnjak vode (Valeo Aftermarket)",
+    "compatibleVehicles": [
+      {"name": "Renault", "type": "PASSENGER", "models": [{"name": "R19"}, {"name": "Clio I"}]}
+    ]
+  },
+  {
+    "oemNumber": "028103609A",
+    "partDescription": "Karter ulja",
+    "compatibleVehicles": [
+      {"name": "Volkswagen", "type": "PASSENGER", "models": [{"name": "Golf Mk3"}, {"name": "Vento"}, {"description": "Za 1.9 SDI/TDI (non-PD) motore"}]}
+    ]
+  },
+  {
+    "oemNumber": "037115220B",
+    "partDescription": "Lanac uljne pumpe",
+    "compatibleVehicles": [
+      {"name": "Volkswagen", "type": "PASSENGER", "models": [{"name": "Golf Mk3"}, {"name": "Passat B4"}, {"description": "Za 2.0 8V benzinske motore"}]}
+    ]
+  },
+  {
+    "oemNumber": "1K0505171C / 1K0501530C",
+    "partDescription": "Rame / Vilica zadnjeg ovjesa (Multi-link)",
+    "compatibleVehicles": [
+      {"name": "Volkswagen", "type": "PASSENGER", "models": [{"name": "Golf Mk5/Mk6"}, {"name": "Passat B6"}]},
+      {"name": "Audi", "type": "PASSENGER", "models": [{"name": "A3 8P"}]}
+    ]
+  },
+  {
+    "oemNumber": "8200615058",
+    "partDescription": "Senzor ugla volana",
+    "compatibleVehicles": [
+      {"name": "Renault", "type": "PASSENGER", "models": [{"name": "Clio III"}, {"name": "Modus"}]}
+    ]
+  },
+  {
+    "oemNumber": "7701474796 / 7701474795 / 485200001R / 485200002R / 401600004R",
+    "partDescription": "Kraj spone (Lijevi / Desni)",
+    "compatibleVehicles": [
+      {"name": "Renault", "type": "PASSENGER", "models": [{"name": "Megane II"}, {"name": "Scenic II"}]}
+    ]
+  },
+  {
+    "oemNumber": "485210001R",
+    "partDescription": "Aksijalni zglob / Spona letve volana",
+    "compatibleVehicles": [
+      {"name": "Renault", "type": "PASSENGER", "models": [{"name": "Megane II"}, {"name": "Scenic II"}]}
+    ]
+  },
+  {
+    "oemNumber": "546180001R",
+    "partDescription": "Spona stabilizatora / K-linka",
+    "compatibleVehicles": [
+      {"name": "Renault", "type": "PASSENGER", "models": [{"name": "Megane II"}, {"name": "Scenic II"}]}
+    ]
+  },
+  {
+    "oemNumber": "91167000 / 4408510 / 4408511",
+    "partDescription": "Glavni kočioni cilindar",
+    "compatibleVehicles": [
+      {"name": "Renault", "type": "PASSENGER", "models": [{"name": "Trafic II"}]},
+      {"name": "Opel", "type": "PASSENGER", "models": [{"name": "Vivaro A"}]},
+      {"name": "Nissan", "type": "PASSENGER", "models": [{"name": "Primastar"}]}
+    ]
+  },
+  {
+    "oemNumber": "381741 / 381730 / 381750 / 3812 / 381200000",
+    "partDescription": "Kugla vilice ili kraj spone (PSA)",
+    "compatibleVehicles": [
+      {"name": "Peugeot", "type": "PASSENGER", "models": [{"name": "205"}, {"name": "306"}, {"name": "309"}]}
+    ]
+  },
+  {
+    "oemNumber": "8200166159",
+    "partDescription": "EGR Ventil (za 1.5 dCi motore)",
+    "compatibleVehicles": [
+      {"name": "Renault", "type": "PASSENGER", "models": [{"name": "Clio II"}, {"name": "Kangoo I"}, {"name": "Megane II"}]},
+      {"name": "Nissan", "type": "PASSENGER", "models": [{"name": "Almera"}, {"name": "Micra"}]}
+    ]
+  },
+  {
+    "oemNumber": "7701474448",
+    "partDescription": "Set zupčastog remena",
+    "compatibleVehicles": [
+      {"name": "Renault", "type": "PASSENGER", "models": [{"name": "Clio II"}, {"name": "Kangoo I"}, {"name": "Thalia I"}, {"description": "Za 1.2, 1.4, 1.6 (8V) benzinske motore"}]}
+    ]
+  },
+  {
+    "oemNumber": "508750 / 508764",
+    "partDescription": "Nosač motora",
+    "compatibleVehicles": [
+      {"name": "Peugeot", "type": "PASSENGER", "models": [{"name": "307"}, {"name": "Partner"}]},
+      {"name": "Citroën", "type": "PASSENGER", "models": [{"name": "C4"}, {"name": "Berlingo"}]}
+    ]
+  },
+  {
+    "oemNumber": "038903315C",
+    "partDescription": "Zatezač (španer) PK remena",
+    "compatibleVehicles": [
+      {"name": "Volkswagen", "type": "PASSENGER", "models": [{"name": "Golf Mk4"}, {"name": "Passat B5.5"}, {"description": "Za 1.9 TDI PD motore"}]}
+    ]
+  },
+  {
+    "oemNumber": "1K0511327AP / 1K0511327AR",
+    "partDescription": "Odbojna guma zadnjeg amortizera (Bump stop)",
+    "compatibleVehicles": [
+      {"name": "Volkswagen", "type": "PASSENGER", "models": [{"name": "Golf Mk5"}, {"name": "Jetta A5"}]}
+    ]
+  },
+  {
+    "oemNumber": "028903119AA",
+    "partDescription": "Remenica alternatora (sa kvačilom)",
+    "compatibleVehicles": [
+      {"name": "Volkswagen", "type": "PASSENGER", "models": [{"name": "Golf Mk3"}, {"name": "Passat B4"}, {"description": "Za 1.9 TDI motore"}]}
+    ]
+  },
+  {
+    "oemNumber": "1J0412331BS / 1J0512131B / 1J0411314G",
+    "partDescription": "Komponente ovjesa (Nosač amortizera / odbojna guma / gumica balans štange) za PQ34 platformu",
+    "compatibleVehicles": [
+      {"name": "Volkswagen", "type": "PASSENGER", "models": [{"name": "Golf Mk4"}, {"name": "Bora"}]},
+      {"name": "Audi", "type": "PASSENGER", "models": [{"name": "A3 8L"}]}
+    ]
+  },
+  {
+    "oemNumber": "60617002",
+    "partDescription": "Termostat",
+    "compatibleVehicles": [
+      {"name": "Alfa Romeo", "type": "PASSENGER", "models": [{"name": "145/146"}, {"name": "155"}, {"description": "Za 1.4/1.6/1.8 Twin Spark motore"}]}
+    ]
+  },
+  {
+    "oemNumber": "7701206811",
+    "partDescription": "Set prednjih kočionih pločica",
+    "compatibleVehicles": [
+      {"name": "Renault", "type": "PASSENGER", "models": [{"name": "Clio II"}, {"name": "Thalia I"}]}
+    ]
+  },
+  {
+    "oemNumber": "54201020 / 54200720 / 34205120 / 34206520",
+    "partDescription": "Kočioni cilindri (za doboš kočnice)",
+    "compatibleVehicles": [
+      {"description": "Široka primjena za starije modele (Fiat, Lancia, Zastava)"}
+    ]
+  },
+  {
+    "oemNumber": "2048201145",
+    "partDescription": "Treće stop svjetlo (LED)",
+    "compatibleVehicles": [
+      {"name": "Mercedes-Benz", "type": "PASSENGER", "models": [{"name": "C-Class", "generations": [{"name": "W204", "period": "2007-2014"}]}]}
+    ]
+  },
+  {
+    "oemNumber": "6420940204 / 6110940204",
+    "partDescription": "Filter zraka",
+    "compatibleVehicles": [
+      {"name": "Mercedes-Benz", "type": "PASSENGER", "models": [{"name": "Sprinter (906)"}, {"name": "Vito/Viano (W639)"}, {"description": "Za CDI V6 (OM642) i starije 4-cilindrične (OM611) motore"}]}
+    ]
+  },
+  {
+    "oemNumber": "4544700090",
+    "partDescription": "Pumpa za gorivo",
+    "compatibleVehicles": [
+      {"name": "Smart", "type": "PASSENGER", "models": [{"name": "Forfour", "period": "2004-2006"}]}
+    ]
+  },
+  {
+    "oemNumber": "425152 / 425338 / 425229 / 425218 / 425222 / 425322 / 425241 / 7701204845",
+    "partDescription": "Komponente zadnjeg kočionog sistema (pločice, čeljusti, setovi za reparaciju)",
+    "compatibleVehicles": [
+      {"name": "Peugeot", "type": "PASSENGER", "models": [{"name": "206"}, {"name": "306"}, {"name": "307"}]},
+      {"name": "Renault", "type": "PASSENGER", "models": [{"name": "Clio II"}, {"name": "Megane I"}]}
+    ]
+  },
+  {
+    "oemNumber": "1J0698451C",
+    "partDescription": "Set zadnjih kočionih pločica",
+    "compatibleVehicles": [
+      {"name": "Volkswagen", "type": "PASSENGER", "models": [{"name": "Golf Mk4"}, {"name": "Bora"}]}
+    ]
+  },
+  {
+    "oemNumber": "440600295R",
+    "partDescription": "Set prednjih kočionih pločica",
+    "compatibleVehicles": [
+      {"name": "Dacia", "type": "PASSENGER", "models": [{"name": "Logan I"}, {"name": "Sandero I"}]}
+    ]
+  },
+  {
+    "oemNumber": "1201G9 / 045121011F",
+    "partDescription": "Vodena pumpa (PSA/VAG)",
+    "compatibleVehicles": [
+      {"description": "1201G9: Za 1.6 HDi motore (Peugeot/Citroën)"},
+      {"description": "045121011F: Za 1.4 TDI PD motore (VW Polo, Skoda Fabia)"}
+    ]
+  },
+  {
+    "oemNumber": "1K0498201 / 1J0498203A / 46307462",
+    "partDescription": "Manžetna homokinetičkog zgloba",
+    "compatibleVehicles": [
+      {"description": "1K0...: Za VW Golf Mk5 platformu"},
+      {"description": "1J0...: Za VW Golf Mk4 platformu"},
+      {"description": "463...: Za Fiat modele (Punto, Stilo)"}
+    ]
+  },
+  {
+    "oemNumber": "3287A9 / 328781",
+    "partDescription": "Poluosovina",
+    "compatibleVehicles": [
+      {"name": "Peugeot", "type": "PASSENGER", "models": [{"name": "206"}]},
+      {"name": "Citroën", "type": "PASSENGER", "models": [{"name": "C3"}]}
+    ]
+  },
+  {
+    "oemNumber": "575174",
+    "partDescription": "PK Remen (linijski)",
+    "compatibleVehicles": [
+      {"name": "Peugeot", "type": "PASSENGER", "models": [{"name": "206"}, {"name": "307"}, {"description": "Za 1.4/1.6 benzinske motore"}]}
+    ]
+  },
+  {
+    "oemNumber": "6447KK / 6447KL",
+    "partDescription": "Filter kabine / polena (KK - standardni, KL - sa aktivnim ugljem)",
+    "compatibleVehicles": [
+      {"name": "Peugeot", "type": "PASSENGER", "models": [{"name": "307"}]},
+      {"name": "Citroën", "type": "PASSENGER", "models": [{"name": "C4 (prva generacija)"}]}
+    ]
+  },
+  {
+    "oemNumber": "06A260849E",
+    "partDescription": "PK Remen (za kompresor klime)",
+    "compatibleVehicles": [
+      {"name": "Volkswagen", "type": "PASSENGER", "models": [{"name": "Golf Mk4 (1.8T, 2.0)"}]}
+    ]
+  },
+  {
+    "oemNumber": "1402770095",
+    "partDescription": "Filter automatskog mjenjača",
+    "compatibleVehicles": [
+      {"name": "Mercedes-Benz", "type": "PASSENGER", "models": [{"description": "Za 5-brzinske 722.6 automatske mjenjače (C-Class W202/W203, E-Class W210/W211, etc.)"}]}
+    ]
+  },
+  {
+    "oemNumber": "7H0819631 / 7H0129620",
+    "partDescription": "Filter kabine / Filter zraka",
+    "compatibleVehicles": [
+      {"name": "Volkswagen", "type": "PASSENGER", "models": [{"name": "Transporter/Multivan", "generations": [{"name": "T5", "period": "2003-2015"}]}]}
+    ]
+  },
+  {
+    "oemNumber": "6DPK1195",
+    "partDescription": "PK Remen (6 rebara, dužina 1195mm)",
+    "compatibleVehicles": [
+      {"description": "Široka primjena, potrebno provjeriti po modelu i motoru (npr. BMW E46 320d, VW Passat 1.9 TDI)"}
+    ]
+  },
+  {
+    "oemNumber": "2118300218 / 2048300018",
+    "partDescription": "Filter kabine",
+    "compatibleVehicles": [
+      {"description": "211...: Za Mercedes-Benz E-Class (W211)"},
+      {"description": "204...: Za Mercedes-Benz C-Class (W204)"}
+    ]
+  },
+  {
+    "oemNumber": "7701205230",
+    "partDescription": "Set kvačila",
+    "compatibleVehicles": [
+      {"name": "Renault", "type": "PASSENGER", "models": [{"name": "Megane I"}, {"name": "Scenic I"}, {"description": "Za 1.9 dTi/dCi motore"}]}
+    ]
+  },
+  {
+    "oemNumber": "6460920001",
+    "partDescription": "Filter goriva",
+    "compatibleVehicles": [
+      {"name": "Mercedes-Benz", "type": "PASSENGER", "models": [{"description": "Za CDI motore (OM646), npr. C-Class W203, E-Class W211"}]}
+    ]
+  }
+]

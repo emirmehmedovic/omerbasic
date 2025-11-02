@@ -15,6 +15,9 @@ const productImportSchema = z.object({
   isFeatured: z.coerce.boolean().default(false),
   isArchived: z.coerce.boolean().default(false),
   categoryId: z.string().min(1, "ID kategorije je obavezan"),
+  unitOfMeasure: z.string().optional().nullable(),
+  purchasePrice: z.coerce.number().optional().nullable(),
+  sku: z.string().optional().nullable(),
   technicalSpecs: z.string().optional().nullable(),
   dimensions: z.string().optional().nullable(),
   standards: z.string().optional().nullable(),
@@ -34,6 +37,9 @@ export async function POST(req: NextRequest) {
     // Dohvati CSV datoteku iz zahtjeva
     const formData = await req.formData();
     const file = formData.get('file') as File | null;
+    const defaultCategoryId = (formData.get('defaultCategoryId') || formData.get('categoryId')) as string | null;
+    const dryRunRaw = formData.get('dryRun');
+    const dryRun = typeof dryRunRaw === 'string' ? ['1', 'true', 'yes', 'on'].includes(dryRunRaw.toLowerCase()) : !!dryRunRaw;
 
     if (!file) {
       return NextResponse.json({ error: 'CSV datoteka nije pronađena' }, { status: 400 });
@@ -48,12 +54,49 @@ export async function POST(req: NextRequest) {
     const fileBuffer = await file.arrayBuffer();
     const fileContent = new TextDecoder().decode(fileBuffer);
 
-    // Parsiraj CSV
-    const records = parse(fileContent, {
+    // Parsiraj CSV (delimiter ;) i detektuj format kolona
+    const rawRecords = parse(fileContent, {
       columns: true,
       skip_empty_lines: true,
       trim: true,
-    });
+      delimiter: ';',
+    }) as any[];
+
+    const records: any[] = [];
+    const hasSifart = rawRecords.length > 0 && Object.prototype.hasOwnProperty.call(rawRecords[0], 'SIFART');
+    if (hasSifart) {
+      // Mapiranje proizvodi-2.csv -> naš import format
+      for (const r of rawRecords as any[]) {
+        const toNum = (val: any) => {
+          if (val === undefined || val === null || val === '') return undefined;
+          const s = String(val).replace(/\./g, '').replace(/,/g, '.');
+          const n = Number(s);
+          return isNaN(n) ? undefined : n;
+        };
+        const name = (r.IMEART ?? '').toString();
+        const imemal = (r.imemal ?? '').toString();
+        const baseDesc = imemal ? imemal : undefined;
+        records.push({
+          name,
+          description: baseDesc,
+          price: toNum(r.CIJART) ?? 0,
+          imageUrl: undefined,
+          stock: 0,
+          catalogNumber: (r.katbro ?? '').toString(),
+          oemNumber: r.oem ? r.oem.toString() : undefined,
+          isFeatured: false,
+          isArchived: false,
+          categoryId: defaultCategoryId || '',
+          unitOfMeasure: r.JEDMJE ? r.JEDMJE.toString() : undefined,
+          purchasePrice: toNum(r.CIJNAB),
+          sku: r.SIFART ? r.SIFART.toString() : undefined,
+          _imemal: imemal,
+        });
+      }
+    } else {
+      // Pretpostavi stari format (već usklađen sa shemom)
+      records.push(...rawRecords);
+    }
 
     if (records.length === 0) {
       return NextResponse.json({ error: 'CSV datoteka ne sadrži podatke' }, { status: 400 });
@@ -67,12 +110,21 @@ export async function POST(req: NextRequest) {
       errors: [] as { row: number; error: string }[],
       created: [] as string[],
       updated: [] as string[],
+      dryRun,
+      preview: [] as any[],
     };
 
     // Obradi svaki red
     for (let i = 0; i < records.length; i++) {
       const record = records[i];
       try {
+        // Ako je novi CSV i defaultCategoryId nije postavljen, ne možemo kreirati proizvode bez kategorije
+        if (!record.categoryId || record.categoryId.length === 0) {
+          if (hasSifart && !defaultCategoryId) {
+            throw new Error('Nedostaje defaultCategoryId u form-data za dodjelu kategorije novim proizvodima.');
+          }
+        }
+
         // Validiraj podatke
         const validatedData = productImportSchema.parse(record);
 
@@ -93,6 +145,9 @@ export async function POST(req: NextRequest) {
           isFeatured: validatedData.isFeatured,
           isArchived: validatedData.isArchived,
           categoryId: validatedData.categoryId,
+          unitOfMeasure: validatedData.unitOfMeasure || undefined,
+          purchasePrice: validatedData.purchasePrice ?? undefined,
+          sku: validatedData.sku || undefined,
           technicalSpecs: validatedData.technicalSpecs ? JSON.parse(validatedData.technicalSpecs) : undefined,
           dimensions: validatedData.dimensions ? JSON.parse(validatedData.dimensions) : undefined,
           standards: validatedData.standards ? 
@@ -102,34 +157,55 @@ export async function POST(req: NextRequest) {
         // Kreiraj ili ažuriraj proizvod
         let product;
         if (existingProduct) {
-          product = await db.product.update({
-            where: { id: existingProduct.id },
-            data: productData,
-          });
-          results.updated.push(product.catalogNumber);
+          // Ako imamo imemal iz CSV-a, dopuni description (ako već ne sadrži)
+          let newDescription = productData.description;
+          if (record._imemal) {
+            const alreadyHas = (existingProduct.description || '').includes(record._imemal);
+            if (!alreadyHas) {
+              newDescription = [existingProduct.description, record._imemal].filter(Boolean).join('\n');
+            } else {
+              newDescription = existingProduct.description || productData.description;
+            }
+          }
+
+          if (!dryRun) {
+            product = await db.product.update({
+              where: { id: existingProduct.id },
+              data: { ...productData, description: newDescription },
+            });
+          }
+          results.updated.push(validatedData.catalogNumber);
         } else {
-          product = await db.product.create({
-            data: productData,
-          });
-          results.created.push(product.catalogNumber);
+          // Ako nemamo kategoriju tu, pokušaj koristiti defaultCategoryId iz forme
+          const createData = {
+            ...productData,
+            categoryId: productData.categoryId || defaultCategoryId!,
+          };
+          if (!dryRun) {
+            product = await db.product.create({
+              data: createData,
+            });
+          }
+          results.created.push(validatedData.catalogNumber);
         }
 
         // Obradi vehicleFitments ako postoje
-        if (validatedData.vehicleFitments) {
+        if (!dryRun && validatedData.vehicleFitments) {
           const fitments = JSON.parse(validatedData.vehicleFitments);
           
           // Prvo obriši postojeće fitmente za ovaj proizvod
           if (existingProduct) {
             await db.productVehicleFitment.deleteMany({
-              where: { productId: product.id },
+              where: { productId: existingProduct.id },
             });
           }
           
           // Dodaj nove fitmente
+          const productIdForChildren = existingProduct ? existingProduct.id : product!.id;
           for (const fitment of fitments) {
             await db.productVehicleFitment.create({
               data: {
-                productId: product.id,
+                productId: productIdForChildren,
                 generationId: fitment.generationId,
                 engineId: fitment.engineId || undefined,
                 fitmentNotes: fitment.fitmentNotes || undefined,
@@ -144,21 +220,22 @@ export async function POST(req: NextRequest) {
         }
 
         // Obradi attributeValues ako postoje
-        if (validatedData.attributeValues) {
+        if (!dryRun && validatedData.attributeValues) {
           const attributes = JSON.parse(validatedData.attributeValues);
           
           // Prvo obriši postojeće vrijednosti atributa za ovaj proizvod
           if (existingProduct) {
             await db.productAttributeValue.deleteMany({
-              where: { productId: product.id },
+              where: { productId: existingProduct.id },
             });
           }
           
           // Dodaj nove vrijednosti atributa
+          const productIdForChildren = existingProduct ? existingProduct.id : product!.id;
           for (const attr of attributes) {
             await db.productAttributeValue.create({
               data: {
-                productId: product.id,
+                productId: productIdForChildren,
                 attributeId: attr.attributeId,
                 value: attr.value,
               },
@@ -167,21 +244,22 @@ export async function POST(req: NextRequest) {
         }
 
         // Obradi crossReferences ako postoje
-        if (validatedData.crossReferences) {
+        if (!dryRun && validatedData.crossReferences) {
           const references = JSON.parse(validatedData.crossReferences);
           
           // Prvo obriši postojeće reference za ovaj proizvod
           if (existingProduct) {
             await db.productCrossReference.deleteMany({
-              where: { productId: product.id },
+              where: { productId: existingProduct.id },
             });
           }
           
           // Dodaj nove reference
+          const productIdForChildren = existingProduct ? existingProduct.id : product!.id;
           for (const ref of references) {
             await db.productCrossReference.create({
               data: {
-                productId: product.id,
+                productId: productIdForChildren,
                 referenceType: ref.referenceType,
                 referenceNumber: ref.referenceNumber,
                 manufacturer: ref.manufacturer || undefined,
@@ -193,6 +271,18 @@ export async function POST(req: NextRequest) {
         }
 
         results.success++;
+        if (results.preview.length < 25) {
+          results.preview.push({
+            action: existingProduct ? 'update' : 'create',
+            catalogNumber: validatedData.catalogNumber,
+            name: validatedData.name,
+            price: validatedData.price,
+            purchasePrice: validatedData.purchasePrice ?? null,
+            unitOfMeasure: validatedData.unitOfMeasure ?? null,
+            sku: validatedData.sku ?? null,
+            oemNumber: validatedData.oemNumber ?? null,
+          });
+        }
       } catch (error) {
         results.failed++;
         results.errors.push({

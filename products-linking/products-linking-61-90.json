@@ -1,0 +1,219 @@
+[
+  {
+    "oemNumber": "28115561 / 068115568B",
+    "partDescription": "Filter ulja (za starije VAG dizel motore)",
+    "compatibleVehicles": [
+      {
+        "name": "Volkswagen",
+        "type": "PASSENGER",
+        "models": [
+          {"name": "Golf", "generations": [{"name": "Mk2 / Mk3", "period": "1983-1999", "bodyStyles": ["Hatchback", "Wagon"], "engines": []}]},
+          {"name": "Passat", "generations": [{"name": "B3 / B4", "period": "1988-1997", "bodyStyles": ["Sedan", "Wagon"], "engines": []}]},
+          {"name": "Transporter", "generations": [{"name": "T4", "period": "1990-2003", "bodyStyles": ["Van", "Kombi"], "engines": []}]}
+        ]
+      }
+    ]
+  },
+  {
+    "oemNumber": "28198119 / 028198119A",
+    "partDescription": "Set zupčastog remena",
+    "compatibleVehicles": [
+      {
+        "name": "Volkswagen",
+        "type": "PASSENGER",
+        "models": [
+          {"name": "Golf", "generations": [{"name": "Mk3", "period": "1992-1999", "bodyStyles": ["Hatchback"], "engines": []}]},
+          {"name": "Vento", "generations": [{"name": "A3", "period": "1992-1999", "bodyStyles": ["Sedan"], "engines": []}]},
+          {"name": "Caddy", "generations": [{"name": "Mk2", "period": "1995-2004", "bodyStyles": ["Van"], "engines": []}]}
+        ]
+      }
+    ]
+  },
+  {
+    "oemNumber": "530009030",
+    "partDescription": "Set zupčastog remena sa vodenom pumpom (INA aftermarket)",
+    "compatibleVehicles": [
+      {
+        "name": "Volkswagen", "type": "PASSENGER", "models": [{"name": "Golf", "generations": [{"name": "Mk4", "period": "1997-2003", "bodyStyles": ["Hatchback", "Wagon"], "engines": []}]}]
+      },
+      {
+        "name": "Audi", "type": "PASSENGER", "models": [{"name": "A3", "generations": [{"name": "Mk1 (8L)", "period": "1996-2003", "bodyStyles": ["Hatchback"], "engines": []}]}]
+      },
+      {
+        "name": "Škoda", "type": "PASSENGER", "models": [{"name": "Octavia", "generations": [{"name": "Mk1 (1U)", "period": "1996-2004", "bodyStyles": ["Liftback", "Wagon"], "engines": []}]}]
+      }
+    ]
+  },
+  {
+    "oemNumber": "1609524780",
+    "partDescription": "Set zupčastog remena sa vodenom pumpom (za 1.6 HDi/TDCi motore)",
+    "compatibleVehicles": [
+      {
+        "name": "Peugeot", "type": "PASSENGER", "models": [{"name": "207", "generations": []}, {"name": "307", "generations": []}, {"name": "308", "generations": []}]
+      },
+      {
+        "name": "Citroën", "type": "PASSENGER", "models": [{"name": "C3", "generations": []}, {"name": "C4", "generations": []}, {"name": "Berlingo", "generations": []}]
+      },
+      {
+        "name": "Ford", "type": "PASSENGER", "models": [{"name": "Focus", "generations": [{"name": "Mk2", "period": "2004-2011"}]}, {"name": "Fiesta", "generations": [{"name": "Mk6", "period": "2008-2017"}]}]
+      }
+    ]
+  },
+  {
+    "oemNumber": "1124040 / 1201255",
+    "partDescription": "Set zupčastog remena (za 1.8 TDDi/TDCi motore)",
+    "compatibleVehicles": [
+      {
+        "name": "Ford",
+        "type": "PASSENGER",
+        "models": [
+          {"name": "Focus", "generations": [{"name": "Mk1", "period": "1998-2004", "bodyStyles": ["Hatchback", "Sedan", "Wagon"], "engines": []}]},
+          {"name": "Transit Connect", "generations": [{"name": "Mk1", "period": "2002-2013", "bodyStyles": ["Van"], "engines": []}]}
+        ]
+      }
+    ]
+  },
+  {
+    "oemNumber": "530018510",
+    "partDescription": "Set zupčastog remena (INA aftermarket)",
+    "compatibleVehicles": [
+      {
+        "name": "Volkswagen", "type": "PASSENGER", "models": [{"name": "Golf", "generations": [{"name": "Mk5", "period": "2003-2009"}]}, {"name": "Passat", "generations": [{"name": "B6", "period": "2005-2010"}]}]
+      },
+      {
+        "name": "Audi", "type": "PASSENGER", "models": [{"name": "A3", "generations": [{"name": "Mk2 (8P)", "period": "2003-2013"}]}]
+      },
+      {
+        "name": "Škoda", "type": "PASSENGER", "models": [{"name": "Octavia", "generations": [{"name": "Mk2 (1Z)", "period": "2004-2013"}]}]
+      }
+    ]
+  },
+  {
+    "oemNumber": "530040530",
+    "partDescription": "Set zupčastog remena sa vodenom pumpom (INA aftermarket za 1.6 HDi)",
+    "compatibleVehicles": [
+        {"name": "Peugeot", "type": "PASSENGER", "models": [{"name": "207"}, {"name": "308"}]},
+        {"name": "Citroën", "type": "PASSENGER", "models": [{"name": "C4"}, {"name": "C5"}]}
+    ]
+  },
+  {
+    "oemNumber": "530046330",
+    "partDescription": "Set zupčastog remena sa vodenom pumpom (INA aftermarket za Fiat/Alfa 1.9 JTD)",
+    "compatibleVehicles": [
+        {"name": "Fiat", "type": "PASSENGER", "models": [{"name": "Stilo"}, {"name": "Bravo"}]},
+        {"name": "Alfa Romeo", "type": "PASSENGER", "models": [{"name": "147"}, {"name": "156"}, {"name": "GT"}]}
+    ]
+  },
+  {
+    "oemNumber": "1606360 / 7778565",
+    "partDescription": "Ležaj točka (prednji)",
+    "compatibleVehicles": [
+        {"name": "Fiat", "type": "PASSENGER", "models": [{"name": "Punto", "generations": [{"name": "Mk2 (188)", "period": "1999-2010"}]}]}
+    ]
+  },
+  {
+    "oemNumber": "0829C3 / 82959",
+    "partDescription": "Zatezač (španer) zupčastog remena",
+    "compatibleVehicles": [
+        {"name": "Peugeot", "type": "PASSENGER", "models": [{"name": "206"}, {"name": "307"}]},
+        {"name": "Citroën", "type": "PASSENGER", "models": [{"name": "C3"}, {"name": "Saxo"}]}
+    ]
+  },
+  {
+    "oemNumber": "55215666",
+    "partDescription": "Senzor pritiska DPF filtera",
+    "compatibleVehicles": [
+        {"name": "Fiat", "type": "PASSENGER", "models": [{"name": "Bravo"}, {"name": "Grande Punto"}]},
+        {"name": "Alfa Romeo", "type": "PASSENGER", "models": [{"name": "159"}, {"name": "MiTo"}]},
+        {"name": "Opel", "type": "PASSENGER", "models": [{"name": "Astra H"}, {"name": "Zafira B"}]}
+    ]
+  },
+  {
+    "oemNumber": "045109244A",
+    "partDescription": "Rolica zupčastog remena",
+    "compatibleVehicles": [
+        {"name": "Volkswagen", "type": "PASSENGER", "models": [{"name": "Polo", "generations": [{"name": "9N"}]}, {"name": "Lupo"}]}
+    ]
+  },
+  {
+    "oemNumber": "8200051092 / 7700116054",
+    "partDescription": "Solenoid ventil turbine",
+    "compatibleVehicles": [
+        {"name": "Renault", "type": "PASSENGER", "models": [{"name": "Laguna II"}, {"name": "Megane II"}, {"name": "Scenic II"}]}
+    ]
+  },
+  {
+    "oemNumber": "83046",
+    "partDescription": "Set kvačila (Valeo aftermarket)",
+    "compatibleVehicles": [
+        {"name": "Renault", "type": "PASSENGER", "models": [{"name": "Clio II"}, {"name": "Kangoo"}]}
+    ]
+  },
+  {
+    "oemNumber": "038105264",
+    "partDescription": "Plivajući zamašnjak (za 1.9 TDI)",
+    "compatibleVehicles": [
+        {"name": "Volkswagen", "type": "PASSENGER", "models": [{"name": "Golf", "generations": [{"name": "Mk4"}]}]},
+        {"name": "Audi", "type": "PASSENGER", "models": [{"name": "A3", "generations": [{"name": "Mk1 (8L)"}]}]},
+        {"name": "Škoda", "type": "PASSENGER", "models": [{"name": "Octavia", "generations": [{"name": "Mk1 (1U)"}]}]}
+    ]
+  },
+  {
+    "oemNumber": "03G141016A",
+    "partDescription": "Set kvačila sa zamašnjakom (za 2.0 TDI)",
+    "compatibleVehicles": [
+        {"name": "Volkswagen", "type": "PASSENGER", "models": [{"name": "Golf", "generations": [{"name": "Mk5"}]}, {"name": "Passat", "generations": [{"name": "B6"}]}]},
+        {"name": "Audi", "type": "PASSENGER", "models": [{"name": "A3", "generations": [{"name": "Mk2 (8P)"}]}]},
+        {"name": "Škoda", "type": "PASSENGER", "models": [{"name": "Octavia", "generations": [{"name": "Mk2 (1Z)"}]}]}
+    ]
+  },
+  {
+    "oemNumber": "03G105266AF / 038105266AG",
+    "partDescription": "Plivajući zamašnjak (1.9 TDI / 2.0 TDI)",
+    "compatibleVehicles": [
+        {"name": "Volkswagen", "type": "PASSENGER", "models": [{"name": "Golf Mk5"}, {"name": "Touran"}, {"name": "Jetta"}]},
+        {"name": "Škoda", "type": "PASSENGER", "models": [{"name": "Octavia Mk2"}]}
+    ]
+  },
+  {
+    "oemNumber": "2050N5 / 205279 / 2050G1",
+    "partDescription": "Set kvačila (PSA)",
+    "compatibleVehicles": [
+        {"name": "Peugeot", "type": "PASSENGER", "models": [{"name": "206"}, {"name": "307"}]},
+        {"name": "Citroën", "type": "PASSENGER", "models": [{"name": "C3"}, {"name": "C4"}, {"name": "Berlingo"}]}
+    ]
+  },
+  {
+    "oemNumber": "028198141CX",
+    "partDescription": "Set kvačila (repariran, za 1.9 TDI)",
+    "compatibleVehicles": [
+        {"name": "Volkswagen", "type": "PASSENGER", "models": [{"name": "Golf Mk3"}, {"name": "Passat B4"}]},
+        {"name": "SEAT", "type": "PASSENGER", "models": [{"name": "Ibiza Mk2"}, {"name": "Cordoba Mk1"}]}
+    ]
+  },
+  {
+    "oemNumber": "1J0598477",
+    "partDescription": "Set ležaja zadnjeg točka",
+    "compatibleVehicles": [
+      {
+        "name": "Volkswagen",
+        "type": "PASSENGER",
+        "models": [
+          {"name": "Golf", "generations": [{"name": "Mk4", "period": "1997-2003", "bodyStyles": ["Hatchback", "Wagon"], "engines": []}]},
+          {"name": "Bora", "generations": [{"name": "Mk4 (1J)", "period": "1999-2005", "bodyStyles": ["Sedan", "Wagon"], "engines": []}]},
+          {"name": "New Beetle", "generations": [{"name": "Type 9C", "period": "1997-2011", "bodyStyles": ["Hatchback"], "engines": []}]}
+        ]
+      },
+      {
+        "name": "Audi",
+        "type": "PASSENGER",
+        "models": [{"name": "A3", "generations": [{"name": "Mk1 (8L)", "period": "1996-2003", "bodyStyles": ["Hatchback"], "engines": []}]}]
+      },
+      {
+        "name": "Škoda",
+        "type": "PASSENGER",
+        "models": [{"name": "Octavia", "generations": [{"name": "Mk1 (1U)", "period": "1996-2004", "bodyStyles": ["Liftback", "Wagon"], "engines": []}]}]
+      }
+    ]
+  }
+]

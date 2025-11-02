@@ -1,0 +1,237 @@
+[
+  {
+    "oemNumber": "1275580",
+    "partDescription": "Bobina / Indukcioni kalem. Zavisno od motora.",
+    "compatibleVehicles": [
+      {
+        "name": "Volvo", "type": "PASSENGER", "models": [
+          {"name": "S40", "generations": [{"name": "II", "period": "2004-2012", "engines": [
+            {"engineType": "Petrol", "engineCodes": ["B4184S11", "B4204S3"], "description": "1.8 / 2.0"}
+          ]}]},
+          {"name": "S60", "generations": [{"name": "I", "period": "2000-2009", "engines": [
+            {"engineType": "Petrol", "engineCodes": ["B5204T5", "B5234T3", "B5244S", "B5254T2"], "description": "2.0T / T5 / 2.4 / R"}
+          ]}]}
+        ]
+      }
+    ]
+  },
+  {
+    "oemNumber": "N10591602 / N10579802 / N10140101 / 03L963319",
+    "partDescription": "Grijač motora (Glow Plug) za TDI motore.",
+    "compatibleVehicles": [
+      {
+        "name": "Volkswagen", "type": "PASSENGER", "models": [
+          {"name": "Golf", "generations": [
+            {"name": "Mk5", "engines": [{"engineType": "Diesel", "engineCodes": ["BKC", "BLS", "BXE", "BKD", "BMM", "BMN"], "description": "1.9 TDI / 2.0 TDI"}]},
+            {"name": "Mk6", "engines": [{"engineType": "Diesel", "engineCodes": ["CBAA", "CBAB", "CBBB", "CBDC", "CAYC"], "description": "1.6 TDI / 2.0 TDI CR"}]}
+          ]},
+          {"name": "Passat", "generations": [{"name": "B6", "engines": [{"engineType": "Diesel", "engineCodes": ["BKC", "BLS", "BMA", "BMP", "BMR", "CBBB"], "description": "1.9 TDI / 2.0 TDI"}]}]}
+        ]
+      }
+    ]
+  },
+  {
+    "oemNumber": "596064",
+    "partDescription": "Grijač motora (Glow Plug) za HDi motore.",
+    "compatibleVehicles": [
+      {
+        "name": "Peugeot", "type": "PASSENGER", "models": [
+          {"name": "206", "engines": [{"engineType": "Diesel", "engineCodes": ["RHY", "WJY"], "description": "1.9 D / 2.0 HDi"}]},
+          {"name": "307", "engines": [{"engineType": "Diesel", "engineCodes": ["RHY", "RHS"], "description": "2.0 HDi"}]},
+          {"name": "407", "engines": [{"engineType": "Diesel", "engineCodes": ["RHR", "RHK"], "description": "2.0 HDi"}]}
+        ]
+      },
+      {
+        "name": "Citroën", "type": "PASSENGER", "models": [
+          {"name": "C4", "engines": [{"engineType": "Diesel", "engineCodes": ["RHR"], "description": "2.0 HDi"}]},
+          {"name": "C5", "engines": [{"engineType": "Diesel", "engineCodes": ["RHS", "RHR"], "description": "2.0 HDi"}]}
+        ]
+      }
+    ]
+  },
+  {
+    "oemNumber": "531006110",
+    "partDescription": "Zatezač (španer) zupčastog remena (INA Aftermarket).",
+    "compatibleVehicles": [
+      {"name": "Renault", "type": "PASSENGER", "models": [{"name": "Clio", "generations": [{"name": "II", "engines": [{"engineType": "Petrol", "engineCodes": ["D7F", "D4F"], "description": "1.2 8V/16V"}]}]}]}
+    ]
+  },
+  {
+    "oemNumber": "71-34359-00",
+    "partDescription": "Dihtung poklopca ventila (Victor Reinz). Za 1.9 TDI PD motore.",
+    "compatibleVehicles": [
+      {"name": "Volkswagen", "type": "PASSENGER", "models": [{"name": "Passat", "generations": [{"name": "B5.5", "engines": [{"engineType": "Diesel", "engineCodes": ["AVB", "AVF", "AWX"], "description": "1.9 TDI PD"}]}]}]},
+      {"name": "Audi", "type": "PASSENGER", "models": [{"name": "A4", "generations": [{"name": "B6", "engines": [{"engineType": "Diesel", "engineCodes": ["AVB", "AVF", "AWX", "BKE"], "description": "1.9 TDI PD"}]}]}]}
+    ]
+  },
+  {
+    "oemNumber": "530047010",
+    "partDescription": "Set zupčastog remena (INA Aftermarket). Za 1.4/1.6 16V VAG motore.",
+    "compatibleVehicles": [
+      {"name": "Volkswagen", "type": "PASSENGER", "models": [
+        {"name": "Golf", "generations": [{"name": "Mk4", "engines": [{"engineType": "Petrol", "engineCodes": ["AHW", "AKQ", "APE", "AXP", "BCA", "ATN", "AUS", "AZD", "BCB"], "description": "1.4 16V / 1.6 16V"}]}]},
+        {"name": "Polo", "generations": [{"name": "6N2/9N", "engines": [{"engineType": "Petrol", "engineCodes": ["AHW", "APE", "AUA", "AUB", "BBY", "BBZ"], "description": "1.4 16V"}]}]}
+      ]}
+    ]
+  },
+  {
+    "oemNumber": "522412",
+    "partDescription": "Hladnjak vode (Valeo Aftermarket).",
+    "compatibleVehicles": [
+      {"name": "Renault", "type": "PASSENGER", "models": [
+        {"name": "Clio", "generations": [{"name": "I", "engines": [{"engineType": "Petrol", "engineCodes": ["C1E", "C3G", "E7F"], "description": "1.1 / 1.2"}]}]},
+        {"name": "R19", "engines": [{"engineType": "Petrol", "engineCodes": ["C2J", "E7J"], "description": "1.4"}]}
+      ]}
+    ]
+  },
+  {
+    "oemNumber": "028103609A",
+    "partDescription": "Karter ulja. Za 1.9 SDI/TDI (non-PD) motore.",
+    "compatibleVehicles": [
+      {"name": "Volkswagen", "type": "PASSENGER", "models": [{"name": "Golf", "generations": [{"name": "Mk3", "engines": [{"engineType": "Diesel", "engineCodes": ["AEY", "1Z", "AHU", "ALE"], "description": "1.9 SDI / TDI"}]}]}]}
+    ]
+  },
+  {
+    "oemNumber": "037115220B",
+    "partDescription": "Lanac uljne pumpe. Za 2.0 8V benzinske motore.",
+    "compatibleVehicles": [
+      {"name": "Volkswagen", "type": "PASSENGER", "models": [{"name": "Golf", "generations": [{"name": "Mk3", "engines": [{"engineType": "Petrol", "engineCodes": ["2E", "ADY", "AGG"], "description": "2.0"}]}]}]}
+    ]
+  },
+  {
+    "oemNumber": "8200166159",
+    "partDescription": "EGR Ventil. Za 1.5 dCi motore.",
+    "compatibleVehicles": [
+      {"name": "Renault", "type": "PASSENGER", "models": [{"name": "Clio", "generations": [{"name": "II", "engines": [{"engineType": "Diesel", "engineCodes": ["K9K"], "description": "1.5 dCi"}]}]}]},
+      {"name": "Nissan", "type": "PASSENGER", "models": [{"name": "Micra", "generations": [{"name": "K12", "engines": [{"engineType": "Diesel", "engineCodes": ["K9K"], "description": "1.5 dCi"}]}]}]}
+    ]
+  },
+  {
+    "oemNumber": "7701474448",
+    "partDescription": "Set zupčastog remena. Za 8V benzinske motore.",
+    "compatibleVehicles": [
+      {"name": "Renault", "type": "PASSENGER", "models": [
+        {"name": "Clio", "generations": [{"name": "II", "engines": [{"engineType": "Petrol", "engineCodes": ["K7J", "K7M"], "description": "1.4 / 1.6"}]}]},
+        {"name": "Thalia", "generations": [{"name": "I", "engines": [{"engineType": "Petrol", "engineCodes": ["K7J"], "description": "1.4"}]}]}
+      ]}
+    ]
+  },
+  {
+    "oemNumber": "508750 / 508764",
+    "partDescription": "Nosač motora. Zavisno od motora.",
+    "compatibleVehicles": [
+      {"name": "Peugeot", "type": "PASSENGER", "models": [{"name": "307", "engines": [{"engineType": "Diesel", "engineCodes": ["RHY", "RHS", "RHR"], "description": "2.0 HDi"}]}]}
+    ]
+  },
+  {
+    "oemNumber": "038903315C",
+    "partDescription": "Zatezač (španer) PK remena. Za 1.9 TDI PD motore.",
+    "compatibleVehicles": [
+      {"name": "Volkswagen", "type": "PASSENGER", "models": [{"name": "Golf", "generations": [{"name": "Mk4", "engines": [{"engineType": "Diesel", "engineCodes": ["ATD", "AXR", "ASZ", "ARL"], "description": "1.9 TDI PD"}]}]}]}
+    ]
+  },
+  {
+    "oemNumber": "028903119AA",
+    "partDescription": "Remenica alternatora (sa kvačilom). Za 1.9 TDI (non-PD) motore.",
+    "compatibleVehicles": [
+      {"name": "Volkswagen", "type": "PASSENGER", "models": [{"name": "Golf", "generations": [{"name": "Mk3", "engines": [{"engineType": "Diesel", "engineCodes": ["1Z", "AHU", "ALE"], "description": "1.9 TDI"}]}]}]}
+    ]
+  },
+  {
+    "oemNumber": "60617002",
+    "partDescription": "Termostat. Za Twin Spark motore.",
+    "compatibleVehicles": [
+      {"name": "Alfa Romeo", "type": "PASSENGER", "models": [
+        {"name": "145/146", "engines": [{"engineType": "Petrol", "engineCodes": ["AR 33201", "AR 67601"], "description": "1.4 T.S. / 1.6 T.S."}]},
+        {"name": "155", "engines": [{"engineType": "Petrol", "engineCodes": ["AR 67106"], "description": "1.8 T.S."}]}
+      ]}
+    ]
+  },
+  {
+    "oemNumber": "6420940204 / 6110940204",
+    "partDescription": "Filter zraka. Za Mercedes CDI motore.",
+    "compatibleVehicles": [
+      {"name": "Mercedes-Benz", "type": "PASSENGER", "models": [
+        {"name": "Sprinter", "generations": [{"name": "906", "engines": [{"engineType": "Diesel", "engineCodes": ["OM642"], "description": "3.0 CDI V6"}]}]},
+        {"name": "Vito", "generations": [{"name": "W639", "engines": [{"engineType": "Diesel", "engineCodes": ["OM646"], "description": "2.2 CDI"}]}]}
+      ]}
+    ]
+  },
+  {
+    "oemNumber": "4544700090",
+    "partDescription": "Pumpa za gorivo. Zavisno od motora.",
+    "compatibleVehicles": [
+      {"name": "Smart", "type": "PASSENGER", "models": [{"name": "Forfour", "period": "2004-2006", "engines": [{"engineType": "Petrol", "engineCodes": ["M 135.930", "M 135.950"], "description": "1.3 / 1.5"}]}]}
+    ]
+  },
+  {
+    "oemNumber": "1201G9 / 045121011F",
+    "partDescription": "Vodena pumpa (PSA/VAG).",
+    "compatibleVehicles": [
+      {"description": "1201G9: Za 1.6 HDi motore", "engines": [{"engineType": "Diesel", "engineCodes": ["9HY", "9HZ", "9HX"], "description": "1.6 HDi"}]},
+      {"description": "045121011F: Za 1.4 TDI PD motore", "engines": [{"engineType": "Diesel", "engineCodes": ["AMF", "BAY", "BMS"], "description": "1.4 TDI"}]}
+    ]
+  },
+  {
+    "oemNumber": "575174",
+    "partDescription": "PK Remen (linijski).",
+    "compatibleVehicles": [
+      {"name": "Peugeot", "type": "PASSENGER", "models": [{"name": "206", "engines": [{"engineType": "Petrol", "engineCodes": ["KFW", "NFU"], "description": "1.4 / 1.6 16V"}]}]}
+    ]
+  },
+  {
+    "oemNumber": "06A260849E",
+    "partDescription": "PK Remen (za kompresor klime).",
+    "compatibleVehicles": [
+      {"name": "Volkswagen", "type": "PASSENGER", "models": [{"name": "Golf", "generations": [{"name": "Mk4", "engines": [
+        {"engineType": "Petrol", "engineCodes": ["AGU", "ARZ", "AUM"], "description": "1.8T"},
+        {"engineType": "Petrol", "engineCodes": ["APK", "AQY"], "description": "2.0"}
+      ]}]}]}
+    ]
+  },
+  {
+    "oemNumber": "1402770095",
+    "partDescription": "Filter automatskog mjenjača.",
+    "compatibleVehicles": [
+      {"name": "Mercedes-Benz", "type": "PASSENGER", "models": [{"description": "Za mjenjače tipa 722.6"}]}
+    ]
+  },
+  {
+    "oemNumber": "7H0129620",
+    "partDescription": "Filter zraka.",
+    "compatibleVehicles": [
+      {"name": "Volkswagen", "type": "PASSENGER", "models": [{"name": "Transporter/Multivan", "generations": [{"name": "T5", "engines": [
+        {"engineType": "Diesel", "engineCodes": ["AXD", "AXE", "BLJ", "BNZ", "BPC"], "description": "2.5 TDI"},
+        {"engineType": "Petrol", "engineCodes": ["AXA"], "description": "2.0"}
+      ]}]}]}
+    ]
+  },
+  {
+    "oemNumber": "6DPK1195",
+    "partDescription": "PK Remen (6 rebara, dužina 1195mm). Aplikacija zavisi od motora i opreme.",
+    "compatibleVehicles": [
+      {"name": "BMW", "type": "PASSENGER", "models": [{"name": "3 Series", "generations": [{"name": "E46", "engines": [{"engineType": "Diesel", "engineCodes": ["M47D20"], "description": "320d"}]}]}]},
+      {"name": "Volkswagen", "type": "PASSENGER", "models": [{"name": "Passat", "generations": [{"name": "B5.5", "engines": [{"engineType": "Diesel", "engineCodes": ["AVB"], "description": "1.9 TDI"}]}]}]}
+    ]
+  },
+  {
+    "oemNumber": "7701205230",
+    "partDescription": "Set kvačila.",
+    "compatibleVehicles": [
+      {"name": "Renault", "type": "PASSENGER", "models": [
+        {"name": "Megane", "generations": [{"name": "I", "engines": [{"engineType": "Diesel", "engineCodes": ["F9Q"], "description": "1.9 dTi/dCi"}]}]},
+        {"name": "Scenic", "generations": [{"name": "I", "engines": [{"engineType": "Diesel", "engineCodes": ["F9Q"], "description": "1.9 dTi/dCi"}]}]}
+      ]}
+    ]
+  },
+  {
+    "oemNumber": "6460920001",
+    "partDescription": "Filter goriva.",
+    "compatibleVehicles": [
+      {"name": "Mercedes-Benz", "type": "PASSENGER", "models": [
+        {"name": "C-Class", "generations": [{"name": "W203", "engines": [{"engineType": "Diesel", "engineCodes": ["OM646"], "description": "C200/C220 CDI"}]}]},
+        {"name": "E-Class", "generations": [{"name": "W211", "engines": [{"engineType": "Diesel", "engineCodes": ["OM646"], "description": "E200/E220 CDI"}]}]}
+      ]}
+    ]
+  }
+]

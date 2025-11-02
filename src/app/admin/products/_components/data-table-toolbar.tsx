@@ -40,21 +40,19 @@ interface DataTableToolbarProps<TData> {
 
 
 export function DataTableToolbar<TData>({ table, categories, onSearch, onCategoryChange }: DataTableToolbarProps<TData>) {
-  const isFiltered = table.getState().columnFilters.length > 0;
+  const tableHasFilters = table.getState().columnFilters.length > 0;
   const [selectedCategoryId, setSelectedCategoryId] = React.useState('');
   const [search, setSearch] = React.useState('');
+  const trimmedSearch = search.trim();
+  const isFiltered = tableHasFilters || trimmedSearch.length > 0;
 
   // debounce search -> 300ms
   React.useEffect(() => {
     const id = setTimeout(() => {
-      const q = search.trim();
-      // update table filter for UI consistency
-      table.getColumn('name')?.setFilterValue(q);
-      // server-driven callback
-      if (onSearch) onSearch(q);
+      if (onSearch) onSearch(trimmedSearch);
     }, 300);
     return () => clearTimeout(id);
-  }, [search]);
+  }, [trimmedSearch, onSearch]);
 
     return (
     <div className="space-y-4">
@@ -89,7 +87,13 @@ export function DataTableToolbar<TData>({ table, categories, onSearch, onCategor
           {isFiltered && (
             <Button
               variant="ghost"
-              onClick={() => table.resetColumnFilters()}
+              onClick={() => {
+                setSearch('');
+                setSelectedCategoryId('');
+                table.resetColumnFilters();
+                onCategoryChange?.('');
+                onSearch?.('');
+              }}
               className="h-11 px-4 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-xl transition-all duration-200"
             >
               <X className="mr-2 h-4 w-4" />

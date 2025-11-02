@@ -1,0 +1,291 @@
+[
+  {
+    "oemNumber": "1T0598611",
+    "partDescription": "Ležaj zadnjeg točka sa glavčinom (Hub assembly)",
+    "compatibleVehicles": [
+      {
+        "name": "Volkswagen", "type": "PASSENGER", "models": [
+          {"name": "Golf", "generations": [{"name": "Mk5/Mk6", "period": "2003-2012"}]},
+          {"name": "Jetta", "generations": [{"name": "A5", "period": "2005-2010"}]},
+          {"name": "Touran", "generations": [{"name": "Mk1", "period": "2003-2015"}]},
+          {"name": "Eos", "generations": [{"name": "Mk1", "period": "2006-2015"}]}
+        ]
+      },
+      {
+        "name": "Audi", "type": "PASSENGER", "models": [{"name": "A3", "generations": [{"name": "Mk2 (8P)", "period": "2003-2013"}]}]
+      },
+      {
+        "name": "Škoda", "type": "PASSENGER", "models": [{"name": "Octavia", "generations": [{"name": "Mk2 (1Z)", "period": "2004-2013"}]}]
+      }
+    ]
+  },
+  {
+    "oemNumber": "191598625",
+    "partDescription": "Set ležaja zadnjeg točka",
+    "compatibleVehicles": [
+      {
+        "name": "Volkswagen", "type": "PASSENGER", "models": [
+          {"name": "Golf", "generations": [{"name": "Mk2", "period": "1983-1992"}]},
+          {"name": "Jetta", "generations": [{"name": "Mk2", "period": "1984-1992"}]}
+        ]
+      }
+    ]
+  },
+  {
+    "oemNumber": "1J0498625",
+    "partDescription": "Set ležaja prednjeg točka",
+    "compatibleVehicles": [
+      {
+        "name": "Volkswagen", "type": "PASSENGER", "models": [{"name": "Golf", "generations": [{"name": "Mk4", "period": "1997-2003"}]}]
+      },
+      {
+        "name": "Audi", "type": "PASSENGER", "models": [{"name": "A3", "generations": [{"name": "Mk1 (8L)", "period": "1996-2003"}]}]
+      },
+      {
+        "name": "Škoda", "type": "PASSENGER", "models": [{"name": "Octavia", "generations": [{"name": "Mk1 (1U)", "period": "1996-2004"}]}]
+      }
+    ]
+  },
+  {
+    "oemNumber": "191498625A",
+    "partDescription": "Set ležaja prednjeg točka",
+    "compatibleVehicles": [
+      {
+        "name": "Volkswagen", "type": "PASSENGER", "models": [
+          {"name": "Golf", "generations": [{"name": "Mk2/Mk3", "period": "1983-1999"}]},
+          {"name": "Passat", "generations": [{"name": "B3/B4", "period": "1988-1997"}]}
+        ]
+      }
+    ]
+  },
+  {
+    "oemNumber": "4A0598625A",
+    "partDescription": "Set ležaja prednjeg točka",
+    "compatibleVehicles": [
+      {
+        "name": "Audi", "type": "PASSENGER", "models": [
+          {"name": "A4", "generations": [{"name": "B5", "period": "1994-2001"}]},
+          {"name": "A6", "generations": [{"name": "C4", "period": "1994-1997"}]}
+        ]
+      }
+    ]
+  },
+  {
+    "oemNumber": "8D0598625",
+    "partDescription": "Set ležaja zadnjeg točka",
+    "compatibleVehicles": [
+      {
+        "name": "Volkswagen", "type": "PASSENGER", "models": [{"name": "Passat", "generations": [{"name": "B5", "period": "1997-2005"}]}]
+      },
+      {
+        "name": "Audi", "type": "PASSENGER", "models": [{"name": "A4", "generations": [{"name": "B5", "period": "1994-2001"}]}]
+      }
+    ]
+  },
+  {
+    "oemNumber": "071115562B / 74115562",
+    "partDescription": "Filter ulja",
+    "compatibleVehicles": [
+      {
+        "name": "Volkswagen", "type": "PASSENGER", "models": [{"name": "Golf", "generations": [{"name": "Mk4"}]}, {"name": "Passat", "generations": [{"name": "B5"}]}]
+      },
+      {
+        "name": "Audi", "type": "PASSENGER", "models": [{"name": "A3", "generations": [{"name": "8L"}]}, {"name": "A4", "generations": [{"name": "B5/B6"}]}, {"name": "A6", "generations": [{"name": "C5"}]}]
+      }
+    ]
+  },
+  {
+    "oemNumber": "818531",
+    "partDescription": "Ventilator hladnjaka (Valeo aftermarket)",
+    "compatibleVehicles": [
+      {
+        "name": "Renault", "type": "PASSENGER", "models": [{"name": "Clio II"}, {"name": "Megane I"}]
+      }
+    ]
+  },
+  {
+    "oemNumber": "834286",
+    "partDescription": "Set kvačila (Valeo aftermarket za 1.9D)",
+    "compatibleVehicles": [
+      {
+        "name": "Peugeot", "type": "PASSENGER", "models": [{"name": "206"}, {"name": "Partner"}]
+      },
+      {
+        "name": "Citroën", "type": "PASSENGER", "models": [{"name": "Berlingo"}, {"name": "Xsara"}]
+      }
+    ]
+  },
+  {
+    "oemNumber": "1H0129620",
+    "partDescription": "Filter zraka",
+    "compatibleVehicles": [
+      {
+        "name": "Volkswagen", "type": "PASSENGER", "models": [{"name": "Golf", "generations": [{"name": "Mk3", "period": "1992-1999"}]}]
+      }
+    ]
+  },
+  {
+    "oemNumber": "8200023480",
+    "partDescription": "EGR Ventil (za 1.9 dCi motore)",
+    "compatibleVehicles": [
+      {
+        "name": "Renault", "type": "PASSENGER", "models": [{"name": "Megane II"}, {"name": "Scenic II"}, {"name": "Laguna II"}]
+      }
+    ]
+  },
+  {
+    "oemNumber": "835622",
+    "partDescription": "Set kvačila (Valeo aftermarket za PSA benzinske motore)",
+    "compatibleVehicles": [
+        {"name": "Peugeot", "type": "PASSENGER", "models": [{"name": "308"}, {"name": "3008"}, {"name": "5008"}]},
+        {"name": "Citroën", "type": "PASSENGER", "models": [{"name": "C4"}, {"name": "C4 Picasso"}]}
+    ]
+  },
+  {
+    "oemNumber": "1J0129620",
+    "partDescription": "Filter zraka",
+    "compatibleVehicles": [
+      {
+        "name": "Volkswagen", "type": "PASSENGER", "models": [{"name": "Golf", "generations": [{"name": "Mk4", "period": "1997-2003"}]}]
+      },
+      {
+        "name": "Audi", "type": "PASSENGER", "models": [{"name": "A3", "generations": [{"name": "Mk1 (8L)", "period": "1996-2003"}]}]
+      }
+    ]
+  },
+  {
+    "oemNumber": "074127435A",
+    "partDescription": "Dihtung filtera goriva",
+    "compatibleVehicles": [
+      {
+        "name": "Volkswagen", "type": "PASSENGER", "models": [{"name": "Transporter", "generations": [{"name": "T4", "period": "1990-2003"}]}]
+      }
+    ]
+  },
+  {
+    "oemNumber": "90570368",
+    "partDescription": "Senzor temperature rashladne tečnosti",
+    "compatibleVehicles": [
+      {
+        "name": "Opel", "type": "PASSENGER", "models": [{"name": "Astra G"}, {"name": "Corsa C"}, {"name": "Vectra B"}]
+      }
+    ]
+  },
+  {
+    "oemNumber": "1987... (Bosch Sijalice)",
+    "partDescription": "Standardizovane automobilske sijalice (Bosch). Kompatibilnost zavisi od tipa fara/svjetla, ne od modela vozila. Ovo uključuje tipove kao što su H1, H4, H7, P21W, W5W, itd.",
+    "compatibleVehicles": [
+      {
+        "name": "Various Manufacturers", "type": "PASSENGER", "models": [
+          {"name": "Various Models", "generations": [{"name": "General", "period": "Sva godišta", "bodyStyles": ["Svi"], "description": "Univerzalna primjena prema tipu sijalice."}]}
+        ]
+      }
+    ]
+  },
+  {
+    "oemNumber": "1K0129620D",
+    "partDescription": "Filter zraka",
+    "compatibleVehicles": [
+      {
+        "name": "Volkswagen", "type": "PASSENGER", "models": [{"name": "Golf", "generations": [{"name": "Mk5", "period": "2003-2009"}]}, {"name": "Passat", "generations": [{"name": "B6", "period": "2005-2010"}]}]
+      },
+      {
+        "name": "Audi", "type": "PASSENGER", "models": [{"name": "A3", "generations": [{"name": "Mk2 (8P)", "period": "2003-2013"}]}]
+      },
+      {
+        "name": "Škoda", "type": "PASSENGER", "models": [{"name": "Octavia", "generations": [{"name": "Mk2 (1Z)", "period": "2004-2013"}]}]
+      }
+    ]
+  },
+  {
+    "oemNumber": "1H0819644A",
+    "partDescription": "Filter kabine / polena",
+    "compatibleVehicles": [
+      {
+        "name": "Volkswagen", "type": "PASSENGER", "models": [{"name": "Golf", "generations": [{"name": "Mk3", "period": "1992-1999"}]}]
+      }
+    ]
+  },
+  {
+    "oemNumber": "8A0819439",
+    "partDescription": "Filter kabine / polena",
+    "compatibleVehicles": [
+      {
+        "name": "Audi", "type": "PASSENGER", "models": [{"name": "A4", "generations": [{"name": "B5", "period": "1994-2001"}]}, {"name": "80", "generations": [{"name": "B4", "period": "1991-1996"}]}]
+      }
+    ]
+  },
+  {
+    "oemNumber": "1808612 / 6808606",
+    "partDescription": "Filter kabine i filter ulja (Opel)",
+    "compatibleVehicles": [
+        {"name": "Opel", "type": "PASSENGER", "models": [{"name": "Corsa D"}, {"name": "Astra H"}]}
+    ]
+  },
+  {
+    "oemNumber": "7700424098",
+    "partDescription": "Filter kabine / polena",
+    "compatibleVehicles": [
+      {
+        "name": "Renault", "type": "PASSENGER", "models": [{"name": "Clio II"}, {"name": "Kangoo I"}]
+      }
+    ]
+  },
+  {
+    "oemNumber": "1K0819644",
+    "partDescription": "Filter kabine / polena",
+    "compatibleVehicles": [
+      {
+        "name": "Volkswagen", "type": "PASSENGER", "models": [{"name": "Golf", "generations": [{"name": "Mk5/Mk6"}]}, {"name": "Passat", "generations": [{"name": "B6/B7"}]}]
+      },
+      {
+        "name": "Škoda", "type": "PASSENGER", "models": [{"name": "Octavia", "generations": [{"name": "Mk2"}]}]
+      }
+    ]
+  },
+  {
+    "oemNumber": "1J0819644",
+    "partDescription": "Filter kabine / polena",
+    "compatibleVehicles": [
+      {
+        "name": "Volkswagen", "type": "PASSENGER", "models": [{"name": "Golf", "generations": [{"name": "Mk4"}]}]
+      },
+      {
+        "name": "Audi", "type": "PASSENGER", "models": [{"name": "A3", "generations": [{"name": "Mk1 (8L)"}]}]
+      }
+    ]
+  },
+  {
+    "oemNumber": "027198141AX",
+    "partDescription": "Set kvačila (repariran)",
+    "compatibleVehicles": [
+      {
+        "name": "Volkswagen", "type": "PASSENGER", "models": [{"name": "Golf", "generations": [{"name": "Mk2/Mk3"}]}]
+      }
+    ]
+  },
+  {
+    "oemNumber": "4A0615301C",
+    "partDescription": "Disk kočioni prednji",
+    "compatibleVehicles": [
+      {
+        "name": "Audi", "type": "PASSENGER", "models": [{"name": "A4", "generations": [{"name": "B5"}]}, {"name": "A6", "generations": [{"name": "C4/C5"}]}]
+      },
+      {
+        "name": "Volkswagen", "type": "PASSENGER", "models": [{"name": "Passat", "generations": [{"name": "B5"}]}]
+      }
+    ]
+  },
+  {
+    "oemNumber": "4A0615601A",
+    "partDescription": "Disk kočioni zadnji",
+    "compatibleVehicles": [
+      {
+        "name": "Audi", "type": "PASSENGER", "models": [{"name": "A4", "generations": [{"name": "B5"}]}, {"name": "A6", "generations": [{"name": "C4/C5"}]}]
+      },
+      {
+        "name": "Volkswagen", "type": "PASSENGER", "models": [{"name": "Passat", "generations": [{"name": "B5"}]}]
+      }
+    ]
+  }
+]

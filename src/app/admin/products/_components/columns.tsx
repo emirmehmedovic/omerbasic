@@ -146,8 +146,15 @@ export const columns: ColumnDef<ProductWithCategory>[] = [
     accessorKey: 'stock',
     header: ({ column }) => {
       return (
-        <div className="text-gray-700 font-medium">
-          Zalihe
+        <div className="text-right">
+          <Button
+            variant="ghost"
+            onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+            className="text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-all duration-200"
+          >
+            Zalihe
+            <ArrowUpDown className="ml-2 h-4 w-4" />
+          </Button>
         </div>
       );
     },

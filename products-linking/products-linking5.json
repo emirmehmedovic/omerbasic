@@ -1,0 +1,188 @@
+[
+  {
+    "oemNumber": "569109",
+    "partDescription": "Set kvačila (Valeo zamjenski broj). Zavisno od motora.",
+    "compatibleVehicles": [
+      {
+        "name": "Renault", "type": "PASSENGER", "models": [
+          {"name": "Clio", "generations": [{"name": "II", "period": "1998-2005", "engines": [
+            {"engineType": "Petrol", "engineCapacity_cm3": 1149, "engineCodes": ["D7F"], "description": "1.2 8V"},
+            {"engineType": "Petrol", "engineCapacity_cm3": 1390, "engineCodes": ["E7J"], "description": "1.4 8V"}
+          ]}]},
+          {"name": "Megane", "generations": [{"name": "I", "period": "1995-2002", "engines": [
+            {"engineType": "Petrol", "engineCapacity_cm3": 1390, "engineCodes": ["E7J"], "description": "1.4e"}
+          ]}]}
+        ]
+      }
+    ]
+  },
+  {
+    "oemNumber": "7700704705",
+    "partDescription": "Termostat. Zavisno od motora.",
+    "compatibleVehicles": [
+      {
+        "name": "Renault", "type": "PASSENGER", "models": [
+          {"name": "Clio", "generations": [{"name": "I", "period": "1990-1998", "engines": [
+            {"engineType": "Petrol", "engineCapacity_cm3": 1171, "engineCodes": ["E7F"], "description": "1.2"},
+            {"engineType": "Petrol", "engineCapacity_cm3": 1390, "engineCodes": ["E7J"], "description": "1.4"}
+          ]}]}
+        ]
+      }
+    ]
+  },
+  {
+    "oemNumber": "7700813549",
+    "partDescription": "Semering radilice. Zavisno od motora.",
+    "compatibleVehicles": [
+      {
+        "name": "Renault", "type": "PASSENGER", "models": [
+          {"name": "Clio", "generations": [{"name": "I/II", "period": "1990-2005", "engines": [
+            {"engineType": "Petrol", "engineCodes": ["E7F", "E7J", "K7J", "K7M"], "description": "Energy & K-Type 8V motori"}
+          ]}]},
+          {"name": "Megane", "generations": [{"name": "I", "period": "1995-2002", "engines": [
+            {"engineType": "Petrol", "engineCodes": ["E7J", "K7M"], "description": "1.4e / 1.6e"}
+          ]}]}
+        ]
+      }
+    ]
+  },
+  {
+    "oemNumber": "19207S",
+    "partDescription": "Motor ler gasa / Ventil za kontrolu praznog hoda. Zavisno od motora.",
+    "compatibleVehicles": [
+      {
+        "name": "Peugeot", "type": "PASSENGER", "models": [
+          {"name": "106", "engines": [{"engineType": "Petrol", "engineCodes": ["HDZ", "HFX", "KFW", "KFX"], "description": "1.0/1.1/1.4"}]},
+          {"name": "206", "engines": [{"engineType": "Petrol", "engineCodes": ["HFX", "KFW", "KFX"], "description": "1.1/1.4"}]}
+        ]
+      },
+      {
+        "name": "Citroën", "type": "PASSENGER", "models": [
+          {"name": "Saxo", "engines": [{"engineType": "Petrol", "engineCodes": ["HDZ", "HFX", "KFW", "KFX"], "description": "1.0/1.1/1.4"}]},
+          {"name": "Berlingo", "engines": [{"engineType": "Petrol", "engineCodes": ["HFX", "KFW", "KFX"], "description": "1.1/1.4"}]}
+        ]
+      }
+    ]
+  },
+  {
+    "oemNumber": "38103483 / 03G103483 / 03G103483D",
+    "partDescription": "Dihtung poklopca ventila. Za 1.9 TDI i 2.0 TDI PD (8V) motore.",
+    "compatibleVehicles": [
+      {
+        "name": "Volkswagen", "type": "PASSENGER", "models": [
+          {"name": "Golf", "generations": [{"name": "Mk5", "period": "2003-2009", "engines": [
+            {"engineType": "Diesel", "engineCodes": ["BKC", "BLS", "BXE", "BMM"], "description": "1.9 TDI / 2.0 TDI (8V)"}
+          ]}]},
+          {"name": "Passat", "generations": [{"name": "B6", "period": "2005-2010", "engines": [
+            {"engineType": "Diesel", "engineCodes": ["BKC", "BLS", "BXE", "BMP"], "description": "1.9 TDI / 2.0 TDI (8V)"}
+          ]}]}
+        ]
+      }
+    ]
+  },
+  {
+    "oemNumber": "8200317650 / 7700116047",
+    "partDescription": "Senzor položaja radilice (CKP senzor). Za 1.4/1.6 16V benzinske motore.",
+    "compatibleVehicles": [
+      {
+        "name": "Renault", "type": "PASSENGER", "models": [
+          {"name": "Clio", "generations": [{"name": "II/III", "period": "1998-2012", "engines": [{"engineType": "Petrol", "engineCodes": ["K4J", "K4M"], "description": "1.4 16V / 1.6 16V"}]}]},
+          {"name": "Megane", "generations": [{"name": "I/II", "period": "1999-2008", "engines": [{"engineType": "Petrol", "engineCodes": ["K4J", "K4M"], "description": "1.4 16V / 1.6 16V"}]}]}
+        ]
+      }
+    ]
+  },
+  {
+    "oemNumber": "038109119L",
+    "partDescription": "Zupčasti remen. Za 1.9 TDI PD motore.",
+    "compatibleVehicles": [
+      {
+        "name": "Volkswagen", "type": "PASSENGER", "models": [
+          {"name": "Golf", "generations": [{"name": "Mk4", "engines": [{"engineType": "Diesel", "engineCodes": ["ATD", "AXR", "AJM", "AUY", "ASZ", "ARL"], "description": "Svi 1.9 TDI PD"}]}]},
+          {"name": "Passat", "generations": [{"name": "B5.5", "engines": [{"engineType": "Diesel", "engineCodes": ["AVB", "AVF", "AWX"], "description": "1.9 TDI PD"}]}]}
+        ]
+      }
+    ]
+  },
+  {
+    "oemNumber": "CT1028WP3",
+    "partDescription": "Set zupčastog remena sa vodenom pumpom (Contitech). Za 1.9 TDI PD motore.",
+    "compatibleVehicles": [
+      {
+        "name": "Audi", "type": "PASSENGER", "models": [{"name": "A4", "generations": [{"name": "B6", "engines": [{"engineType": "Diesel", "engineCodes": ["AVB", "AVF", "AWX", "BKE"], "description": "1.9 TDI PD"}]}]}]},
+      {
+        "name": "Volkswagen", "type": "PASSENGER", "models": [{"name": "Passat", "generations": [{"name": "B5.5", "engines": [{"engineType": "Diesel", "engineCodes": ["AVB", "AVF", "AWX"], "description": "1.9 TDI PD"}]}]}]}
+    ]
+  },
+  {
+    "oemNumber": "0816A6 / 1753581 / 5636344",
+    "partDescription": "Zupčasti remen. Za različite dizel motore.",
+    "compatibleVehicles": [
+      {"name": "Peugeot/Citroën", "type": "PASSENGER", "models": [{"description": "Za 1.9D (XUD) motore", "engines": [{"engineType": "Diesel", "engineCodes": ["WJY", "WJZ"], "description": "1.9 D"}]}]},
+      {"name": "Ford", "type": "PASSENGER", "models": [{"description": "Za 1.8 TDDI/TDCI motore", "engines": [{"engineType": "Diesel", "engineCodes": ["C9DA", "FFDA", "F9DA"], "description": "1.8 TDDi/TDCi"}]}]},
+      {"name": "Opel", "type": "PASSENGER", "models": [{"description": "Za 1.7 DTI motore", "engines": [{"engineType": "Diesel", "engineCodes": ["Y17DT"], "description": "1.7 DTI"}]}]}
+    ]
+  },
+  {
+    "oemNumber": "7700872023 / 81696",
+    "partDescription": "Svjećica. Za 8V benzinske motore.",
+    "compatibleVehicles": [
+      {"name": "Renault", "type": "PASSENGER", "models": [{"name": "Clio"}, {"name": "Megane", "engines": [{"engineType": "Petrol", "engineCodes": ["E7J", "K7M"], "description": "1.4e / 1.6e"}]}]}
+    ]
+  },
+  {
+    "oemNumber": "7701061576",
+    "partDescription": "Set zupčastog remena. Za 1.4/1.6 16V benzinske motore.",
+    "compatibleVehicles": [
+      {"name": "Renault", "type": "PASSENGER", "models": [
+        {"name": "Clio", "generations": [{"name": "II", "engines": [{"engineType": "Petrol", "engineCodes": ["K4J", "K4M"], "description": "1.4 16V / 1.6 16V"}]}]},
+        {"name": "Megane", "generations": [{"name": "II", "engines": [{"engineType": "Petrol", "engineCodes": ["K4J", "K4M"], "description": "1.4 16V / 1.6 16V"}]}]}
+      ]}
+    ]
+  },
+  {
+    "oemNumber": "55187100 / 0829C4 / 4401416",
+    "partDescription": "Zatezač zupčastog remena. Za 2.2/2.3/3.0 JTD/HDi motore.",
+    "compatibleVehicles": [
+      {"name": "Fiat", "type": "PASSENGER", "models": [{"name": "Ducato", "engines": [{"engineType": "Diesel", "engineCodes": ["F1AE0481C", "F1AE0481D"], "description": "2.2 JTD / 2.3 JTD"}]}]},
+      {"name": "Peugeot", "type": "PASSENGER", "models": [{"name": "Boxer", "engines": [{"engineType": "Diesel", "engineCodes": ["4HV", "4HU"], "description": "2.2 HDi"}]}]}
+    ]
+  },
+  {
+    "oemNumber": "045109479C",
+    "partDescription": "Zatezač zupčastog remena. Za 1.4 TDI PD motore.",
+    "compatibleVehicles": [
+      {"name": "Volkswagen", "type": "PASSENGER", "models": [{"name": "Polo", "generations": [{"name": "9N", "engines": [{"engineType": "Diesel", "engineCodes": ["AMF", "BAY"], "description": "1.4 TDI"}]}]}]}
+    ]
+  },
+  {
+    "oemNumber": "1K0127434 / 1K0127434B",
+    "partDescription": "Filter goriva (dizel).",
+    "compatibleVehicles": [
+      {"name": "Volkswagen", "type": "PASSENGER", "models": [{"name": "Golf", "generations": [{"name": "Mk5", "engines": [
+        {"engineType": "Diesel", "engineCodes": ["BKD", "BMM", "BMN"], "description": "2.0 TDI"},
+        {"engineType": "Diesel", "engineCodes": ["BKC", "BLS", "BXE"], "description": "1.9 TDI"}
+      ]}]}]}
+    ]
+  },
+  {
+    "oemNumber": "46432248",
+    "partDescription": "Pumpa za gorivo. Zavisno od motora.",
+    "compatibleVehicles": [
+      {"name": "Fiat", "type": "PASSENGER", "models": [
+        {"name": "Punto", "generations": [{"name": "I", "period": "1993-1999", "engines": [{"engineType": "Petrol", "engineCodes": ["176 A7.000", "176 B2.000"], "description": "1.2 SPI"}]}]},
+        {"name": "Brava/Bravo", "engines": [{"engineType": "Petrol", "engineCodes": ["182 A4.000"], "description": "1.6 16V"}]}
+      ]}
+    ]
+  },
+  {
+    "oemNumber": "038121011H / 038121011G",
+    "partDescription": "Vodena pumpa. Za 1.9/2.0 TDI PD motore.",
+    "compatibleVehicles": [
+      {"name": "Volkswagen", "type": "PASSENGER", "models": [
+        {"name": "Golf", "generations": [{"name": "Mk4", "engines": [{"engineType": "Diesel", "engineCodes": ["AUY", "ASZ", "ARL"], "description": "1.9 TDI PD"}]}, {"name": "Mk5", "engines": [{"engineType": "Diesel", "engineCodes": ["BKC", "BLS", "BMM"], "description": "1.9/2.0 TDI"}]}]},
+        {"name": "Passat", "generations": [{"name": "B5.5", "engines": [{"engineType": "Diesel", "engineCodes": ["AVF", "AWX"], "description": "1.9 TDI PD"}]}]}
+      ]}
+    ]
+  }
+]

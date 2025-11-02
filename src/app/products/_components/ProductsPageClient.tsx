@@ -44,6 +44,7 @@ export default function ProductsPageClient({ filterData }: ProductsPageClientPro
   };
 
   const [currentFilters, setCurrentFilters] = useState<FilterState>(initialFilters);
+  const [vehicleResetKey, setVehicleResetKey] = useState(0);
   const router = useRouter();
   const pathname = usePathname();
 
@@ -60,6 +61,7 @@ export default function ProductsPageClient({ filterData }: ProductsPageClientPro
     const PASSENGER_CATEGORY_ID = 'cmer01ok30001rqbwu15hej6j';
     const updated: FilterState = { ...currentFilters, categoryId: PASSENGER_CATEGORY_ID };
     setCurrentFilters(updated);
+    setVehicleResetKey((k) => k + 1);
     const params = new URLSearchParams(searchParams);
     params.set('makeId', String(updated.makeId));
     params.set('brandId', String(updated.makeId || ''));
@@ -98,15 +100,56 @@ export default function ProductsPageClient({ filterData }: ProductsPageClientPro
   };
 
   const handleClearAll = () => {
+    // Helper to find path to a category id
+    const findPath = (nodes: Category[], id: string, path: Category[] = []): Category[] | null => {
+      for (const node of nodes) {
+        const np = [...path, node];
+        if (node.id === id) return np;
+        if (node.children && node.children.length) {
+          const res = findPath(node.children, id, np);
+          if (res) return res;
+        }
+      }
+      return null;
+    };
+    const currentCatId = currentFilters.categoryId as string | undefined;
+    let rootCategoryId: string | undefined = undefined;
+    if (currentCatId) {
+      const path = findPath(filterData.categories, currentCatId);
+      if (path && path.length) rootCategoryId = path[0].id;
+    } else {
+      // infer from selected brand type, or default to PASSENGER
+      const PASSENGER_CATEGORY_ID = 'cmer01ok30001rqbwu15hej6j';
+      const COMMERCIAL_CATEGORY_ID = 'cmer01z6s0001rqcokur4f0bn';
+      const brand = filterData.brands.find(b => String(b.id) === String(currentFilters.makeId || '')) as any;
+      if (brand?.type === 'COMMERCIAL') rootCategoryId = COMMERCIAL_CATEGORY_ID;
+      else rootCategoryId = PASSENGER_CATEGORY_ID;
+    }
+
     const updated: FilterState = {
-      categoryId: undefined,
+      ...currentFilters,
+      categoryId: rootCategoryId ?? currentFilters.categoryId,
       generationId: undefined,
-      minPrice: undefined,
-      maxPrice: undefined,
-      q: undefined,
+      engineId: undefined,
+      makeId: undefined,
+      // leave other filters (price/q) as-is
     };
     setCurrentFilters(updated);
-    router.replace(pathname, { scroll: false });
+
+    const params = new URLSearchParams();
+    if (updated.categoryId) params.set('categoryId', String(updated.categoryId));
+    // explicitly remove vehicle brand/model filters
+    params.delete('brandId');
+    params.delete('makeId');
+    params.delete('modelId');
+    // ensure engine/gen removed
+    params.delete('generationId');
+    params.delete('engineId');
+    if (updated.minPrice) params.set('minPrice', String(updated.minPrice));
+    if (updated.maxPrice) params.set('maxPrice', String(updated.maxPrice));
+    if (updated.q) params.set('q', String(updated.q));
+    // do not include generationId/engineId
+    router.replace(params.toString() ? `${pathname}?${params.toString()}` : pathname, { scroll: false });
   };
 
   const noFiltersApplied = !currentFilters.categoryId &&
@@ -122,7 +165,7 @@ export default function ProductsPageClient({ filterData }: ProductsPageClientPro
 
         <div className="mb-8">
           <ClientHierarchicalFilters
-            key="top-filters"
+            key={`top-filters-${vehicleResetKey}`}
             initialFilters={currentFilters}
             displayMode="topOnly"
             updateUrl={true}
@@ -144,7 +187,7 @@ export default function ProductsPageClient({ filterData }: ProductsPageClientPro
           <div className="flex flex-col lg:flex-row gap-6">
             <div className="w-full lg:w-1/4">
               <ClientHierarchicalFilters
-                key="sidebar-filters"
+                key={`sidebar-filters-${vehicleResetKey}`}
                 initialFilters={currentFilters}
                 displayMode="sidebarOnly"
                 updateUrl={true}

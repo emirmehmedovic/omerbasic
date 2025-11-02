@@ -79,3 +79,16 @@ export function formatDate(
     .replace('mm', minutes)
     .replace('ss', seconds);
 }
+
+/**
+ * Creates a URL-friendly slug from arbitrary text.
+ */
+export function slugify(value: string): string {
+  return value
+    .normalize('NFKD')
+    .replace(/[^\w\s-]/g, '')
+    .trim()
+    .replace(/[\s_-]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .toLowerCase();
+}

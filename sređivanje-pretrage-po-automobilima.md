@@ -1,0 +1,2 @@
+http://localhost:3000/products/vehicle-compatibility?categoryId=cmer01ok30001rqbwu15hej6j&generationId=cmer0glbo002zrqtjay2qazot
+ovaj dio treba vizuelno srediti da odgovara dizjnu kako izgleda http://localhost:3000/products

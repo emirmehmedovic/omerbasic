@@ -17,6 +17,7 @@ const sidebarItems = [
   { name: 'Atributi', href: '/admin/attribute-management', icon: Tags },
   { name: 'Korisnici', href: '/admin/users', icon: Users2 },
   { name: 'B2B korisnici', href: '/admin/users/b2b', icon: Users2 },
+  { name: 'B2B grupe', href: '/admin/b2b-groups', icon: Users2 },
   { name: 'Vozila', href: '/admin/vehicles', icon: Car },
   { name: 'Dobavljači', href: '/admin/suppliers', icon: Users2 },
   { name: 'Proizvodi dobavljača', href: '/admin/supplier-products', icon: Package },
