@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { db } from '@/lib/db';
 import { unstable_cache } from 'next/cache';
 import Link from 'next/link';
@@ -89,7 +90,9 @@ export default async function HomePage() {
         }}
       />
       <div className="container mx-auto px-4 py-12 sm:py-16 relative z-10">
-        <Hero />
+        <Suspense fallback={null}>
+          <Hero />
+        </Suspense>
         <CategoriesStrip categories={mainCategories as any} />
         <ProductsTabs latest={latestProducts as any} top={latestProducts as any} />
         <ValueProps />

@@ -14,6 +14,7 @@ import { rateLimit, keyFromIpAndPath } from "@/lib/ratelimit";
 
 // Cache per-URL for 30s to smooth traffic while keeping results fresh
 export const revalidate = 30;
+export const dynamic = 'force-dynamic';
 
 // We will use a recursive CTE in SQL for category descendants to avoid N+1
 
@@ -66,8 +67,9 @@ export async function GET(req: Request) {
             FROM "Category" c2
             JOIN cte ON c2."parentId" = cte.id
           )
-          SELECT p.id, p.name, p."catalogNumber", p."oemNumber", p.price, p."imageUrl", p."categoryId"
+          SELECT p.id, p.name, p."catalogNumber", p."oemNumber", p.price, p."imageUrl", p."categoryId", c."imageUrl" AS "categoryImageUrl"
           FROM "Product" p
+          LEFT JOIN "Category" c ON c."id" = p."categoryId"
           WHERE (
             immutable_unaccent(lower(p.name)) % immutable_unaccent(lower(${query}))
             OR immutable_unaccent(lower(p."catalogNumber")) % immutable_unaccent(lower(${query}))
@@ -87,8 +89,9 @@ export async function GET(req: Request) {
         `;
       } else {
         rows = await db.$queryRaw<any>`
-          SELECT p.id, p.name, p."catalogNumber", p."oemNumber", p.price, p."imageUrl", p."categoryId"
+          SELECT p.id, p.name, p."catalogNumber", p."oemNumber", p.price, p."imageUrl", p."categoryId", c."imageUrl" AS "categoryImageUrl"
           FROM "Product" p
+          LEFT JOIN "Category" c ON c."id" = p."categoryId"
           WHERE (
             immutable_unaccent(lower(p.name)) % immutable_unaccent(lower(${query}))
             OR immutable_unaccent(lower(p."catalogNumber")) % immutable_unaccent(lower(${query}))

@@ -5,6 +5,7 @@ import { isLikelyVin } from "@/lib/vin/validate";
 import { decodeBasicVin } from "@/lib/vin/decode-basic";
 
 export const revalidate = 10;
+export const dynamic = 'force-dynamic';
 
 function normalize(s: string) {
   return s

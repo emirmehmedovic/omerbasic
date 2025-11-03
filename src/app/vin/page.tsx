@@ -1,7 +1,10 @@
-import dynamic from 'next/dynamic';
-
-const VinClient = dynamic(() => import('./_components/VinClient'), { ssr: false });
+import { Suspense } from 'react';
+import VinClient from './_components/VinClient';
 
 export default function VinPage() {
-  return <VinClient />;
+  return (
+    <Suspense fallback={null}>
+      <VinClient />
+    </Suspense>
+  );
 }

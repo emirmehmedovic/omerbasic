@@ -6,6 +6,7 @@ import { authOptions } from "@/lib/auth";
 
 // Cache per-URL for 30s
 export const revalidate = 30;
+export const dynamic = 'force-dynamic';
 
 export async function GET(req: Request) {
   try {
