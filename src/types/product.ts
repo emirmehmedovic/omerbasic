@@ -1,7 +1,7 @@
-import { Product as PrismaProduct } from '@/generated/prisma/client';
+import type { Product as PrismaProduct } from '@/generated/prisma/client';
 
 // Extended product type for the form that includes fields from JSON and relations
-export interface ProductFormData extends PrismaProduct {
+export interface ProductFormData extends Omit<PrismaProduct, 'unitOfMeasure' | 'lowStockThreshold' | 'lowStockAlerted'> {
   // Fields from dimensions JSON
   weight?: number | null;
   width?: number | null;

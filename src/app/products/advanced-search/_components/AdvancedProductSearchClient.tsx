@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { useSearchParams } from "next/navigation";
 import AdvancedProductFilter from "@/components/product/AdvancedProductFilter";
 import { ProductCard } from "@/components/ProductCard";
+import { resolveProductImage } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 // Lokalna definicija tipa za kategoriju
@@ -13,6 +14,7 @@ interface Category {
   parentId: string | null;
   level: number;
   iconUrl: string | null;
+  imageUrl: string | null;
 }
 
 // Tip za parametre filtera
@@ -38,10 +40,14 @@ type ProductWithRelations = {
   oemNumber: string | null;
   price: number;
   imageUrl: string | null;
-  images: string[];
+  images?: string[];
   category: {
     id: string;
     name: string;
+    imageUrl?: string | null;
+    parentId?: string | null;
+    level?: number | null;
+    iconUrl?: string | null;
   };
   attributeValues: Array<{
     id: string;
@@ -83,6 +89,7 @@ type ProductWithRelations = {
       engineCode: string | null;
     }>;
   }>;
+  [key: string]: any;
 };
 
 // Tip za rezultate pretrage
@@ -358,39 +365,45 @@ export default function AdvancedProductSearchClient({ categories }: AdvancedProd
             
             {/* Grid s proizvodima */}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-              {searchResults.products.map((product) => (
-                <ProductCard
-                  key={product.id}
-                  product={{
-                    id: product.id,
-                    name: product.name,
-                    price: product.price,
-                    imageUrl: product.imageUrl || (product.images && product.images.length > 0 ? product.images[0] : null),
-                    category: {
-                      id: product.category.id,
-                      name: product.category.name,
-                      parentId: null,
-                      level: 0,
-                      iconUrl: null
-                    },
-                    // Dodajemo ostala potrebna polja iz Product tipa
-                    categoryId: product.category.id,
-                    createdAt: new Date(),
-                    updatedAt: new Date(),
-                    catalogNumber: product.catalogNumber,
-                    oemNumber: product.oemNumber,
-                    description: "",
-                    stock: 0,
-                    lowStockThreshold: null,
-                    lowStockAlerted: false,
-                    technicalSpecs: {},
-                    dimensions: {},
-                    standards: [],
-                    isFeatured: false,
-                    isArchived: false
-                  }}
-                />
-              ))}
+              {searchResults.products.map((product) => {
+                const fallbackImage = resolveProductImage(
+                  product.imageUrl,
+                  product.category?.imageUrl ?? null,
+                );
+
+                const productForCard = {
+                  ...product,
+                  imageUrl: fallbackImage,
+                  categoryId: product.category?.id ?? (product as any).categoryId ?? "",
+                  description: product.description ?? null,
+                  purchasePrice: product.purchasePrice ?? null,
+                  stock: product.stock ?? 0,
+                  lowStockThreshold: product.lowStockThreshold ?? null,
+                  lowStockAlerted: product.lowStockAlerted ?? false,
+                  unitOfMeasure: product.unitOfMeasure ?? null,
+                  sku: product.sku ?? null,
+                  manufacturerId: product.manufacturerId ?? null,
+                  technicalSpecs: product.technicalSpecs ?? {},
+                  dimensions: product.dimensions ?? {},
+                  standards: product.standards ?? [],
+                  isFeatured: product.isFeatured ?? false,
+                  isArchived: product.isArchived ?? false,
+                  createdAt: product.createdAt ? new Date(product.createdAt) : new Date(),
+                  updatedAt: product.updatedAt ? new Date(product.updatedAt) : new Date(),
+                  category: product.category
+                    ? {
+                        id: product.category.id ?? "",
+                        name: product.category.name ?? "",
+                        parentId: product.category.parentId ?? null,
+                        level: product.category.level ?? 0,
+                        iconUrl: product.category.iconUrl ?? null,
+                        imageUrl: product.category.imageUrl ?? null,
+                      }
+                    : null,
+                } as unknown as Parameters<typeof ProductCard>[0]["product"];
+
+                return <ProductCard key={product.id} product={productForCard} />;
+              })}
             </div>
             
             {/* Paginacija */}

@@ -9,6 +9,7 @@ import { toast } from 'react-hot-toast';
 import Link from 'next/link';
 import { categoryFormSchema } from '@/lib/validations/category';
 import type { Category as PrismaCategory } from '@/generated/prisma/client';
+import { ImageUpload } from '@/components/ImageUpload';
 
 // Proširujemo tip da uključuje djecu za rekurzivni prikaz
 export type CategoryWithChildren = PrismaCategory & {
@@ -35,23 +36,26 @@ export function CategoryManager({ initialCategories }: CategoryManagerProps) {
   // Tip za podatke nakon Zod validacije i transformacije
   type CategoryFormOutput = z.output<typeof categoryFormSchema>;
 
-  const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm<CategoryFormInput>({
+  const { register, handleSubmit, reset, setValue, watch, formState: { errors, isSubmitting } } = useForm<CategoryFormInput>({
     resolver: zodResolver(categoryFormSchema),
     defaultValues: {
       name: '',
       parentId: '',
+      imageUrl: '',
     },
   });
 
   const openModalForNew = (parentId?: string) => {
     setEditingCategory(null);
-    reset({ name: '', parentId: parentId ?? '' });
+    reset({ name: '', parentId: parentId ?? '', imageUrl: '' });
     setIsModalOpen(true);
   };
 
+  const watchImageUrl = watch('imageUrl');
+
   const openModalForEdit = (category: CategoryWithChildren) => {
     setEditingCategory(category);
-    reset({ name: category.name, parentId: category.parentId ?? '' });
+    reset({ name: category.name, parentId: category.parentId ?? '', imageUrl: category.imageUrl ?? '' });
     setIsModalOpen(true);
   };
 
@@ -242,6 +246,16 @@ export function CategoryManager({ initialCategories }: CategoryManagerProps) {
                     </option>
                   ))}
                 </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Slika kategorije</label>
+                <input type="hidden" {...register('imageUrl')} />
+                <ImageUpload
+                  value={watchImageUrl || ''}
+                  onChange={(url) => setValue('imageUrl', url || '', { shouldDirty: true })}
+                  disabled={isSubmitting}
+                />
+                {errors.imageUrl && <p className="text-red-500 text-xs mt-1">{errors.imageUrl.message}</p>}
               </div>
               <div className="flex justify-end space-x-3 pt-4">
                 <button 

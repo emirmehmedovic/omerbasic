@@ -22,10 +22,10 @@ export function formatPrice(
   const { currency = 'BAM', notation = 'standard', format = 'international' } = options;
 
   const numericPrice = typeof price === 'string' ? parseFloat(price) : price;
-  
+
   // Formatiranje broja na 2 decimale
   const formattedNumber = numericPrice.toFixed(2);
-  
+
   // Odabir formata ovisno o postavkama
   if (format === 'international') {
     // Format: "BAM 123.45" (bez lokalizacije)
@@ -33,15 +33,15 @@ export function formatPrice(
   } else {
     // Format: "123,45 KM" (lokalni format)
     const localNumber = formattedNumber.replace('.', ',');
-    
+
     // Mapiranje valuta u lokalne oznake
     const currencyMap: Record<string, string> = {
-      'BAM': 'KM',
-      'EUR': '€',
-      'USD': '$',
-      'GBP': '£'
+      BAM: 'KM',
+      EUR: '€',
+      USD: '$',
+      GBP: '£',
     };
-    
+
     return `${localNumber} ${currencyMap[currency] || currency}`;
   }
 }
@@ -57,20 +57,20 @@ export function formatDate(
   format: string = 'dd.MM.yyyy'
 ): string {
   if (!date) return '';
-  
+
   const d = typeof date === 'string' ? new Date(date) : date;
-  
+
   if (!(d instanceof Date) || isNaN(d.getTime())) {
     return '';
   }
-  
+
   const day = d.getDate().toString().padStart(2, '0');
   const month = (d.getMonth() + 1).toString().padStart(2, '0');
   const year = d.getFullYear();
   const hours = d.getHours().toString().padStart(2, '0');
   const minutes = d.getMinutes().toString().padStart(2, '0');
   const seconds = d.getSeconds().toString().padStart(2, '0');
-  
+
   return format
     .replace('dd', day)
     .replace('MM', month)
@@ -91,4 +91,24 @@ export function slugify(value: string): string {
     .replace(/[\s_-]+/g, '-')
     .replace(/^-+|-+$/g, '')
     .toLowerCase();
+}
+
+/**
+ * Vrati URL slike proizvoda s fallbackovima (kategorija → placeholder)
+ */
+export function resolveProductImage(
+  productImageUrl?: string | null,
+  categoryImageUrl?: string | null
+) {
+  const placeholder = 'https://placehold.co/600x600.png?text=Slika+nije+dostupna';
+  const candidate = productImageUrl || categoryImageUrl;
+  if (!candidate) return placeholder;
+  if (candidate.startsWith('/')) return candidate;
+  try {
+    const hostname = new URL(candidate).hostname;
+    if (hostname.includes('google.com')) return placeholder;
+    return candidate;
+  } catch {
+    return placeholder;
+  }
 }

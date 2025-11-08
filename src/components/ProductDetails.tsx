@@ -8,7 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Car, Info, Settings, Tag, BookCopy, Copy } from "lucide-react";
 import Link from "next/link";
-import { formatPrice } from "@/lib/utils";
+import { formatPrice, resolveProductImage } from "@/lib/utils";
 import { useEffect, useState } from 'react';
 import { ProductCard } from '@/components/ProductCard';
 
@@ -238,7 +238,7 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
           {/* Product Image */}
           <div className="relative h-80 lg:h-96 w-full overflow-hidden rounded-xl border border-slate-200 shadow-sm">
             <Image
-              src={product.imageUrl || 'https://placehold.co/600x400.png?text=Slika+nije+dostupna'}
+              src={resolveProductImage(product.imageUrl, product.category?.imageUrl)}
               alt={product.name}
               fill
               className="object-cover"

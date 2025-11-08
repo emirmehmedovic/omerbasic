@@ -9,6 +9,7 @@ import { useCart } from '@/context/CartContext';
 import { toast } from 'react-hot-toast';
 import { ShoppingCart } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import { resolveProductImage } from '@/lib/utils';
 
 interface ProductCardProps {
   product: Product & { category: Category | null } & { originalPrice?: number; pricingSource?: 'FEATURED' | 'B2B' | 'BASE' };
@@ -36,22 +37,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
     setIsMounted(true);
   }, []);
 
-  const getSafeImageUrl = (url: string | null | undefined): string => {
-    const placeholder = 'https://placehold.co/600x600.png?text=Slika+nije+dostupna';
-    if (!url) return placeholder;
-    if (url.startsWith('/')) return url;
-    try {
-      const hostname = new URL(url).hostname;
-      if (hostname.includes('google.com')) {
-        return placeholder;
-      }
-      return url;
-    } catch (error) {
-      return placeholder;
-    }
-  };
-
-  const imageUrl = getSafeImageUrl(product.imageUrl);
+  const imageUrl = resolveProductImage(product.imageUrl, product.category?.imageUrl);
 
   const handleAddToCart = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();

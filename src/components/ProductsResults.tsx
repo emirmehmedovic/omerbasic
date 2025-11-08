@@ -9,11 +9,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useCart } from '@/context/CartContext';
 import { toast } from 'react-hot-toast';
+import { resolveProductImage } from '@/lib/utils';
 
 // Minimal type aligned with API include
 type Category = {
   id: string;
   name: string;
+  imageUrl?: string | null;
 };
 
 type Product = {
@@ -23,6 +25,7 @@ type Product = {
   imageUrl: string | null;
   categoryId: string;
   category: Category | null;
+  categoryImageUrl?: string | null;
   originalPrice?: number;
   pricingSource?: 'FEATURED' | 'B2B' | 'BASE';
   oemNumber?: string | null;
@@ -111,7 +114,12 @@ export default function ProductsResults({ filters, onClearAll }: Props) {
           setPage(total);
           return;
         }
-        setProducts(items);
+        const normalized = items.map((item) => ({
+          ...item,
+          categoryImageUrl: (item as any).categoryImageUrl ?? item.category?.imageUrl ?? null,
+          category: item.category ? { ...item.category, imageUrl: item.category?.imageUrl ?? ((item as any).categoryImageUrl ?? null) } : item.category,
+        }));
+        setProducts(normalized);
         setTotalPages(total);
         setTotalCount(count);
       } catch (e: any) {
@@ -340,9 +348,9 @@ export default function ProductsResults({ filters, onClearAll }: Props) {
                 >
                   <div className="relative w-full sm:w-24 h-32 sm:h-24 flex-shrink-0 mb-4 sm:mb-0 sm:mr-6">
                     <Image 
-                      src={p.imageUrl || '/images/mockup.png'} 
+                      src={resolveProductImage(p.imageUrl, p.category?.imageUrl ?? p.categoryImageUrl ?? null)} 
                       alt={p.name} 
-                      layout="fill"
+                      fill
                       className="object-cover rounded-md" 
                     />
                   </div>

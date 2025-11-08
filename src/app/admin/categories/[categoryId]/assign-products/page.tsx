@@ -45,6 +45,8 @@ export default async function AssignCategoryProductsPage({
       id: true,
       name: true,
       catalogNumber: true,
+      imageUrl: true,
+      category: { select: { imageUrl: true } },
     },
     orderBy: { name: "asc" },
   });

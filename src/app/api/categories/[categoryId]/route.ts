@@ -13,7 +13,7 @@ export async function PATCH(
     const { categoryId } = await params;
     const body = await req.json();
 
-    const { name, parentId } = updateCategorySchema.parse(body);
+    const { name, parentId, imageUrl } = updateCategorySchema.parse(body);
 
     // Prevent a category from being its own parent
     if (parentId === categoryId) {
@@ -42,6 +42,7 @@ export async function PATCH(
       data: {
         name,
         parentId,
+        imageUrl,
       },
     });
     try { revalidateTag('categories'); revalidateTag('products'); } catch {}

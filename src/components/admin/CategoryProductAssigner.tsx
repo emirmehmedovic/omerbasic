@@ -120,7 +120,48 @@ export default function CategoryProductAssigner({
   }, [debouncedQuery]);
 
   const selectedCount = selectedIds.size;
+  const allCurrentIds = useMemo(() => products.map((product) => product.id), [products]);
+  const allCurrentAreSelected = useMemo(() => allCurrentIds.length > 0 && allCurrentIds.every((id) => selectedIds.has(id)), [allCurrentIds, selectedIds]);
+  const someCurrentSelected = useMemo(() => allCurrentIds.some((id) => selectedIds.has(id)), [allCurrentIds, selectedIds]);
+  const headerCheckedState = useMemo(() => {
+    if (allCurrentIds.length === 0) return false;
+    if (allCurrentAreSelected) return true;
+    if (someCurrentSelected) return 'indeterminate' as const;
+    return false;
+  }, [allCurrentIds.length, allCurrentAreSelected, someCurrentSelected]);
   const selectedList = useMemo(() => Array.from(selectedSummaries.values()).filter((item) => selectedIds.has(item.id)), [selectedSummaries, selectedIds]);
+
+  const toggleSelectAllCurrent = (checked: boolean) => {
+    setSelectedIds((prev) => {
+      const next = new Set(prev);
+      if (checked) {
+        for (const id of allCurrentIds) {
+          next.add(id);
+        }
+      } else {
+        for (const id of allCurrentIds) {
+          next.delete(id);
+        }
+      }
+      return next;
+    });
+
+    if (checked) {
+      setSelectedSummaries((prev) => {
+        const next = new Map(prev);
+        for (const product of products) {
+          if (!next.has(product.id)) {
+            next.set(product.id, {
+              id: product.id,
+              name: product.name,
+              catalogNumber: product.catalogNumber,
+            });
+          }
+        }
+        return next;
+      });
+    }
+  };
 
   const toggleProduct = (product: AssignableProduct, checked: boolean) => {
     setSelectedIds((prev) => {
@@ -215,7 +256,13 @@ export default function CategoryProductAssigner({
         <Table>
           <TableHeader>
             <TableRow className="bg-gradient-to-r from-white/90 to-gray-50/90">
-              <TableHead className="w-12 text-gray-700 font-semibold">&nbsp;</TableHead>
+              <TableHead className="w-12 text-gray-700 font-semibold">
+                <Checkbox
+                  checked={headerCheckedState}
+                  onCheckedChange={(value) => toggleSelectAllCurrent(Boolean(value))}
+                  aria-label="Označi sve prikazane proizvode"
+                />
+              </TableHead>
               <TableHead className="text-gray-700 font-semibold">Naziv</TableHead>
               <TableHead className="text-gray-700 font-semibold">Kataloški broj</TableHead>
               <TableHead className="text-gray-700 font-semibold">OEM</TableHead>

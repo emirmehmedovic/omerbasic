@@ -191,7 +191,8 @@ export async function GET(req: Request) {
           category: {
             select: {
               id: true,
-              name: true
+              name: true,
+              imageUrl: true,
             }
           },
           attributeValues: {

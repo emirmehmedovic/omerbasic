@@ -12,6 +12,12 @@ const nextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'fsn1.your-objectstorage.com',
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
 };

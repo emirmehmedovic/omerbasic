@@ -82,6 +82,7 @@ model Category {
   // TecDoc dodatna polja
   level   Int     @default(1) // 1=glavna, 2=podkategorija, 3=specifična
   iconUrl String? // URL do ikone kategorije
+  imageUrl String? // Zadana slika kategorije
 
   // Nove relacije za TecDoc
   attributes      CategoryAttribute[]
@@ -604,6 +605,8 @@ model VehicleBrand {
   name   String         @unique
   type   VehicleType
   models VehicleModel[]
+  externalId String? @unique
+  source     String?
 }
 
 model VehicleModel {
@@ -612,8 +615,12 @@ model VehicleModel {
   brandId     String
   brand       VehicleBrand        @relation(fields: [brandId], references: [id], onDelete: Cascade)
   generations VehicleGeneration[]
+  externalId       String?
+  period           String?
+  productionStart  DateTime?
+  productionEnd    DateTime?
 
-  @@unique([name, brandId])
+  @@unique([brandId, externalId])
 }
 
 model VehicleGeneration {
@@ -663,9 +670,18 @@ model VehicleEngine {
   enginePowerHP   Float? // Snaga motora u KS
   engineCapacity  Int? // Zapremina motora u ccm
   engineCode      String? // Kod motora
+  engineCodes     String[] @default([])
   description     String? // Dodatni opis motora
   createdAt       DateTime                @default(now())
   updatedAt       DateTime                @updatedAt
+
+  externalId String?
+  cylinders  String?
+  yearFrom   DateTime?
+  yearTo     DateTime?
+  source     String?
+
+  @@unique([generationId, externalId])
 }
 
 // Model za detaljnu kompatibilnost proizvoda s vozilima
@@ -687,6 +703,11 @@ model ProductVehicleFitment {
   isUniversal  Boolean  @default(false) // Oznaka za univerzalne dijelove
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
+
+  externalVehicleId      String?
+  externalModelId        String?
+  externalManufacturer   String?
+  externalEngineName     String?
 
   @@unique([productId, generationId, engineId])
   @@index([generationId, engineId])

@@ -168,7 +168,7 @@ export async function GET(req: NextRequest) {
           categoryId: true,
           createdAt: true,
           updatedAt: true,
-          category: { select: { id: true, name: true, parentId: true } },
+          category: { select: { id: true, name: true, parentId: true, imageUrl: true } },
         },
         orderBy: [
           { createdAt: 'desc' },
@@ -239,7 +239,7 @@ export async function GET(req: NextRequest) {
         categoryId: true,
         createdAt: true,
         updatedAt: true,
-        category: { select: { id: true, name: true, parentId: true } },
+        category: { select: { id: true, name: true, parentId: true, imageUrl: true } },
       },
       orderBy: [
         { createdAt: 'desc' },
