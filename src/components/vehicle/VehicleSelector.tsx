@@ -74,6 +74,7 @@ interface VehicleSelectorProps {
   vehicleType?: 'PASSENGER' | 'COMMERCIAL' | 'ALL';
   appearance?: 'light' | 'dark';
   variant?: 'card' | 'embedded';
+  heroMode?: boolean;
 }
 
 export default function VehicleSelector({
@@ -82,7 +83,8 @@ export default function VehicleSelector({
   compact = false,
   vehicleType = 'ALL',
   appearance = 'dark',
-  variant = 'card'
+  variant = 'card',
+  heroMode = false
 }: VehicleSelectorProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -472,35 +474,47 @@ export default function VehicleSelector({
   const wrapperClass = variant === 'embedded'
     ? ""
     : isLight
-      ? "p-6 rounded-2xl bg-white border border-slate-200"
+      ? "relative overflow-hidden p-8 rounded-3xl bg-gradient-to-br from-slate-50 via-slate-100 to-slate-200 shadow-xl"
       : "bg-gradient-to-t from-black/60 to-transparent p-6 rounded-2xl";
-  const headingTextClass = isLight ? "text-slate-900" : "text-white";
+  const headingTextClass = isLight ? "text-primary" : "text-white";
   const panelClass = variant === 'embedded'
     ? "space-y-4"
     : isLight
-      ? "space-y-6 p-5 bg-white rounded-lg border border-slate-200"
+      ? "space-y-6 p-6 bg-white/80 backdrop-blur-sm rounded-2xl border border-white/60 shadow-lg"
       : "space-y-6 p-5 bg-slate-900/50 rounded-lg border border-slate-800";
   const labelMutedClass = isLight ? "text-slate-600" : "text-slate-300";
-  const pillBaseClass = isLight
-    ? "flex items-center gap-2 px-4 py-3 rounded-lg border transition-colors bg-white border-slate-200 text-slate-800 hover:border-sunfire-400"
-    : "flex items-center gap-2 px-4 py-3 rounded-lg border transition-colors bg-slate-800/50 border-slate-700 text-white hover:border-sunfire-400";
-  const pillActiveClass = isLight ? "border-sunfire-400 bg-sunfire-50" : "border-sunfire-400 bg-sunfire-500/10";
+  const pillBaseClass = heroMode
+    ? "flex items-center gap-2 px-4 py-3 rounded-xl border transition-all duration-300 bg-white/90 backdrop-blur-sm border-white/60 text-slate-800 hover:shadow-lg hover:-translate-y-0.5 shadow-sm"
+    : isLight
+    ? "flex items-center gap-2 px-4 py-3 rounded-xl border transition-all duration-300 bg-white/80 backdrop-blur-sm border-white/60 text-slate-800 hover:shadow-lg hover:-translate-y-0.5 shadow-sm"
+    : "flex items-center gap-2 px-4 py-3 rounded-xl border transition-all duration-300 bg-slate-800/50 border-slate-700 text-white hover:shadow-lg hover:-translate-y-0.5";
+  const pillActiveClass = heroMode ? "border-primary shadow-xl bg-gradient-to-r from-primary/10 to-primary-dark/10 text-primary" : isLight ? "border-primary shadow-xl bg-gradient-to-r from-primary/10 to-primary-dark/10" : "border-sunfire-400 bg-sunfire-500/10";
   const stickyHeaderClass = isLight ? "p-2 sticky top-0 bg-white z-10" : "p-2 sticky top-0 bg-slate-900/90 backdrop-blur z-10";
   const searchInputClass = isLight
     ? "h-8 text-sm bg-white border-slate-300 text-slate-900 placeholder:text-slate-500"
     : "h-8 text-sm bg-slate-800 border-slate-700 text-white placeholder:text-slate-400";
-  const selectTriggerClasses = isLight
-    ? "w-full h-11 bg-white border-slate-300 hover:border-sunfire-400 focus:border-sunfire-400 focus:ring-2 focus:ring-sunfire-200 text-slate-900 data-[placeholder]:text-slate-500 transition-all duration-300 truncate"
-    : "w-full h-11 bg-slate-800/60 border-sunfire-500/60 hover:border-sunfire-400 focus:border-sunfire-400 focus:ring-2 focus:ring-sunfire-500/80 text-white data-[placeholder]:text-white transition-all duration-300 truncate";
+  const selectTriggerClasses = heroMode
+    ? "w-full h-11 bg-white/90 backdrop-blur-sm border-white/60 hover:border-primary focus:border-primary focus:ring-2 focus:ring-primary/20 text-slate-900 data-[placeholder]:text-slate-500 transition-all duration-300 truncate shadow-sm hover:shadow-lg hover:scale-[1.02] rounded-xl font-medium disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+    : isLight
+    ? "w-full h-11 bg-white/90 backdrop-blur-sm border-white/60 hover:border-primary focus:border-primary focus:ring-2 focus:ring-primary/20 text-slate-900 data-[placeholder]:text-slate-500 transition-all duration-300 truncate shadow-sm hover:shadow-lg hover:scale-[1.02] rounded-xl font-medium disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+    : "w-full h-11 bg-slate-800/60 border-sunfire-500/60 hover:border-sunfire-400 focus:border-sunfire-400 focus:ring-2 focus:ring-sunfire-500/80 text-white data-[placeholder]:text-white transition-all duration-300 truncate rounded-xl hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100";
 
   return (
     <div className={cn(wrapperClass, className)}>
+      {isLight && variant !== 'embedded' && (
+        <div className="pointer-events-none absolute inset-0 z-0 opacity-[0.04]"
+             style={{
+               backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(27,58,95,0.2) 1px, transparent 0), radial-gradient(circle at 50% 50%, rgba(255,107,53,0.08) 0%, transparent 70%)',
+               backgroundSize: '32px 32px, 100% 100%'
+             }} />
+      )}
+      <div className="relative z-10">
       {!compact && variant !== 'embedded' && (
-        <div className="flex items-center mb-4">
-          <div className="p-2 rounded-lg mr-3 bg-sunfire-500/10 shadow-lg shadow-sunfire-500/10">
-             <Car className="h-6 w-6 text-sunfire-300" />
+        <div className="flex items-center mb-6">
+          <div className="p-3 rounded-2xl mr-3 bg-gradient-to-br from-[#E85A28] to-[#FF6B35] shadow-xl">
+             <Car className="h-6 w-6 text-white" />
           </div>
-          <h3 className={cn("text-xl font-bold", headingTextClass)}>Odabir vozila</h3>
+          <h3 className={cn("text-2xl font-bold", headingTextClass)}>Odabir vozila</h3>
         </div>
       )}
       {/* Step chips header (visual only) */}
@@ -511,23 +525,74 @@ export default function VehicleSelector({
           const generationDone = !!selectedGenerationId;
           const engineDone = !!selectedEngineId && selectedEngineId !== 'all';
           const stepTextBase = isLight ? "text-slate-700" : "text-slate-200";
-          const chipBase = isLight ? "bg-white border border-slate-200" : "bg-slate-900/60 border border-slate-700";
-          const activeRing = "ring-1 ring-sunfire-400/60";
-          const Chip = ({ label, done, active }: { label: string; done: boolean; active?: boolean }) => (
-            <span className={cn("inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs", chipBase, active && activeRing)}>
-              {done ? <CheckCircle2 className="w-3.5 h-3.5 text-sunfire-400" /> : <Circle className="w-3.5 h-3.5 opacity-50" />}
+          const chipBase = isLight ? "bg-white/80 backdrop-blur-sm border border-white/60 shadow-sm" : "bg-slate-900/60 border border-slate-700";
+          const activeRing = "ring-2 ring-primary/30";
+          const Chip = ({ label, done, active, stepNum }: { label: string; done: boolean; active?: boolean; stepNum: number }) => (
+            <span className={cn(
+              "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all duration-300 cursor-default",
+              chipBase,
+              active && activeRing,
+              active && "animate-[pulse_3s_ease-in-out_infinite]",
+              done && "bg-gradient-to-r from-primary/10 to-primary-dark/10 border-primary/30",
+              heroMode && "hover:shadow-md hover:-translate-y-0.5"
+            )}>
+              {done ? (
+                <CheckCircle2 className="w-3.5 h-3.5 text-primary animate-in fade-in zoom-in duration-300" />
+              ) : (
+                <span className={cn(
+                  "flex items-center justify-center w-4 h-4 rounded-full text-[10px] font-bold",
+                  active ? "bg-primary/20 text-primary" : "bg-slate-200 text-slate-400"
+                )}>
+                  {stepNum}
+                </span>
+              )}
               <span className={stepTextBase}>{label}</span>
             </span>
           );
+          const progress = brandDone ? (modelDone ? (generationDone ? (engineDone ? 100 : 75) : 50) : 25) : 0;
           return (
-            <div className={cn("flex items-center gap-2 flex-wrap", isLight ? "text-slate-600" : "text-slate-300")}> 
-              <Chip label="Marka" done={brandDone} active={!brandDone} />
-              <ChevronRight className={cn("w-4 h-4", isLight ? "text-slate-400" : "text-slate-500")} />
-              <Chip label="Model" done={modelDone} active={brandDone && !modelDone} />
-              <ChevronRight className={cn("w-4 h-4", isLight ? "text-slate-400" : "text-slate-500")} />
-              <Chip label="Generacija" done={generationDone} active={modelDone && !generationDone} />
-              <ChevronRight className={cn("w-4 h-4", isLight ? "text-slate-400" : "text-slate-500")} />
-              <Chip label="Motor" done={engineDone} active={generationDone && !engineDone} />
+            <div>
+              <div className={cn("flex items-center gap-2 flex-wrap mb-3", isLight ? "text-slate-600" : "text-slate-300")}> 
+                <Chip label="Marka" done={brandDone} active={!brandDone} stepNum={1} />
+                <ChevronRight className={cn("w-4 h-4 transition-colors", brandDone ? "text-primary" : "text-slate-400")} />
+                <Chip label="Model" done={modelDone} active={brandDone && !modelDone} stepNum={2} />
+                <ChevronRight className={cn("w-4 h-4 transition-colors", modelDone ? "text-primary" : "text-slate-400")} />
+                <Chip label="Generacija" done={generationDone} active={modelDone && !generationDone} stepNum={3} />
+                <ChevronRight className={cn("w-4 h-4 transition-colors", generationDone ? "text-primary" : "text-slate-400")} />
+                <Chip label="Motor" done={engineDone} active={generationDone && !engineDone} stepNum={4} />
+              </div>
+              {/* Progress bar */}
+              <div className="relative">
+                <div className="w-full h-2 bg-slate-200/80 rounded-full overflow-hidden shadow-inner">
+                  <div 
+                    className={cn(
+                      "h-full bg-gradient-to-r from-primary via-primary-dark to-primary transition-all duration-500 ease-out rounded-full relative overflow-hidden",
+                      progress === 100 && "shadow-lg shadow-primary/50"
+                    )}
+                    style={{ width: `${progress}%` }}
+                  >
+                    {/* Shimmer effect */}
+                    {progress > 0 && progress < 100 && (
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-[shimmer_2s_infinite]" 
+                           style={{ backgroundSize: '200% 100%' }} />
+                    )}
+                  </div>
+                </div>
+                {progress === 100 && (
+                  <div className="absolute -top-1 right-0 animate-in slide-in-from-right duration-500">
+                    <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold bg-gradient-to-r from-primary via-primary-dark to-primary text-white shadow-lg">
+                      <CheckCircle2 className="w-3 h-3" />
+                      Kompletno
+                    </span>
+                  </div>
+                )}
+                {/* Progress percentage */}
+                {progress > 0 && progress < 100 && heroMode && (
+                  <div className="absolute -top-6 left-0 text-[10px] font-bold text-primary">
+                    {progress}% završeno
+                  </div>
+                )}
+              </div>
             </div>
           );
         })()}
@@ -536,10 +601,15 @@ export default function VehicleSelector({
       <div className={panelClass}>
         {/* Popular brand icons strip */}
         <div className="mt-0">
-          <div className={cn("text-xs mb-3", labelMutedClass)}>
-            {vehicleType === 'COMMERCIAL' ? 'Popularne marke (teretna)' : 'Popularne marke'}
+          <div className="flex items-center justify-between mb-3">
+            <div className={cn("text-xs font-bold uppercase tracking-wider", heroMode ? "text-primary" : "text-primary")}>
+              {vehicleType === 'COMMERCIAL' ? 'Popularne marke (teretna)' : 'Popularne marke'}
+            </div>
+            {heroMode && (
+              <span className="text-[10px] text-slate-500 font-medium">Brzi odabir</span>
+            )}
           </div>
-          <div className={cn("flex gap-3 pb-1", variant === 'embedded' ? "flex-wrap" : "overflow-x-auto") }>
+          <div className={cn("flex gap-3 pb-1", heroMode ? "overflow-x-auto scrollbar-none" : variant === 'embedded' ? "flex-wrap" : "overflow-x-auto") }>
             {(vehicleType === 'COMMERCIAL' ? popularCommercialBrands : popularBrands).map(({ key, label, Icon }) => {
               const id = brandNameToId.get(key);
               const isDisabled = !id;
@@ -556,8 +626,8 @@ export default function VehicleSelector({
                     isDisabled && "opacity-40 cursor-not-allowed"
                   )}
                 >
-                  <Icon size={24} color={isLight ? "#0f172a" : "#ffffff"} />
-                  <span className={cn("text-sm whitespace-nowrap leading-none", isLight ? "text-slate-800" : "text-white")}>{label}</span>
+                  <Icon size={24} color={heroMode ? "#0f172a" : isLight ? "#0f172a" : "#ffffff"} />
+                  <span className={cn("text-sm whitespace-nowrap leading-none", heroMode ? "text-slate-800" : isLight ? "text-slate-800" : "text-white")}>{label}</span>
                 </button>
               );
             })}
@@ -571,7 +641,7 @@ export default function VehicleSelector({
           {/* Odabir brenda */}
           <div className="flex flex-col">
             <div className="h-5 mb-1" />
-            <span className="text-xs text-slate-300 mb-1">Marka</span>
+            <span className={cn("text-xs font-bold uppercase tracking-wider mb-1", heroMode ? "text-primary" : "text-primary")}>Marka</span>
           <Select
             value={selectedBrandId}
             onValueChange={setSelectedBrandId}
@@ -606,10 +676,8 @@ export default function VehicleSelector({
           
           {/* Odabir modela */}
           <div className="flex flex-col">
-            <div className="h-5 mb-1 text-sunfire-300 text-xs font-medium">
-              {selectedBrandId && !selectedModelId ? 'Sada izaberite model' : null}
-            </div>
-            <span className="text-xs text-slate-300 mb-1">Model</span>
+            <div className="h-5 mb-1" />
+            <span className={cn("text-xs font-bold uppercase tracking-wider mb-1", heroMode ? "text-primary" : "text-primary")}>Model</span>
           <Select
             value={selectedModelId}
             onValueChange={setSelectedModelId}
@@ -645,7 +713,7 @@ export default function VehicleSelector({
           {/* Odabir generacije */}
           <div className="flex flex-col">
             <div className="h-5 mb-1" />
-            <span className="text-xs text-slate-300 mb-1">Generacija</span>
+            <span className={cn("text-xs font-bold uppercase tracking-wider mb-1", heroMode ? "text-primary" : "text-primary")}>Generacija</span>
           <Select
             value={selectedGenerationId}
             onValueChange={setSelectedGenerationId}
@@ -681,7 +749,7 @@ export default function VehicleSelector({
           {/* Odabir motora */}
           <div className="flex flex-col">
             <div className="h-5 mb-1" />
-            <span className="text-xs text-slate-300 mb-1">Motor</span>
+            <span className={cn("text-xs font-bold uppercase tracking-wider mb-1", heroMode ? "text-primary" : "text-primary")}>Motor</span>
           <Select
             value={selectedEngineId}
             onValueChange={setSelectedEngineId}
@@ -716,16 +784,34 @@ export default function VehicleSelector({
           </div>
         </div>
         
-        <div className="flex justify-end mt-4">
+        <div className="flex items-center justify-between mt-6">
+          <div className="text-xs font-medium">
+            {selectedGenerationId ? (
+              <span className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-gradient-to-r from-primary/10 to-primary-dark/10 border border-primary/30 shadow-sm">
+                <CheckCircle2 className="w-4 h-4 text-primary" />
+                <span className="text-primary font-bold">Vozilo odabrano</span>
+              </span>
+            ) : (
+              <span className={cn("flex items-center gap-1.5", heroMode ? "text-slate-600" : "text-white/80 drop-shadow-lg")}>
+                <Circle className="w-3.5 h-3.5 opacity-50" />
+                Odaberite vozilo za pretragu
+              </span>
+            )}
+          </div>
           <Button 
             onClick={handleSearch} 
             disabled={!selectedGenerationId}
-            className="bg-sunfire-600 hover:bg-sunfire-700 text-white font-semibold py-2 px-5 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 flex items-center gap-2 disabled:bg-sunfire-500/50 disabled:cursor-not-allowed"
+            className={cn(
+              "bg-gradient-to-r from-primary via-primary-dark to-primary hover:shadow-2xl text-white font-bold py-3 px-8 rounded-xl shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-2",
+              "disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none",
+              heroMode && "hover:scale-[1.02]"
+            )}
           >
-            Pretraži
-            <ChevronRight className="h-4 w-4" />
+            <span>Pretraži</span>
+            <ChevronRight className="h-5 w-5" />
           </Button>
         </div>
+      </div>
       </div>
     </div>
   );

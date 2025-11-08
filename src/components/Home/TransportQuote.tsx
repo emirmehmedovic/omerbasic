@@ -47,47 +47,47 @@ export function TransportQuote() {
 
   return (
     <section className="mb-20">
-      <div className="rounded-3xl border border-sunfire-200/60 bg-white/40 backdrop-blur shadow-md overflow-hidden p-1">
-        <div className="relative rounded-[22px] overflow-hidden bg-gradient-to-br from-white/90 to-sunfire-50/60">
-          {/* Dense grid background overlay */}
+      <div className="rounded-3xl bg-gradient-to-br from-slate-50 via-slate-100 to-slate-200 shadow-xl overflow-hidden">
+        <div className="relative rounded-3xl overflow-hidden">
+          {/* Tekstura overlay */}
           <div
-            className="pointer-events-none absolute inset-0 z-0 opacity-65"
+            className="pointer-events-none absolute inset-0 z-0 opacity-[0.04]"
             style={{
-              backgroundImage:
-                "linear-gradient(to right, rgba(100,116,139,0.14) 1px, transparent 1px), linear-gradient(to bottom, rgba(100,116,139,0.14) 1px, transparent 1px)",
-              backgroundSize: "2px 2px",
-              maskImage: "radial-gradient(ellipse at center, black 92%, transparent 100%)",
-              WebkitMaskImage: "radial-gradient(ellipse at center, black 92%, transparent 100%)",
+              backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(27,58,95,0.2) 1px, transparent 0), radial-gradient(circle at 50% 50%, rgba(255,107,53,0.08) 0%, transparent 70%)',
+              backgroundSize: '32px 32px, 100% 100%'
             }}
           />
           <div className="relative z-10 p-6 md:p-10">
             <div className="grid grid-cols-1 md:grid-cols-5 gap-8 items-start">
               {/* Info panel */}
               <div className="md:col-span-2">
-                <div className="inline-flex items-center gap-2 rounded-full border border-sunfire-200/60 bg-white/70 px-3 py-1 text-xs font-semibold text-sunfire-700">Transport iz EU</div>
-                <h2 className="mt-3 text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900">Siguran transport vozila iz EU u BiH</h2>
+                <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#E85A28] to-[#FF6B35] px-4 py-2 text-sm font-bold text-white shadow-lg">
+                  <Truck className="w-4 h-4" />
+                  Transport iz EU
+                </div>
+                <h2 className="mt-4 text-3xl md:text-4xl font-extrabold tracking-tight text-primary">Siguran transport vozila iz EU u BiH</h2>
                 <p className="mt-2 text-slate-600">Brza organizacija prevoza, carinska koordinacija i isporuka na vašu adresu. Zatražite okvirnu cijenu u 1 minuti.</p>
 
                 <div className="mt-6 space-y-4">
                   <div className="flex items-start gap-3">
-                    <div className="rounded-xl bg-sunfire-200/60 p-2"><MapPin className="w-4 h-4 text-sunfire-700" /></div>
+                    <div className="rounded-xl bg-gradient-to-br from-primary to-primary-dark p-2.5 shadow-lg"><MapPin className="w-5 h-5 text-white" /></div>
                     <div>
-                      <div className="text-slate-900 font-semibold">Preuzimanje širom EU</div>
-                      <div className="text-slate-600 text-sm">Njemačka, Austrija, Slovenija, Italija, Nizozemska i druge zemlje.</div>
+                      <div className="text-primary font-bold text-lg">Preuzimanje širom EU</div>
+                      <div className="text-slate-600 text-sm font-medium">Njemačka, Austrija, Slovenija, Italija, Nizozemska i druge zemlje.</div>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <div className="rounded-xl bg-sunfire-200/60 p-2"><Truck className="w-4 h-4 text-sunfire-700" /></div>
+                    <div className="rounded-xl bg-gradient-to-br from-primary to-primary-dark p-2.5 shadow-lg"><Truck className="w-5 h-5 text-white" /></div>
                     <div>
-                      <div className="text-slate-900 font-semibold">Brza isporuka</div>
-                      <div className="text-slate-600 text-sm">Prosječno 3–7 dana, uz stalno informisanje o statusu.</div>
+                      <div className="text-primary font-bold text-lg">Brza isporuka</div>
+                      <div className="text-slate-600 text-sm font-medium">Prosječno 3–7 dana, uz stalno informisanje o statusu.</div>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <div className="rounded-xl bg-sunfire-200/60 p-2"><Mail className="w-4 h-4 text-sunfire-700" /></div>
+                    <div className="rounded-xl bg-gradient-to-br from-primary to-primary-dark p-2.5 shadow-lg"><Mail className="w-5 h-5 text-white" /></div>
                     <div>
-                      <div className="text-slate-900 font-semibold">Brza ponuda</div>
-                      <div className="text-slate-600 text-sm">Odgovaramo u najkraćem roku sa jasnim koracima i cijenom.</div>
+                      <div className="text-primary font-bold text-lg">Brza ponuda</div>
+                      <div className="text-slate-600 text-sm font-medium">Odgovaramo u najkraćem roku sa jasnim koracima i cijenom.</div>
                     </div>
                   </div>
                 </div>
@@ -95,7 +95,7 @@ export function TransportQuote() {
 
               {/* Form panel */}
               <div className="md:col-span-3">
-                <form onSubmit={handleSubmit} className="rounded-2xl border border-sunfire-200/60 bg-white/80 backdrop-blur shadow p-5 md:p-6">
+                <form onSubmit={handleSubmit} className="rounded-2xl border border-white/60 bg-white/90 backdrop-blur-sm shadow-xl p-6 md:p-8">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="relative">
                       <label className="block text-xs font-semibold text-slate-700 mb-1">Ime i prezime*</label>
@@ -145,11 +145,11 @@ export function TransportQuote() {
                     </div>
                   </div>
 
-                  <div className="mt-4 flex flex-col sm:flex-row items-center gap-3">
-                    <button type="submit" disabled={loading} className="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-sunfire-600 to-sunfire-500 px-6 py-3 text-white font-semibold hover:from-sunfire-700 hover:to-sunfire-600 disabled:opacity-60 shadow">
-                      {loading ? "Slanje…" : (<><Send className="w-4 h-4" /> Zatraži ponudu</>)}
+                  <div className="mt-6 flex flex-col sm:flex-row items-center gap-3">
+                    <button type="submit" disabled={loading} className="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-primary via-primary-dark to-primary px-8 py-3.5 text-white font-bold hover:shadow-2xl shadow-xl disabled:opacity-60 transition-all duration-300 transform hover:-translate-y-0.5">
+                      {loading ? "Slanje…" : (<><Send className="w-5 h-5" /> Zatraži ponudu</>)}
                     </button>
-                    <span className="text-xs text-slate-500">Ili nas kontaktirajte: veleprodajatpo@gmail.com • 032/666-658 • 061-962-359</span>
+                    <span className="text-xs text-slate-600 font-medium">Ili nas kontaktirajte: veleprodajatpo@gmail.com • 032/666-658 • 061-962-359</span>
                   </div>
                 </form>
               </div>

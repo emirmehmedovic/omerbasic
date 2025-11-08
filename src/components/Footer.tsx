@@ -43,16 +43,14 @@ const Footer = () => {
   return (
     <footer className="relative bg-transparent mt-20">
       <div className="container mx-auto px-4 py-12">
-        <div className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-8 md:p-10">
-          {/* Dense grid background overlay */}
+        <div className="relative overflow-hidden rounded-3xl border border-white/60 bg-gradient-to-br from-slate-50 via-slate-100 to-slate-200 p-8 md:p-10 shadow-2xl">
+          {/* Modern texture overlay */}
           <div
-            className="pointer-events-none absolute inset-0 z-0 opacity-65"
+            className="pointer-events-none absolute inset-0 z-0 opacity-[0.04]"
             style={{
               backgroundImage:
-                "linear-gradient(to right, rgba(100,116,139,0.12) 1px, transparent 1px), linear-gradient(to bottom, rgba(100,116,139,0.12) 1px, transparent 1px)",
-              backgroundSize: "4px 4px",
-              maskImage: "radial-gradient(ellipse at center, black 90%, transparent 100%)",
-              WebkitMaskImage: "radial-gradient(ellipse at center, black 90%, transparent 100%)",
+                'radial-gradient(circle at 2px 2px, rgba(27,58,95,0.2) 1px, transparent 0), radial-gradient(circle at 50% 50%, rgba(255,107,53,0.08) 0%, transparent 70%)',
+              backgroundSize: '32px 32px, 100% 100%',
             }}
           />
 
@@ -71,33 +69,35 @@ const Footer = () => {
               Vaš pouzdani partner za kvalitetne autodijelove. Pružamo stručnu podršku i brzu dostavu za sve vaše potrebe.
             </p>
             
-            <div className="flex space-x-4">
-              <a href="#" className="group relative w-10 h-10 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center transition-all duration-300 hover:bg-sunfire-50 hover:border-sunfire-200">
-                <Facebook className="w-5 h-5 text-slate-600 group-hover:text-sunfire-700 transition-colors" />
+            <div className="flex space-x-3">
+              <a href="#" className="group relative w-11 h-11 rounded-xl bg-white/60 backdrop-blur-sm border border-white/60 flex items-center justify-center transition-all duration-300 hover:bg-gradient-to-br hover:from-[#E85A28] hover:to-[#FF6B35] hover:shadow-lg hover:-translate-y-1">
+                <Facebook className="w-5 h-5 text-slate-700 group-hover:text-white transition-colors" />
               </a>
-              <a href="#" className="group relative w-10 h-10 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center transition-all duration-300 hover:bg-sunfire-50 hover:border-sunfire-200">
-                <Instagram className="w-5 h-5 text-slate-600 group-hover:text-sunfire-700 transition-colors" />
+              <a href="#" className="group relative w-11 h-11 rounded-xl bg-white/60 backdrop-blur-sm border border-white/60 flex items-center justify-center transition-all duration-300 hover:bg-gradient-to-br hover:from-[#E85A28] hover:to-[#FF6B35] hover:shadow-lg hover:-translate-y-1">
+                <Instagram className="w-5 h-5 text-slate-700 group-hover:text-white transition-colors" />
               </a>
-              <a href="#" className="group relative w-10 h-10 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center transition-all duration-300 hover:bg-sunfire-50 hover:border-sunfire-200">
-                <Linkedin className="w-5 h-5 text-slate-600 group-hover:text-sunfire-700 transition-colors" />
+              <a href="#" className="group relative w-11 h-11 rounded-xl bg-white/60 backdrop-blur-sm border border-white/60 flex items-center justify-center transition-all duration-300 hover:bg-gradient-to-br hover:from-[#E85A28] hover:to-[#FF6B35] hover:shadow-lg hover:-translate-y-1">
+                <Linkedin className="w-5 h-5 text-slate-700 group-hover:text-white transition-colors" />
               </a>
             </div>
           </div>
 
           {/* Quick Links */}
           <div className="space-y-6">
-            <h4 className="text-lg font-semibold text-slate-900 relative">
-              Brze veze
-              <div className="absolute -bottom-2 left-0 w-8 h-1 bg-sunfire-500/70 rounded-full"></div>
-            </h4>
+            <div className="flex items-center gap-2 mb-2">
+              <div className="bg-gradient-to-br from-[#E85A28] to-[#FF6B35] p-2 rounded-lg">
+                <ArrowRight className="w-4 h-4 text-white" />
+              </div>
+              <h4 className="text-lg font-bold text-primary">Brze veze</h4>
+            </div>
             <ul className="space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.name}>
                   <Link 
                     href={link.href}
-                    className="group flex items-center text-slate-600 hover:text-slate-900 transition-colors duration-300"
+                    className="group flex items-center text-slate-700 hover:text-white hover:bg-gradient-to-r hover:from-[#E85A28] hover:to-[#FF6B35] px-3 py-2 rounded-lg transition-all duration-300 font-medium"
                   >
-                    <ArrowRight className="w-4 h-4 mr-2 text-sunfire-600 opacity-0 group-hover:opacity-100 transform translate-x-0 group-hover:translate-x-1 transition-all duration-300" />
+                    <ArrowRight className="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform" />
                     {link.name}
                   </Link>
                 </li>
@@ -107,18 +107,20 @@ const Footer = () => {
 
           {/* Categories */}
           <div className="space-y-6">
-            <h4 className="text-lg font-semibold text-slate-900 relative">
-              Kategorije
-              <div className="absolute -bottom-2 left-0 w-8 h-1 bg-sunfire-500/70 rounded-full"></div>
-            </h4>
+            <div className="flex items-center gap-2 mb-2">
+              <div className="bg-gradient-to-br from-[#E85A28] to-[#FF6B35] p-2 rounded-lg">
+                <Car className="w-4 h-4 text-white" />
+              </div>
+              <h4 className="text-lg font-bold text-primary">Kategorije</h4>
+            </div>
             <ul className="space-y-3">
               {mainCategories.map((category) => (
                 <li key={category.name}>
                   <Link 
                     href={category.href}
-                    className="group flex items-center text-slate-600 hover:text-slate-900 transition-colors duration-300"
+                    className="group flex items-center text-slate-700 hover:text-white hover:bg-gradient-to-r hover:from-[#E85A28] hover:to-[#FF6B35] px-3 py-2 rounded-lg transition-all duration-300 font-medium"
                   >
-                    <ArrowRight className="w-4 h-4 mr-2 text-sunfire-600 opacity-0 group-hover:opacity-100 transform translate-x-0 group-hover:translate-x-1 transition-all duration-300" />
+                    <ArrowRight className="w-4 h-4 mr-2 group-hover:translate-x-1 transition-transform" />
                     {category.name}
                   </Link>
                 </li>
@@ -128,51 +130,53 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div className="space-y-6">
-            <h4 className="text-lg font-semibold text-slate-900 relative">
-              Kontakt
-              <div className="absolute -bottom-2 left-0 w-8 h-1 bg-sunfire-500/70 rounded-full"></div>
-            </h4>
+            <div className="flex items-center gap-2 mb-2">
+              <div className="bg-gradient-to-br from-[#E85A28] to-[#FF6B35] p-2 rounded-lg">
+                <Phone className="w-4 h-4 text-white" />
+              </div>
+              <h4 className="text-lg font-bold text-primary">Kontakt</h4>
+            </div>
             
             <div className="space-y-4">
-              <div className="flex items-start space-x-3">
-                <div className="mt-1 p-2 rounded-lg bg-sunfire-100 border border-sunfire-200">
-                  <MapPin className="w-4 h-4 text-sunfire-700" />
+              <div className="flex items-start space-x-3 bg-white/60 backdrop-blur-sm p-3 rounded-xl border border-white/60 hover:bg-white/80 transition-colors">
+                <div className="mt-0.5 p-1.5 rounded-lg bg-gradient-to-br from-primary to-primary-dark">
+                  <MapPin className="w-4 h-4 text-white" />
                 </div>
                 <div>
-                  <p className="text-slate-700 text-sm">Rosulje bb, Jelah</p>
+                  <p className="text-slate-700 text-sm font-medium">Rosulje bb, Jelah</p>
                 </div>
               </div>
               
-              <div className="flex items-start space-x-3">
-                <div className="mt-1 p-2 rounded-lg bg-sunfire-100 border border-sunfire-200">
-                  <Phone className="w-4 h-4 text-sunfire-700" />
+              <div className="flex items-start space-x-3 bg-white/60 backdrop-blur-sm p-3 rounded-xl border border-white/60 hover:bg-white/80 transition-colors">
+                <div className="mt-0.5 p-1.5 rounded-lg bg-gradient-to-br from-primary to-primary-dark">
+                  <Phone className="w-4 h-4 text-white" />
                 </div>
                 <div>
-                  <p className="text-slate-700 text-sm">
-                    <a href="tel:+38732666658" className="hover:text-sunfire-700 transition-colors">032/666-658</a>
+                  <p className="text-slate-700 text-sm font-medium">
+                    <a href="tel:+38732666658" className="hover:text-[#E85A28] transition-colors">032/666-658</a>
                     {' '}•{' '}
-                    <a href="tel:+38761962359" className="hover:text-sunfire-700 transition-colors">061-962-359</a>
+                    <a href="tel:+38761962359" className="hover:text-[#E85A28] transition-colors">061-962-359</a>
                   </p>
                 </div>
               </div>
               
-              <div className="flex items-start space-x-3">
-                <div className="mt-1 p-2 rounded-lg bg-sunfire-100 border border-sunfire-200">
-                  <Mail className="w-4 h-4 text-sunfire-700" />
+              <div className="flex items-start space-x-3 bg-white/60 backdrop-blur-sm p-3 rounded-xl border border-white/60 hover:bg-white/80 transition-colors">
+                <div className="mt-0.5 p-1.5 rounded-lg bg-gradient-to-br from-primary to-primary-dark">
+                  <Mail className="w-4 h-4 text-white" />
                 </div>
                 <div>
-                  <p className="text-slate-700 text-sm">
-                    <a href="mailto:veleprodajatpo@gmail.com" className="hover:text-sunfire-700 transition-colors">veleprodajatpo@gmail.com</a>
+                  <p className="text-slate-700 text-sm font-medium">
+                    <a href="mailto:veleprodajatpo@gmail.com" className="hover:text-[#E85A28] transition-colors">veleprodajatpo@gmail.com</a>
                   </p>
                 </div>
               </div>
               
-              <div className="flex items-start space-x-3">
-                <div className="mt-1 p-2 rounded-lg bg-sunfire-100 border border-sunfire-200">
-                  <Clock className="w-4 h-4 text-sunfire-700" />
+              <div className="flex items-start space-x-3 bg-white/60 backdrop-blur-sm p-3 rounded-xl border border-white/60 hover:bg-white/80 transition-colors">
+                <div className="mt-0.5 p-1.5 rounded-lg bg-gradient-to-br from-primary to-primary-dark">
+                  <Clock className="w-4 h-4 text-white" />
                 </div>
                 <div>
-                  <p className="text-slate-700 text-sm">Radno vrijeme: 08:00 – 18:00</p>
+                  <p className="text-slate-700 text-sm font-medium">Radno vrijeme: 08:00 – 18:00</p>
                 </div>
               </div>
             </div>
@@ -182,10 +186,10 @@ const Footer = () => {
         
 
         {/* Bottom Bar */}
-        <div className="relative z-10 border-t border-slate-200 pt-8">
+        <div className="relative z-10 border-t border-white/40 pt-8 mt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className="text-slate-600 text-sm">
-              © 2025 TP Omerbašić. Sva prava zadržana.
+            <div className="text-slate-700 text-sm font-medium">
+              © 2025 <span className="font-bold text-primary">TP Omerbašić</span>. Sva prava zadržana.
             </div>
             
             <div className="flex flex-wrap gap-6 text-sm">
@@ -193,7 +197,7 @@ const Footer = () => {
                 <Link 
                   key={link.name}
                   href={link.href}
-                  className="text-slate-600 hover:text-slate-900 transition-colors duration-300"
+                  className="text-slate-700 hover:text-[#E85A28] transition-colors duration-300 font-medium"
                 >
                   {link.name}
                 </Link>

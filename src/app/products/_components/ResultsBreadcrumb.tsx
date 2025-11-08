@@ -64,11 +64,11 @@ export default function ResultsBreadcrumb({
   if (segments.length === 0) return null;
 
   return (
-    <div className="rounded-xl px-3 py-2 bg-white border border-slate-200 mb-4 shadow-sm">
+    <div className="rounded-2xl px-4 py-3 bg-white/80 backdrop-blur-sm border border-white/60 mb-4 shadow-lg">
       <div className="flex items-center justify-between gap-3">
         <div className="flex items-center gap-2 min-w-0">
-          <Filter className="h-4 w-4 text-sunfire-500 flex-shrink-0" />
-          <div className="flex items-center flex-wrap text-sm text-slate-700">
+          <Filter className="h-4 w-4 text-[#FF6B35] flex-shrink-0" />
+          <div className="flex items-center flex-wrap text-sm text-slate-700 font-medium">
             {segments.map((s, idx) => (
               <div key={`${s.key}-${idx}`} className="flex items-center max-w-full">
                 <span className="truncate">{s.label}</span>
@@ -82,7 +82,7 @@ export default function ResultsBreadcrumb({
                       onRemove(s.key);
                     }
                   }}
-                  className="ml-1 text-slate-500 hover:text-slate-700"
+                  className="ml-1 text-slate-500 hover:text-slate-800 transition-colors"
                   aria-label={`Ukloni ${s.key}`}
                 >
                   <X className="h-3.5 w-3.5" />
@@ -95,7 +95,7 @@ export default function ResultsBreadcrumb({
           </div>
         </div>
         <button
-          className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs font-semibold text-white bg-sunfire-600 hover:bg-sunfire-700 transition-colors shadow-sm"
+          className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-[#E85A28] to-[#FF6B35] hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 shadow-lg"
           onClick={() => {
             if (onClearAll) return onClearAll();
             segments.forEach((s) => {

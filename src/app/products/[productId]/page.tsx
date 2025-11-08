@@ -18,25 +18,56 @@ interface ProductPageProps {
 
 
 
-// Komponenta za header stranice proizvoda
+// Komponenta za header stranice proizvoda - moderan dizajn sa branding elementima
 function ProductDetailHeader({ productName }: { productName: string }) {
   return (
-    <div className="mb-8">
-      <div className="relative overflow-hidden rounded-2xl p-8 bg-white border border-slate-200 shadow-sm flex items-center justify-center h-full transform-gpu transition-transform duration-300 hover:scale-[1.01]">
-        {/* Light grid overlay */}
+    <div className="mb-6">
+      <div className="relative overflow-hidden rounded-3xl p-4 lg:p-6 bg-gradient-to-r from-primary via-primary-dark to-primary border border-primary/20 shadow-2xl transform-gpu transition-all duration-500 hover:scale-[1.01] hover:shadow-3xl">
+        {/* Animated gradient overlay */}
         <div
-          className="pointer-events-none absolute inset-0 z-0 opacity-65"
+          className="pointer-events-none absolute inset-0 z-0 opacity-10"
           style={{
             backgroundImage:
-              'linear-gradient(to right, rgba(100,116,139,0.14) 1px, transparent 1px), linear-gradient(to bottom, rgba(100,116,139,0.14) 1px, transparent 1px)',
-            backgroundSize: '2px 2px',
-            maskImage: 'radial-gradient(ellipse at center, black 92%, transparent 100%)',
-            WebkitMaskImage: 'radial-gradient(ellipse at center, black 92%, transparent 100%)',
+              'radial-gradient(circle at 2px 2px, rgba(255,255,255,0.3) 1px, transparent 0)',
+            backgroundSize: '40px 40px',
           }}
         />
-        <h1 className="relative z-10 font-bold text-4xl text-slate-900 text-center tracking-tight">
-          {productName}
-        </h1>
+        
+        <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-4">
+          {/* Lijeva strana - Branding */}
+          <div className="flex items-center gap-3">
+            {/* Logo/Icon */}
+            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-3 shadow-lg">
+              <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+              </svg>
+            </div>
+            
+            {/* Company Info */}
+            <div className="text-left">
+              <div className="flex items-center gap-2 mb-0.5">
+                <h2 className="text-lg font-bold text-white">TP Omerbašić</h2>
+                <span className="px-2 py-0.5 bg-gradient-to-r from-[#E85A28] to-[#FF6B35] text-white text-xs font-bold rounded-full shadow-lg">
+                  Premium
+                </span>
+              </div>
+              <div className="flex flex-wrap items-center gap-2 text-xs text-white/80">
+                <span>📞 032/666-658</span>
+                <span>•</span>
+                <span>📍 Rosulje bb, Jelah</span>
+                <span className="hidden sm:inline">•</span>
+                <span className="hidden sm:inline">🕐 08:00-18:00</span>
+              </div>
+            </div>
+          </div>
+          
+          {/* Desna strana - Naziv proizvoda */}
+          <div className="flex-1 text-center lg:text-right">
+            <h1 className="font-bold text-2xl lg:text-3xl text-white tracking-tight drop-shadow-lg">
+              {productName}
+            </h1>
+          </div>
+        </div>
       </div>
     </div>
   );

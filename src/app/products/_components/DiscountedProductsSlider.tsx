@@ -85,23 +85,17 @@ export default function DiscountedProductsSlider() {
 
   if (loading) {
     return (
-      <div className="relative overflow-hidden rounded-2xl p-6 bg-white border border-slate-200">
-        {/* Dense grid background overlay */}
-        <div
-          className="pointer-events-none absolute inset-0 z-0 opacity-65"
-          style={{
-            backgroundImage:
-              "linear-gradient(to right, rgba(100,116,139,0.14) 1px, transparent 1px), linear-gradient(to bottom, rgba(100,116,139,0.14) 1px, transparent 1px)",
-            backgroundSize: "2px 2px",
-            maskImage: "radial-gradient(ellipse at center, black 92%, transparent 100%)",
-            WebkitMaskImage: "radial-gradient(ellipse at center, black 92%, transparent 100%)",
-          }}
-        />
+      <div className="relative overflow-hidden rounded-3xl p-6 bg-gradient-to-br from-slate-50 via-slate-100 to-slate-200 shadow-xl">
+        <div className="pointer-events-none absolute inset-0 z-0 opacity-[0.04]"
+             style={{
+               backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(27,58,95,0.2) 1px, transparent 0), radial-gradient(circle at 50% 50%, rgba(255,107,53,0.08) 0%, transparent 70%)',
+               backgroundSize: '32px 32px, 100% 100%'
+             }} />
         <div className="relative z-10">
-          <div className="animate-pulse h-6 w-40 bg-slate-200 rounded mb-4" />
+          <div className="animate-pulse h-6 w-40 bg-white/70 backdrop-blur-sm rounded-xl mb-4 shadow-sm" />
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {Array.from({ length: 12 }).map((_, i) => (
-              <div key={i} className="h-72 rounded-2xl bg-slate-100 border border-slate-200" />
+              <div key={i} className="h-72 rounded-2xl bg-white/70 backdrop-blur-sm border border-white/60 shadow-lg" />
             ))}
           </div>
         </div>
@@ -113,33 +107,27 @@ export default function DiscountedProductsSlider() {
 
   // Single block containing all categories as separate horizontally auto-scrolling rows
   return (
-    <div className="relative overflow-hidden rounded-2xl p-5 md:p-6 bg-white border border-slate-200">
-      {/* Dense grid background overlay */}
-      <div
-        className="pointer-events-none absolute inset-0 z-0 opacity-65"
-        style={{
-          backgroundImage:
-            "linear-gradient(to right, rgba(100,116,139,0.14) 1px, transparent 1px), linear-gradient(to bottom, rgba(100,116,139,0.14) 1px, transparent 1px)",
-          backgroundSize: "2px 2px",
-          maskImage: "radial-gradient(ellipse at center, black 92%, transparent 100%)",
-          WebkitMaskImage: "radial-gradient(ellipse at center, black 92%, transparent 100%)",
-        }}
-      />
+    <div className="relative overflow-hidden rounded-3xl p-6 md:p-8 bg-gradient-to-br from-slate-50 via-slate-100 to-slate-200 shadow-xl">
+      <div className="pointer-events-none absolute inset-0 z-0 opacity-[0.04]"
+           style={{
+             backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(27,58,95,0.2) 1px, transparent 0), radial-gradient(circle at 50% 50%, rgba(255,107,53,0.08) 0%, transparent 70%)',
+             backgroundSize: '32px 32px, 100% 100%'
+           }} />
       <div className="relative z-10">
-        <div className="flex items-center justify-between mb-4">
-          <h3 className="text-slate-900 font-extrabold text-lg">Istaknuti proizvodi</h3>
-          <div className="text-xs text-slate-500">{items.length} proizvoda</div>
+        <div className="flex items-center justify-between mb-6">
+          <h3 className="text-primary font-extrabold text-2xl">Istaknuti proizvodi</h3>
+          <div className="px-3 py-1.5 rounded-full bg-gradient-to-r from-[#E85A28] to-[#FF6B35] text-white text-xs font-bold shadow-lg">{items.length} proizvoda</div>
         </div>
         <div className="space-y-6">
           {byCategory.map(([cat, arr], idx) => (
             <div key={cat}>
-              <div className="flex items-center justify-between mb-2">
-                <div className="text-sm font-semibold text-slate-800">{cat}</div>
-                <div className="text-[10px] uppercase tracking-wider text-slate-500">{arr.length} kom</div>
+              <div className="flex items-center justify-between mb-3">
+                <div className="text-sm font-bold text-primary">{cat}</div>
+                <div className="text-[10px] uppercase tracking-wider text-slate-600 font-bold">{arr.length} kom</div>
               </div>
               <AutoScrollRow items={arr} speed={45 + Math.min(30, Math.max(0, 12 - Math.floor(arr.length / 2)))} />
               {idx < byCategory.length - 1 && (
-                <div className="border-t border-slate-200 mt-4" />
+                <div className="border-t border-white/40 mt-6" />
               )}
             </div>
           ))}

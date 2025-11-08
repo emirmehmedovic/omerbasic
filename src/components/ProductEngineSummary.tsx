@@ -130,25 +130,28 @@ export default function ProductEngineSummary({ productId, maxInline = 3 }: { pro
           <span className="h-3 w-20 bg-slate-200 rounded animate-pulse hidden sm:inline-block" />
         </div>
       ) : engines.length === 0 ? null : (
-        <div className="text-[11px] text-slate-600">
-          <span className="mr-1 text-slate-500">Motori:</span>
+        <div className="text-[11px]">
+          <span className="mr-1.5 text-primary font-bold text-[10px] uppercase tracking-wider">Motori:</span>
           {inline.map((e, idx) => (
-            <span key={idx} className="inline-flex items-center gap-1 mr-1 mb-1 px-1.5 py-0.5 rounded border border-slate-200 bg-slate-50 text-slate-700">
+            <span key={idx} className="inline-flex items-center gap-1 mr-1 mb-1 px-2 py-0.5 rounded-lg border border-primary/20 bg-gradient-to-r from-primary/5 to-primary-dark/5 text-primary font-medium shadow-sm hover:shadow-md transition-all duration-300">
               {e}
             </span>
           ))}
           {engines.length > inline.length && (
-            <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded border border-slate-200 bg-white text-slate-700">
+            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-lg border border-primary/30 bg-gradient-to-r from-primary/10 to-primary-dark/10 text-primary font-bold shadow-sm">
               +{engines.length - inline.length}
             </span>
           )}
           {engines.length > inline.length && open && coords && typeof window !== 'undefined' && createPortal(
             <div style={{ position: 'absolute', top: 0, left: 0, zIndex: 1000 }}>
-              <div style={{ position: 'absolute', top: coords.top, left: coords.left, width: Math.min(coords.width + 200, window.innerWidth - coords.left - 16) }} className="pointer-events-none rounded-xl border border-slate-200 bg-white shadow-2xl p-3">
+              <div style={{ position: 'absolute', top: coords.top, left: coords.left, width: Math.min(coords.width + 200, window.innerWidth - coords.left - 16) }} className="pointer-events-none rounded-2xl border border-primary/20 bg-white/95 backdrop-blur-sm shadow-2xl p-4">
+                <div className="mb-2 pb-2 border-b border-primary/10">
+                  <span className="text-xs font-bold text-primary uppercase tracking-wider">Svi dostupni motori</span>
+                </div>
                 <div className="max-h-60 overflow-auto pr-1">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     {engines.map((e, idx) => (
-                      <div key={idx} className="text-xs text-slate-800 bg-slate-50 border border-slate-200 rounded-md px-2 py-1">
+                      <div key={idx} className="text-xs text-primary font-medium bg-gradient-to-r from-primary/5 to-primary-dark/5 border border-primary/20 rounded-lg px-2.5 py-1.5 shadow-sm">
                         {e}
                       </div>
                     ))}

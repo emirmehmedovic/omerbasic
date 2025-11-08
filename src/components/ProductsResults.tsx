@@ -164,50 +164,37 @@ export default function ProductsResults({ filters, onClearAll }: Props) {
 
   if (loading) {
     return (
-      <div className="p-8 rounded-2xl bg-white border border-slate-200 shadow-sm">
-        <div className="flex items-center justify-center mb-6">
-          <div className="bg-sunfire-100 p-3 rounded-xl mr-4">
-            <div className="animate-spin w-6 h-6 border-2 border-sunfire-400 border-t-transparent rounded-full"></div>
+      <div className="relative overflow-hidden rounded-3xl p-8 bg-gradient-to-br from-slate-50 via-slate-100 to-slate-200 shadow-xl">
+        <div className="pointer-events-none absolute inset-0 z-0 opacity-[0.04]"
+             style={{
+               backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(27,58,95,0.2) 1px, transparent 0), radial-gradient(circle at 50% 50%, rgba(255,107,53,0.08) 0%, transparent 70%)',
+               backgroundSize: '32px 32px, 100% 100%'
+             }} />
+        <div className="relative z-10">
+          <div className="flex items-center justify-center mb-6">
+            <div className="bg-gradient-to-br from-[#E85A28] to-[#FF6B35] p-4 rounded-2xl shadow-xl mr-4">
+              <div className="animate-spin w-6 h-6 border-2 border-white border-t-transparent rounded-full"></div>
+            </div>
+            <p className="text-lg text-primary font-bold">Proizvodi se učitavaju...</p>
           </div>
-          <p className="text-lg text-slate-800 font-medium">Proizvodi se učitavaju...</p>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {Array(8)
-            .fill(0)
-            .map((_, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-2xl p-5 border border-slate-200 transition-all duration-300 animate-scale-in"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                <div className="animate-pulse">
-                  <div className="h-44 bg-slate-100 rounded-xl mb-4"></div>
-                  <div className="h-5 w-3/4 bg-slate-100 rounded-lg mb-3"></div>
-                  <div className="h-4 w-1/2 bg-slate-100 rounded-lg mb-3"></div>
-                  <div className="h-7 w-1/3 bg-sunfire-100 rounded-lg"></div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {Array(8)
+              .fill(0)
+              .map((_, index) => (
+                <div
+                  key={index}
+                  className="bg-white/80 backdrop-blur-sm border border-white/60 rounded-2xl p-5 shadow-lg transition-all duration-300 animate-scale-in"
+                  style={{ animationDelay: `${index * 100}ms` }}
+                >
+                  <div className="animate-pulse">
+                    <div className="h-44 bg-slate-100 rounded-xl mb-4"></div>
+                    <div className="h-5 w-3/4 bg-slate-100 rounded-lg mb-3"></div>
+                    <div className="h-4 w-1/2 bg-slate-100 rounded-lg mb-3"></div>
+                    <div className="h-7 w-1/3 bg-gradient-to-r from-[#E85A28] to-[#FF6B35] opacity-20 rounded-lg"></div>
+                  </div>
                 </div>
-                <div className="mt-2">
-                  <span className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-sunfire-50 border border-sunfire-200 text-[12px] text-sunfire-800">
-                    <svg className="h-4 w-4 text-sunfire-600" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                      <circle cx="12" cy="12" r="10" strokeWidth="2" />
-                      <path d="M12 8h.01" strokeWidth="2" strokeLinecap="round" />
-                      <path d="M11 12h1v4h1" strokeWidth="2" strokeLinecap="round" />
-                    </svg>
-                    Filtrira prikazane rezultate; pritisnite Enter ili kliknite Pretraži za globalnu pretragu.
-                  </span>
-                </div>
-                <div className="mt-2">
-                  <span className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-sunfire-50 border border-sunfire-200 text-[12px] text-sunfire-800">
-                    <svg className="h-4 w-4 text-sunfire-600" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                      <circle cx="12" cy="12" r="10" strokeWidth="2" />
-                      <path d="M12 8h.01" strokeWidth="2" strokeLinecap="round" />
-                      <path d="M11 12h1v4h1" strokeWidth="2" strokeLinecap="round" />
-                    </svg>
-                    Filtrira prikazane rezultate; pritisnite Enter ili kliknite Pretraži za globalnu pretragu.
-                  </span>
-                </div>
-              </div>
-            ))}
+              ))}
+          </div>
         </div>
       </div>
     );
@@ -215,30 +202,41 @@ export default function ProductsResults({ filters, onClearAll }: Props) {
 
   if (error) {
     return (
-      <div className="bg-red-50 border border-red-200 text-red-700 rounded-xl p-8">
-        <div className="flex items-center justify-center">
-          <div className="bg-red-100 p-3 rounded-xl mr-4">
-            <svg className="w-6 h-6 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <div className="relative overflow-hidden rounded-3xl p-8 bg-gradient-to-br from-red-50 via-red-100 to-red-200 shadow-xl border border-red-300">
+        <div className="pointer-events-none absolute inset-0 z-0 opacity-[0.04]"
+             style={{
+               backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(220,38,38,0.2) 1px, transparent 0), radial-gradient(circle at 50% 50%, rgba(220,38,38,0.08) 0%, transparent 70%)',
+               backgroundSize: '32px 32px, 100% 100%'
+             }} />
+        <div className="relative z-10 flex items-center justify-center">
+          <div className="bg-gradient-to-br from-red-500 to-red-600 p-4 rounded-2xl shadow-xl mr-4">
+            <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
           </div>
-          <p className="text-lg font-medium">{error}</p>
+          <p className="text-lg font-bold text-red-900">{error}</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="p-8 rounded-2xl bg-white border border-slate-200 shadow-sm">
+    <div className="relative overflow-hidden rounded-3xl p-8 bg-gradient-to-br from-slate-50 via-slate-100 to-slate-200 shadow-xl">
+      <div className="pointer-events-none absolute inset-0 z-0 opacity-[0.04]"
+           style={{
+             backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(27,58,95,0.2) 1px, transparent 0), radial-gradient(circle at 50% 50%, rgba(255,107,53,0.08) 0%, transparent 70%)',
+             backgroundSize: '32px 32px, 100% 100%'
+           }} />
+      <div className="relative z-10">
       {products.length === 0 ? (
         <div className="text-center py-12">
-          <div className="bg-sunfire-100 p-4 rounded-xl inline-flex mb-4">
-            <svg className="w-8 h-8 text-sunfire-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div className="bg-gradient-to-br from-[#E85A28] to-[#FF6B35] p-4 rounded-2xl shadow-xl inline-flex mb-4">
+            <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
           </div>
-          <p className="text-lg text-slate-800 font-medium">Nema proizvoda za odabrane filtere</p>
-          <p className="text-sm text-slate-500 mt-2">Pokušajte promijeniti filtere ili kategoriju</p>
+          <p className="text-lg text-primary font-bold">Nema proizvoda za odabrane filtere</p>
+          <p className="text-sm text-slate-600 mt-2">Pokušajte promijeniti filtere ili kategoriju</p>
         </div>
       ) : (
         <>
@@ -247,7 +245,7 @@ export default function ProductsResults({ filters, onClearAll }: Props) {
               {/* Left: count + search */}
               <div className="min-w-[280px]">
                 <div className="">
-                  <div className="relative flex items-center gap-2 bg-sunfire-50 border border-sunfire-200 rounded-lg px-2 py-2 shadow-sm">
+                  <div className="relative flex items-center gap-2 bg-white/80 backdrop-blur-sm border border-white/60 rounded-xl px-2 py-2 shadow-lg">
                   <input
                     type="text"
                     value={localQuery}
@@ -259,16 +257,16 @@ export default function ProductsResults({ filters, onClearAll }: Props) {
                       }
                     }}
                     placeholder="Pretraži po imenu, OEM broju i kataloškom broju…"
-                    className="h-9 w-80 sm:w-96 max-w-[80vw] rounded-md border border-sunfire-200 bg-white pl-8 pr-16 text-sm text-slate-900 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-sunfire-300 focus:border-sunfire-300"
+                    className="h-9 w-80 sm:w-96 max-w-[80vw] rounded-xl border border-white/40 bg-white/90 backdrop-blur-sm pl-8 pr-16 text-sm text-slate-900 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#FF6B35] focus:border-[#FF6B35] transition-all duration-300"
                   />
-                  <svg className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-sunfire-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#FF6B35]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15z" />
                   </svg>
                   {localQuery && (
                     <button
                       type="button"
                       aria-label="Očisti"
-                      className="absolute right-12 top-1/2 -translate-y-1/2 text-slate-600 hover:text-slate-800"
+                      className="absolute right-12 top-1/2 -translate-y-1/2 text-slate-600 hover:text-slate-800 transition-colors"
                       onClick={() => setLocalQuery("")}
                     >
                       ×
@@ -276,7 +274,7 @@ export default function ProductsResults({ filters, onClearAll }: Props) {
                   )}
                   <button
                     type="button"
-                    className="h-9 px-3 rounded-md bg-sunfire-600 hover:bg-sunfire-700 text-white text-sm font-semibold shadow"
+                    className="h-9 px-3 rounded-xl bg-gradient-to-r from-primary via-primary-dark to-primary hover:shadow-2xl text-white text-sm font-bold shadow-xl transform hover:-translate-y-0.5 transition-all duration-300"
                     onClick={() => {
                       const q = localQuery.trim();
                       if (q) router.push(`/search?q=${encodeURIComponent(q)}`);
@@ -286,8 +284,8 @@ export default function ProductsResults({ filters, onClearAll }: Props) {
                   </button>
                   </div>
                   <div className="mt-2">
-                    <span className="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-sunfire-50 border border-sunfire-200 text-[12px] text-sunfire-800">
-                      <svg className="h-4 w-4 text-sunfire-600" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <span className="inline-flex items-center gap-2 px-2.5 py-1 rounded-lg bg-white/70 backdrop-blur-sm border border-white/60 text-[12px] text-slate-700 shadow-sm">
+                      <svg className="h-4 w-4 text-[#FF6B35]" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                         <circle cx="12" cy="12" r="10" strokeWidth="2" />
                         <path d="M12 8h.01" strokeWidth="2" strokeLinecap="round" />
                         <path d="M11 12h1v4h1" strokeWidth="2" strokeLinecap="round" />
@@ -296,29 +294,29 @@ export default function ProductsResults({ filters, onClearAll }: Props) {
                     </span>
                   </div>
                 </div>
-                <h2 className="mt-3 text-xl font-semibold text-slate-900">Pronađeno {totalCount} proizvoda</h2>
+                <h2 className="mt-3 text-2xl font-bold text-primary">Pronađeno {totalCount} proizvoda</h2>
               </div>
 
               {/* Right: label + clear + view toggle */}
               <div className="flex items-center justify-end gap-3">
-                <div className="hidden md:flex items-center text-sm text-slate-600">
-                  <div className="w-2 h-2 rounded-full mr-2 bg-sunfire-400"></div>
+                <div className="hidden md:flex items-center text-sm text-slate-700 font-medium">
+                  <div className="w-2 h-2 rounded-full mr-2 bg-gradient-to-r from-[#E85A28] to-[#FF6B35]"></div>
                   Rezultati pretrage
                 </div>
                 {onClearAll && (
                   <button
                     type="button"
                     onClick={onClearAll}
-                    className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs font-semibold text-white bg-sunfire-600 hover:bg-sunfire-700 transition-colors shadow-sm"
+                    className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-[#E85A28] to-[#FF6B35] hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 shadow-lg"
                   >
                     Očisti sve
                   </button>
                 )}
-                <div className="flex items-center gap-1 rounded-lg bg-white p-1 border border-slate-200 shadow-sm">
-                  <button onClick={() => setView('grid')} className={`p-1.5 rounded-md transition-colors ${view === 'grid' ? 'bg-sunfire-500 text-white' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'}`}>
+                <div className="flex items-center gap-1 rounded-xl bg-white/80 backdrop-blur-sm p-1 border border-white/60 shadow-lg">
+                  <button onClick={() => setView('grid')} className={`p-2 rounded-lg transition-all duration-300 ${view === 'grid' ? 'bg-gradient-to-r from-primary via-primary-dark to-primary text-white shadow-xl' : 'text-slate-600 hover:bg-white/80 hover:text-slate-900'}`}>
                     <LayoutGrid className="h-5 w-5" />
                   </button>
-                  <button onClick={() => setView('list')} className={`p-1.5 rounded-md transition-colors ${view === 'list' ? 'bg-sunfire-500 text-white' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'}`}>
+                  <button onClick={() => setView('list')} className={`p-2 rounded-lg transition-all duration-300 ${view === 'list' ? 'bg-gradient-to-r from-primary via-primary-dark to-primary text-white shadow-xl' : 'text-slate-600 hover:bg-white/80 hover:text-slate-900'}`}>
                     <List className="h-5 w-5" />
                   </button>
                 </div>
@@ -343,7 +341,7 @@ export default function ProductsResults({ filters, onClearAll }: Props) {
                 <Link
                   href={`/products/${p.id}`}
                   key={p.id}
-                  className="animate-fade-in flex flex-col sm:flex-row sm:items-center bg-white p-4 rounded-lg border border-slate-200 hover:shadow-md transition-all duration-300 hover:scale-[1.01]"
+                  className="animate-fade-in flex flex-col sm:flex-row sm:items-center bg-white/80 backdrop-blur-sm border border-white/60 p-5 rounded-2xl shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300"
                   style={{ animationDelay: `${index * 50}ms` }}
                 >
                   <div className="relative w-full sm:w-24 h-32 sm:h-24 flex-shrink-0 mb-4 sm:mb-0 sm:mr-6">
@@ -359,7 +357,7 @@ export default function ProductsResults({ filters, onClearAll }: Props) {
                     <h3 className="text-lg font-semibold text-slate-900 mb-2 line-clamp-2">{p.name}</h3>
                     {p.oemNumber && (
                       <div className="mb-1">
-                        <span className="inline-flex items-center gap-1 text-[11px] font-medium text-slate-600 bg-slate-50 border border-slate-200 rounded-md px-2 py-0.5">
+                        <span className="inline-flex items-center gap-1 text-[11px] font-medium text-slate-600 bg-white/70 backdrop-blur-sm border border-white/60 rounded-lg px-2 py-0.5 shadow-sm">
                           <span className="text-slate-500">OEM</span>
                           <span className="font-mono tracking-tight text-slate-700">{p.oemNumber}</span>
                         </span>
@@ -371,15 +369,15 @@ export default function ProductsResults({ filters, onClearAll }: Props) {
                     {p.originalPrice ? (
                       <div className="flex flex-col items-start sm:items-end">
                         <div className="mb-1">
-                          <span className="bg-sunfire-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
+                          <span className="bg-gradient-to-r from-[#E85A28] to-[#FF6B35] text-white text-[10px] font-bold px-2.5 py-1 rounded-full shadow-lg">
                             {p.pricingSource === 'FEATURED' ? 'Akcija' : 'B2B cijena'}
                           </span>
                         </div>
                         <p className="text-sm line-through text-slate-500">{formatPrice(p.originalPrice)}</p>
-                        <p className="text-xl font-bold text-sunfire-600">{formatPrice(p.price)}</p>
+                        <p className="text-xl font-bold bg-gradient-to-r from-[#E85A28] to-[#FF6B35] bg-clip-text text-transparent">{formatPrice(p.price)}</p>
                       </div>
                     ) : (
-                      <p className="text-xl font-bold text-sunfire-600 mb-3">{formatPrice(p.price)}</p>
+                      <p className="text-xl font-bold bg-gradient-to-r from-[#E85A28] to-[#FF6B35] bg-clip-text text-transparent mb-3">{formatPrice(p.price)}</p>
                     )}
                     <button 
                       onClick={(e) => {
@@ -388,7 +386,7 @@ export default function ProductsResults({ filters, onClearAll }: Props) {
                         addToCart(p as any);
                         toast.success(`${p.name} je dodan u košaricu!`);
                       }}
-                      className="bg-sunfire-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-sunfire-700 transition-colors w-full"
+                      className="bg-gradient-to-r from-primary via-primary-dark to-primary text-white px-4 py-2.5 rounded-xl text-sm font-bold hover:shadow-2xl transform hover:-translate-y-0.5 transition-all duration-300 shadow-xl w-full"
                     >
                       Dodaj u košaricu
                     </button>
@@ -405,7 +403,7 @@ export default function ProductsResults({ filters, onClearAll }: Props) {
                   type="button"
                   onClick={() => handleChangePage(page - 1)}
                   disabled={page <= 1}
-                  className={`px-3 py-1.5 rounded-md border text-sm font-medium transition-colors ${page <= 1 ? 'bg-slate-100 text-slate-400 border-slate-200 cursor-not-allowed' : 'bg-white text-slate-700 border-slate-300 hover:bg-sunfire-50 hover:border-sunfire-300'}`}
+                  className={`px-4 py-2 rounded-xl border text-sm font-bold transition-all duration-300 ${page <= 1 ? 'bg-slate-100 text-slate-400 border-slate-200 cursor-not-allowed' : 'bg-white/80 backdrop-blur-sm text-primary border-white/60 shadow-lg hover:shadow-xl hover:-translate-y-0.5'}`}
                 >
                   ← Prethodna
                 </button>
@@ -419,7 +417,7 @@ export default function ProductsResults({ filters, onClearAll }: Props) {
                         <button
                           type="button"
                           onClick={() => handleChangePage(num)}
-                          className={`px-3 py-1.5 rounded-md border text-sm font-medium transition-colors ${num === page ? 'bg-sunfire-600 text-white border-sunfire-600' : 'bg-white text-slate-700 border-slate-300 hover:bg-sunfire-50 hover:border-sunfire-300'}`}
+                          className={`px-4 py-2 rounded-xl border text-sm font-bold transition-all duration-300 ${num === page ? 'bg-gradient-to-r from-primary to-primary-dark text-white border-primary shadow-xl' : 'bg-white/80 backdrop-blur-sm text-slate-700 border-white/60 shadow-lg hover:shadow-xl hover:-translate-y-0.5'}`}
                         >
                           {num}
                         </button>
@@ -431,16 +429,17 @@ export default function ProductsResults({ filters, onClearAll }: Props) {
                   type="button"
                   onClick={() => handleChangePage(page + 1)}
                   disabled={page >= totalPages}
-                  className={`px-3 py-1.5 rounded-md border text-sm font-medium transition-colors ${page >= totalPages ? 'bg-slate-100 text-slate-400 border-slate-200 cursor-not-allowed' : 'bg-white text-slate-700 border-slate-300 hover:bg-sunfire-50 hover:border-sunfire-300'}`}
+                  className={`px-4 py-2 rounded-xl border text-sm font-bold transition-all duration-300 ${page >= totalPages ? 'bg-slate-100 text-slate-400 border-slate-200 cursor-not-allowed' : 'bg-white/80 backdrop-blur-sm text-primary border-white/60 shadow-lg hover:shadow-xl hover:-translate-y-0.5'}`}
                 >
                   Sljedeća →
                 </button>
               </div>
-              <p className="text-sm text-slate-600">Stranica {page} od {totalPages} &middot; Prikazano {displayed.length} / {totalCount}</p>
+              <p className="text-sm text-slate-700 font-medium">Stranica {page} od {totalPages} &middot; Prikazano {displayed.length} / {totalCount}</p>
             </div>
           )}
         </>
       )}
+      </div>
     </div>
   );
 }

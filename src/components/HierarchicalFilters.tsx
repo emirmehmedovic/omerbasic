@@ -32,12 +32,12 @@ const ActiveFilters = ({ filters, onRemove, onClearAll }: {
   });
 
   return (
-    <div className="active-filters mb-3">
-      <div className="rounded-xl px-3 py-2 text-white bg-gradient-to-t from-black/60 to-transparent border border-white/10">
+    <div className="active-filters mb-4">
+      <div className="rounded-2xl px-4 py-3 bg-white/80 backdrop-blur-sm border border-white/60 shadow-lg">
         <div className="flex items-center justify-between gap-3">
           <div className="flex items-center gap-2 min-w-0">
-            <Filter className="h-4 w-4 text-sunfire-300 flex-shrink-0" />
-            <div className="flex items-center flex-wrap text-sm text-white/90">
+            <Filter className="h-4 w-4 text-[#FF6B35] flex-shrink-0" />
+            <div className="flex items-center flex-wrap text-sm text-slate-700 font-medium">
               {sorted.map((f, idx) => (
                 <div key={f.id} className="flex items-center max-w-full">
                   {/* Segment */}
@@ -46,21 +46,21 @@ const ActiveFilters = ({ filters, onRemove, onClearAll }: {
                   </span>
                   <button
                     onClick={() => onRemove(f.id)}
-                    className="ml-1 text-white/60 hover:text-white"
+                    className="ml-1 text-slate-500 hover:text-slate-800 transition-colors"
                     aria-label={`Ukloni ${f.type}`}
                   >
                     <X className="h-3.5 w-3.5" />
                   </button>
                   {/* Separator osim za zadnji */}
                   {idx < sorted.length - 1 && (
-                    <span className="mx-2 text-white/40">–</span>
+                    <span className="mx-2 text-slate-400">›</span>
                   )}
                 </div>
               ))}
             </div>
           </div>
           <button
-            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md text-xs font-semibold text-white bg-sunfire-500 hover:bg-sunfire-600 transition-colors shadow-sm"
+            className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-primary via-primary-dark to-primary hover:shadow-2xl transform hover:-translate-y-0.5 transition-all duration-300 shadow-xl"
             onClick={() => { if (onClearAll) onClearAll(); else sorted.forEach(f => onRemove(f.id)); }}
           >
             <X className="h-3.5 w-3.5" />
@@ -109,11 +109,11 @@ const SubcategoryList = ({
         const isSelected = category.id === selectedCategoryId;
         return (
           <div key={category.id} className="w-full">
-            <div className={`flex items-center w-full text-left rounded-lg text-sm transition-all duration-200 border ${
+            <div className={`flex items-center w-full text-left rounded-xl text-sm transition-all duration-300 border ${
               isSelected
-                ? 'bg-sunfire-50 text-slate-900 border-sunfire-300 shadow-sm font-semibold'
-                : 'text-slate-700 hover:bg-sunfire-50 hover:text-slate-900 border-slate-200'
-            } ${depth === 0 ? 'px-3 py-2 lg:px-3.5 lg:py-2.5 bg-white' : 'px-3 py-2 bg-white'}`}>
+                ? 'bg-gradient-to-r from-primary/10 via-primary-dark/10 to-primary/10 text-primary border-primary shadow-lg font-bold'
+                : 'text-slate-700 hover:bg-white/80 hover:text-slate-900 hover:shadow-md border-white/60 bg-white/70 backdrop-blur-sm'
+            } ${depth === 0 ? 'px-3 py-2.5 lg:px-4 lg:py-3' : 'px-3 py-2'}`}>
               {/* Chevron za expand/collapse */}
               <button
                 type="button"
@@ -125,7 +125,7 @@ const SubcategoryList = ({
               </button>
 
               {/* Indikator */}
-              <span className={`flex-shrink-0 w-2 h-2 mr-3 rounded-full transition-colors ${isSelected ? 'bg-sunfire-400' : 'bg-slate-300'}`}></span>
+              <span className={`flex-shrink-0 w-2 h-2 mr-3 rounded-full transition-colors ${isSelected ? 'bg-gradient-to-r from-primary via-primary-dark to-primary' : 'bg-slate-300'}`}></span>
 
               {/* Naziv (klik za odabir) */}
               <button
@@ -134,16 +134,16 @@ const SubcategoryList = ({
                   onCategorySelect(category.id);
                   if (hasChildren && !isOpen) setExpanded(prev => ({ ...prev, [category.id]: true }));
                 }}
-                className={`flex-1 text-left truncate ${depth === 0 ? 'text-[0.95rem] font-medium' : ''}`}
+                className={`flex-1 text-left truncate ${depth === 0 ? 'text-[0.95rem] font-bold' : 'font-medium'}`}
               >
                 {category.name}
               </button>
 
               {/* Broj proizvoda */}
               {category.productCount && (
-                <span className={`ml-3 px-2 py-0.5 text-xs rounded-full transition-colors ${isSelected
-                  ? 'bg-sunfire-100 text-sunfire-700'
-                  : 'bg-slate-100 text-slate-700'
+                <span className={`ml-3 px-2.5 py-1 text-xs rounded-full font-bold transition-all duration-300 shadow-sm ${isSelected
+                  ? 'bg-gradient-to-r from-primary via-primary-dark to-primary text-white shadow-xl'
+                  : 'bg-white/70 backdrop-blur-sm text-slate-700 border border-white/60'
                 }`}>
                   {category.productCount}
                 </span>
@@ -412,12 +412,17 @@ export default function HierarchicalFilters({
   // Loading stanje
   if (loading) {
     return (
-      <div className="hierarchical-filters bg-white/30 backdrop-blur-md rounded-xl p-4 shadow-lg border border-white/50">
-        <div className="animate-pulse space-y-4">
-          <div className="h-8 bg-slate-200/50 rounded-xl w-full"></div>
+      <div className="hierarchical-filters relative overflow-hidden rounded-3xl p-8 bg-gradient-to-br from-slate-50 via-slate-100 to-slate-200 shadow-xl">
+        <div className="pointer-events-none absolute inset-0 z-0 opacity-[0.04]"
+             style={{
+               backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(27,58,95,0.2) 1px, transparent 0), radial-gradient(circle at 50% 50%, rgba(255,107,53,0.08) 0%, transparent 70%)',
+               backgroundSize: '32px 32px, 100% 100%'
+             }} />
+        <div className="relative z-10 animate-pulse space-y-4">
+          <div className="h-8 bg-white/70 backdrop-blur-sm rounded-2xl w-full shadow-sm"></div>
           <div className="flex gap-2">
             {[1, 2, 3, 4].map(i => (
-              <div key={i} className="h-10 bg-slate-200/50 rounded-xl w-24"></div>
+              <div key={i} className="h-10 bg-white/70 backdrop-blur-sm rounded-xl w-24 shadow-sm"></div>
             ))}
           </div>
         </div>
@@ -465,19 +470,13 @@ export default function HierarchicalFilters({
         <div className="top-filters">
           {/* Clean glavne kategorije */}
           <div className="main-categories">
-            <div className="relative overflow-hidden rounded-2xl p-6 bg-white border border-slate-200 mb-6">
-              {/* Dense grid background overlay (match homepage) */}
-              <div
-                className="pointer-events-none absolute inset-0 z-0 opacity-65"
-                style={{
-                  backgroundImage:
-                    "linear-gradient(to right, rgba(100,116,139,0.14) 1px, transparent 1px), linear-gradient(to bottom, rgba(100,116,139,0.14) 1px, transparent 1px)",
-                  backgroundSize: "2px 2px",
-                  maskImage: "radial-gradient(ellipse at center, black 92%, transparent 100%)",
-                  WebkitMaskImage: "radial-gradient(ellipse at center, black 92%, transparent 100%)",
-                }}
-              />
-              <h3 className="relative z-10 text-xl font-bold text-slate-900 mb-6 text-center">Kategorije proizvoda</h3>
+            <div className="relative overflow-hidden rounded-3xl p-8 bg-gradient-to-br from-slate-50 via-slate-100 to-slate-200 shadow-xl mb-6">
+              <div className="pointer-events-none absolute inset-0 z-0 opacity-[0.04]"
+                   style={{
+                     backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(27,58,95,0.2) 1px, transparent 0), radial-gradient(circle at 50% 50%, rgba(255,107,53,0.08) 0%, transparent 70%)',
+                     backgroundSize: '32px 32px, 100% 100%'
+                   }} />
+              <h3 className="relative z-10 text-2xl font-bold text-primary mb-6 text-center">Kategorije proizvoda</h3>
               <div className="relative z-10 w-full">
                 <div className="flex w-full rounded-xl border border-slate-200 overflow-x-auto flex-nowrap snap-x snap-mandatory">
                 {mainCategories.map((category, idx) => {
@@ -505,15 +504,18 @@ export default function HierarchicalFilters({
                     <button
                       key={category.id}
                       onClick={() => handleMainCategorySelect(category)}
-                      className={`group relative z-10 flex flex-1 items-center justify-center px-3 py-2 sm:px-4 sm:py-3 md:py-4 text-slate-900 border-r border-slate-200 transition-colors transition-shadow snap-start
-                        bg-white hover:bg-sunfire-50 hover:ring-2 hover:ring-sunfire-400/60
-                        ${idx === 0 ? 'rounded-l-xl' : ''}
-                        ${idx === mainCategories.length - 1 ? 'rounded-r-xl border-r-0' : ''}
+                      className={`group relative z-10 flex flex-1 items-center justify-center px-3 py-2 sm:px-4 sm:py-3 md:py-4 border-r transition-all duration-300 snap-start
+                        ${isSelected 
+                          ? 'bg-gradient-to-r from-primary via-primary-dark to-primary text-white border-primary-dark shadow-2xl ring-2 ring-primary/50 -translate-y-1' 
+                          : 'bg-white/80 backdrop-blur-sm border-white/40 text-slate-900 hover:bg-white hover:shadow-xl hover:-translate-y-1'
+                        }
+                        ${idx === 0 ? 'rounded-l-2xl' : ''}
+                        ${idx === mainCategories.length - 1 ? 'rounded-r-2xl border-r-0' : ''}
                       `}
                     >
                       {/* Inner content scales on hover to preserve connected pill edges */}
-                      <div className="flex flex-col items-center gap-3 transition-transform duration-300 ease-in-out group-hover:scale-[1.03]">
-                        <div className="flex items-center justify-center rounded-2xl bg-[#0c1c3a] shadow-sm w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28">
+                      <div className="flex flex-col items-center gap-3 transition-transform duration-300 ease-in-out group-hover:scale-[1.05]">
+                        <div className={`flex items-center justify-center rounded-2xl shadow-lg w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 transition-all duration-300 ${isSelected ? 'bg-gradient-to-br from-primary to-primary-dark shadow-primary/50' : 'bg-[#0c1c3a] group-hover:shadow-xl'}`}>
                           {usePassengerSvg ? (
                             <img
                               src="/images/putnicka-vozila.svg"
@@ -554,7 +556,18 @@ export default function HierarchicalFilters({
                             <Icon className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 text-white" />
                           )}
                         </div>
-                        <span className="text-xs sm:text-sm md:text-[0.95rem] font-bold text-slate-900 text-center leading-tight">{category.name}</span>
+                        <div className="relative">
+                          <span className="text-xs sm:text-sm md:text-[0.95rem] font-bold text-center leading-tight">
+                            {category.name}
+                          </span>
+                          {isSelected && (
+                            <div className="absolute -top-1 -right-2 w-4 h-4 bg-white rounded-full flex items-center justify-center shadow-lg animate-in zoom-in duration-300">
+                              <svg className="w-2.5 h-2.5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                              </svg>
+                            </div>
+                          )}
+                        </div>
                       </div>
                     </button>
                   );
@@ -566,44 +579,20 @@ export default function HierarchicalFilters({
           
           {/* Clean odabir vozila (prikaži samo za Teretna/Putnička) */}
           {derivedVehicleType !== 'ALL' && (
-            <div className="vehicle-selector">
-              <div className="relative overflow-hidden rounded-2xl p-6 bg-white border border-slate-200">
-                {/* Grid overlay */}
-                <div
-                  className="pointer-events-none absolute inset-0 z-0 opacity-65"
-                  style={{
-                    backgroundImage:
-                      "linear-gradient(to right, rgba(100,116,139,0.14) 1px, transparent 1px), linear-gradient(to bottom, rgba(100,116,139,0.14) 1px, transparent 1px)",
-                    backgroundSize: "2px 2px",
-                    maskImage: "radial-gradient(ellipse at center, black 92%, transparent 100%)",
-                    WebkitMaskImage: "radial-gradient(ellipse at center, black 92%, transparent 100%)",
-                  }}
-                />
-                <div className="relative z-10">
-                  <div className="flex items-center mb-4">
-                    <div className="p-2 rounded-lg mr-3 bg-sunfire-500/10 shadow-lg shadow-sunfire-500/10">
-                      <Car className="h-6 w-6 text-sunfire-300" />
-                    </div>
-                    <h3 className="text-xl font-bold text-slate-900">Odabir vozila</h3>
-                  </div>
-                  
-                  <VehicleSelector 
-                  key={`vehsel-${vehicleSelectorResetKey}-${filters.categoryId}`}
-                  onVehicleSelect={(data) => {
-                    if (data.generationId) {
-                      // Ispravak: Poziv s ispravnim argumentima
-                      updateFilter('generationId', data.generationId, 'Vozilo', `Odabrano`);
-                      // Ako postoji specificirani motor, propagiraj i engineId; inače očisti engineId
-                      updateFilter('engineId', data.engineId || '', 'Motor');
-                    }
-                  }}
-                  compact={true}
-                  appearance="light"
-                  vehicleType={derivedVehicleType}
-                />
-                </div>
-              </div>
-            </div>
+            <VehicleSelector 
+              key={`vehsel-${vehicleSelectorResetKey}-${filters.categoryId}`}
+              onVehicleSelect={(data) => {
+                if (data.generationId) {
+                  // Ispravak: Poziv s ispravnim argumentima
+                  updateFilter('generationId', data.generationId, 'Vozilo', `Odabrano`);
+                  // Ako postoji specificirani motor, propagiraj i engineId; inače očisti engineId
+                  updateFilter('engineId', data.engineId || '', 'Motor');
+                }
+              }}
+              compact={true}
+              appearance="light"
+              vehicleType={derivedVehicleType}
+            />
           )}
         </div>
       )}
@@ -613,42 +602,36 @@ export default function HierarchicalFilters({
         <div className="sidebar-filters space-y-6">
           {/* Podkategorije ako postoje */}
           {selectedMainCategoryFull.children && selectedMainCategoryFull.children.length > 0 && (
-            <div className="relative overflow-hidden p-6 rounded-2xl bg-white border border-slate-200" data-test="hf-panel-v2">
-              {/* Light grid overlay */}
-              <div
-                className="pointer-events-none absolute inset-0 z-0 opacity-65"
-                style={{
-                  backgroundImage:
-                    'linear-gradient(to right, rgba(100,116,139,0.14) 1px, transparent 1px), linear-gradient(to bottom, rgba(100,116,139,0.14) 1px, transparent 1px)',
-                  backgroundSize: '2px 2px',
-                  maskImage: 'radial-gradient(ellipse at center, black 92%, transparent 100%)',
-                  WebkitMaskImage: 'radial-gradient(ellipse at center, black 92%, transparent 100%)',
-                }}
-              />
+            <div className="relative overflow-hidden p-6 rounded-3xl bg-gradient-to-br from-slate-50 via-slate-100 to-slate-200 shadow-xl" data-test="hf-panel-v2">
+              <div className="pointer-events-none absolute inset-0 z-0 opacity-[0.04]"
+                   style={{
+                     backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(27,58,95,0.2) 1px, transparent 0), radial-gradient(circle at 50% 50%, rgba(255,107,53,0.08) 0%, transparent 70%)',
+                     backgroundSize: '32px 32px, 100% 100%'
+                   }} />
               <div className="relative z-10">
-                <div className="sticky top-0 z-10 -mx-6 px-6 pt-2 pb-3 bg-white/80 backdrop-blur border-b border-slate-200 rounded-t-2xl">
-                  <div className="flex items-center mb-2">
-                    <div className="p-2 rounded-lg mr-3 bg-sunfire-500/10 shadow-lg shadow-sunfire-500/10">
-                      <Layers className="h-5 w-5 text-sunfire-300" />
+                <div className="sticky top-0 z-10 -mx-6 px-6 pt-3 pb-4 bg-gradient-to-br from-slate-50 via-slate-100 to-slate-200 backdrop-blur-sm border-b border-white/40 rounded-t-3xl">
+                  <div className="flex items-center mb-3">
+                    <div className="p-2.5 rounded-2xl mr-3 bg-gradient-to-br from-[#E85A28] to-[#FF6B35] shadow-xl">
+                      <Layers className="h-5 w-5 text-white" />
                     </div>
-                    <h3 className="font-bold text-slate-900 text-xl">Podkategorije</h3>
+                    <h3 className="font-bold text-primary text-xl">Podkategorije</h3>
                   </div>
                   {/* Search input */}
                   <div className="relative">
-                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-500" />
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#FF6B35]" />
                     <input
                       type="text"
                       value={catSearch}
                       onChange={(e) => setCatSearch(e.target.value)}
                       placeholder="Pretraži kategorije…"
-                      className="w-full pl-9 pr-8 py-2 rounded-md bg-white text-slate-900 placeholder:text-slate-500 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-sunfire-300 focus:border-sunfire-300"
+                      className="w-full pl-9 pr-8 py-2.5 rounded-xl bg-white/90 backdrop-blur-sm text-slate-900 placeholder:text-slate-500 border border-white/60 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#FF6B35] focus:border-[#FF6B35] transition-all duration-300"
                     />
                     {catSearch && (
                       <button
                         type="button"
                         onClick={() => setCatSearch('')}
                         aria-label="Očisti pretragu"
-                        className="absolute right-2 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-700"
+                        className="absolute right-2 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-800 transition-colors"
                       >
                         <X className="h-4 w-4" />
                       </button>
@@ -668,24 +651,18 @@ export default function HierarchicalFilters({
 
           {/* Tehničke specifikacije */}
           <div className="technical-specs">
-            <div className="relative overflow-hidden p-6 rounded-2xl bg-white border border-slate-200">
-              {/* Light grid overlay */}
-              <div
-                className="pointer-events-none absolute inset-0 z-0 opacity-65"
-                style={{
-                  backgroundImage:
-                    'linear-gradient(to right, rgba(100,116,139,0.14) 1px, transparent 1px), linear-gradient(to bottom, rgba(100,116,139,0.14) 1px, transparent 1px)',
-                  backgroundSize: '2px 2px',
-                  maskImage: 'radial-gradient(ellipse at center, black 92%, transparent 100%)',
-                  WebkitMaskImage: 'radial-gradient(ellipse at center, black 92%, transparent 100%)',
-                }}
-              />
+            <div className="relative overflow-hidden p-6 rounded-3xl bg-gradient-to-br from-slate-50 via-slate-100 to-slate-200 shadow-xl">
+              <div className="pointer-events-none absolute inset-0 z-0 opacity-[0.04]"
+                   style={{
+                     backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(27,58,95,0.2) 1px, transparent 0), radial-gradient(circle at 50% 50%, rgba(255,107,53,0.08) 0%, transparent 70%)',
+                     backgroundSize: '32px 32px, 100% 100%'
+                   }} />
               <div className="relative z-10">
-                <div className="flex items-center mb-4">
-                  <div className="p-2 rounded-lg mr-3 bg-sunfire-500/10 shadow-lg shadow-sunfire-500/10">
-                    <Settings className="h-5 w-5 text-sunfire-300" />
+                <div className="flex items-center mb-6">
+                  <div className="p-2.5 rounded-2xl mr-3 bg-gradient-to-br from-[#E85A28] to-[#FF6B35] shadow-xl">
+                    <Settings className="h-5 w-5 text-white" />
                   </div>
-                  <h3 className="font-bold text-slate-900 text-xl">Tehničke specifikacije</h3>
+                  <h3 className="font-bold text-primary text-xl">Tehničke specifikacije</h3>
                 </div>
                 <TechnicalSpecsFilter 
                   categoryId={filters.categoryId as any}

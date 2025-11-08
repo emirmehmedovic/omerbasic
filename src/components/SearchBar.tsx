@@ -6,7 +6,7 @@ import { Search, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { isLikelyVin } from '@/lib/vin/validate';
 
-export function SearchBar({ className }: { className?: string }) {
+export function SearchBar({ className, variant = 'light' }: { className?: string; variant?: 'light' | 'dark' }) {
   const [query, setQuery] = useState('');
   const [isFocused, setIsFocused] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -60,18 +60,20 @@ export function SearchBar({ className }: { className?: string }) {
     >
       <div 
         className={cn(
-          "flex items-center relative overflow-hidden transition-all duration-300",
-          "bg-white/90 border border-slate-200 shadow-md",
-          "rounded-full"
+          "flex items-center relative overflow-hidden transition-all duration-300 rounded-full",
+          variant === 'dark' 
+            ? "bg-white/10 backdrop-blur-md border border-white/20 shadow-xl hover:bg-white/15"
+            : "bg-white/90 border border-slate-200 shadow-md",
+          isFocused && variant === 'dark' && "ring-2 ring-white/30 bg-white/15"
         )}
       >
-        <div className="pl-4">
+        <div className="pl-5">
           <Search 
             className={cn(
               "w-5 h-5 transition-colors", 
-              isFocused 
-                ? "text-orange" 
-                : "text-slate-400"
+              variant === 'dark'
+                ? isFocused ? "text-[#FF6B35]" : "text-white/70"
+                : isFocused ? "text-orange" : "text-slate-400"
             )} 
           />
         </div>
@@ -83,14 +85,24 @@ export function SearchBar({ className }: { className?: string }) {
           onChange={(e) => setQuery(e.target.value)}
           onFocus={() => setIsFocused(true)}
           placeholder="Pretraži po nazivu, kataloškom broju ili VIN (17)..."
-          className="w-full px-3 py-2.5 text-slate-700 bg-transparent border-none focus:outline-none focus:ring-0 placeholder:text-slate-400 text-sm"
+          className={cn(
+            "w-full px-3 py-3 bg-transparent border-none focus:outline-none focus:ring-0 text-sm font-medium",
+            variant === 'dark'
+              ? "text-white placeholder:text-white/60"
+              : "text-slate-700 placeholder:text-slate-400"
+          )}
         />
         
         {query && (
           <button
             type="button"
             onClick={clearSearch}
-            className="p-2 text-slate-400 hover:text-slate-600 transition-colors"
+            className={cn(
+              "p-2 transition-colors",
+              variant === 'dark'
+                ? "text-white/60 hover:text-white"
+                : "text-slate-400 hover:text-slate-600"
+            )}
             aria-label="Očisti pretragu"
           >
             <X className="w-4 h-4" />
@@ -100,16 +112,20 @@ export function SearchBar({ className }: { className?: string }) {
         <button
           type="submit"
           className={cn(
-            "h-full px-4 py-2.5 transition-all",
-            query.trim() 
-              ? "bg-accent-gradient text-white" 
-              : "bg-transparent text-slate-400",
-            "hover:shadow-inner"
+            "h-full px-6 py-3 transition-all rounded-r-full font-bold",
+            variant === 'dark'
+              ? query.trim()
+                ? "bg-gradient-to-r from-[#E85A28] to-[#FF6B35] text-white shadow-lg hover:shadow-xl hover:scale-[1.02]"
+                : "bg-white/5 text-white/40"
+              : query.trim() 
+                ? "bg-accent-gradient text-white" 
+                : "bg-transparent text-slate-400",
+            "hover:shadow-inner disabled:cursor-not-allowed"
           )}
           aria-label="Pretraži"
           disabled={!query.trim()}
         >
-          <span className="text-sm font-medium">Traži</span>
+          <span className="text-sm font-bold">Traži</span>
         </button>
       </div>
       
