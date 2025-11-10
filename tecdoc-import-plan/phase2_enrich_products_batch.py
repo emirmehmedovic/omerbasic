@@ -24,21 +24,30 @@ logging.basicConfig(
 )
 
 class TecDocEnricherBatch:
-    def __init__(self):
-        """Inicijalizacija konekcija"""
+    def __init__(self, tecdoc_host="localhost", tecdoc_port=3306):
+        """
+        Inicijalizacija konekcija
+        
+        Args:
+            tecdoc_host: TecDoc MySQL host (default: localhost)
+            tecdoc_port: TecDoc MySQL port (default: 3306, koristi 3307 za SSH tunel)
+        """
         
         # TecDoc MySQL
+        logging.info(f"Connecting to TecDoc MySQL at {tecdoc_host}:{tecdoc_port}")
         self.tecdoc_conn = mysql.connector.connect(
-            host="localhost",
+            host=tecdoc_host,
+            port=tecdoc_port,
             user="root",
             password="",
             database="tecdoc1q2019",
             connect_timeout=300
         )
         
-        # Postgres (Neon)
+        # Postgres (Production VPS - localhost jer skripta radi na VPS-u)
+        logging.info("Connecting to Production PostgreSQL at localhost:5432")
         self.prod_conn = psycopg2.connect(
-            "postgresql://neondb_owner:npg_fr1hSiyUN0gR@ep-floral-frog-a28sjyps-pooler.eu-central-1.aws.neon.tech/neondb?sslmode=require",
+            "postgresql://emiir:emirMehmedovic123456789omerbasic@localhost:5432/omerbasicdb",
             connect_timeout=300
         )
         
@@ -1341,14 +1350,27 @@ def main():
     """Main funkcija"""
     
     import sys
+    import argparse
     
-    # Provjeri da li je --force argument
-    force_rerun = '--force' in sys.argv
+    parser = argparse.ArgumentParser(description='TecDoc Product Enrichment - Batch Processing')
+    parser.add_argument('--force', action='store_true', help='Force re-process all products from beginning')
+    parser.add_argument('--limit', type=int, help='Limit number of products to process (for testing)')
+    parser.add_argument('--tecdoc-host', default='localhost', help='TecDoc MySQL host (default: localhost)')
+    parser.add_argument('--tecdoc-port', type=int, default=3306, help='TecDoc MySQL port (default: 3306, use 3307 for SSH tunnel)')
     
-    enricher = TecDocEnricherBatch()
+    args = parser.parse_args()
+    
+    logging.info(f"🚀 Starting TecDoc Enrichment")
+    logging.info(f"   TecDoc MySQL: {args.tecdoc_host}:{args.tecdoc_port}")
+    logging.info(f"   PostgreSQL: localhost:5432 (production)")
+    logging.info(f"   Force mode: {args.force}")
+    if args.limit:
+        logging.info(f"   Limit: {args.limit} products")
+    
+    enricher = TecDocEnricherBatch(tecdoc_host=args.tecdoc_host, tecdoc_port=args.tecdoc_port)
     
     try:
-        if force_rerun:
+        if args.force:
             logging.info("🔄 FORCE MODE: Re-processing ALL products from the beginning!")
             enricher.run(batch_size=50, force_rerun=True)
         else:
