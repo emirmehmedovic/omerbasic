@@ -143,30 +143,30 @@ const Footer = () => {
                   <MapPin className="w-4 h-4 text-white" />
                 </div>
                 <div>
-                  <p className="text-slate-700 text-sm font-medium">Rosulje bb, Jelah</p>
+                  <p className="text-slate-700 text-sm font-medium">Braće Omerbasić 65, Jelah 74264 Tešanj</p>
                 </div>
               </div>
-              
+
               <div className="flex items-start space-x-3 bg-white/60 backdrop-blur-sm p-3 rounded-xl border border-white/60 hover:bg-white/80 transition-colors">
                 <div className="mt-0.5 p-1.5 rounded-lg bg-gradient-to-br from-primary to-primary-dark">
                   <Phone className="w-4 h-4 text-white" />
                 </div>
                 <div>
                   <p className="text-slate-700 text-sm font-medium">
-                    <a href="tel:+38732666658" className="hover:text-[#E85A28] transition-colors">032/666-658</a>
+                    <a href="tel:+38732666536" className="hover:text-sunfire-600 transition-colors">032/666-536</a>
                     {' '}•{' '}
-                    <a href="tel:+38761962359" className="hover:text-[#E85A28] transition-colors">061-962-359</a>
+                    <a href="tel:+38761847203" className="hover:text-sunfire-600 transition-colors">061/847-203</a>
                   </p>
                 </div>
               </div>
-              
+
               <div className="flex items-start space-x-3 bg-white/60 backdrop-blur-sm p-3 rounded-xl border border-white/60 hover:bg-white/80 transition-colors">
                 <div className="mt-0.5 p-1.5 rounded-lg bg-gradient-to-br from-primary to-primary-dark">
                   <Mail className="w-4 h-4 text-white" />
                 </div>
                 <div>
                   <p className="text-slate-700 text-sm font-medium">
-                    <a href="mailto:veleprodajatpo@gmail.com" className="hover:text-[#E85A28] transition-colors">veleprodajatpo@gmail.com</a>
+                    <a href="mailto:tpomerbasic@bih.net.ba" className="hover:text-sunfire-600 transition-colors">tpomerbasic@bih.net.ba</a>
                   </p>
                 </div>
               </div>

@@ -1,0 +1,174 @@
+2025-11-10 18:50:01,102 - INFO - 🚀 Starting TecDoc Enrichment
+2025-11-10 18:50:01,102 - INFO -    TecDoc MySQL: localhost:3306
+2025-11-10 18:50:01,102 - INFO -    PostgreSQL: Neon TEST (copy of production) ⚠️
+2025-11-10 18:50:01,102 - INFO -    Force mode: True
+2025-11-10 18:50:01,102 - INFO -    Limit: 5 products
+2025-11-10 18:50:01,102 - INFO - Connecting to TecDoc MySQL at localhost:3306
+2025-11-10 18:50:01,188 - INFO - Connecting to Neon TEST PostgreSQL (copy of production)
+2025-11-10 18:50:01,470 - INFO - ✅ Database connections established
+2025-11-10 18:50:01,470 - INFO - 🔄 FORCE MODE: Re-processing ALL products from the beginning!
+2025-11-10 18:50:01,470 - INFO - 
+######################################################################
+2025-11-10 18:50:01,470 - INFO - 🚀 FAZA 2 - Batch Obogaćivanje Proizvoda
+2025-11-10 18:50:01,470 - INFO - ######################################################################
+
+2025-11-10 18:50:01,470 - INFO - 🔄 FORCE MODE: Starting from offset 0 (re-processing ALL)
+2025-11-10 18:50:01,562 - INFO - 
+======================================================================
+2025-11-10 18:50:01,562 - INFO - 📦 BATCH #1 (offset: 0, size: 50)
+2025-11-10 18:50:01,562 - INFO - ======================================================================
+2025-11-10 18:50:01,562 - INFO - [1/50] 15-0295-00-9 - SVJETLO REGISTARSKE TABLICE...
+2025-11-10 18:50:01,674 - INFO -    ✅ Updated categoryId: Električni sistem
+2025-11-10 18:50:01,798 - INFO -    ✅ Saved 1 attribute(s) to technicalSpecs
+2025-11-10 18:50:02,282 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:50:02,313 - INFO -    ⏭️  oemNumber already set: 63267193293
+2025-11-10 18:50:02,368 - INFO - [2/50] 83815 - MIRIS AROMA CAR JELKICA XTRA BUBBLE GUM...
+2025-11-10 18:50:02,460 - INFO -    ✅ Updated categoryId: Električni sistem
+2025-11-10 18:50:03,205 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:50:03,236 - INFO -    ⏭️  oemNumber already set: 1447912
+2025-11-10 18:50:03,288 - INFO - [3/50] 83811 - MIRIS AROMA CAR JELKICA XTRA VANILIA...
+2025-11-10 18:50:03,389 - INFO -    ✅ Updated categoryId: Električni sistem
+2025-11-10 18:50:04,151 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:50:04,223 - INFO -    ⏭️  oemNumber already set: 0061514801
+2025-11-10 18:50:04,278 - INFO - [4/50] 525601 - MIRIS WUNDER BAUM CLIP CHERRY...
+2025-11-10 18:50:04,376 - INFO -    ✅ Updated categoryId: Pogon na točkove
+2025-11-10 18:50:04,469 - INFO -    ✅ Saved 1 attribute(s) to technicalSpecs
+2025-11-10 18:50:04,534 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:50:04,563 - INFO -    ⏭️  oemNumber already set: 44017T0AA00
+2025-11-10 18:50:04,616 - INFO - [5/50] 791520 - MANNOL EXTREME 5W40 20L SN/CH A3/B4 VW 5...
+2025-11-10 18:50:04,711 - INFO -    ✅ Updated categoryId: Motor
+2025-11-10 18:50:04,809 - INFO -    ✅ Saved 2 attribute(s) to technicalSpecs
+2025-11-10 18:50:05,554 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:50:05,584 - INFO -    ⏭️  oemNumber already set: RF1G-12-205
+2025-11-10 18:50:05,640 - INFO - [6/50] FS1280 - FILTER GORIVA...
+2025-11-10 18:50:05,741 - INFO -    ✅ Updated categoryId: Filteri
+2025-11-10 18:50:05,832 - INFO -    ✅ Saved 3 attribute(s) to technicalSpecs
+2025-11-10 18:50:06,563 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:50:06,594 - INFO -    ⏭️  oemNumber already set: 3417710
+2025-11-10 18:50:06,649 - INFO - [7/50] 24.8190-0067.2 - KABAL DISK PL.M-176/246 A/B 12-...
+2025-11-10 18:50:06,712 - INFO -    ✅ Saved 1 attribute(s) to technicalSpecs
+2025-11-10 18:50:07,441 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:50:07,471 - INFO -    ⏭️  oemNumber already set: 221106
+2025-11-10 18:50:07,522 - INFO - [8/50] 5808 - KAPA MUŠKA KAMLOK SPOJKE 2...
+2025-11-10 18:50:07,612 - INFO -    ✅ Updated categoryId: Sistemi udobnosti
+2025-11-10 18:50:07,706 - INFO -    ✅ Saved 2 attribute(s) to technicalSpecs
+2025-11-10 18:50:08,206 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:50:08,237 - INFO -    ⏭️  oemNumber already set: 96602004
+2025-11-10 18:50:08,292 - INFO - [9/50] 5821 - STORZ SPOJKA 3...
+2025-11-10 18:50:08,389 - INFO -    ✅ Updated categoryId: Posebni alati
+2025-11-10 18:50:08,479 - INFO -    ✅ Saved 1 attribute(s) to technicalSpecs
+2025-11-10 18:50:08,798 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:50:08,828 - INFO -    ⏭️  oemNumber already set: 96590723
+2025-11-10 18:50:08,879 - INFO - [10/50] D10326TT - PUMPA VODE...
+2025-11-10 18:50:08,973 - INFO -    ✅ Updated categoryId: Sistem za hlađenje
+2025-11-10 18:50:09,714 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:50:09,753 - INFO -    ⏭️  oemNumber already set: 216929
+2025-11-10 18:50:09,805 - INFO - [11/50] 5824 - KAPA ŽENSKA KAMLOK SPOJKE 2"...
+2025-11-10 18:50:09,868 - INFO -    ✅ Saved 3 attribute(s) to technicalSpecs
+2025-11-10 18:50:09,933 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:50:09,988 - INFO - [12/50] 0483 - KAMLOK SPOJKA MT 2"...
+2025-11-10 18:50:10,090 - INFO -    ✅ Updated categoryId: Formiranje smjese goriva
+2025-11-10 18:50:10,180 - INFO -    ✅ Saved 6 attribute(s) to technicalSpecs
+2025-11-10 18:50:10,426 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:50:10,456 - INFO -    ⏭️  oemNumber already set: 8942165890
+2025-11-10 18:50:10,510 - INFO - [13/50] 5797 - KAMLOK SPOJKA VT 2"...
+2025-11-10 18:50:10,605 - INFO -    ✅ Updated categoryId: Pogon na točkove
+2025-11-10 18:50:10,702 - INFO -    ✅ Saved 6 attribute(s) to technicalSpecs
+2025-11-10 18:50:11,080 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:50:11,110 - INFO -    ⏭️  oemNumber already set: ADU5308
+2025-11-10 18:50:11,165 - INFO - [14/50] 18548 - Selen blok lafete prednje osovine...
+2025-11-10 18:50:11,228 - INFO -    ✅ Saved 4 attribute(s) to technicalSpecs
+2025-11-10 18:50:11,986 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:50:12,039 - INFO -    ⏭️  oemNumber already set: 158944
+2025-11-10 18:50:12,094 - INFO - [15/50] 58006173 - HL.GRIJANJA GOLF 4/OCTAVIA BRZA SPOJKA...
+2025-11-10 18:50:12,191 - INFO -    ✅ Saved 4 attribute(s) to technicalSpecs
+2025-11-10 18:50:12,934 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:50:12,964 - INFO -    ⏭️  oemNumber already set: 445354
+2025-11-10 18:50:13,016 - INFO - [16/50] TC649 - LAFET ASTRA DX...
+2025-11-10 18:50:13,109 - INFO -    ✅ Updated categoryId: Pogon na točkove
+2025-11-10 18:50:13,205 - INFO -    ✅ Saved 5 attribute(s) to technicalSpecs
+2025-11-10 18:50:13,960 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:50:13,989 - INFO -    ⏭️  oemNumber already set: 3273EJ
+2025-11-10 18:50:14,044 - INFO - [17/50] TC648 - LAFET ASTRA LX...
+2025-11-10 18:50:14,138 - INFO -    ✅ Updated categoryId: Pogon na točkove
+2025-11-10 18:50:14,231 - INFO -    ✅ Saved 5 attribute(s) to technicalSpecs
+2025-11-10 18:50:14,977 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:50:15,010 - INFO -    ⏭️  oemNumber already set: 3272EJ
+2025-11-10 18:50:15,062 - INFO - [18/50] 581364 - GUMA SAVA185/60 R15 84T ZIMSKA S3+ MS...
+2025-11-10 18:50:15,153 - INFO -    ✅ Updated categoryId: Motor
+2025-11-10 18:50:15,217 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:50:15,268 - INFO - [19/50] 820310 - MANNOL ATF 10L C3...
+2025-11-10 18:50:15,365 - INFO -    ✅ Updated categoryId: Pogon na točkove
+2025-11-10 18:50:15,457 - INFO -    ✅ Saved 4 attribute(s) to technicalSpecs
+2025-11-10 18:50:15,518 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:50:15,573 - INFO - [20/50] 532509 - GUMA SAVA 225/55 R16 95H ESKIMO HP2...
+2025-11-10 18:50:15,667 - INFO -    ✅ Updated categoryId: Izduvni sistem
+2025-11-10 18:50:15,821 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:50:15,860 - INFO -    ⏭️  oemNumber already set: 84AB5310FA
+2025-11-10 18:50:15,912 - INFO - [21/50] 0443 - PRETVARAČ STRUJE MAX 220V-12V 3A...
+2025-11-10 18:50:16,135 - INFO -    ✅ Updated categoryId: Formiranje smjese goriva
+2025-11-10 18:50:16,484 - INFO -    ✅ Saved 4 attribute(s) to technicalSpecs
+2025-11-10 18:50:16,661 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:50:16,718 - INFO - [22/50] 915.017 - GUMICE POKLOPCA VENTILA...
+2025-11-10 18:50:17,049 - INFO -    ✅ Updated categoryId: Motor
+2025-11-10 18:50:17,367 - INFO -    ✅ Saved 2 attribute(s) to technicalSpecs
+2025-11-10 18:50:18,462 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:50:18,494 - INFO -    ⏭️  oemNumber already set: 225947
+2025-11-10 18:50:18,546 - INFO - [23/50] 915.009 - GUMICE POKLOPCA VENTILA...
+2025-11-10 18:50:18,650 - INFO -    ✅ Updated categoryId: Motor
+2025-11-10 18:50:18,740 - INFO -    ✅ Saved 2 attribute(s) to technicalSpecs
+2025-11-10 18:50:19,404 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:50:19,436 - INFO -    ⏭️  oemNumber already set: 67534
+2025-11-10 18:50:19,489 - INFO - [24/50] 15750 - SPOJKA GSV -1 (1")...
+2025-11-10 18:50:19,599 - INFO -    ✅ Updated categoryId: Kočioni sistem
+2025-11-10 18:50:19,690 - INFO -    ✅ Saved 9 attribute(s) to technicalSpecs
+2025-11-10 18:50:20,462 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:50:20,494 - INFO -    ⏭️  oemNumber already set: 569014
+2025-11-10 18:50:20,549 - INFO - [25/50] 3 397 014 009 - MET. BRISAČA A009S...
+2025-11-10 18:50:20,612 - INFO -    ✅ Saved 3 attribute(s) to technicalSpecs
+2025-11-10 18:50:21,017 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:50:21,048 - INFO -    ⏭️  oemNumber already set: A009S
+2025-11-10 18:50:21,104 - INFO - [26/50] 047417 - KOPČA SIGURNOSNOG POJASA METAL/PLASTIKA ...
+2025-11-10 18:50:21,197 - INFO -    ✅ Updated categoryId: Električni sistem
+2025-11-10 18:50:21,291 - INFO -    ✅ Saved 2 attribute(s) to technicalSpecs
+2025-11-10 18:50:21,354 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:50:21,384 - INFO -    ⏭️  oemNumber already set: 5G0941661F
+2025-11-10 18:50:21,438 - INFO - [27/50] 232043 - SAJLA PVC 6MM...
+2025-11-10 18:50:21,531 - INFO -    ✅ Updated categoryId: Izduvni sistem
+2025-11-10 18:50:21,598 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:50:21,653 - INFO - [28/50] 45000055301 - MOST ZADNJI GOLF 4...
+2025-11-10 18:50:21,750 - INFO -    ✅ Updated categoryId: Osovine / upravljanje / točkovi
+2025-11-10 18:50:21,845 - INFO -    ✅ Saved 1 attribute(s) to technicalSpecs
+2025-11-10 18:50:22,311 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:50:22,346 - INFO -    ⏭️  oemNumber already set: 89910
+2025-11-10 18:50:22,400 - INFO - [29/50] 4072954 - OPRUGA AMORTIZERA RENAULT 4072954 PR.MEG...
+2025-11-10 18:50:22,497 - INFO -    ✅ Updated categoryId: Izduvni sistem
+2025-11-10 18:50:22,588 - INFO -    ✅ Saved 1 attribute(s) to technicalSpecs
+2025-11-10 18:50:23,360 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:50:23,390 - INFO -    ⏭️  oemNumber already set: 8200106137
+2025-11-10 18:50:23,441 - INFO - [30/50] 803118 - MANNOL MAST LITHIUM GREASE LT-43 18KG...
+2025-11-10 18:50:23,536 - INFO -    ✅ Updated categoryId: Osovine / upravljanje / točkovi
+2025-11-10 18:50:23,603 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:50:23,655 - INFO - [31/50] 994370 - OPRUGA ZADNJA...
+2025-11-10 18:50:23,748 - INFO -    ✅ Updated categoryId: Izduvni sistem
+2025-11-10 18:50:23,838 - INFO -    ✅ Saved 4 attribute(s) to technicalSpecs
+2025-11-10 18:50:24,357 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:50:24,390 - INFO -    ⏭️  oemNumber already set: 3C0 511 115 AH
+2025-11-10 18:50:24,442 - INFO - [32/50] 7.07381.09.0 - PUMPA ULJA...
+2025-11-10 18:50:24,540 - INFO -    ✅ Updated categoryId: Motor
+2025-11-10 18:50:24,703 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:50:24,733 - INFO -    ⏭️  oemNumber already set: 15 00 098 46R
+2025-11-10 18:50:24,784 - INFO - [33/50] 215.870 - ČEP BREGASTE...
+2025-11-10 18:50:24,880 - INFO -    ✅ Updated categoryId: Motor
+2025-11-10 18:50:25,655 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:50:25,686 - INFO -    ⏭️  oemNumber already set: 116824
+2025-11-10 18:50:25,737 - INFO - [34/50] YTZ10S - Akumulator Moto AGM 12V- 9 Ah L YTZ10S 1...
+2025-11-10 18:50:25,830 - INFO -    ✅ Updated categoryId: Električni sistem
+2025-11-10 18:50:25,921 - INFO -    ✅ Saved 6 attribute(s) to technicalSpecs
+2025-11-10 18:50:25,988 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:50:26,044 - INFO - [35/50] 10 93 8952 - NOSAČ AMORT.M-169/245 (+LEŽ)...
+2025-11-10 18:50:26,141 - INFO -    ✅ Updated categoryId: Klima uređaj
+2025-11-10 18:50:26,236 - INFO -    ✅ Saved 4 attribute(s) to technicalSpecs
+2025-11-10 18:50:26,338 - INFO - 
+⚠️  Interrupted by user - progress saved!
+2025-11-10 18:50:26,349 - INFO - 🔌 Database connections closed

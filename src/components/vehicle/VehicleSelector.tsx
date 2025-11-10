@@ -518,7 +518,7 @@ export default function VehicleSelector({
         </div>
       )}
       {/* Step chips header (visual only) */}
-      <div className="mb-3">
+      <div className="mb-6">
         {(() => {
           const brandDone = !!selectedBrandId;
           const modelDone = !!selectedModelId;
@@ -552,7 +552,7 @@ export default function VehicleSelector({
           const progress = brandDone ? (modelDone ? (generationDone ? (engineDone ? 100 : 75) : 50) : 25) : 0;
           return (
             <div>
-              <div className={cn("flex items-center gap-2 flex-wrap mb-3", isLight ? "text-slate-600" : "text-slate-300")}> 
+              <div className={cn("flex items-center gap-2 flex-wrap mb-4", isLight ? "text-slate-600" : "text-slate-300")}>
                 <Chip label="Marka" done={brandDone} active={!brandDone} stepNum={1} />
                 <ChevronRight className={cn("w-4 h-4 transition-colors", brandDone ? "text-primary" : "text-slate-400")} />
                 <Chip label="Model" done={modelDone} active={brandDone && !modelDone} stepNum={2} />
@@ -561,34 +561,36 @@ export default function VehicleSelector({
                 <ChevronRight className={cn("w-4 h-4 transition-colors", generationDone ? "text-primary" : "text-slate-400")} />
                 <Chip label="Motor" done={engineDone} active={generationDone && !engineDone} stepNum={4} />
               </div>
-              {/* Progress bar */}
-              <div className="relative">
-                <div className="w-full h-2 bg-slate-200/80 rounded-full overflow-hidden shadow-inner">
-                  <div 
-                    className={cn(
-                      "h-full bg-gradient-to-r from-primary via-primary-dark to-primary transition-all duration-500 ease-out rounded-full relative overflow-hidden",
-                      progress === 100 && "shadow-lg shadow-primary/50"
-                    )}
-                    style={{ width: `${progress}%` }}
-                  >
-                    {/* Shimmer effect */}
-                    {progress > 0 && progress < 100 && (
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-[shimmer_2s_infinite]" 
-                           style={{ backgroundSize: '200% 100%' }} />
-                    )}
+              {/* Progress bar with label below */}
+              <div className="space-y-2">
+                <div className="relative">
+                  <div className="w-full h-2 bg-slate-200/80 rounded-full overflow-hidden shadow-inner">
+                    <div
+                      className={cn(
+                        "h-full bg-gradient-to-r from-primary via-primary-dark to-primary transition-all duration-500 ease-out rounded-full relative overflow-hidden",
+                        progress === 100 && "shadow-lg shadow-primary/50"
+                      )}
+                      style={{ width: `${progress}%` }}
+                    >
+                      {/* Shimmer effect */}
+                      {progress > 0 && progress < 100 && (
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-[shimmer_2s_infinite]"
+                             style={{ backgroundSize: '200% 100%' }} />
+                      )}
+                    </div>
                   </div>
+                  {progress === 100 && (
+                    <div className="absolute -top-1 right-0 animate-in slide-in-from-right duration-500">
+                      <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold bg-gradient-to-r from-primary via-primary-dark to-primary text-white shadow-lg">
+                        <CheckCircle2 className="w-3 h-3" />
+                        Kompletno
+                      </span>
+                    </div>
+                  )}
                 </div>
-                {progress === 100 && (
-                  <div className="absolute -top-1 right-0 animate-in slide-in-from-right duration-500">
-                    <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-bold bg-gradient-to-r from-primary via-primary-dark to-primary text-white shadow-lg">
-                      <CheckCircle2 className="w-3 h-3" />
-                      Kompletno
-                    </span>
-                  </div>
-                )}
-                {/* Progress percentage */}
+                {/* Progress percentage - below the bar */}
                 {progress > 0 && progress < 100 && heroMode && (
-                  <div className="absolute -top-6 left-0 text-[10px] font-bold text-primary">
+                  <div className="text-[10px] font-bold text-primary">
                     {progress}% završeno
                   </div>
                 )}

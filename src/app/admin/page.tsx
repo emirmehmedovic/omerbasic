@@ -1,6 +1,6 @@
 import { db } from '@/lib/db';
 import { StatCard } from '@/components/admin/StatCard';
-import { DollarSign, Package, ShoppingCart, Users, Plus, Settings, BarChart3, TrendingUp, Users2, ShoppingBag } from 'lucide-react';
+import { DollarSign, Package, ShoppingCart, Users, Plus, Settings, BarChart3, TrendingUp, Users2, ShoppingBag, MessageSquare } from 'lucide-react';
 import Link from 'next/link';
 import { formatPrice } from '@/lib/utils';
 
@@ -156,8 +156,8 @@ export default async function AdminDashboardPage() {
             </div>
           </Link>
 
-          <Link 
-            href="/admin/suppliers" 
+          <Link
+            href="/admin/suppliers"
             className="group flex items-center p-4 bg-gradient-to-r from-white/80 to-gray-50/80 backdrop-blur-sm rounded-xl border border-amber/20 shadow-sm hover:shadow-lg hover:border-amber/30 transition-all duration-200"
           >
             <div className="p-3 rounded-lg bg-gradient-to-r from-amber/10 to-orange/10 border border-amber/20 mr-4 group-hover:from-amber/20 group-hover:to-orange/20 transition-all duration-200">
@@ -166,6 +166,32 @@ export default async function AdminDashboardPage() {
             <div>
               <h3 className="font-medium text-gray-900 group-hover:text-gray-800 transition-colors duration-200">Upravljaj dobavljačima</h3>
               <p className="text-sm text-gray-600">Pregledaj i uredi dobavljače</p>
+            </div>
+          </Link>
+
+          <Link
+            href="/admin/transport-requests"
+            className="group flex items-center p-4 bg-gradient-to-r from-white/80 to-gray-50/80 backdrop-blur-sm rounded-xl border border-amber/20 shadow-sm hover:shadow-lg hover:border-amber/30 transition-all duration-200"
+          >
+            <div className="p-3 rounded-lg bg-gradient-to-r from-orange/10 to-orange/20 border border-orange/30 mr-4 group-hover:from-orange/20 group-hover:to-orange/30 transition-all duration-200">
+              <ShoppingCart className="h-6 w-6 text-orange-600 group-hover:text-orange-700 transition-colors duration-200" />
+            </div>
+            <div>
+              <h3 className="font-medium text-gray-900 group-hover:text-gray-800 transition-colors duration-200">Transport zahtjevi</h3>
+              <p className="text-sm text-gray-600">Pregled i upravljanje transport zahtjevima</p>
+            </div>
+          </Link>
+
+          <Link
+            href="/admin/requests"
+            className="group flex items-center p-4 bg-gradient-to-r from-white/80 to-gray-50/80 backdrop-blur-sm rounded-xl border border-amber/20 shadow-sm hover:shadow-lg hover:border-amber/30 transition-all duration-200"
+          >
+            <div className="p-3 rounded-lg bg-gradient-to-r from-amber/10 to-orange/10 border border-amber/20 mr-4 group-hover:from-amber/20 group-hover:to-orange/20 transition-all duration-200">
+              <MessageSquare className="h-6 w-6 text-amber group-hover:text-orange transition-colors duration-200" />
+            </div>
+            <div>
+              <h3 className="font-medium text-gray-900 group-hover:text-gray-800 transition-colors duration-200">Kontakt zahtjevi</h3>
+              <p className="text-sm text-gray-600">Pregled kontakt zahtjeva i B2B aplikacija</p>
             </div>
           </Link>
         </div>

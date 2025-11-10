@@ -7,11 +7,11 @@ import { ArrowRight } from 'lucide-react';
 import { ProductCard } from '@/components/ProductCard';
 import { FeaturedBrands } from '@/components/FeaturedBrands';
 import { Hero } from '@/components/Home/Hero';
-import { ValueProps } from '@/components/Home/ValueProps';
 import { CategoryGrid } from '@/components/Home/CategoryGrid';
 import { CategoriesStrip } from '@/components/Home/CategoriesStrip';
 import { PromoBanner } from '@/components/Home/PromoBanner';
 import { ProductsTabs } from '@/components/Home/ProductsTabs';
+import { FeaturedProductsSlider } from '@/components/Home/FeaturedProductsSlider';
 import { SocialProof } from '@/components/Home/SocialProof';
 import { InfoBar } from '@/components/Home/InfoBar';
 import { StatsAndContact } from '@/components/Home/StatsAndContact';
@@ -39,7 +39,7 @@ const getMainCategories = unstable_cache(
 const getLatestProducts = unstable_cache(
   async () => {
     return db.product.findMany({
-      take: 8,
+      take: 50,
       orderBy: { createdAt: 'desc' },
       include: { category: true },
     });
@@ -95,7 +95,7 @@ export default async function HomePage() {
         </Suspense>
         <CategoriesStrip categories={mainCategories as any} />
         <ProductsTabs latest={latestProducts as any} top={latestProducts as any} />
-        <ValueProps />
+        <FeaturedProductsSlider products={latestProducts as any} />
         <TransportQuote />
         <PromoBanner />
         <StatsAndContact />

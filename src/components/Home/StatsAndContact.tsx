@@ -46,18 +46,18 @@ export function StatsAndContact() {
 
           {/* Contact tiles */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-slate-800">
-            <a href="tel:+38732666658" className="flex items-center gap-3 rounded-xl border border-white/60 bg-white/90 backdrop-blur-sm p-4 shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300">
+            <a href="tel:+38732666536" className="flex items-center gap-3 rounded-xl border border-white/60 bg-white/90 backdrop-blur-sm p-4 shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300">
               <div className="rounded-xl bg-gradient-to-br from-primary to-primary-dark p-2.5 shadow-lg"><Phone className="w-5 h-5 text-white" /></div>
               <div className="text-sm">
                 <div className="font-bold text-primary">Pozovite nas</div>
-                <div className="text-slate-700 font-medium">032/666-658 • 061-962-359</div>
+                <div className="text-slate-700 font-medium">032/666-536 • 061/847-203</div>
               </div>
             </a>
-            <Link href="mailto:veleprodajatpo@gmail.com" className="flex items-center gap-3 rounded-xl border border-white/60 bg-white/90 backdrop-blur-sm p-4 shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300">
+            <Link href="mailto:tpomerbasic@bih.net.ba" className="flex items-center gap-3 rounded-xl border border-white/60 bg-white/90 backdrop-blur-sm p-4 shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300">
               <div className="rounded-xl bg-gradient-to-br from-primary to-primary-dark p-2.5 shadow-lg"><Mail className="w-5 h-5 text-white" /></div>
               <div className="text-sm">
                 <div className="font-bold text-primary">Pošaljite email</div>
-                <div className="text-slate-700 font-medium">veleprodajatpo@gmail.com</div>
+                <div className="text-slate-700 font-medium">tpomerbasic@bih.net.ba</div>
               </div>
             </Link>
             <div className="flex items-center gap-3 rounded-xl border border-white/60 bg-white/90 backdrop-blur-sm p-4 shadow-lg">
@@ -68,14 +68,14 @@ export function StatsAndContact() {
               </div>
             </div>
             <Link
-              href="https://maps.google.com/?q=Rosulje+bb,+Jelah"
+              href="https://maps.google.com/?q=Brace+Omerbasic+65,+Jelah,+Tesanj"
               target="_blank"
               className="flex items-center gap-3 rounded-xl border border-white/60 bg-white/90 backdrop-blur-sm p-4 shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300"
             >
               <div className="rounded-xl bg-gradient-to-br from-primary to-primary-dark p-2.5 shadow-lg"><MapPin className="w-5 h-5 text-white" /></div>
               <div className="text-sm">
                 <div className="font-bold text-primary">Adresa</div>
-                <div className="text-slate-700 font-medium">Rosulje bb, Jelah</div>
+                <div className="text-slate-700 font-medium">Braće Omerbasić 65, Tešanj</div>
               </div>
             </Link>
           </div>

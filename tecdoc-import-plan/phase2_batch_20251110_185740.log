@@ -1,0 +1,254 @@
+2025-11-10 18:57:40,062 - INFO - 🚀 Starting TecDoc Enrichment
+2025-11-10 18:57:40,062 - INFO -    TecDoc MySQL: localhost:3306
+2025-11-10 18:57:40,062 - INFO -    PostgreSQL: Neon TEST (copy of production) ⚠️
+2025-11-10 18:57:40,063 - INFO -    Force mode: True
+2025-11-10 18:57:40,063 - INFO -    Limit: 5 products
+2025-11-10 18:57:40,063 - INFO - Connecting to TecDoc MySQL at localhost:3306
+2025-11-10 18:57:40,138 - INFO - Connecting to Neon TEST PostgreSQL (copy of production)
+2025-11-10 18:57:40,939 - INFO - ✅ Database connections established
+2025-11-10 18:57:40,939 - INFO - 🔄 FORCE MODE: Re-processing ALL products from the beginning!
+2025-11-10 18:57:40,939 - INFO - 
+######################################################################
+2025-11-10 18:57:40,939 - INFO - 🚀 FAZA 2 - Batch Obogaćivanje Proizvoda
+2025-11-10 18:57:40,939 - INFO - ######################################################################
+
+2025-11-10 18:57:40,939 - INFO - 🔄 FORCE MODE: Starting from offset 0 (re-processing ALL)
+2025-11-10 18:57:41,168 - INFO - 
+======================================================================
+2025-11-10 18:57:41,168 - INFO - 📦 BATCH #1 (offset: 0, size: 50)
+2025-11-10 18:57:41,168 - INFO - ======================================================================
+2025-11-10 18:57:41,168 - INFO - [1/50] 15-0295-00-9 - SVJETLO REGISTARSKE TABLICE...
+2025-11-10 18:57:41,417 - INFO -    ✅ Updated categoryId: Električni sistem
+2025-11-10 18:57:41,506 - INFO -    ✅ Saved 1 attribute(s) to technicalSpecs
+2025-11-10 18:57:41,915 - INFO -    No results from TecDoc passengercars_link_engines query
+2025-11-10 18:57:41,915 - INFO -    ⚠️  No engine-specific vehicles, trying by model...
+2025-11-10 18:57:41,950 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:57:41,981 - INFO -    ⏭️  oemNumber already set: 63267193293
+2025-11-10 18:57:42,036 - INFO - [2/50] 83815 - MIRIS AROMA CAR JELKICA XTRA BUBBLE GUM...
+2025-11-10 18:57:42,166 - INFO -    ✅ Updated categoryId: Električni sistem
+2025-11-10 18:57:42,811 - INFO -    No results from TecDoc passengercars_link_engines query
+2025-11-10 18:57:42,811 - INFO -    ⚠️  No engine-specific vehicles, trying by model...
+2025-11-10 18:57:42,842 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:57:42,872 - INFO -    ⏭️  oemNumber already set: 1447912
+2025-11-10 18:57:42,926 - INFO - [3/50] 83811 - MIRIS AROMA CAR JELKICA XTRA VANILIA...
+2025-11-10 18:57:43,017 - INFO -    ✅ Updated categoryId: Električni sistem
+2025-11-10 18:57:43,646 - INFO -    No results from TecDoc passengercars_link_engines query
+2025-11-10 18:57:43,647 - INFO -    ⚠️  No engine-specific vehicles, trying by model...
+2025-11-10 18:57:43,676 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:57:43,704 - INFO -    ⏭️  oemNumber already set: 0061514801
+2025-11-10 18:57:43,760 - INFO - [4/50] 525601 - MIRIS WUNDER BAUM CLIP CHERRY...
+2025-11-10 18:57:43,902 - INFO -    ✅ Updated categoryId: Pogon na točkove
+2025-11-10 18:57:43,995 - INFO -    ✅ Saved 1 attribute(s) to technicalSpecs
+2025-11-10 18:57:44,000 - INFO -    No results from TecDoc passengercars_link_engines query
+2025-11-10 18:57:44,000 - INFO -    ⚠️  No engine-specific vehicles, trying by model...
+2025-11-10 18:57:44,058 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:57:44,087 - INFO -    ⏭️  oemNumber already set: 44017T0AA00
+2025-11-10 18:57:44,140 - INFO - [5/50] 791520 - MANNOL EXTREME 5W40 20L SN/CH A3/B4 VW 5...
+2025-11-10 18:57:44,247 - INFO -    ✅ Updated categoryId: Motor
+2025-11-10 18:57:44,339 - INFO -    ✅ Saved 2 attribute(s) to technicalSpecs
+2025-11-10 18:57:44,976 - INFO -    No results from TecDoc passengercars_link_engines query
+2025-11-10 18:57:44,976 - INFO -    ⚠️  No engine-specific vehicles, trying by model...
+2025-11-10 18:57:45,006 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:57:45,036 - INFO -    ⏭️  oemNumber already set: RF1G-12-205
+2025-11-10 18:57:45,091 - INFO - [6/50] FS1280 - FILTER GORIVA...
+2025-11-10 18:57:45,195 - INFO -    ✅ Updated categoryId: Filteri
+2025-11-10 18:57:45,286 - INFO -    ✅ Saved 3 attribute(s) to technicalSpecs
+2025-11-10 18:57:46,030 - INFO -    No results from TecDoc passengercars_link_engines query
+2025-11-10 18:57:46,031 - INFO -    ⚠️  No engine-specific vehicles, trying by model...
+2025-11-10 18:57:46,061 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:57:46,090 - INFO -    ⏭️  oemNumber already set: 3417710
+2025-11-10 18:57:46,146 - INFO - [7/50] 24.8190-0067.2 - KABAL DISK PL.M-176/246 A/B 12-...
+2025-11-10 18:57:46,218 - INFO -    ✅ Saved 1 attribute(s) to technicalSpecs
+2025-11-10 18:57:46,873 - INFO -    No results from TecDoc passengercars_link_engines query
+2025-11-10 18:57:46,873 - INFO -    ⚠️  No engine-specific vehicles, trying by model...
+2025-11-10 18:57:46,902 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:57:46,932 - INFO -    ⏭️  oemNumber already set: 221106
+2025-11-10 18:57:46,983 - INFO - [8/50] 5808 - KAPA MUŠKA KAMLOK SPOJKE 2...
+2025-11-10 18:57:47,094 - INFO -    ✅ Updated categoryId: Sistemi udobnosti
+2025-11-10 18:57:47,183 - INFO -    ✅ Saved 2 attribute(s) to technicalSpecs
+2025-11-10 18:57:47,579 - INFO -    No results from TecDoc passengercars_link_engines query
+2025-11-10 18:57:47,580 - INFO -    ⚠️  No engine-specific vehicles, trying by model...
+2025-11-10 18:57:47,608 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:57:47,638 - INFO -    ⏭️  oemNumber already set: 96602004
+2025-11-10 18:57:47,693 - INFO - [9/50] 5821 - STORZ SPOJKA 3...
+2025-11-10 18:57:47,790 - INFO -    ✅ Updated categoryId: Posebni alati
+2025-11-10 18:57:47,878 - INFO -    ✅ Saved 1 attribute(s) to technicalSpecs
+2025-11-10 18:57:48,104 - INFO -    No results from TecDoc passengercars_link_engines query
+2025-11-10 18:57:48,105 - INFO -    ⚠️  No engine-specific vehicles, trying by model...
+2025-11-10 18:57:48,135 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:57:48,163 - INFO -    ⏭️  oemNumber already set: 96590723
+2025-11-10 18:57:48,218 - INFO - [10/50] D10326TT - PUMPA VODE...
+2025-11-10 18:57:48,322 - INFO -    ✅ Updated categoryId: Sistem za hlađenje
+2025-11-10 18:57:48,998 - INFO -    No results from TecDoc passengercars_link_engines query
+2025-11-10 18:57:48,999 - INFO -    ⚠️  No engine-specific vehicles, trying by model...
+2025-11-10 18:57:49,028 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:57:49,057 - INFO -    ⏭️  oemNumber already set: 216929
+2025-11-10 18:57:49,112 - INFO - [11/50] 5824 - KAPA ŽENSKA KAMLOK SPOJKE 2"...
+2025-11-10 18:57:49,181 - INFO -    ✅ Saved 3 attribute(s) to technicalSpecs
+2025-11-10 18:57:49,185 - INFO -    No results from TecDoc passengercars_link_engines query
+2025-11-10 18:57:49,185 - INFO -    ⚠️  No engine-specific vehicles, trying by model...
+2025-11-10 18:57:49,248 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:57:49,303 - INFO - [12/50] 0483 - KAMLOK SPOJKA MT 2"...
+2025-11-10 18:57:49,401 - INFO -    ✅ Updated categoryId: Formiranje smjese goriva
+2025-11-10 18:57:49,491 - INFO -    ✅ Saved 6 attribute(s) to technicalSpecs
+2025-11-10 18:57:49,653 - INFO -    No results from TecDoc passengercars_link_engines query
+2025-11-10 18:57:49,653 - INFO -    ⚠️  No engine-specific vehicles, trying by model...
+2025-11-10 18:57:49,682 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:57:49,710 - INFO -    ⏭️  oemNumber already set: 8942165890
+2025-11-10 18:57:49,762 - INFO - [13/50] 5797 - KAMLOK SPOJKA VT 2"...
+2025-11-10 18:57:49,884 - INFO -    ✅ Updated categoryId: Pogon na točkove
+2025-11-10 18:57:49,975 - INFO -    ✅ Saved 6 attribute(s) to technicalSpecs
+2025-11-10 18:57:50,249 - INFO -    No results from TecDoc passengercars_link_engines query
+2025-11-10 18:57:50,249 - INFO -    ⚠️  No engine-specific vehicles, trying by model...
+2025-11-10 18:57:50,278 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:57:50,307 - INFO -    ⏭️  oemNumber already set: ADU5308
+2025-11-10 18:57:50,358 - INFO - [14/50] 18548 - Selen blok lafete prednje osovine...
+2025-11-10 18:57:50,424 - INFO -    ✅ Saved 4 attribute(s) to technicalSpecs
+2025-11-10 18:57:51,061 - INFO -    No results from TecDoc passengercars_link_engines query
+2025-11-10 18:57:51,061 - INFO -    ⚠️  No engine-specific vehicles, trying by model...
+2025-11-10 18:57:51,090 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:57:51,121 - INFO -    ⏭️  oemNumber already set: 158944
+2025-11-10 18:57:51,176 - INFO - [15/50] 58006173 - HL.GRIJANJA GOLF 4/OCTAVIA BRZA SPOJKA...
+2025-11-10 18:57:51,319 - INFO -    ✅ Saved 4 attribute(s) to technicalSpecs
+2025-11-10 18:57:52,099 - INFO -    No results from TecDoc passengercars_link_engines query
+2025-11-10 18:57:52,099 - INFO -    ⚠️  No engine-specific vehicles, trying by model...
+2025-11-10 18:57:52,129 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:57:52,159 - INFO -    ⏭️  oemNumber already set: 445354
+2025-11-10 18:57:52,214 - INFO - [16/50] TC649 - LAFET ASTRA DX...
+2025-11-10 18:57:52,321 - INFO -    ✅ Updated categoryId: Pogon na točkove
+2025-11-10 18:57:52,431 - INFO -    ✅ Saved 5 attribute(s) to technicalSpecs
+2025-11-10 18:57:53,083 - INFO -    No results from TecDoc passengercars_link_engines query
+2025-11-10 18:57:53,084 - INFO -    ⚠️  No engine-specific vehicles, trying by model...
+2025-11-10 18:57:53,114 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:57:53,145 - INFO -    ⏭️  oemNumber already set: 3273EJ
+2025-11-10 18:57:53,199 - INFO - [17/50] TC648 - LAFET ASTRA LX...
+2025-11-10 18:57:53,305 - INFO -    ✅ Updated categoryId: Pogon na točkove
+2025-11-10 18:57:53,398 - INFO -    ✅ Saved 5 attribute(s) to technicalSpecs
+2025-11-10 18:57:54,047 - INFO -    No results from TecDoc passengercars_link_engines query
+2025-11-10 18:57:54,048 - INFO -    ⚠️  No engine-specific vehicles, trying by model...
+2025-11-10 18:57:54,077 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:57:54,107 - INFO -    ⏭️  oemNumber already set: 3272EJ
+2025-11-10 18:57:54,163 - INFO - [18/50] 581364 - GUMA SAVA185/60 R15 84T ZIMSKA S3+ MS...
+2025-11-10 18:57:54,265 - INFO -    ✅ Updated categoryId: Motor
+2025-11-10 18:57:54,271 - INFO -    No results from TecDoc passengercars_link_engines query
+2025-11-10 18:57:54,271 - INFO -    ⚠️  No engine-specific vehicles, trying by model...
+2025-11-10 18:57:54,337 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:57:54,388 - INFO - [19/50] 820310 - MANNOL ATF 10L C3...
+2025-11-10 18:57:54,483 - INFO -    ✅ Updated categoryId: Pogon na točkove
+2025-11-10 18:57:54,571 - INFO -    ✅ Saved 4 attribute(s) to technicalSpecs
+2025-11-10 18:57:54,575 - INFO -    No results from TecDoc passengercars_link_engines query
+2025-11-10 18:57:54,575 - INFO -    ⚠️  No engine-specific vehicles, trying by model...
+2025-11-10 18:57:54,634 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:57:54,690 - INFO - [20/50] 532509 - GUMA SAVA 225/55 R16 95H ESKIMO HP2...
+2025-11-10 18:57:54,781 - INFO -    ✅ Updated categoryId: Izduvni sistem
+2025-11-10 18:57:54,850 - INFO -    No results from TecDoc passengercars_link_engines query
+2025-11-10 18:57:54,850 - INFO -    ⚠️  No engine-specific vehicles, trying by model...
+2025-11-10 18:57:54,879 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:57:54,911 - INFO -    ⏭️  oemNumber already set: 84AB5310FA
+2025-11-10 18:57:54,961 - INFO - [21/50] 0443 - PRETVARAČ STRUJE MAX 220V-12V 3A...
+2025-11-10 18:57:55,057 - INFO -    ✅ Updated categoryId: Formiranje smjese goriva
+2025-11-10 18:57:55,148 - INFO -    ✅ Saved 4 attribute(s) to technicalSpecs
+2025-11-10 18:57:55,153 - INFO -    No results from TecDoc passengercars_link_engines query
+2025-11-10 18:57:55,154 - INFO -    ⚠️  No engine-specific vehicles, trying by model...
+2025-11-10 18:57:55,217 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:57:55,271 - INFO - [22/50] 915.017 - GUMICE POKLOPCA VENTILA...
+2025-11-10 18:57:55,387 - INFO -    ✅ Updated categoryId: Motor
+2025-11-10 18:57:55,478 - INFO -    ✅ Saved 2 attribute(s) to technicalSpecs
+2025-11-10 18:57:55,977 - INFO -    No results from TecDoc passengercars_link_engines query
+2025-11-10 18:57:55,977 - INFO -    ⚠️  No engine-specific vehicles, trying by model...
+2025-11-10 18:57:56,007 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:57:56,035 - INFO -    ⏭️  oemNumber already set: 225947
+2025-11-10 18:57:56,089 - INFO - [23/50] 915.009 - GUMICE POKLOPCA VENTILA...
+2025-11-10 18:57:56,183 - INFO -    ✅ Updated categoryId: Motor
+2025-11-10 18:57:56,272 - INFO -    ✅ Saved 2 attribute(s) to technicalSpecs
+2025-11-10 18:57:56,858 - INFO -    No results from TecDoc passengercars_link_engines query
+2025-11-10 18:57:56,859 - INFO -    ⚠️  No engine-specific vehicles, trying by model...
+2025-11-10 18:57:56,888 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:57:56,926 - INFO -    ⏭️  oemNumber already set: 67534
+2025-11-10 18:57:56,978 - INFO - [24/50] 15750 - SPOJKA GSV -1 (1")...
+2025-11-10 18:57:57,076 - INFO -    ✅ Updated categoryId: Kočioni sistem
+2025-11-10 18:57:57,166 - INFO -    ✅ Saved 9 attribute(s) to technicalSpecs
+2025-11-10 18:57:57,865 - INFO -    No results from TecDoc passengercars_link_engines query
+2025-11-10 18:57:57,865 - INFO -    ⚠️  No engine-specific vehicles, trying by model...
+2025-11-10 18:57:57,895 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:57:57,924 - INFO -    ⏭️  oemNumber already set: 569014
+2025-11-10 18:57:57,980 - INFO - [25/50] 3 397 014 009 - MET. BRISAČA A009S...
+2025-11-10 18:57:58,056 - INFO -    ✅ Saved 3 attribute(s) to technicalSpecs
+2025-11-10 18:57:58,361 - INFO -    No results from TecDoc passengercars_link_engines query
+2025-11-10 18:57:58,362 - INFO -    ⚠️  No engine-specific vehicles, trying by model...
+2025-11-10 18:57:58,391 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:57:58,422 - INFO -    ⏭️  oemNumber already set: A009S
+2025-11-10 18:57:58,477 - INFO - [26/50] 047417 - KOPČA SIGURNOSNOG POJASA METAL/PLASTIKA ...
+2025-11-10 18:57:58,587 - INFO -    ✅ Updated categoryId: Električni sistem
+2025-11-10 18:57:58,675 - INFO -    ✅ Saved 2 attribute(s) to technicalSpecs
+2025-11-10 18:57:58,679 - INFO -    No results from TecDoc passengercars_link_engines query
+2025-11-10 18:57:58,680 - INFO -    ⚠️  No engine-specific vehicles, trying by model...
+2025-11-10 18:57:58,740 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:57:58,769 - INFO -    ⏭️  oemNumber already set: 5G0941661F
+2025-11-10 18:57:58,824 - INFO - [27/50] 232043 - SAJLA PVC 6MM...
+2025-11-10 18:57:58,931 - INFO -    ✅ Updated categoryId: Izduvni sistem
+2025-11-10 18:57:58,936 - INFO -    No results from TecDoc passengercars_link_engines query
+2025-11-10 18:57:58,937 - INFO -    ⚠️  No engine-specific vehicles, trying by model...
+2025-11-10 18:57:59,006 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:57:59,062 - INFO - [28/50] 45000055301 - MOST ZADNJI GOLF 4...
+2025-11-10 18:57:59,159 - INFO -    ✅ Updated categoryId: Osovine / upravljanje / točkovi
+2025-11-10 18:57:59,252 - INFO -    ✅ Saved 1 attribute(s) to technicalSpecs
+2025-11-10 18:57:59,577 - INFO -    No results from TecDoc passengercars_link_engines query
+2025-11-10 18:57:59,577 - INFO -    ⚠️  No engine-specific vehicles, trying by model...
+2025-11-10 18:57:59,607 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:57:59,637 - INFO -    ⏭️  oemNumber already set: 89910
+2025-11-10 18:57:59,692 - INFO - [29/50] 4072954 - OPRUGA AMORTIZERA RENAULT 4072954 PR.MEG...
+2025-11-10 18:57:59,790 - INFO -    ✅ Updated categoryId: Izduvni sistem
+2025-11-10 18:57:59,878 - INFO -    ✅ Saved 1 attribute(s) to technicalSpecs
+2025-11-10 18:58:00,540 - INFO -    No results from TecDoc passengercars_link_engines query
+2025-11-10 18:58:00,540 - INFO -    ⚠️  No engine-specific vehicles, trying by model...
+2025-11-10 18:58:00,569 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:58:00,599 - INFO -    ⏭️  oemNumber already set: 8200106137
+2025-11-10 18:58:00,653 - INFO - [30/50] 803118 - MANNOL MAST LITHIUM GREASE LT-43 18KG...
+2025-11-10 18:58:00,752 - INFO -    ✅ Updated categoryId: Osovine / upravljanje / točkovi
+2025-11-10 18:58:00,757 - INFO -    No results from TecDoc passengercars_link_engines query
+2025-11-10 18:58:00,757 - INFO -    ⚠️  No engine-specific vehicles, trying by model...
+2025-11-10 18:58:00,817 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:58:00,873 - INFO - [31/50] 994370 - OPRUGA ZADNJA...
+2025-11-10 18:58:00,966 - INFO -    ✅ Updated categoryId: Izduvni sistem
+2025-11-10 18:58:01,054 - INFO -    ✅ Saved 4 attribute(s) to technicalSpecs
+2025-11-10 18:58:01,477 - INFO -    No results from TecDoc passengercars_link_engines query
+2025-11-10 18:58:01,477 - INFO -    ⚠️  No engine-specific vehicles, trying by model...
+2025-11-10 18:58:01,511 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:58:01,539 - INFO -    ⏭️  oemNumber already set: 3C0 511 115 AH
+2025-11-10 18:58:01,590 - INFO - [32/50] 7.07381.09.0 - PUMPA ULJA...
+2025-11-10 18:58:01,684 - INFO -    ✅ Updated categoryId: Motor
+2025-11-10 18:58:01,749 - INFO -    No results from TecDoc passengercars_link_engines query
+2025-11-10 18:58:01,750 - INFO -    ⚠️  No engine-specific vehicles, trying by model...
+2025-11-10 18:58:01,779 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:58:01,816 - INFO -    ⏭️  oemNumber already set: 15 00 098 46R
+2025-11-10 18:58:01,870 - INFO - [33/50] 215.870 - ČEP BREGASTE...
+2025-11-10 18:58:01,965 - INFO -    ✅ Updated categoryId: Motor
+2025-11-10 18:58:02,601 - INFO -    No results from TecDoc passengercars_link_engines query
+2025-11-10 18:58:02,601 - INFO -    ⚠️  No engine-specific vehicles, trying by model...
+2025-11-10 18:58:02,631 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:58:02,660 - INFO -    ⏭️  oemNumber already set: 116824
+2025-11-10 18:58:02,716 - INFO - [34/50] YTZ10S - Akumulator Moto AGM 12V- 9 Ah L YTZ10S 1...
+2025-11-10 18:58:02,809 - INFO -    ✅ Updated categoryId: Električni sistem
+2025-11-10 18:58:02,898 - INFO -    ✅ Saved 6 attribute(s) to technicalSpecs
+2025-11-10 18:58:02,901 - INFO -    No results from TecDoc passengercars_link_engines query
+2025-11-10 18:58:02,901 - INFO -    ⚠️  No engine-specific vehicles, trying by model...
+2025-11-10 18:58:02,968 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:58:03,020 - INFO - [35/50] 10 93 8952 - NOSAČ AMORT.M-169/245 (+LEŽ)...
+2025-11-10 18:58:03,114 - INFO -    ✅ Updated categoryId: Klima uređaj
+2025-11-10 18:58:03,205 - INFO -    ✅ Saved 4 attribute(s) to technicalSpecs
+2025-11-10 18:58:03,831 - INFO -    No results from TecDoc passengercars_link_engines query
+2025-11-10 18:58:03,831 - INFO -    ⚠️  No engine-specific vehicles, trying by model...
+2025-11-10 18:58:03,864 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:58:03,893 - INFO -    ⏭️  oemNumber already set: 169 320 00 73
+2025-11-10 18:58:03,948 - INFO - [36/50] 910208 - ODBOJN.PR.AMOR.M-169/245 04- SET...
+2025-11-10 18:58:04,054 - INFO -    ✅ Updated categoryId: Električni sistem
+2025-11-10 18:58:04,149 - INFO -    ✅ Saved 3 attribute(s) to technicalSpecs
+2025-11-10 18:58:04,783 - INFO -    No results from TecDoc passengercars_link_engines query
+2025-11-10 18:58:04,784 - INFO -    ⚠️  No engine-specific vehicles, trying by model...
+2025-11-10 18:58:04,813 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:58:04,845 - INFO -    ⏭️  oemNumber already set: 563-31
+2025-11-10 18:58:04,896 - INFO - [37/50] 55331 - PRSTEN ABS RENAULT 55331 MEGANE II, CITR...
+2025-11-10 18:58:04,926 - INFO - 
+⚠️  Interrupted by user - progress saved!
+2025-11-10 18:58:04,931 - INFO - 🔌 Database connections closed

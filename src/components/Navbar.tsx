@@ -73,6 +73,7 @@ export function Navbar() {
           {/* Desktop navigacija */}
           <div className="hidden md:flex items-center space-x-1">
             <NavLink href="/products">Proizvodi</NavLink>
+            <NavLink href="/transporti">Transporti</NavLink>
             <NavLink href="/contact">Kontakt</NavLink>
             {status === 'authenticated' && session.user.role === 'ADMIN' && (
               <NavLink href="/admin">Admin Panel</NavLink>
@@ -205,8 +206,9 @@ export function Navbar() {
             
             <div className="flex flex-col space-y-2">
               <MobileNavLink href="/products" onClick={() => setMenuOpen(false)}>Proizvodi</MobileNavLink>
+              <MobileNavLink href="/transporti" onClick={() => setMenuOpen(false)}>Transporti</MobileNavLink>
               <MobileNavLink href="/contact" onClick={() => setMenuOpen(false)}>Kontakt</MobileNavLink>
-              
+
               {status === 'authenticated' && session.user.role === 'ADMIN' && (
                 <MobileNavLink href="/admin" onClick={() => setMenuOpen(false)}>Admin Panel</MobileNavLink>
               )}

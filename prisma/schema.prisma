@@ -755,6 +755,41 @@ model B2BRequest {
   updatedAt     DateTime @updatedAt
 }
 
+// Model za transport zahtjeve
+enum TransportVehicleType {
+  TRUCK
+  TRAILER
+  SPECIALIZED
+  OTHER
+}
+
+enum TransportRequestStatus {
+  NEW
+  VIEWED
+  CONTACTED
+  COMPLETED
+  REJECTED
+}
+
+model TransportRequest {
+  id           String                  @id @default(cuid())
+  name         String
+  email        String
+  phone        String
+  companyName  String?
+  vehicleType  TransportVehicleType
+  cargo        String // Opis tovara koji se transportuje
+  origin       String // Lokacija izvora
+  destination  String // Lokacija odredišta
+  notes        String? @db.Text // Dodatne napomene
+  status       TransportRequestStatus @default(NEW)
+  createdAt    DateTime               @default(now())
+  updatedAt    DateTime               @updatedAt
+
+  @@index([status])
+  @@index([createdAt])
+}
+
 // Model za featured products u carousel-u
 model FeaturedProduct {
   id               String        @id @default(cuid())

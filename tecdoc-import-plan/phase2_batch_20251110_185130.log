@@ -1,0 +1,50 @@
+2025-11-10 18:51:30,126 - INFO - 🚀 Starting TecDoc Enrichment
+2025-11-10 18:51:30,127 - INFO -    TecDoc MySQL: localhost:3306
+2025-11-10 18:51:30,127 - INFO -    PostgreSQL: Neon TEST (copy of production) ⚠️
+2025-11-10 18:51:30,127 - INFO -    Force mode: True
+2025-11-10 18:51:30,127 - INFO -    Limit: 5 products
+2025-11-10 18:51:30,127 - INFO - Connecting to TecDoc MySQL at localhost:3306
+2025-11-10 18:51:30,141 - INFO - Connecting to Neon TEST PostgreSQL (copy of production)
+2025-11-10 18:51:30,336 - INFO - ✅ Database connections established
+2025-11-10 18:51:30,336 - INFO - 🔄 FORCE MODE: Re-processing ALL products from the beginning!
+2025-11-10 18:51:30,336 - INFO - 
+######################################################################
+2025-11-10 18:51:30,336 - INFO - 🚀 FAZA 2 - Batch Obogaćivanje Proizvoda
+2025-11-10 18:51:30,336 - INFO - ######################################################################
+
+2025-11-10 18:51:30,336 - INFO - 🔄 FORCE MODE: Starting from offset 0 (re-processing ALL)
+2025-11-10 18:51:30,427 - INFO - 
+======================================================================
+2025-11-10 18:51:30,427 - INFO - 📦 BATCH #1 (offset: 0, size: 50)
+2025-11-10 18:51:30,427 - INFO - ======================================================================
+2025-11-10 18:51:30,427 - INFO - [1/50] 15-0295-00-9 - SVJETLO REGISTARSKE TABLICE...
+2025-11-10 18:51:30,523 - INFO -    ✅ Updated categoryId: Električni sistem
+2025-11-10 18:51:30,621 - INFO -    ✅ Saved 1 attribute(s) to technicalSpecs
+2025-11-10 18:51:30,894 - ERROR -    ❌ Error getting vehicles: 1054 (42S22): Unknown column 'al.article_id' in 'where clause'
+2025-11-10 18:51:30,979 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:51:31,008 - INFO -    ⏭️  oemNumber already set: 63267193293
+2025-11-10 18:51:31,058 - INFO - [2/50] 83815 - MIRIS AROMA CAR JELKICA XTRA BUBBLE GUM...
+2025-11-10 18:51:31,147 - INFO -    ✅ Updated categoryId: Električni sistem
+2025-11-10 18:51:31,816 - ERROR -    ❌ Error getting vehicles: 1054 (42S22): Unknown column 'al.article_id' in 'where clause'
+2025-11-10 18:51:31,903 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:51:31,931 - INFO -    ⏭️  oemNumber already set: 1447912
+2025-11-10 18:51:31,984 - INFO - [3/50] 83811 - MIRIS AROMA CAR JELKICA XTRA VANILIA...
+2025-11-10 18:51:32,078 - INFO -    ✅ Updated categoryId: Električni sistem
+2025-11-10 18:51:32,733 - ERROR -    ❌ Error getting vehicles: 1054 (42S22): Unknown column 'al.article_id' in 'where clause'
+2025-11-10 18:51:32,818 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:51:32,846 - INFO -    ⏭️  oemNumber already set: 0061514801
+2025-11-10 18:51:32,901 - INFO - [4/50] 525601 - MIRIS WUNDER BAUM CLIP CHERRY...
+2025-11-10 18:51:32,991 - INFO -    ✅ Updated categoryId: Pogon na točkove
+2025-11-10 18:51:33,083 - INFO -    ✅ Saved 1 attribute(s) to technicalSpecs
+2025-11-10 18:51:33,088 - ERROR -    ❌ Error getting vehicles: 1054 (42S22): Unknown column 'al.article_id' in 'where clause'
+2025-11-10 18:51:33,146 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:51:33,185 - INFO -    ⏭️  oemNumber already set: 44017T0AA00
+2025-11-10 18:51:33,235 - INFO - [5/50] 791520 - MANNOL EXTREME 5W40 20L SN/CH A3/B4 VW 5...
+2025-11-10 18:51:33,325 - INFO -    ✅ Updated categoryId: Motor
+2025-11-10 18:51:33,419 - INFO -    ✅ Saved 2 attribute(s) to technicalSpecs
+2025-11-10 18:51:34,062 - ERROR -    ❌ Error getting vehicles: 1054 (42S22): Unknown column 'al.article_id' in 'where clause'
+2025-11-10 18:51:34,210 - INFO -    ⏭️  manufacturerId already set
+2025-11-10 18:51:34,241 - INFO -    ⏭️  oemNumber already set: RF1G-12-205
+2025-11-10 18:51:34,273 - INFO - 
+⚠️  Interrupted by user - progress saved!
+2025-11-10 18:51:34,274 - INFO - 🔌 Database connections closed

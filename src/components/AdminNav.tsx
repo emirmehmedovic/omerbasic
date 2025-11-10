@@ -11,8 +11,10 @@ export function AdminNav() {
           <Link href="/admin/categories" className="hover:text-gray-300">Kategorije</Link>
           <Link href="/admin/users" className="hover:text-gray-300">Korisnici</Link>
           <Link href="/admin/products" className="hover:text-gray-300">Proizvodi</Link>
+          <Link href="/admin/requests" className="hover:text-gray-300">Zahtjevi</Link>
+          <Link href="/admin/transport-requests" className="hover:text-gray-300">Transport</Link>
         </div>
-        <button 
+        <button
           onClick={() => signOut({ callbackUrl: '/login' })}
           className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
         >

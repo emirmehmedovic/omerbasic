@@ -52,19 +52,19 @@ export function Hero() {
         <div className="w-full lg:w-[60%] flex flex-col gap-6">
           
           {/* 2. Vehicle Selector Card */}
-          <div className="relative rounded-3xl flex-1 overflow-hidden bg-gradient-to-br from-slate-50 via-slate-100 to-slate-200 shadow-xl p-8 lg:p-10">
-            {/* Texture overlay */}
-            <div 
-              className="pointer-events-none absolute inset-0 z-0 opacity-[0.04]"
+          <div className="relative rounded-3xl flex-1 overflow-hidden bg-white shadow-xl p-8 lg:p-10 border-2 border-slate-100">
+            {/* Subtle gradient overlay */}
+            <div
+              className="pointer-events-none absolute inset-0 z-0 opacity-[0.02]"
               style={{
-                backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(27,58,95,0.2) 1px, transparent 0), radial-gradient(circle at 50% 50%, rgba(255,107,53,0.08) 0%, transparent 70%)',
+                backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(27,58,95,0.2) 1px, transparent 0), radial-gradient(circle at 50% 50%, rgba(255,107,53,0.05) 0%, transparent 70%)',
                 backgroundSize: '32px 32px, 100% 100%'
               }}
             />
 
             {/* Content */}
             <div className="relative z-10 space-y-6">
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 pb-4 border-b-2 border-primary/10">
                 <div className="p-3 rounded-2xl bg-gradient-to-br from-primary to-primary-dark shadow-lg">
                   <Car className="w-6 h-6 text-white" />
                 </div>

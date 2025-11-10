@@ -10,14 +10,14 @@ export function InfoBar() {
             <Phone className="w-5 h-5 text-sunfire-600" />
             <div className="text-sm">
               <div className="font-semibold">Pozovite nas</div>
-              <div className="text-slate-700">032/666-658 • 061-962-359</div>
+              <div className="text-slate-700">032/666-536 • 061/847-203</div>
             </div>
           </div>
           <div className="flex items-center gap-3">
             <Mail className="w-5 h-5 text-sunfire-600" />
             <div className="text-sm">
               <div className="font-semibold">Pošaljite email</div>
-              <Link href="mailto:veleprodajatpo@gmail.com" className="text-slate-700 hover:text-sunfire-700 transition-colors">veleprodajatpo@gmail.com</Link>
+              <Link href="mailto:tpomerbasic@bih.net.ba" className="text-slate-700 hover:text-sunfire-700 transition-colors">tpomerbasic@bih.net.ba</Link>
             </div>
           </div>
           <div className="flex items-center gap-3">
@@ -31,7 +31,7 @@ export function InfoBar() {
             <MapPin className="w-5 h-5 text-sunfire-600" />
             <div className="text-sm">
               <div className="font-semibold">Adresa</div>
-              <Link href="https://maps.google.com/?q=Rosulje+bb,+Jelah" target="_blank" className="text-slate-700 hover:text-sunfire-700 transition-colors">Rosulje bb, Jelah</Link>
+              <Link href="https://maps.google.com/?q=Brace+Omerbasic+65,+Jelah,+Tesanj" target="_blank" className="text-slate-700 hover:text-sunfire-700 transition-colors">Braće Omerbasić 65, Tešanj</Link>
             </div>
           </div>
         </div>

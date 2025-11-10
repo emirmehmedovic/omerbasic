@@ -133,7 +133,7 @@ export function ContactForm() {
               </div>
               <div>
                 <h3 className="font-medium text-slate-900">Email</h3>
-                <p className="text-slate-600">info@omerbasic.ba</p>
+                <p className="text-slate-600">tpomerbasic@bih.net.ba</p>
               </div>
             </div>
 
@@ -143,7 +143,8 @@ export function ContactForm() {
               </div>
               <div>
                 <h3 className="font-medium text-slate-900">Telefon</h3>
-                <p className="text-slate-600">+387 33 123 456</p>
+                <p className="text-slate-600">032/666-536</p>
+                <p className="text-slate-600">061/847-203</p>
               </div>
             </div>
 
@@ -153,7 +154,8 @@ export function ContactForm() {
               </div>
               <div>
                 <h3 className="font-medium text-slate-900">Adresa</h3>
-                <p className="text-slate-600">Sarajevo, Bosna i Hercegovina</p>
+                <p className="text-slate-600">Braće Omerbasić 65</p>
+                <p className="text-slate-600">Jelah 74264 Tešanj</p>
               </div>
             </div>
 

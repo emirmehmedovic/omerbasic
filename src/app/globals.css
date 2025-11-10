@@ -147,6 +147,22 @@
     animation: shimmer 2s infinite;
   }
 
+  /* Allow scrolling when select dropdown is open */
+  [data-state="open"] {
+    overflow: visible;
+  }
+
+  /* Make radix select portal scrollable and allow page scroll */
+  [data-radix-select-content] {
+    position: relative;
+    z-index: 50;
+  }
+
+  /* Allow body scroll when select is open */
+  body[style*="overflow"] {
+    overflow: auto !important;
+  }
+
   /* Liquid Glass Animations */
   @keyframes blob {
     0%, 100% {
