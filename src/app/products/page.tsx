@@ -5,6 +5,10 @@ import { unstable_cache } from 'next/cache';
 import ProductsPageClient from './_components/ProductsPageClient';
 import Link from 'next/link';
 
+// Force dynamic rendering - no static caching
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 const getFilterData = unstable_cache(
   async () => {
     const categories = await prisma.category.findMany({
