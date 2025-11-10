@@ -182,9 +182,9 @@ export default function ProductsPageClient({ filterData }: ProductsPageClientPro
           </div>
         )}
 
-        {/* Sidebar + results only when filters are applied */}
-        {!noFiltersApplied && (
-          <div className="flex flex-col lg:flex-row gap-6">
+        {/* Sidebar + results - always show */}
+        <div className="flex flex-col lg:flex-row gap-6">
+          {!noFiltersApplied && (
             <div className="w-full lg:w-1/4">
               <ClientHierarchicalFilters
                 key={`sidebar-filters-${vehicleResetKey}`}
@@ -196,18 +196,20 @@ export default function ProductsPageClient({ filterData }: ProductsPageClientPro
                 brands={filterData.brands}
               />
             </div>
+          )}
 
-            <div className="w-full lg:w-3/4">
+          <div className={noFiltersApplied ? "w-full" : "w-full lg:w-3/4"}>
+            {!noFiltersApplied && (
               <ResultsBreadcrumb
                 filters={currentFilters}
                 categories={filterData.categories}
                 onRemove={handleRemoveFilter}
                 onClearAll={handleClearAll}
               />
-              <ProductsResults filters={currentFilters} />
-            </div>
+            )}
+            <ProductsResults filters={currentFilters} />
           </div>
-        )}
+        </div>
       </div>
     </div>
   );

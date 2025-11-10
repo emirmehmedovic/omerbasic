@@ -2,6 +2,10 @@ import { CategoryManager, CategoryWithChildren } from '@/components/CategoryMana
 import { db } from '@/lib/db';
 import { unstable_cache } from 'next/cache';
 
+// Force dynamic rendering - no static caching
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 const getCategories = unstable_cache(
   async (): Promise<CategoryWithChildren[]> => {
     const categories = await db.category.findMany({
