@@ -15,6 +15,13 @@
     "generate:test-products": "tsx scripts/generate-test-products.ts",
     "products:set-default-image": "tsx scripts/set-default-product-image.ts",
     "products:set-default-image:force": "tsx scripts/set-default-product-image.ts --force",
+    "import:tecdoc-categories": "tsx scripts/import-tecdoc-categories.ts",
+    "check:tecdoc-categories": "tsx scripts/check-tecdoc-categories.ts",
+    "list:categories": "tsx scripts/list-all-categories.ts",
+    "cleanup:categories": "tsx scripts/cleanup-old-categories.ts",
+    "move:products": "tsx scripts/move-products-to-categories.ts",
+    "update:stock": "tsx scripts/update-stock-from-csv.ts",
+    "update:stock:fast": "tsx scripts/update-stock-ultra-fast.ts",
     "postinstall": "prisma generate"
   },
   "prisma": {

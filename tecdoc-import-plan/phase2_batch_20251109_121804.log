@@ -1,0 +1,636 @@
+2025-11-09 12:18:04,815 - INFO - ✅ Database connections established
+2025-11-09 12:18:04,816 - INFO - 🔄 FORCE MODE: Re-processing ALL products from the beginning!
+2025-11-09 12:18:04,816 - INFO - 
+######################################################################
+2025-11-09 12:18:04,816 - INFO - 🚀 FAZA 2 - Batch Obogaćivanje Proizvoda
+2025-11-09 12:18:04,816 - INFO - ######################################################################
+
+2025-11-09 12:18:04,816 - INFO - 🔄 FORCE MODE: Starting from offset 0 (re-processing ALL)
+2025-11-09 12:18:04,900 - INFO - 
+======================================================================
+2025-11-09 12:18:04,900 - INFO - 📦 BATCH #1 (offset: 0, size: 50)
+2025-11-09 12:18:04,900 - INFO - ======================================================================
+2025-11-09 12:18:04,900 - INFO - [1/50] 15-0295-00-9 - SVJETLO REGISTARSKE TABLICE...
+2025-11-09 12:18:05,003 - INFO -    ✅ Updated categoryId: Električni sistem
+2025-11-09 12:18:05,094 - INFO -    ✅ Saved 1 attribute(s) to technicalSpecs
+2025-11-09 12:18:05,399 - INFO -    Found 500 passengercars with engines from TecDoc
+2025-11-09 12:18:05,400 - INFO -    Unique passengercars IDs: 200
+2025-11-09 12:18:05,400 - INFO -    Sample IDs: [6145, 6146, 6147, 6148, 11]
+2025-11-09 12:18:05,470 - INFO -    Mapped to 200 vehicles in our database
+2025-11-09 12:18:05,470 - INFO -    ✅ Found 200 vehicles with engine specificity
+2025-11-09 12:18:23,456 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:18:23,488 - INFO -    ⏭️  oemNumber already set: 63267193293
+2025-11-09 12:18:23,541 - INFO - [2/50] 83815 - MIRIS AROMA CAR JELKICA XTRA BUBBLE GUM...
+2025-11-09 12:18:23,636 - INFO -    ✅ Updated categoryId: Električni sistem
+2025-11-09 12:18:24,358 - INFO -    No results from TecDoc passengercars_link_engines query
+2025-11-09 12:18:24,358 - INFO -    ⚠️  No engine-specific vehicles, trying by model...
+2025-11-09 12:18:25,381 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:18:25,438 - INFO -    ⏭️  oemNumber already set: 1447912
+2025-11-09 12:18:25,488 - INFO - [3/50] 83811 - MIRIS AROMA CAR JELKICA XTRA VANILIA...
+2025-11-09 12:18:25,586 - INFO -    ✅ Updated categoryId: Električni sistem
+2025-11-09 12:18:26,320 - INFO -    Found 500 passengercars with engines from TecDoc
+2025-11-09 12:18:26,321 - INFO -    Unique passengercars IDs: 200
+2025-11-09 12:18:26,321 - INFO -    Sample IDs: [28672, 118792, 12313, 32798, 32799]
+2025-11-09 12:18:26,386 - INFO -    Mapped to 91 vehicles in our database
+2025-11-09 12:18:26,386 - INFO -    ✅ Found 91 vehicles with engine specificity
+2025-11-09 12:18:34,581 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:18:34,612 - INFO -    ⏭️  oemNumber already set: 0061514801
+2025-11-09 12:18:34,665 - INFO - [4/50] 525601 - MIRIS WUNDER BAUM CLIP CHERRY...
+2025-11-09 12:18:34,757 - INFO -    ✅ Updated categoryId: Pogon na točkove
+2025-11-09 12:18:34,843 - INFO -    ✅ Saved 1 attribute(s) to technicalSpecs
+2025-11-09 12:18:34,891 - INFO -    Found 500 passengercars with engines from TecDoc
+2025-11-09 12:18:34,891 - INFO -    Unique passengercars IDs: 200
+2025-11-09 12:18:34,891 - INFO -    Sample IDs: [10240, 4100, 4101, 4102, 4103]
+2025-11-09 12:18:34,960 - INFO -    Mapped to 135 vehicles in our database
+2025-11-09 12:18:34,960 - INFO -    ✅ Found 135 vehicles with engine specificity
+2025-11-09 12:18:47,129 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:18:47,160 - INFO -    ⏭️  oemNumber already set: 44017T0AA00
+2025-11-09 12:18:47,216 - INFO - [5/50] 791520 - MANNOL EXTREME 5W40 20L SN/CH A3/B4 VW 5...
+2025-11-09 12:18:47,314 - INFO -    ✅ Updated categoryId: Motor
+2025-11-09 12:18:47,407 - INFO -    ✅ Saved 2 attribute(s) to technicalSpecs
+2025-11-09 12:18:48,107 - INFO -    Found 500 passengercars with engines from TecDoc
+2025-11-09 12:18:48,107 - INFO -    Unique passengercars IDs: 200
+2025-11-09 12:18:48,107 - INFO -    Sample IDs: [12352, 24643, 24644, 116805, 8280]
+2025-11-09 12:18:48,152 - INFO -    Mapped to 137 vehicles in our database
+2025-11-09 12:18:48,152 - INFO -    ✅ Found 137 vehicles with engine specificity
+2025-11-09 12:19:00,370 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:19:00,401 - INFO -    ⏭️  oemNumber already set: RF1G-12-205
+2025-11-09 12:19:00,456 - INFO - [6/50] FS1280 - FILTER GORIVA...
+2025-11-09 12:19:00,553 - INFO -    ✅ Updated categoryId: Filteri
+2025-11-09 12:19:00,645 - INFO -    ✅ Saved 3 attribute(s) to technicalSpecs
+2025-11-09 12:19:01,383 - INFO -    Found 500 passengercars with engines from TecDoc
+2025-11-09 12:19:01,383 - INFO -    Unique passengercars IDs: 200
+2025-11-09 12:19:01,383 - INFO -    Sample IDs: [6151, 10248, 10249, 6154, 10250]
+2025-11-09 12:19:01,423 - INFO -    Mapped to 141 vehicles in our database
+2025-11-09 12:19:01,424 - INFO -    ✅ Found 141 vehicles with engine specificity
+2025-11-09 12:19:15,382 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:19:15,449 - INFO -    ⏭️  oemNumber already set: 3417710
+2025-11-09 12:19:15,504 - INFO - [7/50] 24.8190-0067.2 - KABAL DISK PL.M-176/246 A/B 12-...
+2025-11-09 12:19:15,581 - INFO -    ✅ Saved 1 attribute(s) to technicalSpecs
+2025-11-09 12:19:16,273 - INFO -    Found 500 passengercars with engines from TecDoc
+2025-11-09 12:19:16,274 - INFO -    Unique passengercars IDs: 200
+2025-11-09 12:19:16,274 - INFO -    Sample IDs: [28672, 118792, 12313, 32798, 32799]
+2025-11-09 12:19:16,341 - INFO -    Mapped to 91 vehicles in our database
+2025-11-09 12:19:16,341 - INFO -    ✅ Found 91 vehicles with engine specificity
+2025-11-09 12:19:24,829 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:19:24,865 - INFO -    ⏭️  oemNumber already set: 221106
+2025-11-09 12:19:24,917 - INFO - [8/50] 5808 - KAPA MUŠKA KAMLOK SPOJKE 2...
+2025-11-09 12:19:25,182 - INFO -    ✅ Updated categoryId: Sistemi udobnosti
+2025-11-09 12:19:25,274 - INFO -    ✅ Saved 2 attribute(s) to technicalSpecs
+2025-11-09 12:19:25,768 - INFO -    Found 500 passengercars with engines from TecDoc
+2025-11-09 12:19:25,769 - INFO -    Unique passengercars IDs: 200
+2025-11-09 12:19:25,769 - INFO -    Sample IDs: [55311, 112671, 122923, 122924, 57389]
+2025-11-09 12:19:25,835 - INFO -    Mapped to 61 vehicles in our database
+2025-11-09 12:19:25,835 - INFO -    ✅ Found 61 vehicles with engine specificity
+2025-11-09 12:19:31,305 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:19:31,346 - INFO -    ⏭️  oemNumber already set: 96602004
+2025-11-09 12:19:31,403 - INFO - [9/50] 5821 - STORZ SPOJKA 3...
+2025-11-09 12:19:31,501 - INFO -    ✅ Updated categoryId: Posebni alati
+2025-11-09 12:19:31,591 - INFO -    ✅ Saved 1 attribute(s) to technicalSpecs
+2025-11-09 12:19:31,829 - INFO -    Found 500 passengercars with engines from TecDoc
+2025-11-09 12:19:31,829 - INFO -    Unique passengercars IDs: 200
+2025-11-09 12:19:31,829 - INFO -    Sample IDs: [55311, 112671, 122923, 122924, 57389]
+2025-11-09 12:19:31,893 - INFO -    Mapped to 61 vehicles in our database
+2025-11-09 12:19:31,893 - INFO -    ✅ Found 61 vehicles with engine specificity
+2025-11-09 12:19:37,563 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:19:37,610 - INFO -    ⏭️  oemNumber already set: 96590723
+2025-11-09 12:19:37,662 - INFO - [10/50] D10326TT - PUMPA VODE...
+2025-11-09 12:19:37,754 - INFO -    ✅ Updated categoryId: Sistem za hlađenje
+2025-11-09 12:19:38,453 - INFO -    Found 500 passengercars with engines from TecDoc
+2025-11-09 12:19:38,453 - INFO -    Unique passengercars IDs: 200
+2025-11-09 12:19:38,453 - INFO -    Sample IDs: [59399, 59400, 59401, 59405, 59408]
+2025-11-09 12:19:38,559 - INFO -    Mapped to 118 vehicles in our database
+2025-11-09 12:19:38,559 - INFO -    ✅ Found 118 vehicles with engine specificity
+2025-11-09 12:19:49,297 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:19:49,328 - INFO -    ⏭️  oemNumber already set: 216929
+2025-11-09 12:19:49,379 - INFO - [11/50] 5824 - KAPA ŽENSKA KAMLOK SPOJKE 2"...
+2025-11-09 12:19:49,438 - INFO -    ✅ Saved 3 attribute(s) to technicalSpecs
+2025-11-09 12:19:49,464 - INFO -    No results from TecDoc passengercars_link_engines query
+2025-11-09 12:19:49,464 - INFO -    ⚠️  No engine-specific vehicles, trying by model...
+2025-11-09 12:19:49,568 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:19:49,621 - INFO - [12/50] 0483 - KAMLOK SPOJKA MT 2"...
+2025-11-09 12:19:49,731 - INFO -    ✅ Updated categoryId: Formiranje smjese goriva
+2025-11-09 12:19:49,827 - INFO -    ✅ Saved 6 attribute(s) to technicalSpecs
+2025-11-09 12:19:50,107 - INFO -    Found 384 passengercars with engines from TecDoc
+2025-11-09 12:19:50,107 - INFO -    Unique passengercars IDs: 200
+2025-11-09 12:19:50,107 - INFO -    Sample IDs: [20497, 34904, 131506, 18647, 18648]
+2025-11-09 12:19:50,142 - INFO -    Mapped to 0 vehicles in our database
+2025-11-09 12:19:50,142 - INFO -    ⚠️  No engine-specific vehicles, trying by model...
+2025-11-09 12:19:52,966 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:19:52,999 - INFO -    ⏭️  oemNumber already set: 8942165890
+2025-11-09 12:19:53,052 - INFO - [13/50] 5797 - KAMLOK SPOJKA VT 2"...
+2025-11-09 12:19:53,145 - INFO -    ✅ Updated categoryId: Pogon na točkove
+2025-11-09 12:19:53,236 - INFO -    ✅ Saved 6 attribute(s) to technicalSpecs
+2025-11-09 12:19:53,610 - INFO -    Found 226 passengercars with engines from TecDoc
+2025-11-09 12:19:53,610 - INFO -    Unique passengercars IDs: 200
+2025-11-09 12:19:53,610 - INFO -    Sample IDs: [27653, 27655, 27146, 12299, 20499]
+2025-11-09 12:19:53,645 - INFO -    Mapped to 0 vehicles in our database
+2025-11-09 12:19:53,645 - INFO -    ⚠️  No engine-specific vehicles, trying by model...
+2025-11-09 12:19:54,917 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:19:54,948 - INFO -    ⏭️  oemNumber already set: ADU5308
+2025-11-09 12:19:55,001 - INFO - [14/50] 18548 - Selen blok lafete prednje osovine...
+2025-11-09 12:19:55,063 - INFO -    ✅ Saved 4 attribute(s) to technicalSpecs
+2025-11-09 12:19:55,961 - INFO -    Found 500 passengercars with engines from TecDoc
+2025-11-09 12:19:55,962 - INFO -    Unique passengercars IDs: 200
+2025-11-09 12:19:55,962 - INFO -    Sample IDs: [20480, 20481, 10251, 22544, 22545]
+2025-11-09 12:19:56,027 - INFO -    Mapped to 160 vehicles in our database
+2025-11-09 12:19:56,027 - INFO -    ✅ Found 160 vehicles with engine specificity
+2025-11-09 12:20:10,941 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:20:10,976 - INFO -    ⏭️  oemNumber already set: 158944
+2025-11-09 12:20:11,029 - INFO - [15/50] 58006173 - HL.GRIJANJA GOLF 4/OCTAVIA BRZA SPOJKA...
+2025-11-09 12:20:11,104 - INFO -    ✅ Saved 4 attribute(s) to technicalSpecs
+2025-11-09 12:20:11,919 - INFO -    Found 500 passengercars with engines from TecDoc
+2025-11-09 12:20:11,919 - INFO -    Unique passengercars IDs: 200
+2025-11-09 12:20:11,919 - INFO -    Sample IDs: [10242, 10243, 10245, 129059, 18484]
+2025-11-09 12:20:11,983 - INFO -    Mapped to 137 vehicles in our database
+2025-11-09 12:20:11,983 - INFO -    ✅ Found 137 vehicles with engine specificity
+2025-11-09 12:20:24,766 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:20:24,797 - INFO -    ⏭️  oemNumber already set: 445354
+2025-11-09 12:20:24,850 - INFO - [16/50] TC649 - LAFET ASTRA DX...
+2025-11-09 12:20:24,951 - INFO -    ✅ Updated categoryId: Pogon na točkove
+2025-11-09 12:20:25,054 - INFO -    ✅ Saved 5 attribute(s) to technicalSpecs
+2025-11-09 12:20:25,734 - INFO -    No results from TecDoc passengercars_link_engines query
+2025-11-09 12:20:25,734 - INFO -    ⚠️  No engine-specific vehicles, trying by model...
+2025-11-09 12:20:25,811 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:20:25,843 - INFO -    ⏭️  oemNumber already set: 3273EJ
+2025-11-09 12:20:25,897 - INFO - [17/50] TC648 - LAFET ASTRA LX...
+2025-11-09 12:20:25,988 - INFO -    ✅ Updated categoryId: Pogon na točkove
+2025-11-09 12:20:26,075 - INFO -    ✅ Saved 5 attribute(s) to technicalSpecs
+2025-11-09 12:20:26,767 - INFO -    No results from TecDoc passengercars_link_engines query
+2025-11-09 12:20:26,768 - INFO -    ⚠️  No engine-specific vehicles, trying by model...
+2025-11-09 12:20:26,835 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:20:26,866 - INFO -    ⏭️  oemNumber already set: 3272EJ
+2025-11-09 12:20:26,922 - INFO - [18/50] 581364 - GUMA SAVA185/60 R15 84T ZIMSKA S3+ MS...
+2025-11-09 12:20:27,021 - INFO -    ✅ Updated categoryId: Motor
+2025-11-09 12:20:27,025 - INFO -    No results from TecDoc passengercars_link_engines query
+2025-11-09 12:20:27,025 - INFO -    ⚠️  No engine-specific vehicles, trying by model...
+2025-11-09 12:20:27,083 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:20:27,139 - INFO - [19/50] 820310 - MANNOL ATF 10L C3...
+2025-11-09 12:20:27,232 - INFO -    ✅ Updated categoryId: Pogon na točkove
+2025-11-09 12:20:27,322 - INFO -    ✅ Saved 4 attribute(s) to technicalSpecs
+2025-11-09 12:20:27,328 - INFO -    No results from TecDoc passengercars_link_engines query
+2025-11-09 12:20:27,328 - INFO -    ⚠️  No engine-specific vehicles, trying by model...
+2025-11-09 12:20:27,392 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:20:27,446 - INFO - [20/50] 532509 - GUMA SAVA 225/55 R16 95H ESKIMO HP2...
+2025-11-09 12:20:27,548 - INFO -    ✅ Updated categoryId: Izduvni sistem
+2025-11-09 12:20:27,653 - INFO -    Found 500 passengercars with engines from TecDoc
+2025-11-09 12:20:27,654 - INFO -    Unique passengercars IDs: 200
+2025-11-09 12:20:27,654 - INFO -    Sample IDs: [22528, 22529, 22530, 10247, 10288]
+2025-11-09 12:20:27,731 - INFO -    Mapped to 152 vehicles in our database
+2025-11-09 12:20:27,731 - INFO -    ✅ Found 152 vehicles with engine specificity
+2025-11-09 12:20:41,365 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:20:41,402 - INFO -    ⏭️  oemNumber already set: 84AB5310FA
+2025-11-09 12:20:41,455 - INFO - [21/50] 0443 - PRETVARAČ STRUJE MAX 220V-12V 3A...
+2025-11-09 12:20:41,556 - INFO -    ✅ Updated categoryId: Formiranje smjese goriva
+2025-11-09 12:20:41,646 - INFO -    ✅ Saved 4 attribute(s) to technicalSpecs
+2025-11-09 12:20:41,651 - INFO -    No results from TecDoc passengercars_link_engines query
+2025-11-09 12:20:41,651 - INFO -    ⚠️  No engine-specific vehicles, trying by model...
+2025-11-09 12:20:41,712 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:20:41,765 - INFO - [22/50] 915.017 - GUMICE POKLOPCA VENTILA...
+2025-11-09 12:20:41,864 - INFO -    ✅ Updated categoryId: Motor
+2025-11-09 12:20:41,952 - INFO -    ✅ Saved 2 attribute(s) to technicalSpecs
+2025-11-09 12:20:42,475 - INFO -    Found 500 passengercars with engines from TecDoc
+2025-11-09 12:20:42,475 - INFO -    Unique passengercars IDs: 200
+2025-11-09 12:20:42,476 - INFO -    Sample IDs: [19968, 19969, 11268, 4613, 11782]
+2025-11-09 12:20:42,543 - INFO -    Mapped to 200 vehicles in our database
+2025-11-09 12:20:42,543 - INFO -    ✅ Found 200 vehicles with engine specificity
+2025-11-09 12:21:00,595 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:21:00,633 - INFO -    ⏭️  oemNumber already set: 225947
+2025-11-09 12:21:00,687 - INFO - [23/50] 915.009 - GUMICE POKLOPCA VENTILA...
+2025-11-09 12:21:00,788 - INFO -    ✅ Updated categoryId: Motor
+2025-11-09 12:21:00,878 - INFO -    ✅ Saved 2 attribute(s) to technicalSpecs
+2025-11-09 12:21:01,459 - INFO -    Found 500 passengercars with engines from TecDoc
+2025-11-09 12:21:01,459 - INFO -    Unique passengercars IDs: 200
+2025-11-09 12:21:01,459 - INFO -    Sample IDs: [19968, 19969, 11268, 4613, 11782]
+2025-11-09 12:21:01,524 - INFO -    Mapped to 200 vehicles in our database
+2025-11-09 12:21:01,524 - INFO -    ✅ Found 200 vehicles with engine specificity
+2025-11-09 12:21:19,885 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:21:19,918 - INFO -    ⏭️  oemNumber already set: 67534
+2025-11-09 12:21:19,969 - INFO - [24/50] 15750 - SPOJKA GSV -1 (1")...
+2025-11-09 12:21:20,065 - INFO -    ✅ Updated categoryId: Kočioni sistem
+2025-11-09 12:21:20,156 - INFO -    ✅ Saved 9 attribute(s) to technicalSpecs
+2025-11-09 12:21:21,019 - INFO -    Found 500 passengercars with engines from TecDoc
+2025-11-09 12:21:21,019 - INFO -    Unique passengercars IDs: 200
+2025-11-09 12:21:21,019 - INFO -    Sample IDs: [12319, 129055, 129060, 129062, 129065]
+2025-11-09 12:21:21,084 - INFO -    Mapped to 167 vehicles in our database
+2025-11-09 12:21:21,085 - INFO -    ✅ Found 167 vehicles with engine specificity
+2025-11-09 12:21:36,047 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:21:36,082 - INFO -    ⏭️  oemNumber already set: 569014
+2025-11-09 12:21:36,136 - INFO - [25/50] 3 397 014 009 - MET. BRISAČA A009S...
+2025-11-09 12:21:36,206 - INFO -    ✅ Saved 3 attribute(s) to technicalSpecs
+2025-11-09 12:21:36,544 - INFO -    Found 500 passengercars with engines from TecDoc
+2025-11-09 12:21:36,545 - INFO -    Unique passengercars IDs: 200
+2025-11-09 12:21:36,545 - INFO -    Sample IDs: [22528, 22529, 22530, 10247, 10288]
+2025-11-09 12:21:36,607 - INFO -    Mapped to 152 vehicles in our database
+2025-11-09 12:21:36,607 - INFO -    ✅ Found 152 vehicles with engine specificity
+2025-11-09 12:21:50,337 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:21:50,368 - INFO -    ⏭️  oemNumber already set: A009S
+2025-11-09 12:21:50,424 - INFO - [26/50] 047417 - KOPČA SIGURNOSNOG POJASA METAL/PLASTIKA ...
+2025-11-09 12:21:50,523 - INFO -    ✅ Updated categoryId: Električni sistem
+2025-11-09 12:21:50,612 - INFO -    ✅ Saved 2 attribute(s) to technicalSpecs
+2025-11-09 12:21:50,693 - INFO -    Found 500 passengercars with engines from TecDoc
+2025-11-09 12:21:50,694 - INFO -    Unique passengercars IDs: 200
+2025-11-09 12:21:50,694 - INFO -    Sample IDs: [10242, 10243, 10245, 129059, 18484]
+2025-11-09 12:21:50,789 - INFO -    Mapped to 137 vehicles in our database
+2025-11-09 12:21:50,789 - INFO -    ✅ Found 137 vehicles with engine specificity
+2025-11-09 12:22:03,357 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:22:03,392 - INFO -    ⏭️  oemNumber already set: 5G0941661F
+2025-11-09 12:22:03,446 - INFO - [27/50] 232043 - SAJLA PVC 6MM...
+2025-11-09 12:22:03,540 - INFO -    ✅ Updated categoryId: Izduvni sistem
+2025-11-09 12:22:03,548 - INFO -    No results from TecDoc passengercars_link_engines query
+2025-11-09 12:22:03,548 - INFO -    ⚠️  No engine-specific vehicles, trying by model...
+2025-11-09 12:22:03,607 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:22:03,658 - INFO - [28/50] 45000055301 - MOST ZADNJI GOLF 4...
+2025-11-09 12:22:03,760 - INFO -    ✅ Updated categoryId: Osovine / upravljanje / točkovi
+2025-11-09 12:22:03,868 - INFO -    ✅ Saved 1 attribute(s) to technicalSpecs
+2025-11-09 12:22:04,240 - INFO -    Found 500 passengercars with engines from TecDoc
+2025-11-09 12:22:04,240 - INFO -    Unique passengercars IDs: 200
+2025-11-09 12:22:04,240 - INFO -    Sample IDs: [19968, 19969, 11268, 4613, 11782]
+2025-11-09 12:22:04,306 - INFO -    Mapped to 200 vehicles in our database
+2025-11-09 12:22:04,307 - INFO -    ✅ Found 200 vehicles with engine specificity
+2025-11-09 12:22:22,504 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:22:22,544 - INFO -    ⏭️  oemNumber already set: 89910
+2025-11-09 12:22:22,596 - INFO - [29/50] 4072954 - OPRUGA AMORTIZERA RENAULT 4072954 PR.MEG...
+2025-11-09 12:22:22,704 - INFO -    ✅ Updated categoryId: Izduvni sistem
+2025-11-09 12:22:22,796 - INFO -    ✅ Saved 1 attribute(s) to technicalSpecs
+2025-11-09 12:22:23,519 - INFO -    Found 500 passengercars with engines from TecDoc
+2025-11-09 12:22:23,519 - INFO -    Unique passengercars IDs: 200
+2025-11-09 12:22:23,519 - INFO -    Sample IDs: [26627, 17097, 23045, 50695, 107528]
+2025-11-09 12:22:23,583 - INFO -    Mapped to 200 vehicles in our database
+2025-11-09 12:22:23,583 - INFO -    ✅ Found 200 vehicles with engine specificity
+2025-11-09 12:22:41,830 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:22:41,864 - INFO -    ⏭️  oemNumber already set: 8200106137
+2025-11-09 12:22:41,920 - INFO - [30/50] 803118 - MANNOL MAST LITHIUM GREASE LT-43 18KG...
+2025-11-09 12:22:42,019 - INFO -    ✅ Updated categoryId: Osovine / upravljanje / točkovi
+2025-11-09 12:22:42,025 - INFO -    No results from TecDoc passengercars_link_engines query
+2025-11-09 12:22:42,026 - INFO -    ⚠️  No engine-specific vehicles, trying by model...
+2025-11-09 12:22:42,084 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:22:42,136 - INFO - [31/50] 994370 - OPRUGA ZADNJA...
+2025-11-09 12:22:42,234 - INFO -    ✅ Updated categoryId: Izduvni sistem
+2025-11-09 12:22:42,334 - INFO -    ✅ Saved 4 attribute(s) to technicalSpecs
+2025-11-09 12:22:42,818 - INFO -    Found 500 passengercars with engines from TecDoc
+2025-11-09 12:22:42,819 - INFO -    Unique passengercars IDs: 200
+2025-11-09 12:22:42,819 - INFO -    Sample IDs: [34818, 34842, 34858, 34859, 129082]
+2025-11-09 12:22:42,883 - INFO -    Mapped to 200 vehicles in our database
+2025-11-09 12:22:42,883 - INFO -    ✅ Found 200 vehicles with engine specificity
+2025-11-09 12:23:01,082 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:23:01,115 - INFO -    ⏭️  oemNumber already set: 3C0 511 115 AH
+2025-11-09 12:23:01,169 - INFO - [32/50] 7.07381.09.0 - PUMPA ULJA...
+2025-11-09 12:23:01,269 - INFO -    ✅ Updated categoryId: Motor
+2025-11-09 12:23:01,418 - INFO -    Found 500 passengercars with engines from TecDoc
+2025-11-09 12:23:01,418 - INFO -    Unique passengercars IDs: 200
+2025-11-09 12:23:01,418 - INFO -    Sample IDs: [28672, 118792, 12313, 32798, 32799]
+2025-11-09 12:23:01,460 - INFO -    Mapped to 91 vehicles in our database
+2025-11-09 12:23:01,461 - INFO -    ✅ Found 91 vehicles with engine specificity
+2025-11-09 12:23:09,812 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:23:09,843 - INFO -    ⏭️  oemNumber already set: 15 00 098 46R
+2025-11-09 12:23:09,899 - INFO - [33/50] 215.870 - ČEP BREGASTE...
+2025-11-09 12:23:10,000 - INFO -    ✅ Updated categoryId: Motor
+2025-11-09 12:23:10,660 - INFO -    Found 500 passengercars with engines from TecDoc
+2025-11-09 12:23:10,660 - INFO -    Unique passengercars IDs: 200
+2025-11-09 12:23:10,660 - INFO -    Sample IDs: [19968, 19969, 11268, 4613, 11782]
+2025-11-09 12:23:10,732 - INFO -    Mapped to 200 vehicles in our database
+2025-11-09 12:23:10,732 - INFO -    ✅ Found 200 vehicles with engine specificity
+2025-11-09 12:23:29,227 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:23:29,259 - INFO -    ⏭️  oemNumber already set: 116824
+2025-11-09 12:23:29,315 - INFO - [34/50] YTZ10S - Akumulator Moto AGM 12V- 9 Ah L YTZ10S 1...
+2025-11-09 12:23:29,414 - INFO -    ✅ Updated categoryId: Električni sistem
+2025-11-09 12:23:29,504 - INFO -    ✅ Saved 6 attribute(s) to technicalSpecs
+2025-11-09 12:23:29,514 - INFO -    No results from TecDoc passengercars_link_engines query
+2025-11-09 12:23:29,514 - INFO -    ⚠️  No engine-specific vehicles, trying by model...
+2025-11-09 12:23:29,573 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:23:29,630 - INFO - [35/50] 10 93 8952 - NOSAČ AMORT.M-169/245 (+LEŽ)...
+2025-11-09 12:23:29,730 - INFO -    ✅ Updated categoryId: Klima uređaj
+2025-11-09 12:23:29,819 - INFO -    ✅ Saved 4 attribute(s) to technicalSpecs
+2025-11-09 12:23:30,569 - INFO -    Found 500 passengercars with engines from TecDoc
+2025-11-09 12:23:30,569 - INFO -    Unique passengercars IDs: 200
+2025-11-09 12:23:30,569 - INFO -    Sample IDs: [28672, 118792, 12313, 32798, 32799]
+2025-11-09 12:23:30,611 - INFO -    Mapped to 91 vehicles in our database
+2025-11-09 12:23:30,612 - INFO -    ✅ Found 91 vehicles with engine specificity
+2025-11-09 12:23:38,800 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:23:38,831 - INFO -    ⏭️  oemNumber already set: 169 320 00 73
+2025-11-09 12:23:38,884 - INFO - [36/50] 910208 - ODBOJN.PR.AMOR.M-169/245 04- SET...
+2025-11-09 12:23:38,980 - INFO -    ✅ Updated categoryId: Električni sistem
+2025-11-09 12:23:39,072 - INFO -    ✅ Saved 3 attribute(s) to technicalSpecs
+2025-11-09 12:23:39,770 - INFO -    No results from TecDoc passengercars_link_engines query
+2025-11-09 12:23:39,770 - INFO -    ⚠️  No engine-specific vehicles, trying by model...
+2025-11-09 12:23:39,870 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:23:39,901 - INFO -    ⏭️  oemNumber already set: 563-31
+2025-11-09 12:23:39,952 - INFO - [37/50] 55331 - PRSTEN ABS RENAULT 55331 MEGANE II, CITR...
+2025-11-09 12:23:40,052 - INFO -    ✅ Updated categoryId: Kočioni sistem
+2025-11-09 12:23:40,141 - INFO -    ✅ Saved 7 attribute(s) to technicalSpecs
+2025-11-09 12:23:40,852 - INFO -    Found 72 passengercars with engines from TecDoc
+2025-11-09 12:23:40,852 - INFO -    Unique passengercars IDs: 66
+2025-11-09 12:23:40,852 - INFO -    Sample IDs: [108672, 28800, 108675, 126347, 129678]
+2025-11-09 12:23:40,887 - INFO -    Mapped to 0 vehicles in our database
+2025-11-09 12:23:40,887 - INFO -    ⚠️  No engine-specific vehicles, trying by model...
+2025-11-09 12:23:41,916 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:23:41,947 - INFO -    ⏭️  oemNumber already set: AAR5516
+2025-11-09 12:23:42,000 - INFO - [38/50] FT3444314 - ŽMIGAVAC FIAT PUNTO EVO BIJELI LX 09-...
+2025-11-09 12:23:42,107 - INFO -    ✅ Updated categoryId: Električni sistem
+2025-11-09 12:23:42,197 - INFO -    ✅ Saved 2 attribute(s) to technicalSpecs
+2025-11-09 12:23:42,642 - INFO -    Found 500 passengercars with engines from TecDoc
+2025-11-09 12:23:42,643 - INFO -    Unique passengercars IDs: 200
+2025-11-09 12:23:42,643 - INFO -    Sample IDs: [20480, 20481, 10251, 22544, 22545]
+2025-11-09 12:23:42,709 - INFO -    Mapped to 160 vehicles in our database
+2025-11-09 12:23:42,710 - INFO -    ✅ Found 160 vehicles with engine specificity
+2025-11-09 12:23:57,142 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:23:57,173 - INFO -    ⏭️  oemNumber already set: 051858823
+2025-11-09 12:23:57,229 - INFO - [39/50] S060214 - LAFETA KPL.M-202/210 LX GOR....
+2025-11-09 12:23:57,322 - INFO -    ✅ Updated categoryId: Upravljanje (volan)
+2025-11-09 12:23:57,411 - INFO -    ✅ Saved 2 attribute(s) to technicalSpecs
+2025-11-09 12:23:58,190 - INFO -    Found 500 passengercars with engines from TecDoc
+2025-11-09 12:23:58,190 - INFO -    Unique passengercars IDs: 200
+2025-11-09 12:23:58,190 - INFO -    Sample IDs: [28672, 118792, 12313, 32798, 32799]
+2025-11-09 12:23:58,235 - INFO -    Mapped to 91 vehicles in our database
+2025-11-09 12:23:58,235 - INFO -    ✅ Found 91 vehicles with engine specificity
+2025-11-09 12:24:06,376 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:24:06,406 - INFO -    ⏭️  oemNumber already set: 36431
+2025-11-09 12:24:06,458 - INFO - [40/50] TH7190.81J - TERMOS.R-MASTER/MOVANO 10- KPL....
+2025-11-09 12:24:06,555 - INFO -    ✅ Updated categoryId: Sistem za hlađenje
+2025-11-09 12:24:06,643 - INFO -    ✅ Saved 1 attribute(s) to technicalSpecs
+2025-11-09 12:24:07,086 - INFO -    Found 500 passengercars with engines from TecDoc
+2025-11-09 12:24:07,086 - INFO -    Unique passengercars IDs: 200
+2025-11-09 12:24:07,087 - INFO -    Sample IDs: [4113, 4116, 4118, 4119, 51224]
+2025-11-09 12:24:07,182 - INFO -    Mapped to 151 vehicles in our database
+2025-11-09 12:24:07,183 - INFO -    ✅ Found 151 vehicles with engine specificity
+2025-11-09 12:24:20,830 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:24:20,861 - INFO -    ⏭️  oemNumber already set: 215255
+2025-11-09 12:24:20,914 - INFO - [41/50] 18036 - JEZGRA ZA CRIJEVO DN 20...
+2025-11-09 12:24:21,011 - INFO -    ✅ Updated categoryId: Kočioni sistem
+2025-11-09 12:24:21,102 - INFO -    ✅ Saved 9 attribute(s) to technicalSpecs
+2025-11-09 12:24:21,823 - INFO -    Found 500 passengercars with engines from TecDoc
+2025-11-09 12:24:21,823 - INFO -    Unique passengercars IDs: 200
+2025-11-09 12:24:21,823 - INFO -    Sample IDs: [28672, 118792, 12313, 32798, 32799]
+2025-11-09 12:24:21,863 - INFO -    Mapped to 91 vehicles in our database
+2025-11-09 12:24:21,864 - INFO -    ✅ Found 91 vehicles with engine specificity
+2025-11-09 12:24:30,019 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:24:30,053 - INFO -    ⏭️  oemNumber already set: 905 421 00 12
+2025-11-09 12:24:30,103 - INFO - [42/50] 08658 - INDIKATOR TEMPERATURE MB 08658...
+2025-11-09 12:24:30,204 - INFO -    ✅ Updated categoryId: Mjenjač / prenos
+2025-11-09 12:24:30,294 - INFO -    ✅ Saved 10 attribute(s) to technicalSpecs
+2025-11-09 12:24:31,397 - INFO -    Found 500 passengercars with engines from TecDoc
+2025-11-09 12:24:31,397 - INFO -    Unique passengercars IDs: 200
+2025-11-09 12:24:31,397 - INFO -    Sample IDs: [28672, 118792, 12313, 32798, 32799]
+2025-11-09 12:24:31,475 - INFO -    Mapped to 91 vehicles in our database
+2025-11-09 12:24:31,476 - INFO -    ✅ Found 91 vehicles with engine specificity
+2025-11-09 12:24:39,804 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:24:39,837 - INFO -    ⏭️  oemNumber already set: 002 542 73 17
+2025-11-09 12:24:39,891 - INFO - [43/50] 2.15726 - CRIJEVO RASHLADNOG SISTEMA...
+2025-11-09 12:24:39,959 - INFO -    ✅ Saved 1 attribute(s) to technicalSpecs
+2025-11-09 12:24:40,098 - INFO -    Found 500 passengercars with engines from TecDoc
+2025-11-09 12:24:40,098 - INFO -    Unique passengercars IDs: 200
+2025-11-09 12:24:40,099 - INFO -    Sample IDs: [26627, 17097, 23045, 50695, 107528]
+2025-11-09 12:24:40,171 - INFO -    Mapped to 200 vehicles in our database
+2025-11-09 12:24:40,171 - INFO -    ✅ Found 200 vehicles with engine specificity
+2025-11-09 12:24:58,002 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:24:58,035 - INFO -    ⏭️  oemNumber already set: 20451178
+2025-11-09 12:24:58,086 - INFO - [44/50] TD1734W - SELEN BLOK...
+2025-11-09 12:24:58,186 - INFO -    ✅ Updated categoryId: Posebni alati
+2025-11-09 12:24:58,276 - INFO -    ✅ Saved 3 attribute(s) to technicalSpecs
+2025-11-09 12:24:58,313 - INFO -    Found 500 passengercars with engines from TecDoc
+2025-11-09 12:24:58,313 - INFO -    Unique passengercars IDs: 200
+2025-11-09 12:24:58,313 - INFO -    Sample IDs: [6145, 6146, 6147, 6148, 11]
+2025-11-09 12:24:58,409 - INFO -    Mapped to 200 vehicles in our database
+2025-11-09 12:24:58,409 - INFO -    ✅ Found 200 vehicles with engine specificity
+2025-11-09 12:25:16,310 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:25:16,341 - INFO -    ⏭️  oemNumber already set: 203390
+2025-11-09 12:25:16,395 - INFO - [45/50] 19-226903 - AMORTIZER A6 14-...
+2025-11-09 12:25:16,550 - INFO -    ✅ Updated categoryId: Ovjes
+2025-11-09 12:25:16,650 - INFO -    ✅ Saved 1 attribute(s) to technicalSpecs
+2025-11-09 12:25:16,830 - INFO -    Found 500 passengercars with engines from TecDoc
+2025-11-09 12:25:16,831 - INFO -    Unique passengercars IDs: 200
+2025-11-09 12:25:16,831 - INFO -    Sample IDs: [19968, 19969, 11268, 4613, 11782]
+2025-11-09 12:25:16,896 - INFO -    Mapped to 200 vehicles in our database
+2025-11-09 12:25:16,897 - INFO -    ✅ Found 200 vehicles with engine specificity
+2025-11-09 12:25:34,865 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:25:34,971 - INFO -    ⏭️  oemNumber already set: 448997
+2025-11-09 12:25:35,027 - INFO - [46/50] 103 768 - ULOŽAK BRAVE...
+2025-11-09 12:25:35,126 - INFO -    ✅ Updated categoryId: Električni sistem
+2025-11-09 12:25:35,220 - INFO -    ✅ Saved 2 attribute(s) to technicalSpecs
+2025-11-09 12:25:35,915 - INFO -    Found 500 passengercars with engines from TecDoc
+2025-11-09 12:25:35,915 - INFO -    Unique passengercars IDs: 200
+2025-11-09 12:25:35,915 - INFO -    Sample IDs: [19968, 19969, 11268, 4613, 11782]
+2025-11-09 12:25:35,978 - INFO -    Mapped to 200 vehicles in our database
+2025-11-09 12:25:35,979 - INFO -    ✅ Found 200 vehicles with engine specificity
+2025-11-09 12:25:54,280 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:25:54,315 - INFO -    ⏭️  oemNumber already set: 217470
+2025-11-09 12:25:54,371 - INFO - [47/50] 5703-05-9540921P - MASKA BARNIKA...
+2025-11-09 12:25:54,450 - INFO -    ✅ Saved 1 attribute(s) to technicalSpecs
+2025-11-09 12:25:55,031 - INFO -    Found 500 passengercars with engines from TecDoc
+2025-11-09 12:25:55,031 - INFO -    Unique passengercars IDs: 200
+2025-11-09 12:25:55,031 - INFO -    Sample IDs: [10242, 10243, 10245, 129059, 18484]
+2025-11-09 12:25:55,099 - INFO -    Mapped to 137 vehicles in our database
+2025-11-09 12:25:55,099 - INFO -    ✅ Found 137 vehicles with engine specificity
+2025-11-09 12:26:07,558 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:26:07,588 - INFO -    ⏭️  oemNumber already set: 3C0 807 718C GRU
+2025-11-09 12:26:07,641 - INFO - [48/50] 5703-05-9540923P - MASKA BRANIKA PASSAT 6/7...
+2025-11-09 12:26:07,707 - INFO -    ✅ Saved 1 attribute(s) to technicalSpecs
+2025-11-09 12:26:07,734 - INFO -    Found 500 passengercars with engines from TecDoc
+2025-11-09 12:26:07,735 - INFO -    Unique passengercars IDs: 200
+2025-11-09 12:26:07,735 - INFO -    Sample IDs: [10242, 10243, 10245, 129059, 18484]
+2025-11-09 12:26:07,827 - INFO -    Mapped to 137 vehicles in our database
+2025-11-09 12:26:07,828 - INFO -    ✅ Found 137 vehicles with engine specificity
+2025-11-09 12:26:20,183 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:26:20,212 - INFO -    ⏭️  oemNumber already set: 3C08076459B
+2025-11-09 12:26:20,267 - INFO - [49/50] CCZ1412ABE - ABS SENZOR...
+2025-11-09 12:26:20,357 - INFO -    ✅ Updated categoryId: Mjenjač / prenos
+2025-11-09 12:26:20,445 - INFO -    ✅ Saved 2 attribute(s) to technicalSpecs
+2025-11-09 12:26:21,085 - INFO -    Found 500 passengercars with engines from TecDoc
+2025-11-09 12:26:21,086 - INFO -    Unique passengercars IDs: 200
+2025-11-09 12:26:21,086 - INFO -    Sample IDs: [129028, 129029, 108552, 26634, 51223]
+2025-11-09 12:26:21,246 - INFO -    Mapped to 107 vehicles in our database
+2025-11-09 12:26:21,246 - INFO -    ✅ Found 107 vehicles with engine specificity
+2025-11-09 12:26:30,836 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:26:30,868 - INFO -    ⏭️  oemNumber already set: 4670A189
+2025-11-09 12:26:30,923 - INFO - [50/50] RS1196 - LEŽ.ZD KOLA P-206/CIT.XSARA...
+2025-11-09 12:26:31,024 - INFO -    ✅ Updated categoryId: Osovine / upravljanje / točkovi
+2025-11-09 12:26:31,114 - INFO -    ✅ Saved 4 attribute(s) to technicalSpecs
+2025-11-09 12:26:31,772 - INFO -    No results from TecDoc passengercars_link_engines query
+2025-11-09 12:26:31,772 - INFO -    ⚠️  No engine-specific vehicles, trying by model...
+2025-11-09 12:26:31,836 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:26:31,866 - INFO -    ⏭️  oemNumber already set: 467855
+2025-11-09 12:26:31,918 - INFO - 
+📊 BATCH #1 STATS: Processed=50, Cat=42, Attr=41, Veh=0, Errors=0
+2025-11-09 12:26:32,983 - INFO - 
+======================================================================
+2025-11-09 12:26:32,983 - INFO - 📦 BATCH #2 (offset: 50, size: 50)
+2025-11-09 12:26:32,984 - INFO - ======================================================================
+2025-11-09 12:26:32,984 - INFO - [1/50] D3979A - SET OPRUGA ZD.PAKNI CITR/PEŽO...
+2025-11-09 12:26:33,047 - INFO -    ✅ Saved 3 attribute(s) to technicalSpecs
+2025-11-09 12:26:33,694 - INFO -    Found 500 passengercars with engines from TecDoc
+2025-11-09 12:26:33,694 - INFO -    Unique passengercars IDs: 200
+2025-11-09 12:26:33,694 - INFO -    Sample IDs: [26625, 12289, 12292, 32800, 32801]
+2025-11-09 12:26:33,759 - INFO -    Mapped to 128 vehicles in our database
+2025-11-09 12:26:33,759 - INFO -    ✅ Found 128 vehicles with engine specificity
+2025-11-09 12:26:45,213 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:26:45,241 - INFO -    ⏭️  oemNumber already set: 399895
+2025-11-09 12:26:45,293 - INFO - [2/50] 92120505 - DISK PR.GOLF 5 03...
+2025-11-09 12:26:45,383 - INFO -    ✅ Updated categoryId: Kočioni sistem
+2025-11-09 12:26:45,469 - INFO -    ✅ Saved 13 attribute(s) to technicalSpecs
+2025-11-09 12:26:45,763 - INFO -    Found 500 passengercars with engines from TecDoc
+2025-11-09 12:26:45,763 - INFO -    Unique passengercars IDs: 200
+2025-11-09 12:26:45,763 - INFO -    Sample IDs: [19968, 19969, 11268, 4613, 11782]
+2025-11-09 12:26:45,864 - INFO -    Mapped to 200 vehicles in our database
+2025-11-09 12:26:45,865 - INFO -    ✅ Found 200 vehicles with engine specificity
+2025-11-09 12:27:03,947 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:27:03,979 - INFO -    ⏭️  oemNumber already set: 1K0615301AA
+2025-11-09 12:27:04,033 - INFO - [3/50] 5600027 - LEŽ.ZD.KOLA P-206/CIT.XSARA...
+2025-11-09 12:27:04,148 - INFO -    ✅ Updated categoryId: Osovine / upravljanje / točkovi
+2025-11-09 12:27:04,243 - INFO -    ✅ Saved 3 attribute(s) to technicalSpecs
+2025-11-09 12:27:04,912 - INFO -    Found 500 passengercars with engines from TecDoc
+2025-11-09 12:27:04,912 - INFO -    Unique passengercars IDs: 200
+2025-11-09 12:27:04,912 - INFO -    Sample IDs: [26625, 12289, 12292, 32800, 32801]
+2025-11-09 12:27:04,979 - INFO -    Mapped to 128 vehicles in our database
+2025-11-09 12:27:04,979 - INFO -    ✅ Found 128 vehicles with engine specificity
+2025-11-09 12:27:16,502 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:27:16,532 - INFO -    ⏭️  oemNumber already set: 141528
+2025-11-09 12:27:16,585 - INFO - [4/50] 55510 - PREK.EL.POD.STAK.OCTAVIA...
+2025-11-09 12:27:16,678 - INFO -    ✅ Updated categoryId: Pogon na točkove
+2025-11-09 12:27:16,766 - INFO -    ✅ Saved 1 attribute(s) to technicalSpecs
+2025-11-09 12:27:16,956 - INFO -    Found 500 passengercars with engines from TecDoc
+2025-11-09 12:27:16,956 - INFO -    Unique passengercars IDs: 200
+2025-11-09 12:27:16,956 - INFO -    Sample IDs: [120853, 120854, 59424, 59425, 34850]
+2025-11-09 12:27:16,996 - INFO -    Mapped to 0 vehicles in our database
+2025-11-09 12:27:16,996 - INFO -    ⚠️  No engine-specific vehicles, trying by model...
+2025-11-09 12:27:20,279 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:27:20,327 - INFO -    ⏭️  oemNumber already set: 139844
+2025-11-09 12:27:20,383 - INFO - [5/50] 510743 - ČAURA LAF.R-MEGANE 03-CENT...
+2025-11-09 12:27:20,491 - INFO -    ✅ Updated categoryId: Kočioni sistem
+2025-11-09 12:27:21,146 - INFO -    Found 500 passengercars with engines from TecDoc
+2025-11-09 12:27:21,146 - INFO -    Unique passengercars IDs: 200
+2025-11-09 12:27:21,146 - INFO -    Sample IDs: [26625, 12289, 12292, 32800, 32801]
+2025-11-09 12:27:21,214 - INFO -    Mapped to 128 vehicles in our database
+2025-11-09 12:27:21,214 - INFO -    ✅ Found 128 vehicles with engine specificity
+2025-11-09 12:27:32,650 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:27:32,683 - INFO -    ⏭️  oemNumber already set: 207525
+2025-11-09 12:27:32,735 - INFO - [6/50] 510742 - ČAURA LAF.R.MEGANE 03 ZAD...
+2025-11-09 12:27:32,834 - INFO -    ✅ Updated categoryId: Kočioni sistem
+2025-11-09 12:27:32,922 - INFO -    ✅ Saved 4 attribute(s) to technicalSpecs
+2025-11-09 12:27:33,584 - INFO -    Found 500 passengercars with engines from TecDoc
+2025-11-09 12:27:33,585 - INFO -    Unique passengercars IDs: 200
+2025-11-09 12:27:33,585 - INFO -    Sample IDs: [28672, 118792, 12313, 32798, 32799]
+2025-11-09 12:27:33,653 - INFO -    Mapped to 91 vehicles in our database
+2025-11-09 12:27:33,653 - INFO -    ✅ Found 91 vehicles with engine specificity
+2025-11-09 12:27:42,011 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:27:42,046 - INFO -    ⏭️  oemNumber already set: 254233
+2025-11-09 12:27:42,097 - INFO - [7/50] 25911 - MANDŽ.ZGL.DUCATO 09 SET...
+2025-11-09 12:27:42,187 - INFO -    ✅ Updated categoryId: Pogon na točkove
+2025-11-09 12:27:42,274 - INFO -    ✅ Saved 1 attribute(s) to technicalSpecs
+2025-11-09 12:27:42,550 - INFO -    Found 500 passengercars with engines from TecDoc
+2025-11-09 12:27:42,550 - INFO -    Unique passengercars IDs: 200
+2025-11-09 12:27:42,550 - INFO -    Sample IDs: [22528, 22529, 22530, 10247, 10288]
+2025-11-09 12:27:42,619 - INFO -    Mapped to 152 vehicles in our database
+2025-11-09 12:27:42,620 - INFO -    ✅ Found 152 vehicles with engine specificity
+2025-11-09 12:27:56,228 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:27:56,266 - INFO -    ⏭️  oemNumber already set: 446939
+2025-11-09 12:27:56,321 - INFO - [8/50] AM411 - FILTER ZRAKA...
+2025-11-09 12:27:56,410 - INFO -    ✅ Updated categoryId: Filteri
+2025-11-09 12:27:56,497 - INFO -    ✅ Saved 3 attribute(s) to technicalSpecs
+2025-11-09 12:27:56,500 - INFO -    No results from TecDoc passengercars_link_engines query
+2025-11-09 12:27:56,500 - INFO -    ⚠️  No engine-specific vehicles, trying by model...
+2025-11-09 12:27:56,556 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:27:56,612 - INFO - [9/50] 622252 - SENZOR TEMPERATURE RASHLADNOG SREDSTVA...
+2025-11-09 12:27:56,701 - INFO -    ✅ Updated categoryId: Izduvni sistem
+2025-11-09 12:27:57,371 - INFO -    Found 500 passengercars with engines from TecDoc
+2025-11-09 12:27:57,371 - INFO -    Unique passengercars IDs: 200
+2025-11-09 12:27:57,372 - INFO -    Sample IDs: [26627, 17097, 23045, 50695, 107528]
+2025-11-09 12:27:57,441 - INFO -    Mapped to 200 vehicles in our database
+2025-11-09 12:27:57,442 - INFO -    ✅ Found 200 vehicles with engine specificity
+2025-11-09 12:28:15,635 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:28:15,665 - INFO -    ⏭️  oemNumber already set: 310433
+2025-11-09 12:28:15,720 - INFO - [10/50] 5402-04-1131121P - RETRVIZOR...
+2025-11-09 12:28:15,811 - INFO -    ✅ Updated categoryId: Sistemi udobnosti
+2025-11-09 12:28:15,903 - INFO -    ✅ Saved 1 attribute(s) to technicalSpecs
+2025-11-09 12:28:16,583 - INFO -    Found 500 passengercars with engines from TecDoc
+2025-11-09 12:28:16,584 - INFO -    Unique passengercars IDs: 200
+2025-11-09 12:28:16,584 - INFO -    Sample IDs: [10242, 10243, 10245, 129059, 18484]
+2025-11-09 12:28:16,648 - INFO -    Mapped to 137 vehicles in our database
+2025-11-09 12:28:16,648 - INFO -    ✅ Found 137 vehicles with engine specificity
+2025-11-09 12:28:30,084 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:28:30,113 - INFO -    ⏭️  oemNumber already set: 1K0857537
+2025-11-09 12:28:30,167 - INFO - [11/50] 64391 - 5PK 1100...
+2025-11-09 12:28:30,260 - INFO -    ✅ Updated categoryId: Izduvni sistem
+2025-11-09 12:28:30,355 - INFO -    ✅ Saved 3 attribute(s) to technicalSpecs
+2025-11-09 12:28:30,437 - INFO -    Found 500 passengercars with engines from TecDoc
+2025-11-09 12:28:30,438 - INFO -    Unique passengercars IDs: 200
+2025-11-09 12:28:30,438 - INFO -    Sample IDs: [26627, 17097, 23045, 50695, 107528]
+2025-11-09 12:28:30,507 - INFO -    Mapped to 200 vehicles in our database
+2025-11-09 12:28:30,507 - INFO -    ✅ Found 200 vehicles with engine specificity
+2025-11-09 12:28:50,733 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:28:50,773 - INFO -    ⏭️  oemNumber already set: 5000783638
+2025-11-09 12:28:50,824 - INFO - [12/50] AP139/3 - FILTER ZRAKA...
+2025-11-09 12:28:50,932 - INFO -    ✅ Updated categoryId: Filteri
+2025-11-09 12:28:51,023 - INFO -    ✅ Saved 4 attribute(s) to technicalSpecs
+2025-11-09 12:28:51,690 - INFO -    Found 500 passengercars with engines from TecDoc
+2025-11-09 12:28:51,691 - INFO -    Unique passengercars IDs: 200
+2025-11-09 12:28:51,691 - INFO -    Sample IDs: [10242, 10243, 10245, 129059, 18484]
+2025-11-09 12:28:51,756 - INFO -    Mapped to 137 vehicles in our database
+2025-11-09 12:28:51,756 - INFO -    ✅ Found 137 vehicles with engine specificity
+2025-11-09 12:29:05,167 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:29:05,199 - INFO -    ⏭️  oemNumber already set: 69526
+2025-11-09 12:29:05,254 - INFO - [13/50] 201681 - POLUOSOVINA BMW F10 11-DX...
+2025-11-09 12:29:05,348 - INFO -    ✅ Updated categoryId: Osovine / upravljanje / točkovi
+2025-11-09 12:29:05,437 - INFO -    ✅ Saved 3 attribute(s) to technicalSpecs
+2025-11-09 12:29:05,999 - INFO -    Found 500 passengercars with engines from TecDoc
+2025-11-09 12:29:05,999 - INFO -    Unique passengercars IDs: 200
+2025-11-09 12:29:05,999 - INFO -    Sample IDs: [4113, 4116, 4118, 4119, 51224]
+2025-11-09 12:29:06,065 - INFO -    Mapped to 151 vehicles in our database
+2025-11-09 12:29:06,065 - INFO -    ✅ Found 151 vehicles with engine specificity
+2025-11-09 12:29:23,050 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:29:23,093 - INFO -    ⏭️  oemNumber already set: 586039
+2025-11-09 12:29:23,148 - INFO - [14/50] 201581 - POLUOSOVINA BMW F10 11-LX...
+2025-11-09 12:29:23,247 - INFO -    ✅ Updated categoryId: Osovine / upravljanje / točkovi
+2025-11-09 12:29:23,335 - INFO -    ✅ Saved 1 attribute(s) to technicalSpecs
+2025-11-09 12:29:23,339 - INFO -    No results from TecDoc passengercars_link_engines query
+2025-11-09 12:29:23,339 - INFO -    ⚠️  No engine-specific vehicles, trying by model...
+2025-11-09 12:29:23,400 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:29:23,455 - INFO - [15/50] TC2671 - KUGLA R-MASTER/MOVANO 07/10-DX...
+2025-11-09 12:29:23,549 - INFO -    ✅ Updated categoryId: Osovine / upravljanje / točkovi
+2025-11-09 12:29:23,635 - INFO -    ✅ Saved 4 attribute(s) to technicalSpecs
+2025-11-09 12:29:24,298 - INFO -    Found 500 passengercars with engines from TecDoc
+2025-11-09 12:29:24,298 - INFO -    Unique passengercars IDs: 200
+2025-11-09 12:29:24,298 - INFO -    Sample IDs: [12319, 129055, 129060, 129062, 129065]
+2025-11-09 12:29:24,365 - INFO -    Mapped to 167 vehicles in our database
+2025-11-09 12:29:24,366 - INFO -    ✅ Found 167 vehicles with engine specificity
+2025-11-09 12:29:40,979 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:29:41,014 - INFO -    ⏭️  oemNumber already set: 266622
+2025-11-09 12:29:41,066 - INFO - [16/50] TA2682 - KRAJNICA R-MASTER /MOVANO 10-DX...
+2025-11-09 12:29:41,133 - INFO -    ✅ Saved 4 attribute(s) to technicalSpecs
+2025-11-09 12:29:41,778 - INFO -    Found 500 passengercars with engines from TecDoc
+2025-11-09 12:29:41,778 - INFO -    Unique passengercars IDs: 200
+2025-11-09 12:29:41,778 - INFO -    Sample IDs: [12319, 129055, 129060, 129062, 129065]
+2025-11-09 12:29:41,844 - INFO -    Mapped to 167 vehicles in our database
+2025-11-09 12:29:41,845 - INFO -    ✅ Found 167 vehicles with engine specificity
+2025-11-09 12:29:58,913 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:29:58,963 - INFO -    ⏭️  oemNumber already set: 208471
+2025-11-09 12:29:59,015 - INFO - [17/50] TA2681 - KRAJNICA R-MASTER /MOVANO 10-LX...
+2025-11-09 12:29:59,171 - INFO -    ✅ Saved 4 attribute(s) to technicalSpecs
+2025-11-09 12:29:59,924 - INFO -    Found 500 passengercars with engines from TecDoc
+2025-11-09 12:29:59,924 - INFO -    Unique passengercars IDs: 200
+2025-11-09 12:29:59,925 - INFO -    Sample IDs: [12319, 129055, 129060, 129062, 129065]
+2025-11-09 12:29:59,990 - INFO -    Mapped to 167 vehicles in our database
+2025-11-09 12:29:59,990 - INFO -    ✅ Found 167 vehicles with engine specificity
+2025-11-09 12:30:16,643 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:30:16,678 - INFO -    ⏭️  oemNumber already set: 208470
+2025-11-09 12:30:16,729 - INFO - [18/50] S080179 - KUGLA OPEL MERIVA 03-DX...
+2025-11-09 12:30:16,827 - INFO -    ✅ Updated categoryId: Osovine / upravljanje / točkovi
+2025-11-09 12:30:16,926 - INFO -    ✅ Saved 3 attribute(s) to technicalSpecs
+2025-11-09 12:30:17,638 - INFO -    Found 500 passengercars with engines from TecDoc
+2025-11-09 12:30:17,638 - INFO -    Unique passengercars IDs: 200
+2025-11-09 12:30:17,638 - INFO -    Sample IDs: [12319, 129055, 129060, 129062, 129065]
+2025-11-09 12:30:17,705 - INFO -    Mapped to 167 vehicles in our database
+2025-11-09 12:30:17,705 - INFO -    ✅ Found 167 vehicles with engine specificity
+2025-11-09 12:30:34,256 - INFO -    ⏭️  manufacturerId already set
+2025-11-09 12:30:34,292 - INFO -    ⏭️  oemNumber already set: 159826
+2025-11-09 12:30:34,343 - INFO - [19/50] S060055 - OSCILIRAJUĆE RAME A4/A6 DONJE LX...
+2025-11-09 12:30:34,442 - INFO -    ✅ Updated categoryId: Upravljanje (volan)
+2025-11-09 12:30:34,528 - INFO -    ✅ Saved 5 attribute(s) to technicalSpecs
+2025-11-09 12:30:35,197 - INFO -    Found 500 passengercars with engines from TecDoc
+2025-11-09 12:30:35,197 - INFO -    Unique passengercars IDs: 200
+2025-11-09 12:30:35,197 - INFO -    Sample IDs: [19968, 19969, 11268, 4613, 11782]
+2025-11-09 12:30:35,263 - INFO -    Mapped to 200 vehicles in our database
+2025-11-09 12:30:35,263 - INFO -    ✅ Found 200 vehicles with engine specificity
+2025-11-09 12:30:46,576 - INFO - 
+⚠️  Interrupted by user - progress saved!
+2025-11-09 12:30:46,590 - INFO - 🔌 Database connections closed

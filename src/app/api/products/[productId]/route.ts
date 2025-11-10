@@ -44,25 +44,18 @@ export async function GET(
       return new NextResponse('Proizvod nije pronađen', { status: 404 });
     }
 
-    // Nakon ažuriranja fitmenata vratimo proizvod sa fitmentima radi provjere
-    const productWithFitments = await db.product.findUnique({
-      where: { id: productId },
-      include: {
-        vehicleFitments: {
-          include: {
-            generation: { include: { model: { include: { brand: true } } } },
-            engine: true,
-          }
-        }
-      }
-    });
+    // Debug: provjeri vehicleFitments
+    console.log('[PRODUCT_GET] vehicleFitments count:', product.vehicleFitments?.length || 0);
+    if (product.vehicleFitments && product.vehicleFitments.length > 0) {
+      console.log('[PRODUCT_GET] First fitment:', JSON.stringify(product.vehicleFitments[0], null, 2));
+    }
 
     // Pricing: featured override, otherwise B2B
     const session = await getServerSession(authOptions);
     const isB2B = (session as any)?.user?.role === 'B2B';
     const discountPercentage = isB2B ? ((session as any)?.user?.discountPercentage || 0) : 0;
 
-    const base = (productWithFitments ?? product)! as any;
+    const base = product as any;
     let priced = base;
     try {
       const f = await db.featuredProduct.findFirst({ where: { productId, isActive: true } });

@@ -1,0 +1,974 @@
+2025-11-08 21:21:01,437 - INFO - ✅ Database connections established
+2025-11-08 21:21:01,438 - INFO - 
+######################################################################
+2025-11-08 21:21:01,438 - INFO - 🚗 Import Modela Vozila iz TecDoc-a (>= 1990)
+2025-11-08 21:21:01,438 - INFO - ######################################################################
+
+2025-11-08 21:21:01,512 - INFO - 📋 Loaded 30 brands from database
+2025-11-08 21:21:01,528 - INFO - 📋 Loaded 3843 manufacturers from TecDoc
+2025-11-08 21:21:01,530 - ERROR - ❌ Fatal error: 1054 (42S22): Unknown column 'pc.Manufacturer' in 'field list'
+2025-11-08 21:21:01,532 - INFO - 🔌 Database connections closed
+2025-11-08 21:23:06,781 - INFO - ✅ Database connections established
+2025-11-08 21:23:06,782 - INFO - 
+######################################################################
+2025-11-08 21:23:06,782 - INFO - 🚗 Import Modela Vozila iz TecDoc-a (>= 1990)
+2025-11-08 21:23:06,782 - INFO - ######################################################################
+
+2025-11-08 21:23:06,844 - INFO - 📋 Loaded 30 brands from database
+2025-11-08 21:23:06,864 - INFO - 📋 Loaded 3843 manufacturers from TecDoc
+2025-11-08 21:23:07,239 - INFO - 📦 Loaded 55337 models from TecDoc (>= 1990)
+2025-11-08 21:23:07,344 - ERROR - ❌ Error processing model 0.9: column "yearFrom" of relation "VehicleModel" does not exist
+LINE 5:                 "yearFrom",
+                        ^
+
+2025-11-08 21:23:07,377 - ERROR - ❌ Error processing model 0.9 TwinAir: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:07,405 - ERROR - ❌ Error processing model 0.9 TwinAir (955AXY1B): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:07,433 - ERROR - ❌ Error processing model 1.2 (907A4): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:07,461 - ERROR - ❌ Error processing model 1.3 (905AD1): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:07,489 - ERROR - ❌ Error processing model 1.3 MultiJet: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:07,518 - ERROR - ❌ Error processing model 1.3 MultiJet: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:07,549 - ERROR - ❌ Error processing model 1.3 MultiJet: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:07,581 - ERROR - ❌ Error processing model 1.3 MultiJet: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:07,609 - ERROR - ❌ Error processing model 1.4: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:07,638 - ERROR - ❌ Error processing model 1.4: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:07,666 - ERROR - ❌ Error processing model 1.4 (955.AXB1B, 955.AXU1A): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:07,694 - ERROR - ❌ Error processing model 1.4 (955AXB1B): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:07,727 - ERROR - ❌ Error processing model 1.4 (955AXB1B): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:07,755 - ERROR - ❌ Error processing model 1.4 Bifuel: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:07,787 - ERROR - ❌ Error processing model 1.4 BiFuel: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:07,820 - ERROR - ❌ Error processing model 1.4 Bifuel (955.AXG1A): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:07,848 - ERROR - ❌ Error processing model 1.4 i.e.: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:07,877 - ERROR - ❌ Error processing model 1.4 i.e.: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:07,913 - ERROR - ❌ Error processing model 1.4 i.e. (907.A3A, 907.A3B): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:07,942 - ERROR - ❌ Error processing model 1.4 i.e. (907.A3A, 907.A3B): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:07,974 - ERROR - ❌ Error processing model 1.4 i.e. (930.A3): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:08,008 - ERROR - ❌ Error processing model 1.4 i.e. (930.B3): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:08,059 - ERROR - ❌ Error processing model 1.4 i.e. 16V T.S. (930.A3A): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:08,093 - ERROR - ❌ Error processing model 1.4 i.e. 16V T.S. (930.B3A): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:08,122 - ERROR - ❌ Error processing model 1.4 i.e. 4x4: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:08,156 - ERROR - ❌ Error processing model 1.4 MultiAir (955AXL1B): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:08,201 - ERROR - ❌ Error processing model 1.4 MultiAir (955AXN1B): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:08,402 - ERROR - ❌ Error processing model 1.4 TB: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:08,431 - ERROR - ❌ Error processing model 1.4 TB: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:08,459 - ERROR - ❌ Error processing model 1.4 TB: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:08,487 - ERROR - ❌ Error processing model 1.4 TB: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:08,516 - ERROR - ❌ Error processing model 1.4 TB: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:08,543 - ERROR - ❌ Error processing model 1.4 TB (940FXA1A): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:08,573 - ERROR - ❌ Error processing model 1.4 TB (940FXB1A): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:08,605 - ERROR - ❌ Error processing model 1.4 TJet: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:08,633 - ERROR - ❌ Error processing model 1.4 TJet (955AXA1B): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:08,661 - ERROR - ❌ Error processing model 1.4 TJet (955AXG1A): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:08,690 - ERROR - ❌ Error processing model 1.4 Turbo MultiAir: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:08,718 - ERROR - ❌ Error processing model 1.4 Turbo MultiAir (955AXM1A, 955AXR11): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:08,747 - ERROR - ❌ Error processing model 1.5: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:08,776 - ERROR - ❌ Error processing model 1.5: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:08,810 - ERROR - ❌ Error processing model 1.5 (905A2G): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:08,840 - ERROR - ❌ Error processing model 1.5 i.e: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:08,870 - ERROR - ❌ Error processing model 1.5 i.e: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:08,900 - ERROR - ❌ Error processing model 1.5 i.e. (907A2A): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:08,945 - ERROR - ❌ Error processing model 1.6 16V T.S. (167.A6A): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:08,974 - ERROR - ❌ Error processing model 1.6 16V T.S. (930.A2C): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:09,003 - ERROR - ❌ Error processing model 1.6 16V T.S. (930.B2C): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:09,031 - ERROR - ❌ Error processing model 1.6 16V T.SPARK (932.A4, 932.A4100): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:09,060 - ERROR - ❌ Error processing model 1.6 16V T.SPARK (932A4): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:09,088 - ERROR - ❌ Error processing model 1.6 16V T.SPARK (932A4): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:09,121 - ERROR - ❌ Error processing model 1.6 16V T.SPARK (937.AXA1A, 937.AXB1A, 937.BXB1A): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:09,150 - ERROR - ❌ Error processing model 1.6 16V T.SPARK ECO (937.AXA1A, 937.BXA1A): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:09,179 - ERROR - ❌ Error processing model 1.6 16V T.SPARK. (932.B4B00): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:09,207 - ERROR - ❌ Error processing model 1.6 16V T.SPARK. (932A4): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:09,250 - ERROR - ❌ Error processing model 1.6 Cat (162.B2B, 162.B2C): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:09,279 - ERROR - ❌ Error processing model 1.6 i.e. (930.A2): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:09,307 - ERROR - ❌ Error processing model 1.6 i.e. (930.B2): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:09,334 - ERROR - ❌ Error processing model 1.6 i.e. 16V T.S. (930.A2): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:09,363 - ERROR - ❌ Error processing model 1.6 i.e. 16V T.S. (930.B2B, 930.B2C): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:09,393 - ERROR - ❌ Error processing model 1.6 JTDM: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:09,424 - ERROR - ❌ Error processing model 1.6 JTDM (940.FYB1_): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:09,453 - ERROR - ❌ Error processing model 1.6 JTDM (940.FYE1_): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:09,481 - ERROR - ❌ Error processing model 1.6 JTDM (940FXD1A): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:09,510 - ERROR - ❌ Error processing model 1.6 JTDM (955AXC1B): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:09,538 - ERROR - ❌ Error processing model 1.7 (930.A1A): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:09,566 - ERROR - ❌ Error processing model 1.7 16V: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:09,597 - ERROR - ❌ Error processing model 1.7 16V (907.A1B): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:09,629 - ERROR - ❌ Error processing model 1.7 16V (907.A1C): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:09,657 - ERROR - ❌ Error processing model 1.7 16V (907.A1C): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:09,686 - ERROR - ❌ Error processing model 1.7 16V (907.B1G): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:09,714 - ERROR - ❌ Error processing model 1.7 16V (907.B1G): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:09,743 - ERROR - ❌ Error processing model 1.7 16V 4x4: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:09,771 - ERROR - ❌ Error processing model 1.7 16V 4x4 (907.A1G): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:09,799 - ERROR - ❌ Error processing model 1.7 16V 4x4 (907.A1G): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:09,834 - ERROR - ❌ Error processing model 1.7 16V 4x4 (907.B1H): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:09,861 - ERROR - ❌ Error processing model 1.7 16V 4x4 (907.B1H): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:09,889 - ERROR - ❌ Error processing model 1.7 16V 4x4 (907A1F): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:09,918 - ERROR - ❌ Error processing model 1.7 i.e. (907.A1A): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:09,946 - ERROR - ❌ Error processing model 1.7 i.e. (907.A1A): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:09,974 - ERROR - ❌ Error processing model 1.7 i.e. (907.B1A): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:10,001 - ERROR - ❌ Error processing model 1.7 i.e. (907.B1A): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:10,029 - ERROR - ❌ Error processing model 1.7 i.e. (907.B1A): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:10,068 - ERROR - ❌ Error processing model 1.7 i.e. 16V (930.A1): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:10,096 - ERROR - ❌ Error processing model 1.7 i.e. 16V (930.B1): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:10,124 - ERROR - ❌ Error processing model 1.7 i.e. 4x4 (907.A1G): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:10,152 - ERROR - ❌ Error processing model 1.7 i.e. 4x4 (907.B1E): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:10,180 - ERROR - ❌ Error processing model 1.7 i.e. 4x4 (907B1D): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:10,209 - ERROR - ❌ Error processing model 1.7 T.S. (167.A4D, 167.A4H): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:10,243 - ERROR - ❌ Error processing model 1.7 T.S. (167.A4G): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:10,271 - ERROR - ❌ Error processing model 1.7 T.S. 16V (167.A4N): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:10,299 - ERROR - ❌ Error processing model 1.8: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:10,327 - ERROR - ❌ Error processing model 1.8: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:10,356 - ERROR - ❌ Error processing model 1.8 (162.B1H): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:10,384 - ERROR - ❌ Error processing model 1.8 (162.B1H): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:10,412 - ERROR - ❌ Error processing model 1.8 (162.B1L, 162.B1F): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:10,448 - ERROR - ❌ Error processing model 1.8 (960.CXB1A): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:10,478 - ERROR - ❌ Error processing model 1.8 16V (916C3): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:10,506 - ERROR - ❌ Error processing model 1.8 16V (916S3): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:10,535 - ERROR - ❌ Error processing model 1.8 16V T.SPARK (932.A3): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:10,563 - ERROR - ❌ Error processing model 1.8 16V T.SPARK (932.A3100): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:10,591 - ERROR - ❌ Error processing model 1.8 16V T.SPARK (932A3): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:10,620 - ERROR - ❌ Error processing model 1.8 16V T.SPARK (932B31__): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:10,652 - ERROR - ❌ Error processing model 1.8 i.e. 16V (930.A1A): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:10,681 - ERROR - ❌ Error processing model 1.8 i.e. 16V T.S. (930.A1A): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:10,712 - ERROR - ❌ Error processing model 1.8 i.e. 16V T.S. (930.B1A): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:10,741 - ERROR - ❌ Error processing model 1.8 i.e. 16V T.S. (930.B1A): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:10,769 - ERROR - ❌ Error processing model 1.8 MPI (939AXL1A): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:10,798 - ERROR - ❌ Error processing model 1.8 MPI (939BXL1A): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:10,826 - ERROR - ❌ Error processing model 1.8 T.S. (167.A4A, 167.A4C, 167.A4E): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:10,857 - ERROR - ❌ Error processing model 1.8 T.S. (167.A4C, 167.A): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:10,887 - ERROR - ❌ Error processing model 1.8 T.S. Sport (167.A4A, 167.A4C, 167.A4E): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:10,916 - ERROR - ❌ Error processing model 1.8 TBi: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:10,960 - ERROR - ❌ Error processing model 1.8 TBi: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:10,988 - ERROR - ❌ Error processing model 1.8 TBi (939.AXN1B): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:11,016 - ERROR - ❌ Error processing model 1.8 TBi (939BXN1B): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:11,047 - ERROR - ❌ Error processing model 1.8 TBi (939DXN1B): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:11,080 - ERROR - ❌ Error processing model 1.8 TBi (940FXC1A): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:11,110 - ERROR - ❌ Error processing model 1.8 TBi (940FXR11): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:11,142 - ERROR - ❌ Error processing model 1.8 TD: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:11,190 - ERROR - ❌ Error processing model 1.8 TD (907A5): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:11,219 - ERROR - ❌ Error processing model 1.8 TS: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:11,254 - ERROR - ❌ Error processing model 1.8 Turbo (162.B1C, 162.B1D, 162.B1G): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:11,283 - ERROR - ❌ Error processing model 1.8 Turbo i.e. (162.B1E): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:11,319 - ERROR - ❌ Error processing model 1.9 D (930.B4): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:11,349 - ERROR - ❌ Error processing model 1.9 D (930A4): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:11,383 - ERROR - ❌ Error processing model 1.9 JTD: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:11,414 - ERROR - ❌ Error processing model 1.9 JTD: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:11,443 - ERROR - ❌ Error processing model 1.9 JTD: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:11,492 - ERROR - ❌ Error processing model 1.9 JTD: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:11,548 - ERROR - ❌ Error processing model 1.9 JTD: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:11,579 - ERROR - ❌ Error processing model 1.9 JTD: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:11,615 - ERROR - ❌ Error processing model 1.9 JTD: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:11,684 - ERROR - ❌ Error processing model 1.9 JTD (930.A4B): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:11,765 - ERROR - ❌ Error processing model 1.9 JTD (930.B4B): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:11,854 - ERROR - ❌ Error processing model 1.9 JTD (932.A2B00): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:11,951 - ERROR - ❌ Error processing model 1.9 JTD (932.A2B00, 932.A2C00): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:11,997 - ERROR - ❌ Error processing model 1.9 JTD (932.AXN00, 932.BXE00): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:12,146 - ERROR - ❌ Error processing model 1.9 JTD (932.B2B00): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:12,174 - ERROR - ❌ Error processing model 1.9 JTD (932B2): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:12,203 - ERROR - ❌ Error processing model 1.9 JTD (932B2): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:12,232 - ERROR - ❌ Error processing model 1.9 JTD (932B2B, 932B2C): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:12,260 - ERROR - ❌ Error processing model 1.9 JTD (937.AXD1A, 937.BXD1A): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:12,291 - ERROR - ❌ Error processing model 1.9 JTD (937.AXF1A, 937.BXF1A): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:12,319 - ERROR - ❌ Error processing model 1.9 JTD 16V: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:12,349 - ERROR - ❌ Error processing model 1.9 JTD 16V: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:12,377 - ERROR - ❌ Error processing model 1.9 JTD 16V (937.AXG1B, 937.BXG1B): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:12,406 - ERROR - ❌ Error processing model 1.9 JTD 16V (937.AXG1B, 937.BXG1B): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:12,437 - ERROR - ❌ Error processing model 1.9 JTD 16V (937.AXM1B, 937.AXS1B): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:12,465 - ERROR - ❌ Error processing model 1.9 JTD 16V Q4: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:12,496 - ERROR - ❌ Error processing model 1.9 JTDM (937.AXD1A, 937.AXV1A, 937.BXB1A): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:12,526 - ERROR - ❌ Error processing model 1.9 JTDM 16V (937.AXN1B, 937.AXZ1B): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:12,554 - ERROR - ❌ Error processing model 1.9 JTDM 16V (937.AXN1B, 937.BXN1B): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:12,583 - ERROR - ❌ Error processing model 1.9 JTDM 16V (939AXC1B, 939AXC12): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:12,611 - ERROR - ❌ Error processing model 1.9 JTDM 16V (939AXF1B, 939AXC1B): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:12,639 - ERROR - ❌ Error processing model 1.9 JTDM 16V (939BXC1B): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:12,667 - ERROR - ❌ Error processing model 1.9 JTDM 16V (939BXC1B, 939BXC12): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:12,700 - ERROR - ❌ Error processing model 1.9 JTDM 8V: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:12,729 - ERROR - ❌ Error processing model 1.9 JTDM 8V: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:12,761 - ERROR - ❌ Error processing model 1.9 JTDM 8V (937.AXD1A, 937.AXU1A, 937.BXU1A): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:12,790 - ERROR - ❌ Error processing model 1.9 JTDM 8V (939AXE1B): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:12,818 - ERROR - ❌ Error processing model 1.9 JTDM 8V (939BXE1B): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:12,848 - ERROR - ❌ Error processing model 1.9 JTS (939AXA1B): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:12,876 - ERROR - ❌ Error processing model 1.9 JTS (939BXA1B): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:12,906 - ERROR - ❌ Error processing model 1.9 TD (167.A3B, 167.A3): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:12,938 - ERROR - ❌ Error processing model 1.9 TD (930.A4): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:12,966 - ERROR - ❌ Error processing model 1.9 TD (930.B4A): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:12,994 - ERROR - ❌ Error processing model 1600: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:13,023 - ERROR - ❌ Error processing model 1600: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:13,053 - ERROR - ❌ Error processing model 2.0: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:13,080 - ERROR - ❌ Error processing model 2.0: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:13,109 - ERROR - ❌ Error processing model 2.0: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:13,137 - ERROR - ❌ Error processing model 2.0: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:13,165 - ERROR - ❌ Error processing model 2.0: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:13,193 - ERROR - ❌ Error processing model 2.0 (937.AXC, 937.BXC): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:13,221 - ERROR - ❌ Error processing model 2.0 (952ABA25B): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:13,249 - ERROR - ❌ Error processing model 2.0 (952ACA25): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:13,277 - ERROR - ❌ Error processing model 2.0 16V (930.A5): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:13,306 - ERROR - ❌ Error processing model 2.0 16V (930.B5): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:13,343 - ERROR - ❌ Error processing model 2.0 16V T.S. (930.A5): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:13,372 - ERROR - ❌ Error processing model 2.0 16V T.S. (930.B5): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:13,400 - ERROR - ❌ Error processing model 2.0 16V T.SPARK (932A2): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:13,430 - ERROR - ❌ Error processing model 2.0 16V T.SPARK (932A2): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:13,458 - ERROR - ❌ Error processing model 2.0 16V T.SPARK (932A21__): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:13,487 - ERROR - ❌ Error processing model 2.0 16V T.SPARK (932B21__): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:13,520 - ERROR - ❌ Error processing model 2.0 16V T.SPARK (937.AXA1, 937.AXC1, 937.BXC1): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:13,549 - ERROR - ❌ Error processing model 2.0 16V Turbo Q4 (167.A2B, 167.A2C, 167.A2E): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:13,577 - ERROR - ❌ Error processing model 2.0 16V Turbo Q4 (167.A2B, 167.A2C, 167.A2E): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:13,604 - ERROR - ❌ Error processing model 2.0 JTDM: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:13,637 - ERROR - ❌ Error processing model 2.0 JTDM: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:13,665 - ERROR - ❌ Error processing model 2.0 JTDM: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:13,693 - ERROR - ❌ Error processing model 2.0 JTDM: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:13,725 - ERROR - ❌ Error processing model 2.0 JTDM: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:13,753 - ERROR - ❌ Error processing model 2.0 JTDM: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:13,781 - ERROR - ❌ Error processing model 2.0 JTDM: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:13,810 - ERROR - ❌ Error processing model 2.0 JTDM: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:13,838 - ERROR - ❌ Error processing model 2.0 JTDM (939AXP1B): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:13,867 - ERROR - ❌ Error processing model 2.0 JTDM (939AXQ1B): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:13,895 - ERROR - ❌ Error processing model 2.0 JTDM (939AXR1B): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:13,925 - ERROR - ❌ Error processing model 2.0 JTDM (939BXP1B): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:13,959 - ERROR - ❌ Error processing model 2.0 JTDM (939BXQ1B): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:13,987 - ERROR - ❌ Error processing model 2.0 JTDM (939BXR1B): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:14,016 - ERROR - ❌ Error processing model 2.0 JTDM (940.FXL1A): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:14,044 - ERROR - ❌ Error processing model 2.0 JTDM (940.FYC1A, 940.FXQ1A): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:14,072 - ERROR - ❌ Error processing model 2.0 JTS: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:14,100 - ERROR - ❌ Error processing model 2.0 JTS: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:14,134 - ERROR - ❌ Error processing model 2.0 JTS: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:14,163 - ERROR - ❌ Error processing model 2.0 JTS: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:14,191 - ERROR - ❌ Error processing model 2.0 JTS (932AXA): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:14,219 - ERROR - ❌ Error processing model 2.0 JTS (932BXA): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:14,248 - ERROR - ❌ Error processing model 2.0 JTS (932BXD00, 932BXD01): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:14,276 - ERROR - ❌ Error processing model 2.0 JTS (937CXH1A, 937CXH11): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:14,304 - ERROR - ❌ Error processing model 2.0 Q4: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:23:14,341 - INFO - 🔌 Database connections closed
+2025-11-08 21:25:07,760 - INFO - ✅ Database connections established
+2025-11-08 21:25:07,760 - INFO - 
+######################################################################
+2025-11-08 21:25:07,760 - INFO - 🚗 Import Modela Vozila iz TecDoc-a (>= 1990)
+2025-11-08 21:25:07,760 - INFO - ######################################################################
+
+2025-11-08 21:25:07,821 - INFO - 📋 Loaded 30 brands from database
+2025-11-08 21:25:07,833 - INFO - 📋 Loaded 3843 manufacturers from TecDoc
+2025-11-08 21:25:08,187 - INFO - 📦 Loaded 55337 models from TecDoc (>= 1990)
+2025-11-08 21:25:08,262 - ERROR - ❌ Error processing model 0.9: null value in column "id" of relation "VehicleModel" violates not-null constraint
+DETAIL:  Failing row contains (null, 0.9, cmhme7n1t0000omy06bc7no44, 100784, null, null, 2013-01-01 00:00:00).
+
+2025-11-08 21:25:08,291 - ERROR - ❌ Error processing model 0.9 TwinAir: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:08,320 - ERROR - ❌ Error processing model 0.9 TwinAir (955AXY1B): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:08,348 - ERROR - ❌ Error processing model 1.2 (907A4): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:08,376 - ERROR - ❌ Error processing model 1.3 (905AD1): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:08,406 - ERROR - ❌ Error processing model 1.3 MultiJet: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:08,437 - ERROR - ❌ Error processing model 1.3 MultiJet: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:08,465 - ERROR - ❌ Error processing model 1.3 MultiJet: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:08,494 - ERROR - ❌ Error processing model 1.3 MultiJet: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:08,523 - ERROR - ❌ Error processing model 1.4: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:08,552 - ERROR - ❌ Error processing model 1.4: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:08,580 - ERROR - ❌ Error processing model 1.4 (955.AXB1B, 955.AXU1A): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:08,611 - ERROR - ❌ Error processing model 1.4 (955AXB1B): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:08,642 - ERROR - ❌ Error processing model 1.4 (955AXB1B): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:08,670 - ERROR - ❌ Error processing model 1.4 Bifuel: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:08,699 - ERROR - ❌ Error processing model 1.4 BiFuel: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:08,728 - ERROR - ❌ Error processing model 1.4 Bifuel (955.AXG1A): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:08,757 - ERROR - ❌ Error processing model 1.4 i.e.: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:08,786 - ERROR - ❌ Error processing model 1.4 i.e.: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:08,816 - ERROR - ❌ Error processing model 1.4 i.e. (907.A3A, 907.A3B): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:08,845 - ERROR - ❌ Error processing model 1.4 i.e. (907.A3A, 907.A3B): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:08,874 - ERROR - ❌ Error processing model 1.4 i.e. (930.A3): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:08,903 - ERROR - ❌ Error processing model 1.4 i.e. (930.B3): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:08,933 - ERROR - ❌ Error processing model 1.4 i.e. 16V T.S. (930.A3A): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:08,961 - ERROR - ❌ Error processing model 1.4 i.e. 16V T.S. (930.B3A): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:08,992 - ERROR - ❌ Error processing model 1.4 i.e. 4x4: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:09,021 - ERROR - ❌ Error processing model 1.4 MultiAir (955AXL1B): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:09,051 - ERROR - ❌ Error processing model 1.4 MultiAir (955AXN1B): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:09,080 - ERROR - ❌ Error processing model 1.4 TB: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:09,109 - ERROR - ❌ Error processing model 1.4 TB: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:09,137 - ERROR - ❌ Error processing model 1.4 TB: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:09,167 - ERROR - ❌ Error processing model 1.4 TB: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:09,195 - ERROR - ❌ Error processing model 1.4 TB: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:09,226 - ERROR - ❌ Error processing model 1.4 TB (940FXA1A): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:09,260 - ERROR - ❌ Error processing model 1.4 TB (940FXB1A): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:09,293 - ERROR - ❌ Error processing model 1.4 TJet: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:09,321 - ERROR - ❌ Error processing model 1.4 TJet (955AXA1B): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:09,353 - ERROR - ❌ Error processing model 1.4 TJet (955AXG1A): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:09,381 - ERROR - ❌ Error processing model 1.4 Turbo MultiAir: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:09,410 - ERROR - ❌ Error processing model 1.4 Turbo MultiAir (955AXM1A, 955AXR11): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:09,440 - ERROR - ❌ Error processing model 1.5: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:09,469 - ERROR - ❌ Error processing model 1.5: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:09,497 - ERROR - ❌ Error processing model 1.5 (905A2G): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:09,526 - ERROR - ❌ Error processing model 1.5 i.e: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:09,564 - ERROR - ❌ Error processing model 1.5 i.e: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:09,593 - ERROR - ❌ Error processing model 1.5 i.e. (907A2A): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:09,621 - ERROR - ❌ Error processing model 1.6 16V T.S. (167.A6A): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:09,650 - ERROR - ❌ Error processing model 1.6 16V T.S. (930.A2C): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:09,678 - ERROR - ❌ Error processing model 1.6 16V T.S. (930.B2C): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:09,707 - ERROR - ❌ Error processing model 1.6 16V T.SPARK (932.A4, 932.A4100): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:09,743 - ERROR - ❌ Error processing model 1.6 16V T.SPARK (932A4): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:09,772 - ERROR - ❌ Error processing model 1.6 16V T.SPARK (932A4): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:09,800 - ERROR - ❌ Error processing model 1.6 16V T.SPARK (937.AXA1A, 937.AXB1A, 937.BXB1A): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:09,829 - ERROR - ❌ Error processing model 1.6 16V T.SPARK ECO (937.AXA1A, 937.BXA1A): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:09,858 - ERROR - ❌ Error processing model 1.6 16V T.SPARK. (932.B4B00): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:09,888 - ERROR - ❌ Error processing model 1.6 16V T.SPARK. (932A4): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:09,916 - ERROR - ❌ Error processing model 1.6 Cat (162.B2B, 162.B2C): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:09,949 - ERROR - ❌ Error processing model 1.6 i.e. (930.A2): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:09,977 - ERROR - ❌ Error processing model 1.6 i.e. (930.B2): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:10,005 - ERROR - ❌ Error processing model 1.6 i.e. 16V T.S. (930.A2): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:10,034 - ERROR - ❌ Error processing model 1.6 i.e. 16V T.S. (930.B2B, 930.B2C): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:10,063 - ERROR - ❌ Error processing model 1.6 JTDM: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:10,094 - ERROR - ❌ Error processing model 1.6 JTDM (940.FYB1_): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:10,123 - ERROR - ❌ Error processing model 1.6 JTDM (940.FYE1_): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:10,151 - ERROR - ❌ Error processing model 1.6 JTDM (940FXD1A): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:10,179 - ERROR - ❌ Error processing model 1.6 JTDM (955AXC1B): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:10,209 - ERROR - ❌ Error processing model 1.7 (930.A1A): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:10,238 - ERROR - ❌ Error processing model 1.7 16V: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:10,267 - ERROR - ❌ Error processing model 1.7 16V (907.A1B): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:10,296 - ERROR - ❌ Error processing model 1.7 16V (907.A1C): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:10,325 - ERROR - ❌ Error processing model 1.7 16V (907.A1C): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:10,358 - ERROR - ❌ Error processing model 1.7 16V (907.B1G): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:10,387 - ERROR - ❌ Error processing model 1.7 16V (907.B1G): current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-08 21:25:10,417 - INFO - 🔌 Database connections closed
+2025-11-08 21:26:14,146 - INFO - ✅ Database connections established
+2025-11-08 21:26:14,147 - INFO - 
+######################################################################
+2025-11-08 21:26:14,147 - INFO - 🚗 Import Modela Vozila iz TecDoc-a (>= 1990)
+2025-11-08 21:26:14,147 - INFO - ######################################################################
+
+2025-11-08 21:26:14,208 - INFO - 📋 Loaded 30 brands from database
+2025-11-08 21:26:14,222 - INFO - 📋 Loaded 3843 manufacturers from TecDoc
+2025-11-08 21:26:14,578 - INFO - 📦 Loaded 55337 models from TecDoc (>= 1990)
+2025-11-08 21:26:14,673 - INFO - ✅ [1/55337] Imported: ALFA ROMEO 0.9 (2013-0)
+2025-11-08 21:26:14,792 - INFO - ✅ [2/55337] Imported: ALFA ROMEO 0.9 TwinAir (2011-0)
+2025-11-08 21:26:14,907 - INFO - ✅ [3/55337] Imported: ALFA ROMEO 0.9 TwinAir (955AXY1B) (2013-0)
+2025-11-08 21:26:15,033 - INFO - ✅ [4/55337] Imported: ALFA ROMEO 1.2 (907A4) (1990-1992)
+2025-11-08 21:26:15,165 - INFO - ✅ [5/55337] Imported: ALFA ROMEO 1.3 (905AD1) (1983-1990)
+2025-11-08 21:26:15,286 - INFO - ✅ [6/55337] Imported: ALFA ROMEO 1.3 MultiJet (2011-0)
+2025-11-08 21:26:15,485 - INFO - ✅ [10/55337] Imported: ALFA ROMEO 1.4 (2011-0)
+2025-11-08 21:26:15,627 - INFO - ✅ [12/55337] Imported: ALFA ROMEO 1.4 (955.AXB1B, 955.AXU1A) (2011-0)
+2025-11-08 21:26:15,741 - INFO - ✅ [13/55337] Imported: ALFA ROMEO 1.4 (955AXB1B) (2011-0)
+2025-11-08 21:26:15,901 - INFO - ✅ [15/55337] Imported: ALFA ROMEO 1.4 Bifuel (2011-0)
+2025-11-08 21:26:16,022 - INFO - ✅ [16/55337] Imported: ALFA ROMEO 1.4 BiFuel (2011-0)
+2025-11-08 21:26:16,133 - INFO - ✅ [17/55337] Imported: ALFA ROMEO 1.4 Bifuel (955.AXG1A) (2016-0)
+2025-11-08 21:26:16,248 - INFO - ✅ [18/55337] Imported: ALFA ROMEO 1.4 i.e. (1991-1994)
+2025-11-08 21:26:16,393 - INFO - ✅ [20/55337] Imported: ALFA ROMEO 1.4 i.e. (907.A3A, 907.A3B) (1991-1994)
+2025-11-08 21:26:16,539 - INFO - ✅ [22/55337] Imported: ALFA ROMEO 1.4 i.e. (930.A3) (1994-1996)
+2025-11-08 21:26:16,670 - INFO - ✅ [23/55337] Imported: ALFA ROMEO 1.4 i.e. (930.B3) (1994-1996)
+2025-11-08 21:26:16,787 - INFO - ✅ [24/55337] Imported: ALFA ROMEO 1.4 i.e. 16V T.S. (930.A3A) (1996-2001)
+2025-11-08 21:26:16,901 - INFO - ✅ [25/55337] Imported: ALFA ROMEO 1.4 i.e. 16V T.S. (930.B3A) (1996-2001)
+2025-11-08 21:26:17,014 - INFO - ✅ [26/55337] Imported: ALFA ROMEO 1.4 i.e. 4x4 (1990-1994)
+2025-11-08 21:26:17,130 - INFO - ✅ [27/55337] Imported: ALFA ROMEO 1.4 MultiAir (955AXL1B) (2009-0)
+2025-11-08 21:26:17,244 - INFO - ✅ [28/55337] Imported: ALFA ROMEO 1.4 MultiAir (955AXN1B) (2009-0)
+2025-11-08 21:26:17,360 - INFO - ✅ [29/55337] Imported: ALFA ROMEO 1.4 TB (2010-0)
+2025-11-08 21:26:17,587 - INFO - ✅ [34/55337] Imported: ALFA ROMEO 1.4 TB (940FXA1A) (2010-0)
+2025-11-08 21:26:17,700 - INFO - ✅ [35/55337] Imported: ALFA ROMEO 1.4 TB (940FXB1A) (2010-0)
+2025-11-08 21:26:17,818 - INFO - ✅ [36/55337] Imported: ALFA ROMEO 1.4 TJet (2008-0)
+2025-11-08 21:26:17,941 - INFO - ✅ [37/55337] Imported: ALFA ROMEO 1.4 TJet (955AXA1B) (2008-0)
+2025-11-08 21:26:18,054 - INFO - ✅ [38/55337] Imported: ALFA ROMEO 1.4 TJet (955AXG1A) (2008-0)
+2025-11-08 21:26:18,172 - INFO - ✅ [39/55337] Imported: ALFA ROMEO 1.4 Turbo MultiAir (2009-0)
+2025-11-08 21:26:18,290 - INFO - ✅ [40/55337] Imported: ALFA ROMEO 1.4 Turbo MultiAir (955AXM1A, 955AXR11) (2009-0)
+2025-11-08 21:26:18,404 - INFO - ✅ [41/55337] Imported: ALFA ROMEO 1.5 (1983-1993)
+2025-11-08 21:26:18,549 - INFO - ✅ [43/55337] Imported: ALFA ROMEO 1.5 (905A2G) (1987-1990)
+2025-11-08 21:26:18,664 - INFO - ✅ [44/55337] Imported: ALFA ROMEO 1.5 i.e (1990-1994)
+2025-11-08 21:26:18,816 - INFO - ✅ [46/55337] Imported: ALFA ROMEO 1.5 i.e. (907A2A) (1990-1991)
+2025-11-08 21:26:18,931 - INFO - ✅ [47/55337] Imported: ALFA ROMEO 1.6 16V T.S. (167.A6A) (1996-1997)
+2025-11-08 21:26:19,057 - INFO - ✅ [48/55337] Imported: ALFA ROMEO 1.6 16V T.S. (930.A2C) (1997-2000)
+2025-11-08 21:26:19,172 - INFO - ✅ [49/55337] Imported: ALFA ROMEO 1.6 16V T.S. (930.B2C) (1997-2000)
+2025-11-08 21:26:19,360 - INFO - ✅ [50/55337] Imported: ALFA ROMEO 1.6 16V T.SPARK (932.A4, 932.A4100) (1997-2005)
+2025-11-08 21:26:19,531 - INFO - ✅ [51/55337] Imported: ALFA ROMEO 1.6 16V T.SPARK (932A4) (1997-2005)
+2025-11-08 21:26:19,698 - INFO - ✅ [53/55337] Imported: ALFA ROMEO 1.6 16V T.SPARK (937.AXA1A, 937.AXB1A, 937.BXB1A) (2001-2010)
+2025-11-08 21:26:19,858 - INFO - ✅ [54/55337] Imported: ALFA ROMEO 1.6 16V T.SPARK ECO (937.AXA1A, 937.BXA1A) (2001-2010)
+2025-11-08 21:26:20,020 - INFO - ✅ [55/55337] Imported: ALFA ROMEO 1.6 16V T.SPARK. (932.B4B00) (2000-2005)
+2025-11-08 21:26:20,205 - INFO - ✅ [56/55337] Imported: ALFA ROMEO 1.6 16V T.SPARK. (932A4) (2000-2006)
+2025-11-08 21:26:20,321 - INFO - ✅ [57/55337] Imported: ALFA ROMEO 1.6 Cat (162.B2B, 162.B2C) (1989-1992)
+2025-11-08 21:26:20,433 - INFO - ✅ [58/55337] Imported: ALFA ROMEO 1.6 i.e. (930.A2) (1994-1996)
+2025-11-08 21:26:20,561 - INFO - ✅ [59/55337] Imported: ALFA ROMEO 1.6 i.e. (930.B2) (1994-1996)
+2025-11-08 21:26:20,673 - INFO - ✅ [60/55337] Imported: ALFA ROMEO 1.6 i.e. 16V T.S. (930.A2) (1996-2001)
+2025-11-08 21:26:20,788 - INFO - ✅ [61/55337] Imported: ALFA ROMEO 1.6 i.e. 16V T.S. (930.B2B, 930.B2C) (1996-2001)
+2025-11-08 21:26:20,901 - INFO - ✅ [62/55337] Imported: ALFA ROMEO 1.6 JTDM (2008-0)
+2025-11-08 21:26:21,023 - INFO - ✅ [63/55337] Imported: ALFA ROMEO 1.6 JTDM (940.FYB1_) (2015-0)
+2025-11-08 21:26:21,147 - INFO - ✅ [64/55337] Imported: ALFA ROMEO 1.6 JTDM (940.FYE1_) (2015-0)
+2025-11-08 21:26:21,260 - INFO - ✅ [65/55337] Imported: ALFA ROMEO 1.6 JTDM (940FXD1A) (2010-0)
+2025-11-08 21:26:21,376 - INFO - ✅ [66/55337] Imported: ALFA ROMEO 1.6 JTDM (955AXC1B) (2008-0)
+2025-11-08 21:26:21,490 - INFO - ✅ [67/55337] Imported: ALFA ROMEO 1.7 (930.A1A) (1994-1997)
+2025-11-08 21:26:21,616 - INFO - ✅ [68/55337] Imported: ALFA ROMEO 1.7 16V (1990-1994)
+2025-11-08 21:26:21,740 - INFO - ✅ [69/55337] Imported: ALFA ROMEO 1.7 16V (907.A1B) (1990-1992)
+2025-11-08 21:26:21,874 - INFO - ✅ [70/55337] Imported: ALFA ROMEO 1.7 16V (907.A1C) (1990-1994)
+2025-11-08 21:26:22,020 - INFO - ✅ [72/55337] Imported: ALFA ROMEO 1.7 16V (907.B1G) (1990-1994)
+2025-11-08 21:26:22,167 - INFO - ✅ [74/55337] Imported: ALFA ROMEO 1.7 16V 4x4 (1990-1994)
+2025-11-08 21:26:22,280 - INFO - ✅ [75/55337] Imported: ALFA ROMEO 1.7 16V 4x4 (907.A1G) (1990-1994)
+2025-11-08 21:26:22,427 - INFO - ✅ [77/55337] Imported: ALFA ROMEO 1.7 16V 4x4 (907.B1H) (1990-1992)
+2025-11-08 21:26:22,578 - INFO - ✅ [79/55337] Imported: ALFA ROMEO 1.7 16V 4x4 (907A1F) (1990-1994)
+2025-11-08 21:26:22,691 - INFO - ✅ [80/55337] Imported: ALFA ROMEO 1.7 i.e. (907.A1A) (1990-1994)
+2025-11-08 21:26:22,841 - INFO - ✅ [82/55337] Imported: ALFA ROMEO 1.7 i.e. (907.B1A) (1990-1992)
+2025-11-08 21:26:23,142 - INFO - ✅ [85/55337] Imported: ALFA ROMEO 1.7 i.e. 16V (930.A1) (1994-1996)
+2025-11-08 21:26:23,354 - INFO - ✅ [86/55337] Imported: ALFA ROMEO 1.7 i.e. 16V (930.B1) (1994-1996)
+2025-11-08 21:26:23,469 - INFO - ✅ [87/55337] Imported: ALFA ROMEO 1.7 i.e. 4x4 (907.A1G) (1990-1994)
+2025-11-08 21:26:23,588 - INFO - ✅ [88/55337] Imported: ALFA ROMEO 1.7 i.e. 4x4 (907.B1E) (1990-1992)
+2025-11-08 21:26:23,718 - INFO - ✅ [89/55337] Imported: ALFA ROMEO 1.7 i.e. 4x4 (907B1D) (1992-1994)
+2025-11-08 21:26:23,834 - INFO - ✅ [90/55337] Imported: ALFA ROMEO 1.7 T.S. (167.A4D, 167.A4H) (1993-1996)
+2025-11-08 21:26:23,955 - INFO - ✅ [91/55337] Imported: ALFA ROMEO 1.7 T.S. (167.A4G) (1993-1996)
+2025-11-08 21:26:24,068 - INFO - ✅ [92/55337] Imported: ALFA ROMEO 1.7 T.S. 16V (167.A4N) (1996-1997)
+2025-11-08 21:26:24,192 - INFO - ✅ [93/55337] Imported: ALFA ROMEO 1.8 (1989-1992)
+2025-11-08 21:26:24,354 - INFO - ✅ [95/55337] Imported: ALFA ROMEO 1.8 (162.B1H) (1989-1992)
+2025-11-08 21:26:24,531 - INFO - ✅ [97/55337] Imported: ALFA ROMEO 1.8 (162.B1L, 162.B1F) (1988-1992)
+2025-11-08 21:26:24,667 - INFO - ✅ [98/55337] Imported: ALFA ROMEO 1.8 (960.CXB1A) (2013-0)
+2025-11-08 21:26:24,789 - INFO - ✅ [99/55337] Imported: ALFA ROMEO 1.8 16V (916C3) (1998-2005)
+2025-11-08 21:26:24,916 - INFO - ✅ [100/55337] Imported: ALFA ROMEO 1.8 16V (916S3) (1998-2005)
+2025-11-08 21:26:24,916 - INFO - 
+📊 Progress: 100/55337 (0.2%)
+2025-11-08 21:26:24,916 - INFO -    Imported: 77, Skipped: 23
+2025-11-08 21:26:25,068 - INFO - ✅ [101/55337] Imported: ALFA ROMEO 1.8 16V T.SPARK (932.A3) (1997-2000)
+2025-11-08 21:26:25,212 - INFO - ✅ [102/55337] Imported: ALFA ROMEO 1.8 16V T.SPARK (932.A3100) (2000-2005)
+2025-11-08 21:26:25,380 - INFO - ✅ [103/55337] Imported: ALFA ROMEO 1.8 16V T.SPARK (932A3) (2000-2000)
+2025-11-08 21:26:25,560 - INFO - ✅ [104/55337] Imported: ALFA ROMEO 1.8 16V T.SPARK (932B31__) (1997-2006)
+2025-11-08 21:26:25,744 - INFO - ✅ [105/55337] Imported: ALFA ROMEO 1.8 i.e. 16V (930.A1A) (1998-2001)
+2025-11-08 21:26:25,888 - INFO - ✅ [106/55337] Imported: ALFA ROMEO 1.8 i.e. 16V T.S. (930.A1A) (1996-1998)
+2025-11-08 21:26:26,032 - INFO - ✅ [107/55337] Imported: ALFA ROMEO 1.8 i.e. 16V T.S. (930.B1A) (1996-2001)
+2025-11-08 21:26:26,192 - INFO - ✅ [109/55337] Imported: ALFA ROMEO 1.8 MPI (939AXL1A) (2005-2011)
+2025-11-08 21:26:26,340 - INFO - ✅ [110/55337] Imported: ALFA ROMEO 1.8 MPI (939BXL1A) (2005-2011)
+2025-11-08 21:26:26,492 - INFO - ✅ [111/55337] Imported: ALFA ROMEO 1.8 T.S. (167.A4A, 167.A4C, 167.A4E) (1992-1994)
+2025-11-08 21:26:26,619 - INFO - ✅ [112/55337] Imported: ALFA ROMEO 1.8 T.S. (167.A4C, 167.A) (1992-1997)
+2025-11-08 21:26:26,738 - INFO - ✅ [113/55337] Imported: ALFA ROMEO 1.8 T.S. Sport (167.A4A, 167.A4C, 167.A4E) (1992-1996)
+2025-11-08 21:26:26,889 - INFO - ✅ [114/55337] Imported: ALFA ROMEO 1.8 TBi (2009-2010)
+2025-11-08 21:26:27,049 - INFO - ✅ [116/55337] Imported: ALFA ROMEO 1.8 TBi (939.AXN1B) (2009-2012)
+2025-11-08 21:26:27,176 - INFO - ✅ [117/55337] Imported: ALFA ROMEO 1.8 TBi (939BXN1B) (2009-2011)
+2025-11-08 21:26:27,303 - INFO - ✅ [118/55337] Imported: ALFA ROMEO 1.8 TBi (939DXN1B) (2009-2011)
+2025-11-08 21:26:27,433 - INFO - ✅ [119/55337] Imported: ALFA ROMEO 1.8 TBi (940FXC1A) (2010-0)
+2025-11-08 21:26:27,556 - INFO - ✅ [120/55337] Imported: ALFA ROMEO 1.8 TBi (940FXR11) (2013-0)
+2025-11-08 21:26:27,670 - INFO - ✅ [121/55337] Imported: ALFA ROMEO 1.8 TD (1986-1990)
+2025-11-08 21:26:27,790 - INFO - ✅ [122/55337] Imported: ALFA ROMEO 1.8 TD (907A5) (1990-1994)
+2025-11-08 21:26:27,906 - INFO - ✅ [123/55337] Imported: ALFA ROMEO 1.8 TS (2003-2010)
+2025-11-08 21:26:28,040 - INFO - ✅ [124/55337] Imported: ALFA ROMEO 1.8 Turbo (162.B1C, 162.B1D, 162.B1G) (1986-1992)
+2025-11-08 21:26:28,161 - INFO - ✅ [125/55337] Imported: ALFA ROMEO 1.8 Turbo i.e. (162.B1E) (1986-1990)
+2025-11-08 21:26:28,278 - INFO - ✅ [126/55337] Imported: ALFA ROMEO 1.9 D (930.B4) (1995-1996)
+2025-11-08 21:26:28,396 - INFO - ✅ [127/55337] Imported: ALFA ROMEO 1.9 D (930A4) (1994-1999)
+2025-11-08 21:26:28,517 - INFO - ✅ [128/55337] Imported: ALFA ROMEO 1.9 JTD (2003-2010)
+2025-11-08 21:26:28,821 - INFO - ✅ [135/55337] Imported: ALFA ROMEO 1.9 JTD (930.A4B) (1999-2001)
+2025-11-08 21:26:28,965 - INFO - ✅ [136/55337] Imported: ALFA ROMEO 1.9 JTD (930.B4B) (1999-2001)
+2025-11-08 21:26:29,097 - INFO - ✅ [137/55337] Imported: ALFA ROMEO 1.9 JTD (932.A2B00) (2000-2001)
+2025-11-08 21:26:29,214 - INFO - ✅ [138/55337] Imported: ALFA ROMEO 1.9 JTD (932.A2B00, 932.A2C00) (2001-2005)
+2025-11-08 21:26:29,336 - INFO - ✅ [139/55337] Imported: ALFA ROMEO 1.9 JTD (932.AXN00, 932.BXE00) (2004-2005)
+2025-11-08 21:26:29,454 - INFO - ✅ [140/55337] Imported: ALFA ROMEO 1.9 JTD (932.B2B00) (2000-2001)
+2025-11-08 21:26:29,587 - INFO - ✅ [141/55337] Imported: ALFA ROMEO 1.9 JTD (932B2) (1997-2000)
+2025-11-08 21:26:29,755 - INFO - ✅ [143/55337] Imported: ALFA ROMEO 1.9 JTD (932B2B, 932B2C) (2001-2006)
+2025-11-08 21:26:29,888 - INFO - ✅ [144/55337] Imported: ALFA ROMEO 1.9 JTD (937.AXD1A, 937.BXD1A) (2001-2010)
+2025-11-08 21:26:30,009 - INFO - ✅ [145/55337] Imported: ALFA ROMEO 1.9 JTD (937.AXF1A, 937.BXF1A) (2003-2010)
+2025-11-08 21:26:30,127 - INFO - ✅ [146/55337] Imported: ALFA ROMEO 1.9 JTD 16V (2002-2005)
+2025-11-08 21:26:30,284 - INFO - ✅ [148/55337] Imported: ALFA ROMEO 1.9 JTD 16V (937.AXG1B, 937.BXG1B) (2002-2010)
+2025-11-08 21:26:30,434 - INFO - ✅ [150/55337] Imported: ALFA ROMEO 1.9 JTD 16V (937.AXM1B, 937.AXS1B) (2004-2010)
+2025-11-08 21:26:30,547 - INFO - ✅ [151/55337] Imported: ALFA ROMEO 1.9 JTD 16V Q4 (2004-2006)
+2025-11-08 21:26:30,669 - INFO - ✅ [152/55337] Imported: ALFA ROMEO 1.9 JTDM (937.AXD1A, 937.AXV1A, 937.BXB1A) (2004-2010)
+2025-11-08 21:26:30,788 - INFO - ✅ [153/55337] Imported: ALFA ROMEO 1.9 JTDM 16V (937.AXN1B, 937.AXZ1B) (2008-2010)
+2025-11-08 21:26:30,904 - INFO - ✅ [154/55337] Imported: ALFA ROMEO 1.9 JTDM 16V (937.AXN1B, 937.BXN1B) (2004-2010)
+2025-11-08 21:26:31,030 - INFO - ✅ [155/55337] Imported: ALFA ROMEO 1.9 JTDM 16V (939AXC1B, 939AXC12) (2005-2011)
+2025-11-08 21:26:31,145 - INFO - ✅ [156/55337] Imported: ALFA ROMEO 1.9 JTDM 16V (939AXF1B, 939AXC1B) (2005-2011)
+2025-11-08 21:26:31,263 - INFO - ✅ [157/55337] Imported: ALFA ROMEO 1.9 JTDM 16V (939BXC1B) (2006-2011)
+2025-11-08 21:26:31,399 - INFO - ✅ [158/55337] Imported: ALFA ROMEO 1.9 JTDM 16V (939BXC1B, 939BXC12) (2006-2011)
+2025-11-08 21:26:31,515 - INFO - ✅ [159/55337] Imported: ALFA ROMEO 1.9 JTDM 8V (2005-2011)
+2025-11-08 21:26:31,663 - INFO - ✅ [161/55337] Imported: ALFA ROMEO 1.9 JTDM 8V (937.AXD1A, 937.AXU1A, 937.BXU1A) (2005-2010)
+2025-11-08 21:26:31,783 - INFO - ✅ [162/55337] Imported: ALFA ROMEO 1.9 JTDM 8V (939AXE1B) (2005-2011)
+2025-11-08 21:26:31,902 - INFO - ✅ [163/55337] Imported: ALFA ROMEO 1.9 JTDM 8V (939BXE1B) (2006-2011)
+2025-11-08 21:26:32,019 - INFO - ✅ [164/55337] Imported: ALFA ROMEO 1.9 JTS (939AXA1B) (2005-2011)
+2025-11-08 21:26:32,135 - INFO - ✅ [165/55337] Imported: ALFA ROMEO 1.9 JTS (939BXA1B) (2006-2011)
+2025-11-08 21:26:32,259 - INFO - ✅ [166/55337] Imported: ALFA ROMEO 1.9 TD (167.A3B, 167.A3) (1993-1997)
+2025-11-08 21:26:32,373 - INFO - ✅ [167/55337] Imported: ALFA ROMEO 1.9 TD (930.A4) (1994-1999)
+2025-11-08 21:26:32,501 - INFO - ✅ [168/55337] Imported: ALFA ROMEO 1.9 TD (930.B4A) (1994-1999)
+2025-11-08 21:26:32,620 - INFO - ✅ [169/55337] Imported: ALFA ROMEO 1600 (1976-1990)
+2025-11-08 21:26:32,768 - INFO - ✅ [171/55337] Imported: ALFA ROMEO 2.0 (1987-1998)
+2025-11-08 21:26:33,021 - INFO - ✅ [176/55337] Imported: ALFA ROMEO 2.0 (937.AXC, 937.BXC) (2002-2005)
+2025-11-08 21:26:33,249 - INFO - ✅ [177/55337] Imported: ALFA ROMEO 2.0 (952ABA25B) (2016-0)
+2025-11-08 21:26:33,373 - INFO - ✅ [178/55337] Imported: ALFA ROMEO 2.0 (952ACA25) (2016-0)
+2025-11-08 21:26:33,490 - INFO - ✅ [179/55337] Imported: ALFA ROMEO 2.0 16V (930.A5) (1998-2001)
+2025-11-08 21:26:33,602 - INFO - ✅ [180/55337] Imported: ALFA ROMEO 2.0 16V (930.B5) (1997-2001)
+2025-11-08 21:26:33,721 - INFO - ✅ [181/55337] Imported: ALFA ROMEO 2.0 16V T.S. (930.A5) (1995-2001)
+2025-11-08 21:26:33,852 - INFO - ✅ [182/55337] Imported: ALFA ROMEO 2.0 16V T.S. (930.B5) (1995-2001)
+2025-11-08 21:26:33,972 - INFO - ✅ [183/55337] Imported: ALFA ROMEO 2.0 16V T.SPARK (932A2) (1997-2002)
+2025-11-08 21:26:34,142 - INFO - ✅ [185/55337] Imported: ALFA ROMEO 2.0 16V T.SPARK (932A21__) (2000-2002)
+2025-11-08 21:26:34,433 - INFO - ✅ [186/55337] Imported: ALFA ROMEO 2.0 16V T.SPARK (932B21__) (2000-2002)
+2025-11-08 21:26:34,641 - INFO - ✅ [187/55337] Imported: ALFA ROMEO 2.0 16V T.SPARK (937.AXA1, 937.AXC1, 937.BXC1) (2001-2010)
+2025-11-08 21:26:34,776 - INFO - ✅ [188/55337] Imported: ALFA ROMEO 2.0 16V Turbo Q4 (167.A2B, 167.A2C, 167.A2E) (1992-1997)
+2025-11-08 21:26:34,944 - INFO - ✅ [190/55337] Imported: ALFA ROMEO 2.0 JTDM (2008-2010)
+2025-11-08 21:26:35,357 - INFO - ✅ [198/55337] Imported: ALFA ROMEO 2.0 JTDM (939AXP1B) (2009-2011)
+2025-11-08 21:26:35,492 - INFO - ✅ [199/55337] Imported: ALFA ROMEO 2.0 JTDM (939AXQ1B) (2009-2011)
+2025-11-08 21:26:35,629 - INFO - ✅ [200/55337] Imported: ALFA ROMEO 2.0 JTDM (939AXR1B) (2010-2011)
+2025-11-08 21:26:35,630 - INFO - 
+📊 Progress: 200/55337 (0.4%)
+2025-11-08 21:26:35,630 - INFO -    Imported: 151, Skipped: 49
+2025-11-08 21:26:35,791 - INFO - ✅ [201/55337] Imported: ALFA ROMEO 2.0 JTDM (939BXP1B) (2009-2011)
+2025-11-08 21:26:35,903 - INFO - ✅ [202/55337] Imported: ALFA ROMEO 2.0 JTDM (939BXQ1B) (2009-2011)
+2025-11-08 21:26:36,023 - INFO - ✅ [203/55337] Imported: ALFA ROMEO 2.0 JTDM (939BXR1B) (2010-2011)
+2025-11-08 21:26:36,142 - INFO - ✅ [204/55337] Imported: ALFA ROMEO 2.0 JTDM (940.FXL1A) (2010-0)
+2025-11-08 21:26:36,256 - INFO - ✅ [205/55337] Imported: ALFA ROMEO 2.0 JTDM (940.FYC1A, 940.FXQ1A) (2013-0)
+2025-11-08 21:26:36,381 - INFO - ✅ [206/55337] Imported: ALFA ROMEO 2.0 JTS (2006-2010)
+2025-11-08 21:26:36,607 - INFO - ✅ [210/55337] Imported: ALFA ROMEO 2.0 JTS (932AXA) (2002-2005)
+2025-11-08 21:26:36,722 - INFO - ✅ [211/55337] Imported: ALFA ROMEO 2.0 JTS (932BXA) (2002-2006)
+2025-11-08 21:26:36,841 - INFO - ✅ [212/55337] Imported: ALFA ROMEO 2.0 JTS (932BXD00, 932BXD01) (2002-2006)
+2025-11-08 21:26:36,958 - INFO - ✅ [213/55337] Imported: ALFA ROMEO 2.0 JTS (937CXH1A, 937CXH11) (2003-2010)
+2025-11-08 21:26:37,075 - INFO - ✅ [214/55337] Imported: ALFA ROMEO 2.0 Q4 (2018-0)
+2025-11-08 21:26:37,193 - INFO - ✅ [215/55337] Imported: ALFA ROMEO 2.0 Q4 (949.AXA2A) (2016-0)
+2025-11-08 21:26:37,309 - INFO - ✅ [216/55337] Imported: ALFA ROMEO 2.0 Q4 (949.AXF2A) (2016-0)
+2025-11-08 21:26:37,427 - INFO - ✅ [217/55337] Imported: ALFA ROMEO 2.0 Q4 (952ACA45) (2016-0)
+2025-11-08 21:26:37,538 - INFO - ✅ [218/55337] Imported: ALFA ROMEO 2.0 T.S Cat (162.B4A) (1985-1992)
+2025-11-08 21:26:37,663 - INFO - ✅ [219/55337] Imported: ALFA ROMEO 2.0 T.S. (162.4CB, 162.B4, 162.B4A) (1987-1992)
+2025-11-08 21:26:37,793 - INFO - ✅ [220/55337] Imported: ALFA ROMEO 2.0 T.S. (164.A2C, 164.A2L) (1987-1992)
+2025-11-08 21:26:37,909 - INFO - ✅ [221/55337] Imported: ALFA ROMEO 2.0 T.S. (164.A2H) (1987-1992)
+2025-11-08 21:26:38,022 - INFO - ✅ [222/55337] Imported: ALFA ROMEO 2.0 T.S. (164.H3) (1992-1998)
+2025-11-08 21:26:38,140 - INFO - ✅ [223/55337] Imported: ALFA ROMEO 2.0 T.S. (167.A2A, 167.A2D) (1992-1995)
+2025-11-08 21:26:38,260 - INFO - ✅ [224/55337] Imported: ALFA ROMEO 2.0 T.S. (167.A2D) (1992-1995)
+2025-11-08 21:26:38,381 - INFO - ✅ [225/55337] Imported: ALFA ROMEO 2.0 T.S. 16V (167.A2G) (1995-1997)
+2025-11-08 21:26:38,507 - INFO - ✅ [226/55337] Imported: ALFA ROMEO 2.0 T.Spark (936A3A__) (1998-2000)
+2025-11-08 21:26:38,626 - INFO - ✅ [227/55337] Imported: ALFA ROMEO 2.0 T.Spark (936A3B00) (2000-2007)
+2025-11-08 21:26:38,742 - INFO - ✅ [228/55337] Imported: ALFA ROMEO 2.0 T.SPARK 16V (916.C2__, 916C2C00) (1995-2005)
+2025-11-08 21:26:38,867 - INFO - ✅ [229/55337] Imported: ALFA ROMEO 2.0 T.SPARK 16V (916C2C) (1997-2003)
+2025-11-08 21:26:38,980 - INFO - ✅ [230/55337] Imported: ALFA ROMEO 2.0 T.SPARK 16V (916S2B) (1998-2000)
+2025-11-08 21:26:39,098 - INFO - ✅ [231/55337] Imported: ALFA ROMEO 2.0 T.SPARK 16V (916S2C00) (1995-2005)
+2025-11-08 21:26:39,228 - INFO - ✅ [232/55337] Imported: ALFA ROMEO 2.0 TD (162.BD, 162.BG) (1985-1992)
+2025-11-08 21:26:39,355 - INFO - ✅ [233/55337] Imported: ALFA ROMEO 2.0 Turbo (1987-1998)
+2025-11-08 21:26:39,507 - INFO - ✅ [235/55337] Imported: ALFA ROMEO 2.0 Twin Spark (1987-1992)
+2025-11-08 21:26:39,683 - INFO - ✅ [237/55337] Imported: ALFA ROMEO 2.0 Twin Spark (164A2C) (1990-1992)
+2025-11-08 21:26:39,810 - INFO - ✅ [238/55337] Imported: ALFA ROMEO 2.0 V6 (936A3___) (1998-2000)
+2025-11-08 21:26:39,945 - INFO - ✅ [239/55337] Imported: ALFA ROMEO 2.0 V6 Turbo (164.A2G, 164.A2F) (1991-1992)
+2025-11-08 21:26:40,092 - INFO - ✅ [240/55337] Imported: ALFA ROMEO 2.0 V6 Turbo (164.K3) (1992-1998)
+2025-11-08 21:26:40,224 - INFO - ✅ [241/55337] Imported: ALFA ROMEO 2.0 V6 Turbo (916.C2A) (1995-1998)
+2025-11-08 21:26:40,367 - INFO - ✅ [242/55337] Imported: ALFA ROMEO 2.0 V6 Turbo (916S2A) (1998-2005)
+2025-11-08 21:26:40,547 - INFO - ✅ [243/55337] Imported: ALFA ROMEO 2.2 D (949.AXC1A) (2016-0)
+2025-11-08 21:26:40,779 - INFO - ✅ [245/55337] Imported: ALFA ROMEO 2.2 D (949.AXD1A) (2016-0)
+2025-11-08 21:26:41,071 - INFO - ✅ [247/55337] Imported: ALFA ROMEO 2.2 D (952AEM250, 952AEA250) (2015-0)
+2025-11-08 21:26:41,227 - INFO - ✅ [249/55337] Imported: ALFA ROMEO 2.2 D (952AFA25, 952AFM25, 952ALA25) (2015-0)
+2025-11-08 21:26:41,348 - INFO - ✅ [250/55337] Imported: ALFA ROMEO 2.2 D (952AGA250, 952AGM250) (2015-0)
+2025-11-08 21:26:41,463 - INFO - ✅ [251/55337] Imported: ALFA ROMEO 2.2 D (952ALA25, 952AFM25) (2018-0)
+2025-11-08 21:26:41,577 - INFO - ✅ [252/55337] Imported: ALFA ROMEO 2.2 D Q4 (949.AXB2A) (2016-0)
+2025-11-08 21:26:41,698 - INFO - ✅ [253/55337] Imported: ALFA ROMEO 2.2 D Q4 (949.AXE2A) (2016-0)
+2025-11-08 21:26:41,848 - INFO - ✅ [255/55337] Imported: ALFA ROMEO 2.2 D Q4 (952AFA45M) (2017-0)
+2025-11-08 21:26:41,992 - INFO - ✅ [257/55337] Imported: ALFA ROMEO 2.2 D Q4 (952AHA45) (2016-0)
+2025-11-08 21:26:42,122 - INFO - ✅ [258/55337] Imported: ALFA ROMEO 2.2 JTS (2006-2011)
+2025-11-08 21:26:42,246 - INFO - ✅ [259/55337] Imported: ALFA ROMEO 2.2 JTS (939.DXB11) (2006-2011)
+2025-11-08 21:26:42,365 - INFO - ✅ [260/55337] Imported: ALFA ROMEO 2.2 JTS (939AXB1B, 939AXB11) (2005-2011)
+2025-11-08 21:26:42,477 - INFO - ✅ [261/55337] Imported: ALFA ROMEO 2.2 JTS (939BXB1B, 939BXB11) (2006-2011)
+2025-11-08 21:26:42,606 - INFO - ✅ [262/55337] Imported: ALFA ROMEO 2.2 Q4 (2006-2007)
+2025-11-08 21:26:42,764 - INFO - ✅ [263/55337] Imported: ALFA ROMEO 2.4 JTD (2002-2007)
+2025-11-08 21:26:43,132 - INFO - ✅ [272/55337] Imported: ALFA ROMEO 2.4 JTD (932.B1B00) (2000-2006)
+2025-11-08 21:26:43,248 - INFO - ✅ [273/55337] Imported: ALFA ROMEO 2.4 JTD (932.BXC00) (2002-2006)
+2025-11-08 21:26:43,367 - INFO - ✅ [274/55337] Imported: ALFA ROMEO 2.4 JTD (932A1B__) (2000-2005)
+2025-11-08 21:26:43,480 - INFO - ✅ [275/55337] Imported: ALFA ROMEO 2.4 JTD (932AXC) (2002-2005)
+2025-11-08 21:26:43,597 - INFO - ✅ [276/55337] Imported: ALFA ROMEO 2.4 JTD (932B1) (1997-2003)
+2025-11-08 21:26:43,746 - INFO - ✅ [278/55337] Imported: ALFA ROMEO 2.4 JTD (936A2A__) (1998-2000)
+2025-11-08 21:26:43,859 - INFO - ✅ [279/55337] Imported: ALFA ROMEO 2.4 JTD (936A2B__) (2000-2007)
+2025-11-08 21:26:43,977 - INFO - ✅ [280/55337] Imported: ALFA ROMEO 2.4 JTDM (2007-2010)
+2025-11-08 21:26:44,124 - INFO - ✅ [282/55337] Imported: ALFA ROMEO 2.4 JTDM (939.BXM1B) (2007-2012)
+2025-11-08 21:26:44,246 - INFO - ✅ [283/55337] Imported: ALFA ROMEO 2.4 JTDM (939AXD) (2007-2011)
+2025-11-08 21:26:44,377 - INFO - ✅ [284/55337] Imported: ALFA ROMEO 2.4 JTDM (939AXD12, 939AXD1B) (2005-2011)
+2025-11-08 21:26:44,495 - INFO - ✅ [285/55337] Imported: ALFA ROMEO 2.4 JTDM (939BXD1B, 939BXD12) (2006-2011)
+2025-11-08 21:26:44,619 - INFO - ✅ [286/55337] Imported: ALFA ROMEO 2.4 JTDM 20V (2006-2010)
+2025-11-08 21:26:44,764 - INFO - ✅ [288/55337] Imported: ALFA ROMEO 2.4 JTDM Q4 (939AXMB2) (2007-2011)
+2025-11-08 21:26:44,884 - INFO - ✅ [289/55337] Imported: ALFA ROMEO 2.4 JTDM Q4 (939BXM2B) (2007-2011)
+2025-11-08 21:26:45,005 - INFO - ✅ [290/55337] Imported: ALFA ROMEO 2.4 TD (1989-1992)
+2025-11-08 21:26:45,120 - INFO - ✅ [291/55337] Imported: ALFA ROMEO 2.5 TD (164.A1A) (1987-1992)
+2025-11-08 21:26:45,238 - INFO - ✅ [292/55337] Imported: ALFA ROMEO 2.5 TD (164.K2A, 164.K2B) (1992-1998)
+2025-11-08 21:26:45,357 - INFO - ✅ [293/55337] Imported: ALFA ROMEO 2.5 TD (167.A1A, 167.A1G) (1993-1997)
+2025-11-08 21:26:45,471 - INFO - ✅ [294/55337] Imported: ALFA ROMEO 2.5 V6 (1992-1998)
+2025-11-08 21:26:45,619 - INFO - ✅ [296/55337] Imported: ALFA ROMEO 2.5 V6 (162B3) (1986-1990)
+2025-11-08 21:26:45,731 - INFO - ✅ [297/55337] Imported: ALFA ROMEO 2.5 V6 (167.A1C, 167.A1) (1992-1995)
+2025-11-08 21:26:45,848 - INFO - ✅ [298/55337] Imported: ALFA ROMEO 2.5 V6 (167.A1C, 167.A1E) (1992-1997)
+2025-11-08 21:26:45,966 - INFO - ✅ [299/55337] Imported: ALFA ROMEO 2.5 V6 24V (932A1) (1997-2002)
+2025-11-08 21:26:46,112 - INFO - ✅ [301/55337] Imported: ALFA ROMEO 2.5 V6 24V (932A11_) (2000-2005)
+2025-11-08 21:26:46,233 - INFO - ✅ [302/55337] Imported: ALFA ROMEO 2.5 V6 24V (932B1100) (1997-2006)
+2025-11-08 21:26:46,490 - INFO - ✅ [303/55337] Imported: ALFA ROMEO 2.5 V6 24V (936A21__) (2000-2007)
+2025-11-08 21:26:46,633 - INFO - ✅ [304/55337] Imported: ALFA ROMEO 2.5 V6 24V (936A2___) (1998-2006)
+2025-11-08 21:26:46,780 - INFO - ✅ [305/55337] Imported: ALFA ROMEO 2.9 (952AAM24) (2015-0)
+2025-11-08 21:26:46,893 - INFO - ✅ [306/55337] Imported: ALFA ROMEO 2.9 Q4 (949.AXG2A) (2017-0)
+2025-11-08 21:26:47,035 - INFO - ✅ [308/55337] Imported: ALFA ROMEO 2000 (1986-1990)
+2025-11-08 21:26:47,240 - INFO - ✅ [312/55337] Imported: ALFA ROMEO 3.0 (1987-1991)
+2025-11-08 21:26:47,561 - INFO - ✅ [320/55337] Imported: ALFA ROMEO 3.0 24V (164.K1) (1992-1998)
+2025-11-08 21:26:47,675 - INFO - ✅ [321/55337] Imported: ALFA ROMEO 3.0 24V (164K1M) (1992-1997)
+2025-11-08 21:26:47,794 - INFO - ✅ [322/55337] Imported: ALFA ROMEO 3.0 24V (164K1_) (1995-1997)
+2025-11-08 21:26:47,908 - INFO - ✅ [323/55337] Imported: ALFA ROMEO 3.0 24V Q4 (164.K1M, 164.K1C) (1994-1998)
+2025-11-08 21:26:48,028 - INFO - ✅ [324/55337] Imported: ALFA ROMEO 3.0 24V QV (164.H1) (1992-1998)
+2025-11-08 21:26:48,143 - INFO - ✅ [325/55337] Imported: ALFA ROMEO 3.0 24V QV All-wheel Drive (1992-1997)
+2025-11-08 21:26:48,258 - INFO - ✅ [326/55337] Imported: ALFA ROMEO 3.0 i.e. QV (164.AG) (1990-1992)
+2025-11-08 21:26:48,383 - INFO - ✅ [327/55337] Imported: ALFA ROMEO 3.0 V6 (1995-1998)
+2025-11-08 21:26:48,497 - INFO - ✅ [328/55337] Imported: ALFA ROMEO 3.0 V6 (162.B6C) (1990-1992)
+2025-11-08 21:26:48,619 - INFO - ✅ [329/55337] Imported: ALFA ROMEO 3.0 V6 (164.A) (1987-1992)
+2025-11-08 21:26:48,732 - INFO - ✅ [330/55337] Imported: ALFA ROMEO 3.0 V6 (164.AD, 164.AH, 164.AB) (1987-1992)
+2025-11-08 21:26:48,849 - INFO - ✅ [331/55337] Imported: ALFA ROMEO 3.0 V6 (164.H1A, 164.H1B, 164.K1P) (1992-1998)
+2025-11-08 21:26:48,966 - INFO - ✅ [332/55337] Imported: ALFA ROMEO 3.0 V6 (916S1) (1995-2005)
+2025-11-08 21:26:49,080 - INFO - ✅ [333/55337] Imported: ALFA ROMEO 3.0 V6 (916S1B00) (1994-2005)
+2025-11-08 21:26:49,198 - INFO - ✅ [334/55337] Imported: ALFA ROMEO 3.0 V6 24V (916.C1) (1996-2000)
+2025-11-08 21:26:49,311 - INFO - ✅ [335/55337] Imported: ALFA ROMEO 3.0 V6 24V (916.C1B__) (2000-2005)
+2025-11-08 21:26:49,435 - INFO - ✅ [336/55337] Imported: ALFA ROMEO 3.0 V6 24V (916S1) (1999-2003)
+2025-11-08 21:26:49,548 - INFO - ✅ [337/55337] Imported: ALFA ROMEO 3.0 V6 24V (936A1000, 936A1001) (1998-2007)
+2025-11-08 21:26:49,671 - INFO - ✅ [338/55337] Imported: ALFA ROMEO 3.0 V6 24V (936A11__) (2000-2007)
+2025-11-08 21:26:49,822 - INFO - ✅ [339/55337] Imported: ALFA ROMEO 3.0 V6 Cat (162.B6A) (1987-1992)
+2025-11-08 21:26:49,956 - INFO - ✅ [340/55337] Imported: ALFA ROMEO 3.0 V6 Zagato (1988-1994)
+2025-11-08 21:26:50,108 - INFO - ✅ [342/55337] Imported: ALFA ROMEO 3.2 GTA (2003-2010)
+2025-11-08 21:26:50,254 - INFO - ✅ [344/55337] Imported: ALFA ROMEO 3.2 GTA (932.BXB00) (2002-2006)
+2025-11-08 21:26:50,370 - INFO - ✅ [345/55337] Imported: ALFA ROMEO 3.2 GTA (932AXB) (2002-2005)
+2025-11-08 21:26:50,491 - INFO - ✅ [346/55337] Imported: ALFA ROMEO 3.2 GTA (937.AXL1) (2003-2010)
+2025-11-08 21:26:50,634 - INFO - ✅ [347/55337] Imported: ALFA ROMEO 3.2 GTA (937.AXL1B) (2008-2010)
+2025-11-08 21:26:50,749 - INFO - ✅ [348/55337] Imported: ALFA ROMEO 3.2 JTS (2006-2007)
+2025-11-08 21:26:50,896 - INFO - ✅ [350/55337] Imported: ALFA ROMEO 3.2 JTS (939AXG2B) (2008-2011)
+2025-11-08 21:26:51,017 - INFO - ✅ [351/55337] Imported: ALFA ROMEO 3.2 JTS (939BXH1B) (2008-2011)
+2025-11-08 21:26:51,130 - INFO - ✅ [352/55337] Imported: ALFA ROMEO 3.2 JTS (939EXG2B) (2008-2011)
+2025-11-08 21:26:51,252 - INFO - ✅ [353/55337] Imported: ALFA ROMEO 3.2 JTS Q4 (2006-2011)
+2025-11-08 21:26:51,366 - INFO - ✅ [354/55337] Imported: ALFA ROMEO 3.2 JTS Q4 (939.DXG22) (2006-2011)
+2025-11-08 21:26:51,484 - INFO - ✅ [355/55337] Imported: ALFA ROMEO 3.2 JTS Q4 (939AXH1B, 939AXG22) (2005-2011)
+2025-11-08 21:26:51,597 - INFO - ✅ [356/55337] Imported: ALFA ROMEO 3.2 JTS Q4 (939BXG2B, 939BXG22) (2006-2011)
+2025-11-08 21:26:51,719 - INFO - ✅ [357/55337] Imported: ALFA ROMEO 3.2 V6 24V (2003-2005)
+2025-11-08 21:26:51,921 - INFO - ✅ [360/55337] Imported: ALFA ROMEO 4.7 (2007-2009)
+2025-11-08 21:26:52,068 - INFO - ✅ [362/55337] Imported: AUDI 1.0 TFSI (2015-2018)
+2025-11-08 21:26:52,390 - INFO - ✅ [370/55337] Imported: AUDI 1.2 TDI (2001-2005)
+2025-11-08 21:26:52,507 - INFO - ✅ [371/55337] Imported: AUDI 1.2 TFSI (2012-2015)
+2025-11-08 21:26:52,859 - INFO - ✅ [380/55337] Imported: AUDI 1.2 TSI (2010-2012)
+2025-11-08 21:26:53,002 - INFO - ✅ [382/55337] Imported: AUDI 1.4 (2000-2005)
+2025-11-08 21:26:53,124 - INFO - ✅ [383/55337] Imported: AUDI 1.4 TDI (2000-2005)
+2025-11-08 21:26:53,357 - INFO - ✅ [387/55337] Imported: AUDI 1.4 TFSI (2011-2015)
+2025-11-08 21:26:54,505 - INFO - ✅ [415/55337] Imported: AUDI 1.4 TFSI e-tron (2014-0)
+2025-11-08 21:26:54,765 - INFO - ✅ [417/55337] Imported: AUDI 1.4 TFSI Flex (2017-0)
+2025-11-08 21:26:54,969 - INFO - ✅ [418/55337] Imported: AUDI 1.4 TFSI g-tron (2013-0)
+2025-11-08 21:26:55,101 - INFO - ✅ [419/55337] Imported: AUDI 1.4 TSI (2013-0)
+2025-11-08 21:26:55,448 - INFO - ✅ [427/55337] Imported: AUDI 1.5 TFSI (2017-0)
+2025-11-08 21:26:55,653 - INFO - ✅ [431/55337] Imported: AUDI 1.6 (1986-1991)
+2025-11-08 21:26:56,270 - INFO - ✅ [448/55337] Imported: AUDI 1.6 E (1993-1994)
+2025-11-08 21:26:56,431 - INFO - ✅ [450/55337] Imported: AUDI 1.6 E-Power (2011-2012)
+2025-11-08 21:26:56,601 - INFO - ✅ [452/55337] Imported: AUDI 1.6 FSI (2002-2005)
+2025-11-08 21:26:56,782 - INFO - ✅ [455/55337] Imported: AUDI 1.6 TD (1986-1991)
+2025-11-08 21:26:56,927 - INFO - ✅ [457/55337] Imported: AUDI 1.6 TDI (2011-2015)
+2025-11-08 21:26:57,684 - INFO - ✅ [480/55337] Imported: AUDI 1.6 TDI quattro (2015-0)
+2025-11-08 21:26:57,828 - INFO - ✅ [482/55337] Imported: AUDI 1.8 (1986-1990)
+2025-11-08 21:26:58,429 - INFO - ✅ [499/55337] Imported: AUDI 1.8 Cat (1985-1990)
+2025-11-08 21:26:58,578 - INFO - ✅ [501/55337] Imported: AUDI 1.8 Cat quattro (1985-1990)
+2025-11-08 21:26:58,725 - INFO - ✅ [503/55337] Imported: AUDI 1.8 E (1986-1991)
+2025-11-08 21:26:58,837 - INFO - ✅ [504/55337] Imported: AUDI 1.8 E quattro (1986-1991)
+2025-11-08 21:26:58,955 - INFO - ✅ [505/55337] Imported: AUDI 1.8 quattro (1986-1990)
+2025-11-08 21:26:59,313 - INFO - ✅ [514/55337] Imported: AUDI 1.8 S (1986-1990)
+2025-11-08 21:26:59,595 - INFO - ✅ [516/55337] Imported: AUDI 1.8 S quattro (1986-1990)
+2025-11-08 21:26:59,901 - INFO - ✅ [518/55337] Imported: AUDI 1.8 T (1995-2000)
+2025-11-08 21:27:01,271 - INFO - ✅ [554/55337] Imported: AUDI 1.8 T quattro (1995-2000)
+2025-11-08 21:27:02,454 - INFO - ✅ [590/55337] Imported: AUDI 1.8 TFSI (2011-2017)
+2025-11-08 21:27:03,570 - INFO - ✅ [624/55337] Imported: AUDI 1.8 TFSI quattro (2011-2015)
+2025-11-08 21:27:03,961 - INFO - ✅ [634/55337] Imported: AUDI 1.9 D (1989-1991)
+2025-11-08 21:27:04,081 - INFO - ✅ [635/55337] Imported: AUDI 1.9 DUO (1998-2001)
+2025-11-08 21:27:04,200 - INFO - ✅ [636/55337] Imported: AUDI 1.9 TD (1991-1994)
+2025-11-08 21:27:04,358 - INFO - ✅ [638/55337] Imported: AUDI 1.9 TDI (1991-1994)
+2025-11-08 21:27:05,523 - INFO - ✅ [672/55337] Imported: AUDI 1.9 TDI quattro (1996-2000)
+2025-11-08 21:27:05,858 - INFO - ✅ [679/55337] Imported: AUDI 2.0 (1989-1996)
+2025-11-08 21:27:07,263 - INFO - ✅ [701/55337] Imported: AUDI 2.0 16 V (1992-1996)
+2025-11-08 21:27:07,443 - INFO - ✅ [703/55337] Imported: AUDI 2.0 16V (1994-1997)
+2025-11-08 21:27:07,620 - INFO - ✅ [706/55337] Imported: AUDI 2.0 16V quattro (1994-1997)
+2025-11-08 21:27:07,767 - INFO - ✅ [708/55337] Imported: AUDI 2.0 20 V (1989-1991)
+2025-11-08 21:27:07,914 - INFO - ✅ [710/55337] Imported: AUDI 2.0 20 V quattro (1989-1991)
+2025-11-08 21:27:08,065 - INFO - ✅ [712/55337] Imported: AUDI 2.0 40 TDI Mild Hybrid (2018-0)
+2025-11-08 21:27:08,207 - INFO - ✅ [714/55337] Imported: AUDI 2.0 40 TDI Mild Hybrid quattro (2018-0)
+2025-11-08 21:27:08,363 - INFO - ✅ [716/55337] Imported: AUDI 2.0 Cat (1988-1990)
+2025-11-08 21:27:08,482 - INFO - ✅ [717/55337] Imported: AUDI 2.0 D (1983-1990)
+2025-11-08 21:27:08,596 - INFO - ✅ [718/55337] Imported: AUDI 2.0 D Turbo (1988-1990)
+2025-11-08 21:27:08,718 - INFO - ✅ [719/55337] Imported: AUDI 2.0 E (1988-1990)
+2025-11-08 21:27:09,028 - INFO - ✅ [726/55337] Imported: AUDI 2.0 E 16V (1990-1991)
+2025-11-08 21:27:09,311 - INFO - ✅ [732/55337] Imported: AUDI 2.0 E 16V quattro (1990-1991)
+2025-11-08 21:27:09,595 - INFO - ✅ [737/55337] Imported: AUDI 2.0 E Cat (1988-1990)
+2025-11-08 21:27:09,818 - INFO - ✅ [738/55337] Imported: AUDI 2.0 E quattro (1988-1990)
+2025-11-08 21:27:10,038 - INFO - ✅ [742/55337] Imported: AUDI 2.0 FSI (2002-2004)
+2025-11-08 21:27:10,254 - INFO - ✅ [746/55337] Imported: AUDI 2.0 Hybrid quattro (2012-2016)
+2025-11-08 21:27:10,400 - INFO - ✅ [747/55337] Imported: AUDI 2.0 quattro (1990-1991)
+2025-11-08 21:27:10,682 - INFO - ✅ [752/55337] Imported: AUDI 2.0 TD (1988-1990)
+2025-11-08 21:27:10,819 - INFO - ✅ [753/55337] Imported: AUDI 2.0 TDI (2011-0)
+2025-11-08 21:27:15,341 - INFO - ✅ [884/55337] Imported: AUDI 2.0 TDI 16V (2003-2012)
+2025-11-08 21:27:15,608 - INFO - ✅ [890/55337] Imported: AUDI 2.0 TDI 16V quattro (2004-2012)
+2025-11-08 21:27:15,756 - INFO - ✅ [892/55337] Imported: AUDI 2.0 TDI quattro (2011-0)
+2025-11-08 21:27:18,244 - INFO - ✅ [972/55337] Imported: AUDI 2.0 TFSI (2010-2014)
+2025-11-08 21:27:20,471 - INFO - ✅ [1040/55337] Imported: AUDI 2.0 TFSI 16V (2006-2009)
+2025-11-08 21:27:20,611 - INFO - ✅ [1041/55337] Imported: AUDI 2.0 TFSI e-tron quattro (2017-0)
+2025-11-08 21:27:20,741 - INFO - ✅ [1042/55337] Imported: AUDI 2.0 TFSI Flex (2017-0)
+2025-11-08 21:27:20,900 - INFO - ✅ [1043/55337] Imported: AUDI 2.0 TFSI Flexfuel quattro (2013-2016)
+2025-11-08 21:27:21,229 - INFO - ✅ [1051/55337] Imported: AUDI 2.0 TFSI flexible fuel (2009-2015)
+2025-11-08 21:27:21,373 - INFO - ✅ [1053/55337] Imported: AUDI 2.0 TFSI flexible fuel quattro (2009-2015)
+2025-11-08 21:27:21,515 - INFO - ✅ [1055/55337] Imported: AUDI 2.0 TFSI g-tron (2017-0)
+2025-11-08 21:27:21,706 - INFO - ✅ [1057/55337] Imported: AUDI 2.0 TFSI hybrid (2011-0)
+2025-11-08 21:27:21,851 - INFO - ✅ [1059/55337] Imported: AUDI 2.0 TFSI hybrid quattro (2011-0)
+2025-11-08 21:27:21,967 - INFO - ✅ [1060/55337] Imported: AUDI 2.0 TFSI quattro (2010-2014)
+2025-11-08 21:27:24,658 - INFO - ✅ [1138/55337] Imported: AUDI 2.0 TTS quattro (2008-2014)
+2025-11-08 21:27:25,013 - INFO - ✅ [1147/55337] Imported: AUDI 2.2 (1989-1991)
+2025-11-08 21:27:25,126 - INFO - ✅ [1148/55337] Imported: AUDI 2.2 20V Turbo (1989-1991)
+2025-11-08 21:27:25,249 - INFO - ✅ [1149/55337] Imported: AUDI 2.2 20V Turbo quattro (1989-1990)
+2025-11-08 21:27:25,395 - INFO - ✅ [1151/55337] Imported: AUDI 2.2 Cat (1989-1990)
+2025-11-08 21:27:25,560 - INFO - ✅ [1153/55337] Imported: AUDI 2.2 Cat quattro (1989-1990)
+2025-11-08 21:27:25,723 - INFO - ✅ [1155/55337] Imported: AUDI 2.2 E (1987-1991)
+2025-11-08 21:27:25,844 - INFO - ✅ [1156/55337] Imported: AUDI 2.2 E quattro (1987-1991)
+2025-11-08 21:27:25,945 - INFO - 🔌 Database connections closed

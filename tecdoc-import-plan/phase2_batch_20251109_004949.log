@@ -1,0 +1,488 @@
+2025-11-09 00:49:50,123 - INFO - ✅ Database connections established
+2025-11-09 00:49:50,124 - INFO - 
+######################################################################
+2025-11-09 00:49:50,124 - INFO - 🚀 FAZA 2 - Batch Obogaćivanje Proizvoda
+2025-11-09 00:49:50,124 - INFO - ######################################################################
+
+2025-11-09 00:49:50,184 - INFO - 📍 Starting from offset: 1
+2025-11-09 00:49:50,239 - INFO - 
+======================================================================
+2025-11-09 00:49:50,240 - INFO - 📦 BATCH #1 (offset: 1, size: 50)
+2025-11-09 00:49:50,240 - INFO - ======================================================================
+2025-11-09 00:49:50,240 - INFO - [1/50] 83815 - MIRIS AROMA CAR JELKICA XTRA BUBBLE GUM...
+2025-11-09 00:49:50,410 - INFO -    ✅ Updated categoryId: Električni sistem
+2025-11-09 00:49:51,128 - INFO -    Found OE numbers for manufacturers: ['SCANIA (ID: 103)', 'SCANIA (ID: 103)', 'SCANIA (ID: 103)', 'SCANIA (ID: 103)', 'SCANIA (ID: 103)', 'SCANIA (ID: 103)', 'SCANIA (ID: 103)']
+2025-11-09 00:49:51,274 - INFO -    Found 0 vehicles for SCANIA
+2025-11-09 00:49:51,319 - INFO -    Found 0 vehicles for SCANIA
+2025-11-09 00:49:51,351 - INFO -    Found 0 vehicles for SCANIA
+2025-11-09 00:49:51,373 - INFO -    Found 0 vehicles for SCANIA
+2025-11-09 00:49:51,392 - INFO -    Found 0 vehicles for SCANIA
+2025-11-09 00:49:51,410 - INFO -    Found 0 vehicles for SCANIA
+2025-11-09 00:49:51,428 - INFO -    Found 0 vehicles for SCANIA
+2025-11-09 00:49:51,581 - INFO -    ✅ Created new manufacturer: AUGER
+2025-11-09 00:49:51,668 - INFO -    ✅ Updated manufacturerId: AUGER
+2025-11-09 00:49:51,787 - INFO -    ✅ Updated oemNumber: 1447912
+2025-11-09 00:49:51,840 - INFO - [2/50] 83811 - MIRIS AROMA CAR JELKICA XTRA VANILIA...
+2025-11-09 00:49:51,966 - INFO -    ✅ Updated categoryId: Električni sistem
+2025-11-09 00:49:52,632 - INFO -    Found OE numbers for manufacturers: ['MERCEDES-BENZ (ID: 74)', 'MERCEDES-BENZ (ID: 74)', 'MERCEDES-BENZ (ID: 74)', 'MERCEDES-BENZ (ID: 74)', 'MERCEDES-BENZ (ID: 74)', 'MERCEDES-BENZ (ID: 74)']
+2025-11-09 00:49:52,672 - INFO -    Found 100 vehicles for MERCEDES-BENZ
+2025-11-09 00:49:52,695 - INFO -    Found 100 vehicles for MERCEDES-BENZ
+2025-11-09 00:49:52,712 - INFO -    Found 100 vehicles for MERCEDES-BENZ
+2025-11-09 00:49:52,727 - INFO -    Found 100 vehicles for MERCEDES-BENZ
+2025-11-09 00:49:52,740 - INFO -    Found 100 vehicles for MERCEDES-BENZ
+2025-11-09 00:49:52,752 - INFO -    Found 100 vehicles for MERCEDES-BENZ
+2025-11-09 00:49:52,926 - INFO -    ✅ Updated manufacturerId: AUGER
+2025-11-09 00:49:53,041 - INFO -    ✅ Updated oemNumber: 0061514801
+2025-11-09 00:49:53,095 - INFO - [3/50] 525601 - MIRIS WUNDER BAUM CLIP CHERRY...
+2025-11-09 00:49:53,224 - INFO -    ✅ Updated categoryId: Pogon na točkove
+2025-11-09 00:49:53,349 - INFO -    ✅ Saved 1 attribute(s) to technicalSpecs
+2025-11-09 00:49:53,362 - INFO -    Found OE numbers for manufacturers: ['HONDA (ID: 45)']
+2025-11-09 00:49:53,391 - INFO -    Found 100 vehicles for HONDA
+2025-11-09 00:49:53,727 - INFO -    Found vehicles by brand name: HONDA
+2025-11-09 00:50:00,481 - INFO -    ✅ Created new manufacturer: AKRON-MALÒ
+2025-11-09 00:50:00,574 - INFO -    ✅ Updated manufacturerId: AKRON-MALÒ
+2025-11-09 00:50:00,692 - INFO -    ✅ Updated oemNumber: 44017T0AA00
+2025-11-09 00:50:00,744 - INFO - [4/50] 791520 - MANNOL EXTREME 5W40 20L SN/CH A3/B4 VW 5...
+2025-11-09 00:50:00,878 - INFO -    ✅ Updated categoryId: Motor
+2025-11-09 00:50:00,966 - INFO -    ✅ Saved 2 attribute(s) to technicalSpecs
+2025-11-09 00:50:01,645 - INFO -    Found OE numbers for manufacturers: ['MAZDA (ID: 72)']
+2025-11-09 00:50:01,681 - INFO -    Found 100 vehicles for MAZDA
+2025-11-09 00:50:01,828 - INFO -    Found vehicles by brand name: MAZDA
+2025-11-09 00:50:08,452 - INFO -    ✅ Created new manufacturer: AUTEX
+2025-11-09 00:50:08,537 - INFO -    ✅ Updated manufacturerId: AUTEX
+2025-11-09 00:50:08,664 - INFO -    ✅ Updated oemNumber: RF1G-12-205
+2025-11-09 00:50:08,719 - INFO - [5/50] FS1280 - FILTER GORIVA...
+2025-11-09 00:50:08,854 - INFO -    ✅ Updated categoryId: Filteri
+2025-11-09 00:50:08,944 - INFO -    ✅ Saved 3 attribute(s) to technicalSpecs
+2025-11-09 00:50:09,604 - INFO -    Found OE numbers for manufacturers: ['VOLVO (ID: 120)', 'CASE IH (ID: 661)', 'CASE IH (ID: 661)', 'CUMMINS (ID: 716)', 'CUMMINS (ID: 716)', 'CUMMINS (ID: 716)', 'CUMMINS (ID: 716)', 'CUMMINS (ID: 716)', 'CUMMINS (ID: 716)', 'CUMMINS (ID: 716)', 'CLAAS (ID: 750)', 'AGCO (ID: 1033)']
+2025-11-09 00:50:09,659 - INFO -    Found 100 vehicles for VOLVO
+2025-11-09 00:50:09,690 - INFO -    Found 0 vehicles for CASE IH
+2025-11-09 00:50:09,711 - INFO -    Found 0 vehicles for CASE IH
+2025-11-09 00:50:09,729 - INFO -    Found 0 vehicles for CUMMINS
+2025-11-09 00:50:09,746 - INFO -    Found 0 vehicles for CUMMINS
+2025-11-09 00:50:09,763 - INFO -    Found 0 vehicles for CUMMINS
+2025-11-09 00:50:09,781 - INFO -    Found 0 vehicles for CUMMINS
+2025-11-09 00:50:09,798 - INFO -    Found 0 vehicles for CUMMINS
+2025-11-09 00:50:09,815 - INFO -    Found 0 vehicles for CUMMINS
+2025-11-09 00:50:09,832 - INFO -    Found 0 vehicles for CUMMINS
+2025-11-09 00:50:09,849 - INFO -    Found 0 vehicles for CLAAS
+2025-11-09 00:50:09,867 - INFO -    Found 0 vehicles for AGCO
+2025-11-09 00:50:10,477 - INFO -    Found vehicles by brand name: VOLVO
+2025-11-09 00:50:16,377 - INFO -    ✅ Created new manufacturer: FLEETGUARD
+2025-11-09 00:50:16,468 - INFO -    ✅ Updated manufacturerId: FLEETGUARD
+2025-11-09 00:50:16,589 - INFO -    ✅ Updated oemNumber: 3417710
+2025-11-09 00:50:16,644 - INFO - [6/50] 24.8190-0067.2 - KABAL DISK PL.M-176/246 A/B 12-...
+2025-11-09 00:50:16,762 - INFO -    ✅ Saved 1 attribute(s) to technicalSpecs
+2025-11-09 00:50:17,414 - INFO -    Found OE numbers for manufacturers: ['MERCEDES-BENZ (ID: 74)', 'MERCEDES-BENZ (ID: 74)']
+2025-11-09 00:50:17,445 - INFO -    Found 100 vehicles for MERCEDES-BENZ
+2025-11-09 00:50:17,462 - INFO -    Found 100 vehicles for MERCEDES-BENZ
+2025-11-09 00:50:17,668 - INFO -    ✅ Created new manufacturer: ATE
+2025-11-09 00:50:17,753 - INFO -    ✅ Updated manufacturerId: ATE
+2025-11-09 00:50:17,813 - INFO -    ⏭️  oemNumber already set: 221106
+2025-11-09 00:50:17,868 - INFO - [7/50] 5808 - KAPA MUŠKA KAMLOK SPOJKE 2...
+2025-11-09 00:50:17,971 - INFO -    ✅ Updated categoryId: Sistemi udobnosti
+2025-11-09 00:50:18,069 - INFO -    ✅ Saved 2 attribute(s) to technicalSpecs
+2025-11-09 00:50:18,472 - INFO -    Found OE numbers for manufacturers: ['CHEVROLET (ID: 138)', 'DAEWOO (ID: 185)']
+2025-11-09 00:50:18,488 - INFO -    Found 100 vehicles for CHEVROLET
+2025-11-09 00:50:18,503 - INFO -    Found 100 vehicles for DAEWOO
+2025-11-09 00:50:18,619 - INFO -    Found vehicles by brand name: DAEWOO
+2025-11-09 00:50:24,781 - INFO -    ✅ Created new manufacturer: PEMEBLA
+2025-11-09 00:50:24,866 - INFO -    ✅ Updated manufacturerId: PEMEBLA
+2025-11-09 00:50:24,981 - INFO -    ✅ Updated oemNumber: 96602004
+2025-11-09 00:50:25,031 - INFO - [8/50] 5821 - STORZ SPOJKA 3...
+2025-11-09 00:50:25,160 - INFO -    ✅ Updated categoryId: Posebni alati
+2025-11-09 00:50:25,253 - INFO -    ✅ Saved 1 attribute(s) to technicalSpecs
+2025-11-09 00:50:25,470 - INFO -    Found OE numbers for manufacturers: ['CHEVROLET (ID: 138)', 'DAEWOO (ID: 185)']
+2025-11-09 00:50:25,479 - INFO -    Found 100 vehicles for CHEVROLET
+2025-11-09 00:50:25,495 - INFO -    Found 100 vehicles for DAEWOO
+2025-11-09 00:50:25,604 - INFO -    Found vehicles by brand name: DAEWOO
+2025-11-09 00:50:31,897 - INFO -    ✅ Updated manufacturerId: PEMEBLA
+2025-11-09 00:50:32,016 - INFO -    ✅ Updated oemNumber: 96590723
+2025-11-09 00:50:32,069 - INFO - [9/50] D10326TT - PUMPA VODE...
+2025-11-09 00:50:32,199 - INFO -    ✅ Updated categoryId: Sistem za hlađenje
+2025-11-09 00:50:32,880 - INFO -    Found OE numbers for manufacturers: ['HYUNDAI (ID: 183)', 'HYUNDAI (ID: 183)', 'KIA (ID: 184)', 'KIA (ID: 184)']
+2025-11-09 00:50:32,913 - INFO -    Found 100 vehicles for HYUNDAI
+2025-11-09 00:50:32,925 - INFO -    Found 100 vehicles for HYUNDAI
+2025-11-09 00:50:32,939 - INFO -    Found 100 vehicles for KIA
+2025-11-09 00:50:32,952 - INFO -    Found 100 vehicles for KIA
+2025-11-09 00:50:33,021 - INFO -    Found vehicles by brand name: KIA
+2025-11-09 00:50:39,643 - INFO -    ✅ Created new manufacturer: THERMOTEC
+2025-11-09 00:50:39,727 - INFO -    ✅ Updated manufacturerId: THERMOTEC
+2025-11-09 00:50:39,783 - INFO -    ⏭️  oemNumber already set: 216929
+2025-11-09 00:50:39,834 - INFO - [10/50] 5824 - KAPA ŽENSKA KAMLOK SPOJKE 2"...
+2025-11-09 00:50:39,912 - INFO -    ✅ Saved 3 attribute(s) to technicalSpecs
+2025-11-09 00:50:40,087 - INFO -    ✅ Created new manufacturer: GATES-AU
+2025-11-09 00:50:40,176 - INFO -    ✅ Updated manufacturerId: GATES-AU
+2025-11-09 00:50:40,229 - INFO - [11/50] 0483 - KAMLOK SPOJKA MT 2"...
+2025-11-09 00:50:40,381 - INFO -    ✅ Updated categoryId: Formiranje smjese goriva
+2025-11-09 00:50:40,473 - INFO -    ✅ Saved 6 attribute(s) to technicalSpecs
+2025-11-09 00:50:40,630 - INFO -    Found OE numbers for manufacturers: ['ISUZU (ID: 54)']
+2025-11-09 00:50:40,664 - INFO -    Found 100 vehicles for ISUZU
+2025-11-09 00:50:40,919 - INFO -    ✅ Created new manufacturer: OSVAT
+2025-11-09 00:50:41,004 - INFO -    ✅ Updated manufacturerId: OSVAT
+2025-11-09 00:50:41,121 - INFO -    ✅ Updated oemNumber: 8942165890
+2025-11-09 00:50:41,175 - INFO - [12/50] 5797 - KAMLOK SPOJKA VT 2"...
+2025-11-09 00:50:41,304 - INFO -    ✅ Updated categoryId: Pogon na točkove
+2025-11-09 00:50:41,400 - INFO -    ✅ Saved 6 attribute(s) to technicalSpecs
+2025-11-09 00:50:41,683 - INFO -    Found OE numbers for manufacturers: ['ROVER (ID: 95)', 'ROVER (ID: 95)']
+2025-11-09 00:50:41,731 - INFO -    Found 100 vehicles for ROVER
+2025-11-09 00:50:41,757 - INFO -    Found 100 vehicles for ROVER
+2025-11-09 00:50:41,967 - INFO -    ✅ Created new manufacturer: CEVAM
+2025-11-09 00:50:42,054 - INFO -    ✅ Updated manufacturerId: CEVAM
+2025-11-09 00:50:42,172 - INFO -    ✅ Updated oemNumber: ADU5308
+2025-11-09 00:50:42,227 - INFO - [13/50] 18548 - Selen blok lafete prednje osovine...
+2025-11-09 00:50:42,333 - INFO -    ✅ Saved 4 attribute(s) to technicalSpecs
+2025-11-09 00:50:43,027 - INFO -    Found OE numbers for manufacturers: ['FIAT (ID: 35)', 'FIAT (ID: 35)', 'FIAT (ID: 35)', 'FIAT (ID: 35)', 'FIAT (ID: 35)', 'FIAT (ID: 35)', 'FIAT (ID: 35)', 'FIAT (ID: 35)', 'FIAT (ID: 35)', 'FIAT (ID: 35)', 'FIAT (ID: 35)', 'FIAT (ID: 35)', 'FIAT (ID: 35)', 'FIAT (ID: 35)', 'FIAT (ID: 35)', 'FIAT (ID: 35)', 'FIAT (ID: 35)', 'FIAT (ID: 35)', 'FIAT (ID: 35)', 'FIAT (ID: 35)', 'FIAT (ID: 35)', 'FIAT (ID: 35)', 'LANCIA (ID: 64)', 'LANCIA (ID: 64)', 'LANCIA (ID: 64)', 'LANCIA (ID: 64)', 'LANCIA (ID: 64)', 'LANCIA (ID: 64)', 'LANCIA (ID: 64)']
+2025-11-09 00:50:43,048 - INFO -    Found 100 vehicles for FIAT
+2025-11-09 00:50:43,065 - INFO -    Found 100 vehicles for FIAT
+2025-11-09 00:50:43,078 - INFO -    Found 100 vehicles for FIAT
+2025-11-09 00:50:43,090 - INFO -    Found 100 vehicles for FIAT
+2025-11-09 00:50:43,100 - INFO -    Found 100 vehicles for FIAT
+2025-11-09 00:50:43,109 - INFO -    Found 100 vehicles for FIAT
+2025-11-09 00:50:43,118 - INFO -    Found 100 vehicles for FIAT
+2025-11-09 00:50:43,125 - INFO -    Found 100 vehicles for FIAT
+2025-11-09 00:50:43,133 - INFO -    Found 100 vehicles for FIAT
+2025-11-09 00:50:43,141 - INFO -    Found 100 vehicles for FIAT
+2025-11-09 00:50:43,149 - INFO -    Found 100 vehicles for FIAT
+2025-11-09 00:50:43,156 - INFO -    Found 100 vehicles for FIAT
+2025-11-09 00:50:43,163 - INFO -    Found 100 vehicles for FIAT
+2025-11-09 00:50:43,171 - INFO -    Found 100 vehicles for FIAT
+2025-11-09 00:50:43,179 - INFO -    Found 100 vehicles for FIAT
+2025-11-09 00:50:43,186 - INFO -    Found 100 vehicles for FIAT
+2025-11-09 00:50:43,195 - INFO -    Found 100 vehicles for FIAT
+2025-11-09 00:50:43,203 - INFO -    Found 100 vehicles for FIAT
+2025-11-09 00:50:43,211 - INFO -    Found 100 vehicles for FIAT
+2025-11-09 00:50:43,218 - INFO -    Found 100 vehicles for FIAT
+2025-11-09 00:50:43,225 - INFO -    Found 100 vehicles for FIAT
+2025-11-09 00:50:43,231 - INFO -    Found 100 vehicles for FIAT
+2025-11-09 00:50:43,243 - INFO -    Found 100 vehicles for LANCIA
+2025-11-09 00:50:43,254 - INFO -    Found 100 vehicles for LANCIA
+2025-11-09 00:50:43,264 - INFO -    Found 100 vehicles for LANCIA
+2025-11-09 00:50:43,274 - INFO -    Found 100 vehicles for LANCIA
+2025-11-09 00:50:43,284 - INFO -    Found 100 vehicles for LANCIA
+2025-11-09 00:50:43,294 - INFO -    Found 100 vehicles for LANCIA
+2025-11-09 00:50:43,305 - INFO -    Found 100 vehicles for LANCIA
+2025-11-09 00:50:43,407 - INFO -    Found vehicles by brand name: FIAT
+2025-11-09 00:50:50,424 - INFO -    ✅ Created new manufacturer: BSF
+2025-11-09 00:50:50,513 - INFO -    ✅ Updated manufacturerId: BSF
+2025-11-09 00:50:50,574 - INFO -    ⏭️  oemNumber already set: 158944
+2025-11-09 00:50:50,625 - INFO - [14/50] 58006173 - HL.GRIJANJA GOLF 4/OCTAVIA BRZA SPOJKA...
+2025-11-09 00:50:50,706 - INFO -    ✅ Saved 4 attribute(s) to technicalSpecs
+2025-11-09 00:50:51,438 - INFO -    Found OE numbers for manufacturers: ['VW (ID: 121)', 'VW (ID: 121)']
+2025-11-09 00:50:51,499 - INFO -    Found 100 vehicles for VW
+2025-11-09 00:50:51,527 - INFO -    Found 100 vehicles for VW
+2025-11-09 00:50:51,730 - INFO -    ✅ Created new manufacturer: VAN WEZEL
+2025-11-09 00:50:51,818 - INFO -    ✅ Updated manufacturerId: VAN WEZEL
+2025-11-09 00:50:51,877 - INFO -    ⏭️  oemNumber already set: 445354
+2025-11-09 00:50:51,929 - INFO - [15/50] TC649 - LAFET ASTRA DX...
+2025-11-09 00:50:52,032 - INFO -    ✅ Updated categoryId: Pogon na točkove
+2025-11-09 00:50:52,125 - INFO -    ✅ Saved 5 attribute(s) to technicalSpecs
+2025-11-09 00:50:52,767 - INFO -    Found OE numbers for manufacturers: ['CITROËN/PEUGEOT (ID: 804)']
+2025-11-09 00:50:52,825 - INFO -    Found 0 vehicles for CITROËN/PEUGEOT
+2025-11-09 00:50:52,973 - INFO -    ✅ Created new manufacturer: SERA
+2025-11-09 00:50:53,057 - INFO -    ✅ Updated manufacturerId: SERA
+2025-11-09 00:50:53,171 - INFO -    ✅ Updated oemNumber: 3273EJ
+2025-11-09 00:50:53,226 - INFO - [16/50] TC648 - LAFET ASTRA LX...
+2025-11-09 00:50:53,351 - INFO -    ✅ Updated categoryId: Pogon na točkove
+2025-11-09 00:50:53,439 - INFO -    ✅ Saved 5 attribute(s) to technicalSpecs
+2025-11-09 00:50:54,052 - INFO -    Found OE numbers for manufacturers: ['CITROËN/PEUGEOT (ID: 804)']
+2025-11-09 00:50:54,109 - INFO -    Found 0 vehicles for CITROËN/PEUGEOT
+2025-11-09 00:50:54,225 - INFO -    ✅ Updated manufacturerId: SERA
+2025-11-09 00:50:54,342 - INFO -    ✅ Updated oemNumber: 3272EJ
+2025-11-09 00:50:54,396 - INFO - [17/50] 581364 - GUMA SAVA185/60 R15 84T ZIMSKA S3+ MS...
+2025-11-09 00:50:54,526 - INFO -    ✅ Updated categoryId: Motor
+2025-11-09 00:50:54,717 - INFO -    ✅ Created new manufacturer: ALANKO
+2025-11-09 00:50:54,805 - INFO -    ✅ Updated manufacturerId: ALANKO
+2025-11-09 00:50:54,860 - INFO - [18/50] 820310 - MANNOL ATF 10L C3...
+2025-11-09 00:50:54,989 - INFO -    ✅ Updated categoryId: Pogon na točkove
+2025-11-09 00:50:55,087 - INFO -    ✅ Saved 4 attribute(s) to technicalSpecs
+2025-11-09 00:50:55,235 - INFO -    ✅ Updated manufacturerId: AUTEX
+2025-11-09 00:50:55,288 - INFO - [19/50] 532509 - GUMA SAVA 225/55 R16 95H ESKIMO HP2...
+2025-11-09 00:50:55,433 - INFO -    ✅ Updated categoryId: Izduvni sistem
+2025-11-09 00:50:55,504 - INFO -    Found OE numbers for manufacturers: ['FORD (ID: 36)']
+2025-11-09 00:50:55,531 - INFO -    Found 100 vehicles for FORD
+2025-11-09 00:50:55,605 - INFO -    Found vehicles by brand name: FORD
+2025-11-09 00:51:01,836 - INFO -    ✅ Created new manufacturer: NK
+2025-11-09 00:51:01,921 - INFO -    ✅ Updated manufacturerId: NK
+2025-11-09 00:51:02,038 - INFO -    ✅ Updated oemNumber: 84AB5310FA
+2025-11-09 00:51:02,089 - INFO - [20/50] 0443 - PRETVARAČ STRUJE MAX 220V-12V 3A...
+2025-11-09 00:51:02,221 - INFO -    ✅ Updated categoryId: Formiranje smjese goriva
+2025-11-09 00:51:02,316 - INFO -    ✅ Saved 4 attribute(s) to technicalSpecs
+2025-11-09 00:51:02,464 - INFO -    ✅ Updated manufacturerId: OSVAT
+2025-11-09 00:51:02,518 - INFO - [21/50] 915.017 - GUMICE POKLOPCA VENTILA...
+2025-11-09 00:51:02,651 - INFO -    ✅ Updated categoryId: Motor
+2025-11-09 00:51:02,745 - INFO -    ✅ Saved 2 attribute(s) to technicalSpecs
+2025-11-09 00:51:03,241 - INFO -    Found OE numbers for manufacturers: ['AUDI (ID: 5)', 'SEAT (ID: 104)', 'SKODA (ID: 106)', 'VW (ID: 121)']
+2025-11-09 00:51:03,248 - INFO -    Found 100 vehicles for AUDI
+2025-11-09 00:51:03,298 - INFO -    Found 100 vehicles for SEAT
+2025-11-09 00:51:03,328 - INFO -    Found 100 vehicles for SKODA
+2025-11-09 00:51:03,352 - INFO -    Found 100 vehicles for VW
+2025-11-09 00:51:03,431 - INFO -    Found vehicles by brand name: SEAT
+2025-11-09 00:51:08,637 - INFO -    ✅ Created new manufacturer: ELRING
+2025-11-09 00:51:08,731 - INFO -    ✅ Updated manufacturerId: ELRING
+2025-11-09 00:51:08,791 - INFO -    ⏭️  oemNumber already set: 225947
+2025-11-09 00:51:08,845 - INFO - [22/50] 915.009 - GUMICE POKLOPCA VENTILA...
+2025-11-09 00:51:08,946 - INFO -    ✅ Updated categoryId: Motor
+2025-11-09 00:51:09,033 - INFO -    ✅ Saved 2 attribute(s) to technicalSpecs
+2025-11-09 00:51:09,579 - INFO -    Found OE numbers for manufacturers: ['AUDI (ID: 5)', 'FORD (ID: 36)', 'SEAT (ID: 104)', 'SKODA (ID: 106)', 'VW (ID: 121)']
+2025-11-09 00:51:09,582 - INFO -    Found 100 vehicles for AUDI
+2025-11-09 00:51:09,601 - INFO -    Found 100 vehicles for FORD
+2025-11-09 00:51:09,642 - INFO -    Found 100 vehicles for SEAT
+2025-11-09 00:51:09,668 - INFO -    Found 100 vehicles for SKODA
+2025-11-09 00:51:09,691 - INFO -    Found 100 vehicles for VW
+2025-11-09 00:51:09,769 - INFO -    Found vehicles by brand name: SEAT
+2025-11-09 00:51:15,279 - INFO -    ✅ Updated manufacturerId: ELRING
+2025-11-09 00:51:15,335 - INFO -    ⏭️  oemNumber already set: 67534
+2025-11-09 00:51:15,387 - INFO - [23/50] 15750 - SPOJKA GSV -1 (1")...
+2025-11-09 00:51:15,487 - INFO -    ✅ Updated categoryId: Kočioni sistem
+2025-11-09 00:51:15,578 - INFO -    ✅ Saved 9 attribute(s) to technicalSpecs
+2025-11-09 00:51:16,439 - INFO -    Found OE numbers for manufacturers: ['OPEL (ID: 84)', 'OPEL (ID: 84)', 'OPEL (ID: 84)', 'VAUXHALL (ID: 117)', 'VAUXHALL (ID: 117)']
+2025-11-09 00:51:16,486 - INFO -    Found 100 vehicles for OPEL
+2025-11-09 00:51:16,513 - INFO -    Found 100 vehicles for OPEL
+2025-11-09 00:51:16,533 - INFO -    Found 100 vehicles for OPEL
+2025-11-09 00:51:16,555 - INFO -    Found 100 vehicles for VAUXHALL
+2025-11-09 00:51:16,571 - INFO -    Found 100 vehicles for VAUXHALL
+2025-11-09 00:51:16,646 - INFO -    Found vehicles by brand name: OPEL
+2025-11-09 00:51:23,756 - INFO -    ✅ Created new manufacturer: A.B.S.
+2025-11-09 00:51:23,845 - INFO -    ✅ Updated manufacturerId: A.B.S.
+2025-11-09 00:51:23,960 - INFO -    ✅ Updated oemNumber: 569014
+2025-11-09 00:51:24,015 - INFO - [24/50] 3 397 014 009 - MET. BRISAČA A009S...
+2025-11-09 00:51:24,119 - INFO -    ✅ Saved 3 attribute(s) to technicalSpecs
+2025-11-09 00:51:24,421 - INFO -    Found OE numbers for manufacturers: ['FORD (ID: 36)', 'FORD (ID: 36)', 'FORD (ID: 36)']
+2025-11-09 00:51:24,446 - INFO -    Found 100 vehicles for FORD
+2025-11-09 00:51:24,463 - INFO -    Found 100 vehicles for FORD
+2025-11-09 00:51:24,478 - INFO -    Found 100 vehicles for FORD
+2025-11-09 00:51:24,548 - INFO -    Found vehicles by brand name: FORD
+2025-11-09 00:51:30,889 - INFO -    ✅ Updated manufacturerId: BOSCH
+2025-11-09 00:51:30,950 - INFO -    ⏭️  oemNumber already set: A009S
+2025-11-09 00:51:31,004 - INFO - [25/50] 047417 - KOPČA SIGURNOSNOG POJASA METAL/PLASTIKA ...
+2025-11-09 00:51:31,108 - INFO -    ✅ Updated categoryId: Električni sistem
+2025-11-09 00:51:31,200 - INFO -    ✅ Saved 2 attribute(s) to technicalSpecs
+2025-11-09 00:51:31,214 - INFO -    Found OE numbers for manufacturers: ['VW (ID: 121)']
+2025-11-09 00:51:31,266 - INFO -    Found 100 vehicles for VW
+2025-11-09 00:51:31,590 - INFO -    ✅ Updated manufacturerId: VALEO
+2025-11-09 00:51:31,708 - INFO -    ✅ Updated oemNumber: 5G0941661F
+2025-11-09 00:51:31,760 - INFO - [26/50] 232043 - SAJLA PVC 6MM...
+2025-11-09 00:51:31,889 - INFO -    ✅ Updated categoryId: Izduvni sistem
+2025-11-09 00:51:32,163 - INFO -    ✅ Updated manufacturerId: ERA
+2025-11-09 00:51:32,216 - INFO - [27/50] 45000055301 - MOST ZADNJI GOLF 4...
+2025-11-09 00:51:32,403 - INFO -    ✅ Updated categoryId: Osovine / upravljanje / točkovi
+2025-11-09 00:51:32,497 - INFO -    ✅ Saved 1 attribute(s) to technicalSpecs
+2025-11-09 00:51:32,838 - INFO -    Found OE numbers for manufacturers: ['AUDI (ID: 5)', 'AUDI (ID: 5)', 'SEAT (ID: 104)', 'SEAT (ID: 104)', 'SKODA (ID: 106)', 'SKODA (ID: 106)', 'SKODA (ID: 106)', 'VW (ID: 121)', 'VW (ID: 121)', 'VW (ID: 121)', 'VW (ID: 121)', 'VW (ID: 121)']
+2025-11-09 00:51:32,844 - INFO -    Found 100 vehicles for AUDI
+2025-11-09 00:51:32,848 - INFO -    Found 100 vehicles for AUDI
+2025-11-09 00:51:32,891 - INFO -    Found 100 vehicles for SEAT
+2025-11-09 00:51:32,919 - INFO -    Found 100 vehicles for SEAT
+2025-11-09 00:51:32,938 - INFO -    Found 100 vehicles for SKODA
+2025-11-09 00:51:32,955 - INFO -    Found 100 vehicles for SKODA
+2025-11-09 00:51:32,970 - INFO -    Found 100 vehicles for SKODA
+2025-11-09 00:51:32,987 - INFO -    Found 100 vehicles for VW
+2025-11-09 00:51:33,003 - INFO -    Found 100 vehicles for VW
+2025-11-09 00:51:33,020 - INFO -    Found 100 vehicles for VW
+2025-11-09 00:51:33,037 - INFO -    Found 100 vehicles for VW
+2025-11-09 00:51:33,054 - INFO -    Found 100 vehicles for VW
+2025-11-09 00:51:33,140 - INFO -    Found vehicles by brand name: SEAT
+2025-11-09 00:51:38,218 - INFO -    ✅ Created new manufacturer: VIKA
+2025-11-09 00:51:38,307 - INFO -    ✅ Updated manufacturerId: VIKA
+2025-11-09 00:51:38,366 - INFO -    ⏭️  oemNumber already set: 89910
+2025-11-09 00:51:38,421 - INFO - [28/50] 4072954 - OPRUGA AMORTIZERA RENAULT 4072954 PR.MEG...
+2025-11-09 00:51:38,519 - INFO -    ✅ Updated categoryId: Izduvni sistem
+2025-11-09 00:51:38,611 - INFO -    ✅ Saved 1 attribute(s) to technicalSpecs
+2025-11-09 00:51:39,238 - INFO -    Found OE numbers for manufacturers: ['RENAULT (ID: 93)', 'RENAULT (ID: 93)', 'RENAULT (ID: 93)']
+2025-11-09 00:51:39,278 - INFO -    Found 100 vehicles for RENAULT
+2025-11-09 00:51:39,308 - INFO -    Found 100 vehicles for RENAULT
+2025-11-09 00:51:39,328 - INFO -    Found 100 vehicles for RENAULT
+2025-11-09 00:51:39,404 - INFO -    Found vehicles by brand name: RENAULT
+2025-11-09 00:51:45,762 - INFO -    ✅ Created new manufacturer: LESJÖFORS
+2025-11-09 00:51:45,849 - INFO -    ✅ Updated manufacturerId: LESJÖFORS
+2025-11-09 00:51:45,967 - INFO -    ✅ Updated oemNumber: 8200106137
+2025-11-09 00:51:46,023 - INFO - [29/50] 803118 - MANNOL MAST LITHIUM GREASE LT-43 18KG...
+2025-11-09 00:51:46,153 - INFO -    ✅ Updated categoryId: Osovine / upravljanje / točkovi
+2025-11-09 00:51:46,304 - INFO -    ✅ Updated manufacturerId: AUTEX
+2025-11-09 00:51:46,358 - INFO - [30/50] 994370 - OPRUGA ZADNJA...
+2025-11-09 00:51:46,490 - INFO -    ✅ Updated categoryId: Izduvni sistem
+2025-11-09 00:51:46,584 - INFO -    ✅ Saved 4 attribute(s) to technicalSpecs
+2025-11-09 00:51:47,001 - INFO -    Found OE numbers for manufacturers: ['SEAT (ID: 104)', 'VW (ID: 121)']
+2025-11-09 00:51:47,046 - INFO -    Found 100 vehicles for SEAT
+2025-11-09 00:51:47,065 - INFO -    Found 100 vehicles for VW
+2025-11-09 00:51:47,140 - INFO -    Found vehicles by brand name: SEAT
+2025-11-09 00:51:52,216 - INFO -    ✅ Created new manufacturer: SACHS
+2025-11-09 00:51:52,302 - INFO -    ✅ Updated manufacturerId: SACHS
+2025-11-09 00:51:52,419 - INFO -    ✅ Updated oemNumber: 3C0 511 115 AH
+2025-11-09 00:51:52,474 - INFO - [31/50] 7.07381.09.0 - PUMPA ULJA...
+2025-11-09 00:51:52,607 - INFO -    ✅ Updated categoryId: Motor
+2025-11-09 00:51:52,679 - INFO -    Found OE numbers for manufacturers: ['MERCEDES-BENZ (ID: 74)', 'MERCEDES-BENZ (ID: 74)', 'RENAULT (ID: 93)']
+2025-11-09 00:51:52,723 - INFO -    Found 100 vehicles for MERCEDES-BENZ
+2025-11-09 00:51:52,747 - INFO -    Found 100 vehicles for MERCEDES-BENZ
+2025-11-09 00:51:52,769 - INFO -    Found 100 vehicles for RENAULT
+2025-11-09 00:51:52,875 - INFO -    Found vehicles by brand name: RENAULT
+2025-11-09 00:51:59,413 - INFO -    ✅ Created new manufacturer: PIERBURG
+2025-11-09 00:51:59,500 - INFO -    ✅ Updated manufacturerId: PIERBURG
+2025-11-09 00:51:59,617 - INFO -    ✅ Updated oemNumber: 15 00 098 46R
+2025-11-09 00:51:59,669 - INFO - [32/50] 215.870 - ČEP BREGASTE...
+2025-11-09 00:51:59,799 - INFO -    ✅ Updated categoryId: Motor
+2025-11-09 00:52:00,436 - INFO -    Found OE numbers for manufacturers: ['AUDI (ID: 5)', 'AUDI (ID: 5)', 'SEAT (ID: 104)', 'SEAT (ID: 104)', 'SKODA (ID: 106)', 'SKODA (ID: 106)', 'VW (ID: 121)', 'VW (ID: 121)']
+2025-11-09 00:52:00,440 - INFO -    Found 100 vehicles for AUDI
+2025-11-09 00:52:00,444 - INFO -    Found 100 vehicles for AUDI
+2025-11-09 00:52:00,481 - INFO -    Found 100 vehicles for SEAT
+2025-11-09 00:52:00,504 - INFO -    Found 100 vehicles for SEAT
+2025-11-09 00:52:00,528 - INFO -    Found 100 vehicles for SKODA
+2025-11-09 00:52:00,547 - INFO -    Found 100 vehicles for SKODA
+2025-11-09 00:52:00,565 - INFO -    Found 100 vehicles for VW
+2025-11-09 00:52:00,582 - INFO -    Found 100 vehicles for VW
+2025-11-09 00:52:00,656 - INFO -    Found vehicles by brand name: SEAT
+2025-11-09 00:52:05,784 - INFO -    ✅ Updated manufacturerId: ELRING
+2025-11-09 00:52:05,866 - INFO -    ⏭️  oemNumber already set: 116824
+2025-11-09 00:52:05,917 - INFO - [33/50] YTZ10S - Akumulator Moto AGM 12V- 9 Ah L YTZ10S 1...
+2025-11-09 00:52:06,112 - INFO -    ✅ Updated categoryId: Električni sistem
+2025-11-09 00:52:06,200 - INFO -    ✅ Saved 6 attribute(s) to technicalSpecs
+2025-11-09 00:52:06,386 - INFO -    ✅ Created new manufacturer: YUASA
+2025-11-09 00:52:06,475 - INFO -    ✅ Updated manufacturerId: YUASA
+2025-11-09 00:52:06,526 - INFO - [34/50] 10 93 8952 - NOSAČ AMORT.M-169/245 (+LEŽ)...
+2025-11-09 00:52:06,684 - INFO -    ✅ Updated categoryId: Klima uređaj
+2025-11-09 00:52:06,779 - INFO -    ✅ Saved 4 attribute(s) to technicalSpecs
+2025-11-09 00:52:07,417 - INFO -    Found OE numbers for manufacturers: ['MERCEDES-BENZ (ID: 74)', 'MERCEDES-BENZ (ID: 74)', 'MERCEDES-BENZ (ID: 74)', 'MERCEDES-BENZ (ID: 74)']
+2025-11-09 00:52:07,442 - INFO -    Found 100 vehicles for MERCEDES-BENZ
+2025-11-09 00:52:07,453 - INFO -    Found 100 vehicles for MERCEDES-BENZ
+2025-11-09 00:52:07,464 - INFO -    Found 100 vehicles for MERCEDES-BENZ
+2025-11-09 00:52:07,476 - INFO -    Found 100 vehicles for MERCEDES-BENZ
+2025-11-09 00:52:07,678 - INFO -    ✅ Created new manufacturer: SWAG
+2025-11-09 00:52:07,770 - INFO -    ✅ Updated manufacturerId: SWAG
+2025-11-09 00:52:07,887 - INFO -    ✅ Updated oemNumber: 169 320 00 73
+2025-11-09 00:52:07,939 - INFO - [35/50] 910208 - ODBOJN.PR.AMOR.M-169/245 04- SET...
+2025-11-09 00:52:08,061 - INFO -    ✅ Updated categoryId: Električni sistem
+2025-11-09 00:52:08,152 - INFO -    ✅ Saved 3 attribute(s) to technicalSpecs
+2025-11-09 00:52:08,764 - INFO -    Found OE numbers for manufacturers: ['LOMBARDINI (ID: 2152)', 'LOMBARDINI (ID: 2152)', 'RUGGERINI (ID: 2733)', 'RUGGERINI (ID: 2733)']
+2025-11-09 00:52:08,816 - INFO -    Found 0 vehicles for LOMBARDINI
+2025-11-09 00:52:08,845 - INFO -    Found 0 vehicles for LOMBARDINI
+2025-11-09 00:52:08,865 - INFO -    Found 0 vehicles for RUGGERINI
+2025-11-09 00:52:08,883 - INFO -    Found 0 vehicles for RUGGERINI
+2025-11-09 00:52:09,031 - INFO -    ✅ Created new manufacturer: EDR
+2025-11-09 00:52:09,116 - INFO -    ✅ Updated manufacturerId: EDR
+2025-11-09 00:52:09,236 - INFO -    ✅ Updated oemNumber: 563-31
+2025-11-09 00:52:09,292 - INFO - [36/50] 55331 - PRSTEN ABS RENAULT 55331 MEGANE II, CITR...
+2025-11-09 00:52:09,424 - INFO -    ✅ Updated categoryId: Kočioni sistem
+2025-11-09 00:52:09,523 - INFO -    ✅ Saved 7 attribute(s) to technicalSpecs
+2025-11-09 00:52:10,164 - INFO -    Found OE numbers for manufacturers: ['LDV (ID: 1380)', 'LDV (ID: 1380)', 'LDV (ID: 1380)']
+2025-11-09 00:52:10,205 - INFO -    Found 100 vehicles for LDV
+2025-11-09 00:52:10,228 - INFO -    Found 100 vehicles for LDV
+2025-11-09 00:52:10,245 - INFO -    Found 100 vehicles for LDV
+2025-11-09 00:52:10,463 - INFO -    ✅ Created new manufacturer: CASALS
+2025-11-09 00:52:10,548 - INFO -    ✅ Updated manufacturerId: CASALS
+2025-11-09 00:52:10,667 - INFO -    ✅ Updated oemNumber: AAR5516
+2025-11-09 00:52:10,719 - INFO - [37/50] FT3444314 - ŽMIGAVAC FIAT PUNTO EVO BIJELI LX 09-...
+2025-11-09 00:52:10,855 - INFO -    ✅ Updated categoryId: Električni sistem
+2025-11-09 00:52:10,956 - INFO -    ✅ Saved 2 attribute(s) to technicalSpecs
+2025-11-09 00:52:11,359 - INFO -    Found OE numbers for manufacturers: ['FIAT (ID: 35)', 'FIAT (ID: 35)']
+2025-11-09 00:52:11,380 - INFO -    Found 100 vehicles for FIAT
+2025-11-09 00:52:11,399 - INFO -    Found 100 vehicles for FIAT
+2025-11-09 00:52:11,468 - INFO -    Found vehicles by brand name: FIAT
+2025-11-09 00:52:18,015 - INFO -    ✅ Created new manufacturer: PRASCO
+2025-11-09 00:52:18,100 - INFO -    ✅ Updated manufacturerId: PRASCO
+2025-11-09 00:52:18,215 - INFO -    ✅ Updated oemNumber: 051858823
+2025-11-09 00:52:18,268 - INFO - [38/50] S060214 - LAFETA KPL.M-202/210 LX GOR....
+2025-11-09 00:52:18,399 - INFO -    ✅ Updated categoryId: Upravljanje (volan)
+2025-11-09 00:52:18,489 - INFO -    ✅ Saved 2 attribute(s) to technicalSpecs
+2025-11-09 00:52:19,149 - INFO -    Found OE numbers for manufacturers: ['MERCEDES-BENZ (ID: 74)', 'MERCEDES-BENZ (ID: 74)', 'MERCEDES-BENZ (ID: 74)', 'MERCEDES-BENZ (ID: 74)', 'MERCEDES-BENZ (ID: 74)', 'MERCEDES-BENZ (ID: 74)', 'MERCEDES-BENZ (ID: 74)', 'MERCEDES-BENZ (ID: 74)', 'MERCEDES-BENZ (ID: 74)', 'MERCEDES-BENZ (ID: 74)', 'MERCEDES-BENZ (ID: 74)']
+2025-11-09 00:52:19,191 - INFO -    Found 100 vehicles for MERCEDES-BENZ
+2025-11-09 00:52:19,215 - INFO -    Found 100 vehicles for MERCEDES-BENZ
+2025-11-09 00:52:19,234 - INFO -    Found 100 vehicles for MERCEDES-BENZ
+2025-11-09 00:52:19,250 - INFO -    Found 100 vehicles for MERCEDES-BENZ
+2025-11-09 00:52:19,264 - INFO -    Found 100 vehicles for MERCEDES-BENZ
+2025-11-09 00:52:19,277 - INFO -    Found 100 vehicles for MERCEDES-BENZ
+2025-11-09 00:52:19,289 - INFO -    Found 100 vehicles for MERCEDES-BENZ
+2025-11-09 00:52:19,300 - INFO -    Found 100 vehicles for MERCEDES-BENZ
+2025-11-09 00:52:19,310 - INFO -    Found 100 vehicles for MERCEDES-BENZ
+2025-11-09 00:52:19,321 - INFO -    Found 100 vehicles for MERCEDES-BENZ
+2025-11-09 00:52:19,332 - INFO -    Found 100 vehicles for MERCEDES-BENZ
+2025-11-09 00:52:19,537 - INFO -    ✅ Created new manufacturer: GSP
+2025-11-09 00:52:19,623 - INFO -    ✅ Updated manufacturerId: GSP
+2025-11-09 00:52:19,681 - INFO -    ⏭️  oemNumber already set: 36431
+2025-11-09 00:52:19,733 - INFO - [39/50] TH7190.81J - TERMOS.R-MASTER/MOVANO 10- KPL....
+2025-11-09 00:52:19,832 - INFO -    ✅ Updated categoryId: Sistem za hlađenje
+2025-11-09 00:52:19,921 - INFO -    ✅ Saved 1 attribute(s) to technicalSpecs
+2025-11-09 00:52:20,263 - INFO -    Found OE numbers for manufacturers: ['NISSAN (ID: 80)', 'OPEL (ID: 84)', 'RENAULT (ID: 93)', 'VAUXHALL (ID: 117)']
+2025-11-09 00:52:20,305 - INFO -    Found 100 vehicles for NISSAN
+2025-11-09 00:52:20,333 - INFO -    Found 100 vehicles for OPEL
+2025-11-09 00:52:20,354 - INFO -    Found 100 vehicles for RENAULT
+2025-11-09 00:52:20,374 - INFO -    Found 100 vehicles for VAUXHALL
+2025-11-09 00:52:20,514 - INFO - [40/50] 18036 - JEZGRA ZA CRIJEVO DN 20...
+2025-11-09 00:52:20,628 - INFO -    Found OE numbers for manufacturers: ['MERCEDES-BENZ (ID: 74)', 'MERCEDES-BENZ (ID: 74)', 'MERCEDES-BENZ (ID: 74)', 'MERCEDES-BENZ (ID: 74)']
+2025-11-09 00:52:20,663 - INFO -    Found 100 vehicles for MERCEDES-BENZ
+2025-11-09 00:52:20,688 - INFO -    Found 100 vehicles for MERCEDES-BENZ
+2025-11-09 00:52:20,706 - INFO -    Found 100 vehicles for MERCEDES-BENZ
+2025-11-09 00:52:20,722 - INFO -    Found 100 vehicles for MERCEDES-BENZ
+2025-11-09 00:52:20,861 - INFO - [41/50] 08658 - INDIKATOR TEMPERATURE MB 08658...
+2025-11-09 00:52:20,985 - INFO -    Found OE numbers for manufacturers: ['MERCEDES-BENZ (ID: 74)', 'MERCEDES-BENZ (ID: 74)', 'MERCEDES-BENZ (ID: 74)', 'MERCEDES-BENZ (ID: 74)', 'MERCEDES-BENZ (ID: 74)', 'MERCEDES-BENZ (ID: 74)', 'MERCEDES-BENZ (ID: 74)', 'MERCEDES-BENZ (ID: 74)', 'EVOBUS (ID: 827)', 'EVOBUS (ID: 827)', 'EVOBUS (ID: 827)', 'EVOBUS (ID: 827)', 'EVOBUS (ID: 827)', 'EVOBUS (ID: 827)', 'EVOBUS (ID: 827)', 'EVOBUS (ID: 827)']
+2025-11-09 00:52:21,025 - INFO -    Found 100 vehicles for MERCEDES-BENZ
+2025-11-09 00:52:21,048 - INFO -    Found 100 vehicles for MERCEDES-BENZ
+2025-11-09 00:52:21,066 - INFO -    Found 100 vehicles for MERCEDES-BENZ
+2025-11-09 00:52:21,081 - INFO -    Found 100 vehicles for MERCEDES-BENZ
+2025-11-09 00:52:21,095 - INFO -    Found 100 vehicles for MERCEDES-BENZ
+2025-11-09 00:52:21,107 - INFO -    Found 100 vehicles for MERCEDES-BENZ
+2025-11-09 00:52:21,118 - INFO -    Found 100 vehicles for MERCEDES-BENZ
+2025-11-09 00:52:21,129 - INFO -    Found 100 vehicles for MERCEDES-BENZ
+2025-11-09 00:52:21,146 - INFO -    Found 0 vehicles for EVOBUS
+2025-11-09 00:52:21,163 - INFO -    Found 0 vehicles for EVOBUS
+2025-11-09 00:52:21,180 - INFO -    Found 0 vehicles for EVOBUS
+2025-11-09 00:52:21,198 - INFO -    Found 0 vehicles for EVOBUS
+2025-11-09 00:52:21,215 - INFO -    Found 0 vehicles for EVOBUS
+2025-11-09 00:52:21,232 - INFO -    Found 0 vehicles for EVOBUS
+2025-11-09 00:52:21,250 - INFO -    Found 0 vehicles for EVOBUS
+2025-11-09 00:52:21,267 - INFO -    Found 0 vehicles for EVOBUS
+2025-11-09 00:52:21,419 - INFO - [42/50] 2.15726 - CRIJEVO RASHLADNOG SISTEMA...
+2025-11-09 00:52:21,491 - INFO -    Found OE numbers for manufacturers: ['RENAULT (ID: 93)', 'RENAULT (ID: 93)', 'VOLVO (ID: 120)', 'VOLVO (ID: 120)']
+2025-11-09 00:52:21,535 - INFO -    Found 100 vehicles for RENAULT
+2025-11-09 00:52:21,562 - INFO -    Found 100 vehicles for RENAULT
+2025-11-09 00:52:21,586 - INFO -    Found 100 vehicles for VOLVO
+2025-11-09 00:52:21,605 - INFO -    Found 100 vehicles for VOLVO
+2025-11-09 00:52:21,742 - INFO - [43/50] TD1734W - SELEN BLOK...
+2025-11-09 00:52:21,814 - INFO -    Found OE numbers for manufacturers: ['BMW (ID: 16)']
+2025-11-09 00:52:21,820 - INFO -    Found 100 vehicles for BMW
+2025-11-09 00:52:21,963 - INFO - [44/50] 19-226903 - AMORTIZER A6 14-...
+2025-11-09 00:52:22,063 - INFO -    Found OE numbers for manufacturers: ['AUDI (ID: 5)', 'AUDI (ID: 5)', 'AUDI (ID: 5)']
+2025-11-09 00:52:22,067 - INFO -    Found 100 vehicles for AUDI
+2025-11-09 00:52:22,072 - INFO -    Found 100 vehicles for AUDI
+2025-11-09 00:52:22,076 - INFO -    Found 100 vehicles for AUDI
+2025-11-09 00:52:22,213 - INFO - [45/50] 103 768 - ULOŽAK BRAVE...
+2025-11-09 00:52:22,327 - INFO -    Found OE numbers for manufacturers: ['AUDI (ID: 5)', 'AUDI (ID: 5)', 'AUDI (ID: 5)', 'AUDI (ID: 5)', 'SKODA (ID: 106)', 'SKODA (ID: 106)', 'SKODA (ID: 106)', 'SKODA (ID: 106)', 'VW (ID: 121)', 'VW (ID: 121)', 'VW (ID: 121)', 'VW (ID: 121)']
+2025-11-09 00:52:22,333 - INFO -    Found 100 vehicles for AUDI
+2025-11-09 00:52:22,339 - INFO -    Found 100 vehicles for AUDI
+2025-11-09 00:52:22,342 - INFO -    Found 100 vehicles for AUDI
+2025-11-09 00:52:22,345 - INFO -    Found 100 vehicles for AUDI
+2025-11-09 00:52:22,392 - INFO -    Found 100 vehicles for SKODA
+2025-11-09 00:52:22,419 - INFO -    Found 100 vehicles for SKODA
+2025-11-09 00:52:22,439 - INFO -    Found 100 vehicles for SKODA
+2025-11-09 00:52:22,456 - INFO -    Found 100 vehicles for SKODA
+2025-11-09 00:52:22,473 - INFO -    Found 100 vehicles for VW
+2025-11-09 00:52:22,490 - INFO -    Found 100 vehicles for VW
+2025-11-09 00:52:22,507 - INFO -    Found 100 vehicles for VW
+2025-11-09 00:52:22,524 - INFO -    Found 100 vehicles for VW
+2025-11-09 00:52:22,663 - INFO - [46/50] 5703-05-9540921P - MASKA BARNIKA...
+2025-11-09 00:52:22,738 - INFO -    Found OE numbers for manufacturers: ['VW (ID: 121)', 'VW (ID: 121)', 'VW (ID: 121)']
+2025-11-09 00:52:22,790 - INFO -    Found 100 vehicles for VW
+2025-11-09 00:52:22,819 - INFO -    Found 100 vehicles for VW
+2025-11-09 00:52:22,840 - INFO -    Found 100 vehicles for VW
+2025-11-09 00:52:22,976 - INFO - [47/50] 5703-05-9540923P - MASKA BRANIKA PASSAT 6/7...
+2025-11-09 00:52:23,015 - INFO -    Found OE numbers for manufacturers: ['VW (ID: 121)']
+2025-11-09 00:52:23,065 - INFO -    Found 100 vehicles for VW
+2025-11-09 00:52:23,206 - INFO - [48/50] CCZ1412ABE - ABS SENZOR...
+2025-11-09 00:52:23,320 - INFO -    Found OE numbers for manufacturers: ['MITSUBISHI (ID: 77)']
+2025-11-09 00:52:23,369 - INFO -    Found 100 vehicles for MITSUBISHI
+2025-11-09 00:52:23,513 - INFO - [49/50] RS1196 - LEŽ.ZD KOLA P-206/CIT.XSARA...
+2025-11-09 00:52:23,656 - INFO -    Found OE numbers for manufacturers: ['CITROËN/PEUGEOT (ID: 804)', 'CITROËN/PEUGEOT (ID: 804)']
+2025-11-09 00:52:23,709 - INFO -    Found 0 vehicles for CITROËN/PEUGEOT
+2025-11-09 00:52:23,739 - INFO -    Found 0 vehicles for CITROËN/PEUGEOT
+2025-11-09 00:52:23,859 - INFO - [50/50] D3979A - SET OPRUGA ZD.PAKNI CITR/PEŽO...
+2025-11-09 00:52:23,945 - INFO -    Found OE numbers for manufacturers: ['CITROËN (ID: 21)', 'CITROËN (ID: 21)', 'CITROËN (ID: 21)', 'CITROËN (ID: 21)', 'NISSAN (ID: 80)', 'RENAULT (ID: 93)']
+2025-11-09 00:52:23,967 - INFO -    Found 100 vehicles for CITROËN
+2025-11-09 00:52:23,981 - INFO -    Found 100 vehicles for CITROËN
+2025-11-09 00:52:23,995 - INFO -    Found 100 vehicles for CITROËN
+2025-11-09 00:52:24,005 - INFO -    Found 100 vehicles for CITROËN
+2025-11-09 00:52:24,029 - INFO -    Found 100 vehicles for NISSAN
+2025-11-09 00:52:24,049 - INFO -    Found 100 vehicles for RENAULT
+2025-11-09 00:52:24,193 - INFO - 
+📊 BATCH #1 STATS: Processed=50, Cat=34, Attr=30, Veh=18, Errors=0
+2025-11-09 00:52:25,230 - ERROR - ❌ Fatal error: current transaction is aborted, commands ignored until end of transaction block
+
+2025-11-09 00:52:25,241 - INFO - 🔌 Database connections closed

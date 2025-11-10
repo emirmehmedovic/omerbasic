@@ -92,6 +92,7 @@ const ProductPage = async ({ params }: ProductPageProps) => {
     where: { id: productId },
     include: { 
       category: true,
+      manufacturer: true,
       vehicleFitments: {
         include: {
           generation: {
@@ -115,6 +116,12 @@ const ProductPage = async ({ params }: ProductPageProps) => {
       replacementFor: true,
     },
   });
+
+  // Debug: provjeri vehicleFitments
+  console.log('[PRODUCT_PAGE] vehicleFitments count:', product?.vehicleFitments?.length || 0);
+  if (product?.vehicleFitments && product.vehicleFitments.length > 0) {
+    console.log('[PRODUCT_PAGE] First fitment:', JSON.stringify(product.vehicleFitments[0], null, 2));
+  }
 
   if (!product) {
     notFound(); // Prikazuje 404 stranicu ako proizvod nije pronađen

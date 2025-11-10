@@ -1,0 +1,105 @@
+{
+  "product_id": "cmhqikugo0005om6xwq8gw5ip",
+  "name": "SVJETLO REGISTARSKE TABLICE",
+  "catalog_number": "15-0295-00-9",
+  "tecdoc_article_id": 250335841,
+  "tecdoc_product_id": 293,
+  "category": {
+    "id": 100464,
+    "name": "Licence Plate Light",
+    "product_id": 293,
+    "product_description": "Licence Plate Light",
+    "root_category": {
+      "id": 100010,
+      "name": "Electrics"
+    },
+    "parent_chain": [
+      {
+        "id": 100147,
+        "name": "Licence Plate Light/-Parts"
+      },
+      {
+        "id": 100043,
+        "name": "Lights"
+      },
+      {
+        "id": 100010,
+        "name": "Electrics"
+      }
+    ]
+  },
+  "category_updated": true,
+  "attributes": [
+    {
+      "name": "Fitting Position",
+      "value": "Left and right"
+    }
+  ],
+  "attributes_saved": true,
+  "cross_references": [
+    {
+      "article_id": 28694,
+      "article_number": "444-2102N-AQ",
+      "supplier": "ABAKUS",
+      "type": "OE_match"
+    },
+    {
+      "article_id": 32045,
+      "article_number": "L04-210-0005LED",
+      "supplier": "ABAKUS",
+      "type": "OE_match"
+    },
+    {
+      "article_id": 28694,
+      "article_number": "444-2102N-AQ",
+      "supplier": "ABAKUS",
+      "type": "OE_match"
+    },
+    {
+      "article_id": 83160976,
+      "article_number": "1280192",
+      "supplier": "DIEDERICHS",
+      "type": "OE_match"
+    },
+    {
+      "article_id": 166492485,
+      "article_number": "00630850",
+      "supplier": "KLOKKERHOLM",
+      "type": "OE_match"
+    },
+    {
+      "article_id": 166492485,
+      "article_number": "00630850",
+      "supplier": "KLOKKERHOLM",
+      "type": "OE_match"
+    },
+    {
+      "article_id": 249211122,
+      "article_number": "BM0244350",
+      "supplier": "PRASCO",
+      "type": "OE_match"
+    },
+    {
+      "article_id": 250463294,
+      "article_number": "0667920",
+      "supplier": "VAN WEZEL",
+      "type": "OE_match"
+    }
+  ],
+  "supplier": {
+    "id": 61,
+    "name": "TYC"
+  },
+  "oe_numbers": [
+    {
+      "oe_number": "63267193293",
+      "manufacturer_id": 16,
+      "manufacturer_name": "BMW"
+    },
+    {
+      "oe_number": "7193293",
+      "manufacturer_id": 16,
+      "manufacturer_name": "BMW"
+    }
+  ]
+}

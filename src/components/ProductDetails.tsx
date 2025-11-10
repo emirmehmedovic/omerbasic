@@ -60,7 +60,8 @@ type ProductReference = {
 
 interface ProductDetailsProps {
   product: Product & { 
-    category: Category | null; 
+    category: Category | null;
+    manufacturer?: { id: string; name: string } | null;
     originalPrice?: number;
     pricingSource?: 'FEATURED' | 'B2B' | 'BASE';
     vehicleFitments?: VehicleFitment[];
@@ -162,6 +163,9 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
       return `Od ${fitment.yearFrom}`;
     } else if (fitment.yearTo) {
       return `Do ${fitment.yearTo}`;
+    } else if (fitment.generation?.period) {
+      // Fallback: prikaži period iz generation ako yearFrom/yearTo nisu dostupni
+      return fitment.generation.period;
     } else if (fitment.isUniversal) {
       return "Univerzalni dio";
     }
@@ -284,9 +288,22 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
           
           {/* Product Info */}
           <div className="space-y-5">
-            {/* Category Badge - brand orange */}
-            <div className="inline-flex items-center px-3 py-1.5 bg-gradient-to-r from-[#E85A28] to-[#FF6B35] text-white rounded-full text-xs font-bold shadow-lg">
-              {product.category?.name || 'Nekategorizirano'}
+            {/* Category & Manufacturer Badges */}
+            <div className="flex flex-wrap items-center gap-2">
+              {/* Category Badge - brand orange */}
+              <div className="inline-flex items-center px-3 py-1.5 bg-gradient-to-r from-[#E85A28] to-[#FF6B35] text-white rounded-full text-xs font-bold shadow-lg">
+                {product.category?.name || 'Nekategorizirano'}
+              </div>
+              
+              {/* Manufacturer Badge - blue gradient */}
+              {product.manufacturer && (
+                <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-full text-xs font-bold shadow-lg">
+                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                  </svg>
+                  {product.manufacturer.name}
+                </div>
+              )}
             </div>
             
             {/* Product Title - smanjeno */}
@@ -496,16 +513,15 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
                         <table className="min-w-full text-sm">
                           <thead className="bg-gradient-to-r from-primary/10 to-primary-dark/10 border-b border-slate-200">
                             <tr>
-                              <th className="text-left px-4 py-4 font-bold text-primary">Vozilo</th>
-                              <th className="text-left px-4 py-4 font-bold text-primary">Period</th>
-                              <th className="text-left px-4 py-4 font-bold text-primary">Motor</th>
-                              <th className="text-left px-4 py-4 font-bold text-primary">Detalji</th>
+                              <th className="text-left px-6 py-4 font-bold text-primary w-[35%]">Vozilo</th>
+                              <th className="text-left px-6 py-4 font-bold text-primary w-[15%]">Period</th>
+                              <th className="text-left px-6 py-4 font-bold text-primary w-[50%]">Motor</th>
                             </tr>
                           </thead>
                           <tbody className="divide-y divide-slate-200/50">
                             {rows.map((fitment) => (
                               <tr key={fitment.id} className="hover:bg-white/80 transition-all duration-200">
-                                <td className="px-4 py-4">
+                                <td className="px-6 py-4">
                                   <div className="flex items-center gap-3">
                                     <div className="bg-gradient-to-br from-[#E85A28] to-[#FF6B35] p-2 rounded-lg">
                                       <Car className="h-4 w-4 text-white" />
@@ -516,12 +532,12 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
                                     </div>
                                   </div>
                                 </td>
-                                <td className="px-4 py-4">
+                                <td className="px-6 py-4">
                                   <span className="inline-flex items-center px-3 py-1 rounded-full bg-primary/10 text-primary font-semibold text-xs">
                                     {formatCompatibilityPeriod(fitment)}
                                   </span>
                                 </td>
-                                <td className="px-4 py-4">
+                                <td className="px-6 py-4">
                                   {fitment.isUniversal ? (
                                     <Badge variant="secondary" className="bg-gradient-to-r from-[#E85A28] to-[#FF6B35] text-white border-0">Univerzalni</Badge>
                                   ) : fitment.engine ? (
@@ -529,21 +545,6 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
                                   ) : (
                                     <span className="text-slate-500 text-xs">Svi motori</span>
                                   )}
-                                </td>
-                                <td className="px-4 py-4">
-                                  <div className="space-y-1 text-xs">
-                                    <div className="flex items-center gap-2">
-                                      <span className="text-slate-500">Karoserija:</span>
-                                      <span className="text-slate-900 font-medium">{bodyStylesText(fitment.bodyStyles)}</span>
-                                    </div>
-                                    <div className="flex items-center gap-2">
-                                      <span className="text-slate-500">Pozicija:</span>
-                                      <span className="text-slate-900 font-medium">{positionText(fitment.position)}</span>
-                                    </div>
-                                    {fitment.fitmentNotes && (
-                                      <div className="text-slate-600 italic">{fitment.fitmentNotes}</div>
-                                    )}
-                                  </div>
                                 </td>
                               </tr>
                             ))}
@@ -787,7 +788,7 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
                               <h4 className="font-bold text-primary text-lg">{manufacturer}</h4>
                             </div>
                             <ul className="space-y-2">
-                              {refs.map(ref => (
+                              {(refs as ProductReference[]).map((ref: ProductReference) => (
                                 <li key={ref.id} className="bg-white/80 px-3 py-2.5 rounded-xl border border-white/60 shadow-sm hover:shadow-md transition-all">
                                   <div className="flex items-center justify-between gap-2">
                                     <span className="font-mono text-sm text-slate-900 font-bold">{ref.referenceNumber}</span>
@@ -861,7 +862,7 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
                               <h4 className="font-bold text-primary text-lg">{manufacturer}</h4>
                             </div>
                             <ul className="space-y-2">
-                              {refs.map(ref => (
+                              {(refs as ProductReference[]).map((ref: ProductReference) => (
                                 <li key={ref.id} className="bg-white/80 px-3 py-2.5 rounded-xl border border-white/60 shadow-sm hover:shadow-md transition-all">
                                   <div className="flex items-center justify-between gap-2">
                                     <span className="font-mono text-sm text-slate-900 font-bold">{ref.referenceNumber}</span>

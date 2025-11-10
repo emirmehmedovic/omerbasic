@@ -41,6 +41,10 @@ model Product {
   dimensions     Json? // Dimenzije proizvoda (npr. promjer, visina)
   standards      String[] @default([]) // Standardi koje proizvod zadovoljava
 
+  // TecDoc tracking polja
+  tecdocArticleId    Int?     // articles.id iz TecDoc baze
+  tecdocProductId    Int?     // search_trees.node_id (ROOT kategorija)
+
   // Veza s vozilima kroz ProductVehicleFitment model
   vehicleFitments ProductVehicleFitment[]
 
@@ -67,6 +71,8 @@ model Product {
   @@index([createdAt, id])
   @@index([price])
   @@index([name])
+  @@index([tecdocArticleId])
+  @@index([tecdocProductId])
 }
 
 model Category {
@@ -83,6 +89,7 @@ model Category {
   level   Int     @default(1) // 1=glavna, 2=podkategorija, 3=specifična
   iconUrl String? // URL do ikone kategorije
   imageUrl String? // Zadana slika kategorije
+  externalId String? // Eksterni ID (npr. TecDoc ID)
 
   // Nove relacije za TecDoc
   attributes      CategoryAttribute[]
@@ -98,6 +105,7 @@ model Category {
 
   @@unique([name, parentId])
   @@index([parentId])
+  @@index([externalId])
 }
 
 model Manufacturer {
@@ -107,12 +115,15 @@ model Manufacturer {
   description String?
   country     String?
   website     String?
+  externalId  String?                          // TecDoc supplier ID
   createdAt   DateTime                         @default(now())
   updatedAt   DateTime                         @updatedAt
 
   products            Product[]
   groupDiscounts      B2BGroupManufacturerDiscount[]
   groupCategoryManufacturerDiscounts B2BGroupCategoryManufacturerDiscount[]
+  
+  @@index([externalId])
 }
 
 // Model za grupe atributa kategorija
@@ -632,6 +643,7 @@ model VehicleGeneration {
   vinCode    String?
   bodyStyles Json? // e.g., ["Sedan", "Variant"]
   engines    Json? // e.g., ["1.6 TDI", "2.0 TDI"]
+  externalId String? // TecDoc passengercars.id
   createdAt  DateTime     @default(now())
   updatedAt  DateTime     @updatedAt
 

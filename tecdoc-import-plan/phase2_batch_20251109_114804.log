@@ -1,0 +1,12 @@
+2025-11-09 11:48:04,360 - INFO - ✅ Database connections established
+2025-11-09 11:48:04,391 - INFO -    Found 500 passengercars with engines from TecDoc
+2025-11-09 11:48:04,391 - INFO -    Unique passengercars IDs: 200
+2025-11-09 11:48:04,392 - INFO -    Sample IDs: [19968, 19969, 11268, 4613, 11782]
+2025-11-09 11:48:04,501 - INFO -    Mapped to 200 vehicles in our database
+2025-11-09 11:48:04,502 - INFO -    ✅ Found 200 vehicles with engine specificity
+2025-11-09 11:48:04,694 - INFO - ✅ Database connections established
+2025-11-09 11:48:04,750 - INFO -    Found 500 passengercars with engines from TecDoc
+2025-11-09 11:48:04,751 - INFO -    Unique passengercars IDs: 200
+2025-11-09 11:48:04,751 - INFO -    Sample IDs: [6145, 6146, 6147, 6148, 11]
+2025-11-09 11:48:04,879 - INFO -    Mapped to 200 vehicles in our database
+2025-11-09 11:48:04,879 - INFO -    ✅ Found 200 vehicles with engine specificity

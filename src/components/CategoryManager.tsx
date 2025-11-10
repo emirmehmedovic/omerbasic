@@ -42,12 +42,13 @@ export function CategoryManager({ initialCategories }: CategoryManagerProps) {
       name: '',
       parentId: '',
       imageUrl: '',
+      externalId: '',
     },
   });
 
   const openModalForNew = (parentId?: string) => {
     setEditingCategory(null);
-    reset({ name: '', parentId: parentId ?? '', imageUrl: '' });
+    reset({ name: '', parentId: parentId ?? '', imageUrl: '', externalId: '' });
     setIsModalOpen(true);
   };
 
@@ -55,7 +56,7 @@ export function CategoryManager({ initialCategories }: CategoryManagerProps) {
 
   const openModalForEdit = (category: CategoryWithChildren) => {
     setEditingCategory(category);
-    reset({ name: category.name, parentId: category.parentId ?? '', imageUrl: category.imageUrl ?? '' });
+    reset({ name: category.name, parentId: category.parentId ?? '', imageUrl: category.imageUrl ?? '', externalId: category.externalId ?? '' });
     setIsModalOpen(true);
   };
 
@@ -248,6 +249,16 @@ export function CategoryManager({ initialCategories }: CategoryManagerProps) {
                 </select>
               </div>
               <div>
+                <label htmlFor="externalId" className="block text-sm font-medium text-gray-700 mb-2">Eksterni ID (opcionalno)</label>
+                <input 
+                  {...register('externalId')} 
+                  id="externalId" 
+                  className="w-full bg-white border-amber/30 focus:border-amber rounded-xl transition-all duration-200 text-gray-900 placeholder:text-gray-500 px-3 py-2" 
+                  placeholder="npr. 1001 za TecDoc ID"
+                />
+                {errors.externalId && <p className="text-red-500 text-xs mt-1">{errors.externalId.message}</p>}
+              </div>
+              <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">Slika kategorije</label>
                 <input type="hidden" {...register('imageUrl')} />
                 <ImageUpload
@@ -314,6 +325,11 @@ function CategoryItem({ category, onEdit, onDelete, onAddSubcategory, level }: {
           )}
           <div className="flex items-center gap-2">
             <span className="text-gray-900 font-medium">{category.name}</span>
+            {category.externalId && (
+              <span className="px-2 py-1 text-xs rounded-full font-medium border shadow-sm bg-purple-50 text-purple-700 border-purple-300">
+                ID: {category.externalId}
+              </span>
+            )}
             <div className="flex items-center gap-1">
               {category._count && category._count.products > 0 && (
                 <span 

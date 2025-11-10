@@ -1,0 +1,11 @@
+2025-11-09 00:49:17,779 - INFO - ✅ Database connections established
+2025-11-09 00:49:17,779 - INFO - 
+######################################################################
+2025-11-09 00:49:17,779 - INFO - 🚀 FAZA 2 - Batch Obogaćivanje Proizvoda
+2025-11-09 00:49:17,780 - INFO - ######################################################################
+
+2025-11-09 00:49:17,837 - ERROR - ❌ Fatal error: column "Product.id" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 6:             ORDER BY id
+                             ^
+
+2025-11-09 00:49:17,837 - INFO - 🔌 Database connections closed

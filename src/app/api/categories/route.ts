@@ -58,7 +58,7 @@ export async function GET() {
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { name, parentId, imageUrl } = categoryFormSchema.parse(body);
+    const { name, parentId, imageUrl, externalId } = categoryFormSchema.parse(body);
 
     // Check if a category with the same name and same parent already exists
     const existingCategory = await db.category.findFirst({
@@ -77,6 +77,7 @@ export async function POST(req: Request) {
         name,
         parentId,
         imageUrl: imageUrl ?? null,
+        externalId: externalId ?? null,
       },
     });
     try {
