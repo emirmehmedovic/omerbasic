@@ -859,14 +859,17 @@ class TecDocEnricherBatch:
                 if engine_result:
                     engine_id = engine_result[0]
             
-            # Provjeri da li već postoji
+            # Provjeri da li već postoji kombinacija product + generation + engine
+            # VAŽNO: Trebamo provjeriti po engine_id jer ista generacija može imati više motora!
             check_query = """
                 SELECT id FROM "ProductVehicleFitment"
-                WHERE "productId" = %s AND "generationId" = %s
+                WHERE "productId" = %s
+                AND "generationId" = %s
+                AND ("engineId" = %s OR ("engineId" IS NULL AND %s IS NULL))
                 LIMIT 1
             """
-            
-            cursor.execute(check_query, (product_id, generation_id))
+
+            cursor.execute(check_query, (product_id, generation_id, engine_id, engine_id))
             if cursor.fetchone():
                 continue
             
