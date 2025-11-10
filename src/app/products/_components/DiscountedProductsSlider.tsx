@@ -72,17 +72,6 @@ export default function DiscountedProductsSlider() {
     };
   }, []);
 
-  // Grupiranje po kategoriji
-  const byCategory = useMemo(() => {
-    const map = new Map<string, FeaturedProduct[]>();
-    for (const it of items) {
-      const title = it.product?.category?.name || "Bez kategorije";
-      if (!map.has(title)) map.set(title, []);
-      map.get(title)!.push(it);
-    }
-    return Array.from(map.entries());
-  }, [items]);
-
   if (loading) {
     return (
       <div className="relative overflow-hidden rounded-3xl p-6 bg-gradient-to-br from-slate-50 via-slate-100 to-slate-200 shadow-xl">
@@ -105,7 +94,7 @@ export default function DiscountedProductsSlider() {
 
   if (items.length === 0) return null;
 
-  // Single block containing all categories as separate horizontally auto-scrolling rows
+  // Single row with all featured products auto-scrolling
   return (
     <div className="relative overflow-hidden rounded-3xl p-6 md:p-8 bg-gradient-to-br from-slate-50 via-slate-100 to-slate-200 shadow-xl">
       <div className="pointer-events-none absolute inset-0 z-0 opacity-[0.04]"
@@ -118,20 +107,7 @@ export default function DiscountedProductsSlider() {
           <h3 className="text-primary font-extrabold text-2xl">Istaknuti proizvodi</h3>
           <div className="px-3 py-1.5 rounded-full bg-gradient-to-r from-[#E85A28] to-[#FF6B35] text-white text-xs font-bold shadow-lg">{items.length} proizvoda</div>
         </div>
-        <div className="space-y-6">
-          {byCategory.map(([cat, arr], idx) => (
-            <div key={cat}>
-              <div className="flex items-center justify-between mb-3">
-                <div className="text-sm font-bold text-primary">{cat}</div>
-                <div className="text-[10px] uppercase tracking-wider text-slate-600 font-bold">{arr.length} kom</div>
-              </div>
-              <AutoScrollRow items={arr} speed={45 + Math.min(30, Math.max(0, 12 - Math.floor(arr.length / 2)))} />
-              {idx < byCategory.length - 1 && (
-                <div className="border-t border-white/40 mt-6" />
-              )}
-            </div>
-          ))}
-        </div>
+        <AutoScrollRow items={items} speed={60} />
       </div>
     </div>
   );
