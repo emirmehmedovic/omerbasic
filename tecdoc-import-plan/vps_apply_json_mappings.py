@@ -2,8 +2,8 @@
 """
 VPS Script - Primjeni image mapiranja iz JSON fajla na PostgreSQL bazu.
 
-Ova skripta čita vps_image_mappings.json i primjenjuje mapiranja na lokalnu
-PostgreSQL bazu na VPS-u.
+Ova skripta čita tecdoc_image_mappings_for_vps.json i primjenjuje mapiranja
+na lokalnu PostgreSQL bazu na VPS-u.
 
 Korištenje:
     python3 vps_apply_json_mappings.py
@@ -27,7 +27,7 @@ logger = logging.getLogger(__name__)
 load_dotenv()
 
 # Configuration
-MAPPINGS_FILE = 'vps_image_mappings.json'
+MAPPINGS_FILE = 'tecdoc_image_mappings_for_vps.json'
 PG_CONNECTION = os.environ.get(
     'DATABASE_URL',
     'postgresql://emiir:emirMehmedovic123456789omerbasic@localhost:5432/omerbasicdb'
