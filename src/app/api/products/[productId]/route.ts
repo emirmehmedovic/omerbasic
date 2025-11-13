@@ -44,12 +44,6 @@ export async function GET(
       return new NextResponse('Proizvod nije pronađen', { status: 404 });
     }
 
-    // Debug: provjeri vehicleFitments
-    console.log('[PRODUCT_GET] vehicleFitments count:', product.vehicleFitments?.length || 0);
-    if (product.vehicleFitments && product.vehicleFitments.length > 0) {
-      console.log('[PRODUCT_GET] First fitment:', JSON.stringify(product.vehicleFitments[0], null, 2));
-    }
-
     // Pricing: featured override, otherwise B2B
     const session = await getServerSession(authOptions);
     const isB2B = (session as any)?.user?.role === 'B2B';

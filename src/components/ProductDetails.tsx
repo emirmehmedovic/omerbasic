@@ -9,8 +9,24 @@ import { Badge } from "@/components/ui/badge";
 import { Car, Info, Settings, Tag, BookCopy, Copy } from "lucide-react";
 import Link from "next/link";
 import { formatPrice, resolveProductImage } from "@/lib/utils";
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { ProductCard } from '@/components/ProductCard';
+import AudiIcon from '@/components/icons/audi';
+import VolkswagenIcon from '@/components/icons/volkswagen';
+import MercedesIcon from '@/components/icons/mercedes';
+import BmwIcon from '@/components/icons/bmw';
+import VolvoIcon from '@/components/icons/volvo';
+import SeatIcon from '@/components/icons/seat';
+import SkodaIcon from '@/components/icons/skoda';
+import OpelIcon from '@/components/icons/opel';
+import CitroenIcon from '@/components/icons/citroen';
+import KiaIcon from '@/components/icons/kia';
+import PeugeotIcon from '@/components/icons/peugeot';
+import ScaniaIcon from '@/components/icons/scania';
+import ManIcon from '@/components/icons/man';
+import DafIcon from '@/components/icons/daf';
+import IvecoIcon from '@/components/icons/iveco';
+import RenaultIcon from '@/components/icons/renault';
 
 // Tip za fitment vozila
 type VehicleFitment = {
@@ -192,6 +208,125 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
 
   const splitPosition = (pos?: string | null) =>
     pos ? pos.split(/[;,/|]/).map((p) => p.trim()).filter(Boolean) : [];
+
+  const bodyStylesText = (bs?: string[]) => (bs && bs.length ? bs.join(', ') : 'Sve karoserije');
+  const positionText = (pos?: string | null) => {
+    const parts = splitPosition(pos);
+    return parts.length ? parts.map(normalizePositionToken).join(', ') : 'Nije specificirano';
+  };
+
+  const brandIconEntries = useMemo(
+    () => [
+      { match: (name: string) => name.includes('volkswagen') || name.includes('vw'), Icon: VolkswagenIcon },
+      { match: (name: string) => name.includes('audi'), Icon: AudiIcon },
+      { match: (name: string) => name.includes('bmw'), Icon: BmwIcon },
+      { match: (name: string) => name.includes('mercedes'), Icon: MercedesIcon },
+      { match: (name: string) => name.includes('opel'), Icon: OpelIcon },
+      { match: (name: string) => name.includes('peugeot'), Icon: PeugeotIcon },
+      { match: (name: string) => name.includes('seat'), Icon: SeatIcon },
+      { match: (name: string) => name.includes('skoda'), Icon: SkodaIcon },
+      { match: (name: string) => name.includes('citroen'), Icon: CitroenIcon },
+      { match: (name: string) => name.includes('volvo'), Icon: VolvoIcon },
+      { match: (name: string) => name.includes('kia'), Icon: KiaIcon },
+      { match: (name: string) => name.includes('scania'), Icon: ScaniaIcon },
+      { match: (name: string) => name.includes('daf'), Icon: DafIcon },
+      { match: (name: string) => name.includes('iveco'), Icon: IvecoIcon },
+      { match: (name: string) => name.includes('renault'), Icon: RenaultIcon },
+      { match: (name: string) => name.includes('man'), Icon: ManIcon },
+    ],
+    []
+  );
+
+  const iconForBrand = (name: string) => {
+    const normalized = name.toLowerCase();
+    const entry = brandIconEntries.find(({ match }) => match(normalized));
+    return entry?.Icon ?? null;
+  };
+
+  const summarizeBodyStyles = (fitments: VehicleFitment[]) => {
+    const styles = new Set<string>();
+    fitments.forEach((fitment) => {
+      styles.add(bodyStylesText(fitment.bodyStyles));
+    });
+    return Array.from(styles).join(' • ');
+  };
+
+  const summarizePositions = (fitments: VehicleFitment[]) => {
+    const positions = new Set<string>();
+    fitments.forEach((fitment) => {
+      positions.add(positionText(fitment.position));
+    });
+    return Array.from(positions).join(' • ');
+  };
+
+  const summarizeNotes = (fitments: VehicleFitment[]) => {
+    const notes = Array.from(
+      new Set(
+        fitments
+          .map((fitment) => fitment.fitmentNotes?.trim())
+          .filter((note): note is string => !!note)
+      )
+    );
+    return notes;
+  };
+
+  const buildEngineEntries = (fitments: VehicleFitment[]) => {
+    const seen = new Set<string>();
+    const entries: string[] = [];
+    fitments.forEach((fitment) => {
+      let label = 'Svi motori';
+      if (fitment.isUniversal) {
+        label = 'Univerzalni';
+      } else if (fitment.engine) {
+        label = formatEngineDescription(fitment.engine);
+      }
+      if (!seen.has(label)) {
+        seen.add(label);
+        entries.push(label);
+      }
+    });
+    return entries;
+  };
+
+  const groupedFitments = useMemo(() => {
+    if (!product.vehicleFitments) return [] as Array<{ brandKey: string; brandName: string; models: VehicleFitment[] }>;
+    const map = new Map<string, { brandKey: string; brandName: string; models: VehicleFitment[] }>();
+    for (const fitment of product.vehicleFitments) {
+      const brandName = fitment.generation.model.brand.name;
+      const brandKey = (fitment.generation.model.brand.id ?? brandName).toLowerCase();
+      const entry = map.get(brandKey);
+      if (entry) {
+        entry.models.push(fitment);
+      } else {
+        map.set(brandKey, {
+          brandKey,
+          brandName,
+          models: [fitment],
+        });
+      }
+    }
+    return Array.from(map.values()).sort((a, b) => a.brandName.localeCompare(b.brandName));
+  }, [product.vehicleFitments]);
+
+  const [expandedBrands, setExpandedBrands] = useState<Record<string, boolean>>({});
+
+  useEffect(() => {
+    if (!groupedFitments.length) return;
+    setExpandedBrands((prev) => {
+      const next: Record<string, boolean> = {};
+      groupedFitments.forEach((group) => {
+        next[group.brandKey] = prev[group.brandKey] ?? false;
+      });
+      return next;
+    });
+  }, [groupedFitments]);
+
+  const toggleBrand = (brandKey: string) => {
+    setExpandedBrands((prev) => ({
+      ...prev,
+      [brandKey]: !prev[brandKey],
+    }));
+  };
 
   // Lokalizacija ključeva i vrijednosti za Tehničke podatke
   const localizeTechKey = (key: string) => {
@@ -488,119 +623,242 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
                   </div>
                 </div>
 
-                {(() => {
-                  const rows = [...product.vehicleFitments].sort((a, b) => {
-                    const ab = a.generation.model.brand.name.localeCompare(b.generation.model.brand.name);
-                    if (ab !== 0) return ab;
-                    const am = a.generation.model.name.localeCompare(b.generation.model.name);
-                    if (am !== 0) return am;
-                    const ag = a.generation.name.localeCompare(b.generation.name);
-                    if (ag !== 0) return ag;
-                    const ae = (a.engine?.engineCode || '').localeCompare(b.engine?.engineCode || '');
-                    return ae;
-                  });
+                <div className="space-y-4">
+                  {groupedFitments.map((group) => {
+                    const isExpanded = expandedBrands[group.brandKey];
+                    const BrandIcon = iconForBrand(group.brandName);
+                    const sortedModels = [...group.models].sort((a, b) => {
+                      const am = a.generation.model.name.localeCompare(b.generation.model.name);
+                      if (am !== 0) return am;
+                      const ag = a.generation.name.localeCompare(b.generation.name);
+                      if (ag !== 0) return ag;
+                      return (a.engine?.engineCode || '').localeCompare(b.engine?.engineCode || '');
+                    });
 
-                  const bodyStylesText = (bs?: string[]) => bs && bs.length ? bs.join(', ') : 'Sve karoserije';
-                  const positionText = (pos?: string | null) => {
-                    const parts = splitPosition(pos);
-                    return parts.length ? parts.map(normalizePositionToken).join(', ') : 'Nije specificirano';
-                  };
+                    const generationSummaries = (() => {
+                      const map = new Map<string, { key: string; modelId: string; modelName: string; generationName: string; fitments: VehicleFitment[] }>();
+                      for (const fitment of sortedModels) {
+                        const modelId = fitment.generation.model.id;
+                        const key = `${modelId}-${fitment.generation.id}`;
+                        const entry = map.get(key);
+                        if (entry) {
+                          entry.fitments.push(fitment);
+                        } else {
+                          map.set(key, {
+                            key,
+                            modelId,
+                            modelName: fitment.generation.model.name,
+                            generationName: fitment.generation.name,
+                            fitments: [fitment],
+                          });
+                        }
+                      }
+                      return Array.from(map.values()).map((group) => {
+                        const first = group.fitments[0];
+                        return {
+                          key: group.key,
+                          modelId: group.modelId,
+                          modelName: group.modelName,
+                          generationName: group.generationName,
+                          period: formatCompatibilityPeriod(first),
+                          engines: buildEngineEntries(group.fitments),
+                          bodySummary: summarizeBodyStyles(group.fitments),
+                          positionSummary: summarizePositions(group.fitments),
+                          notes: summarizeNotes(group.fitments),
+                        };
+                      });
+                    })();
 
-                  return (
-                    <div className="space-y-4">
-                      {/* Desktop Table View - hidden on mobile */}
-                      <div className="hidden lg:block overflow-x-auto rounded-2xl border border-white/40 bg-white/60 backdrop-blur-sm shadow-lg">
-                        <table className="min-w-full text-sm">
-                          <thead className="bg-gradient-to-r from-primary/10 to-primary-dark/10 border-b border-slate-200">
-                            <tr>
-                              <th className="text-left px-6 py-4 font-bold text-primary w-[35%]">Vozilo</th>
-                              <th className="text-left px-6 py-4 font-bold text-primary w-[15%]">Period</th>
-                              <th className="text-left px-6 py-4 font-bold text-primary w-[50%]">Motor</th>
-                            </tr>
-                          </thead>
-                          <tbody className="divide-y divide-slate-200/50">
-                            {rows.map((fitment) => (
-                              <tr key={fitment.id} className="hover:bg-white/80 transition-all duration-200">
-                                <td className="px-6 py-4">
-                                  <div className="flex items-center gap-3">
-                                    <div className="bg-gradient-to-br from-[#E85A28] to-[#FF6B35] p-2 rounded-lg">
-                                      <Car className="h-4 w-4 text-white" />
-                                    </div>
-                                    <div>
-                                      <div className="font-bold text-slate-900">{fitment.generation.model.brand.name} {fitment.generation.model.name}</div>
-                                      <div className="text-xs text-slate-600">{fitment.generation.name}</div>
-                                    </div>
-                                  </div>
-                                </td>
-                                <td className="px-6 py-4">
-                                  <span className="inline-flex items-center px-3 py-1 rounded-full bg-primary/10 text-primary font-semibold text-xs">
-                                    {formatCompatibilityPeriod(fitment)}
-                                  </span>
-                                </td>
-                                <td className="px-6 py-4">
-                                  {fitment.isUniversal ? (
-                                    <Badge variant="secondary" className="bg-gradient-to-r from-[#E85A28] to-[#FF6B35] text-white border-0">Univerzalni</Badge>
-                                  ) : fitment.engine ? (
-                                    <span className="text-slate-900 font-medium">{formatEngineDescription(fitment.engine)}</span>
-                                  ) : (
-                                    <span className="text-slate-500 text-xs">Svi motori</span>
-                                  )}
-                                </td>
-                              </tr>
-                            ))}
-                          </tbody>
-                        </table>
-                      </div>
+                    const modelGroups = (() => {
+                      const map = new Map<string, { key: string; modelName: string; generations: typeof generationSummaries }>();
+                      generationSummaries.forEach((summary) => {
+                        const entry = map.get(summary.modelId);
+                        if (entry) {
+                          entry.generations.push(summary);
+                        } else {
+                          map.set(summary.modelId, {
+                            key: summary.modelId,
+                            modelName: summary.modelName,
+                            generations: [summary],
+                          });
+                        }
+                      });
+                      return Array.from(map.values()).sort((a, b) => a.modelName.localeCompare(b.modelName));
+                    })();
 
-                      {/* Mobile Card View */}
-                      <div className="lg:hidden space-y-3">
-                        {rows.map((fitment) => (
-                          <div key={fitment.id} className="bg-white/80 backdrop-blur-sm border border-white/60 rounded-2xl p-4 shadow-lg">
-                            <div className="flex items-start gap-3 mb-3">
-                              <div className="bg-gradient-to-br from-[#E85A28] to-[#FF6B35] p-2 rounded-lg flex-shrink-0">
-                                <Car className="h-5 w-5 text-white" />
-                              </div>
-                              <div className="flex-1">
-                                <h4 className="font-bold text-primary text-lg">{fitment.generation.model.brand.name}</h4>
-                                <p className="text-slate-900 font-semibold">{fitment.generation.model.name}</p>
-                                <p className="text-xs text-slate-600">{fitment.generation.name}</p>
-                              </div>
-                              <span className="inline-flex items-center px-2 py-1 rounded-full bg-primary/10 text-primary font-bold text-xs flex-shrink-0">
-                                {formatCompatibilityPeriod(fitment)}
-                              </span>
-                            </div>
-                            
-                            <div className="space-y-2 text-sm border-t border-slate-200 pt-3">
-                              <div className="flex items-center justify-between">
-                                <span className="text-slate-500">Motor:</span>
-                                {fitment.isUniversal ? (
-                                  <Badge variant="secondary" className="bg-gradient-to-r from-[#E85A28] to-[#FF6B35] text-white border-0 text-xs">Univerzalni</Badge>
-                                ) : fitment.engine ? (
-                                  <span className="text-slate-900 font-medium">{formatEngineDescription(fitment.engine)}</span>
-                                ) : (
-                                  <span className="text-slate-500 text-xs">Svi motori</span>
-                                )}
-                              </div>
-                              <div className="flex items-center justify-between">
-                                <span className="text-slate-500">Karoserija:</span>
-                                <span className="text-slate-900 font-medium">{bodyStylesText(fitment.bodyStyles)}</span>
-                              </div>
-                              <div className="flex items-center justify-between">
-                                <span className="text-slate-500">Pozicija:</span>
-                                <span className="text-slate-900 font-medium">{positionText(fitment.position)}</span>
-                              </div>
-                              {fitment.fitmentNotes && (
-                                <div className="mt-2 pt-2 border-t border-slate-200">
-                                  <span className="text-slate-600 italic text-xs">{fitment.fitmentNotes}</span>
-                                </div>
+                    return (
+                      <div key={group.brandKey} className="rounded-2xl border border-white/50 bg-white/70 backdrop-blur-sm shadow-lg">
+                        <button
+                          type="button"
+                          onClick={() => toggleBrand(group.brandKey)}
+                          className="w-full flex items-center justify-between px-5 py-4 text-left rounded-2xl focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary/60"
+                        >
+                          <div className="flex items-center gap-4">
+                            <div className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-primary/10 to-primary-dark/10 flex items-center justify-center shadow-inner">
+                              {BrandIcon ? (
+                                <BrandIcon size={28} color="#0f172a" />
+                              ) : (
+                                <Car className="w-5 h-5 text-primary" />
                               )}
                             </div>
+                            <div>
+                              <div className="text-lg font-bold text-primary">{group.brandName}</div>
+                              <div className="text-xs text-slate-500 font-medium uppercase tracking-wide">
+                                {group.models.length} {group.models.length === 1 ? 'vozilo' : 'vozila'}
+                              </div>
+                            </div>
                           </div>
-                        ))}
+                          <div className="flex items-center gap-3">
+                            <span className="text-xs text-slate-500">{isExpanded ? 'Sakrij' : 'Prikaži'}</span>
+                            <svg
+                              className={`w-5 h-5 text-primary transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`}
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                            </svg>
+                          </div>
+                        </button>
+
+                        {isExpanded && (
+                          <div className="border-t border-white/40">
+                            <div className="hidden lg:flex flex-col gap-4 p-4">
+                              {modelGroups.map((model) => (
+                                <div
+                                  key={model.key}
+                                  className="rounded-2xl border border-slate-200/70 bg-white/95 backdrop-blur-sm shadow-xl overflow-hidden"
+                                >
+                                  <div className="px-6 py-4 bg-gradient-to-r from-primary/90 via-primary to-primary-dark text-white flex items-center justify-between">
+                                    <div className="text-lg font-semibold tracking-wide uppercase">
+                                      {model.modelName}
+                                    </div>
+                                    <span className="text-xs font-medium bg-white/15 px-3 py-1 rounded-full">
+                                      {model.generations.length} {model.generations.length === 1 ? 'generacija' : 'generacije'}
+                                    </span>
+                                  </div>
+                                  <div className="overflow-x-auto">
+                                    <table className="min-w-full text-sm">
+                                      <thead className="bg-slate-50 text-slate-700">
+                                        <tr>
+                                          <th className="text-left px-6 py-3 font-semibold w-[28%]">Generacija</th>
+                                          <th className="text-left px-6 py-3 font-semibold w-[18%]">Period</th>
+                                          <th className="text-left px-6 py-3 font-semibold w-[30%]">Motori</th>
+                                          <th className="text-left px-6 py-3 font-semibold w-[24%]">Detalji</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody className="divide-y divide-slate-200/60">
+                                        {model.generations.map((generation) => (
+                                          <tr key={generation.key} className="hover:bg-white/70 transition-colors">
+                                            <td className="px-6 py-4 align-top">
+                                              <div className="text-slate-900 font-semibold">{generation.generationName}</div>
+                                            </td>
+                                            <td className="px-6 py-4 align-top">
+                                              <span className="inline-flex items-center px-2.5 py-1 rounded-full bg-primary/10 text-primary font-semibold text-xs">
+                                                {generation.period}
+                                              </span>
+                                            </td>
+                                            <td className="px-6 py-4">
+                                              <div className="space-y-1.5">
+                                                {generation.engines.map((entry) => (
+                                                  <div key={entry} className="text-slate-900 font-medium flex items-center gap-2">
+                                                    {!entry.includes('Univerzalni') && !entry.includes('Svi motori') ? (
+                                                      <span>{entry}</span>
+                                                    ) : (
+                                                      <Badge variant="secondary" className="bg-gradient-to-r from-[#E85A28] to-[#FF6B35] text-white border-0">{entry}</Badge>
+                                                    )}
+                                                  </div>
+                                                ))}
+                                              </div>
+                                            </td>
+                                            <td className="px-6 py-4 text-xs text-slate-600">
+                                              <div className="space-y-1.5">
+                                                <div>Karoserija: <span className="font-semibold text-slate-800">{generation.bodySummary}</span></div>
+                                                <div>Pozicija: <span className="font-semibold text-slate-800">{generation.positionSummary}</span></div>
+                                                {generation.notes.length > 0 && (
+                                                  <div className="pt-1 space-y-1">
+                                                    {generation.notes.map((note) => (
+                                                      <div key={note} className="italic text-slate-500">{note}</div>
+                                                    ))}
+                                                  </div>
+                                                )}
+                                              </div>
+                                            </td>
+                                          </tr>
+                                        ))}
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+
+                            <div className="lg:hidden space-y-4 p-4">
+                              {modelGroups.map((model) => (
+                                <div
+                                  key={model.key}
+                                  className="rounded-2xl border border-white/50 bg-gradient-to-br from-white/95 via-white to-white/80 shadow-xl"
+                                >
+                                  <div className="px-4 py-3 bg-primary text-white rounded-t-2xl flex items-center justify-between">
+                                    <h4 className="text-sm font-bold uppercase tracking-wide">{model.modelName}</h4>
+                                    <span className="text-[10px] font-medium bg-white/20 px-2 py-0.5 rounded-full">
+                                      {model.generations.length} {model.generations.length === 1 ? 'generacija' : 'generacije'}
+                                    </span>
+                                  </div>
+                                  <div className="p-4 space-y-3">
+                                    {model.generations.map((generation) => (
+                                      <div key={generation.key} className="bg-white/90 border border-slate-100 rounded-xl p-3 shadow-sm">
+                                        <div className="flex items-start justify-between">
+                                          <div>
+                                            <p className="text-xs font-semibold text-slate-600 uppercase tracking-wide">{generation.generationName}</p>
+                                          </div>
+                                          <span className="inline-flex items-center px-2 py-1 rounded-full bg-primary/10 text-primary font-bold text-[11px]">
+                                            {generation.period}
+                                          </span>
+                                        </div>
+                                        <div className="mt-3 space-y-2 text-xs">
+                                          <div>
+                                            <span className="text-slate-500 block mb-1 font-semibold">Motori:</span>
+                                            <div className="space-y-1">
+                                              {generation.engines.map((entry) => (
+                                                <div key={entry} className="flex items-center gap-2 text-slate-900 font-medium">
+                                                  {!entry.includes('Univerzalni') && !entry.includes('Svi motori') ? (
+                                                    <span>{entry}</span>
+                                                  ) : (
+                                                    <Badge variant="secondary" className="bg-gradient-to-r from-[#E85A28] to-[#FF6B35] text-white border-0 text-[10px]">{entry}</Badge>
+                                                  )}
+                                                </div>
+                                              ))}
+                                            </div>
+                                          </div>
+                                          <div className="flex justify-between">
+                                            <span className="text-slate-500">Karoserija:</span>
+                                            <span className="text-slate-900 font-semibold text-right">{generation.bodySummary}</span>
+                                          </div>
+                                          <div className="flex justify-between">
+                                            <span className="text-slate-500">Pozicija:</span>
+                                            <span className="text-slate-900 font-semibold text-right">{generation.positionSummary}</span>
+                                          </div>
+                                          {generation.notes.length > 0 && (
+                                            <div className="mt-2 pt-2 border-t border-slate-200 text-xs text-slate-500 italic space-y-1">
+                                              {generation.notes.map((note) => (
+                                                <div key={note}>{note}</div>
+                                              ))}
+                                            </div>
+                                          )}
+                                        </div>
+                                      </div>
+                                    ))}
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
                       </div>
-                    </div>
-                  );
-                })()}
+                    );
+                  })}
+                </div>
 
                 <div className="mt-6 flex items-center justify-between">
                   <Link

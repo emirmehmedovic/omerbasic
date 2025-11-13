@@ -1,10 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
-import { db } from "@/lib/db";
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
+import { db } from '@/lib/db';
+import { calculateB2BPrice, getUserDiscountProfile } from '@/lib/b2b/discount-service';
 import { productApiSchema } from '@/lib/validations/product';
-import { z } from 'zod';
 import { revalidateTag } from 'next/cache';
+import { z } from 'zod';
 
 // Enable ISR-style caching for this route per-URL for 60 seconds
 export const revalidate = 60;
@@ -92,7 +93,9 @@ export async function GET(req: NextRequest) {
     // B2B session context
     const session = await getServerSession(authOptions);
     const isB2B = session?.user?.role === 'B2B';
-    const discountPercentage = isB2B ? (session?.user?.discountPercentage || 0) : 0;
+    const profile = isB2B && session?.user?.id
+      ? await getUserDiscountProfile(session.user.id)
+      : null;
     const { searchParams } = new URL(req.url);
     const query = searchParams.get("q");
     const categoryId = searchParams.get("categoryId");
@@ -166,6 +169,7 @@ export async function GET(req: NextRequest) {
           catalogNumber: true,
           oemNumber: true,
           categoryId: true,
+          manufacturerId: true,
           createdAt: true,
           updatedAt: true,
           category: { select: { id: true, name: true, parentId: true, imageUrl: true } },
@@ -208,9 +212,19 @@ export async function GET(req: NextRequest) {
             return { ...p, originalPrice: p.price, price: parseFloat(newPrice.toFixed(2)), pricingSource: 'FEATURED' as const };
           }
         }
-        if (isB2B && discountPercentage > 0) {
-          const price = parseFloat((p.price * (1 - discountPercentage / 100)).toFixed(2));
-          return { ...p, originalPrice: p.price, price, pricingSource: 'B2B' as const };
+        if (profile) {
+          const resolved = calculateB2BPrice(p.price, profile, {
+            categoryId: p.categoryId,
+            manufacturerId: p.manufacturerId ?? null,
+          });
+          if (resolved) {
+            return {
+              ...p,
+              originalPrice: p.price,
+              price: resolved.price,
+              pricingSource: resolved.source,
+            } as any;
+          }
         }
         return p;
       };
@@ -237,6 +251,7 @@ export async function GET(req: NextRequest) {
         catalogNumber: true,
         oemNumber: true,
         categoryId: true,
+        manufacturerId: true,
         createdAt: true,
         updatedAt: true,
         category: { select: { id: true, name: true, parentId: true, imageUrl: true } },
@@ -287,9 +302,19 @@ export async function GET(req: NextRequest) {
           return { ...p, originalPrice: p.price, price: parseFloat(newPrice.toFixed(2)), pricingSource: 'FEATURED' as const };
         }
       }
-      if (isB2B && discountPercentage > 0) {
-        const price = parseFloat((p.price * (1 - discountPercentage / 100)).toFixed(2));
-        return { ...p, originalPrice: p.price, price, pricingSource: 'B2B' as const };
+      if (profile) {
+        const resolved = calculateB2BPrice(p.price, profile, {
+          categoryId: p.categoryId,
+          manufacturerId: p.manufacturerId ?? null,
+        });
+        if (resolved) {
+          return {
+            ...p,
+            originalPrice: p.price,
+            price: resolved.price,
+            pricingSource: resolved.source,
+          } as any;
+        }
       }
       return p;
     };
@@ -463,7 +488,7 @@ export async function POST(req: Request) {
     if (error instanceof z.ZodError) {
       return new NextResponse(JSON.stringify(error.issues), { status: 400 });
     }
-    console.error('[PRODUCTS_POST]', error);
+    console.error('[PRODUCTS_POST]', error instanceof Error ? error : JSON.stringify(error));
     return new NextResponse('Internal error', { status: 500 });
   }
 }

@@ -4,6 +4,7 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import { ProductDetails } from '@/components/ProductDetails';
 import { type Product, type Category } from '@/generated/prisma/client';
+import { calculateB2BPrice, getUserDiscountProfile } from '@/lib/b2b/discount-service';
 
 // Tip za proizvod s potencijalnim popustom
 type ProductWithDiscount = Product & {
@@ -82,12 +83,10 @@ const ProductPage = async ({ params }: ProductPageProps) => {
   
   // Provjeri B2B status i popust
   const isB2B = session?.user?.role === 'B2B';
-  const discountPercentage = isB2B ? (session?.user?.discountPercentage || 0) : 0;
+  const profile = isB2B && session?.user?.id
+    ? await getUserDiscountProfile(session.user.id)
+    : null;
   
-  console.log('[PRODUCT_DETAILS] Session:', session ? 'postoji' : 'ne postoji');
-  console.log('[PRODUCT_DETAILS] isB2B:', isB2B);
-  console.log('[PRODUCT_DETAILS] discountPercentage:', discountPercentage);
-
   const product = await db.product.findUnique({
     where: { id: productId },
     include: { 
@@ -116,12 +115,6 @@ const ProductPage = async ({ params }: ProductPageProps) => {
       replacementFor: true,
     },
   });
-
-  // Debug: provjeri vehicleFitments
-  console.log('[PRODUCT_PAGE] vehicleFitments count:', product?.vehicleFitments?.length || 0);
-  if (product?.vehicleFitments && product.vehicleFitments.length > 0) {
-    console.log('[PRODUCT_PAGE] First fitment:', JSON.stringify(product.vehicleFitments[0], null, 2));
-  }
 
   if (!product) {
     notFound(); // Prikazuje 404 stranicu ako proizvod nije pronađen
@@ -153,13 +146,19 @@ const ProductPage = async ({ params }: ProductPageProps) => {
       }
       discounted = Math.round(discounted * 100) / 100;
       productWithDiscount = { ...(product as any), originalPrice: original, price: discounted, pricingSource: 'FEATURED' } as any;
-    } else if (isB2B && discountPercentage > 0) {
-      productWithDiscount = {
-        ...product,
-        originalPrice: product.price,
-        price: parseFloat((product.price * (1 - discountPercentage / 100)).toFixed(2)),
-        pricingSource: 'B2B',
-      } as any;
+    } else if (profile) {
+      const resolved = calculateB2BPrice(product.price, profile, {
+        categoryId: product.categoryId,
+        manufacturerId: product.manufacturerId ?? null,
+      });
+      if (resolved) {
+        productWithDiscount = {
+          ...product,
+          originalPrice: product.price,
+          price: resolved.price,
+          pricingSource: resolved.source,
+        } as any;
+      }
     }
   } catch {}
 

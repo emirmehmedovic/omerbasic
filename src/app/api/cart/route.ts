@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import { db } from '@/lib/db';
+import { calculateB2BPrice, getUserDiscountProfile } from '@/lib/b2b/discount-service';
 
 export async function POST(request: Request) {
   try {
@@ -10,11 +11,13 @@ export async function POST(request: Request) {
     
     // Provjeri B2B status i popust
     const isB2B = session?.user?.role === 'B2B';
-    const discountPercentage = isB2B ? (session?.user?.discountPercentage || 0) : 0;
+    const profile = isB2B && session?.user?.id
+      ? await getUserDiscountProfile(session.user.id)
+      : null;
     
     console.log('[API_CART] Session:', session ? 'postoji' : 'ne postoji');
     console.log('[API_CART] isB2B:', isB2B);
-    console.log('[API_CART] discountPercentage:', discountPercentage);
+    console.log('[API_CART] hasProfile:', !!profile);
 
     // Dohvati podatke o proizvodima iz zahtjeva
     const { productIds } = await request.json();
@@ -82,9 +85,19 @@ export async function POST(request: Request) {
         } as any;
       }
       // Inače primijeni B2B ako postoji
-      if (isB2B && discountPercentage > 0) {
-        const price = parseFloat((p.price * (1 - discountPercentage / 100)).toFixed(2));
-        return { ...p, originalPrice: p.price, price, pricingSource: 'B2B' } as any;
+      if (profile) {
+        const resolved = calculateB2BPrice(p.price, profile, {
+          categoryId: p.categoryId,
+          manufacturerId: p.manufacturerId ?? null,
+        });
+        if (resolved) {
+          return {
+            ...p,
+            originalPrice: p.price,
+            price: resolved.price,
+            pricingSource: resolved.source,
+          } as any;
+        }
       }
       return p as any;
     });

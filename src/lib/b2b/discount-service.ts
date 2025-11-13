@@ -25,6 +25,30 @@ export interface UserDiscountProfile {
   }>;
 }
 
+export function calculateB2BPrice(
+  basePrice: number,
+  profile: UserDiscountProfile | null | undefined,
+  context: DiscountResolutionContext
+): B2BPricingResolution | null {
+  if (!profile) {
+    return null;
+  }
+
+  const { bestDiscount, source } = resolveEffectiveDiscount(profile, context);
+
+  if (!bestDiscount || bestDiscount <= 0) {
+    return null;
+  }
+
+  const discountedPrice = Math.max(0, parseFloat((basePrice * (1 - bestDiscount / 100)).toFixed(2)));
+
+  return {
+    price: discountedPrice,
+    discountPercentage: bestDiscount,
+    source,
+  };
+}
+
 export interface DiscountResolutionContext {
   categoryId?: string | null;
   manufacturerId?: string | null;
@@ -35,6 +59,12 @@ export interface DiscountResolutionResult {
   categoryDiscount: number;
   manufacturerDiscount: number;
   bestDiscount: number;
+  source: DiscountSource;
+}
+
+export interface B2BPricingResolution {
+  price: number;
+  discountPercentage: number;
   source: DiscountSource;
 }
 
