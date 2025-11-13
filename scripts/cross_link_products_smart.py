@@ -60,6 +60,7 @@ class SmartProductLinker:
                 INNER JOIN "ProductVehicleFitment" pvf ON p.id = pvf."productId"
                 WHERE p.id = '{self.product_id}'
             """
+            products = await self.conn.fetch(query)
         else:
             query = """
                 SELECT DISTINCT p.id, p.name, p."catalogNumber"
@@ -67,13 +68,13 @@ class SmartProductLinker:
                 INNER JOIN "ProductVehicleFitment" pvf ON p.id = pvf."productId"
                 WHERE p."isArchived" = false
                 ORDER BY p.name
-                LIMIT $1
             """
-            limit = self.limit or 10  # Default limit za safety
-            products = await self.conn.fetch(query, limit)
-            return products
+            # Ako je limit postavljen, dodaj LIMIT, inače obradi sve
+            if self.limit:
+                query += f" LIMIT {self.limit}"
 
-        products = await self.conn.fetch(query)
+            products = await self.conn.fetch(query)
+
         return products
 
     async def get_product_fitments(self, product_id: str) -> List[Dict]:
