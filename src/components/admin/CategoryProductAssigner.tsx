@@ -36,7 +36,7 @@ interface CategoryProductAssignerProps {
   initialSelected: SelectedProductSummary[];
 }
 
-const FETCH_LIMIT = 50;
+const FETCH_LIMIT = 1000;
 
 type FetchState = 'idle' | 'loading' | 'error';
 
@@ -74,6 +74,7 @@ export default function CategoryProductAssigner({
         searchParams.set('limit', String(FETCH_LIMIT));
         searchParams.set('page', '1');
         searchParams.set('includeOutOfStock', 'true');
+        searchParams.set('adminAssign', 'true');
         if (debouncedQuery.trim()) {
           searchParams.set('q', debouncedQuery.trim());
         }

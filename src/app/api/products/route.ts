@@ -106,7 +106,11 @@ export async function GET(req: NextRequest) {
       : null;
     const minPrice = searchParams.get("minPrice");
     const maxPrice = searchParams.get("maxPrice");
-    const limit = Math.min(parseInt(searchParams.get("limit") || "24"), 100);
+    const isAdminAssign = searchParams.get('adminAssign') === 'true';
+    const rawLimit = parseInt(searchParams.get("limit") || "24");
+    const limit = isAdminAssign
+      ? Math.min(rawLimit || 24, 1000)
+      : Math.min(rawLimit || 24, 100);
     const cursor = searchParams.get("cursor"); // keyset cursor = last item id
     const pageParam = searchParams.get('page');
     const page = pageParam ? Math.max(parseInt(pageParam || '1') || 1, 1) : null;
