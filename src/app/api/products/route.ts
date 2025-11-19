@@ -122,14 +122,39 @@ export async function GET(req: NextRequest) {
       where.stock = { gt: 0 };
     }
 
-    if (query) {
-      where.OR = [
-        { name: { contains: query, mode: "insensitive" } },
-        { catalogNumber: { contains: query, mode: "insensitive" } },
-        { oemNumber: { contains: query, mode: "insensitive" } },
-        { sku: { contains: query, mode: "insensitive" } },
-        { description: { contains: query, mode: "insensitive" } },
-      ];
+    const searchableFields = ['name', 'catalogNumber', 'oemNumber', 'sku', 'description'] as const;
+    const buildFieldFilters = (field: typeof searchableFields[number], token: string) => {
+      const trimmed = token.trim();
+      if (!trimmed) return [];
+
+      const isShort = trimmed.length <= 2;
+      const filters: any[] = [];
+
+      if (!isShort) {
+        filters.push({ [field]: { contains: trimmed, mode: "insensitive" } });
+      }
+
+      filters.push(
+        { [field]: { equals: trimmed, mode: "insensitive" } },
+        { [field]: { startsWith: `${trimmed} `, mode: "insensitive" } },
+        { [field]: { endsWith: ` ${trimmed}`, mode: "insensitive" } },
+        { [field]: { contains: ` ${trimmed} `, mode: "insensitive" } },
+        { [field]: { contains: `(${trimmed})`, mode: "insensitive" } },
+        { [field]: { contains: `/${trimmed}/`, mode: "insensitive" } },
+        { [field]: { contains: `-${trimmed}-`, mode: "insensitive" } },
+      );
+
+      return filters;
+    };
+
+    const buildSearchClauses = (token: string) => {
+      return searchableFields.flatMap(field => buildFieldFilters(field, token));
+    };
+
+    const searchTokens = query?.trim().split(/\s+/).filter(Boolean) ?? [];
+    if (searchTokens.length) {
+      const tokenConditions = searchTokens.map(token => ({ OR: buildSearchClauses(token) }));
+      where.AND = [...(where.AND ?? []), ...tokenConditions];
     }
 
     if (categoryId) {

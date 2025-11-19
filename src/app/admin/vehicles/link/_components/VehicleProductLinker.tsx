@@ -10,7 +10,16 @@ type InitialGeneration = {
   model: { id: string; name: string; brand: { id: string; name: string } };
 } | null;
 
-type InitialEngine = { id: string; label: string };
+type InitialEngine = {
+  id: string;
+  code?: string | null;
+  label: string;
+  description?: string | null;
+  enginePowerKW?: number | null;
+  enginePowerHP?: number | null;
+  engineCapacity?: number | null;
+  engineType?: string | null;
+};
 
 export default function VehicleProductLinker({
   initialGeneration,
@@ -29,8 +38,6 @@ export default function VehicleProductLinker({
   const [q, setQ] = useState("");
   const [products, setProducts] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
-  const [cursor, setCursor] = useState<string | null>(null);
-  const [nextCursor, setNextCursor] = useState<string | null>(null);
   const [selectedProductIds, setSelectedProductIds] = useState<Set<string>>(new Set());
 
   const [links, setLinks] = useState<any[]>([]);
@@ -57,19 +64,37 @@ export default function VehicleProductLinker({
     })();
   }, [generationId]);
 
-  const fetchProducts = async (append = false) => {
+  const fetchProducts = async () => {
     try {
       setLoading(true);
-      const params = new URLSearchParams();
-      if (q.trim()) params.set("q", q.trim());
-      params.set("limit", "20");
-      if (append && nextCursor) params.set("cursor", nextCursor);
-      const res = await fetch(`/api/products?${params.toString()}`);
-      if (!res.ok) throw new Error("Greška pri pretrazi proizvoda");
-      const newCursor = res.headers.get("X-Next-Cursor");
-      const items = await res.json();
-      setNextCursor(newCursor);
-      setProducts(prev => append ? [...prev, ...items] : items);
+      const aggregated: any[] = [];
+      const baseParams = new URLSearchParams();
+      if (q.trim()) baseParams.set("q", q.trim());
+      baseParams.set("limit", "200");
+
+      let cursorLocal: string | null = null;
+      const MAX_LOOPS = 25;
+
+      for (let i = 0; i < MAX_LOOPS; i++) {
+        const params = new URLSearchParams(baseParams);
+        if (cursorLocal) params.set("cursor", cursorLocal);
+        const res = await fetch(`/api/products?${params.toString()}`);
+        if (!res.ok) throw new Error("Greška pri pretrazi proizvoda");
+        const items = await res.json();
+        aggregated.push(...items);
+        const newCursor = res.headers.get("X-Next-Cursor");
+        if (!newCursor) break;
+        cursorLocal = newCursor;
+      }
+
+      setProducts(aggregated);
+      setSelectedProductIds(prev => {
+        const next = new Set<string>();
+        for (const p of aggregated) {
+          if (prev.has(p.id)) next.add(p.id);
+        }
+        return next;
+      });
     } catch (e: any) {
       toast.error(e.message || "Greška pri pretrazi");
     } finally {
@@ -79,7 +104,7 @@ export default function VehicleProductLinker({
 
   useEffect(() => {
     // initial load
-    fetchProducts(false);
+    fetchProducts();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -96,6 +121,20 @@ export default function VehicleProductLinker({
     if (filterMode === 'unlinked') return products.filter(p => !linkedProductIds.has(p.id));
     return products;
   }, [products, filterMode, linkedProductIds]);
+
+  const allVisibleSelected = visibleProducts.length > 0 && visibleProducts.every(p => selectedProductIds.has(p.id));
+
+  const toggleSelectAllVisible = () => {
+    setSelectedProductIds(prev => {
+      const next = new Set(prev);
+      if (allVisibleSelected) {
+        visibleProducts.forEach(p => next.delete(p.id));
+      } else {
+        visibleProducts.forEach(p => next.add(p.id));
+      }
+      return next;
+    });
+  };
 
   const linkSelected = async () => {
     if (!hasScope) {
@@ -152,7 +191,7 @@ export default function VehicleProductLinker({
         <div className="flex items-center justify-between gap-4 flex-wrap">
           <h1 className="text-2xl font-bold text-slate-900">Povezivanje proizvoda s vozilima</h1>
           <div className="flex items-center gap-2 text-sm">
-            <span className="px-2 py-1 rounded-md bg-slate-100 text-slate-700">Rezultata: {products.length}</span>
+            <span className="px-2 py-1 rounded-md bg-slate-100 text-slate-700">Rezultata: {visibleProducts.length}/{products.length}</span>
             <span className="px-2 py-1 rounded-md bg-slate-100 text-slate-700">Odabrano: {selectedProductIds.size}</span>
             <span className="px-2 py-1 rounded-md bg-slate-100 text-slate-700">Povezano: {links.length}</span>
           </div>
@@ -191,18 +230,31 @@ export default function VehicleProductLinker({
                   {initialEngines.length === 0 ? (
                     <p className="text-xs text-slate-500">Nema motora za ovu generaciju</p>
                   ) : (
-                    initialEngines.map(e => (
-                      <label key={e.id} className="flex items-center gap-2 py-1 text-sm">
-                        <input
-                          type="checkbox"
-                          checked={selectedEngineIds.includes(e.id)}
-                          onChange={(ev) => {
-                            setSelectedEngineIds(prev => ev.target.checked ? [...prev, e.id] : prev.filter(x => x !== e.id));
-                          }}
-                        />
-                        <span className="truncate">{e.label}</span>
-                      </label>
-                    ))
+                    initialEngines.map(e => {
+                      const specs: string[] = [];
+                      if (e.engineCapacity) specs.push(`${(e.engineCapacity / 1000).toFixed(1)}L`);
+                      if (e.enginePowerKW) specs.push(`${e.enginePowerKW} kW`);
+                      else if (e.enginePowerHP) specs.push(`${e.enginePowerHP} KS`);
+                      const description = [e.description, specs.join(' • ')].filter(Boolean).join(' – ');
+                      return (
+                        <label key={e.id} className="flex items-start gap-2 py-1 text-sm">
+                          <input
+                            type="checkbox"
+                            checked={selectedEngineIds.includes(e.id)}
+                            onChange={(ev) => {
+                              setSelectedEngineIds(prev => ev.target.checked ? [...prev, e.id] : prev.filter(x => x !== e.id));
+                            }}
+                            className="mt-1"
+                          />
+                          <span className="truncate flex-1">
+                            <span className="font-medium text-slate-900">{e.code || e.label}</span>
+                            {description && (
+                              <span className="block text-xs text-slate-600">{description}</span>
+                            )}
+                          </span>
+                        </label>
+                      );
+                    })
                   )}
                 </div>
               )}
@@ -217,17 +269,26 @@ export default function VehicleProductLinker({
             <input
               value={q}
               onChange={(e) => setQ(e.target.value)}
-              onKeyDown={(e) => { if (e.key === 'Enter') fetchProducts(false); }}
+              onKeyDown={(e) => { if (e.key === 'Enter') fetchProducts(); }}
               className="h-9 w-full rounded-md border border-slate-300 px-3 text-sm"
               placeholder="Ime, OEM, kataloški broj"
             />
-            <button onClick={() => fetchProducts(false)} className="h-9 px-3 rounded-md bg-sunfire-600 text-white text-sm">Pretraži</button>
+            <button onClick={() => fetchProducts()} className="h-9 px-3 rounded-md bg-sunfire-600 text-white text-sm" disabled={loading}>
+              {loading ? 'Učitavanje…' : 'Pretraži'}
+            </button>
           </div>
-          <div className="flex items-center gap-2 mb-2">
+          <div className="flex items-center gap-2 mb-2 flex-wrap">
             <span className="text-xs text-slate-600">Filter:</span>
             <button className={`text-xs px-2 py-1 rounded ${filterMode==='all'?'bg-slate-900 text-white':'border'}`} onClick={()=>setFilterMode('all')}>Svi</button>
             <button className={`text-xs px-2 py-1 rounded ${filterMode==='unlinked'?'bg-slate-900 text-white':'border'}`} onClick={()=>setFilterMode('unlinked')}>Nepovezani</button>
             <button className={`text-xs px-2 py-1 rounded ${filterMode==='linked'?'bg-slate-900 text-white':'border'}`} onClick={()=>setFilterMode('linked')}>Povezani</button>
+            <button
+              className="text-xs px-3 py-1 rounded border"
+              onClick={toggleSelectAllVisible}
+              disabled={visibleProducts.length === 0}
+            >
+              {allVisibleSelected ? 'Poništi odabir' : 'Označi sve prikazane'}
+            </button>
           </div>
           <div className="max-h-80 overflow-auto divide-y">
             {visibleProducts.map((p) => (
@@ -246,11 +307,6 @@ export default function VehicleProductLinker({
             ))}
             {visibleProducts.length === 0 && <p className="text-sm text-slate-500 py-6 text-center">Nema rezultata</p>}
           </div>
-          {nextCursor && (
-            <div className="mt-2 text-center">
-              <button onClick={() => fetchProducts(true)} className="text-sm px-3 py-1.5 border rounded-md">Učitaj još</button>
-            </div>
-          )}
           <div className="mt-3 flex justify-end">
             <button
               disabled={selectedProductIds.size === 0 || !hasScope}

@@ -4,6 +4,9 @@ import { Table } from '@tanstack/react-table';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import React from 'react';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Label } from '@/components/ui/label';
+import type { CheckedState } from '@radix-ui/react-checkbox';
 
 const getCategoryAndChildrenIds = (categoryId: string, categories: CategoryWithChildren[]): string[] => {
   const ids: string[] = [];
@@ -36,15 +39,24 @@ interface DataTableToolbarProps<TData> {
   categories: CategoryWithChildren[];
   onSearch?: (q: string) => void;
   onCategoryChange?: (categoryId: string) => void;
+  inStockOnly?: boolean;
+  onInStockChange?: (value: boolean) => void;
 }
 
 
-export function DataTableToolbar<TData>({ table, categories, onSearch, onCategoryChange }: DataTableToolbarProps<TData>) {
+export function DataTableToolbar<TData>({
+  table,
+  categories,
+  onSearch,
+  onCategoryChange,
+  inStockOnly = false,
+  onInStockChange,
+}: DataTableToolbarProps<TData>) {
   const tableHasFilters = table.getState().columnFilters.length > 0;
   const [selectedCategoryId, setSelectedCategoryId] = React.useState('');
   const [search, setSearch] = React.useState('');
   const trimmedSearch = search.trim();
-  const isFiltered = tableHasFilters || trimmedSearch.length > 0;
+  const isFiltered = tableHasFilters || trimmedSearch.length > 0 || inStockOnly;
 
   // debounce search -> 300ms
   React.useEffect(() => {
@@ -93,6 +105,7 @@ export function DataTableToolbar<TData>({ table, categories, onSearch, onCategor
                 table.resetColumnFilters();
                 onCategoryChange?.('');
                 onSearch?.('');
+                onInStockChange?.(false);
               }}
               className="h-11 px-4 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-xl transition-all duration-200"
             >
@@ -103,14 +116,31 @@ export function DataTableToolbar<TData>({ table, categories, onSearch, onCategor
         </div>
         
         {/* Export Button */}
-        <Button
-          variant="outline"
-          onClick={() => window.open('/api/products/export', '_blank')}
-          className="h-11 px-6 flex items-center bg-gradient-to-r from-white/90 to-gray-50/90 backdrop-blur-sm text-gray-700 hover:from-white hover:to-gray-50 border-amber/30 hover:border-amber/50 rounded-xl transition-all duration-200 shadow-sm"
-        >
-          <Download className="mr-2 h-4 w-4" />
-          Export CSV
-        </Button>
+        <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
+            <Checkbox
+              id="in-stock-only"
+              checked={inStockOnly}
+              onCheckedChange={(checked: CheckedState) => onInStockChange?.(checked === true)}
+            />
+            <Label htmlFor="in-stock-only" className="text-sm text-gray-700">Samo na stanju</Label>
+          </div>
+          <Button
+            variant="outline"
+            onClick={() => {
+              const params = new URLSearchParams();
+              if (trimmedSearch) params.set('q', trimmedSearch);
+              if (selectedCategoryId) params.set('categoryId', selectedCategoryId);
+              if (inStockOnly) params.set('inStockOnly', 'true');
+              const url = `/api/products/export${params.toString() ? `?${params.toString()}` : ''}`;
+              window.open(url, '_blank');
+            }}
+            className="h-11 px-6 flex items-center bg-gradient-to-r from-white/90 to-gray-50/90 backdrop-blur-sm text-gray-700 hover:from-white hover:to-gray-50 border-amber/30 hover:border-amber/50 rounded-xl transition-all duration-200 shadow-sm"
+          >
+            <Download className="mr-2 h-4 w-4" />
+            Export CSV
+          </Button>
+        </div>
       </div>
 
       {/* Results Summary */}

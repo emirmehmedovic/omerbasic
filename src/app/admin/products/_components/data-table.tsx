@@ -42,6 +42,8 @@ interface DataTableProps<TData, TValue> {
   categories: CategoryWithChildren[];
   onSearch?: (q: string) => void;
   onCategoryChange?: (categoryId: string) => void;
+  inStockOnly: boolean;
+  onInStockChange: (value: boolean) => void;
   initialLoading?: boolean;
   page: number;
   totalPages: number;
@@ -55,6 +57,8 @@ export function DataTable<TData, TValue>({
   categories,
   onSearch,
   onCategoryChange,
+  inStockOnly,
+  onInStockChange,
   initialLoading,
   page,
   totalPages,
@@ -88,6 +92,8 @@ export function DataTable<TData, TValue>({
         categories={categories}
         onSearch={onSearch}
         onCategoryChange={onCategoryChange}
+        inStockOnly={inStockOnly}
+        onInStockChange={onInStockChange}
       />
       <div className="rounded-2xl border border-amber/20 bg-gradient-to-br from-white/95 to-gray-50/95 backdrop-blur-sm overflow-hidden shadow-sm">
         <Table>

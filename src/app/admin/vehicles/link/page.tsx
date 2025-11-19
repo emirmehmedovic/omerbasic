@@ -30,7 +30,16 @@ export default async function LinkPage({ searchParams }: LinkPageProps) {
           name: generation.name,
           model: { id: generation.model.id, name: generation.model.name, brand: { id: generation.model.brand.id, name: generation.model.brand.name } },
         } : null}
-        initialEngines={engines.map(e => ({ id: e.id, label: e.engineCode || e.description || e.id }))}
+        initialEngines={engines.map(e => ({
+          id: e.id,
+          code: e.engineCode,
+          label: e.engineCode || e.description || e.id,
+          description: e.description,
+          enginePowerKW: e.enginePowerKW,
+          enginePowerHP: e.enginePowerHP,
+          engineCapacity: e.engineCapacity,
+          engineType: e.engineType,
+        }))}
       />
     </div>
   );

@@ -1,7 +1,8 @@
 "use client";
 
+import * as React from 'react';
 import { ColumnDef } from '@tanstack/react-table';
-import { ArrowUpDown, MoreHorizontal, Settings } from 'lucide-react';
+import { ArrowUpDown, MoreHorizontal, Settings, PencilLine, Check, X, Loader2 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { toast } from 'react-hot-toast';
@@ -10,6 +11,7 @@ import { useRouter } from 'next/navigation';
 
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
+import { Input } from '@/components/ui/input';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -118,6 +120,93 @@ export const columns: ColumnDef<ProductWithCategory>[] = [
           Naziv
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
+      );
+    },
+    cell: ({ row }) => {
+      const product = row.original;
+      const [isEditing, setIsEditing] = React.useState(false);
+      const [value, setValue] = React.useState(product.name);
+      const [saving, setSaving] = React.useState(false);
+
+      const startEditing = () => {
+        setValue(product.name);
+        setIsEditing(true);
+      };
+
+      const cancelEditing = () => {
+        setValue(product.name);
+        setIsEditing(false);
+      };
+
+      const handleSave = async () => {
+        const nextValue = value.trim();
+        if (nextValue.length < 3) {
+          toast.error('Naziv mora imati najmanje 3 znaka.');
+          return;
+        }
+        if (nextValue === product.name) {
+          setIsEditing(false);
+          return;
+        }
+        setSaving(true);
+        try {
+          await axios.patch(`/api/products/${product.id}`, { name: nextValue });
+          product.name = nextValue;
+          setValue(nextValue);
+          setIsEditing(false);
+          toast.success('Naziv ažuriran.');
+        } catch (error) {
+          console.error('Error updating product name', error);
+          toast.error('Greška pri ažuriranju naziva.');
+        } finally {
+          setSaving(false);
+        }
+      };
+
+      if (isEditing) {
+        return (
+          <div className="flex items-center gap-2">
+            <Input
+              value={value}
+              onChange={(e) => setValue(e.target.value)}
+              disabled={saving}
+              className="h-9 w-48"
+              autoFocus
+            />
+            <Button
+              size="icon"
+              variant="ghost"
+              onClick={handleSave}
+              disabled={saving}
+              className="h-8 w-8 text-emerald-600"
+            >
+              {saving ? <Loader2 className="h-4 w-4 animate-spin" /> : <Check className="h-4 w-4" />}
+            </Button>
+            <Button
+              size="icon"
+              variant="ghost"
+              onClick={cancelEditing}
+              disabled={saving}
+              className="h-8 w-8 text-gray-500"
+            >
+              <X className="h-4 w-4" />
+            </Button>
+          </div>
+        );
+      }
+
+      return (
+        <div className="flex items-center gap-2">
+          <span className="font-medium text-gray-900 line-clamp-2 max-w-sm">{value}</span>
+          <Button
+            size="icon"
+            variant="ghost"
+            onClick={startEditing}
+            className="h-8 w-8 text-gray-500 hover:text-gray-900"
+          >
+            <PencilLine className="h-4 w-4" />
+          </Button>
+        </div>
       );
     },
   },

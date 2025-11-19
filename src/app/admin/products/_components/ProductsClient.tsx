@@ -18,6 +18,7 @@ export const ProductsClient = ({ categories }: ProductsClientProps) => {
   const [loading, setLoading] = useState(false);
   const [q, setQ] = useState<string>('');
   const [categoryId, setCategoryId] = useState<string>('');
+  const [inStockOnly, setInStockOnly] = useState<boolean>(false);
   const currentControllerRef = useRef<AbortController | null>(null);
 
   const baseParams = useMemo(() => {
@@ -38,7 +39,7 @@ export const ProductsClient = ({ categories }: ProductsClientProps) => {
     const params = new URLSearchParams(baseParams.toString());
     params.set('limit', String(PAGE_SIZE));
     params.set('page', String(targetPage));
-    params.set('includeOutOfStock', 'true');
+    params.set('includeOutOfStock', inStockOnly ? 'false' : 'true');
 
     const url = `/api/products?${params}`;
 
@@ -84,7 +85,7 @@ export const ProductsClient = ({ categories }: ProductsClientProps) => {
       mounted = false;
       if (currentControllerRef.current) currentControllerRef.current.abort();
     };
-  }, [baseParams.toString()]);
+  }, [baseParams.toString(), inStockOnly]);
 
   const onSearch = (query: string) => {
     setQ(query);
@@ -93,6 +94,11 @@ export const ProductsClient = ({ categories }: ProductsClientProps) => {
 
   const onCategoryChange = (id: string) => {
     setCategoryId(id);
+    setPage(1);
+  };
+
+  const onInStockChange = (value: boolean) => {
+    setInStockOnly(value);
     setPage(1);
   };
 
@@ -115,6 +121,8 @@ export const ProductsClient = ({ categories }: ProductsClientProps) => {
       categories={categories}
       onSearch={onSearch}
       onCategoryChange={onCategoryChange}
+      inStockOnly={inStockOnly}
+      onInStockChange={onInStockChange}
       initialLoading={loading}
       page={page}
       totalPages={totalPages}
