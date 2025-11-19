@@ -28,6 +28,22 @@ import DafIcon from '@/components/icons/daf';
 import IvecoIcon from '@/components/icons/iveco';
 import RenaultIcon from '@/components/icons/renault';
 import MiniIcon from '@/components/icons/mini';
+import AlfaromeoIcon from '@/components/icons/alfaromeo';
+import ChevroletIcon from '@/components/icons/chevrolet';
+import DaciaIcon from '@/components/icons/dacia';
+import DaewooIcon from '@/components/icons/daewoo';
+import FiatIcon from '@/components/icons/fiat';
+import HondaIcon from '@/components/icons/honda';
+import HyundaiIcon from '@/components/icons/hyundai';
+import JaguarIcon from '@/components/icons/jaguar';
+import LanciaIcon from '@/components/icons/lancia';
+import LandRoverIcon from '@/components/icons/landrover';
+import MazdaIcon from '@/components/icons/mazda';
+import MitsubishiIcon from '@/components/icons/mitsubishi';
+import NissanIcon from '@/components/icons/nissan';
+import PorscheIcon from '@/components/icons/porsche';
+import SmartIcon from '@/components/icons/smart';
+import ToyotaIcon from '@/components/icons/toyota';
 
 const EngineIcon = ({ className = 'h-4 w-4 text-primary' }: { className?: string }) => (
   <svg
@@ -307,6 +323,22 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
       { match: (name: string) => name.includes('renault'), Icon: RenaultIcon },
       { match: (name: string) => name.includes('man'), Icon: ManIcon },
       { match: (name: string) => name.includes('mini'), Icon: MiniIcon },
+      { match: (name: string) => name.includes('alfa') || name.includes('romeo'), Icon: AlfaromeoIcon },
+      { match: (name: string) => name.includes('chevrolet'), Icon: ChevroletIcon },
+      { match: (name: string) => name.includes('dacia'), Icon: DaciaIcon },
+      { match: (name: string) => name.includes('daewoo'), Icon: DaewooIcon },
+      { match: (name: string) => name.includes('fiat'), Icon: FiatIcon },
+      { match: (name: string) => name.includes('honda'), Icon: HondaIcon },
+      { match: (name: string) => name.includes('hyundai'), Icon: HyundaiIcon },
+      { match: (name: string) => name.includes('jaguar'), Icon: JaguarIcon },
+      { match: (name: string) => name.includes('lancia'), Icon: LanciaIcon },
+      { match: (name: string) => name.includes('land') || name.includes('rover'), Icon: LandRoverIcon },
+      { match: (name: string) => name.includes('mazda'), Icon: MazdaIcon },
+      { match: (name: string) => name.includes('mitsubishi'), Icon: MitsubishiIcon },
+      { match: (name: string) => name.includes('nissan'), Icon: NissanIcon },
+      { match: (name: string) => name.includes('porsche'), Icon: PorscheIcon },
+      { match: (name: string) => name.includes('smart'), Icon: SmartIcon },
+      { match: (name: string) => name.includes('toyota'), Icon: ToyotaIcon },
     ],
     []
   );
