@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { toast } from 'react-hot-toast';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
-import { Car, Info, Settings, Tag, BookCopy, Copy } from "lucide-react";
+import { Car, Info, Settings, Tag, BookCopy, Copy, ChevronDown } from "lucide-react";
 import Link from "next/link";
 import { formatPrice, resolveProductImage } from "@/lib/utils";
 import { useEffect, useMemo, useState } from 'react';
@@ -27,6 +27,79 @@ import ManIcon from '@/components/icons/man';
 import DafIcon from '@/components/icons/daf';
 import IvecoIcon from '@/components/icons/iveco';
 import RenaultIcon from '@/components/icons/renault';
+import MiniIcon from '@/components/icons/mini';
+
+const EngineIcon = ({ className = 'h-4 w-4 text-primary' }: { className?: string }) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    className={className}
+    stroke="currentColor"
+    strokeWidth={1.6}
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M4 10h1.5v4H4a1 1 0 01-1-1v-2a1 1 0 011-1z" />
+    <path d="M19 9h1a1 1 0 011 1v6a1 1 0 01-1 1h-1l-2 3h-3l-1.5-2H9.5L8 19H5a2 2 0 01-2-2v-1.5h2.5v-5H3V9a2 2 0 012-2h3l2-2h4l2 2h3a2 2 0 012 2z" />
+    <path d="M12 9v6" />
+    <path d="M15 11v2" />
+  </svg>
+);
+
+const EngineListToggle = ({ entries, variant = 'table' }: { entries: string[]; variant?: 'table' | 'card' }) => {
+  const [expanded, setExpanded] = useState(false);
+
+  if (!entries.length) {
+    return <span className="text-slate-500 text-xs">Podaci nisu dostupni</span>;
+  }
+
+  const isTable = variant === 'table';
+  const buttonBase = 'inline-flex items-center gap-2 rounded-lg font-semibold transition-all border border-primary/15 bg-white/90 shadow-sm hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary/40';
+  const buttonSize = isTable ? 'text-xs px-3 py-1.5' : 'text-xs px-3 py-1.5 w-full justify-between';
+  const entryText = isTable ? 'text-sm' : 'text-xs';
+  const wrapperClass = isTable ? 'inline-flex items-center gap-2 flex-wrap' : 'space-y-1.5';
+  const listWrapperClass = isTable ? 'inline-flex flex-wrap items-center gap-2' : 'space-y-1.5';
+
+  const renderEntry = (entry: string) => {
+    const highlight = entry.includes('Univerzalni') || entry.includes('Svi motori');
+    if (highlight) {
+      return (
+        <Badge
+          variant="secondary"
+          className={`bg-gradient-to-r from-[#E85A28] to-[#FF6B35] text-white border-0 ${variant === 'table' ? 'text-[11px]' : 'text-[10px]'} px-2.5`}
+        >
+          {entry}
+        </Badge>
+      );
+    }
+    return <span>{entry}</span>;
+  };
+
+  return (
+    <div className={wrapperClass}>
+      <button
+        type="button"
+        onClick={() => setExpanded((prev) => !prev)}
+        className={`${buttonBase} ${buttonSize} bg-primary/5 text-primary hover:bg-primary/10`}
+        aria-expanded={expanded}
+      >
+        <EngineIcon className="h-3.5 w-3.5 text-primary" />
+        <span>{expanded ? 'Sakrij motore' : `Prikaži motore (${entries.length})`}</span>
+        <ChevronDown className={`h-4 w-4 transition-transform ${expanded ? 'rotate-180' : ''}`} />
+      </button>
+      {expanded && (
+        <div className={listWrapperClass}>
+          {entries.map((entry) => (
+            <div key={entry} className={`flex items-center gap-2 font-medium text-slate-900 ${entryText}`}>
+              {renderEntry(entry)}
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
 
 // Tip za fitment vozila
 type VehicleFitment = {
@@ -233,6 +306,7 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
       { match: (name: string) => name.includes('iveco'), Icon: IvecoIcon },
       { match: (name: string) => name.includes('renault'), Icon: RenaultIcon },
       { match: (name: string) => name.includes('man'), Icon: ManIcon },
+      { match: (name: string) => name.includes('mini'), Icon: MiniIcon },
     ],
     []
   );
@@ -514,7 +588,7 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
               {/* Add to Cart Button */}
               <button
                 onClick={handleAddToCart}
-                className="group flex-1 bg-gradient-to-r from-primary to-primary-dark text-white font-bold py-3.5 px-6 rounded-xl shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 flex items-center justify-center space-x-2"
+                className="group flex-1 bg-gradient-to-r from-[#081229] via-[#0f2443] to-[#143560] text-white font-bold py-3.5 px-6 rounded-xl shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 flex items-center justify-center space-x-2"
               >
                 <svg className="w-5 h-5 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-1.5 6M7 13l1.5-6M17 21a2 2 0 100-4 2 2 0 000 4zM9 21a2 2 0 100-4 2 2 0 000 4z" />
@@ -577,21 +651,21 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
           <TabsList className="grid w-full grid-cols-3 rounded-2xl p-3 bg-white/80 backdrop-blur-sm border border-white/60 shadow-lg h-auto">
             <TabsTrigger 
               value="compatibility"
-              className="flex items-center justify-center space-x-2 py-5 px-6 rounded-xl font-bold text-slate-700 data-[state=active]:bg-gradient-to-r data-[state=active]:from-primary data-[state=active]:to-primary-dark data-[state=active]:text-white data-[state=active]:shadow-lg transition-all duration-300"
+              className="flex items-center justify-center space-x-2 py-5 px-6 rounded-xl font-bold text-slate-700 data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#081229] data-[state=active]:via-[#0f2443] data-[state=active]:to-[#143560] data-[state=active]:text-white data-[state=active]:shadow-lg transition-all duration-300"
             >
               <Car className="h-5 w-5" />
               <span className="hidden sm:inline">Kompatibilnost</span>
             </TabsTrigger>
             <TabsTrigger 
               value="specifications"
-              className="flex items-center justify-center space-x-2 py-5 px-6 rounded-xl font-bold text-slate-700 data-[state=active]:bg-gradient-to-r data-[state=active]:from-primary data-[state=active]:to-primary-dark data-[state=active]:text-white data-[state=active]:shadow-lg transition-all duration-300"
+              className="flex items-center justify-center space-x-2 py-5 px-6 rounded-xl font-bold text-slate-700 data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#081229] data-[state=active]:via-[#0f2443] data-[state=active]:to-[#143560] data-[state=active]:text-white data-[state=active]:shadow-lg transition-all duration-300"
             >
               <Settings className="h-5 w-5" />
               <span className="hidden sm:inline">Specifikacije</span>
             </TabsTrigger>
             <TabsTrigger 
               value="references"
-              className="flex items-center justify-center space-x-2 py-5 px-6 rounded-xl font-bold text-slate-700 data-[state=active]:bg-gradient-to-r data-[state=active]:from-primary data-[state=active]:to-primary-dark data-[state=active]:text-white data-[state=active]:shadow-lg transition-all duration-300"
+              className="flex items-center justify-center space-x-2 py-5 px-6 rounded-xl font-bold text-slate-700 data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#081229] data-[state=active]:via-[#0f2443] data-[state=active]:to-[#143560] data-[state=active]:text-white data-[state=active]:shadow-lg transition-all duration-300"
             >
               <Tag className="h-5 w-5" />
               <span className="hidden sm:inline">Reference</span>
@@ -696,7 +770,7 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
                           <div className="flex items-center gap-4">
                             <div className="relative w-10 h-10 rounded-xl bg-gradient-to-br from-primary/10 to-primary-dark/10 flex items-center justify-center shadow-inner">
                               {BrandIcon ? (
-                                <BrandIcon size={28} color="#0f172a" />
+                                <BrandIcon size="28" color="#0f172a" />
                               ) : (
                                 <Car className="w-5 h-5 text-primary" />
                               )}
@@ -729,7 +803,7 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
                                   key={model.key}
                                   className="rounded-2xl border border-slate-200/70 bg-white/95 backdrop-blur-sm shadow-xl overflow-hidden"
                                 >
-                                  <div className="px-6 py-4 bg-gradient-to-r from-primary/90 via-primary to-primary-dark text-white flex items-center justify-between">
+                                  <div className="px-6 py-4 bg-gradient-to-r from-[#081229] via-[#0f2443] to-[#143560] text-white flex items-center justify-between">
                                     <div className="text-lg font-semibold tracking-wide uppercase">
                                       {model.modelName}
                                     </div>
@@ -741,10 +815,9 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
                                     <table className="min-w-full text-sm">
                                       <thead className="bg-slate-50 text-slate-700">
                                         <tr>
-                                          <th className="text-left px-6 py-3 font-semibold w-[28%]">Generacija</th>
-                                          <th className="text-left px-6 py-3 font-semibold w-[18%]">Period</th>
-                                          <th className="text-left px-6 py-3 font-semibold w-[30%]">Motori</th>
-                                          <th className="text-left px-6 py-3 font-semibold w-[24%]">Detalji</th>
+                                          <th className="text-left px-6 py-3 font-semibold w-[34%]">Generacija</th>
+                                          <th className="text-left px-6 py-3 font-semibold w-[22%]">Period</th>
+                                          <th className="text-left px-6 py-3 font-semibold">Motori</th>
                                         </tr>
                                       </thead>
                                       <tbody className="divide-y divide-slate-200/60">
@@ -759,30 +832,7 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
                                               </span>
                                             </td>
                                             <td className="px-6 py-4">
-                                              <div className="space-y-1.5">
-                                                {generation.engines.map((entry) => (
-                                                  <div key={entry} className="text-slate-900 font-medium flex items-center gap-2">
-                                                    {!entry.includes('Univerzalni') && !entry.includes('Svi motori') ? (
-                                                      <span>{entry}</span>
-                                                    ) : (
-                                                      <Badge variant="secondary" className="bg-gradient-to-r from-[#E85A28] to-[#FF6B35] text-white border-0">{entry}</Badge>
-                                                    )}
-                                                  </div>
-                                                ))}
-                                              </div>
-                                            </td>
-                                            <td className="px-6 py-4 text-xs text-slate-600">
-                                              <div className="space-y-1.5">
-                                                <div>Karoserija: <span className="font-semibold text-slate-800">{generation.bodySummary}</span></div>
-                                                <div>Pozicija: <span className="font-semibold text-slate-800">{generation.positionSummary}</span></div>
-                                                {generation.notes.length > 0 && (
-                                                  <div className="pt-1 space-y-1">
-                                                    {generation.notes.map((note) => (
-                                                      <div key={note} className="italic text-slate-500">{note}</div>
-                                                    ))}
-                                                  </div>
-                                                )}
-                                              </div>
+                                              <EngineListToggle entries={generation.engines} variant="table" />
                                             </td>
                                           </tr>
                                         ))}
@@ -799,7 +849,7 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
                                   key={model.key}
                                   className="rounded-2xl border border-white/50 bg-gradient-to-br from-white/95 via-white to-white/80 shadow-xl"
                                 >
-                                  <div className="px-4 py-3 bg-primary text-white rounded-t-2xl flex items-center justify-between">
+                                  <div className="px-4 py-3 bg-gradient-to-r from-[#081229] via-[#0f2443] to-[#143560] text-white rounded-t-2xl flex items-center justify-between">
                                     <h4 className="text-sm font-bold uppercase tracking-wide">{model.modelName}</h4>
                                     <span className="text-[10px] font-medium bg-white/20 px-2 py-0.5 rounded-full">
                                       {model.generations.length} {model.generations.length === 1 ? 'generacija' : 'generacije'}
@@ -818,18 +868,8 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
                                         </div>
                                         <div className="mt-3 space-y-2 text-xs">
                                           <div>
-                                            <span className="text-slate-500 block mb-1 font-semibold">Motori:</span>
-                                            <div className="space-y-1">
-                                              {generation.engines.map((entry) => (
-                                                <div key={entry} className="flex items-center gap-2 text-slate-900 font-medium">
-                                                  {!entry.includes('Univerzalni') && !entry.includes('Svi motori') ? (
-                                                    <span>{entry}</span>
-                                                  ) : (
-                                                    <Badge variant="secondary" className="bg-gradient-to-r from-[#E85A28] to-[#FF6B35] text-white border-0 text-[10px]">{entry}</Badge>
-                                                  )}
-                                                </div>
-                                              ))}
-                                            </div>
+                                            <span className="text-slate-500 block mb-2 font-semibold">Motori:</span>
+                                            <EngineListToggle entries={generation.engines} variant="card" />
                                           </div>
                                           <div className="flex justify-between">
                                             <span className="text-slate-500">Karoserija:</span>

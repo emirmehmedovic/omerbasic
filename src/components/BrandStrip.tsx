@@ -16,6 +16,23 @@ import Opel from "@/components/icons/opel";
 import Citroen from "@/components/icons/citroen";
 import Kia from "@/components/icons/kia";
 import Peugeot from "@/components/icons/peugeot";
+import Alfaromeo from "@/components/icons/alfaromeo";
+import Chevrolet from "@/components/icons/chevrolet";
+import Dacia from "@/components/icons/dacia";
+import Daewoo from "@/components/icons/daewoo";
+import Fiat from "@/components/icons/fiat";
+import Honda from "@/components/icons/honda";
+import Hyundai from "@/components/icons/hyundai";
+import Jaguar from "@/components/icons/jaguar";
+import Lancia from "@/components/icons/lancia";
+import LandRover from "@/components/icons/landrover";
+import Mazda from "@/components/icons/mazda";
+import Mini from "@/components/icons/mini";
+import Mitsubishi from "@/components/icons/mitsubishi";
+import Nissan from "@/components/icons/nissan";
+import Porsche from "@/components/icons/porsche";
+import Smart from "@/components/icons/smart";
+import Toyota from "@/components/icons/toyota";
 
 // Types
 type VehicleBrand = { id: string; name: string };
@@ -77,6 +94,23 @@ export default function BrandStrip({
       { key: "citroen", label: "Citroën", Icon: Citroen },
       { key: "volvo", label: "Volvo", Icon: Volvo },
       { key: "kia", label: "Kia", Icon: Kia },
+      { key: "alfaromeo", label: "Alfa Romeo", Icon: Alfaromeo },
+      { key: "chevrolet", label: "Chevrolet", Icon: Chevrolet },
+      { key: "dacia", label: "Dacia", Icon: Dacia },
+      { key: "daewoo", label: "Daewoo", Icon: Daewoo },
+      { key: "fiat", label: "Fiat", Icon: Fiat },
+      { key: "honda", label: "Honda", Icon: Honda },
+      { key: "hyundai", label: "Hyundai", Icon: Hyundai },
+      { key: "jaguar", label: "Jaguar", Icon: Jaguar },
+      { key: "lancia", label: "Lancia", Icon: Lancia },
+      { key: "land rover", label: "Land Rover", Icon: LandRover },
+      { key: "mazda", label: "Mazda", Icon: Mazda },
+      { key: "mini", label: "Mini", Icon: Mini },
+      { key: "mitsubishi", label: "Mitsubishi", Icon: Mitsubishi },
+      { key: "nissan", label: "Nissan", Icon: Nissan },
+      { key: "porsche", label: "Porsche", Icon: Porsche },
+      { key: "smart", label: "Smart", Icon: Smart },
+      { key: "toyota", label: "Toyota", Icon: Toyota },
     ],
     []
   );
@@ -211,7 +245,7 @@ export default function BrandStrip({
                 isDisabled && "opacity-40 cursor-not-allowed"
               )}
             >
-              <Icon size={24} color="#fff" />
+              <Icon size="24" color="#fff" />
               <span className="text-sm leading-none">{label}</span>
             </button>
           );
