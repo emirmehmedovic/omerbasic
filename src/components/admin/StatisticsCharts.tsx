@@ -14,6 +14,7 @@ export interface SalesByDate {
   date: string;
   sales: number;
   revenue: number;
+  [key: string]: string | number;
 }
 
 export interface TopProduct {
@@ -22,12 +23,14 @@ export interface TopProduct {
   category: string;
   quantity: number;
   revenue: number;
+  [key: string]: string | number;
 }
 
 export interface CategoryStat {
   name: string;
   sales: number;
   revenue: number;
+  [key: string]: string | number;
 }
 
 export interface B2BUserStat {
@@ -36,24 +39,28 @@ export interface B2BUserStat {
   totalOrders: number;
   totalSpent: number;
   lastOrderDate: Date | null;
+  [key: string]: string | number | Date | null;
 }
 
 export interface MonthlySale {
   name: string;
   sales: number;
   revenue: number;
+  [key: string]: string | number;
 }
 
 export interface DayOfWeekStat {
   name: string;
   sales: number;
   revenue: number;
+  [key: string]: string | number;
 }
 
 export interface TimeOfDayStat {
   name: string;
   sales: number;
   revenue: number;
+  [key: string]: string | number;
 }
 
 export interface InventoryItem {
@@ -62,6 +69,7 @@ export interface InventoryItem {
   category: string;
   stock: number;
   value: number;
+  [key: string]: string | number;
 }
 
 interface StatisticsChartsProps {
