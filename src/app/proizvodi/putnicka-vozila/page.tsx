@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   title: 'Autodijelovi za putnička vozila – Tešanj, BiH | TP Omerbašić',
   description:
     'Autodijelovi za putnička vozila u Tešnju i Jelahu – veliki lager, brza dostava širom BiH i stručna podrška. TP Omerbašić, Rosulje bb, Jelah.',
+  alternates: {
+    canonical: '/proizvodi/putnicka-vozila',
+  },
 };
 
 export default async function PassengerCarsHubPage() {

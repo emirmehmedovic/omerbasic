@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   title: 'ADR oprema za prijevoz opasnih materija – Tešanj, BiH | TP Omerbašić',
   description:
     'ADR oprema za prijevoz opasnih materija – trokutovi, prsluci, oznake, ploče i dodatna sigurnosna oprema uz stručnu podršku i isporuku širom BiH.',
+  alternates: {
+    canonical: '/proizvodi/adr-oprema',
+  },
 };
 
 export default async function AdrEquipmentHubPage() {

@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: 'Ulja i maziva za putnička i teretna vozila – TP Omerbašić',
   description:
     'Motorna ulja, mjenjačka ulja, hidraulična ulja i maziva za putnička i teretna vozila. TP Omerbašić – snabdijevanje uljima i mazivima za Tešanj, Jelah i cijelu BiH.',
+  alternates: {
+    canonical: '/ulja-i-maziva',
+  },
 };
 
 export default function UljaIMazivaPage() {

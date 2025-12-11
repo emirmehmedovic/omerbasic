@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: 'Oprema za autopraonice – rješenja i snabdijevanje | TP Omerbašić',
   description:
     'Oprema za autopraonice, kemija i potrošni materijal – TP Omerbašić pomaže novim i postojećim autopraonicama u odabiru opreme i snabdijevanju.',
+  alternates: {
+    canonical: '/oprema-za-autopraonice',
+  },
 };
 
 export default function OpremaZaAutopraoniceServicePage() {

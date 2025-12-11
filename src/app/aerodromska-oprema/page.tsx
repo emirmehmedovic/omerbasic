@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: 'Aerodromska oprema i dijelovi za aerodromska vozila – BiH | TP Omerbašić',
   description:
     'Dijelovi za aerodromska vozila i aerodromsku opremu – TP Omerbašić, Tešanj/Jelah. Podrška za ground handling, tankere, vučna i specijalna vozila, sa fokusom na teretna vozila.',
+  alternates: {
+    canonical: '/aerodromska-oprema',
+  },
 };
 
 export default function AerodromskaOpremaPage() {

@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: 'Autodijelovi Tešanj – TP Omerbašić | Prodavnica auto dijelova Jelah',
   description:
     'Autodijelovi Tešanj i Jelah – TP Omerbašić, Rosulje bb, Jelah. Veliki lager, brza dostava širom BiH i stručna podrška za putnička i teretna vozila.',
+  alternates: {
+    canonical: '/autodijelovi-tesanj',
+  },
 };
 
 export default function AutodijeloviTesanjPage() {

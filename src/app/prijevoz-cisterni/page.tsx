@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: 'Prijevoz cisterni i opasnih materija – Tešanj, BiH | TP Omerbašić',
   description:
     'Prijevoz cisterni i opasnih materija u skladu sa ADR propisima. TP Omerbašić – partner za siguran transport cisterni u Tešnju, Jelahu i širom BiH.',
+  alternates: {
+    canonical: '/prijevoz-cisterni',
+  },
 };
 
 export default function TankerTransportPage() {

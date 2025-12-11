@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: 'Autodijelovi Jelah – TP Omerbašić | Prodavnica auto dijelova Rosulje bb',
   description:
     'Autodijelovi Jelah – TP Omerbašić, Rosulje bb. Lokalna prodavnica autodijelova za putnička i teretna vozila, ADR opremu i opremu za autopraonice.',
+  alternates: {
+    canonical: '/autodijelovi-jelah',
+  },
 };
 
 export default function AutodijeloviJelahPage() {

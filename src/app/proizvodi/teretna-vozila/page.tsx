@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   title: 'Kamionski dijelovi i autodijelovi za teretna vozila – Tešanj, BiH | TP Omerbašić',
   description:
     'Kamionski dijelovi i autodijelovi za teretna vozila u Tešnju i Jelahu – veliki lager, brza dostava širom BiH i stručna podrška za transportne firme i servise.',
+  alternates: {
+    canonical: '/proizvodi/teretna-vozila',
+  },
 };
 
 export default async function TruckHubPage() {

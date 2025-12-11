@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   title: 'Oprema za autopraonice i kemija – Tešanj, BiH | TP Omerbašić',
   description:
     'Oprema za autopraonice, usisivači, pumpe, dodatna oprema i kemija za pranje vozila. Podrška za praonice u Tešnju, Jelahu i širom BiH.',
+  alternates: {
+    canonical: '/proizvodi/oprema-za-autopraonice',
+  },
 };
 
 export default async function CarWashEquipmentHubPage() {

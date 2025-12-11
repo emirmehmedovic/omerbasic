@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: 'Prijevoz vozila – transport automobila Tešanj, BiH | TP Omerbašić',
   description:
     'Prijevoz vozila i transport automobila sa područja Tešnja i Jelaha širom BiH. Siguran utovar, osiguranje i pouzdan partner za šlepanje i transport vozila.',
+  alternates: {
+    canonical: '/prijevoz-vozila',
+  },
 };
 
 export default function VehicleTransportPage() {

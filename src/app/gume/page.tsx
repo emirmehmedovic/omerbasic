@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: 'Gume za putnička i teretna vozila – TP Omerbašić',
   description:
     'Ljetne, zimske i cjelogodišnje gume za putnička i teretna vozila. TP Omerbašić pomaže pri odabiru dimenzija i specifikacija guma za vaša vozila.',
+  alternates: {
+    canonical: '/gume',
+  },
 };
 
 export default function GumePage() {

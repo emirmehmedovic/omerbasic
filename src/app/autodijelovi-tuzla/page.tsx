@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: 'Autodijelovi Tuzla – dostava iz Tešnja/Jelaha | TP Omerbašić',
   description:
     'Autodijelovi Tuzla – TP Omerbašić iz Jelaha (Tešanj) isporučuje dijelove za putnička i teretna vozila u Tuzlu i okolinu. Veliki lager i brza dostava širom BiH.',
+  alternates: {
+    canonical: '/autodijelovi-tuzla',
+  },
 };
 
 export default function AutodijeloviTuzlaPage() {
