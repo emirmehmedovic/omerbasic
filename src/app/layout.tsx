@@ -7,7 +7,7 @@ import { CartProvider } from '@/context/CartContext';
 import { Toaster } from 'react-hot-toast';
 import { ConditionalFooter } from '@/components/ConditionalFooter';
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://example.com';
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://tpomerbasic.ba';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
