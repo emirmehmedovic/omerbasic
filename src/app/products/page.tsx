@@ -48,9 +48,9 @@ const getFilterData = unstable_cache(
 );
 
 export const metadata: Metadata = {
-  title: 'Autodijelovi – Putnička i Teretna vozila, ADR, Autopraonice',
+  title: 'Autodijelovi Tešanj – putnička i teretna vozila, ADR, autopraonice',
   description:
-    'TP Omerbašić – Autodijelovi za putnička i teretna vozila, ADR oprema i oprema za autopraonice. Rosulje bb, Jelah. Pozovite: 032/666-658, 061-962-359. Radno vrijeme: 08:00–18:00.',
+    'TP Omerbašić – autodijelovi za putnička i teretna vozila, kamione, ADR opremu i opremu za autopraonice. Rosulje bb, Jelah (Tešanj). Dostava širom BiH. Pozovite: 032/666-658, 061-962-359. Radno vrijeme: 08:00–18:00.',
 };
 
 function ProductsLoading() {

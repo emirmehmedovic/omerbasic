@@ -102,13 +102,31 @@ export function resolveProductImage(
 ) {
   const placeholder = 'https://placehold.co/600x600.png?text=Slika+nije+dostupna';
   const candidate = productImageUrl || categoryImageUrl;
+
+  // Nema slike ni na proizvodu ni na kategoriji → placeholder
   if (!candidate) return placeholder;
+
+  // Već je root-relative putanja (npr. "/images/foo.jpg")
   if (candidate.startsWith('/')) return candidate;
+
+  // Protokol-relative URL ("//domain.com/..."), prepusti ga Next/Image konfiguraciji
+  if (candidate.startsWith('//')) return candidate;
+
+  // Relativna putanja bez protokola i bez vodeće kose crte (npr. "uploads/foo.jpg")
+  if (!candidate.includes('://')) {
+    return candidate.startsWith('/') ? candidate : `/${candidate}`;
+  }
+
+  // Apsolutni URL – prihvati ga, osim ako baš želimo filtrirati neke domene
   try {
-    const hostname = new URL(candidate).hostname;
-    if (hostname.includes('google.com')) return placeholder;
+    // Ako bude potrebe, ovdje se mogu dodati posebni filteri po hostu
+    // (npr. izbjegavanje data URL-ova ili određenih CDN-ova)
+    // Trenutno samo validiramo da je URL sintaktički ispravan.
+    // eslint-disable-next-line no-new
+    new URL(candidate);
     return candidate;
   } catch {
-    return placeholder;
+    // Ako je URL nevalidan, vrati ga kao relativnu putanju
+    return candidate.startsWith('/') ? candidate : `/${candidate}`;
   }
 }

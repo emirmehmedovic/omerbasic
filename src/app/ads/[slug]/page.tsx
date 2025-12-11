@@ -1,6 +1,15 @@
+import type { Metadata } from 'next';
 import { db } from '@/lib/db';
 
 export const revalidate = 0;
+
+export const metadata: Metadata = {
+  title: 'Reklamni ekran | TP Omerbašić',
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
 interface Props {
   params: Promise<{ slug: string }>;

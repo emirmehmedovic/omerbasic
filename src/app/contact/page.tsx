@@ -1,4 +1,11 @@
+import type { Metadata } from 'next';
 import { ContactForm } from '@/components/ContactForm';
+
+export const metadata: Metadata = {
+  title: 'Kontakt | TP Omerbašić – Autodijelovi Tešanj',
+  description:
+    'Kontakt TP Omerbašić – autodijelovi za putnička i teretna vozila, kamione, ADR opremu i opremu za autopraonice. Rosulje bb, Jelah (Tešanj). Telefon: 032/666-658, 061-962-359. Radno vrijeme: 08:00–18:00.',
+};
 
 export default function ContactPage() {
   return (

@@ -23,6 +23,20 @@ export function CategoriesStrip({ categories }: { categories: CategoryLite[] }) 
     return null;
   };
 
+  const getCategoryLink = (category: CategoryLite) => {
+    const nameLc = category.name.toLowerCase();
+    if (nameLc.includes('putnič') || nameLc.includes('putnick')) {
+      return '/proizvodi/putnicka-vozila';
+    } else if (nameLc.includes('teret')) {
+      return '/proizvodi/teretna-vozila';
+    } else if (nameLc.includes('adr')) {
+      return '/proizvodi/adr-oprema';
+    } else if (nameLc.includes('autopraon')) {
+      return '/proizvodi/oprema-za-autopraonice';
+    }
+    return `/products?categoryId=${category.id}`;
+  };
+
   return (
     <section className="relative mb-16">
       <div className="relative rounded-3xl p-6 sm:p-8 lg:p-12 bg-gradient-to-br from-slate-50 via-slate-100 to-slate-200 shadow-xl overflow-hidden">
@@ -55,7 +69,7 @@ export function CategoriesStrip({ categories }: { categories: CategoryLite[] }) 
               return (
                 <Link
                   key={category.id}
-                  href={`/products?categoryId=${category.id}`}
+                  href={getCategoryLink(category)}
                   className="group relative isolate overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:scale-[1.02] h-48 sm:h-56"
                 >
                   {/* Background Image */}
@@ -64,6 +78,7 @@ export function CategoriesStrip({ categories }: { categories: CategoryLite[] }) 
                       src={categoryImage}
                       alt={category.name}
                       fill
+                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 25vw"
                       className="object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                   )}

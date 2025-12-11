@@ -22,6 +22,7 @@
     "move:products": "tsx scripts/move-products-to-categories.ts",
     "update:stock": "tsx scripts/update-stock-from-csv.ts",
     "update:stock:fast": "tsx scripts/update-stock-ultra-fast.ts",
+    "products:generate-slugs": "tsx scripts/generate-product-slugs.ts",
     "postinstall": "prisma generate"
   },
   "prisma": {

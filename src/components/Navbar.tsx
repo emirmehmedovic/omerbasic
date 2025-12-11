@@ -66,7 +66,14 @@ export function Navbar() {
           {/* Logo i branding */}
           <div className="flex items-center">
             <Link href="/" className="flex items-center space-x-2">
-              <Image src="/images/omerbasic.png" alt="Omerbasic Auto Dijelovi Logo" width={180} height={40} />
+              <Image
+                src="/images/omerbasic.png"
+                alt="Omerbasic Auto Dijelovi Logo"
+                width={180}
+                height={40}
+                priority
+                style={{ width: 'auto', height: 'auto' }}
+              />
             </Link>
           </div>
 

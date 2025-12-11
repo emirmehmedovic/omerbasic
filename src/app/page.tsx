@@ -36,17 +36,13 @@ const getMainCategories = unstable_cache(
   { tags: ['categories'] }
 );
 
-const getLatestProducts = unstable_cache(
-  async () => {
-    return db.product.findMany({
-      take: 50,
-      orderBy: { createdAt: 'desc' },
-      include: { category: true },
-    });
-  },
-  ['home-latest-products'],
-  { tags: ['products'] }
-);
+async function getLatestProducts() {
+  return db.product.findMany({
+    take: 50,
+    orderBy: { createdAt: 'desc' },
+    include: { category: true },
+  });
+}
 
 // legacy homepage-only components removed in favor of new Home/* components
 

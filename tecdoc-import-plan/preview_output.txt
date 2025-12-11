@@ -1,0 +1,743 @@
+✓ Povezan na bazu
+
+================================================================================
+🔗 SMART CROSS-LINK PRODUCTS BY ENGINE CODE
+================================================================================
+⚠️  DRY-RUN MODE - Bez stvarnih promjena u bazi
+
+
+📋 Obrađujem 10 proizvod(a)
+
+📦 Proizvod: 3M POLIR PASTA FAST CUT EXTREME ZELENI ČEP (76343)
+================================================================================
+  ✓ Pronađeno 35 povezanih vozila
+  ✓ Engine kodovi: A14, CA16S, CA18D, CA18DE, CA20S, GA14DE, GA16DS, HR12DE, HR15DE, K4M, LD20, MRA8DE, NA20P, QG16DE, QG18DE, QR25DE, RB25DE, SR20DE, SR20DET, VG20E, VG30DET, VG30E, VQ20DE, VQ25DD, VQ25DE, VQ30DET, YD22DDT, Z24i
+  ✓ Brendovi: Nissan
+
+  🔍 Tražim engine kod: A14
+    ℹ Nema drugih brendova sa engine kodom A14
+
+  🔍 Tražim engine kod: CA16S
+    ℹ Nema drugih brendova sa engine kodom CA16S
+
+  🔍 Tražim engine kod: CA18D
+    ℹ Nema drugih brendova sa engine kodom CA18D
+
+  🔍 Tražim engine kod: CA18DE
+    ℹ Nema drugih brendova sa engine kodom CA18DE
+
+  🔍 Tražim engine kod: CA20S
+    ℹ Nema drugih brendova sa engine kodom CA20S
+
+  🔍 Tražim engine kod: GA14DE
+    ℹ Nema drugih brendova sa engine kodom GA14DE
+
+  🔍 Tražim engine kod: GA16DS
+    ℹ Nema drugih brendova sa engine kodom GA16DS
+
+  🔍 Tražim engine kod: HR12DE
+    ℹ Nema drugih brendova sa engine kodom HR12DE
+
+  🔍 Tražim engine kod: HR15DE
+    ✓ Pronađeno 2 generacija u drugim brendovima
+      ✓ (DRY) Kreirano: Mazda FAMILIA VAN FAMILIA VAN (Y12)
+      ✓ (DRY) Kreirano: Mitsubishi LANCER VIII Cargo LANCER VIII Cargo (CV_)
+
+  🔍 Tražim engine kod: K4M
+    ℹ Nema drugih brendova sa engine kodom K4M
+
+  🔍 Tražim engine kod: LD20
+    ℹ Nema drugih brendova sa engine kodom LD20
+
+  🔍 Tražim engine kod: MRA8DE
+    ℹ Nema drugih brendova sa engine kodom MRA8DE
+
+  🔍 Tražim engine kod: NA20P
+    ℹ Nema drugih brendova sa engine kodom NA20P
+
+  🔍 Tražim engine kod: QG16DE
+    ℹ Nema drugih brendova sa engine kodom QG16DE
+
+  🔍 Tražim engine kod: QG18DE
+    ℹ Nema drugih brendova sa engine kodom QG18DE
+
+  🔍 Tražim engine kod: QR25DE
+    ℹ Nema drugih brendova sa engine kodom QR25DE
+
+  🔍 Tražim engine kod: RB25DE
+    ℹ Nema drugih brendova sa engine kodom RB25DE
+
+  🔍 Tražim engine kod: SR20DE
+    ℹ Nema drugih brendova sa engine kodom SR20DE
+
+  🔍 Tražim engine kod: SR20DET
+    ℹ Nema drugih brendova sa engine kodom SR20DET
+
+  🔍 Tražim engine kod: VG20E
+    ℹ Nema drugih brendova sa engine kodom VG20E
+
+  🔍 Tražim engine kod: VG30DET
+    ℹ Nema drugih brendova sa engine kodom VG30DET
+
+  🔍 Tražim engine kod: VG30E
+    ℹ Nema drugih brendova sa engine kodom VG30E
+
+  🔍 Tražim engine kod: VQ20DE
+    ℹ Nema drugih brendova sa engine kodom VQ20DE
+
+  🔍 Tražim engine kod: VQ25DD
+    ℹ Nema drugih brendova sa engine kodom VQ25DD
+
+  🔍 Tražim engine kod: VQ25DE
+    ℹ Nema drugih brendova sa engine kodom VQ25DE
+
+  🔍 Tražim engine kod: VQ30DET
+    ℹ Nema drugih brendova sa engine kodom VQ30DET
+
+  🔍 Tražim engine kod: YD22DDT
+    ℹ Nema drugih brendova sa engine kodom YD22DDT
+
+  🔍 Tražim engine kod: Z24i
+    ℹ Nema drugih brendova sa engine kodom Z24i
+
+📦 Proizvod: 4SFL 20 3/4 -38.1-45 (10656)
+================================================================================
+  ✓ Pronađeno 33 povezanih vozila
+  ✓ Engine kodovi: A14, B4D 401, C2J, CA16S, CA18D, CA18DE, E7J 262, F8Q 636, GA14DE, GA16DS, H4B 405, HR12DE, K4M, K7M 800, K7M 812, K7M 828, K9K 792, K9K 796, KA24E, LD20, QG16DE, QG18DE, SR20DE, SR20DET, VG30DET, VG30E, YD22DDT, Z24i
+  ✓ Brendovi: Dacia, Nissan
+
+  🔍 Tražim engine kod: A14
+    ℹ Nema drugih brendova sa engine kodom A14
+
+  🔍 Tražim engine kod: B4D 401
+    ✓ Pronađeno 1 generacija u drugim brendovima
+      ✓ (DRY) Kreirano: Renault LOGAN II LOGAN II (L8_)
+
+  🔍 Tražim engine kod: C2J
+    ℹ Nema drugih brendova sa engine kodom C2J
+
+  🔍 Tražim engine kod: CA16S
+    ℹ Nema drugih brendova sa engine kodom CA16S
+
+  🔍 Tražim engine kod: CA18D
+    ℹ Nema drugih brendova sa engine kodom CA18D
+
+  🔍 Tražim engine kod: CA18DE
+    ℹ Nema drugih brendova sa engine kodom CA18DE
+
+  🔍 Tražim engine kod: E7J 262
+    ℹ Nema drugih brendova sa engine kodom E7J 262
+
+  🔍 Tražim engine kod: F8Q 636
+    ℹ Nema drugih brendova sa engine kodom F8Q 636
+
+  🔍 Tražim engine kod: GA14DE
+    ℹ Nema drugih brendova sa engine kodom GA14DE
+
+  🔍 Tražim engine kod: GA16DS
+    ℹ Nema drugih brendova sa engine kodom GA16DS
+
+  🔍 Tražim engine kod: H4B 405
+    ℹ Nema drugih brendova sa engine kodom H4B 405
+
+  🔍 Tražim engine kod: HR12DE
+    ℹ Nema drugih brendova sa engine kodom HR12DE
+
+  🔍 Tražim engine kod: K4M
+    ℹ Nema drugih brendova sa engine kodom K4M
+
+  🔍 Tražim engine kod: K7M 800
+    ℹ Nema drugih brendova sa engine kodom K7M 800
+
+  🔍 Tražim engine kod: K7M 812
+    ✓ Pronađeno 5 generacija u drugim brendovima
+      ✓ (DRY) Kreirano: Renault DOKKER DOKKER
+      ✓ (DRY) Kreirano: Renault LOGAN II LOGAN II (L8_)
+      ✓ (DRY) Kreirano: Renault LOGAN II Estate LOGAN II Estate (K8_)
+      ✓ (DRY) Kreirano: Renault SANDERO/STEPWAY II B8 (_)
+      ✓ (DRY) Kreirano: Renault THALIA III THALIA III (L8_)
+
+  🔍 Tražim engine kod: K7M 828
+    ℹ Nema drugih brendova sa engine kodom K7M 828
+
+  🔍 Tražim engine kod: K9K 792
+    ✓ Pronađeno 3 generacija u drugim brendovima
+      ✓ (DRY) Kreirano: Renault LOGAN EXPRESS LOGAN EXPRESS (US_)
+      ✓ (DRY) Kreirano: Renault LOGAN I LOGAN I (LS_)
+      ✓ (DRY) Kreirano: Renault LOGAN I Estate LOGAN I Estate (KS_)
+
+  🔍 Tražim engine kod: K9K 796
+    ✓ Pronađeno 3 generacija u drugim brendovima
+      ✓ (DRY) Kreirano: Renault DUSTER DUSTER (HS_)
+      ✓ (DRY) Kreirano: Renault LOGAN I LOGAN I (LS_)
+      ✓ (DRY) Kreirano: Renault LOGAN I Estate LOGAN I Estate (KS_)
+
+  🔍 Tražim engine kod: KA24E
+    ✓ Pronađeno 1 generacija u drugim brendovima
+      ✓ (DRY) Kreirano: Ford MAVERICK MAVERICK (UDS, UNS)
+
+  🔍 Tražim engine kod: LD20
+    ℹ Nema drugih brendova sa engine kodom LD20
+
+  🔍 Tražim engine kod: QG16DE
+    ℹ Nema drugih brendova sa engine kodom QG16DE
+
+  🔍 Tražim engine kod: QG18DE
+    ℹ Nema drugih brendova sa engine kodom QG18DE
+
+  🔍 Tražim engine kod: SR20DE
+    ℹ Nema drugih brendova sa engine kodom SR20DE
+
+  🔍 Tražim engine kod: SR20DET
+    ℹ Nema drugih brendova sa engine kodom SR20DET
+
+  🔍 Tražim engine kod: VG30DET
+    ℹ Nema drugih brendova sa engine kodom VG30DET
+
+  🔍 Tražim engine kod: VG30E
+    ℹ Nema drugih brendova sa engine kodom VG30E
+
+  🔍 Tražim engine kod: YD22DDT
+    ℹ Nema drugih brendova sa engine kodom YD22DDT
+
+  🔍 Tražim engine kod: Z24i
+    ℹ Nema drugih brendova sa engine kodom Z24i
+
+📦 Proizvod: 5PK 1100 (64391)
+================================================================================
+  ✓ Pronađeno 16 povezanih vozila
+  ✓ Engine kodovi: C2J 757, C3G 720, E7J 711, F3N 723, F4R 790, G9T 712, H4M 735, J6R 712, J7T 770, K4M 746, K4M 850, K9K 608, K9K 628, K9K 872, R9M 452, Z7X 775
+  ✓ Brendovi: Renault
+
+  🔍 Tražim engine kod: C2J 757
+    ℹ Nema drugih brendova sa engine kodom C2J 757
+
+  🔍 Tražim engine kod: C3G 720
+    ℹ Nema drugih brendova sa engine kodom C3G 720
+
+  🔍 Tražim engine kod: E7J 711
+    ℹ Nema drugih brendova sa engine kodom E7J 711
+
+  🔍 Tražim engine kod: F3N 723
+    ℹ Nema drugih brendova sa engine kodom F3N 723
+
+  🔍 Tražim engine kod: F4R 790
+    ℹ Nema drugih brendova sa engine kodom F4R 790
+
+  🔍 Tražim engine kod: G9T 712
+    ℹ Nema drugih brendova sa engine kodom G9T 712
+
+  🔍 Tražim engine kod: H4M 735
+    ℹ Nema drugih brendova sa engine kodom H4M 735
+
+  🔍 Tražim engine kod: J6R 712
+    ℹ Nema drugih brendova sa engine kodom J6R 712
+
+  🔍 Tražim engine kod: J7T 770
+    ℹ Nema drugih brendova sa engine kodom J7T 770
+
+  🔍 Tražim engine kod: K4M 746
+    ℹ Nema drugih brendova sa engine kodom K4M 746
+
+  🔍 Tražim engine kod: K4M 850
+    ℹ Nema drugih brendova sa engine kodom K4M 850
+
+  🔍 Tražim engine kod: K9K 608
+    ✓ Pronađeno 3 generacija u drugim brendovima
+      ✓ (DRY) Kreirano: Nissan EVALIA Bus EVALIA Bus
+      ✓ (DRY) Kreirano: Nissan NOTE NOTE (E12)
+      ✓ (DRY) Kreirano: Nissan NV200 Box Body / Estate NV200 Box Body / Estate
+
+  🔍 Tražim engine kod: K9K 628
+    ✓ Pronađeno 3 generacija u drugim brendovima
+      ✓ (DRY) Kreirano: Nissan EVALIA Bus EVALIA Bus
+      ✓ (DRY) Kreirano: Nissan MICRA V MICRA V (K14)
+      ✓ (DRY) Kreirano: Nissan NV200 Box Body / Estate NV200 Box Body / Estate
+
+  🔍 Tražim engine kod: K9K 872
+    ℹ Nema drugih brendova sa engine kodom K9K 872
+
+  🔍 Tražim engine kod: R9M 452
+    ✓ Pronađeno 10 generacija u drugim brendovima
+      ✓ (DRY) Kreirano: Fiat TALENTO Box TALENTO Box (296_)
+      ✓ (DRY) Kreirano: Fiat TALENTO Box Body / Estate TALENTO Box Body / Estate (296_)
+      ✓ (DRY) Kreirano: Fiat TALENTO Bus TALENTO Bus (296_)
+      ✓ (DRY) Kreirano: Fiat TALENTO Platform/Chassis TALENTO Platform/Chassis (296_)
+      ✓ (DRY) Kreirano: Nissan NV300 Box NV300 Box (X82)
+      ✓ (DRY) Kreirano: Nissan NV300 Kombi NV300 Kombi (X82)
+      ✓ (DRY) Kreirano: Nissan NV300 Platform/Chassis NV300 Platform/Chassis (X82)
+      ✓ (DRY) Kreirano: Opel VIVARO B Box VIVARO B Box (X82)
+      ✓ (DRY) Kreirano: Opel VIVARO B Combi VIVARO B Combi (X82)
+      ✓ (DRY) Kreirano: Opel VIVARO B Platform/Chassis VIVARO B Platform/Chassis (X82)
+
+  🔍 Tražim engine kod: Z7X 775
+    ℹ Nema drugih brendova sa engine kodom Z7X 775
+
+📦 Proizvod: 5SFS 20 3/4 -41,3A (17448)
+================================================================================
+  ✓ Pronađeno 16 povezanih vozila
+  ✓ Engine kodovi: C2J 757, C3G 720, E7J 711, F3N 723, F4R 790, G9T 712, H4M 735, J6R 712, J7T 770, K4M 746, K4M 850, K9K 608, K9K 628, K9K 872, R9M 452, Z7X 775
+  ✓ Brendovi: Renault
+
+  🔍 Tražim engine kod: C2J 757
+    ℹ Nema drugih brendova sa engine kodom C2J 757
+
+  🔍 Tražim engine kod: C3G 720
+    ℹ Nema drugih brendova sa engine kodom C3G 720
+
+  🔍 Tražim engine kod: E7J 711
+    ℹ Nema drugih brendova sa engine kodom E7J 711
+
+  🔍 Tražim engine kod: F3N 723
+    ℹ Nema drugih brendova sa engine kodom F3N 723
+
+  🔍 Tražim engine kod: F4R 790
+    ℹ Nema drugih brendova sa engine kodom F4R 790
+
+  🔍 Tražim engine kod: G9T 712
+    ℹ Nema drugih brendova sa engine kodom G9T 712
+
+  🔍 Tražim engine kod: H4M 735
+    ℹ Nema drugih brendova sa engine kodom H4M 735
+
+  🔍 Tražim engine kod: J6R 712
+    ℹ Nema drugih brendova sa engine kodom J6R 712
+
+  🔍 Tražim engine kod: J7T 770
+    ℹ Nema drugih brendova sa engine kodom J7T 770
+
+  🔍 Tražim engine kod: K4M 746
+    ℹ Nema drugih brendova sa engine kodom K4M 746
+
+  🔍 Tražim engine kod: K4M 850
+    ℹ Nema drugih brendova sa engine kodom K4M 850
+
+  🔍 Tražim engine kod: K9K 608
+    ✓ Pronađeno 3 generacija u drugim brendovima
+      ✓ (DRY) Kreirano: Nissan EVALIA Bus EVALIA Bus
+      ✓ (DRY) Kreirano: Nissan NOTE NOTE (E12)
+      ✓ (DRY) Kreirano: Nissan NV200 Box Body / Estate NV200 Box Body / Estate
+
+  🔍 Tražim engine kod: K9K 628
+    ✓ Pronađeno 3 generacija u drugim brendovima
+      ✓ (DRY) Kreirano: Nissan EVALIA Bus EVALIA Bus
+      ✓ (DRY) Kreirano: Nissan MICRA V MICRA V (K14)
+      ✓ (DRY) Kreirano: Nissan NV200 Box Body / Estate NV200 Box Body / Estate
+
+  🔍 Tražim engine kod: K9K 872
+    ℹ Nema drugih brendova sa engine kodom K9K 872
+
+  🔍 Tražim engine kod: R9M 452
+    ✓ Pronađeno 10 generacija u drugim brendovima
+      ✓ (DRY) Kreirano: Fiat TALENTO Box TALENTO Box (296_)
+      ✓ (DRY) Kreirano: Fiat TALENTO Box Body / Estate TALENTO Box Body / Estate (296_)
+      ✓ (DRY) Kreirano: Fiat TALENTO Bus TALENTO Bus (296_)
+      ✓ (DRY) Kreirano: Fiat TALENTO Platform/Chassis TALENTO Platform/Chassis (296_)
+      ✓ (DRY) Kreirano: Nissan NV300 Box NV300 Box (X82)
+      ✓ (DRY) Kreirano: Nissan NV300 Kombi NV300 Kombi (X82)
+      ✓ (DRY) Kreirano: Nissan NV300 Platform/Chassis NV300 Platform/Chassis (X82)
+      ✓ (DRY) Kreirano: Opel VIVARO B Box VIVARO B Box (X82)
+      ✓ (DRY) Kreirano: Opel VIVARO B Combi VIVARO B Combi (X82)
+      ✓ (DRY) Kreirano: Opel VIVARO B Platform/Chassis VIVARO B Platform/Chassis (X82)
+
+  🔍 Tražim engine kod: Z7X 775
+    ℹ Nema drugih brendova sa engine kodom Z7X 775
+
+📦 Proizvod: ABS PRSTEN MERCEDES (55412)
+================================================================================
+  ✓ Pronađeno 8 povezanih vozila
+  ✓ Engine kodovi: 171A, 8HX (DV4TD), AHR (DW10FD), BHY (DV6FD), CDY (TU9M), D2C (XU92C), NFP (EC5), RFJ (EW10A)
+  ✓ Brendovi: Citroen
+
+  🔍 Tražim engine kod: 171A
+    ℹ Nema drugih brendova sa engine kodom 171A
+
+  🔍 Tražim engine kod: 8HX (DV4TD)
+    ✓ Pronađeno 6 generacija u drugim brendovima
+      ✓ (DRY) Kreirano: Peugeot 1007 1007 (KM_)
+      ✓ (DRY) Kreirano: Peugeot 206 Hatchback 206 Hatchback (2A/C)
+      ✓ (DRY) Kreirano: Peugeot 206 SW 206 SW (2E/K)
+      ✓ (DRY) Kreirano: Peugeot 206 Van 206 Van
+      ✓ (DRY) Kreirano: Peugeot 206+ 206+ (2L_, 2M_)
+      ✓ (DRY) Kreirano: Peugeot 307 307 (3A/C)
+
+  🔍 Tražim engine kod: AHR (DW10FD)
+    ✓ Pronađeno 2 generacija u drugim brendovima
+      ✓ (DRY) Kreirano: Peugeot 3008 MPV 3008 MPV (0U_)
+      ✓ (DRY) Kreirano: Peugeot 5008 5008 (0U_, 0E_)
+
+  🔍 Tražim engine kod: BHY (DV6FD)
+    ✓ Pronađeno 8 generacija u drugim brendovima
+      ✓ (DRY) Kreirano: Peugeot 2008 2008 (CU_)
+      ✓ (DRY) Kreirano: Peugeot 208 208 (CA_, CC_)
+      ✓ (DRY) Kreirano: Peugeot 3008 SUV 3008 SUV (M_)
+      ✓ (DRY) Kreirano: Peugeot 308 II 308 II
+      ✓ (DRY) Kreirano: Peugeot 308 SW II 308 SW II
+      ✓ (DRY) Kreirano: Peugeot 5008 II 5008 II
+      ✓ (DRY) Kreirano: Peugeot PARTNER Box PARTNER Box
+      ✓ (DRY) Kreirano: Peugeot PARTNER Tepee PARTNER Tepee
+
+  🔍 Tražim engine kod: CDY (TU9M)
+    ✓ Pronađeno 4 generacija u drugim brendovima
+      ✓ (DRY) Kreirano: Peugeot 106 I 106 I (1A, 1C)
+      ✓ (DRY) Kreirano: Peugeot 106 II 106 II (1)
+      ✓ (DRY) Kreirano: Peugeot 106 Van 106 Van (1_)
+      ✓ (DRY) Kreirano: Peugeot 205 II 205 II (20A/C)
+
+  🔍 Tražim engine kod: D2C (XU92C)
+    ✓ Pronađeno 2 generacija u drugim brendovima
+      ✓ (DRY) Kreirano: Peugeot 405 I 405 I (15B)
+      ✓ (DRY) Kreirano: Peugeot 405 I Break 405 I Break (15E)
+
+  🔍 Tražim engine kod: NFP (EC5)
+    ✓ Pronađeno 5 generacija u drugim brendovima
+      ✓ (DRY) Kreirano: Peugeot 2008 2008 (CU_)
+      ✓ (DRY) Kreirano: Peugeot 301 301
+      ✓ (DRY) Kreirano: Peugeot 307 307 (3A/C)
+      ✓ (DRY) Kreirano: Peugeot 308 308 (4A_, 4C_)
+      ✓ (DRY) Kreirano: Peugeot 308 II 308 II
+
+  🔍 Tražim engine kod: RFJ (EW10A)
+    ✓ Pronađeno 13 generacija u drugim brendovima
+      ✓ (DRY) Kreirano: Peugeot 307 307 (3A/C)
+      ✓ (DRY) Kreirano: Peugeot 307 Break 307 Break (3E)
+      ✓ (DRY) Kreirano: Peugeot 307 CC 307 CC (3B)
+      ✓ (DRY) Kreirano: Peugeot 307 SW 307 SW (3H)
+      ✓ (DRY) Kreirano: Peugeot 308 308 (4A_, 4C_)
+      ✓ (DRY) Kreirano: Peugeot 308 CC 308 CC (4B_)
+      ✓ (DRY) Kreirano: Peugeot 308 SW 308 SW (4E_, 4H_)
+      ✓ (DRY) Kreirano: Peugeot 407 407 (6D_)
+      ✓ (DRY) Kreirano: Peugeot 407 SW 407 SW (6E_)
+      ✓ (DRY) Kreirano: Peugeot 408 408
+      ✓ (DRY) Kreirano: Peugeot 807 807 (E)
+      ✓ (DRY) Kreirano: Peugeot EXPERT Box EXPERT Box (VF3A_, VF3U_, VF3X_)
+      ✓ (DRY) Kreirano: Peugeot EXPERT Tepee EXPERT Tepee (VF3X_)
+
+📦 Proizvod: ABS SENZOR (CCZ1412ABE)
+================================================================================
+  ✓ Pronađeno 30 povezanih vozila
+  ✓ Engine kodovi: 3B20, 4A91, 4D56 (8V), 4G15 (12V), 4G37, 4G61, 4G63 (DOHC 16V), 4G63 (SOHC 8V), 4G64 (16V), 4G64 (GDI), 4G92 (SOHC 16V), 4G93 (SOHC 16V), 4G93T, 4G93T (GDI), 4M40-T, 4N13, 6G72 (DOHC 24V), 6G72 (SOHC 12V), 6G72 (SOHC 24V), 6G72T, 6G73, 6G74 (SOHC 24V), 6G75, HR16DE, K12B
+  ✓ Brendovi: Mitsubishi
+
+  🔍 Tražim engine kod: 3B20
+    ✓ Pronađeno 2 generacija u drugim brendovima
+      ✓ (DRY) Kreirano: Nissan DAYZ B21 (W)
+      ✓ (DRY) Kreirano: Nissan DAYZ ROOX B21 (A)
+
+  🔍 Tražim engine kod: 4A91
+    ℹ Nema drugih brendova sa engine kodom 4A91
+
+  🔍 Tražim engine kod: 4D56 (8V)
+    ✓ Pronađeno 1 generacija u drugim brendovima
+      ✓ (DRY) Kreirano: Ford TRITON Box TRITON Box
+
+  🔍 Tražim engine kod: 4G15 (12V)
+    ℹ Nema drugih brendova sa engine kodom 4G15 (12V)
+
+  🔍 Tražim engine kod: 4G37
+    ℹ Nema drugih brendova sa engine kodom 4G37
+
+  🔍 Tražim engine kod: 4G61
+    ℹ Nema drugih brendova sa engine kodom 4G61
+
+  🔍 Tražim engine kod: 4G63 (DOHC 16V)
+    ℹ Nema drugih brendova sa engine kodom 4G63 (DOHC 16V)
+
+  🔍 Tražim engine kod: 4G63 (SOHC 8V)
+    ℹ Nema drugih brendova sa engine kodom 4G63 (SOHC 8V)
+
+  🔍 Tražim engine kod: 4G64 (16V)
+    ℹ Nema drugih brendova sa engine kodom 4G64 (16V)
+
+  🔍 Tražim engine kod: 4G64 (GDI)
+    ℹ Nema drugih brendova sa engine kodom 4G64 (GDI)
+
+  🔍 Tražim engine kod: 4G92 (SOHC 16V)
+    ℹ Nema drugih brendova sa engine kodom 4G92 (SOHC 16V)
+
+  🔍 Tražim engine kod: 4G93 (SOHC 16V)
+    ℹ Nema drugih brendova sa engine kodom 4G93 (SOHC 16V)
+
+  🔍 Tražim engine kod: 4G93T
+    ℹ Nema drugih brendova sa engine kodom 4G93T
+
+  🔍 Tražim engine kod: 4G93T (GDI)
+    ℹ Nema drugih brendova sa engine kodom 4G93T (GDI)
+
+  🔍 Tražim engine kod: 4M40-T
+    ℹ Nema drugih brendova sa engine kodom 4M40-T
+
+  🔍 Tražim engine kod: 4N13
+    ✓ Pronađeno 1 generacija u drugim brendovima
+      ✓ (DRY) Kreirano: Citroen C4 AIRCROSS C4 AIRCROSS
+
+  🔍 Tražim engine kod: 6G72 (DOHC 24V)
+    ✓ Pronađeno 1 generacija u drugim brendovima
+      ✓ (DRY) Kreirano: Hyundai GRANDEUR GRANDEUR
+
+  🔍 Tražim engine kod: 6G72 (SOHC 12V)
+    ℹ Nema drugih brendova sa engine kodom 6G72 (SOHC 12V)
+
+  🔍 Tražim engine kod: 6G72 (SOHC 24V)
+    ℹ Nema drugih brendova sa engine kodom 6G72 (SOHC 24V)
+
+  🔍 Tražim engine kod: 6G72T
+    ℹ Nema drugih brendova sa engine kodom 6G72T
+
+  🔍 Tražim engine kod: 6G73
+    ✓ Pronađeno 1 generacija u drugim brendovima
+      ✓ (DRY) Kreirano: Hyundai GRANDEUR II GRANDEUR II
+
+  🔍 Tražim engine kod: 6G74 (SOHC 24V)
+    ℹ Nema drugih brendova sa engine kodom 6G74 (SOHC 24V)
+
+  🔍 Tražim engine kod: 6G75
+    ℹ Nema drugih brendova sa engine kodom 6G75
+
+  🔍 Tražim engine kod: HR16DE
+    ✓ Pronađeno 24 generacija u drugim brendovima
+      ✓ (DRY) Kreirano: Mazda FAMILIA VAN FAMILIA VAN (Y12)
+      ✓ (DRY) Kreirano: Nissan AD Van AD Van (Y12)
+      ✓ (DRY) Kreirano: Nissan BLUEBIRD SYLPHY / SYLPHY III B17
+      ✓ (DRY) Kreirano: Nissan CUBE CUBE (Z12)
+      ✓ (DRY) Kreirano: Nissan EVALIA Bus EVALIA Bus
+      ✓ (DRY) Kreirano: Nissan JUKE JUKE (F15)
+      ✓ (DRY) Kreirano: Nissan KICKS KICKS (P15)
+      ✓ (DRY) Kreirano: Nissan LATIO Saloon LATIO Saloon (N17)
+      ✓ (DRY) Kreirano: Nissan LIVINA / GRAND LIVINA LIVINA / GRAND LIVINA (L10, L11)
+      ✓ (DRY) Kreirano: Nissan MICRA C+C III MICRA C+C III (K12)
+      ✓ (DRY) Kreirano: Nissan MICRA III MICRA III (K12)
+      ✓ (DRY) Kreirano: Nissan MICRA IV MICRA IV (K13)
+      ✓ (DRY) Kreirano: Nissan NOTE NOTE (E11, NE11)
+      ✓ (DRY) Kreirano: Nissan NOTE NOTE (E12)
+      ✓ (DRY) Kreirano: Nissan NP200 NP200
+      ✓ (DRY) Kreirano: Nissan NV200 Box Body / Estate NV200 Box Body / Estate
+      ✓ (DRY) Kreirano: Nissan QASHQAI / QASHQAI +2 I QASHQAI / QASHQAI +2 I (J10, JJ10)
+      ✓ (DRY) Kreirano: Nissan SENTRA VII B17
+      ✓ (DRY) Kreirano: Nissan TIIDA Hatchback TIIDA Hatchback (C11)
+      ✓ (DRY) Kreirano: Nissan TIIDA Hatchback TIIDA Hatchback (C12)
+      ✓ (DRY) Kreirano: Nissan TIIDA Saloon TIIDA Saloon (SC11)
+      ✓ (DRY) Kreirano: Nissan TIIDA Saloon TIIDA Saloon (SC12)
+      ✓ (DRY) Kreirano: Nissan VERSA I VERSA I
+      ✓ (DRY) Kreirano: Nissan VERSA II VERSA II
+
+  🔍 Tražim engine kod: K12B
+    ✓ Pronađeno 1 generacija u drugim brendovima
+      ✓ (DRY) Kreirano: Opel AGILA AGILA (B) (H08)
+
+📦 Proizvod: ABS SENZOR NA KOTAČU (AS4302)
+================================================================================
+  ✓ Pronađeno 11 povezanih vozila
+  ✓ Engine kodovi: M 111.973, M 166.940, M 260.920, M 266.980, M 270.920, M 271.820, M 272.960, OM 601.911, OM 651.930, OM 654.916
+  ✓ Brendovi: Mercedes Benz
+
+  🔍 Tražim engine kod: M 111.973
+    ℹ Nema drugih brendova sa engine kodom M 111.973
+
+  🔍 Tražim engine kod: M 166.940
+    ℹ Nema drugih brendova sa engine kodom M 166.940
+
+  🔍 Tražim engine kod: M 260.920
+    ℹ Nema drugih brendova sa engine kodom M 260.920
+
+  🔍 Tražim engine kod: M 266.980
+    ℹ Nema drugih brendova sa engine kodom M 266.980
+
+  🔍 Tražim engine kod: M 270.920
+    ℹ Nema drugih brendova sa engine kodom M 270.920
+
+  🔍 Tražim engine kod: M 271.820
+    ℹ Nema drugih brendova sa engine kodom M 271.820
+
+  🔍 Tražim engine kod: M 272.960
+    ℹ Nema drugih brendova sa engine kodom M 272.960
+
+  🔍 Tražim engine kod: OM 601.911
+    ℹ Nema drugih brendova sa engine kodom OM 601.911
+
+  🔍 Tražim engine kod: OM 651.930
+    ℹ Nema drugih brendova sa engine kodom OM 651.930
+
+  🔍 Tražim engine kod: OM 654.916
+    ℹ Nema drugih brendova sa engine kodom OM 654.916
+
+📦 Proizvod: AD BLUE 20L (210045)
+================================================================================
+  ✓ Pronađeno 7 povezanih vozila
+  ✓ Engine kodovi: B 5202 S, B 5234 T3, B 5244 S4, B 5244 SG2, B 6304 T5, D 5204 T, D 5244 T7
+  ✓ Brendovi: Volvo
+
+  🔍 Tražim engine kod: B 5202 S
+    ℹ Nema drugih brendova sa engine kodom B 5202 S
+
+  🔍 Tražim engine kod: B 5234 T3
+    ℹ Nema drugih brendova sa engine kodom B 5234 T3
+
+  🔍 Tražim engine kod: B 5244 S4
+    ℹ Nema drugih brendova sa engine kodom B 5244 S4
+
+  🔍 Tražim engine kod: B 5244 SG2
+    ℹ Nema drugih brendova sa engine kodom B 5244 SG2
+
+  🔍 Tražim engine kod: B 6304 T5
+    ℹ Nema drugih brendova sa engine kodom B 6304 T5
+
+  🔍 Tražim engine kod: D 5204 T
+    ℹ Nema drugih brendova sa engine kodom D 5204 T
+
+  🔍 Tražim engine kod: D 5244 T7
+    ℹ Nema drugih brendova sa engine kodom D 5244 T7
+
+📦 Proizvod: ADAPTER ZA XENON SIJALICU VW GOLF 5 (00510)
+================================================================================
+  ✓ Pronađeno 8 povezanih vozila
+  ✓ Engine kodovi: 171A, 8HX (DV4TD), AHR (DW10FD), BHY (DV6FD), CDY (TU9M), D2C (XU92C), NFP (EC5), RFJ (EW10A)
+  ✓ Brendovi: Citroen
+
+  🔍 Tražim engine kod: 171A
+    ℹ Nema drugih brendova sa engine kodom 171A
+
+  🔍 Tražim engine kod: 8HX (DV4TD)
+    ✓ Pronađeno 6 generacija u drugim brendovima
+      ✓ (DRY) Kreirano: Peugeot 1007 1007 (KM_)
+      ✓ (DRY) Kreirano: Peugeot 206 Hatchback 206 Hatchback (2A/C)
+      ✓ (DRY) Kreirano: Peugeot 206 SW 206 SW (2E/K)
+      ✓ (DRY) Kreirano: Peugeot 206 Van 206 Van
+      ✓ (DRY) Kreirano: Peugeot 206+ 206+ (2L_, 2M_)
+      ✓ (DRY) Kreirano: Peugeot 307 307 (3A/C)
+
+  🔍 Tražim engine kod: AHR (DW10FD)
+    ✓ Pronađeno 2 generacija u drugim brendovima
+      ✓ (DRY) Kreirano: Peugeot 3008 MPV 3008 MPV (0U_)
+      ✓ (DRY) Kreirano: Peugeot 5008 5008 (0U_, 0E_)
+
+  🔍 Tražim engine kod: BHY (DV6FD)
+    ✓ Pronađeno 8 generacija u drugim brendovima
+      ✓ (DRY) Kreirano: Peugeot 2008 2008 (CU_)
+      ✓ (DRY) Kreirano: Peugeot 208 208 (CA_, CC_)
+      ✓ (DRY) Kreirano: Peugeot 3008 SUV 3008 SUV (M_)
+      ✓ (DRY) Kreirano: Peugeot 308 II 308 II
+      ✓ (DRY) Kreirano: Peugeot 308 SW II 308 SW II
+      ✓ (DRY) Kreirano: Peugeot 5008 II 5008 II
+      ✓ (DRY) Kreirano: Peugeot PARTNER Box PARTNER Box
+      ✓ (DRY) Kreirano: Peugeot PARTNER Tepee PARTNER Tepee
+
+  🔍 Tražim engine kod: CDY (TU9M)
+    ✓ Pronađeno 4 generacija u drugim brendovima
+      ✓ (DRY) Kreirano: Peugeot 106 I 106 I (1A, 1C)
+      ✓ (DRY) Kreirano: Peugeot 106 II 106 II (1)
+      ✓ (DRY) Kreirano: Peugeot 106 Van 106 Van (1_)
+      ✓ (DRY) Kreirano: Peugeot 205 II 205 II (20A/C)
+
+  🔍 Tražim engine kod: D2C (XU92C)
+    ✓ Pronađeno 2 generacija u drugim brendovima
+      ✓ (DRY) Kreirano: Peugeot 405 I 405 I (15B)
+      ✓ (DRY) Kreirano: Peugeot 405 I Break 405 I Break (15E)
+
+  🔍 Tražim engine kod: NFP (EC5)
+    ✓ Pronađeno 5 generacija u drugim brendovima
+      ✓ (DRY) Kreirano: Peugeot 2008 2008 (CU_)
+      ✓ (DRY) Kreirano: Peugeot 301 301
+      ✓ (DRY) Kreirano: Peugeot 307 307 (3A/C)
+      ✓ (DRY) Kreirano: Peugeot 308 308 (4A_, 4C_)
+      ✓ (DRY) Kreirano: Peugeot 308 II 308 II
+
+  🔍 Tražim engine kod: RFJ (EW10A)
+    ✓ Pronađeno 13 generacija u drugim brendovima
+      ✓ (DRY) Kreirano: Peugeot 307 307 (3A/C)
+      ✓ (DRY) Kreirano: Peugeot 307 Break 307 Break (3E)
+      ✓ (DRY) Kreirano: Peugeot 307 CC 307 CC (3B)
+      ✓ (DRY) Kreirano: Peugeot 307 SW 307 SW (3H)
+      ✓ (DRY) Kreirano: Peugeot 308 308 (4A_, 4C_)
+      ✓ (DRY) Kreirano: Peugeot 308 CC 308 CC (4B_)
+      ✓ (DRY) Kreirano: Peugeot 308 SW 308 SW (4E_, 4H_)
+      ✓ (DRY) Kreirano: Peugeot 407 407 (6D_)
+      ✓ (DRY) Kreirano: Peugeot 407 SW 407 SW (6E_)
+      ✓ (DRY) Kreirano: Peugeot 408 408
+      ✓ (DRY) Kreirano: Peugeot 807 807 (E)
+      ✓ (DRY) Kreirano: Peugeot EXPERT Box EXPERT Box (VF3A_, VF3U_, VF3X_)
+      ✓ (DRY) Kreirano: Peugeot EXPERT Tepee EXPERT Tepee (VF3X_)
+
+📦 Proizvod: ADAPTER ZA XENON SIJALICU VW GOLF 6 (00508)
+================================================================================
+  ✓ Pronađeno 16 povezanih vozila
+  ✓ Engine kodovi: C2J 757, C3G 720, E7J 711, F3N 723, F4R 790, G9T 712, H4M 735, J6R 712, J7T 770, K4M 746, K4M 850, K9K 608, K9K 628, K9K 872, R9M 452, Z7X 775
+  ✓ Brendovi: Renault
+
+  🔍 Tražim engine kod: C2J 757
+    ℹ Nema drugih brendova sa engine kodom C2J 757
+
+  🔍 Tražim engine kod: C3G 720
+    ℹ Nema drugih brendova sa engine kodom C3G 720
+
+  🔍 Tražim engine kod: E7J 711
+    ℹ Nema drugih brendova sa engine kodom E7J 711
+
+  🔍 Tražim engine kod: F3N 723
+    ℹ Nema drugih brendova sa engine kodom F3N 723
+
+  🔍 Tražim engine kod: F4R 790
+    ℹ Nema drugih brendova sa engine kodom F4R 790
+
+  🔍 Tražim engine kod: G9T 712
+    ℹ Nema drugih brendova sa engine kodom G9T 712
+
+  🔍 Tražim engine kod: H4M 735
+    ℹ Nema drugih brendova sa engine kodom H4M 735
+
+  🔍 Tražim engine kod: J6R 712
+    ℹ Nema drugih brendova sa engine kodom J6R 712
+
+  🔍 Tražim engine kod: J7T 770
+    ℹ Nema drugih brendova sa engine kodom J7T 770
+
+  🔍 Tražim engine kod: K4M 746
+    ℹ Nema drugih brendova sa engine kodom K4M 746
+
+  🔍 Tražim engine kod: K4M 850
+    ℹ Nema drugih brendova sa engine kodom K4M 850
+
+  🔍 Tražim engine kod: K9K 608
+    ✓ Pronađeno 3 generacija u drugim brendovima
+      ✓ (DRY) Kreirano: Nissan EVALIA Bus EVALIA Bus
+      ✓ (DRY) Kreirano: Nissan NOTE NOTE (E12)
+      ✓ (DRY) Kreirano: Nissan NV200 Box Body / Estate NV200 Box Body / Estate
+
+  🔍 Tražim engine kod: K9K 628
+    ✓ Pronađeno 3 generacija u drugim brendovima
+      ✓ (DRY) Kreirano: Nissan EVALIA Bus EVALIA Bus
+      ✓ (DRY) Kreirano: Nissan MICRA V MICRA V (K14)
+      ✓ (DRY) Kreirano: Nissan NV200 Box Body / Estate NV200 Box Body / Estate
+
+  🔍 Tražim engine kod: K9K 872
+    ℹ Nema drugih brendova sa engine kodom K9K 872
+
+  🔍 Tražim engine kod: R9M 452
+    ✓ Pronađeno 10 generacija u drugim brendovima
+      ✓ (DRY) Kreirano: Fiat TALENTO Box TALENTO Box (296_)
+      ✓ (DRY) Kreirano: Fiat TALENTO Box Body / Estate TALENTO Box Body / Estate (296_)
+      ✓ (DRY) Kreirano: Fiat TALENTO Bus TALENTO Bus (296_)
+      ✓ (DRY) Kreirano: Fiat TALENTO Platform/Chassis TALENTO Platform/Chassis (296_)
+      ✓ (DRY) Kreirano: Nissan NV300 Box NV300 Box (X82)
+      ✓ (DRY) Kreirano: Nissan NV300 Kombi NV300 Kombi (X82)
+      ✓ (DRY) Kreirano: Nissan NV300 Platform/Chassis NV300 Platform/Chassis (X82)
+      ✓ (DRY) Kreirano: Opel VIVARO B Box VIVARO B Box (X82)
+      ✓ (DRY) Kreirano: Opel VIVARO B Combi VIVARO B Combi (X82)
+      ✓ (DRY) Kreirano: Opel VIVARO B Platform/Chassis VIVARO B Platform/Chassis (X82)
+
+  🔍 Tražim engine kod: Z7X 775
+    ℹ Nema drugih brendova sa engine kodom Z7X 775
+
+================================================================================
+📊 STATISTIKA
+================================================================================
+Proizvoda obrađeno: 10
+Engine kodova pronađeno: 0
+Matching generacija pronađeno: 174
+Novih fitmenta kreiranog: 174
+Fitmenta preskočeno (duplikata): 0
+Greške: 0
+================================================================================
+
+📄 Report upisano: preview_all_dry_run.csv (174 redaka)
+✓ Okinuta konekcija sa bazom

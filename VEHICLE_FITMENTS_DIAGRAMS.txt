@@ -1,0 +1,354 @@
+VEHICLE FITMENTS ARCHITECTURE - VISUAL OVERVIEW
+================================================
+
+1. DATA MODEL HIERARCHY
+=======================
+
+    ┌─────────────────────┐
+    │   VehicleBrand      │  (e.g., Audi, Mercedes, VW)
+    │  ─────────────────  │  - name (UNIQUE)
+    │  - id (PK)          │  - type (PASSENGER/COMMERCIAL)
+    │  - name             │  - externalId (TecDoc)
+    │  - type             │
+    │  - externalId       │
+    └─────────────────────┘
+              │ 1..N
+              │ models
+              ▼
+    ┌─────────────────────┐
+    │   VehicleModel      │  (e.g., Golf, Passat, A3)
+    │  ─────────────────  │  - name per brand
+    │  - id (PK)          │  - externalId
+    │  - name             │  - UNIQUE(brandId, externalId)
+    │  - brandId (FK)     │
+    │  - externalId       │
+    │  - period           │
+    └─────────────────────┘
+              │ 1..N
+              │ generations
+              ▼
+    ┌─────────────────────────────────┐
+    │   VehicleGeneration             │  (e.g., 8L, Mk7, B8)
+    │  ───────────────────────────────│  - Production period
+    │  - id (PK)                      │  - Technical specs
+    │  - name                         │  - Body styles
+    │  - period (e.g., 2014-2023)     │  - UNIQUE(modelId, name)
+    │  - bodyStyles (JSON)            │
+    │  - constructionType             │
+    │  - wheelbase, axles, weight     │
+    │  - driveType (FWD/RWD/AWD)     │
+    │  - transmission                 │
+    │  - externalId (TecDoc)          │
+    └─────────────────────────────────┘
+              │ 1..N
+              │ vehicleEngines
+              ▼
+    ┌──────────────────────────┐
+    │   VehicleEngine          │  (e.g., 1.9L TDI, 2.0L TFSI)
+    │  ────────────────────────│  - Multiple per generation
+    │  - id (PK)               │  - Can have multiple codes
+    │  - engineType            │  - Tracks power in kW & HP
+    │  - engineCapacity (ccm)  │  - UNIQUE(genId, externalId)
+    │  - enginePowerKW         │
+    │  - enginePowerHP         │
+    │  - engineCode            │
+    │  - engineCodes[] (array) │
+    │  - externalId (TecDoc)   │
+    └──────────────────────────┘
+
+
+2. PRODUCT-VEHICLE LINKING
+===========================
+
+    ┌──────────────────────┐
+    │      Product         │
+    │  ──────────────────  │
+    │  - id (PK)           │
+    │  - name              │
+    │  - catalogNumber     │
+    │  - oemNumber         │
+    │  - price             │
+    │  - category          │
+    └──────────────────────┘
+              │ 1..N
+              │ vehicleFitments
+              ▼
+    ┌─────────────────────────────────────────┐
+    │  ProductVehicleFitment (JUNCTION TABLE) │
+    │  ─────────────────────────────────────  │
+    │  - id (PK)                              │
+    │  - productId (FK) ─────────────────┐    │
+    │  - generationId (FK) ────────┐     │    │
+    │  - engineId (FK, NULLABLE)   │     │    │
+    │                              │     │    │
+    │  FITMENT DETAILS:            │     │    │
+    │  - fitmentNotes              │     │    │
+    │  - position (Front/Rear)     │     │    │
+    │  - bodyStyles[] (JSON)       │     │    │
+    │  - yearFrom / yearTo         │     │    │
+    │  - isUniversal               │     │    │
+    │                              │     │    │
+    │  UNIQUE(productId, genId, engineId)    │
+    │  INDEX(generationId, engineId)         │
+    │  INDEX(productId)                      │
+    └─────────────────────────────────────────┘
+              │                   │
+              └──────────┬────────┘
+                         │ References
+              ┌──────────┴──────────┐
+              ▼                     ▼
+    ┌──────────────────┐  ┌──────────────────┐
+    │ VehicleGeneration│  │  VehicleEngine   │
+    │   (optional)     │  │   (optional)     │
+    └──────────────────┘  └──────────────────┘
+
+
+3. API ENDPOINT FLOW - VEHICLE SELECTION
+==========================================
+
+Client Browser:
+  └─ VehicleSelector Component
+       │
+       ├─ GET /api/brands?type=PASSENGER
+       │      ↓ Returns VehicleBrand[]
+       │
+       ├─ GET /api/brands/{brandId}/models
+       │      ↓ Returns VehicleModel[]
+       │
+       ├─ GET /api/models/{modelId}/generations
+       │      ↓ Returns VehicleGeneration[]
+       │
+       ├─ GET /api/generations/{genId}/engine-types
+       │      ↓ Returns string[] (PETROL, DIESEL, etc.)
+       │
+       ├─ GET /api/engine-types/{type}/powers
+       │      ↓ Returns number[] (kW values)
+       │
+       ├─ GET /api/engine-capacities/{capacity}/codes
+       │      ↓ Returns string[] (engine codes)
+       │
+       └─ User selects generation
+            ↓
+       Call VehicleCompatibilityClient
+            │
+            └─ GET /api/products/vehicle-compatibility
+                    ?vehicleGenerationId={id}
+                    &vehicleEngineId={id}
+                    ↓ Returns products with fitments
+
+
+4. FITMENT DATA STRUCTURE IN RESPONSE
+======================================
+
+Product Response:
+{
+  id: "prod123",
+  name: "Oil Filter XL",
+  catalogNumber: "OL-2024",
+  oemNumber: "03C115561C",
+  price: 29.99,
+  category: { id, name },
+  
+  vehicleFitments: [
+    {
+      id: "fit456",
+      position: "Engine Block",
+      bodyStyles: ["Sedan", "Variant"],
+      yearFrom: 2004,
+      yearTo: 2012,
+      fitmentNotes: "Only with Synthetic Oil Service",
+      isUniversal: false,
+      
+      generation: {
+        id: "gen789",
+        name: "8L",
+        period: "2003-2012",
+        model: {
+          id: "mod001",
+          name: "A3",
+          brand: { id: "brd001", name: "Audi" }
+        }
+      },
+      
+      engine: {
+        id: "eng123",
+        engineType: "DIESEL",
+        engineCapacity: 1900,
+        enginePowerKW: 96,
+        enginePowerHP: 130,
+        engineCode: "BXE"
+      }
+    }
+  ]
+}
+
+
+5. ADMIN LINKING WORKFLOW
+===========================
+
+Admin Interface:
+  1. Select Generation (Brand > Model > Generation)
+  2. Choose Engine Linking Mode:
+       ├─ 'none'     : Generation-only (engineId = null)
+       ├─ 'all'      : All engines in generation
+       └─ 'selected' : Specific engine selection
+  
+  3. Search & Select Products
+  
+  4. POST /api/admin/vehicle-fitments/batch
+       Request:
+       {
+         productIds: ["prod1", "prod2", "prod3"],
+         generationId: "gen789",
+         linkAllEngines: true  // or engineIds: ["eng1", "eng2"]
+       }
+       
+       Response:
+       {
+         created: 6,   // 3 products × 2 engines each
+         skipped: 0    // Duplicates prevented by unique constraint
+       }
+
+
+6. DATA IMPORT PROCESS
+=======================
+
+Source Data (JSON):
+  VehicleBrand
+    └─ models[]
+        └─ VehicleModel
+            └─ generations[]
+                └─ VehicleGeneration
+                    └─ engines[]
+                        └─ VehicleEngine
+
+↓ Process
+
+Insert Script (import-vehicles.ts):
+  1. Upsert VehicleBrand by name
+  2. Upsert VehicleModel by (brandId, externalId)
+  3. Upsert VehicleGeneration by (modelId, name)
+  4. Upsert VehicleEngine by (generationId, externalId)
+  
+  Unique constraints prevent duplicates!
+
+↓ Store in Database
+
+Then Link Products:
+  Product Linking Script (import-products-linking.ts):
+  1. Find matching generations (by model/generation tokens)
+  2. Find/create matching engines
+  3. Create ProductVehicleFitment records
+  4. Preserve fitment notes and position data
+
+
+7. YEAR RANGE MATCHING LOGIC
+==============================
+
+ProductVehicleFitment.yearFrom / yearTo
+
+Valid for year Y if:
+  ├─ yearFrom ≤ Y ≤ yearTo           (specific range)
+  ├─ yearFrom ≤ Y AND yearTo = null   (open-ended end)
+  ├─ yearFrom = null AND Y ≤ yearTo   (open-ended start)
+  └─ yearFrom = null AND yearTo = null AND isUniversal = true
+
+
+8. UNIQUE CONSTRAINTS & INDEXES
+=================================
+
+VehicleBrand:
+  ├─ PRIMARY KEY: id
+  └─ UNIQUE: name
+
+VehicleModel:
+  ├─ PRIMARY KEY: id
+  ├─ FOREIGN KEY: brandId → VehicleBrand
+  └─ UNIQUE: (brandId, externalId)
+
+VehicleGeneration:
+  ├─ PRIMARY KEY: id
+  ├─ FOREIGN KEY: modelId → VehicleModel
+  ├─ UNIQUE: (modelId, name)
+  └─ INDEX: modelId
+
+VehicleEngine:
+  ├─ PRIMARY KEY: id
+  ├─ FOREIGN KEY: generationId → VehicleGeneration
+  ├─ UNIQUE: (generationId, externalId)
+  └─ INDEX: generationId
+
+ProductVehicleFitment:
+  ├─ PRIMARY KEY: id
+  ├─ FOREIGN KEY: productId → Product (CASCADE)
+  ├─ FOREIGN KEY: generationId → VehicleGeneration (CASCADE)
+  ├─ FOREIGN KEY: engineId → VehicleEngine (SET NULL)
+  ├─ UNIQUE: (productId, generationId, engineId)  ← CRITICAL!
+  ├─ INDEX: (generationId, engineId)
+  └─ INDEX: productId
+
+
+9. CASCADE BEHAVIOR
+====================
+
+Delete VehicleBrand:
+  └─ Deletes all related VehicleModel
+      └─ Deletes all related VehicleGeneration
+          └─ Deletes all related VehicleEngine
+              └─ Deletes all related ProductVehicleFitment
+
+Delete VehicleEngine:
+  └─ Sets ProductVehicleFitment.engineId = NULL (preserves generation-level fitment)
+
+
+10. EXAMPLE REAL-WORLD SCENARIO
+================================
+
+Audi A3 Oil Filter Compatibility:
+
+VehicleBrand: Audi (type: PASSENGER)
+  └─ VehicleModel: A3
+      ├─ VehicleGeneration: 8L (2003-2012)
+      │   └─ VehicleEngine[]
+      │       ├─ 1.6 PETROL (102 kW)
+      │       └─ 1.9 DIESEL (96 kW, code: BXE)
+      │
+      ├─ VehicleGeneration: 8P (2012-2020)
+      │   └─ VehicleEngine[]
+      │       ├─ 1.4 TFSI (103 kW)
+      │       └─ 2.0 TDI (110 kW)
+      │
+      └─ VehicleGeneration: 8V (2020-present)
+          └─ VehicleEngine[]
+              ├─ 1.4 TFSI (110 kW)
+              └─ 2.0 TDI (120 kW)
+
+Product: Oil Filter OL-2024
+  └─ ProductVehicleFitment
+      ├─ productId: prod-oil-filter
+      ├─ generationId: gen-8L
+      ├─ engineId: null (fits all 8L engines)
+      ├─ yearFrom: 2003
+      ├─ yearTo: 2012
+      ├─ position: "Engine Block"
+      └─ fitmentNotes: "Standard replacement"
+  
+  └─ ProductVehicleFitment
+      ├─ productId: prod-oil-filter
+      ├─ generationId: gen-8P
+      ├─ engineId: eng-1.4-tfsi  (specific engine only!)
+      ├─ yearFrom: 2012
+      ├─ yearTo: 2014
+      ├─ position: "Engine Block"
+      └─ fitmentNotes: "May require adapter"
+
+Result in UI:
+  User selects: Audi > A3 > 8L > Any Engine
+  ↓ Search returns: Oil Filter OL-2024 ✓
+  
+  User selects: Audi > A3 > 8P > 1.4 TFSI
+  ↓ Search returns: Oil Filter OL-2024 ✓
+  
+  User selects: Audi > A3 > 8P > 2.0 TDI
+  ↓ Search returns: (Not compatible - different fitment needed)
+

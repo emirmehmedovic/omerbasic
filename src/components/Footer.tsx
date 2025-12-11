@@ -61,7 +61,13 @@ const Footer = () => {
           <div className="space-y-6">
             <div className="flex items-center space-x-3">
               <Link href="/" className="flex items-center space-x-2">
-                <Image src="/images/omerbasic.png" alt="Omerbasic Auto Dijelovi Logo" width={180} height={40} />
+                <Image
+                  src="/images/omerbasic.png"
+                  alt="Omerbasic Auto Dijelovi Logo"
+                  width={180}
+                  height={40}
+                  style={{ width: 'auto', height: 'auto' }}
+                />
               </Link>
             </div>
             

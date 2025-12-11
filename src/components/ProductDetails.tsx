@@ -493,6 +493,7 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
                 src={resolveProductImage(product.imageUrl, product.category?.imageUrl)}
                 alt={product.name}
                 fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-contain p-8"
               />
             </div>
