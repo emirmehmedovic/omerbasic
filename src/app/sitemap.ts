@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next';
 import { db } from '@/lib/db';
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://example.com';
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://tpomerbasic.ba';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const lastModified = new Date();
