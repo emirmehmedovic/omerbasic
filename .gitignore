@@ -45,3 +45,8 @@ next-env.d.ts
 
 # data imports
 *.csv
+
+# TecDoc slike i pomoćni image folderi
+/tecdoc_images/
+/public/images/tecdoc/
+/public/images/images/
