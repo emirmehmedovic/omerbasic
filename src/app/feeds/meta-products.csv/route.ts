@@ -42,6 +42,7 @@ export async function GET() {
 
         while (true) {
           // Use raw SQL for maximum performance
+          // Include category imageUrl for fallback
           const batch = await db.$queryRawUnsafe<any[]>(`
             SELECT 
               p."id",
@@ -52,9 +53,11 @@ export async function GET() {
               p."stock",
               p."imageUrl",
               p."catalogNumber",
-              m."name" as "manufacturerName"
+              m."name" as "manufacturerName",
+              c."imageUrl" as "categoryImageUrl"
             FROM "Product" p
             LEFT JOIN "Manufacturer" m ON p."manufacturerId" = m."id"
+            LEFT JOIN "Category" c ON p."categoryId" = c."id"
             WHERE p."isArchived" = false
             ORDER BY p."id" ASC
             LIMIT $1 OFFSET $2
@@ -67,13 +70,14 @@ export async function GET() {
             const productPath = product.slug || product.catalogNumber;
             const productUrl = `${SITE_URL}/products/${encodeURIComponent(productPath)}`;
 
-            // Build image URL
+            // Build image URL - fallback to category image if product has no image
+            const rawImageUrl = product.imageUrl || product.categoryImageUrl;
             let imageUrl = '';
-            if (product.imageUrl) {
+            if (rawImageUrl) {
               // If it's a relative URL, make it absolute
-              imageUrl = product.imageUrl.startsWith('http')
-                ? product.imageUrl
-                : `${SITE_URL}${product.imageUrl.startsWith('/') ? '' : '/'}${product.imageUrl}`;
+              imageUrl = rawImageUrl.startsWith('http')
+                ? rawImageUrl
+                : `${SITE_URL}${rawImageUrl.startsWith('/') ? '' : '/'}${rawImageUrl}`;
             }
 
             // Availability based on stock
