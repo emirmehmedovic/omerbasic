@@ -6,9 +6,10 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { checkoutFormSchema, type CheckoutFormValues } from '@/lib/validations/order';
 import { Session } from 'next-auth';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
+import { fbEvent } from '@/lib/fbPixel';
 
 const formatPrice = (price: number) => {
   return new Intl.NumberFormat('bs-BA', { style: 'currency', currency: 'BAM' }).format(price);
@@ -22,6 +23,7 @@ export function CheckoutClient({ user }: CheckoutClientProps) {
   const { cartItems, cartTotal, cartCount, clearCart } = useCart();
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
+  const initiateTrackedRef = useRef(false);
 
   const [shippingMethod, setShippingMethod] = useState<'COURIER' | 'PICKUP'>('COURIER');
 
@@ -69,6 +71,16 @@ export function CheckoutClient({ user }: CheckoutClientProps) {
     }
   }, [cartCount, router]);
 
+  // Facebook Pixel: InitiateCheckout event (samo jednom po učitavanju checkout stranice)
+  useEffect(() => {
+    if (cartCount === 0 || initiateTrackedRef.current) return;
+    initiateTrackedRef.current = true;
+    fbEvent('InitiateCheckout', {
+      value: total,
+      currency: 'BAM',
+    });
+  }, [cartCount, total]);
+
   const onSubmit = async (data: CheckoutFormValues) => {
     setIsLoading(true);
     try {
@@ -86,6 +98,24 @@ export function CheckoutClient({ user }: CheckoutClientProps) {
       // Dohvati ID narudžbe iz odgovora
       const { orderId } = response.data;
       console.log('Dohvaćen ID narudžbe:', orderId);
+
+      // Facebook Pixel: Purchase event nakon uspješne narudžbe
+      try {
+        const contents = cartItems.map((item) => ({
+          id: item.id,
+          quantity: item.quantity,
+          item_price: item.price,
+        }));
+        fbEvent('Purchase', {
+          value: total,
+          currency: 'BAM',
+          content_ids: contents.map((c) => c.id),
+          content_type: 'product',
+          contents,
+        });
+      } catch (e) {
+        console.error('FB Pixel Purchase event error:', e);
+      }
       
       toast.success('Narudžba je uspješno kreirana!');
       clearCart();

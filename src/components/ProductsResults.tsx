@@ -9,6 +9,7 @@ import Link from 'next/link';
 import { useCart } from '@/context/CartContext';
 import { toast } from 'react-hot-toast';
 import { resolveProductImage } from '@/lib/utils';
+import { fbEvent } from '@/lib/fbPixel';
 
 // Minimal type aligned with API include
 type Category = {
@@ -399,6 +400,19 @@ export default function ProductsResults({ filters, onClearAll, onPageChange, onQ
                         e.stopPropagation();
                         addToCart(p as any);
                         toast.success(`${p.name} je dodan u košaricu!`);
+                        fbEvent('AddToCart', {
+                          content_ids: [p.id],
+                          content_type: 'product',
+                          currency: 'BAM',
+                          value: Number(p.price) || 0,
+                          contents: [
+                            {
+                              id: p.id,
+                              quantity: 1,
+                              item_price: Number(p.price) || 0,
+                            },
+                          ],
+                        });
                       }}
                       className="bg-gradient-to-r from-primary via-primary-dark to-primary text-white px-4 py-2.5 rounded-xl text-sm font-bold hover:shadow-2xl transform hover:-translate-y-0.5 transition-all duration-300 shadow-xl w-full"
                     >

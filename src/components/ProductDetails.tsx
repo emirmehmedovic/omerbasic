@@ -9,8 +9,9 @@ import { Badge } from "@/components/ui/badge";
 import { Car, Info, Settings, Tag, BookCopy, Copy, ChevronDown } from "lucide-react";
 import Link from "next/link";
 import { formatPrice, resolveProductImage } from "@/lib/utils";
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { ProductCard } from '@/components/ProductCard';
+import { fbEvent } from '@/lib/fbPixel';
 import AudiIcon from '@/components/icons/audi';
 import VolkswagenIcon from '@/components/icons/volkswagen';
 import MercedesIcon from '@/components/icons/mercedes';
@@ -222,12 +223,37 @@ const ReplacementProductPreview: React.FC<{ id: string }> = ({ id }) => {
 export const ProductDetails = ({ product }: ProductDetailsProps) => {
   const { addToCart } = useCart();
   const [quantity, setQuantity] = useState(1);
+  const viewTrackedRef = useRef(false);
+
+  useEffect(() => {
+    if (!product?.id || viewTrackedRef.current) return;
+    viewTrackedRef.current = true;
+    fbEvent('ViewContent', {
+      content_ids: [product.id],
+      content_type: 'product',
+      value: Number(product.price) || 0,
+      currency: 'BAM',
+    });
+  }, [product?.id, product.price]);
 
   const handleAddToCart = () => {
     for (let i = 0; i < quantity; i++) {
       addToCart(product);
     }
     toast.success(`${quantity}x ${product.name} dodano u korpu!`);
+    fbEvent('AddToCart', {
+      content_ids: [product.id],
+      content_type: 'product',
+      currency: 'BAM',
+      value: (Number(product.price) || 0) * quantity,
+      contents: [
+        {
+          id: product.id,
+          quantity,
+          item_price: Number(product.price) || 0,
+        },
+      ],
+    });
   };
 
   const incrementQuantity = () => setQuantity(prev => prev + 1);

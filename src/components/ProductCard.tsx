@@ -2,30 +2,22 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import type { Category, Product } from '@/generated/prisma/client';
-import ProductEngineSummary from '@/components/ProductEngineSummary';
-import { useSession } from 'next-auth/react';
-import { useCart } from '@/context/CartContext';
 import { toast } from 'react-hot-toast';
 import { ShoppingCart } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { resolveProductImage } from '@/lib/utils';
+import type { Category, Product } from '@/generated/prisma/client';
+import { useCart } from '@/context/CartContext';
+import { formatPrice, resolveProductImage } from '@/lib/utils';
+import { fbEvent } from '@/lib/fbPixel';
+import ProductEngineSummary from '@/components/ProductEngineSummary';
 
 interface ProductCardProps {
   product: Product & { category: Category | null } & { originalPrice?: number; pricingSource?: 'FEATURED' | 'B2B' | 'BASE' };
   compact?: boolean;
 }
 
-const formatPrice = (price: number) => {
-  return new Intl.NumberFormat('bs-BA', {
-    style: 'currency',
-    currency: 'BAM',
-  }).format(price);
-};
-
 export const ProductCard = ({ product, compact = false }: ProductCardProps) => {
   const { addToCart } = useCart();
-  const { data: session } = useSession();
   const [isMounted, setIsMounted] = useState(false);
   
   // Koristimo originalPrice iz produkta ako postoji (postavljen na serveru)
@@ -45,6 +37,19 @@ export const ProductCard = ({ product, compact = false }: ProductCardProps) => {
     e.stopPropagation();
     addToCart(product);
     toast.success(`${product.name} je dodan u košaricu!`);
+    fbEvent('AddToCart', {
+      content_ids: [product.id],
+      content_type: 'product',
+      currency: 'BAM',
+      value: Number(product.price) || 0,
+      contents: [
+        {
+          id: product.id,
+          quantity: 1,
+          item_price: Number(product.price) || 0,
+        },
+      ],
+    });
   };
 
   return (

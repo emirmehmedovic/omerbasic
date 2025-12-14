@@ -9,6 +9,7 @@ import { useCart } from '@/context/CartContext';
 import { toast } from 'react-hot-toast';
 import { formatPrice } from '@/lib/utils';
 import { ShoppingCart } from 'lucide-react';
+import { fbEvent } from '@/lib/fbPixel';
 
 interface CartSuggestionsProps {
   categoryIds: string[];
@@ -45,6 +46,19 @@ export const CartSuggestions = ({ categoryIds, excludeProductIds }: CartSuggesti
   const handleAddToCart = (product: Product) => {
     addToCart(product);
     toast.success(`${product.name} je dodan u korpu!`);
+    fbEvent('AddToCart', {
+      content_ids: [product.id],
+      content_type: 'product',
+      currency: 'BAM',
+      value: Number(product.price) || 0,
+      contents: [
+        {
+          id: product.id,
+          quantity: 1,
+          item_price: Number(product.price) || 0,
+        },
+      ],
+    });
   };
 
   if (loading) {
