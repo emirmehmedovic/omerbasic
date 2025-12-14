@@ -45,6 +45,8 @@ next-env.d.ts
 
 # data imports
 *.csv
+# Exception for feeds folder (Next.js route with .csv in name)
+!src/app/feeds/**
 
 # TecDoc slike i pomoćni image folderi
 /tecdoc_images/
