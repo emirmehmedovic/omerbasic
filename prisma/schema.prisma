@@ -65,7 +65,7 @@ model Product {
   @@index([manufacturerId])
 
   // Performance indexes
-  @@index([categoryId, isArchived])
+  @@index([categoryId, isArchived, stock])
   @@index([isFeatured])
   @@index([updatedAt])
   @@index([createdAt])
@@ -74,6 +74,8 @@ model Product {
   @@index([name])
   @@index([tecdocArticleId])
   @@index([tecdocProductId])
+  @@index([oemNumber])
+  @@index([sku])
 }
 
 model Category {
@@ -177,6 +179,7 @@ model ProductAttributeValue {
   attribute    CategoryAttribute @relation(fields: [attributeId], references: [id], onDelete: Cascade)
 
   @@unique([productId, attributeId])
+  @@index([attributeId, numericValue])
 }
 
 // Model za predloške atributa
@@ -200,6 +203,8 @@ model ProductCrossReference {
   notes           String? // Dodatne napomene
   replacementId   String? // ID zamjenskog proizvoda ako postoji u sustavu
   replacement     Product? @relation("ReplacementProduct", fields: [replacementId], references: [id])
+
+  @@index([referenceNumber])
 }
 
 enum OrderStatus {

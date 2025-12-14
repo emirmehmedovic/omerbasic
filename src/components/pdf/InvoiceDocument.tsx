@@ -151,7 +151,11 @@ export const InvoiceDocument = ({ order }: InvoiceDocumentProps) => (
         {order.items.map((item, index) => (
           <View style={styles.tableRow} key={item.id}>
             <Text style={{...styles.tableCol, ...styles.colId}}>{index + 1}</Text>
-            <Text style={{...styles.tableCol, ...styles.colName}}>{item.product.name}</Text>
+            <View style={{...styles.tableCol, ...styles.colName}}>
+              <Text>{item.product.name}</Text>
+              {item.product.sku ? <Text style={{fontSize: 8, color: '#666', marginTop: 2}}>SKU: {item.product.sku}</Text> : null}
+              {item.product.oemNumber ? <Text style={{fontSize: 8, color: '#666', marginTop: 2}}>OEM: {item.product.oemNumber}</Text> : null}
+            </View>
             <Text style={{...styles.tableCol, ...styles.colQty}}>{item.quantity}</Text>
             <Text style={{...styles.tableCol, ...styles.colPrice}}>{item.price.toFixed(2)}</Text>
             <Text style={{...styles.tableCol, ...styles.colTotal}}>{(item.price * item.quantity).toFixed(2)}</Text>

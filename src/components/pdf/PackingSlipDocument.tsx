@@ -115,16 +115,22 @@ export const PackingSlipDocument = ({ order }: PackingSlipDocumentProps) => (
         <View style={styles.table}>
           {/* Zaglavlje tabele */}
           <View style={{...styles.tableRow, ...styles.tableColHeader}}>
-            <View style={styles.productNameCol}><Text>Proizvod</Text></View>
-            <View style={styles.quantityCol}><Text>Količina</Text></View>
-            <View style={styles.priceCol}><Text>Cijena</Text></View>
+            <View style={{width: '45%'}}><Text>Proizvod</Text></View>
+            <View style={{width: '15%', textAlign: 'center'}}><Text>Količina</Text></View>
+            <View style={{width: '20%', textAlign: 'right'}}><Text>Cijena</Text></View>
+            <View style={{width: '20%', textAlign: 'right'}}><Text>Ukupno</Text></View>
           </View>
           {/* Sadržaj tabele */}
           {order.items.map(item => (
             <View style={styles.tableRow} key={item.id}>
-              <View style={{...styles.tableCol, ...styles.productNameCol}}><Text>{item.product.name}</Text></View>
-              <View style={{...styles.tableCol, ...styles.quantityCol}}><Text>{item.quantity}</Text></View>
-              <View style={{...styles.tableCol, ...styles.priceCol}}><Text>{item.price.toFixed(2)} BAM</Text></View>
+              <View style={{...styles.tableCol, width: '45%'}}>
+                <Text>{item.product.name}</Text>
+                {item.product.sku ? <Text style={{fontSize: 9, color: '#666', marginTop: 2}}>SKU: {item.product.sku}</Text> : null}
+                {item.product.oemNumber ? <Text style={{fontSize: 9, color: '#666', marginTop: 2}}>OEM: {item.product.oemNumber}</Text> : null}
+              </View>
+              <View style={{...styles.tableCol, width: '15%', textAlign: 'center'}}><Text>{item.quantity}</Text></View>
+              <View style={{...styles.tableCol, width: '20%', textAlign: 'right'}}><Text>{item.price.toFixed(2)} BAM</Text></View>
+              <View style={{...styles.tableCol, width: '20%', textAlign: 'right'}}><Text>{(item.price * item.quantity).toFixed(2)} BAM</Text></View>
             </View>
           ))}
         </View>

@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { rateLimit, keyFromIpAndPath } from '@/lib/ratelimit';
 import { z } from 'zod';
 import { db } from '@/lib/db';
+import { SIMILARITY_THRESHOLD, NAME_WEIGHT, CATALOG_WEIGHT } from '@/lib/search-constants';
 
 // Shema za validaciju parametara napredne pretrage
 const advancedSearchParamsSchema = z.object({
@@ -17,6 +18,35 @@ const advancedSearchParamsSchema = z.object({
   sortBy: z.enum(['name', 'price', 'createdAt']).default('name'),
   sortOrder: z.enum(['asc', 'desc']).default('asc')
 });
+
+async function getTrigramPrefilterIdsForAdvanced(query: string, limit: number): Promise<string[] | null> {
+  if (!query || query.length < 3) return null;
+  try {
+    const rows = await db.$queryRaw<{ id: string }[]>`
+      SELECT p.id
+      FROM "Product" p
+      WHERE (
+        immutable_unaccent(lower(p.name)) % immutable_unaccent(lower(${query}))
+        OR immutable_unaccent(lower(p."catalogNumber")) % immutable_unaccent(lower(${query}))
+        OR immutable_unaccent(lower(COALESCE(p."oemNumber", ''))) % immutable_unaccent(lower(${query}))
+      )
+      AND (
+        similarity(immutable_unaccent(lower(p.name)), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD} OR
+        similarity(immutable_unaccent(lower(p."catalogNumber")), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD} OR
+        similarity(immutable_unaccent(lower(COALESCE(p."oemNumber", ''))), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD}
+      )
+      ORDER BY (
+        ${NAME_WEIGHT} * similarity(immutable_unaccent(lower(p.name)), immutable_unaccent(lower(${query}))) +
+        ${CATALOG_WEIGHT} * similarity(immutable_unaccent(lower(p."catalogNumber")), immutable_unaccent(lower(${query})))
+      ) DESC, p."createdAt" DESC
+      LIMIT ${Number(limit)}
+    `;
+    return rows.map(r => r.id);
+  } catch (error) {
+    console.error('[ADVANCED_PRODUCTS_TRIGRAM_PREFILTER_ERROR]', error);
+    return null;
+  }
+}
 
 export async function GET(req: Request) {
   try {
@@ -99,6 +129,24 @@ export async function GET(req: Request) {
     const whereConditions: any = {
       isArchived: false
     };
+
+    const useTrigramAdvancedSearch = process.env.USE_TRIGRAM_ADVANCED_SEARCH === 'true';
+    let prefilteredIds: string[] | null = null;
+
+    if (useTrigramAdvancedSearch && validatedQuery && validatedQuery.length >= 3) {
+      prefilteredIds = await getTrigramPrefilterIdsForAdvanced(validatedQuery.trim(), 5000);
+      if (prefilteredIds && prefilteredIds.length > 0) {
+        (whereConditions as any).id = { in: prefilteredIds };
+      } else if (prefilteredIds && prefilteredIds.length === 0) {
+        return NextResponse.json({
+          products: [],
+          total: 0,
+          page: validatedPage,
+          limit: validatedLimit,
+          totalPages: 0
+        });
+      }
+    }
 
     // Filtriranje po kategoriji
     if (validatedCategoryId) {

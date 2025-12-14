@@ -52,6 +52,8 @@ export default function ClientHierarchicalFilters({
     if (!updateUrl) return;
     
     const params = new URLSearchParams(searchParams);
+    // Pri promjeni filtera resetuj paginaciju na prvu stranicu
+    params.delete('page');
 
     // Ažuriramo parametre na temelju novih filtera
     Object.keys(filters).forEach(key => {

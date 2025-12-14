@@ -35,13 +35,23 @@ export default function SearchPageClient({ filterData }: SearchPageClientProps) 
     setCurrentFilters(getFiltersFromParams());
   }, [searchParams]);
 
+  const handleQueryChange = (query: string) => {
+    const trimmed = query.trim();
+    const params = new URLSearchParams(searchParams);
+    if (trimmed) {
+      params.set('q', trimmed);
+    } else {
+      params.delete('q');
+    }
+    // Resetuj paginaciju ako postoji
+    params.delete('page');
+    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+  };
+
   const handleFilterChange = (newFilters: Record<string, any>) => {
-    // Ako je akcija pretrage, postavi samo 'q' i ništa drugo
+    // Ako je akcija pretrage, delegiraj na handleQueryChange
     if ('q' in newFilters) {
-      const q = (newFilters as any).q;
-      const params = new URLSearchParams();
-      if (q && String(q).trim()) params.set('q', String(q).trim());
-      router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+      handleQueryChange(String((newFilters as any).q ?? ''));
       return;
     }
 
@@ -58,8 +68,17 @@ export default function SearchPageClient({ filterData }: SearchPageClientProps) 
     // Ako nema nijednog konkretnog filtera, ne diraj URL (izbjegni brisanje aktivnog q)
     if (pairs.length === 0) return;
 
-    const params = new URLSearchParams();
+    const params = new URLSearchParams(searchParams);
+
+    // Očisti stare vrijednosti filtera koje kontroliramo (zadržavamo q i ostale parametre)
+    ['categoryId', 'generationId', 'engineId', 'minPrice', 'maxPrice'].forEach((key) => {
+      params.delete(key);
+    });
+
     for (const [key, value] of pairs) params.set(key, String(value));
+
+    // Resetuj paginaciju ako postoji
+    params.delete('page');
 
     router.replace(`${pathname}?${params.toString()}`, { scroll: false });
   };
@@ -144,7 +163,11 @@ export default function SearchPageClient({ filterData }: SearchPageClientProps) 
           </div>
           
           <div className="w-full lg:w-3/4">
-            <ProductsResults filters={currentFilters} onClearAll={handleClearAll} />
+            <ProductsResults 
+              filters={currentFilters} 
+              onClearAll={handleClearAll} 
+              onQueryChange={handleQueryChange}
+            />
           </div>
         </div>
       </div>

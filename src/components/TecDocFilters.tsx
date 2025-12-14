@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import { X, ChevronRight, ChevronDown, Filter } from 'lucide-react';
 import CategoryHierarchy from './CategoryHierarchy';
 import VehicleSelector from './vehicle-selector';
-import TechnicalSpecsFilter from './TechnicalSpecsFilter';
 
 interface FilterSectionProps {
   title: string;
@@ -184,31 +183,8 @@ export default function TecDocFilters({ onFilterChange, initialFilters = {} }: T
           rememberSelection={true}
         />
       </FilterSection>
-      
-      <FilterSection 
-        title="Tehničke specifikacije" 
-        isActive={activeSections.specs}
-        onToggle={() => toggleSection('specs')}
-      >
-        <TechnicalSpecsFilter 
-          categoryId={filters.categoryId}
-          onSpecsChange={(specs) => {
-            updateFilter('specs', specs);
-            
-            // Dodaj aktivne filtere za specifikacije
-            Object.entries(specs).forEach(([key, value]) => {
-              if (value) {
-                const label = `${key}: ${value}`;
-                setActiveFilters(prev => {
-                  const filtered = prev.filter(f => f.id !== `specs-${key}`);
-                  return [...filtered, { id: `specs-${key}`, type: 'Specifikacija', label }];
-                });
-              }
-            });
-          }}
-          selectedSpecs={filters.specs}
-        />
-      </FilterSection>
+
+      {/* Sekcija "Tehničke specifikacije" privremeno uklonjena iz frontenda */}
     </div>
   );
 }

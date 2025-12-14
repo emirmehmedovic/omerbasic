@@ -3,7 +3,6 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
 import { X, Filter, Car, Settings, Layers, Truck, ShieldCheck, SprayCan, LifeBuoy, Droplets, Box, ChevronRight, ChevronDown, Search } from 'lucide-react';
 import VehicleSelector from './vehicle/VehicleSelector';
-import TechnicalSpecsFilter from './TechnicalSpecsFilter';
 import { Button } from './ui/button';
 import { Separator } from './ui/separator';
 
@@ -648,32 +647,6 @@ export default function HierarchicalFilters({
               </div>
             </div>
           )}
-
-          {/* Tehničke specifikacije */}
-          <div className="technical-specs">
-            <div className="relative overflow-hidden p-6 rounded-3xl bg-gradient-to-br from-slate-50 via-slate-100 to-slate-200 shadow-xl">
-              <div className="pointer-events-none absolute inset-0 z-0 opacity-[0.04]"
-                   style={{
-                     backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(27,58,95,0.2) 1px, transparent 0), radial-gradient(circle at 50% 50%, rgba(255,107,53,0.08) 0%, transparent 70%)',
-                     backgroundSize: '32px 32px, 100% 100%'
-                   }} />
-              <div className="relative z-10">
-                <div className="flex items-center mb-6">
-                  <div className="p-2.5 rounded-2xl mr-3 bg-gradient-to-br from-[#E85A28] to-[#FF6B35] shadow-xl">
-                    <Settings className="h-5 w-5 text-white" />
-                  </div>
-                  <h3 className="font-bold text-primary text-xl">Tehničke specifikacije</h3>
-                </div>
-                <TechnicalSpecsFilter 
-                  categoryId={filters.categoryId as any}
-                  onSpecsChange={(newSpecs: Record<string, string | number>) => {
-                    setFilters(prev => ({ ...prev, specs: newSpecs }));
-                  }}
-                  selectedSpecs={filters.specs as any}
-                />
-              </div>
-            </div>
-          </div>
         </div>
       )}
     </div>

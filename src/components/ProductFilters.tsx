@@ -6,7 +6,6 @@ import { useDebouncedCallback } from 'use-debounce';
 import type { Category } from '@/generated/prisma/client';
 import VehicleSelector from './vehicle-selector';
 import CategoryHierarchy from './CategoryHierarchy';
-import TechnicalSpecsFilter from './TechnicalSpecsFilter';
 import CategoryAttributesFilter from './CategoryAttributesFilter';
 import CrossReferenceFilter from './CrossReferenceFilter';
 import { ChevronDown, ChevronUp, Filter, X, Sliders } from 'lucide-react';
@@ -340,32 +339,7 @@ export function ProductFilters({
             </div>
           )}
           
-          {/* 3. RED: Tehničke specifikacije */}
-          {showTechSpecs && filters.categoryId && (
-            <div className="filter-section mb-4">
-              <div 
-                className="flex items-center justify-between cursor-pointer py-2 border-b border-slate-200"
-                onClick={() => toggleSection('techSpecs')}
-              >
-                <h3 className="font-medium text-slate-700 flex items-center">
-                  <ChevronDown 
-                    className={`h-4 w-4 mr-1 transition-transform ${expandedSections.techSpecs ? '' : '-rotate-90'}`} 
-                  />
-                  Tehničke specifikacije
-                </h3>
-              </div>
-              
-              {expandedSections.techSpecs && (
-                <div className="mt-3">
-                  <TechnicalSpecsFilter 
-                    categoryId={typeof filters.categoryId === 'string' ? filters.categoryId : ''} 
-                    onSpecsChange={handleTechSpecsChange}
-                    selectedSpecs={techSpecs}
-                  />
-                </div>
-              )}
-            </div>
-          )}
+          {/* 3. RED: Tehničke specifikacije (privremeno uklonjeno iz frontenda) */}
           
           {/* Atributi kategorije */}
           {filters.categoryId && (

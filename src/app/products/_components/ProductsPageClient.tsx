@@ -27,6 +27,7 @@ export default function ProductsPageClient({ filterData }: ProductsPageClientPro
     minPrice?: string;
     maxPrice?: string;
     q?: string;
+    page?: number | string;
     [key: string]: any;
   };
 
@@ -41,15 +42,23 @@ export default function ProductsPageClient({ filterData }: ProductsPageClientPro
     minPrice: searchParams.get('minPrice') || undefined,
     maxPrice: searchParams.get('maxPrice') || undefined,
     q: searchParams.get('q') || undefined,
+    page: searchParams.get('page') || undefined,
   };
 
   const [currentFilters, setCurrentFilters] = useState<FilterState>(initialFilters);
   const [vehicleResetKey, setVehicleResetKey] = useState(0);
+  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
 
   const handleFilterChange = (filters: Record<string, any>) => {
-    setCurrentFilters(prev => ({ ...prev, ...filters }));
+    // Kada se promijene filteri (kategorija, vozilo, cijena...), resetuj page
+    setCurrentFilters(prev => ({ ...prev, ...filters, page: undefined }));
+
+    // Na mobilnim uređajima, nakon odabira filtera automatski zatvori drawer
+    if (typeof window !== 'undefined' && window.innerWidth < 1024) {
+      setMobileFiltersOpen(false);
+    }
   };
 
   // If we land with a makeId but no categoryId, default to Passenger category (static ID)
@@ -162,8 +171,22 @@ export default function ProductsPageClient({ filterData }: ProductsPageClientPro
     <div className="min-h-screen bg-app relative">
       <div className="container mx-auto px-4 py-6 max-w-7xl relative z-10">
         {/* Hero (carousel/bento) uklonjen */}
+        {/* Mobilni gumb za otvaranje/zatvaranje filtera */}
+        <div className="mb-4 lg:hidden">
+          <button
+            type="button"
+            onClick={() => setMobileFiltersOpen((open) => !open)}
+            className="w-full flex items-center justify-between px-4 py-2 rounded-xl bg-white/80 backdrop-blur-sm border border-white/60 shadow-sm text-slate-800 text-sm font-medium"
+          >
+            <span className="flex flex-col items-start text-left">
+              <span>Filteri proizvoda</span>
+              <span className="text-[11px] text-slate-500 font-normal">Dodirnite da odaberete vozilo, kategoriju i cijenu</span>
+            </span>
+            <span className="text-xs text-slate-600">{mobileFiltersOpen ? 'Sakrij' : 'Otvori'}</span>
+          </button>
+        </div>
 
-        <div className="mb-8">
+        <div className={`mb-8 ${mobileFiltersOpen ? 'block' : 'hidden'} lg:block`}>
           <ClientHierarchicalFilters
             key={`top-filters-${vehicleResetKey}`}
             initialFilters={currentFilters}
@@ -185,7 +208,7 @@ export default function ProductsPageClient({ filterData }: ProductsPageClientPro
         {/* Sidebar + results - always show */}
         <div className="flex flex-col lg:flex-row gap-6">
           {!noFiltersApplied && (
-            <div className="w-full lg:w-1/4">
+            <div className={`w-full lg:w-1/4 ${mobileFiltersOpen ? 'block' : 'hidden'} lg:block`}>
               <ClientHierarchicalFilters
                 key={`sidebar-filters-${vehicleResetKey}`}
                 initialFilters={currentFilters}
@@ -207,7 +230,40 @@ export default function ProductsPageClient({ filterData }: ProductsPageClientPro
                 onClearAll={handleClearAll}
               />
             )}
-            <ProductsResults filters={currentFilters} />
+            <ProductsResults
+              filters={currentFilters}
+              onPageChange={(nextPage) => {
+                setCurrentFilters(prev => ({ ...prev, page: nextPage }));
+                const params = new URLSearchParams(searchParams);
+                if (nextPage && nextPage > 1) {
+                  params.set('page', String(nextPage));
+                } else {
+                  params.delete('page');
+                }
+                const query = params.toString();
+                router.replace(query ? `${pathname}?${query}` : pathname, { scroll: false });
+              }}
+              onQueryChange={(query) => {
+                const trimmed = query.trim();
+                setCurrentFilters(prev => ({
+                  ...prev,
+                  q: trimmed || undefined,
+                  page: undefined,
+                }));
+
+                const params = new URLSearchParams(searchParams);
+                if (trimmed) {
+                  params.set('q', trimmed);
+                } else {
+                  params.delete('q');
+                }
+                // Resetuj paginaciju kad se promijeni tekst pretrage
+                params.delete('page');
+
+                const queryString = params.toString();
+                router.replace(queryString ? `${pathname}?${queryString}` : pathname, { scroll: false });
+              }}
+            />
           </div>
         </div>
       </div>

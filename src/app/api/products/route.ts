@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/lib/auth';
 import { db } from '@/lib/db';
+import { SIMILARITY_THRESHOLD, NAME_WEIGHT, CATALOG_WEIGHT } from '@/lib/search-constants';
 import { calculateB2BPrice, getUserDiscountProfile } from '@/lib/b2b/discount-service';
 import { productApiSchema } from '@/lib/validations/product';
 import { revalidateTag } from 'next/cache';
@@ -88,6 +89,35 @@ function logQuery(model: string, operation: string, args: unknown) {
   console.info(`[PRISMA][${model}.${operation}]`, JSON.stringify(args));
 }
 
+async function getTrigramPrefilterIdsForListing(query: string, limit: number): Promise<string[] | null> {
+  if (!query || query.length < 3) return null;
+  try {
+    const rows = await db.$queryRaw<{ id: string }[]>`
+      SELECT p.id
+      FROM "Product" p
+      WHERE (
+        immutable_unaccent(lower(p.name)) % immutable_unaccent(lower(${query}))
+        OR immutable_unaccent(lower(p."catalogNumber")) % immutable_unaccent(lower(${query}))
+        OR immutable_unaccent(lower(COALESCE(p."oemNumber", ''))) % immutable_unaccent(lower(${query}))
+      )
+      AND (
+        similarity(immutable_unaccent(lower(p.name)), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD} OR
+        similarity(immutable_unaccent(lower(p."catalogNumber")), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD} OR
+        similarity(immutable_unaccent(lower(COALESCE(p."oemNumber", ''))), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD}
+      )
+      ORDER BY (
+        ${NAME_WEIGHT} * similarity(immutable_unaccent(lower(p.name)), immutable_unaccent(lower(${query}))) +
+        ${CATALOG_WEIGHT} * similarity(immutable_unaccent(lower(p."catalogNumber")), immutable_unaccent(lower(${query})))
+      ) DESC, p."createdAt" DESC
+      LIMIT ${Number(limit)}
+    `;
+    return rows.map(r => r.id);
+  } catch (error) {
+    console.error('[PRODUCTS_TRIGRAM_PREFILTER_ERROR]', error);
+    return null;
+  }
+}
+
 export async function GET(req: NextRequest) {
   try {
     // B2B session context
@@ -122,6 +152,16 @@ export async function GET(req: NextRequest) {
       where.stock = { gt: 0 };
     }
 
+    const useTrigramListingSearch = process.env.USE_TRIGRAM_LISTING_SEARCH === 'true';
+    let prefilteredIds: string[] | null = null;
+
+    if (useTrigramListingSearch && query && query.trim().length >= 3) {
+      prefilteredIds = await getTrigramPrefilterIdsForListing(query.trim(), 5000);
+      if (prefilteredIds) {
+        where.id = { in: prefilteredIds };
+      }
+    }
+
     const searchableFields = ['name', 'catalogNumber', 'oemNumber', 'sku', 'description'] as const;
     const buildFieldFilters = (field: typeof searchableFields[number], token: string) => {
       const trimmed = token.trim();
@@ -147,11 +187,18 @@ export async function GET(req: NextRequest) {
       return filters;
     };
 
+    const isShortQuery = !!(query && query.trim().length < 3);
+
     const buildSearchClauses = (token: string) => {
-      return searchableFields.flatMap(field => buildFieldFilters(field, token));
+      const fields = isShortQuery
+        ? (['catalogNumber', 'oemNumber', 'sku'] as const)
+        : searchableFields;
+      return fields.flatMap(field => buildFieldFilters(field as typeof searchableFields[number], token));
     };
 
-    const searchTokens = query?.trim().split(/\s+/).filter(Boolean) ?? [];
+    const searchTokens = !prefilteredIds && query
+      ? query.trim().split(/\s+/).filter(Boolean)
+      : [];
     if (searchTokens.length) {
       const tokenConditions = searchTokens.map(token => ({ OR: buildSearchClauses(token) }));
       where.AND = [...(where.AND ?? []), ...tokenConditions];

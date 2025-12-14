@@ -46,7 +46,7 @@ export default function DownloadOrderDocument({ orderId, documentType, buttonTex
     <button
       onClick={handleDownload}
       disabled={isDownloading}
-      className="flex items-center justify-center gap-2 text-sm px-3 py-1.5 rounded-md bg-slate-700 text-slate-300 hover:bg-slate-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+      className="flex items-center justify-center gap-2 text-sm px-3 py-1.5 rounded-md bg-blue-50 border border-blue-200 text-blue-700 hover:bg-blue-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
     >
       <Download size={14} />
       {isDownloading ? 'Preuzimanje...' : buttonText}

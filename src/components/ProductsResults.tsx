@@ -1,7 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
-import { useRouter } from 'next/navigation';
+import { useEffect, useMemo, useRef, useState } from "react";
 import { ProductCard } from "./ProductCard";
 import { LayoutGrid, List } from "lucide-react";
 import ProductEngineSummary from '@/components/ProductEngineSummary';
@@ -46,9 +45,11 @@ export type ProductFilters = {
 interface Props {
   filters: ProductFilters;
   onClearAll?: () => void;
+  onPageChange?: (page: number) => void;
+  onQueryChange?: (query: string) => void;
 }
 
-export default function ProductsResults({ filters, onClearAll }: Props) {
+export default function ProductsResults({ filters, onClearAll, onPageChange, onQueryChange }: Props) {
   const [view, setView] = useState<'grid' | 'list'>('list');
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
@@ -62,7 +63,6 @@ export default function ProductsResults({ filters, onClearAll }: Props) {
   const [totalCount, setTotalCount] = useState<number>(0);
   const PAGE_SIZE = 24;
   const { addToCart } = useCart();
-  const router = useRouter();
 
   const formatPrice = (price: number) =>
     new Intl.NumberFormat('bs-BA', { style: 'currency', currency: 'BAM' }).format(price);
@@ -79,9 +79,15 @@ export default function ProductsResults({ filters, onClearAll }: Props) {
   }, [filters]);
 
   const paramsString = baseParams.toString();
+  const prevParamsStringRef = useRef<string | null>(null);
 
   useEffect(() => {
-    setPage(1);
+    const prev = prevParamsStringRef.current;
+    // Preskoči inicijalno učitavanje i situacije kada se paramsString nije promijenio
+    if (prev !== null && prev !== paramsString) {
+      setPage(1);
+    }
+    prevParamsStringRef.current = paramsString;
   }, [paramsString]);
 
   const fetchPagedResults = async (pageNumber: number) => {
@@ -131,17 +137,21 @@ export default function ProductsResults({ filters, onClearAll }: Props) {
     return () => { cancelled = true; };
   }, [page, paramsString]);
 
-  const displayed = useMemo(() => {
-    const q = localQuery.trim().toLowerCase();
-    if (!q) return products;
-    const fieldMatch = (v?: string | null) => (v || '').toLowerCase().includes(q);
-    return products.filter(p => fieldMatch(p.name) || fieldMatch((p as any).oemNumber) || fieldMatch((p as any).catalogNumber));
-  }, [products, localQuery]);
+  // Sinkronizuj input s backend q parametrom
+  useEffect(() => {
+    setLocalQuery(filters.q ? String(filters.q) : "");
+  }, [filters.q]);
+
+  // Prikazani proizvodi su oni koje vrati backend (q je već primijenjen u API-ju)
+  const displayed = products;
 
   const handleChangePage = (nextPage: number) => {
     if (nextPage < 1 || nextPage > totalPages || nextPage === page) return;
     setPage(nextPage);
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (onPageChange) {
+      onPageChange(nextPage);
+    }
   };
 
   const pageNumbers = useMemo(() => {
@@ -251,9 +261,9 @@ export default function ProductsResults({ filters, onClearAll }: Props) {
                     value={localQuery}
                     onChange={(e) => setLocalQuery(e.target.value)}
                     onKeyDown={(e) => {
-                      if (e.key === 'Enter') {
+                      if (e.key === 'Enter' && onQueryChange) {
                         const q = localQuery.trim();
-                        if (q) router.push(`/search?q=${encodeURIComponent(q)}`);
+                        onQueryChange(q);
                       }
                     }}
                     placeholder="Pretraži po imenu, OEM broju i kataloškom broju…"
@@ -267,7 +277,10 @@ export default function ProductsResults({ filters, onClearAll }: Props) {
                       type="button"
                       aria-label="Očisti"
                       className="absolute right-12 top-1/2 -translate-y-1/2 text-slate-600 hover:text-slate-800 transition-colors"
-                      onClick={() => setLocalQuery("")}
+                      onClick={() => {
+                      setLocalQuery("");
+                      if (onQueryChange) onQueryChange("");
+                    }}
                     >
                       ×
                     </button>
@@ -276,8 +289,9 @@ export default function ProductsResults({ filters, onClearAll }: Props) {
                     type="button"
                     className="h-9 px-3 rounded-xl bg-gradient-to-r from-primary via-primary-dark to-primary hover:shadow-2xl text-white text-sm font-bold shadow-xl transform hover:-translate-y-0.5 transition-all duration-300"
                     onClick={() => {
-                      const q = localQuery.trim();
-                      if (q) router.push(`/search?q=${encodeURIComponent(q)}`);
+                      if (onQueryChange) {
+                        onQueryChange(localQuery.trim());
+                      }
                     }}
                   >
                     Pretraži
@@ -290,7 +304,7 @@ export default function ProductsResults({ filters, onClearAll }: Props) {
                         <path d="M12 8h.01" strokeWidth="2" strokeLinecap="round" />
                         <path d="M11 12h1v4h1" strokeWidth="2" strokeLinecap="round" />
                       </svg>
-                      Filtrira prikazane rezultate; pritisnite Enter ili kliknite Pretraži za globalnu pretragu.
+                      Pretražuje proizvode unutar odabranih filtera; pritisnite Enter ili kliknite Pretraži za primjenu.
                     </span>
                   </div>
                 </div>
