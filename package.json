@@ -23,6 +23,8 @@
     "update:stock": "tsx scripts/update-stock-from-csv.ts",
     "update:stock:fast": "tsx scripts/update-stock-ultra-fast.ts",
     "products:generate-slugs": "tsx scripts/generate-product-slugs.ts",
+    "products:analyze-names": "tsx scripts/analyze-product-names.ts",
+    "products:normalize-names": "tsx scripts/normalize-product-names.ts",
     "postinstall": "prisma generate"
   },
   "prisma": {

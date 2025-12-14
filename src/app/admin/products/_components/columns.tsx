@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { ColumnDef } from '@tanstack/react-table';
-import { ArrowUpDown, MoreHorizontal, Settings, PencilLine, Check, X, Loader2 } from 'lucide-react';
+import { ArrowUpDown, MoreHorizontal, Settings, PencilLine, Check, X, Loader2, RefreshCcw } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { toast } from 'react-hot-toast';
@@ -36,6 +36,20 @@ const onDelete = async (id: string, router: ReturnType<typeof useRouter>) => {
     } catch (error) {
       toast.error('Došlo je do greške prilikom brisanja.');
     }
+  }
+};
+
+const onRegenerateSlug = async (id: string, router: ReturnType<typeof useRouter>) => {
+  const confirmed = window.confirm('Regenerisati slug za ovaj proizvod? Trenutni URL proizvoda će se promijeniti.');
+  if (!confirmed) return;
+
+  try {
+    await axios.post('/api/admin/products/regenerate-slugs', { productId: id });
+    router.refresh();
+    toast.success('Slug regenerisan.');
+  } catch (error) {
+    console.error('Error regenerating product slug', error);
+    toast.error('Došlo je do greške pri regenerisanju sluga.');
   }
 };
 
@@ -319,6 +333,12 @@ export const columns: ColumnDef<ProductWithCategory>[] = [
               <Link href={`/admin/products/${product.id}/attributes`} className="flex items-center text-gray-700">
                 <Settings className="h-4 w-4 mr-2" /> Atributi i reference
               </Link>
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={() => onRegenerateSlug(product.id, router)}
+              className="flex items-center text-gray-700"
+            >
+              <RefreshCcw className="h-4 w-4 mr-2" /> Regeneriši slug
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem
