@@ -76,12 +76,15 @@ export async function GET(
     // Generišemo PDF koristeći pdf-lib
     const pdfBytes = await generateInvoicePDF(serializedOrder);
 
+    // Konvertujemo Uint8Array u ArrayBuffer da bi bio kompatibilan sa NextResponse BodyInit tipom
+    const pdfArrayBuffer = pdfBytes.buffer as ArrayBuffer;
+
     // Vraćamo buffer kao response sa odgovarajućim headerima
     const headers = new Headers();
     headers.set('Content-Type', 'application/pdf');
     headers.set('Content-Disposition', `attachment; filename="faktura_${orderId.substring(0,8)}.pdf"`);
 
-    return new NextResponse(pdfBytes, { headers });
+    return new NextResponse(pdfArrayBuffer, { headers });
 
   } catch (error) {
     console.error('[INVOICE_GET] Error:', error);

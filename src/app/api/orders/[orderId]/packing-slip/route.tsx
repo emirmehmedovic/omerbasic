@@ -76,12 +76,14 @@ export async function GET(
     // Generišemo PDF koristeći pdf-lib
     const pdfBytes = await generatePackingSlipPDF(serializedOrder);
 
+    const pdfArrayBuffer = pdfBytes.buffer as ArrayBuffer;
+
     // Vraćamo buffer kao response sa odgovarajućim headerima
     const headers = new Headers();
     headers.set('Content-Type', 'application/pdf');
     headers.set('Content-Disposition', `attachment; filename="otpremnica_${orderId.substring(0,8)}.pdf"`);
 
-    return new NextResponse(pdfBytes, { headers });
+    return new NextResponse(pdfArrayBuffer, { headers });
 
   } catch (error) {
     console.error('[PACKING_SLIP_GET] Error:', error);

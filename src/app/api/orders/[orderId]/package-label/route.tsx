@@ -50,12 +50,14 @@ export async function GET(
     // Generate package label PDF
     const pdfBytes = await generatePackageLabelPDF(serializedOrder);
 
+    const pdfArrayBuffer = pdfBytes.buffer as ArrayBuffer;
+
     // Return PDF
     const headers = new Headers();
     headers.set('Content-Type', 'application/pdf');
     headers.set('Content-Disposition', `attachment; filename="etiketa_${orderId.substring(0,8)}.pdf"`);
 
-    return new NextResponse(pdfBytes, { headers });
+    return new NextResponse(pdfArrayBuffer, { headers });
 
   } catch (error) {
     console.error('[PACKAGE_LABEL_GET] Error:', error);
