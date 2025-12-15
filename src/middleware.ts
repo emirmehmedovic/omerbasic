@@ -20,8 +20,10 @@ export async function middleware(req: NextRequest) {
       
       const requestHeaders = new Headers(req.headers);
       const tokenString = JSON.stringify(token);
-      requestHeaders.set('x-nextauth-token', tokenString);
-      console.log('[MIDDLEWARE] Postavljam x-nextauth-token header:', tokenString.substring(0, 50) + '...');
+      // Enkodiramo u Base64 jer HTTP headeri ne podržavaju Unicode karaktere
+      const tokenBase64 = Buffer.from(tokenString).toString('base64');
+      requestHeaders.set('x-nextauth-token', tokenBase64);
+      console.log('[MIDDLEWARE] Postavljam x-nextauth-token header (base64)');
       
       // Vrati zahtjev s dodanim headerom koji sadrži token
       const response = NextResponse.next({

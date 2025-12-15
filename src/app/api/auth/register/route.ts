@@ -13,7 +13,9 @@ export async function POST(req: Request) {
 
     let token: any = null;
     try {
-      token = JSON.parse(tokenHeader);
+      // Token je enkodiran u Base64 zbog Unicode karaktera u HTTP headerima
+      const tokenJson = Buffer.from(tokenHeader, 'base64').toString('utf-8');
+      token = JSON.parse(tokenJson);
     } catch (e) {
       return new NextResponse('Nevažeći token header.', { status: 400 });
     }
