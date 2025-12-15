@@ -15,7 +15,7 @@ export function AdminNav() {
           <Link href="/admin/transport-requests" className="hover:text-gray-300">Transport</Link>
         </div>
         <button
-          onClick={() => signOut({ callbackUrl: '/login' })}
+          onClick={() => signOut({ callbackUrl: `${window.location.origin}/login` })}
           className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
         >
           Odjavi se

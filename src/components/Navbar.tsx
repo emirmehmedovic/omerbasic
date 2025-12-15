@@ -155,7 +155,7 @@ export function Navbar() {
                       <button
                         onClick={() => {
                           setUserMenuOpen(false);
-                          signOut({ callbackUrl: '/' });
+                          signOut({ callbackUrl: window.location.origin });
                         }}
                         className="w-full flex items-center px-4 py-2.5 mx-2 my-1 text-sm text-slate-700 hover:bg-gradient-to-r hover:from-[#E85A28] hover:to-[#FF6B35] hover:text-white rounded-xl transition-all duration-300 font-medium"
                       >
@@ -236,7 +236,7 @@ export function Navbar() {
                     <button
                       onClick={() => {
                         setMenuOpen(false);
-                        signOut({ callbackUrl: '/' });
+                        signOut({ callbackUrl: window.location.origin });
                       }}
                       className="w-full flex items-center px-4 py-2.5 text-sm text-slate-700 hover:bg-gradient-to-r hover:from-[#E85A28] hover:to-[#FF6B35] hover:text-white rounded-xl transition-all duration-300 font-medium"
                     >
