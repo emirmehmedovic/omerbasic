@@ -152,6 +152,16 @@ export async function POST(req: Request) {
       return order;
     });
 
+    // Telegram notifikacija za novu narudžbinu (async, ne čekamo)
+    try {
+      const { sendNewOrderNotification } = await import('@/lib/telegram/notification-service');
+      sendNewOrderNotification(newOrder.id).catch((err) =>
+        console.error('[ORDER_POST] Telegram notification failed:', err)
+      );
+    } catch (error) {
+      console.error('[ORDER_POST] Failed to import Telegram service:', error);
+    }
+
     return NextResponse.json({ orderId: newOrder.id }, { status: 201 });
 
   } catch (error) {

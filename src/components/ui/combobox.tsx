@@ -61,15 +61,15 @@ export function Combobox({
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-full p-0">
+      <PopoverContent className="p-0 w-[var(--radix-popover-trigger-width)]" align="start">
         <Command>
           <CommandInput placeholder={resolvedSearchPlaceholder} />
           <CommandEmpty>{emptyMessage}</CommandEmpty>
-          <CommandGroup className="max-h-60 overflow-auto">
+          <CommandGroup className="max-h-[300px] overflow-y-auto">
             {options.map((option) => (
               <CommandItem
                 key={option.value}
-                value={option.value}
+                value={option.label}
                 onSelect={() => {
                   onChange(option.value);
                   setOpen(false);

@@ -17,6 +17,7 @@ import {
   FiGrid,
 } from 'react-icons/fi';
 import { Combobox } from '@/components/ui/combobox';
+import { MultiSelect } from '@/components/ui/multi-select';
 import { Badge } from '@/components/ui/badge';
 
 interface GroupMember {
@@ -202,7 +203,7 @@ export function B2BGroupsClient({ groups: initialGroups, manufacturers, categori
   const [editForm, setEditForm] = useState<CreateGroupForm>(defaultCreateForm);
   const [loadingGroupId, setLoadingGroupId] = useState<string | null>(null);
   const [memberSelection, setMemberSelection] = useState<Record<string, string>>({});
-  const [categoryForms, setCategoryForms] = useState<Record<string, { categoryId: string; discountPercentage: string }>>({});
+  const [categoryForms, setCategoryForms] = useState<Record<string, { categoryIds: string[]; discountPercentage: string }>>({});
   const [manufacturerForms, setManufacturerForms] = useState<Record<string, { manufacturerId: string; discountPercentage: string }>>({});
   const [categoryManufacturerForms, setCategoryManufacturerForms] = useState<
     Record<string, { categoryId: string; manufacturerId: string; discountPercentage: string }>
@@ -429,19 +430,24 @@ export function B2BGroupsClient({ groups: initialGroups, manufacturers, categori
 
   const handleAddCategoryDiscount = async (groupId: string) => {
     const form = categoryForms[groupId];
-    if (!form?.categoryId || !form.discountPercentage) {
-      toast.error('Odaberite kategoriju i unesite popust.');
+    if (!form?.categoryIds?.length || !form.discountPercentage) {
+      toast.error('Odaberite barem jednu kategoriju i unesite popust.');
       return;
     }
 
     setLoadingGroupId(groupId);
     try {
-      await axios.post(`/api/admin/b2b-groups/${groupId}/category-discounts`, {
-        categoryId: form.categoryId,
-        discountPercentage: Number(form.discountPercentage),
-      });
-      toast.success('Popust po kategoriji je dodan.');
-      setCategoryForms((prev) => ({ ...prev, [groupId]: { categoryId: '', discountPercentage: '' } }));
+      // Dodaj popust za svaku odabranu kategoriju
+      await Promise.all(
+        form.categoryIds.map((categoryId) =>
+          axios.post(`/api/admin/b2b-groups/${groupId}/category-discounts`, {
+            categoryId,
+            discountPercentage: Number(form.discountPercentage),
+          })
+        )
+      );
+      toast.success(`Popust po ${form.categoryIds.length} kategorij${form.categoryIds.length === 1 ? 'i' : 'ama'} je dodan.`);
+      setCategoryForms((prev) => ({ ...prev, [groupId]: { categoryIds: [], discountPercentage: '' } }));
       await refreshGroups();
     } catch (error: any) {
       console.error(error);
@@ -565,8 +571,8 @@ export function B2BGroupsClient({ groups: initialGroups, manufacturers, categori
 
   return (
     <div className="space-y-6">
-      <div className="bg-gradient-to-r from-white/95 to-gray-50/95 backdrop-blur-sm rounded-2xl border border-amber/20 shadow-sm overflow-hidden">
-        <div className="bg-gradient-to-r from-white/90 to-gray-50/90 border-b border-amber/20 px-6 py-4 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+      <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+        <div className="bg-gray-50 border-b border-gray-200 px-6 py-4 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div className="flex-1 space-y-1">
             <h2 className="text-xl font-semibold text-gray-900 flex items-center gap-2">
               <FiUsers /> B2B grupe
@@ -577,12 +583,12 @@ export function B2BGroupsClient({ groups: initialGroups, manufacturers, categori
           </div>
           <div className="flex flex-col md:flex-row gap-3 w-full md:w-auto">
             <div className="relative flex-1 md:w-64">
-              <FiSearch className="absolute left-3 top-2.5 text-amber/60" />
+              <FiSearch className="absolute left-3 top-2.5 text-gray-400" />
               <input
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder="Pretraži grupe..."
-                className="w-full pl-9 pr-3 py-2 rounded-xl border border-amber/30 bg-white focus:border-amber focus:outline-none transition-all duration-200 text-sm md:text-base"
+                className="w-full pl-9 pr-3 py-2 rounded-xl border border-gray-300 bg-white focus:border-slate-500 focus:ring-2 focus:ring-slate-500/20 focus:outline-none transition-all duration-200 text-sm md:text-base"
               />
             </div>
             <button
@@ -590,7 +596,7 @@ export function B2BGroupsClient({ groups: initialGroups, manufacturers, categori
                 setIsCreating((prev) => !prev);
                 setCreateForm(defaultCreateForm);
               }}
-              className="md:w-auto w-full bg-gradient-to-r from-amber via-orange to-brown text-white hover:from-amber/90 hover:via-orange/90 hover:to-brown/90 shadow-lg hover:scale-105 transition-all duration-200 rounded-xl px-4 py-2 font-semibold flex items-center justify-center gap-2"
+              className="md:w-auto w-full bg-slate-700 text-white hover:bg-slate-600 shadow-md hover:shadow-lg transition-all duration-200 rounded-xl px-4 py-2 font-semibold flex items-center justify-center gap-2"
             >
               <FiPlus /> {isCreating ? 'Zatvori' : 'Nova grupa'}
             </button>
@@ -605,7 +611,7 @@ export function B2BGroupsClient({ groups: initialGroups, manufacturers, categori
                 <input
                   value={createForm.name}
                   onChange={(e) => setCreateForm((prev) => ({ ...prev, name: e.target.value }))}
-                  className="mt-1 block w-full bg-white border-amber/30 focus:border-amber rounded-xl transition-all duration-200 text-gray-900 px-4 py-2"
+                  className="mt-1 block w-full bg-white border border-gray-300 focus:border-slate-500 focus:ring-2 focus:ring-slate-500/20 rounded-xl transition-all duration-200 text-gray-900 px-4 py-2"
                   required
                 />
               </div>
@@ -615,7 +621,7 @@ export function B2BGroupsClient({ groups: initialGroups, manufacturers, categori
                   type="number"
                   value={createForm.priority}
                   onChange={(e) => setCreateForm((prev) => ({ ...prev, priority: e.target.value }))}
-                  className="mt-1 block w-full bg-white border-amber/30 focus:border-amber rounded-xl transition-all duration-200 text-gray-900 px-4 py-2"
+                  className="mt-1 block w-full bg-white border border-gray-300 focus:border-slate-500 focus:ring-2 focus:ring-slate-500/20 rounded-xl transition-all duration-200 text-gray-900 px-4 py-2"
                 />
               </div>
             </div>
@@ -630,7 +636,7 @@ export function B2BGroupsClient({ groups: initialGroups, manufacturers, categori
                       stackingStrategy: e.target.value as Group['stackingStrategy'],
                     }))
                   }
-                  className="mt-1 block w-full bg-white border-amber/30 focus:border-amber rounded-xl transition-all duration-200 text-gray-900 px-4 py-2"
+                  className="mt-1 block w-full bg-white border border-gray-300 focus:border-slate-500 focus:ring-2 focus:ring-slate-500/20 rounded-xl transition-all duration-200 text-gray-900 px-4 py-2"
                 >
                   {stackingStrategyOptions.map((option) => (
                     <option key={option.value} value={option.value}>
@@ -644,7 +650,7 @@ export function B2BGroupsClient({ groups: initialGroups, manufacturers, categori
                 <input
                   value={createForm.description}
                   onChange={(e) => setCreateForm((prev) => ({ ...prev, description: e.target.value }))}
-                  className="mt-1 block w-full bg-white border-amber/30 focus:border-amber rounded-xl transition-all duration-200 text-gray-900 px-4 py-2"
+                  className="mt-1 block w-full bg-white border border-gray-300 focus:border-slate-500 focus:ring-2 focus:ring-slate-500/20 rounded-xl transition-all duration-200 text-gray-900 px-4 py-2"
                 />
               </div>
             </div>
@@ -655,14 +661,14 @@ export function B2BGroupsClient({ groups: initialGroups, manufacturers, categori
                   setIsCreating(false);
                   setCreateForm(defaultCreateForm);
                 }}
-                className="bg-white border border-amber/30 text-gray-700 rounded-xl px-4 py-2 font-semibold hover:bg-gray-50 transition-all duration-200"
+                className="bg-white border border-gray-300 text-gray-700 rounded-xl px-4 py-2 font-semibold hover:bg-gray-50 transition-all duration-200"
               >
                 Otkaži
               </button>
               <button
                 type="submit"
                 disabled={submittingCreate}
-                className="bg-gradient-to-r from-amber via-orange to-brown text-white hover:from-amber/90 hover:via-orange/90 hover:to-brown/90 shadow-lg hover:scale-105 transition-all duration-200 rounded-xl px-4 py-2 font-semibold disabled:opacity-50 flex items-center gap-2"
+                className="bg-slate-700 text-white hover:bg-slate-600 shadow-md hover:shadow-lg transition-all duration-200 rounded-xl px-4 py-2 font-semibold disabled:opacity-50 flex items-center gap-2"
               >
                 {submittingCreate ? 'Spremanje...' : 'Kreiraj grupu'}
               </button>
@@ -672,7 +678,7 @@ export function B2BGroupsClient({ groups: initialGroups, manufacturers, categori
       </div>
 
       {filteredGroups.length === 0 ? (
-        <div className="bg-white border border-amber/20 rounded-2xl p-10 text-center text-gray-600">
+        <div className="bg-white border border-gray-200 rounded-2xl p-10 text-center text-gray-600">
           {searchTerm
             ? 'Nema rezultata za zadani kriterij pretrage.'
             : 'Trenutno nema definisanih grupa. Kreirajte prvu grupu kako biste organizovali popuste.'}
@@ -685,7 +691,7 @@ export function B2BGroupsClient({ groups: initialGroups, manufacturers, categori
             const availableManufacturers = getAvailableManufacturersForGroup(group);
             const isBusy = loadingGroupId === group.id;
             const isExpanded = expandedGroups.includes(group.id);
-            const categoryForm = categoryForms[group.id] ?? { categoryId: '', discountPercentage: '' };
+            const categoryForm = categoryForms[group.id] ?? { categoryIds: [], discountPercentage: '' };
             const manufacturerForm = manufacturerForms[group.id] ?? {
               manufacturerId: '',
               discountPercentage: '',
@@ -715,21 +721,24 @@ export function B2BGroupsClient({ groups: initialGroups, manufacturers, categori
             return (
               <div
                 key={group.id}
-                className="bg-gradient-to-r from-white/95 to-gray-50/95 backdrop-blur-sm rounded-2xl border border-amber/20 shadow-sm overflow-hidden"
+                className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-200"
               >
                 <button
-                  className="w-full text-left bg-gradient-to-r from-white/90 to-gray-50/90 border-b border-amber/20 px-6 py-4 flex flex-col gap-3 md:flex-row md:items-center md:justify-between focus:outline-none"
+                  className="w-full text-left bg-gray-50 border-b border-gray-200 px-6 py-4 flex flex-col gap-3 md:flex-row md:items-center md:justify-between focus:outline-none hover:bg-gray-100 transition-all duration-200 group"
                   onClick={() => toggleGroupExpanded(group.id)}
                 >
-                  <div className="flex items-start gap-3">
-                    <span className="mt-1 text-amber">
+                  <div className="flex items-center gap-3">
+                    <span className="text-slate-600 text-xl transition-transform duration-200 group-hover:scale-110">
                       {isExpanded ? <FiChevronDown /> : <FiChevronRight />}
                     </span>
-                    <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
+                    <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2 group-hover:text-slate-700 transition-colors duration-200">
                       <FiUsers /> {group.name}
                     </h3>
+                    <span className="text-xs text-gray-500 italic ml-2 hidden sm:inline">
+                      (klikni za {isExpanded ? 'zatvaranje' : 'otvaranje'})
+                    </span>
                   </div>
-                  <div className="flex flex-col items-start gap-2 md:flex-row md:items-center md:gap-4">
+                  <div className="flex flex-col items-start gap-2 md:flex-row md:items-center md:gap-4 ml-8 md:ml-0">
                     <div className="text-sm text-gray-600">
                       <span className="mr-4">Prioritet: <span className="font-medium">{group.priority}</span></span>
                       <span>Strategija: <span className="font-medium">{group.stackingStrategy}</span></span>
@@ -740,13 +749,13 @@ export function B2BGroupsClient({ groups: initialGroups, manufacturers, categori
                   </div>
                 </button>
 
-                <div className="px-6 py-4 border-b border-amber/20 flex flex-wrap gap-2 justify-end bg-white">
+                <div className="px-6 py-4 border-b border-gray-200 flex flex-wrap gap-2 justify-end bg-white">
                   {editingGroupId === group.id ? (
                     <>
                       <button
                         onClick={() => handleUpdateGroup(group.id)}
                         disabled={isBusy}
-                        className="bg-gradient-to-r from-emerald-500 to-emerald-600 text-white rounded-xl px-3 py-2 flex items-center gap-2 text-sm font-semibold hover:from-emerald-600 hover:to-emerald-700 transition-all duration-200 disabled:opacity-50"
+                        className="bg-emerald-600 text-white rounded-xl px-3 py-2 flex items-center gap-2 text-sm font-semibold hover:bg-emerald-700 transition-all duration-200 disabled:opacity-50"
                       >
                         <FiSave /> Spremi
                       </button>
@@ -754,7 +763,7 @@ export function B2BGroupsClient({ groups: initialGroups, manufacturers, categori
                         onClick={() => {
                           resetForms();
                         }}
-                        className="bg-gradient-to-r from-white/95 to-gray-50/95 border border-amber/20 text-gray-700 rounded-xl px-3 py-2 flex items-center gap-2 text-sm font-semibold hover:bg-white transition-all duration-200"
+                        className="bg-white border border-gray-300 text-gray-700 rounded-xl px-3 py-2 flex items-center gap-2 text-sm font-semibold hover:bg-gray-50 transition-all duration-200"
                       >
                         <FiX /> Otkaži
                       </button>
@@ -762,7 +771,7 @@ export function B2BGroupsClient({ groups: initialGroups, manufacturers, categori
                   ) : (
                     <button
                       onClick={() => handleEditGroup(group)}
-                      className="bg-gradient-to-r from-white/95 to-gray-50/95 border border-amber/20 text-gray-700 rounded-xl px-3 py-2 flex items-center gap-2 text-sm font-semibold hover:bg-white transition-all duration-200"
+                      className="bg-white border border-gray-300 text-gray-700 rounded-xl px-3 py-2 flex items-center gap-2 text-sm font-semibold hover:bg-gray-50 transition-all duration-200"
                     >
                       <FiEdit /> Uredi
                     </button>
@@ -770,21 +779,21 @@ export function B2BGroupsClient({ groups: initialGroups, manufacturers, categori
                   <button
                     onClick={() => handleDeleteGroup(group.id)}
                     disabled={isBusy}
-                    className="bg-gradient-to-r from-red-500 to-red-600 text-white rounded-xl px-3 py-2 flex items-center gap-2 text-sm font-semibold hover:from-red-600 hover:to-red-700 transition-all duration-200 disabled:opacity-50"
+                    className="bg-red-600 text-white rounded-xl px-3 py-2 flex items-center gap-2 text-sm font-semibold hover:bg-red-700 transition-all duration-200 disabled:opacity-50"
                   >
                     <FiTrash2 /> Obriši
                   </button>
                 </div>
 
                 {editingGroupId === group.id && (
-                  <div className="px-6 py-4 border-b border-amber/20 bg-white">
+                  <div className="px-6 py-4 border-b border-gray-200 bg-white">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
                         <label className="text-gray-700 font-medium">Naziv grupe</label>
                         <input
                           value={editForm.name}
                           onChange={(e) => setEditForm((prev) => ({ ...prev, name: e.target.value }))}
-                          className="mt-1 block w-full bg-white border-amber/30 focus:border-amber rounded-xl transition-all duration-200 text-gray-900 px-4 py-2"
+                          className="mt-1 block w-full bg-white border border-gray-300 focus:border-slate-500 focus:ring-2 focus:ring-slate-500/20 rounded-xl transition-all duration-200 text-gray-900 px-4 py-2"
                         />
                       </div>
                       <div>
@@ -793,7 +802,7 @@ export function B2BGroupsClient({ groups: initialGroups, manufacturers, categori
                           type="number"
                           value={editForm.priority}
                           onChange={(e) => setEditForm((prev) => ({ ...prev, priority: e.target.value }))}
-                          className="mt-1 block w-full bg-white border-amber/30 focus:border-amber rounded-xl transition-all duration-200 text-gray-900 px-4 py-2"
+                          className="mt-1 block w-full bg-white border border-gray-300 focus:border-slate-500 focus:ring-2 focus:ring-slate-500/20 rounded-xl transition-all duration-200 text-gray-900 px-4 py-2"
                         />
                       </div>
                     </div>
@@ -808,7 +817,7 @@ export function B2BGroupsClient({ groups: initialGroups, manufacturers, categori
                               stackingStrategy: e.target.value as Group['stackingStrategy'],
                             }))
                           }
-                          className="mt-1 block w-full bg-white border-amber/30 focus:border-amber rounded-xl transition-all duration-200 text-gray-900 px-4 py-2"
+                          className="mt-1 block w-full bg-white border border-gray-300 focus:border-slate-500 focus:ring-2 focus:ring-slate-500/20 rounded-xl transition-all duration-200 text-gray-900 px-4 py-2"
                         >
                           {stackingStrategyOptions.map((option) => (
                             <option key={option.value} value={option.value}>
@@ -822,7 +831,7 @@ export function B2BGroupsClient({ groups: initialGroups, manufacturers, categori
                         <input
                           value={editForm.description}
                           onChange={(e) => setEditForm((prev) => ({ ...prev, description: e.target.value }))}
-                          className="mt-1 block w-full bg-white border-amber/30 focus:border-amber rounded-xl transition-all duration-200 text-gray-900 px-4 py-2"
+                          className="mt-1 block w-full bg-white border border-gray-300 focus:border-slate-500 focus:ring-2 focus:ring-slate-500/20 rounded-xl transition-all duration-200 text-gray-900 px-4 py-2"
                         />
                       </div>
                     </div>
@@ -831,30 +840,31 @@ export function B2BGroupsClient({ groups: initialGroups, manufacturers, categori
 
                 {isExpanded && (
                   <div className="p-6 space-y-6">
-                  <div className="bg-white border border-amber/20 rounded-2xl p-6 space-y-4">
-                    <div className="flex items-center justify-between">
+                  <div className="bg-white border border-gray-200 rounded-2xl p-6 space-y-4">
+                    <div className="flex flex-col gap-4">
                       <h4 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
                         <FiUsers /> Članovi grupe ({group.members.length})
                       </h4>
-                      <div className="flex items-center gap-2">
-                        <select
-                          value={memberSelection[group.id] || ''}
-                          onChange={(e) =>
-                            setMemberSelection((prev) => ({ ...prev, [group.id]: e.target.value }))
-                          }
-                          className="bg-white border border-amber/30 focus:border-amber rounded-xl transition-all duration-200 text-gray-900 px-3 py-2"
-                        >
-                          <option value="">Odaberite korisnika</option>
-                          {availableUsers.map((user) => (
-                            <option key={user.id} value={user.id}>
-                              {user.companyName || user.email || user.name || 'Nepoznato'}
-                            </option>
-                          ))}
-                        </select>
+                      <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+                        <div className="flex-1 min-w-0">
+                          <Combobox
+                            options={availableUsers.map((user) => ({
+                              value: user.id,
+                              label: user.companyName || user.email || user.name || 'Nepoznato',
+                            }))}
+                            value={memberSelection[group.id] || ''}
+                            onChange={(value) =>
+                              setMemberSelection((prev) => ({ ...prev, [group.id]: value }))
+                            }
+                            placeholder="Odaberite korisnika"
+                            searchPlaceholder="Pretraži korisnike..."
+                            disabled={isBusy}
+                          />
+                        </div>
                         <button
                           onClick={() => handleAddMember(group.id)}
                           disabled={isBusy || !memberSelection[group.id]}
-                          className="bg-gradient-to-r from-amber via-orange to-brown text-white rounded-xl px-3 py-2 flex items-center gap-2 text-sm font-semibold hover:from-amber/90 hover:via-orange/90 hover:to-brown/90 transition-all duration-200 disabled:opacity-50"
+                          className="bg-slate-700 text-white rounded-xl px-4 py-2 flex items-center justify-center gap-2 text-sm font-semibold hover:bg-slate-600 transition-all duration-200 disabled:opacity-50 whitespace-nowrap"
                         >
                           <FiPlus /> Dodaj
                         </button>
@@ -867,7 +877,7 @@ export function B2BGroupsClient({ groups: initialGroups, manufacturers, categori
                         {group.members.map((member) => (
                           <div
                             key={member.id}
-                            className="flex items-center justify-between border border-amber/20 rounded-xl px-4 py-3"
+                            className="flex items-center justify-between border border-gray-200 rounded-xl px-4 py-3"
                           >
                             <div>
                               <div className="font-medium text-gray-900">
@@ -890,55 +900,55 @@ export function B2BGroupsClient({ groups: initialGroups, manufacturers, categori
                     )}
                   </div>
 
-                  <div className="bg-white border border-amber/20 rounded-2xl p-6 space-y-4">
-                    <div className="flex items-center justify-between">
+                  <div className="bg-white border border-gray-200 rounded-2xl p-6 space-y-4">
+                    <div className="flex flex-col gap-4">
                       <h4 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
                         <FiPercent /> Popusti po kategorijama ({group.categoryDiscounts.length})
                       </h4>
-                      <div className="flex items-center gap-2">
-                        <select
-                          value={categoryForms[group.id]?.categoryId || ''}
-                          onChange={(e) =>
-                            setCategoryForms((prev) => ({
-                              ...prev,
-                              [group.id]: {
-                                categoryId: e.target.value,
-                                discountPercentage:
-                                  prev[group.id]?.discountPercentage ?? '',
-                              },
-                            }))
-                          }
-                          className="bg-white border border-amber/30 focus:border-amber rounded-xl transition-all duration-200 text-gray-900 px-3 py-2"
-                        >
-                          <option value="">Odaberite kategoriju</option>
-                          {availableCategories.map((category) => (
-                            <option key={category.id} value={category.id}>
-                              {categoryLabelMap.get(category.id) || category.name}
-                            </option>
-                          ))}
-                        </select>
+                      <div className="flex flex-col lg:flex-row items-stretch lg:items-start gap-3">
+                        <div className="flex-1 min-w-0">
+                          <MultiSelect
+                            options={availableCategories.map((category) => ({
+                              value: category.id,
+                              label: categoryLabelMap.get(category.id) || category.name,
+                            }))}
+                            selected={categoryForm.categoryIds}
+                            onChange={(values) =>
+                              setCategoryForms((prev) => ({
+                                ...prev,
+                                [group.id]: {
+                                  categoryIds: values,
+                                  discountPercentage: prev[group.id]?.discountPercentage ?? '',
+                                },
+                              }))
+                            }
+                            placeholder="Odaberite kategorije..."
+                            searchPlaceholder="Pretraži kategorije..."
+                            disabled={isBusy}
+                          />
+                        </div>
                         <input
                           type="number"
                           min="0"
                           max="100"
                           step="0.01"
                           placeholder="Popust %"
-                          value={categoryForms[group.id]?.discountPercentage || ''}
+                          value={categoryForm.discountPercentage}
                           onChange={(e) =>
                             setCategoryForms((prev) => ({
                               ...prev,
                               [group.id]: {
-                                ...(prev[group.id] || { categoryId: '' }),
+                                categoryIds: categoryForm.categoryIds,
                                 discountPercentage: e.target.value,
                               },
                             }))
                           }
-                          className="w-28 bg-white border border-amber/30 focus:border-amber rounded-xl transition-all duration-200 text-gray-900 px-3 py-2"
+                          className="w-full lg:w-32 bg-white border border border-gray-300 focus:border-slate-500 focus:ring-2 focus:ring-slate-500/20 rounded-xl transition-all duration-200 text-gray-900 px-3 py-2"
                         />
                         <button
                           onClick={() => handleAddCategoryDiscount(group.id)}
-                          disabled={isBusy}
-                          className="bg-gradient-to-r from-amber via-orange to-brown text-white rounded-xl px-3 py-2 flex items-center gap-2 text-sm font-semibold hover:from-amber/90 hover:via-orange/90 hover:to-brown/90 transition-all duration-200 disabled:opacity-50"
+                          disabled={isBusy || !categoryForm.categoryIds.length || !categoryForm.discountPercentage}
+                          className="bg-slate-700 text-white rounded-xl px-4 py-2 flex items-center justify-center gap-2 text-sm font-semibold hover:bg-slate-600 transition-all duration-200 disabled:opacity-50 whitespace-nowrap"
                         >
                           <FiPlus /> Dodaj
                         </button>
@@ -951,14 +961,14 @@ export function B2BGroupsClient({ groups: initialGroups, manufacturers, categori
                         {group.categoryDiscounts.map((discount) => (
                           <div
                             key={discount.id}
-                            className="flex items-center justify-between border border-amber/20 rounded-xl px-4 py-3"
+                            className="flex items-center justify-between border border-gray-200 rounded-xl px-4 py-3"
                           >
                             <div className="flex flex-col gap-1">
                               <div className="flex items-center gap-3">
                                 <span className="font-medium text-gray-900">
                                   {categoryLabelMap.get(discount.categoryId) || discount.category.name}
                                 </span>
-                                <Badge className="border-amber/40 bg-amber/10 text-amber-700">
+                                <Badge className="border-slate-300 bg-slate-100 text-slate-700">
                                   -{discount.discountPercentage}%
                                 </Badge>
                               </div>
@@ -977,55 +987,55 @@ export function B2BGroupsClient({ groups: initialGroups, manufacturers, categori
                     )}
                   </div>
 
-                  <div className="bg-white border border-amber/20 rounded-2xl p-6 space-y-4">
-                    <div className="flex items-center justify-between">
+                  <div className="bg-white border border-gray-200 rounded-2xl p-6 space-y-4">
+                    <div className="flex flex-col gap-4">
                       <h4 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
                         <FiPercent /> Popusti po proizvođačima ({group.manufacturerDiscounts.length})
                       </h4>
-                      <div className="flex items-center gap-2">
-                        <select
-                          value={manufacturerForms[group.id]?.manufacturerId || ''}
-                          onChange={(e) =>
-                            setManufacturerForms((prev) => ({
-                              ...prev,
-                              [group.id]: {
-                                manufacturerId: e.target.value,
-                                discountPercentage:
-                                  prev[group.id]?.discountPercentage ?? '',
-                              },
-                            }))
-                          }
-                          className="bg-white border border-amber/30 focus:border-amber rounded-xl transition-all duration-200 text-gray-900 px-3 py-2"
-                        >
-                          <option value="">Odaberite proizvođača</option>
-                          {availableManufacturers.map((manufacturer) => (
-                            <option key={manufacturer.id} value={manufacturer.id}>
-                              {manufacturer.name}
-                            </option>
-                          ))}
-                        </select>
+                      <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+                        <div className="flex-1 min-w-0">
+                          <Combobox
+                            options={availableManufacturers.map((manufacturer) => ({
+                              value: manufacturer.id,
+                              label: manufacturer.name,
+                            }))}
+                            value={manufacturerForm.manufacturerId}
+                            onChange={(value) =>
+                              setManufacturerForms((prev) => ({
+                                ...prev,
+                                [group.id]: {
+                                  manufacturerId: value,
+                                  discountPercentage: prev[group.id]?.discountPercentage ?? '',
+                                },
+                              }))
+                            }
+                            placeholder="Odaberite proizvođača"
+                            searchPlaceholder="Pretraži proizvođače..."
+                            disabled={isBusy}
+                          />
+                        </div>
                         <input
                           type="number"
                           min="0"
                           max="100"
                           step="0.01"
                           placeholder="Popust %"
-                          value={manufacturerForms[group.id]?.discountPercentage || ''}
+                          value={manufacturerForm.discountPercentage}
                           onChange={(e) =>
                             setManufacturerForms((prev) => ({
                               ...prev,
                               [group.id]: {
-                                ...(prev[group.id] || { manufacturerId: '' }),
+                                manufacturerId: manufacturerForm.manufacturerId,
                                 discountPercentage: e.target.value,
                               },
                             }))
                           }
-                          className="w-28 bg-white border border-amber/30 focus:border-amber rounded-xl transition-all duration-200 text-gray-900 px-3 py-2"
+                          className="w-full sm:w-32 bg-white border border border-gray-300 focus:border-slate-500 focus:ring-2 focus:ring-slate-500/20 rounded-xl transition-all duration-200 text-gray-900 px-3 py-2"
                         />
                         <button
                           onClick={() => handleAddManufacturerDiscount(group.id)}
-                          disabled={isBusy}
-                          className="bg-gradient-to-r from-amber via-orange to-brown text-white rounded-xl px-3 py-2 flex items-center gap-2 text-sm font-semibold hover:from-amber/90 hover:via-orange/90 hover:to-brown/90 transition-all duration-200 disabled:opacity-50"
+                          disabled={isBusy || !manufacturerForm.manufacturerId || !manufacturerForm.discountPercentage}
+                          className="bg-slate-700 text-white rounded-xl px-4 py-2 flex items-center justify-center gap-2 text-sm font-semibold hover:bg-slate-600 transition-all duration-200 disabled:opacity-50 whitespace-nowrap"
                         >
                           <FiPlus /> Dodaj
                         </button>
@@ -1038,12 +1048,12 @@ export function B2BGroupsClient({ groups: initialGroups, manufacturers, categori
                         {group.manufacturerDiscounts.map((discount) => (
                           <div
                             key={discount.id}
-                            className="flex items-center justify-between border border-amber/20 rounded-xl px-4 py-3"
+                            className="flex items-center justify-between border border-gray-200 rounded-xl px-4 py-3"
                           >
                             <div className="flex flex-col gap-1">
                               <div className="flex items-center gap-3">
                                 <span className="font-medium text-gray-900">{discount.manufacturer.name}</span>
-                                <Badge className="border-amber/40 bg-amber/10 text-amber-700">
+                                <Badge className="border-slate-300 bg-slate-100 text-slate-700">
                                   -{discount.discountPercentage}%
                                 </Badge>
                               </div>
@@ -1064,7 +1074,7 @@ export function B2BGroupsClient({ groups: initialGroups, manufacturers, categori
                     )}
                   </div>
 
-                  <div className="bg-white border border-amber/20 rounded-2xl p-6 space-y-4">
+                  <div className="bg-white border border-gray-200 rounded-2xl p-6 space-y-4">
                     <div className="flex items-center justify-between">
                       <h4 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
                         <FiGrid /> Popusti po kombinaciji ({group.categoryManufacturerDiscounts.length})
@@ -1137,7 +1147,7 @@ export function B2BGroupsClient({ groups: initialGroups, manufacturers, categori
                               },
                             }))
                           }
-                          className="w-full sm:w-32 bg-white border border-amber/30 focus:border-amber rounded-xl transition-all duration-200 text-gray-900 px-3 py-2"
+                          className="w-full sm:w-32 bg-white border border border-gray-300 focus:border-slate-500 focus:ring-2 focus:ring-slate-500/20 rounded-xl transition-all duration-200 text-gray-900 px-3 py-2"
                         />
                         <button
                           onClick={() => handleAddCategoryManufacturerDiscount(group.id)}
@@ -1147,7 +1157,7 @@ export function B2BGroupsClient({ groups: initialGroups, manufacturers, categori
                             !categoryManufacturerForm.manufacturerId ||
                             !categoryManufacturerForm.discountPercentage
                           }
-                          className="flex-shrink-0 bg-gradient-to-r from-amber via-orange to-brown text-white rounded-xl px-3 py-2 flex items-center gap-2 text-sm font-semibold hover:from-amber/90 hover:via-orange/90 hover:to-brown/90 transition-all duration-200 disabled:opacity-50"
+                          className="flex-shrink-0 bg-slate-700 text-white rounded-xl px-3 py-2 flex items-center gap-2 text-sm font-semibold hover:bg-slate-600 transition-all duration-200 disabled:opacity-50"
                         >
                           <FiPlus /> Dodaj
                         </button>
@@ -1161,14 +1171,14 @@ export function B2BGroupsClient({ groups: initialGroups, manufacturers, categori
                         {group.categoryManufacturerDiscounts.map((discount) => (
                           <div
                             key={discount.id}
-                            className="flex items-center justify-between border border-amber/20 rounded-xl px-4 py-3"
+                            className="flex items-center justify-between border border-gray-200 rounded-xl px-4 py-3"
                           >
                             <div className="flex flex-col gap-1">
                               <div className="flex items-center gap-3">
                                 <span className="font-medium text-gray-900">
                                   {categoryLabelMap.get(discount.categoryId) || discount.category.name}
                                 </span>
-                                <Badge className="border-amber/40 bg-amber/10 text-amber-700">
+                                <Badge className="border-slate-300 bg-slate-100 text-slate-700">
                                   -{discount.discountPercentage}%
                                 </Badge>
                               </div>

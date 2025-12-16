@@ -35,6 +35,13 @@ export async function PATCH(
 
     const { status } = validation.data;
 
+    // Dohvati stari status prije update-a za Telegram notifikaciju
+    const oldOrder = await db.order.findUnique({
+      where: { id: orderId },
+      select: { status: true },
+    });
+    const oldStatus = oldOrder?.status;
+
     const updatedOrder = await db.order.update({
       where: { id: orderId },
       data: { status },
@@ -54,6 +61,18 @@ export async function PATCH(
     //   // Ne zaustavljamo proces ako email ne uspije, samo logiramo grešku
     // }
     console.log('Email slanje privremeno isključeno - nedostaje Resend API ključ');
+
+    // Telegram notifikacija za promjenu statusa (async, ne čekamo)
+    if (oldStatus && oldStatus !== status) {
+      try {
+        const { sendStatusUpdateNotification } = await import('@/lib/telegram/notification-service');
+        sendStatusUpdateNotification(orderId, oldStatus, status).catch((err) =>
+          console.error('[ORDER_PATCH] Telegram notification failed:', err)
+        );
+      } catch (error) {
+        console.error('[ORDER_PATCH] Failed to import Telegram service:', error);
+      }
+    }
 
     return NextResponse.json(updatedOrder);
 

@@ -841,3 +841,30 @@ model AdvertisingScreen {
   createdAt DateTime    @default(now())
   updatedAt DateTime    @updatedAt
 }
+
+// -----------------------------
+// Telegram Notifications Settings
+// -----------------------------
+
+model TelegramSettings {
+  id                    String   @id @default(cuid())
+
+  // Bot token
+  botToken              String?
+
+  // Grupa za narudžbine (B2B i retail)
+  ordersGroupChatId     String?
+  ordersEnabled         Boolean  @default(true)
+
+  // Grupa za low stock upozorenja
+  lowStockGroupChatId   String?
+  lowStockEnabled       Boolean  @default(true)
+
+  // Dnevni izvještaj
+  dailyReportEnabled    Boolean  @default(true)
+  dailyReportTime       String   @default("18:00") // HH:mm format
+  dailyReportChatId     String?  // Može biti ista grupa kao orders ili posebna
+
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+}
