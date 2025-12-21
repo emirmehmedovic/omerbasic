@@ -11,6 +11,7 @@ import {
 } from "@/lib/search-utils";
 import { SearchParams } from "@/lib/types/search";
 import { rateLimit, keyFromIpAndPath } from "@/lib/ratelimit";
+import { markExactMatches, sortWithExactMatchesFirst } from '@/lib/exact-match-utils';
 
 // Cache per-URL for 30s to smooth traffic while keeping results fresh
 export const revalidate = 30;
@@ -67,7 +68,7 @@ export async function GET(req: Request) {
             FROM "Category" c2
             JOIN cte ON c2."parentId" = cte.id
           )
-          SELECT p.id, p.name, p."catalogNumber", p."oemNumber", p.price, p."imageUrl", p."categoryId", c."imageUrl" AS "categoryImageUrl"
+          SELECT p.id, p.name, p."catalogNumber", p."oemNumber", p."tecdocArticleId", p.price, p."imageUrl", p."categoryId", c."imageUrl" AS "categoryImageUrl"
           FROM "Product" p
           LEFT JOIN "Category" c ON c."id" = p."categoryId"
           WHERE (
@@ -89,7 +90,7 @@ export async function GET(req: Request) {
         `;
       } else {
         rows = await db.$queryRaw<any>`
-          SELECT p.id, p.name, p."catalogNumber", p."oemNumber", p.price, p."imageUrl", p."categoryId", c."imageUrl" AS "categoryImageUrl"
+          SELECT p.id, p.name, p."catalogNumber", p."oemNumber", p."tecdocArticleId", p.price, p."imageUrl", p."categoryId", c."imageUrl" AS "categoryImageUrl"
           FROM "Product" p
           LEFT JOIN "Category" c ON c."id" = p."categoryId"
           WHERE (
@@ -137,7 +138,12 @@ export async function GET(req: Request) {
         }
         return p;
       });
-      return NextResponse.json(priced);
+      
+      // Označi egzaktne matchove i sortiraj ih na vrh
+      const itemsWithExactMatches = markExactMatches(priced, query);
+      const sortedItems = sortWithExactMatchesFirst(itemsWithExactMatches);
+      
+      return NextResponse.json(sortedItems);
     }
     
     // Napredna pretraga
@@ -189,7 +195,12 @@ export async function GET(req: Request) {
         }
         return p;
       });
-      return NextResponse.json({ ...results, items: pricedItems });
+      
+      // Označi egzaktne matchove i sortiraj ih na vrh
+      const itemsWithExactMatches = markExactMatches(pricedItems, params.query);
+      const sortedItems = sortWithExactMatchesFirst(itemsWithExactMatches);
+      
+      return NextResponse.json({ ...results, items: sortedItems });
     }
 
     return NextResponse.json(

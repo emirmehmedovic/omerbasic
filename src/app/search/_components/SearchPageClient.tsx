@@ -65,16 +65,18 @@ export default function SearchPageClient({ filterData }: SearchPageClientProps) 
       return true;
     });
 
-    // Ako nema nijednog konkretnog filtera, ne diraj URL (izbjegni brisanje aktivnog q)
+    // Ako nema nijednog konkretnog filtera, ne diraj URL
     if (pairs.length === 0) return;
 
-    const params = new URLSearchParams(searchParams);
+    const params = new URLSearchParams();
 
-    // Očisti stare vrijednosti filtera koje kontroliramo (zadržavamo q i ostale parametre)
-    ['categoryId', 'generationId', 'engineId', 'minPrice', 'maxPrice'].forEach((key) => {
+    // Kada se odabere filter, obriši query parametar i kreni čisto
+    // Očisti sve stare vrijednosti filtera
+    ['categoryId', 'generationId', 'engineId', 'minPrice', 'maxPrice', 'q'].forEach((key) => {
       params.delete(key);
     });
 
+    // Postavi nove filtere
     for (const [key, value] of pairs) params.set(key, String(value));
 
     // Resetuj paginaciju ako postoji

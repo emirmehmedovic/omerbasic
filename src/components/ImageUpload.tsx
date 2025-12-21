@@ -4,7 +4,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
 import { ImagePlus, Trash } from 'lucide-react';
-import Image from 'next/image';
+import OptimizedImage from './OptimizedImage';
 
 interface ImageUploadProps {
   value: string;
@@ -52,7 +52,7 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({ value, onChange, disab
                     <Trash className="h-4 w-4" />
                 </button>
             </div>
-          <Image fill className="object-cover" alt="Učitana slika" src={value} />
+          <OptimizedImage fill className="object-cover" alt="Učitana slika" src={value} />
         </div>
       ) : (
         <label className="relative flex flex-col items-center justify-center w-52 h-52 border-2 border-dashed border-gray-300 rounded-md cursor-pointer hover:border-indigo-500 transition-colors">

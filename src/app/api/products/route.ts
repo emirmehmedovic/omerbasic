@@ -7,6 +7,7 @@ import { calculateB2BPrice, getUserDiscountProfile } from '@/lib/b2b/discount-se
 import { productApiSchema } from '@/lib/validations/product';
 import { revalidateTag } from 'next/cache';
 import { z } from 'zod';
+import { markExactMatches, sortWithExactMatchesFirst } from '@/lib/exact-match-utils';
 
 // Enable ISR-style caching for this route per-URL for 60 seconds
 export const revalidate = 60;
@@ -244,6 +245,7 @@ export async function GET(req: NextRequest) {
           imageUrl: true,
           catalogNumber: true,
           oemNumber: true,
+          tecdocArticleId: true,
           categoryId: true,
           manufacturerId: true,
           createdAt: true,
@@ -306,8 +308,12 @@ export async function GET(req: NextRequest) {
       };
       const items = itemsRaw.map(applyPricing);
 
+      // Označi egzaktne matchove i sortiraj ih na vrh
+      const itemsWithExactMatches = markExactMatches(items, query);
+      const sortedItems = sortWithExactMatchesFirst(itemsWithExactMatches);
+
       const totalPages = Math.max(Math.ceil(total / limit), 1);
-      const res = NextResponse.json(items);
+      const res = NextResponse.json(sortedItems);
       res.headers.set('X-Total-Count', String(total));
       res.headers.set('X-Total-Pages', String(totalPages));
       res.headers.set('X-Page', String(page));
@@ -326,6 +332,7 @@ export async function GET(req: NextRequest) {
         imageUrl: true,
         catalogNumber: true,
         oemNumber: true,
+        tecdocArticleId: true,
         categoryId: true,
         manufacturerId: true,
         createdAt: true,
@@ -396,7 +403,11 @@ export async function GET(req: NextRequest) {
     };
     const pricedItems = items.map(applyPricing);
 
-    const res = NextResponse.json(pricedItems);
+    // Označi egzaktne matchove i sortiraj ih na vrh
+    const itemsWithExactMatches = markExactMatches(pricedItems, query);
+    const sortedItems = sortWithExactMatchesFirst(itemsWithExactMatches);
+
+    const res = NextResponse.json(sortedItems);
     if (nextCursor) res.headers.set('X-Next-Cursor', nextCursor);
     return res;
   } catch (error) {

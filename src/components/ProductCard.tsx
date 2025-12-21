@@ -9,10 +9,10 @@ import type { Category, Product } from '@/generated/prisma/client';
 import { useCart } from '@/context/CartContext';
 import { formatPrice, resolveProductImage } from '@/lib/utils';
 import { fbEvent } from '@/lib/fbPixel';
-import ProductEngineSummary from '@/components/ProductEngineSummary';
+import ProductBrandSummary from '@/components/ProductBrandSummary';
 
 interface ProductCardProps {
-  product: Product & { category: Category | null } & { originalPrice?: number; pricingSource?: 'FEATURED' | 'B2B' | 'BASE' };
+  product: Product & { category: Category | null } & { originalPrice?: number; pricingSource?: 'FEATURED' | 'B2B' | 'BASE'; isExactMatch?: boolean; tecdocArticleId?: number | null };
   compact?: boolean;
 }
 
@@ -81,6 +81,18 @@ export const ProductCard = ({ product, compact = false }: ProductCardProps) => {
           </div>
         )}
         
+        {/* Floating badge for exact match */}
+        {product.isExactMatch && (
+          <div className={`absolute ${hasDiscount ? 'top-14' : 'top-3'} right-3 z-20`}>
+            <span className="inline-flex items-center gap-1 bg-gradient-to-r from-green-500 to-emerald-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-full shadow-xl">
+              <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+              </svg>
+              Tačan rezultat
+            </span>
+          </div>
+        )}
+        
         {/* Shine effect on hover */}
         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 z-10" />
       </div>
@@ -98,17 +110,31 @@ export const ProductCard = ({ product, compact = false }: ProductCardProps) => {
           </span>
         )}
 
-        {!compact && product?.oemNumber && (
-          <div className="mb-3">
-            <div className="inline-flex items-center gap-1.5 text-xs font-bold bg-gradient-to-r from-primary/10 to-primary-dark/10 backdrop-blur-sm border border-primary/30 rounded-xl px-3 py-1.5 shadow-sm">
-              <span className="text-primary text-[10px] uppercase tracking-wider">OEM</span>
-              <span className="font-mono tracking-tight text-primary">{product.oemNumber}</span>
-            </div>
+        {!compact && (product?.oemNumber || product?.tecdocArticleId || product?.catalogNumber) && (
+          <div className="mb-3 flex flex-wrap gap-2">
+            {product?.catalogNumber && (
+              <div className="inline-flex items-center gap-1.5 text-xs font-bold bg-slate-50 backdrop-blur-sm border border-slate-200 rounded-xl px-3 py-1.5 shadow-sm">
+                <span className="text-slate-500 text-[10px] uppercase tracking-wider">Kataloški</span>
+                <span className="font-mono tracking-tight text-slate-700">{product.catalogNumber}</span>
+              </div>
+            )}
+            {product?.oemNumber && (
+              <div className="inline-flex items-center gap-1.5 text-xs font-bold bg-slate-50 backdrop-blur-sm border border-slate-200 rounded-xl px-3 py-1.5 shadow-sm">
+                <span className="text-slate-500 text-[10px] uppercase tracking-wider">OEM</span>
+                <span className="font-mono tracking-tight text-slate-700">{product.oemNumber}</span>
+              </div>
+            )}
+            {product?.tecdocArticleId && (
+              <div className="inline-flex items-center gap-1.5 text-xs font-bold bg-slate-50 backdrop-blur-sm border border-slate-200 rounded-xl px-3 py-1.5 shadow-sm">
+                <span className="text-slate-500 text-[10px] uppercase tracking-wider">TecDoc ID:</span>
+                <span className="font-mono tracking-tight text-slate-700">{product.tecdocArticleId}</span>
+              </div>
+            )}
           </div>
         )}
 
-        {/* Compact engine summary with hover mini-modal */}
-        {!compact && <ProductEngineSummary productId={product.id} maxInline={2} />}
+        {/* Brand icons with hover for generations */}
+        {!compact && <ProductBrandSummary productId={product.id} maxInline={5} />}
 
         <div className={`flex items-end justify-between mt-auto border-t border-slate-200/60 ${compact ? 'pt-2' : 'pt-4'}`}>
           <div>
