@@ -2,7 +2,7 @@
 
 import { useCart } from '@/context/CartContext';
 import type { Category, Product, VehicleGeneration, VehicleEngine } from '@/generated/prisma/client';
-import Image from 'next/image';
+import OptimizedImage from '@/components/OptimizedImage';
 import { toast } from 'react-hot-toast';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
@@ -174,6 +174,7 @@ interface ProductDetailsProps {
     attributeValues?: ProductAttributeWithValue[];
     originalReferences?: ProductReference[];
     replacementFor?: ProductReference[];
+    articleOENumbers?: Array<{ id: string; oemNumber: string; manufacturer: string | null; referenceType: string | null; notes: string | null }>;
   };
 }
 
@@ -515,7 +516,7 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
           <div className="relative">
             {/* Main product image */}
             <div className="relative h-96 lg:h-[500px] w-full overflow-hidden rounded-2xl bg-white/80 backdrop-blur-sm border border-white/60 shadow-2xl transform hover:scale-[1.02] transition-transform duration-500">
-              <Image
+              <OptimizedImage
                 src={resolveProductImage(product.imageUrl, product.category?.imageUrl)}
                 alt={product.name}
                 fill
@@ -705,9 +706,16 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
       
       {/* Modern tabs with glassmorphism */}
       <div>
-        <Tabs defaultValue="compatibility" className="w-full">
+        <Tabs defaultValue="oem-numbers" className="w-full">
           {/* Modern tab navigation - increased height */}
-          <TabsList className="grid w-full grid-cols-3 rounded-2xl p-3 bg-white/80 backdrop-blur-sm border border-white/60 shadow-lg h-auto">
+          <TabsList className="grid w-full grid-cols-4 rounded-2xl p-3 bg-white/80 backdrop-blur-sm border border-white/60 shadow-lg h-auto">
+            <TabsTrigger 
+              value="oem-numbers"
+              className="flex items-center justify-center space-x-2 py-5 px-6 rounded-xl font-bold text-slate-700 data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#081229] data-[state=active]:via-[#0f2443] data-[state=active]:to-[#143560] data-[state=active]:text-white data-[state=active]:shadow-lg transition-all duration-300"
+            >
+              <Copy className="h-5 w-5" />
+              <span className="hidden sm:inline">OEM brojevi</span>
+            </TabsTrigger>
             <TabsTrigger 
               value="compatibility"
               className="flex items-center justify-center space-x-2 py-5 px-6 rounded-xl font-bold text-slate-700 data-[state=active]:bg-gradient-to-r data-[state=active]:from-[#081229] data-[state=active]:via-[#0f2443] data-[state=active]:to-[#143560] data-[state=active]:text-white data-[state=active]:shadow-lg transition-all duration-300"
@@ -730,6 +738,143 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
               <span className="hidden sm:inline">Reference</span>
             </TabsTrigger>
           </TabsList>
+          
+          {/* OEM Numbers Tab */}
+          <TabsContent value="oem-numbers" className="mt-6">
+            <div className="relative rounded-3xl p-8 bg-gradient-to-br from-slate-50 via-slate-100 to-slate-200 border border-white/60 shadow-xl overflow-hidden">
+              {/* Texture overlay */}
+              <div
+                className="pointer-events-none absolute inset-0 z-0 opacity-[0.04]"
+                style={{
+                  backgroundImage:
+                    'radial-gradient(circle at 2px 2px, rgba(27,58,95,0.2) 1px, transparent 0), radial-gradient(circle at 50% 50%, rgba(255,107,53,0.08) 0%, transparent 70%)',
+                  backgroundSize: '32px 32px, 100% 100%',
+                }}
+              />
+              <div className="relative z-10">
+                <div className="flex items-center space-x-4 mb-6">
+                  <div className="bg-gradient-to-br from-[#E85A28] to-[#FF6B35] p-4 rounded-2xl shadow-lg">
+                    <Copy className="h-7 w-7 text-white" />
+                  </div>
+                  <h3 className="text-3xl font-bold text-primary">OEM brojevi</h3>
+                </div>
+                
+                {(() => {
+                  // Funkcija za pronalaženje ikone za marku
+                  const getBrandIcon = (manufacturerName: string | null): React.ElementType | null => {
+                    if (!manufacturerName) return null;
+                    const nameLower = manufacturerName.toLowerCase();
+                    const entry = brandIconEntries.find(entry => entry.match(nameLower));
+                    return entry ? entry.Icon : null;
+                  };
+                  
+                  // Prikupi sve OEM brojeve
+                  const allOemNumbers: Array<{
+                    oemNumber: string;
+                    manufacturer: string | null;
+                    referenceType: string | null;
+                    notes: string | null;
+                  }> = [];
+                  
+                  // Dodaj glavni OEM broj ako postoji
+                  if (product.oemNumber) {
+                    allOemNumbers.push({
+                      oemNumber: product.oemNumber,
+                      manufacturer: null,
+                      referenceType: 'Original',
+                      notes: null,
+                    });
+                  }
+                  
+                  // Dodaj dodatne OEM brojeve
+                  if (product.articleOENumbers && product.articleOENumbers.length > 0) {
+                    product.articleOENumbers.forEach(aoe => {
+                      allOemNumbers.push({
+                        oemNumber: aoe.oemNumber,
+                        manufacturer: aoe.manufacturer,
+                        referenceType: aoe.referenceType,
+                        notes: aoe.notes,
+                      });
+                    });
+                  }
+                  
+                  if (allOemNumbers.length === 0) {
+                    return (
+                      <div className="bg-white/70 backdrop-blur-sm border border-white/60 rounded-2xl p-8 text-center">
+                        <p className="text-slate-500 text-lg">Nema dostupnih OEM brojeva za ovaj proizvod.</p>
+                      </div>
+                    );
+                  }
+                  
+                  const copyToClipboard = (text: string) => {
+                    navigator.clipboard.writeText(text);
+                    toast.success(`Kopirano: ${text}`);
+                  };
+                  
+                  // Grupiši po manufacturer-u
+                  const groupedByManufacturer = allOemNumbers.reduce((acc, oem) => {
+                    const manufacturer = oem.manufacturer || 'Ostalo';
+                    if (!acc[manufacturer]) {
+                      acc[manufacturer] = [];
+                    }
+                    acc[manufacturer].push(oem);
+                    return acc;
+                  }, {} as Record<string, typeof allOemNumbers>);
+                  
+                  return (
+                    <div className="space-y-4">
+                      {Object.entries(groupedByManufacturer).map(([manufacturer, oems]) => {
+                        const BrandIcon = getBrandIcon(manufacturer);
+                        return (
+                          <div key={manufacturer} className="bg-white/70 backdrop-blur-sm border border-white/60 rounded-2xl p-6 shadow-lg">
+                            <div className="flex items-center gap-3 mb-4 pb-4 border-b border-slate-200">
+                              {BrandIcon ? (
+                                <div className="bg-white/80 backdrop-blur-sm border border-white/60 p-2.5 rounded-lg shadow-sm">
+                                  <BrandIcon className="h-7 w-7 text-primary" />
+                                </div>
+                              ) : (
+                                <div className="bg-gradient-to-br from-[#E85A28] to-[#FF6B35] p-2 rounded-lg">
+                                  <Tag className="w-5 h-5 text-white" />
+                                </div>
+                              )}
+                              <h4 className="font-bold text-primary text-xl">{manufacturer}</h4>
+                            </div>
+                            <div className="space-y-2">
+                              {oems.map((oem, index) => (
+                                <div key={`${oem.oemNumber}-${index}`} className="flex items-center justify-between gap-4 p-4 bg-white/80 rounded-xl border border-white/60 shadow-sm hover:shadow-md transition-all">
+                                  <div className="flex-1 flex items-center gap-4">
+                                    <div className="flex items-center gap-3">
+                                      <span className="font-mono font-bold text-primary text-base">{oem.oemNumber}</span>
+                                      {oem.referenceType && (
+                                        <Badge variant="outline" className="text-xs px-2.5 py-1">
+                                          {oem.referenceType}
+                                        </Badge>
+                                      )}
+                                    </div>
+                                    {oem.notes && (
+                                      <p className="text-sm text-slate-600">{oem.notes}</p>
+                                    )}
+                                  </div>
+                                  <button
+                                    onClick={() => copyToClipboard(oem.oemNumber)}
+                                    className="p-2 hover:bg-slate-100 rounded-lg transition-colors flex-shrink-0"
+                                    title="Kopiraj OEM broj"
+                                  >
+                                    <Copy className="h-5 w-5 text-slate-500 hover:text-primary" />
+                                  </button>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  );
+                })()}
+              </div>
+            </div>
+          </TabsContent>
+          
           
           {/* Modern compatibility tab */}
           <TabsContent value="compatibility" className="relative rounded-3xl p-8 mt-6 bg-gradient-to-br from-slate-50 via-slate-100 to-slate-200 border border-white/60 shadow-xl overflow-hidden">

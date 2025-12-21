@@ -4,7 +4,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
 import { ImagePlus, Trash } from 'lucide-react';
-import OptimizedImage from './OptimizedImage';
+import OptimizedImage from '@/components/OptimizedImage';
 
 interface ImageUploadProps {
   value: string;

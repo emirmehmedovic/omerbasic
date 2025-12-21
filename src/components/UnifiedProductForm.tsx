@@ -277,10 +277,30 @@ export const UnifiedProductForm = ({ initialData, categories }: UnifiedProductFo
             }
           }
 
-          // Dodaj/ažuriraj OEM brojeve
-          for (const oem of additionalOEMNumbers) {
-            if (!oem.oemNumber.trim()) continue; // Preskoči prazne
-
+          // Dodaj/ažuriraj OEM brojeve - sekvencijalno da izbjegnemo race conditions
+          const results = [];
+          const oemNumbersToSave = additionalOEMNumbers.filter(oem => oem.oemNumber.trim());
+          
+          // Provjeri duplikate u formi (isti OEM broj više puta)
+          const seenOEMNumbers = new Set<string>();
+          const duplicates: string[] = [];
+          for (const oem of oemNumbersToSave) {
+            const normalized = oem.oemNumber.trim().toUpperCase();
+            if (seenOEMNumbers.has(normalized)) {
+              duplicates.push(normalized);
+            } else {
+              seenOEMNumbers.add(normalized);
+            }
+          }
+          
+          if (duplicates.length > 0) {
+            toast.error(`Duplikati OEM brojeva u formi: ${duplicates.join(', ')}`);
+            console.error('[OEM Save] Duplicate OEM numbers in form:', duplicates);
+          }
+          
+          console.log(`[OEM Save] Saving ${oemNumbersToSave.length} OEM numbers for product ${initialData.id}`);
+          
+          for (const oem of oemNumbersToSave) {
             const oemData = {
               oemNumber: oem.oemNumber.trim(),
               manufacturer: oem.manufacturer?.trim() || null,
@@ -288,21 +308,56 @@ export const UnifiedProductForm = ({ initialData, categories }: UnifiedProductFo
               notes: oem.notes?.trim() || null,
             };
 
-            if (oem.id && existingIds.has(oem.id)) {
-              // Ažuriraj postojeći
-              await fetch(`/api/products/${initialData.id}/oem-numbers`, {
-                method: 'PUT',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ id: oem.id, ...oemData }),
-              });
-            } else {
-              // Kreiraj novi
-              await fetch(`/api/products/${initialData.id}/oem-numbers`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(oemData),
-              });
+            try {
+              if (oem.id && existingIds.has(oem.id)) {
+                // Ažuriraj postojeći
+                console.log(`[OEM Save] Updating OEM ${oem.id} with number ${oemData.oemNumber}`);
+                const response = await fetch(`/api/products/${initialData.id}/oem-numbers`, {
+                  method: 'PUT',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ id: oem.id, ...oemData }),
+                });
+                if (!response.ok) {
+                  const errorText = await response.text();
+                  console.error(`[OEM Save] Error updating OEM ${oem.id}:`, errorText);
+                  results.push({ success: false, oem: oem.oemNumber, error: errorText });
+                } else {
+                  const updated = await response.json();
+                  console.log(`[OEM Save] Successfully updated OEM ${oem.id}`);
+                  results.push({ success: true, oem: oem.oemNumber });
+                }
+              } else {
+                // Kreiraj novi
+                console.log(`[OEM Save] Creating new OEM with number ${oemData.oemNumber}`);
+                const response = await fetch(`/api/products/${initialData.id}/oem-numbers`, {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify(oemData),
+                });
+                if (!response.ok) {
+                  const errorText = await response.text();
+                  console.error(`[OEM Save] Error creating OEM ${oemData.oemNumber}:`, errorText);
+                  results.push({ success: false, oem: oem.oemNumber, error: errorText });
+                } else {
+                  const created = await response.json();
+                  console.log(`[OEM Save] Successfully created OEM ${oemData.oemNumber} with ID ${created.id}`);
+                  results.push({ success: true, oem: oem.oemNumber });
+                }
+              }
+            } catch (error: any) {
+              console.error('[OEM Save] Error saving OEM number:', error);
+              results.push({ success: false, oem: oem.oemNumber, error: error.message });
             }
+          }
+
+          // Provjeri da li su svi uspješno sačuvani
+          const failed = results.filter(r => !r.success);
+          const succeeded = results.filter(r => r.success);
+          console.log(`[OEM Save] Results: ${succeeded.length} succeeded, ${failed.length} failed`);
+          
+          if (failed.length > 0) {
+            console.error('[OEM Save] Some OEM numbers failed to save:', failed);
+            toast.error(`Neki OEM brojevi nisu sačuvani: ${failed.map(f => f.oem).join(', ')}`);
           }
         } catch (error) {
           console.error('Error updating OEM numbers:', error);
@@ -335,19 +390,39 @@ export const UnifiedProductForm = ({ initialData, categories }: UnifiedProductFo
 
         // Dodaj ArticleOENumber zapise za novi proizvod
         if (additionalOEMNumbers.length > 0 && productResponse?.id) {
+          const results = [];
           for (const oem of additionalOEMNumbers) {
             if (!oem.oemNumber.trim()) continue; // Preskoči prazne
 
-            await fetch(`/api/products/${productResponse.id}/oem-numbers`, {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                oemNumber: oem.oemNumber.trim(),
-                manufacturer: oem.manufacturer?.trim() || null,
-                referenceType: oem.referenceType || 'Original',
-                notes: oem.notes?.trim() || null,
-              }),
-            });
+            try {
+              const response = await fetch(`/api/products/${productResponse.id}/oem-numbers`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  oemNumber: oem.oemNumber.trim(),
+                  manufacturer: oem.manufacturer?.trim() || null,
+                  referenceType: oem.referenceType || 'Original',
+                  notes: oem.notes?.trim() || null,
+                }),
+              });
+              if (!response.ok) {
+                const errorText = await response.text();
+                console.error(`Error creating OEM ${oem.oemNumber}:`, errorText);
+                results.push({ success: false, oem: oem.oemNumber, error: errorText });
+              } else {
+                results.push({ success: true, oem: oem.oemNumber });
+              }
+            } catch (error: any) {
+              console.error('Error saving OEM number:', error);
+              results.push({ success: false, oem: oem.oemNumber, error: error.message });
+            }
+          }
+
+          // Provjeri da li su svi uspješno sačuvani
+          const failed = results.filter(r => !r.success);
+          if (failed.length > 0) {
+            console.error('Some OEM numbers failed to save:', failed);
+            toast.error(`Neki OEM brojevi nisu sačuvani: ${failed.map(f => f.oem).join(', ')}`);
           }
         }
 

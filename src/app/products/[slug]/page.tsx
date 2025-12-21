@@ -64,6 +64,7 @@ export async function generateMetadata(
     include: {
       category: true,
       manufacturer: true,
+      articleOENumbers: true,
       vehicleFitments: {
         include: {
           generation: {
@@ -197,6 +198,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
     include: {
       category: true,
       manufacturer: true,
+      articleOENumbers: true,
       vehicleFitments: {
         include: {
           generation: {

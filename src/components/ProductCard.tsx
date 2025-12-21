@@ -1,6 +1,6 @@
 'use client';
 
-import Image from 'next/image';
+import OptimizedImage from '@/components/OptimizedImage';
 import Link from 'next/link';
 import { toast } from 'react-hot-toast';
 import { ShoppingCart } from 'lucide-react';
@@ -71,7 +71,7 @@ export const ProductCard = ({ product, compact = false }: ProductCardProps) => {
       {/* Product image */}
       <div className="relative aspect-square w-full overflow-hidden rounded-t-2xl z-20 bg-slate-50">
         <div className="absolute inset-0 bg-gradient-to-t from-slate-900/10 to-transparent z-10"></div>
-        <Image
+        <OptimizedImage
           src={imageUrl}
           alt={product.name}
           fill
