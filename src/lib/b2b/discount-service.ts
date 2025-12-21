@@ -1,4 +1,5 @@
 import { db } from '@/lib/db';
+import { unstable_cache } from 'next/cache';
 import type {
   B2BDiscountStackingStrategy,
   B2BGroupCategoryManufacturerDiscount,
@@ -68,7 +69,8 @@ export interface B2BPricingResolution {
   source: DiscountSource;
 }
 
-export async function getUserDiscountProfile(userId: string): Promise<UserDiscountProfile | null> {
+// Internal function that does the actual DB query
+async function fetchUserDiscountProfile(userId: string): Promise<UserDiscountProfile | null> {
   const user = await db.user.findUnique({
     where: { id: userId },
     select: {
@@ -154,6 +156,13 @@ export async function getUserDiscountProfile(userId: string): Promise<UserDiscou
     groups,
   };
 }
+
+// Cached version - caches B2B profile for 60 seconds to reduce DB load
+export const getUserDiscountProfile = unstable_cache(
+  fetchUserDiscountProfile,
+  ['b2b-discount-profile'],
+  { revalidate: 60, tags: ['b2b-profiles'] }
+);
 
 const applyGroupingStrategy = (
   current: number,

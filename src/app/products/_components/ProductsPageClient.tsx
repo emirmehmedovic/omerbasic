@@ -162,8 +162,10 @@ export default function ProductsPageClient({ filterData }: ProductsPageClientPro
     router.replace(params.toString() ? `${pathname}?${params.toString()}` : pathname, { scroll: false });
   };
 
+  // Check if any meaningful filter is applied (category, vehicle, price, or search query)
   const noFiltersApplied = !currentFilters.categoryId &&
     !currentFilters.generationId &&
+    !currentFilters.engineId &&
     !currentFilters.minPrice &&
     !currentFilters.maxPrice &&
     !currentFilters.q;

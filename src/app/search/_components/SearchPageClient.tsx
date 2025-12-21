@@ -69,11 +69,11 @@ export default function SearchPageClient({ filterData }: SearchPageClientProps) 
     // Ako nema nijednog konkretnog filtera, ne diraj URL
     if (pairs.length === 0) return;
 
-    const params = new URLSearchParams();
+    // Start from current search params to preserve 'q' and other params
+    const params = new URLSearchParams(searchParams);
 
-    // Kada se odabere filter, obriši query parametar i kreni čisto
-    // Očisti sve stare vrijednosti filtera
-    ['categoryId', 'generationId', 'engineId', 'minPrice', 'maxPrice', 'q'].forEach((key) => {
+    // Očisti stare filter vrijednosti (ali NE 'q' - sačuvaj pretragu!)
+    ['categoryId', 'generationId', 'engineId', 'minPrice', 'maxPrice'].forEach((key) => {
       params.delete(key);
     });
 
@@ -83,7 +83,14 @@ export default function SearchPageClient({ filterData }: SearchPageClientProps) 
     // Resetuj paginaciju ako postoji
     params.delete('page');
 
-    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+    // Provjeri jesu li se parametri stvarno promijenili
+    const newParamsString = params.toString();
+    const currentParamsString = searchParams.toString();
+    
+    // Samo ažuriraj URL ako su se parametri stvarno promijenili
+    if (newParamsString !== currentParamsString) {
+      router.replace(`${pathname}?${newParamsString}`, { scroll: false });
+    }
   };
 
   const handleClearAll = () => {

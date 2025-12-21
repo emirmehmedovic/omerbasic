@@ -7,6 +7,10 @@ import { ProductDetails } from '@/components/ProductDetails';
 import { type Product, type Category } from '@/generated/prisma/client';
 import { calculateB2BPrice, getUserDiscountProfile } from '@/lib/b2b/discount-service';
 import { PageContainer } from '@/components/PageContainer';
+import { unstable_cache } from 'next/cache';
+
+// Enable ISR-style caching - revalidate every 60 seconds
+export const revalidate = 60;
 
 // Tip za proizvod s potencijalnim popustom
 // Usklađeno sa ProductDetails props (manufacturer: { id: string; name: string } | null)
@@ -20,6 +24,121 @@ type ProductWithDiscount = Product & {
 interface ProductPageProps {
   params: Promise<{ slug?: string; productId?: string }>;
 }
+
+// Cached product query - shared between generateMetadata and ProductPage
+// This prevents duplicate database queries
+const getProductByParam = unstable_cache(
+  async (param: string) => {
+    return db.product.findFirst({
+      where: {
+        OR: [
+          { slug: param },
+          { id: param },
+        ],
+      },
+      include: {
+        category: true,
+        manufacturer: { select: { id: true, name: true } },
+        articleOENumbers: {
+          select: {
+            id: true,
+            oemNumber: true,
+            manufacturer: true,
+            referenceType: true,
+          },
+        },
+        // Limit vehicleFitments for faster loading - full list can be loaded client-side
+        vehicleFitments: {
+          take: 20,
+          include: {
+            generation: {
+              include: {
+                model: {
+                  include: {
+                    brand: { select: { id: true, name: true } },
+                  },
+                },
+              },
+            },
+            engine: {
+              select: {
+                id: true,
+                engineCode: true,
+                enginePowerKW: true,
+                enginePowerHP: true,
+                engineCapacity: true,
+              },
+            },
+          },
+        },
+        attributeValues: {
+          include: {
+            attribute: { select: { id: true, name: true, unit: true } },
+          },
+        },
+        originalReferences: {
+          include: {
+            // Include the replacement product data to avoid N+1 queries in ProductDetails
+            replacement: {
+              select: {
+                id: true,
+                name: true,
+                slug: true,
+                price: true,
+                stock: true,
+                imageUrl: true,
+                catalogNumber: true,
+                oemNumber: true,
+                categoryId: true,
+                category: { select: { id: true, name: true, imageUrl: true } },
+              },
+            },
+          },
+        },
+        replacementFor: {
+          include: {
+            // Include the original product data
+            product: {
+              select: {
+                id: true,
+                name: true,
+                slug: true,
+                price: true,
+                stock: true,
+                imageUrl: true,
+                catalogNumber: true,
+                oemNumber: true,
+                categoryId: true,
+                category: { select: { id: true, name: true, imageUrl: true } },
+              },
+            },
+          },
+        },
+      },
+    });
+  },
+  ['product-detail'],
+  { revalidate: 60, tags: ['products'] }
+);
+
+// Cached featured product check
+const getFeaturedProductDiscount = unstable_cache(
+  async (productId: string) => {
+    return db.featuredProduct.findUnique({
+      where: { productId },
+      select: {
+        isActive: true,
+        isDiscountActive: true,
+        discountType: true,
+        discountValue: true,
+        startsAt: true,
+        endsAt: true,
+      },
+    });
+  },
+  ['featured-product'],
+  { revalidate: 60, tags: ['featured-products'] }
+);
 
 function getFirstFitmentSummary(product: ProductWithDiscount & {
   manufacturer: { id: string; name: string } | null;
@@ -54,29 +173,8 @@ export async function generateMetadata(
     };
   }
 
-  const product = await db.product.findFirst({
-    where: {
-      OR: [
-        { slug: param },
-        { id: param },
-      ],
-    },
-    include: {
-      category: true,
-      manufacturer: true,
-      articleOENumbers: true,
-      vehicleFitments: {
-        include: {
-          generation: {
-            include: {
-              model: { include: { brand: true } },
-            },
-          },
-          engine: true,
-        },
-      },
-    },
-  });
+  // Use cached query - same cache as ProductPage
+  const product = await getProductByParam(param);
 
   if (!product) {
     return {
@@ -182,46 +280,11 @@ export default async function ProductPage({ params }: ProductPageProps) {
     notFound();
   }
 
-  const session = await getServerSession(authOptions);
-  const isB2B = session?.user?.role === 'B2B';
-  const profile = isB2B && session?.user?.id
-    ? await getUserDiscountProfile(session.user.id)
-    : null;
-
-  const product = await db.product.findFirst({
-    where: {
-      OR: [
-        { slug: param },
-        { id: param },
-      ],
-    },
-    include: {
-      category: true,
-      manufacturer: true,
-      articleOENumbers: true,
-      vehicleFitments: {
-        include: {
-          generation: {
-            include: {
-              model: {
-                include: {
-                  brand: true,
-                },
-              },
-            },
-          },
-          engine: true,
-        },
-      },
-      attributeValues: {
-        include: {
-          attribute: true,
-        },
-      },
-      originalReferences: true,
-      replacementFor: true,
-    },
-  });
+  // Fetch product and session in parallel for maximum performance
+  const [product, session] = await Promise.all([
+    getProductByParam(param),
+    getServerSession(authOptions),
+  ]);
 
   if (!product) {
     notFound();
@@ -232,19 +295,15 @@ export default async function ProductPage({ params }: ProductPageProps) {
     redirect(`/products/${product.slug}`);
   }
 
+  // Now fetch featured discount and B2B profile in parallel
+  const isB2B = session?.user?.role === 'B2B';
+  const [fp, profile] = await Promise.all([
+    getFeaturedProductDiscount(product.id),
+    isB2B && session?.user?.id ? getUserDiscountProfile(session.user.id) : Promise.resolve(null),
+  ]);
+
   let productWithDiscount = product as ProductWithDiscount;
   try {
-    const fp = await db.featuredProduct.findUnique({
-      where: { productId: product!.id },
-      select: {
-        isActive: true,
-        isDiscountActive: true,
-        discountType: true,
-        discountValue: true,
-        startsAt: true,
-        endsAt: true,
-      },
-    });
     const now = new Date();
     const featuredApplies =
       !!fp &&
@@ -255,7 +314,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
       !!fp.discountType &&
       !!fp.discountValue;
     if (featuredApplies) {
-      const original = Number(product!.price);
+      const original = Number(product.price);
       let discounted = original;
       if (fp!.discountType === 'PERCENTAGE') {
         discounted = Math.max(0, original * (1 - Number(fp!.discountValue) / 100));
@@ -270,14 +329,14 @@ export default async function ProductPage({ params }: ProductPageProps) {
         pricingSource: 'FEATURED',
       } as any;
     } else if (profile) {
-      const resolved = calculateB2BPrice(product!.price, profile, {
-        categoryId: product!.categoryId,
-        manufacturerId: product!.manufacturerId ?? null,
+      const resolved = calculateB2BPrice(product.price, profile, {
+        categoryId: product.categoryId,
+        manufacturerId: product.manufacturerId ?? null,
       });
       if (resolved) {
         productWithDiscount = {
-          ...product!,
-          originalPrice: product!.price,
+          ...product,
+          originalPrice: product.price,
           price: resolved.price,
           pricingSource: resolved.source,
         } as any;

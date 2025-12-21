@@ -160,13 +160,9 @@ async function getTrigramPrefilterIdsForListing(query: string, limit: number): P
 
 export async function GET(req: NextRequest) {
   try {
-    // B2B session context
-    const session = await getServerSession(authOptions);
-    const isB2B = session?.user?.role === 'B2B';
-    const profile = isB2B && session?.user?.id
-      ? await getUserDiscountProfile(session.user.id)
-      : null;
     const { searchParams } = new URL(req.url);
+    
+    // Parse all params early before session check for faster validation
     const query = searchParams.get("q");
     const categoryId = searchParams.get("categoryId");
     const generationId = searchParams.get("generationId");
@@ -181,10 +177,30 @@ export async function GET(req: NextRequest) {
     const limit = isAdminAssign
       ? Math.min(rawLimit || 24, 1000)
       : Math.min(rawLimit || 24, 100);
-    const cursor = searchParams.get("cursor"); // keyset cursor = last item id
+    const cursor = searchParams.get("cursor");
     const pageParam = searchParams.get('page');
     const page = pageParam ? Math.max(parseInt(pageParam || '1') || 1, 1) : null;
     const includeOutOfStock = searchParams.get('includeOutOfStock') === 'true';
+    
+    // Early bail-out: if no meaningful filters are applied, return empty with a hint
+    // This prevents expensive full-table scans on initial page load
+    const hasAnyFilter = categoryId || generationId || engineId || query || minPrice || maxPrice;
+    if (!hasAnyFilter && !isAdminAssign) {
+      const res = NextResponse.json([]);
+      res.headers.set('X-Total-Count', '0');
+      res.headers.set('X-Total-Pages', '1');
+      res.headers.set('X-Page', String(page || 1));
+      res.headers.set('X-Limit', String(limit));
+      res.headers.set('X-No-Filter', 'true');
+      return res;
+    }
+
+    // B2B session context - only fetch if we have filters (avoid slow session check on empty requests)
+    const session = await getServerSession(authOptions);
+    const isB2B = session?.user?.role === 'B2B';
+    const profile = isB2B && session?.user?.id
+      ? await getUserDiscountProfile(session.user.id)
+      : null;
 
     let where: any = { isArchived: false };
 
@@ -278,6 +294,7 @@ export async function GET(req: NextRequest) {
         where,
         select: {
           id: true,
+          slug: true,
           name: true,
           price: true,
           stock: true,
@@ -298,7 +315,27 @@ export async function GET(req: NextRequest) {
               referenceType: true,
             },
           },
-          // vehicleFitments removed from listing for performance - use /api/products/[productId]/fitments instead
+          // Limited vehicleFitments for brand icons display (prevents N+1 queries)
+          vehicleFitments: {
+            take: 5, // Limit to 5 for performance - enough for brand icons
+            select: {
+              id: true,
+              isUniversal: true,
+              generation: {
+                select: {
+                  id: true,
+                  name: true,
+                  model: {
+                    select: {
+                      id: true,
+                      name: true,
+                      brand: { select: { id: true, name: true } },
+                    },
+                  },
+                },
+              },
+            },
+          },
         },
         orderBy: [
           { createdAt: 'desc' },
@@ -374,6 +411,7 @@ export async function GET(req: NextRequest) {
       where,
       select: {
         id: true,
+        slug: true,
         name: true,
         price: true,
         stock: true,
@@ -394,7 +432,27 @@ export async function GET(req: NextRequest) {
             referenceType: true,
           },
         },
-        // vehicleFitments removed from listing for performance - use /api/products/[productId]/fitments instead
+        // Limited vehicleFitments for brand icons display (prevents N+1 queries)
+        vehicleFitments: {
+          take: 5, // Limit to 5 for performance - enough for brand icons
+          select: {
+            id: true,
+            isUniversal: true,
+            generation: {
+              select: {
+                id: true,
+                name: true,
+                model: {
+                  select: {
+                    id: true,
+                    name: true,
+                    brand: { select: { id: true, name: true } },
+                  },
+                },
+              },
+            },
+          },
+        },
       },
       orderBy: [
         { createdAt: 'desc' },

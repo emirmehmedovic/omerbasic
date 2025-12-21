@@ -56,7 +56,13 @@ function uniqueEngines(fitments: VehicleFitment[]): string[] {
   return result;
 }
 
-export default function ProductEngineSummary({ productId, maxInline = 3 }: { productId: string; maxInline?: number }) {
+interface ProductEngineSummaryProps {
+  productId: string;
+  vehicleFitments?: VehicleFitment[];
+  maxInline?: number;
+}
+
+export default function ProductEngineSummary({ productId, vehicleFitments: propFitments, maxInline = 3 }: ProductEngineSummaryProps) {
   const [engines, setEngines] = useState<string[] | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [open, setOpen] = useState(false);
@@ -66,6 +72,14 @@ export default function ProductEngineSummary({ productId, maxInline = 3 }: { pro
   const leaveTimer = useRef<any>(null);
 
   useEffect(() => {
+    // If we already have vehicleFitments from props, use them directly
+    if (propFitments) {
+      const list = uniqueEngines(propFitments);
+      setEngines(list);
+      return;
+    }
+
+    // Otherwise fetch from API (fallback for components that don't pass props)
     let alive = true;
     setEngines(null);
     setError(null);
@@ -84,7 +98,7 @@ export default function ProductEngineSummary({ productId, maxInline = 3 }: { pro
         setError(typeof e?.message === 'string' ? e.message : 'Greška pri učitavanju motora');
       });
     return () => { alive = false; };
-  }, [productId]);
+  }, [productId, propFitments]);
 
   const inline = useMemo(() => {
     if (!engines || engines.length === 0) return [] as string[];

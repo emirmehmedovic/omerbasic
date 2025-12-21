@@ -153,6 +153,20 @@ type ProductAttributeWithValue = {
   };
 };
 
+// Type for replacement product data that comes from the server (avoids N+1)
+type ReplacementProduct = {
+  id: string;
+  name: string;
+  slug: string | null;
+  price: number | any; // Decimal type from Prisma
+  stock: number | null;
+  imageUrl: string | null;
+  catalogNumber: string | null;
+  oemNumber: string | null;
+  categoryId: string | null;
+  category: { id: string; name: string; imageUrl: string | null } | null;
+};
+
 // Tip za cross-reference proizvoda
 type ProductReference = {
   id: string;
@@ -162,6 +176,10 @@ type ProductReference = {
   manufacturer: string | null;
   notes: string | null;
   replacementId: string | null;
+  // Pre-fetched replacement product (avoids N+1)
+  replacement?: ReplacementProduct | null;
+  // Pre-fetched original product (for replacementFor references)
+  product?: ReplacementProduct | null;
 };
 
 interface ProductDetailsProps {
@@ -181,13 +199,20 @@ interface ProductDetailsProps {
 
 // Koristimo formatPrice iz utils.ts
 
-// Prikaz kartice zamjenskog proizvoda za dati replacementId
-const ReplacementProductPreview: React.FC<{ id: string }> = ({ id }) => {
-  const [data, setData] = useState<(Product & { category: Category | null; originalPrice?: number; pricingSource?: 'FEATURED' | 'B2B' | 'BASE' }) | null>(null);
+// Prikaz kartice zamjenskog proizvoda - now accepts pre-fetched data to avoid N+1
+const ReplacementProductPreview: React.FC<{ product?: ReplacementProduct | null; id?: string }> = ({ product, id }) => {
+  // If product data is already available (from server), use it directly
+  if (product) {
+    return <ProductCard product={product as any} compact />;
+  }
+
+  // Fallback: fetch if only ID is provided (legacy support)
+  const [data, setData] = useState<(Product & { category: Category | null }) | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    if (!id) return;
     let alive = true;
     setLoading(true);
     fetch(`/api/products/${id}`)
@@ -207,6 +232,8 @@ const ReplacementProductPreview: React.FC<{ id: string }> = ({ id }) => {
     return () => { alive = false; };
   }, [id]);
 
+  if (!id) return null;
+  
   if (loading) {
     return (
       <div className="rounded-xl border border-slate-200 bg-white p-4">
@@ -219,7 +246,7 @@ const ReplacementProductPreview: React.FC<{ id: string }> = ({ id }) => {
   if (error || !data) {
     return <div className="text-xs text-red-400">Nije moguće učitati zamjenski proizvod.</div>;
   }
-  return <ProductCard product={data} />;
+  return <ProductCard product={data} compact />;
 };
 
 export const ProductDetails = ({ product }: ProductDetailsProps) => {
@@ -1323,9 +1350,9 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
                                       <Copy className="h-4 w-4 text-slate-500 hover:text-[#E85A28]" />
                                     </button>
                                   </div>
-                                  {ref.replacementId && (
+                                  {(ref.replacement || ref.replacementId) && (
                                     <div className="mt-3 pt-3 border-t border-slate-200">
-                                      <ReplacementProductPreview id={ref.replacementId} />
+                                      <ReplacementProductPreview product={ref.replacement} id={ref.replacementId ?? undefined} />
                                     </div>
                                   )}
                                 </li>
@@ -1398,9 +1425,9 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
                                     </button>
                                   </div>
                                   {/* Prikaži karticu OEM proizvoda (productId) na koji je vezan ovaj ref */}
-                                  {ref.productId && (
+                                  {(ref.product || ref.productId) && (
                                     <div className="mt-3 pt-3 border-t border-slate-200">
-                                      <ReplacementProductPreview id={ref.productId} />
+                                      <ReplacementProductPreview product={ref.product} id={ref.productId ?? undefined} />
                                     </div>
                                   )}
                                 </li>

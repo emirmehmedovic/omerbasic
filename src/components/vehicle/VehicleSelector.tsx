@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useMemo, useRef } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import useSWR from 'swr';
 import {
   Select,
   SelectContent,
@@ -109,11 +110,53 @@ export default function VehicleSelector({
   const [generationQuery, setGenerationQuery] = useState("");
   const [engineQuery, setEngineQuery] = useState("");
   
-  // Stanja za učitavanje
-  const [loadingBrands, setLoadingBrands] = useState<boolean>(true);
-  const [loadingModels, setLoadingModels] = useState<boolean>(false);
-  const [loadingGenerations, setLoadingGenerations] = useState<boolean>(false);
-  const [loadingEngines, setLoadingEngines] = useState<boolean>(false);
+  // SWR fetcher function
+  const fetcher = async (url: string) => {
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`Error fetching ${url}`);
+    return res.json();
+  };
+
+  // SWR hooks for data fetching with caching
+  const { data: brandsData, isLoading: loadingBrands, error: brandsError } = useSWR<VehicleBrand[]>(
+    '/api/vehicle-brands',
+    fetcher,
+    {
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+      dedupingInterval: 60000, // Cache for 60 seconds
+    }
+  );
+
+  const { data: modelsData, isLoading: loadingModels } = useSWR<VehicleModel[]>(
+    selectedBrandId ? `/api/vehicle-brands/${selectedBrandId}/models` : null,
+    fetcher,
+    {
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+      dedupingInterval: 60000,
+    }
+  );
+
+  const { data: generationsData, isLoading: loadingGenerations } = useSWR<VehicleGeneration[]>(
+    selectedModelId ? `/api/models/${selectedModelId}/generations` : null,
+    fetcher,
+    {
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+      dedupingInterval: 60000,
+    }
+  );
+
+  const { data: enginesData, isLoading: loadingEngines } = useSWR<VehicleEngine[]>(
+    selectedGenerationId ? `/api/generations/${selectedGenerationId}/engines` : null,
+    fetcher,
+    {
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+      dedupingInterval: 60000,
+    }
+  );
 
   // Helper: jedinstveni po id-u
   const uniqById = <T extends { id: string }>(arr: T[]) => {
@@ -239,30 +282,17 @@ export default function VehicleSelector({
     return enginesToRender.filter(e => desc(e).toLowerCase().includes(q));
   }, [engineQuery, enginesToRender]);
   
-  // Učitavanje brendova vozila pri prvom renderiranju
+  // Update brands state from SWR data
   useEffect(() => {
-    const fetchBrands = async () => {
-      setLoadingBrands(true);
-      try {
-        const response = await fetch("/api/vehicle-brands");
-        if (!response.ok) throw new Error("Greška pri dohvaćanju brendova vozila");
-        
-        const data = await response.json();
-        setAllBrands(Array.isArray(data) ? data : []);
-        
-        const brandIdFromUrl = searchParams.get("brandId") || searchParams.get("makeId");
-        if (brandIdFromUrl) {
-          setSelectedBrandId(brandIdFromUrl);
-        }
-      } catch (error) {
-        console.error("Greška:", error);
-      } finally {
-        setLoadingBrands(false);
+    if (brandsData) {
+      setAllBrands(Array.isArray(brandsData) ? brandsData : []);
+      
+      const brandIdFromUrl = searchParams.get("brandId") || searchParams.get("makeId");
+      if (brandIdFromUrl) {
+        setSelectedBrandId(brandIdFromUrl);
       }
-    };
-    
-    fetchBrands();
-  }, []);
+    }
+  }, [brandsData, searchParams]);
 
   // Kad se promijeni vehicleType, filtriraj brendove; zadrži odabran brend ako je i dalje valjan
   useEffect(() => {
@@ -283,7 +313,7 @@ export default function VehicleSelector({
     }
   }, [vehicleType, allBrands, selectedBrandId]);
   
-  // Učitavanje modela kada se odabere brend
+  // Update models state from SWR data
   useEffect(() => {
     if (!selectedBrandId) {
       setModels([]);
@@ -291,35 +321,25 @@ export default function VehicleSelector({
       return;
     }
     
-    const fetchModels = async () => {
-      setLoadingModels(true);
+    if (modelsData) {
+      setModels(modelsData);
+      // Clear dependent selections when models change
       setGenerations([]);
       setEngines([]);
-      setSelectedModelId("");
       setSelectedGenerationId("");
       setSelectedEngineId("");
-      try {
-        const response = await fetch(`/api/vehicle-brands/${selectedBrandId}/models`);
-        if (!response.ok) throw new Error("Greška pri dohvaćanju modela vozila");
-        
-        const data = await response.json();
-        setModels(data);
-        
-        const modelIdFromUrl = searchParams.get("modelId");
-        if (modelIdFromUrl) {
-          setSelectedModelId(modelIdFromUrl);
-        }
-      } catch (error) {
-        console.error("Greška:", error);
-      } finally {
-        setLoadingModels(false);
+      
+      const modelIdFromUrl = searchParams.get("modelId");
+      if (modelIdFromUrl) {
+        setSelectedModelId(modelIdFromUrl);
       }
-    };
-    
-    fetchModels();
-  }, [selectedBrandId]);
+    } else if (!loadingModels) {
+      // Clear models if data is not available and not loading
+      setModels([]);
+    }
+  }, [modelsData, selectedBrandId, loadingModels, searchParams]);
 
-  // Učitavanje generacija kada se odabere model
+  // Update generations state from SWR data
   useEffect(() => {
     if (!selectedModelId) {
       setGenerations([]);
@@ -327,58 +347,59 @@ export default function VehicleSelector({
       return;
     }
     
-    const fetchGenerations = async () => {
-      setLoadingGenerations(true);
+    if (generationsData) {
+      setGenerations(generationsData);
+      // Clear dependent selections when generations change
       setEngines([]);
-      setSelectedGenerationId("");
       setSelectedEngineId("");
-      try {
-        const response = await fetch(`/api/models/${selectedModelId}/generations`);
-        if (!response.ok) throw new Error("Greška pri dohvaćanju generacija vozila");
-        
-        const data = await response.json();
-        setGenerations(data);
-        
-        const generationIdFromUrl = searchParams.get("generationId");
-        if (generationIdFromUrl) {
-          setSelectedGenerationId(generationIdFromUrl);
-        }
-      } catch (error) {
-        console.error("Greška:", error);
-      } finally {
-        setLoadingGenerations(false);
+      
+      const generationIdFromUrl = searchParams.get("generationId");
+      if (generationIdFromUrl) {
+        setSelectedGenerationId(generationIdFromUrl);
       }
-    };
-    
-    fetchGenerations();
-  }, [selectedModelId]);
+    } else if (!loadingGenerations) {
+      // Clear generations if data is not available and not loading
+      setGenerations([]);
+    }
+  }, [generationsData, selectedModelId, loadingGenerations, searchParams]);
 
   // Bootstrap iz generationId u URL-u: ako imamo generationId u URL-u, a model nije postavljen,
   // dohvatimo generaciju da bismo izveli model i brend i postavili state lancežno
-  useEffect(() => {
-    const genIdFromUrl = searchParams.get('generationId');
-    if (!genIdFromUrl) return;
-    if (bootstrappedFromGenRef.current) return;
-    if (selectedModelId) return; // već postavljen kroz standardni tok
-    (async () => {
-      try {
-        const res = await fetch(`/api/generations/${genIdFromUrl}`);
-        if (!res.ok) return;
-        const gen = await res.json();
-        const modelId = gen?.model?.id;
-        const brandId = gen?.model?.brand?.id;
-        if (brandId && brandId !== selectedBrandId) setSelectedBrandId(brandId);
-        if (modelId && modelId !== selectedModelId) setSelectedModelId(modelId);
-        setSelectedGenerationId(genIdFromUrl);
-        bootstrappedFromGenRef.current = true;
-      } catch (e) {
-        console.error('Bootstrap from generationId failed', e);
-      }
-    })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const genIdFromUrl = searchParams.get('generationId');
+  const shouldBootstrap = genIdFromUrl && !bootstrappedFromGenRef.current && !selectedModelId;
   
-  // Učitavanje motora i stilova karoserije kada se odabere generacija
+  type GenerationBootstrap = {
+    id: string;
+    model: {
+      id: string;
+      brand: {
+        id: string;
+      };
+    };
+  };
+  
+  const { data: bootstrapGenData } = useSWR<GenerationBootstrap>(
+    shouldBootstrap ? `/api/generations/${genIdFromUrl}` : null,
+    fetcher,
+    {
+      revalidateOnFocus: false,
+      revalidateOnReconnect: false,
+      dedupingInterval: 60000,
+    }
+  );
+
+  // Process bootstrap data when available
+  useEffect(() => {
+    if (!bootstrapGenData || bootstrappedFromGenRef.current) return;
+    const modelId = bootstrapGenData?.model?.id;
+    const brandId = bootstrapGenData?.model?.brand?.id;
+    if (brandId && brandId !== selectedBrandId) setSelectedBrandId(brandId);
+    if (modelId && modelId !== selectedModelId) setSelectedModelId(modelId);
+    if (genIdFromUrl) setSelectedGenerationId(genIdFromUrl);
+    bootstrappedFromGenRef.current = true;
+  }, [bootstrapGenData, genIdFromUrl, selectedBrandId, selectedModelId]);
+  
+  // Update engines state from SWR data
   useEffect(() => {
     if (!selectedGenerationId) {
       setEngines([]);
@@ -386,43 +407,27 @@ export default function VehicleSelector({
       return;
     }
     
-    const fetchEnginesAndBodyStyles = async () => {
-      setLoadingEngines(true);
-      setEngines([]);
-      setSelectedEngineId("");
-      try {
-
-
-        const enginesResponse = await fetch(`/api/generations/${selectedGenerationId}/engines`);
-        if (!enginesResponse.ok) throw new Error("Greška pri dohvaćanju motora");
-        const enginesData = await enginesResponse.json();
-        setEngines(enginesData || []);
-        
-        const engineIdFromUrl = searchParams.get("engineId");
-        if (engineIdFromUrl && engineIdFromUrl !== 'all') {
-          const existsInThisGen = Array.isArray(enginesData) && enginesData.some((e: any) => e.id === engineIdFromUrl);
-          if (existsInThisGen) {
-            setSelectedEngineId(engineIdFromUrl);
-          } else {
-            // URL engine doesn't belong to this generation -> default to 'all'
-            setSelectedEngineId('all');
-          }
+    if (enginesData) {
+      setEngines(enginesData || []);
+      
+      const engineIdFromUrl = searchParams.get("engineId");
+      if (engineIdFromUrl && engineIdFromUrl !== 'all') {
+        const existsInThisGen = Array.isArray(enginesData) && enginesData.some((e: VehicleEngine) => e.id === engineIdFromUrl);
+        if (existsInThisGen) {
+          setSelectedEngineId(engineIdFromUrl);
         } else {
-          // Default to 'all' so user doesn't have to select it manually
+          // URL engine doesn't belong to this generation -> default to 'all'
           setSelectedEngineId('all');
         }
-        
-
-
-      } catch (error) {
-        console.error("Greška:", error);
-      } finally {
-        setLoadingEngines(false);
+      } else {
+        // Default to 'all' so user doesn't have to select it manually
+        setSelectedEngineId('all');
       }
-    };
-    
-    fetchEnginesAndBodyStyles();
-  }, [selectedGenerationId]);
+    } else if (!loadingEngines) {
+      // Clear engines if data is not available and not loading
+      setEngines([]);
+    }
+  }, [enginesData, selectedGenerationId, loadingEngines, searchParams]);
   
 
   

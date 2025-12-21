@@ -1,18 +1,24 @@
 'use client';
 
 import { useState } from 'react';
-import Image from 'next/image';
+import OptimizedImage from './OptimizedImage';
+import { resolveProductImage } from '@/lib/utils';
 
 interface ProductImageProps {
   src?: string | null;
   alt: string;
   className?: string;
+  categoryImageUrl?: string | null;
 }
 
-export default function ProductImage({ src, alt, className }: ProductImageProps) {
+export default function ProductImage({ src, alt, className, categoryImageUrl }: ProductImageProps) {
   const [imageError, setImageError] = useState(false);
 
-  if (!src || imageError) {
+  // Use resolveProductImage for proper URL handling (fallbacks, API routes)
+  const resolvedSrc = resolveProductImage(src, categoryImageUrl);
+  const isPlaceholder = resolvedSrc.includes('placehold.co');
+
+  if (imageError || isPlaceholder) {
     return (
       <div className={`flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200 ${className}`}>
         <svg className="w-8 h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -23,11 +29,11 @@ export default function ProductImage({ src, alt, className }: ProductImageProps)
   }
 
   return (
-    <Image
-      src={src}
+    <OptimizedImage
+      src={resolvedSrc}
       alt={alt}
       fill
-      className="object-cover"
+      className={`object-cover ${className || ''}`}
       onError={() => setImageError(true)}
     />
   );

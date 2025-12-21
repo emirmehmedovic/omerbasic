@@ -2,9 +2,10 @@
 
 import OptimizedImage from '@/components/OptimizedImage';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { toast } from 'react-hot-toast';
-import { ShoppingCart } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { ShoppingCart, Loader2 } from 'lucide-react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import type { Category, Product } from '@/generated/prisma/client';
 import { useCart } from '@/context/CartContext';
 import { formatPrice, resolveProductImage } from '@/lib/utils';
@@ -44,11 +45,15 @@ interface ProductCardProps {
     }> | null;
   };
   compact?: boolean;
+  isLoading?: boolean;
+  onProductClick?: (productId: string) => void;
 }
 
-export const ProductCard = ({ product, compact = false }: ProductCardProps) => {
+export const ProductCard = ({ product, compact = false, isLoading = false, onProductClick }: ProductCardProps) => {
   const { addToCart } = useCart();
+  const router = useRouter();
   const [isMounted, setIsMounted] = useState(false);
+  const hasPrefetched = useRef(false);
   
   // Koristimo originalPrice iz produkta ako postoji (postavljen na serveru)
   const hasDiscount = !!product.originalPrice;
@@ -56,11 +61,22 @@ export const ProductCard = ({ product, compact = false }: ProductCardProps) => {
   const discountedPrice = product.price;
   const discountLabel = hasDiscount ? (product.pricingSource === 'FEATURED' ? 'Akcija' : 'B2B cijena') : undefined;
 
+  // Use slug for URL if available (better SEO and caching)
+  const productUrl = `/products/${(product as any).slug || product.id}`;
+
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
   const imageUrl = resolveProductImage(product.imageUrl, product.category?.imageUrl);
+
+  // Prefetch on hover for faster navigation
+  const handleMouseEnter = useCallback(() => {
+    if (!hasPrefetched.current) {
+      router.prefetch(productUrl);
+      hasPrefetched.current = true;
+    }
+  }, [router, productUrl]);
 
   const handleAddToCart = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -82,11 +98,29 @@ export const ProductCard = ({ product, compact = false }: ProductCardProps) => {
     });
   };
 
+  const handleClick = () => {
+    if (onProductClick) {
+      onProductClick(product.id);
+    }
+  };
+
   return (
     <Link 
-      href={`/products/${product.id}`} 
+      href={productUrl} 
+      prefetch={false}
+      onClick={handleClick}
+      onMouseEnter={handleMouseEnter}
       className="group relative block overflow-hidden rounded-2xl transition-all duration-300 ease-in-out hover:-translate-y-2 hover:scale-[1.02] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF6B35]"
     >
+      {/* Loading overlay */}
+      {isLoading && (
+        <div className="absolute inset-0 bg-white/90 backdrop-blur-sm rounded-2xl z-50 flex items-center justify-center">
+          <div className="flex flex-col items-center gap-2">
+            <Loader2 className="w-8 h-8 text-[#FF6B35] animate-spin" />
+            <span className="text-sm font-medium text-slate-700">Učitavanje...</span>
+          </div>
+        </div>
+      )}
       <div className="relative rounded-2xl bg-white/90 backdrop-blur-sm border border-white/60 shadow-lg hover:shadow-2xl transition-all duration-300">
         {/* Glow effect on hover */}
         <div className="absolute -inset-0.5 bg-gradient-to-r from-primary to-[#FF6B35] rounded-2xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-300 -z-10" />

@@ -32,6 +32,21 @@ export async function GET(req: NextRequest) {
       },
       include: {
         category: true,
+        // Include limited vehicleFitments to avoid N+1 in ProductBrandSummary
+        vehicleFitments: {
+          take: 5,
+          include: {
+            generation: {
+              include: {
+                model: {
+                  include: {
+                    brand: true,
+                  },
+                },
+              },
+            },
+          },
+        },
       },
     });
 

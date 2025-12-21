@@ -1,46 +1,32 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/db";
 
+// Cache featured products for 60 seconds to reduce DB load
+export const revalidate = 60;
+
 export async function GET() {
   try {
+    // Optimized: removed vehicleFitments include to speed up featured products loading
+    // vehicleFitments can be fetched separately on product detail page if needed
     const featuredProducts = await db.featuredProduct.findMany({
       include: {
         product: { 
-          include: { 
-            category: true,
-            vehicleFitments: {
+          select: { 
+            id: true,
+            name: true,
+            price: true,
+            stock: true,
+            imageUrl: true,
+            catalogNumber: true,
+            oemNumber: true,
+            categoryId: true,
+            category: {
               select: {
                 id: true,
-                isUniversal: true,
-                generation: {
-                  select: {
-                    id: true,
-                    name: true,
-                    model: {
-                      select: {
-                        id: true,
-                        name: true,
-                        brand: {
-                          select: {
-                            id: true,
-                            name: true,
-                          }
-                        }
-                      }
-                    }
-                  }
-                },
-                engine: {
-                  select: {
-                    id: true,
-                    engineCode: true,
-                    enginePowerKW: true,
-                    enginePowerHP: true,
-                    engineCapacity: true,
-                  }
-                }
+                name: true,
+                imageUrl: true,
               }
-            }
+            },
           } 
         },
       },

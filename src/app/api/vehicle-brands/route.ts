@@ -5,6 +5,9 @@ import { z } from 'zod';
 import { db } from '@/lib/db';
 import { authOptions } from '@/lib/auth';
 
+// Cache vehicle brands for 5 minutes since they rarely change
+export const revalidate = 300;
+
 // Shema za validaciju
 const vehicleBrandSchema = z.object({
   name: z.string().min(1, { message: 'Naziv marke je obavezan' }),
@@ -13,13 +16,13 @@ const vehicleBrandSchema = z.object({
 
 export async function GET() {
   try {
+    // PERF FIX: Only fetch brand id, name, type - models/generations are fetched separately
+    // This reduces the payload from potentially MBs to KBs and speeds up initial page load
     const vehicleBrands = await db.vehicleBrand.findMany({
-      include: {
-        models: {
-          include: {
-            generations: true
-          }
-        }
+      select: {
+        id: true,
+        name: true,
+        type: true,
       },
       orderBy: {
         name: 'asc'

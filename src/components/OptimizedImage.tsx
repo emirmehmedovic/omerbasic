@@ -33,7 +33,7 @@ export default function OptimizedImage({
 }: OptimizedImageProps) {
   const [imageError, setImageError] = useState(false);
 
-  // Detektiraj ako je slika lokalna (iz /uploads/ foldera) ili API route
+  // Detektiraj tip slike za odgovarajuću optimizaciju
   const isLocalUpload = src.startsWith('/uploads/') || src.startsWith('/api/uploads/');
   const isTecdocImage = src.startsWith('/images/tecdoc/');
   
@@ -47,7 +47,10 @@ export default function OptimizedImage({
   // TecDoc slike ostavi kako jesu - Next.js će ih servirati direktno iz public/
   // Ako ne postoje, prikazaće se fallback placeholder
 
-  // Za lokalne uploadove koristi unoptimized, TecDoc slike neka Next.js optimizuje
+  // Za lokalne uploadove i TecDoc slike koristi unoptimized jer su lokalne
+  // Next.js Image optimization može imati problema s lokalnim fajlovima u produkciji
+  const shouldUnoptimize = isLocalUpload || isTecdocImage;
+  
   const imageProps: any = {
     src: imageSrc,
     alt,
@@ -57,7 +60,7 @@ export default function OptimizedImage({
       onError?.();
     },
     ...(priority !== undefined ? { priority } : {}),
-    ...(isLocalUpload ? { unoptimized: true } : {}),
+    ...(shouldUnoptimize ? { unoptimized: true } : {}),
   };
 
   // Dodaj fill ili width/height ovisno o props
@@ -68,8 +71,8 @@ export default function OptimizedImage({
     imageProps.height = height;
   }
 
-  // Dodaj sizes samo ako nije lokalni upload i ako je naveden
-  if (sizes && !isLocalUpload) {
+  // Dodaj sizes samo ako slika nije unoptimized i ako je naveden
+  if (sizes && !shouldUnoptimize) {
     imageProps.sizes = sizes;
   }
 
