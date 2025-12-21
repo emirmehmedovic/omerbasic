@@ -37,7 +37,7 @@ export async function GET(req: Request) {
     const pathKey = mode === 'advanced' ? '/api/products/search:advanced' : '/api/products/search:basic';
     const limitConfig = mode === 'advanced' ? { limit: 10, windowMs: 60_000 } : { limit: 20, windowMs: 60_000 };
     const key = keyFromIpAndPath(ip, pathKey);
-    const rl = rateLimit(key, limitConfig.limit, limitConfig.windowMs);
+    const rl = await rateLimit(key, limitConfig.limit, limitConfig.windowMs);
     if (!rl.ok) {
       const res = NextResponse.json({ error: 'Previše zahtjeva. Pokušajte ponovo kasnije.' }, { status: 429 });
       res.headers.set('RateLimit-Limit', String(limitConfig.limit));

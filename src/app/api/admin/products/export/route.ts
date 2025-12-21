@@ -15,7 +15,7 @@ export async function GET(req: Request) {
   // Rate limit: e.g., 3 exports per 10 minutes per IP
   const ip = req.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || (req as any).ip || null;
   const key = keyFromIpAndPath(ip, '/api/admin/products/export');
-  const rl = rateLimit(key, 3, 10 * 60 * 1000);
+  const rl = await rateLimit(key, 3, 10 * 60 * 1000);
   if (!rl.ok) {
     return new NextResponse('Too Many Requests', {
       status: 429,

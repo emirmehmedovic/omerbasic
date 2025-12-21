@@ -29,9 +29,6 @@ export async function GET(
 
     const models = await db.vehicleModel.findMany({
       where: { brandId },
-      include: {
-        generations: true
-      },
       orderBy: {
         name: 'asc'
       }

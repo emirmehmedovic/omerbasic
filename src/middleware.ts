@@ -1,8 +1,52 @@
 import { getToken } from 'next-auth/jwt';
 import { NextRequest, NextResponse } from 'next/server';
+import { rateLimit, getClientIp } from '@/lib/ratelimit';
 
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
+
+  // ===== SECURITY & RATE LIMITING =====
+
+  // 1. Request size validation (prevent DDoS via large payloads)
+  const contentLength = req.headers.get('content-length');
+  if (contentLength && parseInt(contentLength) > 10_000_000) { // 10MB limit
+    return new NextResponse('Payload too large', { status: 413 });
+  }
+
+  // 2. Rate limiting for API routes
+  if (pathname.startsWith('/api')) {
+    const ip = getClientIp(req.headers);
+
+    // Different limits for different types of requests
+    let limit = 60; // Default: 60 requests per minute
+    let windowMs = 60 * 1000; // 1 minute
+
+    // Stricter limits for write operations
+    if (req.method === 'POST' || req.method === 'PUT' || req.method === 'DELETE' || req.method === 'PATCH') {
+      limit = 20; // 20 writes per minute
+    }
+
+    // Even stricter for sensitive endpoints
+    if (pathname.includes('/auth/') || pathname.includes('/admin/')) {
+      limit = 10; // 10 requests per minute for auth/admin
+    }
+
+    // Apply rate limit
+    const rateLimitKey = `api:${ip}:${pathname}`;
+    const rateLimitResult = await rateLimit(rateLimitKey, limit, windowMs);
+
+    if (!rateLimitResult.ok) {
+      return new NextResponse('Too many requests. Please try again later.', {
+        status: 429,
+        headers: {
+          'Retry-After': String(Math.ceil(rateLimitResult.resetInMs / 1000)),
+          'X-RateLimit-Limit': String(limit),
+          'X-RateLimit-Remaining': String(rateLimitResult.remaining),
+          'X-RateLimit-Reset': String(Date.now() + rateLimitResult.resetInMs),
+        },
+      });
+    }
+  }
   
   // Dohvati token za sve rute (potrebno za B2B cijene u API rutama)
   const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
@@ -77,8 +121,40 @@ export async function middleware(req: NextRequest) {
     }
   }
 
-  // Za sve ostale rute, dozvoli pristup
-  return NextResponse.next();
+  // Za sve ostale rute, dozvoli pristup i dodaj security headers
+  const response = NextResponse.next();
+
+  // ===== SECURITY HEADERS =====
+  // Add security headers to all responses
+  addSecurityHeaders(response);
+
+  return response;
+}
+
+// Helper function to add security headers to response
+function addSecurityHeaders(response: NextResponse) {
+  // Prevent clickjacking attacks
+  response.headers.set('X-Frame-Options', 'DENY');
+
+  // Prevent MIME type sniffing
+  response.headers.set('X-Content-Type-Options', 'nosniff');
+
+  // Control referrer information
+  response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
+
+  // Enable XSS protection (legacy browsers)
+  response.headers.set('X-XSS-Protection', '1; mode=block');
+
+  // Strict Transport Security (HTTPS only)
+  // Only in production to avoid issues in local development
+  if (process.env.NODE_ENV === 'production') {
+    response.headers.set('Strict-Transport-Security', 'max-age=63072000; includeSubDomains; preload');
+  }
+
+  // Permissions Policy - restrict browser features
+  response.headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
+
+  return response;
 }
 
 export const config = {

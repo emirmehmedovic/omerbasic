@@ -5,30 +5,60 @@ import { unstable_cache } from 'next/cache';
 import ProductsPageClient from './_components/ProductsPageClient';
 import Link from 'next/link';
 
-// Force dynamic rendering - no static caching
-export const dynamic = 'force-dynamic';
-export const revalidate = 0;
+// Enable ISR with 60 second revalidation
+export const revalidate = 60;
 
 const getFilterData = unstable_cache(
   async () => {
-    const categories = await prisma.category.findMany({
-      where: {
-        parentId: null,
-      },
-      include: {
-        children: {
-          include: {
-            children: true,
+    // Paralelno učitavanje kategorija, marki i featured products
+    const [categories, brands, featuredProducts] = await Promise.all([
+      prisma.category.findMany({
+        where: {
+          parentId: null,
+        },
+        include: {
+          children: {
+            include: {
+              children: true,
+            },
           },
         },
-      },
-    });
-
-    const brands = await prisma.vehicleBrand.findMany({
-      orderBy: {
-        name: 'asc',
-      },
-    });
+      }),
+      prisma.vehicleBrand.findMany({
+        orderBy: {
+          name: 'asc',
+        },
+      }),
+      prisma.featuredProduct.findMany({
+        where: {
+          isActive: true,
+        },
+        include: {
+          product: {
+            select: {
+              id: true,
+              name: true,
+              price: true,
+              stock: true,
+              imageUrl: true,
+              catalogNumber: true,
+              oemNumber: true,
+              categoryId: true,
+              category: {
+                select: {
+                  id: true,
+                  name: true,
+                  imageUrl: true,
+                }
+              },
+            }
+          },
+        },
+        orderBy: {
+          displayOrder: 'asc',
+        },
+      })
+    ]);
 
     // Type mapping funkcija za kategorije
     const mapCategories = (cats: any[]): any[] => {
@@ -38,13 +68,45 @@ const getFilterData = unstable_cache(
       }));
     };
 
-    return { 
-      categories: mapCategories(categories), 
-      brands 
+    // Process featured products pricing
+    const now = new Date();
+    const processedFeatured = featuredProducts.map((fp: any) => {
+      const p = fp.product;
+      if (!p) return fp;
+      const discountActive = !!fp.isDiscountActive;
+      const withinWindow = (!fp.startsAt || new Date(fp.startsAt) <= now) && (!fp.endsAt || new Date(fp.endsAt) >= now);
+
+      if (discountActive && withinWindow && fp.discountType && fp.discountValue) {
+        const original = Number(p.price);
+        let discounted = original;
+        if (fp.discountType === 'PERCENTAGE') {
+          discounted = Math.max(0, original * (1 - Number(fp.discountValue) / 100));
+        } else if (fp.discountType === 'FIXED') {
+          discounted = Math.max(0, original - Number(fp.discountValue));
+        }
+        discounted = Math.round(discounted * 100) / 100;
+
+        return {
+          ...fp,
+          product: {
+            ...p,
+            originalPrice: original,
+            price: discounted,
+            pricingSource: 'FEATURED',
+          },
+        };
+      }
+      return fp;
+    });
+
+    return {
+      categories: mapCategories(categories),
+      brands,
+      featuredProducts: processedFeatured.filter((fp: any) => fp.product)
     };
   },
   ['products-filter-data'],
-  { tags: ['categories'] }
+  { tags: ['categories', 'featured-products'] }
 );
 
 export const metadata: Metadata = {

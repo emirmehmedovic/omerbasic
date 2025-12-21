@@ -56,7 +56,7 @@ export async function GET(req: Request) {
       || req.headers.get('x-real-ip')
       || null;
     const key = keyFromIpAndPath(ip, '/api/products/advanced-search');
-    const rl = rateLimit(key, 10, 60_000);
+    const rl = await rateLimit(key, 10, 60_000);
     if (!rl.ok) {
       const res = NextResponse.json({ error: 'Previše zahtjeva. Pokušajte ponovo kasnije.' }, { status: 429 });
       res.headers.set('RateLimit-Limit', '10');

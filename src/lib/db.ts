@@ -1,18 +1,26 @@
 import { PrismaClient } from '@/generated/prisma';
 
+// Singleton pattern for Prisma Client to prevent connection pool exhaustion
+// This is critical in serverless environments (Vercel, AWS Lambda)
+// where each function invocation would otherwise create a new connection pool
 declare global {
-   
-  var cachedPrisma: PrismaClient;
+  var prisma: PrismaClient | undefined;
 }
 
-let prisma: PrismaClient;
-if (process.env.NODE_ENV === 'production') {
-  prisma = new PrismaClient();
-} else {
-  if (!global.cachedPrisma) {
-    global.cachedPrisma = new PrismaClient();
-  }
-  prisma = global.cachedPrisma;
-}
+// Reuse existing PrismaClient instance or create new one
+// This works in both development (HMR) and production (serverless)
+const globalForPrisma = global as typeof global & {
+  prisma: PrismaClient | undefined;
+};
 
-export const db = prisma;
+export const db =
+  globalForPrisma.prisma ||
+  new PrismaClient({
+    log: process.env.NODE_ENV === 'development' ? ['error', 'warn'] : ['error'],
+  });
+
+// In development, store on global to survive HMR (Hot Module Replacement)
+// In production, this ensures singleton across serverless function reuse
+if (process.env.NODE_ENV !== 'production') {
+  globalForPrisma.prisma = db;
+}

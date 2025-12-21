@@ -4,83 +4,95 @@ import { join } from 'path';
 import { existsSync } from 'fs';
 import mime from 'mime';
 
+// Enable ISR-style caching for this route
+export const revalidate = 3600; // Cache for 1 hour
+
+// In-memory cache for resolved file paths to avoid repeated filesystem lookups
+// Map: filename -> absolute file path
+const pathCache = new Map<string, string | null>();
+const CACHE_SIZE_LIMIT = 1000; // Prevent memory overflow
+
+function findTecDocImagePath(filename: string): string | null {
+  // Check cache first
+  if (pathCache.has(filename)) {
+    return pathCache.get(filename) || null;
+  }
+
+  // TecDoc struktura: pokušaj različite putanje
+  const normalizedFilename = filename.toUpperCase();
+  const possiblePaths: string[] = [];
+
+  if (normalizedFilename.length >= 3) {
+    const firstDigit = normalizedFilename[0];
+    const secondDigit = normalizedFilename[1];
+    const thirdDigit = normalizedFilename[2];
+
+    // Najčešća struktura: 1/1/9/190130.JPG
+    possiblePaths.push(
+      join(process.cwd(), 'public', 'images', 'tecdoc', firstDigit, secondDigit, thirdDigit, normalizedFilename)
+    );
+
+    // Struktura sa Supplier ID: 1/1/1/9/190130.JPG
+    possiblePaths.push(
+      join(process.cwd(), 'public', 'images', 'tecdoc', '1', firstDigit, secondDigit, thirdDigit, normalizedFilename)
+    );
+
+    // Struktura: 1/19/190130.JPG
+    const firstTwoChars = normalizedFilename.substring(0, 2);
+    possiblePaths.push(
+      join(process.cwd(), 'public', 'images', 'tecdoc', '1', firstTwoChars, normalizedFilename)
+    );
+  }
+
+  if (normalizedFilename.length >= 2) {
+    const firstDigit = normalizedFilename[0];
+    possiblePaths.push(
+      join(process.cwd(), 'public', 'images', 'tecdoc', firstDigit, normalizedFilename)
+    );
+  }
+
+  // Direktno u tecdoc folderu
+  possiblePaths.push(
+    join(process.cwd(), 'public', 'images', 'tecdoc', normalizedFilename)
+  );
+
+  // Pronađi prvi postojeći fajl
+  const filePath = possiblePaths.find(path => existsSync(path)) || null;
+
+  // Cache result (even if null to avoid repeated lookups for missing files)
+  if (pathCache.size < CACHE_SIZE_LIMIT) {
+    pathCache.set(filename, filePath);
+  }
+
+  return filePath;
+}
+
 export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ filename: string }> }
 ) {
   try {
     const { filename } = await params;
-    
+
     // Security: Prevent directory traversal
     if (filename.includes('..') || filename.includes('/') || filename.includes('\\')) {
       return new NextResponse('Invalid filename', { status: 400 });
     }
 
-    // Rekonstruiraj putanju iz filename-a
-    // TecDoc struktura prema dokumentaciji: Supplier ID / prva cifra / druga cifra / treća cifra / filename
-    // Primjer: 190130.JPG -> /images/tecdoc/1/1/9/190130.JPG (Supplier ID = 1, prva cifra = 1, druga cifra = 1, treća cifra = 9)
-    // Primjer: 477640.JPG -> /images/tecdoc/10/4/7/477640.JPG (Supplier ID = 10, prva cifra = 4, druga cifra = 7, treća cifra = 7)
-    // 
-    // Problem: Ne znamo Supplier ID iz filename-a, pa pokušavamo različite strukture
-    const normalizedFilename = filename.toUpperCase();
-    const possiblePaths: string[] = [];
-    
-    if (normalizedFilename.length >= 3) {
-      const firstDigit = normalizedFilename[0];
-      const secondDigit = normalizedFilename[1];
-      const thirdDigit = normalizedFilename[2];
-      
-      // Struktura: 1/1/9/190130.JPG (bez Supplier ID-a, direktno prva/druga/treća cifra)
-      // Ovo je najčešća struktura u našem slučaju
-      possiblePaths.push(
-        join(process.cwd(), 'public', 'images', 'tecdoc', firstDigit, secondDigit, thirdDigit, normalizedFilename)
-      );
-      
-      // Struktura: 1/1/1/9/190130.JPG (Supplier ID = 1, prva cifra = 1, druga cifra = 1, treća cifra = 9)
-      possiblePaths.push(
-        join(process.cwd(), 'public', 'images', 'tecdoc', '1', firstDigit, secondDigit, thirdDigit, normalizedFilename)
-      );
-      
-      // Struktura: 1/19/190130.JPG (Supplier ID = 1, prva 2 karaktera = 19)
-      const firstTwoChars = normalizedFilename.substring(0, 2);
-      possiblePaths.push(
-        join(process.cwd(), 'public', 'images', 'tecdoc', '1', firstTwoChars, normalizedFilename)
-      );
-    }
-    
-    if (normalizedFilename.length >= 2) {
-      const firstDigit = normalizedFilename[0];
-      // Struktura: 1/190130.JPG
-      possiblePaths.push(
-        join(process.cwd(), 'public', 'images', 'tecdoc', firstDigit, normalizedFilename)
-      );
-    }
-    
-    // Direktno u tecdoc folderu
-    possiblePaths.push(
-      join(process.cwd(), 'public', 'images', 'tecdoc', normalizedFilename)
-    );
+    // Find file path using cached lookup
+    const filePath = findTecDocImagePath(filename);
 
-    // Pronađi prvi postojeći fajl
-    const filePath = possiblePaths.find(path => existsSync(path));
-
-    // Check if file exists
-    if (!filePath || !existsSync(filePath)) {
-      console.error('TecDoc image not found:', {
-        filename,
-        normalizedFilename,
-        triedPaths: possiblePaths,
-      });
+    if (!filePath) {
       return new NextResponse('File not found', { status: 404 });
     }
 
     // Read file
     const fileBuffer = await readFile(filePath);
-    
+
     // Determine content type
     const contentType = mime.getType(filePath) || 'application/octet-stream';
 
-    // Return file with appropriate headers
+    // Return file with aggressive caching (images never change)
     return new NextResponse(fileBuffer, {
       headers: {
         'Content-Type': contentType,

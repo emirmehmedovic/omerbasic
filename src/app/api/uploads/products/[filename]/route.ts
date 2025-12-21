@@ -4,13 +4,16 @@ import { join } from 'path';
 import { existsSync } from 'fs';
 import mime from 'mime';
 
+// Enable ISR-style caching for this route
+export const revalidate = 3600; // Cache for 1 hour
+
 export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ filename: string }> }
 ) {
   try {
     const { filename } = await params;
-    
+
     // Security: Prevent directory traversal
     if (filename.includes('..') || filename.includes('/') || filename.includes('\\')) {
       return new NextResponse('Invalid filename', { status: 400 });
@@ -25,11 +28,11 @@ export async function GET(
 
     // Read file
     const fileBuffer = await readFile(filePath);
-    
+
     // Determine content type
     const contentType = mime.getType(filePath) || 'application/octet-stream';
 
-    // Return file with appropriate headers
+    // Return file with aggressive caching (product images rarely change)
     return new NextResponse(fileBuffer, {
       headers: {
         'Content-Type': contentType,

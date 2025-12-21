@@ -32,7 +32,7 @@ export async function GET(req: Request) {
       || req.headers.get('x-real-ip')
       || null;
     const key = keyFromIpAndPath(ip, '/api/vin/decode');
-    const rl = rateLimit(key, 20, 60_000);
+    const rl = await rateLimit(key, 20, 60_000);
     if (!rl.ok) {
       const res = NextResponse.json({ error: 'Previše zahtjeva. Pokušajte ponovo kasnije.' }, { status: 429 });
       res.headers.set('RateLimit-Limit', '20');

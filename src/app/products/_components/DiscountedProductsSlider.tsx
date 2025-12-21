@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import { ProductCard } from "@/components/ProductCard";
 
 type FeaturedProduct = {
@@ -47,32 +47,16 @@ function AutoScrollRow({ items, speed = 60 }: { items: FeaturedProduct[]; speed?
   );
 }
 
-export default function DiscountedProductsSlider() {
-  const [items, setItems] = useState<FeaturedProduct[]>([]);
-  const [loading, setLoading] = useState(true);
+interface DiscountedProductsSliderProps {
+  featuredProducts?: FeaturedProduct[];
+}
 
-  useEffect(() => {
-    let mounted = true;
-    (async () => {
-      try {
-        const res = await fetch("/api/featured-products");
-        if (res.ok) {
-          const data: FeaturedProduct[] = await res.json();
-          const active = data.filter((d) => d.isActive && d.product);
-          if (mounted) setItems(active);
-        }
-      } catch (e) {
-        // silent
-      } finally {
-        if (mounted) setLoading(false);
-      }
-    })();
-    return () => {
-      mounted = false;
-    };
-  }, []);
+export default function DiscountedProductsSlider({ featuredProducts }: DiscountedProductsSliderProps) {
+  const items = useMemo(() => {
+    return featuredProducts?.filter((d) => d.isActive && d.product) || [];
+  }, [featuredProducts]);
 
-  if (loading) {
+  if (!featuredProducts) {
     return (
       <div className="relative overflow-hidden rounded-3xl p-6 bg-gradient-to-br from-slate-50 via-slate-100 to-slate-200 shadow-xl">
         <div className="pointer-events-none absolute inset-0 z-0 opacity-[0.04]"

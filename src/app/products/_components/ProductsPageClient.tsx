@@ -14,6 +14,7 @@ interface ProductsPageClientProps {
   filterData: {
     categories: Category[];
     brands: VehicleBrand[];
+    featuredProducts?: any[];
   };
 }
 
@@ -204,7 +205,7 @@ export default function ProductsPageClient({ filterData }: ProductsPageClientPro
         {/* Full-width discounted slider when no filters */}
         {noFiltersApplied && (
           <div className="mb-8">
-            <DiscountedProductsSlider />
+            <DiscountedProductsSlider featuredProducts={filterData.featuredProducts} />
           </div>
         )}
 
