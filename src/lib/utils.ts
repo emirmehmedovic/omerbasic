@@ -106,27 +106,41 @@ export function resolveProductImage(
   // Nema slike ni na proizvodu ni na kategoriji → placeholder
   if (!candidate) return placeholder;
 
+  let resolvedUrl: string;
+
   // Već je root-relative putanja (npr. "/images/foo.jpg")
-  if (candidate.startsWith('/')) return candidate;
-
+  if (candidate.startsWith('/')) {
+    resolvedUrl = candidate;
+  }
   // Protokol-relative URL ("//domain.com/..."), prepusti ga Next/Image konfiguraciji
-  if (candidate.startsWith('//')) return candidate;
-
+  else if (candidate.startsWith('//')) {
+    resolvedUrl = candidate;
+  }
   // Relativna putanja bez protokola i bez vodeće kose crte (npr. "uploads/foo.jpg")
-  if (!candidate.includes('://')) {
-    return candidate.startsWith('/') ? candidate : `/${candidate}`;
+  else if (!candidate.includes('://')) {
+    resolvedUrl = candidate.startsWith('/') ? candidate : `/${candidate}`;
+  }
+  // Apsolutni URL – prihvati ga
+  else {
+    try {
+      // eslint-disable-next-line no-new
+      new URL(candidate);
+      resolvedUrl = candidate;
+    } catch {
+      // Ako je URL nevalidan, vrati ga kao relativnu putanju
+      resolvedUrl = candidate.startsWith('/') ? candidate : `/${candidate}`;
+    }
   }
 
-  // Apsolutni URL – prihvati ga, osim ako baš želimo filtrirati neke domene
-  try {
-    // Ako bude potrebe, ovdje se mogu dodati posebni filteri po hostu
-    // (npr. izbjegavanje data URL-ova ili određenih CDN-ova)
-    // Trenutno samo validiramo da je URL sintaktički ispravan.
-    // eslint-disable-next-line no-new
-    new URL(candidate);
-    return candidate;
-  } catch {
-    // Ako je URL nevalidan, vrati ga kao relativnu putanju
-    return candidate.startsWith('/') ? candidate : `/${candidate}`;
+  // Konvertuj lokalne putanje u API route-ove za produkciju
+  // Ovo osigurava da dinamički uploadovane slike i tecdoc slike rade u produkciji
+  if (resolvedUrl.startsWith('/uploads/products/')) {
+    resolvedUrl = resolvedUrl.replace('/uploads/products/', '/api/uploads/products/');
+  } else if (resolvedUrl.startsWith('/images/tecdoc/')) {
+    // Ekstraktuj filename iz putanje kao /images/tecdoc/10/4/7/477640.JPG -> 477640.JPG
+    const filename = resolvedUrl.split('/').pop() || '';
+    resolvedUrl = `/api/images/tecdoc/${filename}`;
   }
+
+  return resolvedUrl;
 }

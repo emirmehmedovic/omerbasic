@@ -33,12 +33,23 @@ export default function OptimizedImage({
 }: OptimizedImageProps) {
   const [imageError, setImageError] = useState(false);
 
-  // Detektiraj ako je slika lokalna (iz /uploads/ foldera)
-  const isLocalUpload = src.startsWith('/uploads/');
+  // Detektiraj ako je slika lokalna (iz /uploads/ ili /images/tecdoc/ foldera)
+  const isLocalUpload = src.startsWith('/uploads/') || src.startsWith('/images/tecdoc/');
+  
+  // Konvertuj lokalne putanje u API route-ove za produkciju
+  // Ovo osigurava da slike rade u produkciji gdje Next.js ne servira dinamički uploadovane fajlove
+  let imageSrc = src;
+  if (src.startsWith('/uploads/products/')) {
+    imageSrc = src.replace('/uploads/products/', '/api/uploads/products/');
+  } else if (src.startsWith('/images/tecdoc/')) {
+    // Ekstraktuj filename iz putanje kao /images/tecdoc/10/4/7/477640.JPG -> 477640.JPG
+    const filename = src.split('/').pop() || '';
+    imageSrc = `/api/images/tecdoc/${filename}`;
+  }
 
   // Za lokalne uploadove, koristi unoptimized da izbjegnemo 400 greške u produkciji
   const imageProps: any = {
-    src,
+    src: imageSrc,
     alt,
     className,
     onError: () => {

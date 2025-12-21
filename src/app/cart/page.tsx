@@ -1,7 +1,7 @@
 'use client';
 
 import { useCart } from '@/context/CartContext';
-import Image from 'next/image';
+import OptimizedImage from '@/components/OptimizedImage';
 import Link from 'next/link';
 import { Trash2 } from 'lucide-react';
 import { CartSuggestions } from '@/components/CartSuggestions';
@@ -51,7 +51,7 @@ export default function CartPage() {
               >
                 <div className="flex items-center gap-4 flex-grow">
                   <div className="relative h-24 w-24 flex-shrink-0 overflow-hidden rounded-lg border border-slate-200 shadow-sm bg-white">
-                    <Image
+                    <OptimizedImage
                       src={item.imageUrl || 'https://placehold.co/600x400.png?text=Slika+nije+dostupna'}
                       alt={item.name}
                       fill
