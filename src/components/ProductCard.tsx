@@ -167,7 +167,7 @@ export const ProductCard = ({ product, compact = false }: ProductCardProps) => {
         )}
 
         {/* Brand icons with hover for generations */}
-        {!compact && <ProductBrandSummary productId={product.id} vehicleFitments={product.vehicleFitments || undefined} maxInline={5} />}
+            {!compact && <ProductBrandSummary productId={product.id} vehicleFitments={product.vehicleFitments ?? undefined} maxInline={5} />}
 
         <div className={`flex items-end justify-between mt-auto border-t border-slate-200/60 ${compact ? 'pt-2' : 'pt-4'}`}>
           <div>

@@ -503,7 +503,7 @@ export default function ProductsResults({ filters, onClearAll, onPageChange, onQ
                       productOemNumber={p.oemNumber}
                       articleOENumbers={p.articleOENumbers}
                     />
-                    <ProductBrandSummary productId={p.id} vehicleFitments={p.vehicleFitments || undefined} maxInline={5} />
+                    <ProductBrandSummary productId={p.id} maxInline={5} />
                   </div>
                   <div className="text-left sm:text-right w-full sm:w-48 flex-shrink-0 mt-4 sm:mt-0 sm:ml-6">
                     {p.originalPrice ? (
@@ -620,7 +620,7 @@ export default function ProductsResults({ filters, onClearAll, onPageChange, onQ
                       productOemNumber={p.oemNumber}
                       articleOENumbers={p.articleOENumbers}
                     />
-                    <ProductBrandSummary productId={p.id} vehicleFitments={p.vehicleFitments || undefined} maxInline={5} />
+                    <ProductBrandSummary productId={p.id} maxInline={5} />
                   </div>
                   <div className="text-left sm:text-right w-full sm:w-48 flex-shrink-0 mt-4 sm:mt-0 sm:ml-6">
                     {p.originalPrice ? (

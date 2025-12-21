@@ -21,8 +21,10 @@ export async function GET() {
                         id: true,
                         name: true,
                         brand: {
-                          id: true,
-                          name: true,
+                          select: {
+                            id: true,
+                            name: true,
+                          }
                         }
                       }
                     }

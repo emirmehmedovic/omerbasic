@@ -176,14 +176,14 @@ export default function ProductBrandSummary({
     setBrands(null);
     setError(null);
     
-    // Ako su vehicleFitments proslijeđeni kroz props (čak i prazan array), koristi ih
+    // If vehicleFitments are provided through props, use them (for featured products)
     if (vehicleFitments !== undefined) {
       const grouped = groupByBrand(vehicleFitments);
       setBrands(grouped);
       return;
     }
     
-    // Fallback: fetch ako nisu proslijeđeni (backward compatibility)
+    // Otherwise fetch from API (for regular product listings)
     fetch(`/api/products/${productId}`)
       .then(async (res) => {
         if (!res.ok) throw new Error(await res.text());
