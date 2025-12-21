@@ -43,8 +43,11 @@ export default function OptimizedImage({
   if (src.startsWith('/uploads/products/')) {
     imageSrc = src.replace('/uploads/products/', '/api/uploads/products/');
   }
-  // Za tecdoc slike, ostavi originalnu putanju jer Next.js može servirati iz public/images/tecdoc/
-  // Ne konvertujemo u API route jer gubimo informaciju o strukturi foldera
+  // Za tecdoc slike, konvertuj u API route
+  // Format: /images/tecdoc/1/0/D/I/DIRKO_ANW.BMP -> /api/images/tecdoc/1/0/D/I/DIRKO_ANW.BMP
+  if (src.startsWith('/images/tecdoc/')) {
+    imageSrc = src.replace('/images/tecdoc/', '/api/images/tecdoc/');
+  }
 
   // Za lokalne uploadove i API route-ove, koristi unoptimized da izbjegnemo 400 greške
   // Next.js Image Optimization ne može optimizirati API route-ove
