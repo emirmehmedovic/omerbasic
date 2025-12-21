@@ -286,3 +286,5 @@ Emir MW - emir_mw@example.com
 **Datum kreiranja:** 2025-12-21  
 **Verzija:** 1.0
 
+
+

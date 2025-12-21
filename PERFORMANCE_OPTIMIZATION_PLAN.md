@@ -345,3 +345,5 @@ Emir MW - emir_mw@example.com
 **Status**: 🟡 Plan Kreiran - Čeka Implementaciju  
 **Last Updated**: 2025-12-21 19:40 CET
 
+
+
