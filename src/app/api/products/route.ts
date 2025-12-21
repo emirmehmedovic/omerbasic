@@ -251,6 +251,14 @@ export async function GET(req: NextRequest) {
           createdAt: true,
           updatedAt: true,
           category: { select: { id: true, name: true, parentId: true, imageUrl: true } },
+          articleOENumbers: {
+            select: {
+              id: true,
+              oemNumber: true,
+              manufacturer: true,
+              referenceType: true,
+            },
+          },
         },
         orderBy: [
           { createdAt: 'desc' },
@@ -338,6 +346,14 @@ export async function GET(req: NextRequest) {
         createdAt: true,
         updatedAt: true,
         category: { select: { id: true, name: true, parentId: true, imageUrl: true } },
+        articleOENumbers: {
+          select: {
+            id: true,
+            oemNumber: true,
+            manufacturer: true,
+            referenceType: true,
+          },
+        },
       },
       orderBy: [
         { createdAt: 'desc' },

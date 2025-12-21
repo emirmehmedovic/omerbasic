@@ -47,24 +47,25 @@ export function Navbar() {
 
   return (
     <nav className="relative z-50 py-4 transition-all duration-300">
-      <div
-        className={cn(
-          "container mx-auto relative overflow-visible transition-all duration-300 backdrop-blur-md bg-gradient-to-r from-white/90 via-white/85 to-white/90 border border-white/60 rounded-3xl shadow-2xl",
-          menuOpen || searchOpen ? "rounded-t-3xl" : "rounded-3xl"
-        )}
-      >
-        {/* Modern texture overlay */}
+      <div className="w-full mx-auto max-w-full xl:max-w-7xl 2xl:max-w-[2000px] 3xl:max-w-[2400px] px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 3xl:px-20">
         <div
-          className="pointer-events-none absolute inset-0 z-0 opacity-[0.03]"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle at 2px 2px, rgba(27,58,95,0.2) 1px, transparent 0), radial-gradient(circle at 50% 50%, rgba(255,107,53,0.05) 0%, transparent 70%)",
-            backgroundSize: "32px 32px, 100% 100%",
-          }}
-        />
-        <div className="relative z-10 flex justify-between items-center py-2 px-4">
-          {/* Logo i branding */}
-          <div className="flex items-center">
+          className={cn(
+            "relative overflow-visible transition-all duration-300 backdrop-blur-md bg-gradient-to-r from-white/90 via-white/85 to-white/90 border border-white/60 rounded-3xl shadow-2xl",
+            menuOpen || searchOpen ? "rounded-t-3xl" : "rounded-3xl"
+          )}
+        >
+          {/* Modern texture overlay */}
+          <div
+            className="pointer-events-none absolute inset-0 z-0 opacity-[0.03]"
+            style={{
+              backgroundImage:
+                "radial-gradient(circle at 2px 2px, rgba(27,58,95,0.2) 1px, transparent 0), radial-gradient(circle at 50% 50%, rgba(255,107,53,0.05) 0%, transparent 70%)",
+              backgroundSize: "32px 32px, 100% 100%",
+            }}
+          />
+          <div className="relative z-10 flex justify-between items-center py-2 px-4">
+              {/* Logo i branding */}
+            <div className="flex items-center">
             <Link href="/" className="flex items-center space-x-2">
               <Image
                 src="/images/omerbasic.png"
@@ -75,25 +76,25 @@ export function Navbar() {
                 style={{ width: 'auto', height: 'auto' }}
               />
             </Link>
-          </div>
+            </div>
 
-          {/* Desktop navigacija */}
-          <div className="hidden md:flex items-center space-x-1">
+            {/* Desktop navigacija */}
+            <div className="hidden md:flex items-center space-x-1">
             <NavLink href="/products">Proizvodi</NavLink>
             <NavLink href="/transporti">Transporti</NavLink>
             <NavLink href="/contact">Kontakt</NavLink>
             {status === 'authenticated' && session.user.role === 'ADMIN' && (
               <NavLink href="/admin">Admin Panel</NavLink>
             )}
-          </div>
+            </div>
 
-          {/* Search bar */}
-          <div className="hidden md:block flex-grow max-w-md mx-8">
-            <SearchBar />
-          </div>
+            {/* Search bar */}
+            <div className="hidden md:block flex-grow max-w-md mx-8">
+              <SearchBar />
+            </div>
 
-          {/* Desni dio navigacije */}
-          <div className="flex items-center space-x-4">
+            {/* Desni dio navigacije */}
+            <div className="flex items-center space-x-4">
             {/* Košarica - moderan dizajn */}
             <Link 
               href="/cart" 
@@ -193,14 +194,15 @@ export function Navbar() {
                 <Menu className="h-6 w-6 text-orange-500" />
               </button>
             </div>
+            </div>
           </div>
         </div>
       </div>
 
       {/* Mobilna pretraga - moderan dizajn */}
       {searchOpen && (
-        <div className="md:hidden bg-white/95 backdrop-blur-md border-t border-white/60 shadow-2xl container mx-auto rounded-b-3xl">
-          <div className="container mx-auto px-4 py-4">
+        <div className="w-full mx-auto max-w-full xl:max-w-7xl 2xl:max-w-[2000px] 3xl:max-w-[2400px] px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 3xl:px-20">
+          <div className="md:hidden bg-white/95 backdrop-blur-md border-t border-white/60 shadow-2xl rounded-b-3xl px-4 py-4">
             <SearchBar />
           </div>
         </div>
@@ -208,8 +210,8 @@ export function Navbar() {
 
       {/* Mobilni meni - moderan dizajn */}
       {menuOpen && (
-        <div className="md:hidden bg-white/95 backdrop-blur-md border-t border-white/60 shadow-2xl container mx-auto rounded-b-3xl">
-          <div className="container mx-auto px-4 py-4">
+        <div className="w-full mx-auto max-w-full xl:max-w-7xl 2xl:max-w-[2000px] 3xl:max-w-[2400px] px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 3xl:px-20">
+          <div className="md:hidden bg-white/95 backdrop-blur-md border-t border-white/60 shadow-2xl rounded-b-3xl px-4 py-4">
             
             <div className="flex flex-col space-y-2">
               <MobileNavLink href="/products" onClick={() => setMenuOpen(false)}>Proizvodi</MobileNavLink>

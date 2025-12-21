@@ -6,6 +6,7 @@ import { authOptions } from '@/lib/auth';
 import { ProductDetails } from '@/components/ProductDetails';
 import { type Product, type Category } from '@/generated/prisma/client';
 import { calculateB2BPrice, getUserDiscountProfile } from '@/lib/b2b/discount-service';
+import { PageContainer } from '@/components/PageContainer';
 
 // Tip za proizvod s potencijalnim popustom
 // Usklađeno sa ProductDetails props (manufacturer: { id: string; name: string } | null)
@@ -329,7 +330,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
   return (
     <div className="min-h-screen bg-app relative">
-      <div className="container mx-auto px-4 py-6 max-w-7xl relative z-10">
+      <PageContainer maxWidth="adaptive" padding="md" className="relative z-10">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(productLd) }}
@@ -352,7 +353,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
         <ProductDetailHeader productName={productWithDiscount.name} />
         <ProductDetails product={productWithDiscount} />
-      </div>
+      </PageContainer>
     </div>
   );
 }

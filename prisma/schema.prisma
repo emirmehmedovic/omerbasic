@@ -12,30 +12,30 @@ generator client {
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 model Product {
-  id                String      @id @default(cuid())
+  id                String        @id @default(cuid())
   name              String
-  slug              String?     @unique
+  slug              String?       @unique
   description       String?
   price             Float
   purchasePrice     Float?
   imageUrl          String?
-  stock             Int         @default(0)
+  stock             Int           @default(0)
   // Low stock configuration
   lowStockThreshold Int?
-  lowStockAlerted   Boolean     @default(false)
-  catalogNumber     String      @unique
+  lowStockAlerted   Boolean       @default(false)
+  catalogNumber     String        @unique
   oemNumber         String?
   unitOfMeasure     String?
   sku               String?
-  isFeatured        Boolean     @default(false)
-  isArchived        Boolean     @default(false)
+  isFeatured        Boolean       @default(false)
+  isArchived        Boolean       @default(false)
   categoryId        String
-  category          Category    @relation(fields: [categoryId], references: [id])
+  category          Category      @relation(fields: [categoryId], references: [id])
   manufacturerId    String?
   manufacturer      Manufacturer? @relation(fields: [manufacturerId], references: [id], onDelete: SetNull)
   orderItems        OrderItem[]
-  createdAt         DateTime    @default(now())
-  updatedAt         DateTime    @updatedAt
+  createdAt         DateTime      @default(now())
+  updatedAt         DateTime      @updatedAt
 
   // TecDoc dodatna polja
   technicalSpecs Json? // Tehničke specifikacije (npr. viskozitet, standardi)
@@ -43,8 +43,8 @@ model Product {
   standards      String[] @default([]) // Standardi koje proizvod zadovoljava
 
   // TecDoc tracking polja
-  tecdocArticleId    Int?     // articles.id iz TecDoc baze
-  tecdocProductId    Int?     // search_trees.node_id (ROOT kategorija)
+  tecdocArticleId Int? // articles.id iz TecDoc baze
+  tecdocProductId Int? // search_trees.node_id (ROOT kategorija)
 
   // Veza s vozilima kroz ProductVehicleFitment model
   vehicleFitments ProductVehicleFitment[]
@@ -61,9 +61,11 @@ model Product {
   // Relacija za featured products
   featuredProduct FeaturedProduct?
 
+  // Relacija za više OEM brojeva
+  articleOENumbers ArticleOENumber[]
+
   // Relacija za proizvođača
   @@index([manufacturerId])
-
   // Performance indexes
   @@index([categoryId, isArchived, stock])
   @@index([isFeatured])
@@ -89,9 +91,9 @@ model Category {
   children Category[] @relation("Subcategories")
 
   // TecDoc dodatna polja
-  level   Int     @default(1) // 1=glavna, 2=podkategorija, 3=specifična
-  iconUrl String? // URL do ikone kategorije
-  imageUrl String? // Zadana slika kategorije
+  level      Int     @default(1) // 1=glavna, 2=podkategorija, 3=specifična
+  iconUrl    String? // URL do ikone kategorije
+  imageUrl   String? // Zadana slika kategorije
   externalId String? // Eksterni ID (npr. TecDoc ID)
 
   // Nove relacije za TecDoc
@@ -99,8 +101,8 @@ model Category {
   attributeGroups AttributeGroup[]
 
   // Relacija za kategorijske popuste
-  discounts CategoryDiscount[]
-  groupCategoryDiscounts B2BGroupCategoryDiscount[]
+  discounts                          CategoryDiscount[]
+  groupCategoryDiscounts             B2BGroupCategoryDiscount[]
   groupCategoryManufacturerDiscounts B2BGroupCategoryManufacturerDiscount[]
 
   // Relacija za dobavljače
@@ -112,20 +114,20 @@ model Category {
 }
 
 model Manufacturer {
-  id          String                           @id @default(cuid())
+  id          String   @id @default(cuid())
   name        String
-  slug        String                           @unique
+  slug        String   @unique
   description String?
   country     String?
   website     String?
-  externalId  String?                          // TecDoc supplier ID
-  createdAt   DateTime                         @default(now())
-  updatedAt   DateTime                         @updatedAt
+  externalId  String? // TecDoc supplier ID
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
-  products            Product[]
-  groupDiscounts      B2BGroupManufacturerDiscount[]
+  products                           Product[]
+  groupDiscounts                     B2BGroupManufacturerDiscount[]
   groupCategoryManufacturerDiscounts B2BGroupCategoryManufacturerDiscount[]
-  
+
   @@index([externalId])
 }
 
@@ -308,25 +310,25 @@ model Session {
 }
 
 model User {
-  id                  String               @id @default(cuid())
-  name                String?
-  email               String?              @unique
-  emailVerified       DateTime?
-  image               String?
-  password            String?
-  role                UserRole             @default(USER)
-  companyName         String? // Naziv firme
-  taxId               String? // OIB ili porezni broj
-  discountPercentage  Float?               @default(0)
-  createdAt           DateTime             @default(now())
-  updatedAt           DateTime             @updatedAt
-  accounts            Account[]
-  sessions            Session[]
-  comments            Comment[]
-  orders              Order[]
-  passwordResetTokens PasswordResetToken[]
-  addresses           Address[]
-  categoryDiscounts   CategoryDiscount[]
+  id                       String               @id @default(cuid())
+  name                     String?
+  email                    String?              @unique
+  emailVerified            DateTime?
+  image                    String?
+  password                 String?
+  role                     UserRole             @default(USER)
+  companyName              String? // Naziv firme
+  taxId                    String? // OIB ili porezni broj
+  discountPercentage       Float?               @default(0)
+  createdAt                DateTime             @default(now())
+  updatedAt                DateTime             @updatedAt
+  accounts                 Account[]
+  sessions                 Session[]
+  comments                 Comment[]
+  orders                   Order[]
+  passwordResetTokens      PasswordResetToken[]
+  addresses                Address[]
+  categoryDiscounts        CategoryDiscount[]
   discountGroupMemberships B2BGroupMember[]
 
   // Relacije za narudžbenice
@@ -388,28 +390,28 @@ enum B2BDiscountStackingStrategy {
 }
 
 model B2BDiscountGroup {
-  id                String                         @id @default(cuid())
-  name              String
-  description       String?
-  priority          Int                            @default(0)
-  stackingStrategy  B2BDiscountStackingStrategy    @default(MAX)
-  createdAt         DateTime                       @default(now())
-  updatedAt         DateTime                       @updatedAt
+  id               String                      @id @default(cuid())
+  name             String
+  description      String?
+  priority         Int                         @default(0)
+  stackingStrategy B2BDiscountStackingStrategy @default(MAX)
+  createdAt        DateTime                    @default(now())
+  updatedAt        DateTime                    @updatedAt
 
-  members               B2BGroupMember[]
-  categoryDiscounts     B2BGroupCategoryDiscount[]
-  manufacturerDiscounts B2BGroupManufacturerDiscount[]
+  members                       B2BGroupMember[]
+  categoryDiscounts             B2BGroupCategoryDiscount[]
+  manufacturerDiscounts         B2BGroupManufacturerDiscount[]
   categoryManufacturerDiscounts B2BGroupCategoryManufacturerDiscount[]
 
   @@index([priority])
 }
 
 model B2BGroupMember {
-  id        String           @id @default(cuid())
-  groupId   String
-  userId    String
-  assignedAt DateTime        @default(now())
-  createdAt DateTime         @default(now())
+  id         String   @id @default(cuid())
+  groupId    String
+  userId     String
+  assignedAt DateTime @default(now())
+  createdAt  DateTime @default(now())
 
   group B2BDiscountGroup @relation(fields: [groupId], references: [id], onDelete: Cascade)
   user  User             @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -419,47 +421,47 @@ model B2BGroupMember {
 }
 
 model B2BGroupCategoryDiscount {
-  id                 String           @id @default(cuid())
+  id                 String   @id @default(cuid())
   groupId            String
   categoryId         String
-  discountPercentage Float            @default(0)
-  createdAt          DateTime         @default(now())
-  updatedAt          DateTime         @updatedAt
+  discountPercentage Float    @default(0)
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
 
   group    B2BDiscountGroup @relation(fields: [groupId], references: [id], onDelete: Cascade)
-  category Category          @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  category Category         @relation(fields: [categoryId], references: [id], onDelete: Cascade)
 
   @@unique([groupId, categoryId])
   @@index([categoryId])
 }
 
 model B2BGroupManufacturerDiscount {
-  id                 String           @id @default(cuid())
+  id                 String   @id @default(cuid())
   groupId            String
   manufacturerId     String
-  discountPercentage Float            @default(0)
-  createdAt          DateTime         @default(now())
-  updatedAt          DateTime         @updatedAt
+  discountPercentage Float    @default(0)
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
 
   group        B2BDiscountGroup @relation(fields: [groupId], references: [id], onDelete: Cascade)
-  manufacturer Manufacturer      @relation(fields: [manufacturerId], references: [id], onDelete: Cascade)
+  manufacturer Manufacturer     @relation(fields: [manufacturerId], references: [id], onDelete: Cascade)
 
   @@unique([groupId, manufacturerId])
   @@index([manufacturerId])
 }
 
 model B2BGroupCategoryManufacturerDiscount {
-  id                 String            @id @default(cuid())
+  id                 String   @id @default(cuid())
   groupId            String
   categoryId         String
   manufacturerId     String
-  discountPercentage Float             @default(0)
-  createdAt          DateTime          @default(now())
-  updatedAt          DateTime          @updatedAt
+  discountPercentage Float    @default(0)
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
 
   group        B2BDiscountGroup @relation(fields: [groupId], references: [id], onDelete: Cascade)
-  category     Category          @relation(fields: [categoryId], references: [id], onDelete: Cascade)
-  manufacturer Manufacturer      @relation(fields: [manufacturerId], references: [id], onDelete: Cascade)
+  category     Category         @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  manufacturer Manufacturer     @relation(fields: [manufacturerId], references: [id], onDelete: Cascade)
 
   @@unique([groupId, categoryId, manufacturerId])
   @@index([categoryId])
@@ -618,24 +620,24 @@ enum VehicleType {
 }
 
 model VehicleBrand {
-  id     String         @id @default(cuid())
-  name   String         @unique
-  type   VehicleType
-  models VehicleModel[]
-  externalId String? @unique
+  id         String         @id @default(cuid())
+  name       String         @unique
+  type       VehicleType
+  models     VehicleModel[]
+  externalId String?        @unique
   source     String?
 }
 
 model VehicleModel {
-  id          String              @id @default(cuid())
-  name        String
-  brandId     String
-  brand       VehicleBrand        @relation(fields: [brandId], references: [id], onDelete: Cascade)
-  generations VehicleGeneration[]
-  externalId       String?
-  period           String?
-  productionStart  DateTime?
-  productionEnd    DateTime?
+  id              String              @id @default(cuid())
+  name            String
+  brandId         String
+  brand           VehicleBrand        @relation(fields: [brandId], references: [id], onDelete: Cascade)
+  generations     VehicleGeneration[]
+  externalId      String?
+  period          String?
+  productionStart DateTime?
+  productionEnd   DateTime?
 
   @@unique([brandId, externalId])
 }
@@ -688,7 +690,7 @@ model VehicleEngine {
   enginePowerHP   Float? // Snaga motora u KS
   engineCapacity  Int? // Zapremina motora u ccm
   engineCode      String? // Kod motora
-  engineCodes     String[] @default([])
+  engineCodes     String[]                @default([])
   description     String? // Dodatni opis motora
   createdAt       DateTime                @default(now())
   updatedAt       DateTime                @updatedAt
@@ -722,10 +724,10 @@ model ProductVehicleFitment {
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 
-  externalVehicleId      String?
-  externalModelId        String?
-  externalManufacturer   String?
-  externalEngineName     String?
+  externalVehicleId    String?
+  externalModelId      String?
+  externalManufacturer String?
+  externalEngineName   String?
 
   @@unique([productId, generationId, engineId])
   @@index([generationId, engineId])
@@ -778,19 +780,19 @@ enum TransportRequestStatus {
 }
 
 model TransportRequest {
-  id           String                  @id @default(cuid())
-  name         String
-  email        String
-  phone        String
-  companyName  String?
-  vehicleType  TransportVehicleType
-  cargo        String // Opis tovara koji se transportuje
-  origin       String // Lokacija izvora
-  destination  String // Lokacija odredišta
-  notes        String? @db.Text // Dodatne napomene
-  status       TransportRequestStatus @default(NEW)
-  createdAt    DateTime               @default(now())
-  updatedAt    DateTime               @updatedAt
+  id          String                 @id @default(cuid())
+  name        String
+  email       String
+  phone       String
+  companyName String?
+  vehicleType TransportVehicleType
+  cargo       String // Opis tovara koji se transportuje
+  origin      String // Lokacija izvora
+  destination String // Lokacija odredišta
+  notes       String?                @db.Text // Dodatne napomene
+  status      TransportRequestStatus @default(NEW)
+  createdAt   DateTime               @default(now())
+  updatedAt   DateTime               @updatedAt
 
   @@index([status])
   @@index([createdAt])
@@ -847,24 +849,49 @@ model AdvertisingScreen {
 // -----------------------------
 
 model TelegramSettings {
-  id                    String   @id @default(cuid())
+  id String @id @default(cuid())
 
   // Bot token
-  botToken              String?
+  botToken String?
 
   // Grupa za narudžbine (B2B i retail)
-  ordersGroupChatId     String?
-  ordersEnabled         Boolean  @default(true)
+  ordersGroupChatId String?
+  ordersEnabled     Boolean @default(true)
 
   // Grupa za low stock upozorenja
-  lowStockGroupChatId   String?
-  lowStockEnabled       Boolean  @default(true)
+  lowStockGroupChatId String?
+  lowStockEnabled     Boolean @default(true)
 
   // Dnevni izvještaj
-  dailyReportEnabled    Boolean  @default(true)
-  dailyReportTime       String   @default("18:00") // HH:mm format
-  dailyReportChatId     String?  // Može biti ista grupa kao orders ili posebna
+  dailyReportEnabled Boolean @default(true)
+  dailyReportTime    String  @default("18:00") // HH:mm format
+  dailyReportChatId  String? // Može biti ista grupa kao orders ili posebna
 
-  createdAt             DateTime @default(now())
-  updatedAt             DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Model za više OEM brojeva po proizvodu
+model ArticleOENumber {
+  id        String  @id @default(cuid())
+  productId String
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  // OEM informacije
+  oemNumber    String // Primjer: "04E115561C"
+  manufacturer String? // Primjer: "Audi", "VW", "Škoda"
+
+  // Tip reference
+  referenceType String? @default("Original") // "Original", "Equivalent", "Compatible"
+  notes         String? @db.Text
+
+  // Metadata
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Constraints
+  @@unique([productId, oemNumber])
+  @@index([oemNumber])
+  @@index([productId])
+  @@index([manufacturer])
 }

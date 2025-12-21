@@ -16,6 +16,7 @@ import { SocialProof } from '@/components/Home/SocialProof';
 import { InfoBar } from '@/components/Home/InfoBar';
 import { StatsAndContact } from '@/components/Home/StatsAndContact';
 import { TransportQuote } from '@/components/Home/TransportQuote';
+import { PageContainer } from '@/components/PageContainer';
 
 const MAIN_CATEGORIES = ["Putnička vozila", "Teretna vozila", "ADR oprema", "Autopraonice"];
 
@@ -85,7 +86,7 @@ export default async function HomePage() {
           }),
         }}
       />
-      <div className="container mx-auto px-4 py-12 sm:py-16 relative z-10">
+      <PageContainer maxWidth="adaptive" padding="lg" className="relative z-10">
         <Suspense fallback={null}>
           <Hero />
         </Suspense>
@@ -95,7 +96,7 @@ export default async function HomePage() {
         <TransportQuote />
         <PromoBanner />
         <StatsAndContact />
-      </div>
+      </PageContainer>
 
         {/* Featured Brands */}
         <FeaturedBrands />

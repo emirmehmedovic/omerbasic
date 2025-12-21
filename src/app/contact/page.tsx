@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { ContactForm } from '@/components/ContactForm';
+import { PageContainer } from '@/components/PageContainer';
 
 export const metadata: Metadata = {
   title: 'Kontakt | TP Omerbašić – Autodijelovi Tešanj',
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <div className="min-h-screen bg-app relative">
-      <div className="container mx-auto px-4 py-6 max-w-7xl relative z-10">
+      <PageContainer maxWidth="adaptive" padding="md" className="relative z-10">
         {/* Header */}
         <div className="text-center mb-12">
           <div className="relative overflow-hidden rounded-3xl p-8 mb-8 bg-gradient-to-br from-primary via-primary-dark to-[#0F1F35] shadow-2xl">
@@ -41,7 +42,7 @@ export default function ContactPage() {
         </div>
 
         <ContactForm />
-      </div>
+      </PageContainer>
     </div>
   );
 }

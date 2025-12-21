@@ -5,6 +5,7 @@ import { authOptions } from "@/lib/auth";
 import { db } from "@/lib/db";
 import ProductAttributeValueManager from "@/components/admin/ProductAttributeValueManager";
 import ProductCrossReferenceManager from "@/components/admin/ProductCrossReferenceManager";
+import ProductOENumberManager from "@/components/admin/ProductOENumberManager";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export const metadata: Metadata = {
@@ -68,12 +69,18 @@ export default async function ProductAttributesPage({
       {/* Tabs Section */}
       <div className="bg-gradient-to-br from-white via-gray-50/80 to-blue-50/60 backdrop-blur-sm rounded-2xl p-6 border border-amber/20 shadow-sm">
         <Tabs defaultValue="attributes" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-2 bg-gradient-to-r from-white/90 to-gray-50/90 backdrop-blur-sm border border-amber/20 rounded-xl p-1">
+          <TabsList className="grid w-full grid-cols-3 bg-gradient-to-r from-white/90 to-gray-50/90 backdrop-blur-sm border border-amber/20 rounded-xl p-1">
             <TabsTrigger 
               value="attributes" 
               className="text-gray-700 data-[state=active]:bg-gradient-to-r data-[state=active]:from-amber data-[state=active]:via-orange data-[state=active]:to-brown data-[state=active]:text-white rounded-lg transition-all duration-200"
             >
               Atributi proizvoda
+            </TabsTrigger>
+            <TabsTrigger 
+              value="oem-numbers"
+              className="text-gray-700 data-[state=active]:bg-gradient-to-r data-[state=active]:from-amber data-[state=active]:via-orange data-[state=active]:to-brown data-[state=active]:text-white rounded-lg transition-all duration-200"
+            >
+              OEM brojevi
             </TabsTrigger>
             <TabsTrigger 
               value="references"
@@ -87,6 +94,9 @@ export default async function ProductAttributesPage({
               productId={productId}
               categoryId={product.categoryId}
             />
+          </TabsContent>
+          <TabsContent value="oem-numbers" className="mt-6">
+            <ProductOENumberManager productId={productId} />
           </TabsContent>
           <TabsContent value="references" className="mt-6">
             <ProductCrossReferenceManager productId={productId} />

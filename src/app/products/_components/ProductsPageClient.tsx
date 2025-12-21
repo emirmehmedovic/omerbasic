@@ -8,6 +8,7 @@ import DiscountedProductsSlider from './DiscountedProductsSlider';
 import ResultsBreadcrumb from './ResultsBreadcrumb';
 import { VehicleBrand } from '@/generated/prisma/client';
 import { Category } from '@/components/HierarchicalFilters';
+import { PageContainer } from '@/components/PageContainer';
 
 interface ProductsPageClientProps {
   filterData: {
@@ -169,7 +170,7 @@ export default function ProductsPageClient({ filterData }: ProductsPageClientPro
 
   return (
     <div className="min-h-screen bg-app relative">
-      <div className="container mx-auto px-4 py-6 max-w-7xl relative z-10">
+      <PageContainer maxWidth="adaptive" padding="md" className="relative z-10">
         {/* Hero (carousel/bento) uklonjen */}
         {/* Mobilni gumb za otvaranje/zatvaranje filtera */}
         <div className="mb-4 lg:hidden">
@@ -266,7 +267,7 @@ export default function ProductsPageClient({ filterData }: ProductsPageClientPro
             />
           </div>
         </div>
-      </div>
+      </PageContainer>
     </div>
   );
 }

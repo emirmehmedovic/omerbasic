@@ -10,9 +10,16 @@ import { useCart } from '@/context/CartContext';
 import { formatPrice, resolveProductImage } from '@/lib/utils';
 import { fbEvent } from '@/lib/fbPixel';
 import ProductBrandSummary from '@/components/ProductBrandSummary';
+import ProductOEMSummary from '@/components/ProductOEMSummary';
 
 interface ProductCardProps {
-  product: Product & { category: Category | null } & { originalPrice?: number; pricingSource?: 'FEATURED' | 'B2B' | 'BASE'; isExactMatch?: boolean; tecdocArticleId?: number | null };
+  product: Product & { category: Category | null } & { 
+    originalPrice?: number; 
+    pricingSource?: 'FEATURED' | 'B2B' | 'BASE'; 
+    isExactMatch?: boolean; 
+    tecdocArticleId?: number | null;
+    articleOENumbers?: Array<{ id: string; oemNumber: string; manufacturer: string | null; referenceType: string | null }> | null;
+  };
   compact?: boolean;
 }
 
@@ -110,18 +117,12 @@ export const ProductCard = ({ product, compact = false }: ProductCardProps) => {
           </span>
         )}
 
-        {!compact && (product?.oemNumber || product?.tecdocArticleId || product?.catalogNumber) && (
+        {!compact && (product?.catalogNumber || product?.tecdocArticleId) && (
           <div className="mb-3 flex flex-wrap gap-2">
             {product?.catalogNumber && (
               <div className="inline-flex items-center gap-1.5 text-xs font-bold bg-slate-50 backdrop-blur-sm border border-slate-200 rounded-xl px-3 py-1.5 shadow-sm">
                 <span className="text-slate-500 text-[10px] uppercase tracking-wider">Kataloški</span>
                 <span className="font-mono tracking-tight text-slate-700">{product.catalogNumber}</span>
-              </div>
-            )}
-            {product?.oemNumber && (
-              <div className="inline-flex items-center gap-1.5 text-xs font-bold bg-slate-50 backdrop-blur-sm border border-slate-200 rounded-xl px-3 py-1.5 shadow-sm">
-                <span className="text-slate-500 text-[10px] uppercase tracking-wider">OEM</span>
-                <span className="font-mono tracking-tight text-slate-700">{product.oemNumber}</span>
               </div>
             )}
             {product?.tecdocArticleId && (
@@ -131,6 +132,15 @@ export const ProductCard = ({ product, compact = false }: ProductCardProps) => {
               </div>
             )}
           </div>
+        )}
+
+        {/* OEM brojevi - prvi se prikazuje, ostali na hover */}
+        {!compact && (
+          <ProductOEMSummary 
+            productId={product.id}
+            productOemNumber={product.oemNumber}
+            articleOENumbers={product.articleOENumbers}
+          />
         )}
 
         {/* Brand icons with hover for generations */}

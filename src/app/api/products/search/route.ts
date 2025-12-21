@@ -68,19 +68,22 @@ export async function GET(req: Request) {
             FROM "Category" c2
             JOIN cte ON c2."parentId" = cte.id
           )
-          SELECT p.id, p.name, p."catalogNumber", p."oemNumber", p."tecdocArticleId", p.price, p."imageUrl", p."categoryId", c."imageUrl" AS "categoryImageUrl"
+          SELECT DISTINCT p.id, p.name, p."catalogNumber", p."oemNumber", p."tecdocArticleId", p.price, p."imageUrl", p."categoryId", c."imageUrl" AS "categoryImageUrl"
           FROM "Product" p
           LEFT JOIN "Category" c ON c."id" = p."categoryId"
+          LEFT JOIN "ArticleOENumber" aoe ON aoe."productId" = p.id
           WHERE (
             immutable_unaccent(lower(p.name)) % immutable_unaccent(lower(${query}))
             OR immutable_unaccent(lower(p."catalogNumber")) % immutable_unaccent(lower(${query}))
             OR immutable_unaccent(lower(COALESCE(p."oemNumber", ''))) % immutable_unaccent(lower(${query}))
+            OR immutable_unaccent(lower(COALESCE(aoe."oemNumber", ''))) % immutable_unaccent(lower(${query}))
           )
           AND p."categoryId" IN (SELECT id FROM cte)
           AND (
             similarity(immutable_unaccent(lower(p.name)), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD} OR
             similarity(immutable_unaccent(lower(p."catalogNumber")), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD} OR
-            similarity(immutable_unaccent(lower(COALESCE(p."oemNumber", ''))), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD}
+            similarity(immutable_unaccent(lower(COALESCE(p."oemNumber", ''))), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD} OR
+            similarity(immutable_unaccent(lower(COALESCE(aoe."oemNumber", ''))), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD}
           )
           ORDER BY (
             ${NAME_WEIGHT} * similarity(immutable_unaccent(lower(p.name)), immutable_unaccent(lower(${query}))) +
@@ -90,18 +93,21 @@ export async function GET(req: Request) {
         `;
       } else {
         rows = await db.$queryRaw<any>`
-          SELECT p.id, p.name, p."catalogNumber", p."oemNumber", p."tecdocArticleId", p.price, p."imageUrl", p."categoryId", c."imageUrl" AS "categoryImageUrl"
+          SELECT DISTINCT p.id, p.name, p."catalogNumber", p."oemNumber", p."tecdocArticleId", p.price, p."imageUrl", p."categoryId", c."imageUrl" AS "categoryImageUrl"
           FROM "Product" p
           LEFT JOIN "Category" c ON c."id" = p."categoryId"
+          LEFT JOIN "ArticleOENumber" aoe ON aoe."productId" = p.id
           WHERE (
             immutable_unaccent(lower(p.name)) % immutable_unaccent(lower(${query}))
             OR immutable_unaccent(lower(p."catalogNumber")) % immutable_unaccent(lower(${query}))
             OR immutable_unaccent(lower(COALESCE(p."oemNumber", ''))) % immutable_unaccent(lower(${query}))
+            OR immutable_unaccent(lower(COALESCE(aoe."oemNumber", ''))) % immutable_unaccent(lower(${query}))
           )
           AND (
             similarity(immutable_unaccent(lower(p.name)), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD} OR
             similarity(immutable_unaccent(lower(p."catalogNumber")), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD} OR
-            similarity(immutable_unaccent(lower(COALESCE(p."oemNumber", ''))), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD}
+            similarity(immutable_unaccent(lower(COALESCE(p."oemNumber", ''))), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD} OR
+            similarity(immutable_unaccent(lower(COALESCE(aoe."oemNumber", ''))), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD}
           )
           ORDER BY (
             ${NAME_WEIGHT} * similarity(immutable_unaccent(lower(p.name)), immutable_unaccent(lower(${query}))) +
@@ -139,8 +145,29 @@ export async function GET(req: Request) {
         return p;
       });
       
+      // Učitaj articleOENumbers za sve proizvode
+      const productIds = priced.map((p: any) => p.id);
+      const articleOENumbers = productIds.length > 0 ? await db.articleOENumber.findMany({
+        where: { productId: { in: productIds } },
+        select: { productId: true, oemNumber: true, manufacturer: true },
+      }) : [];
+      
+      // Grupiraj articleOENumbers po productId
+      const oemMap = new Map<string, Array<{ oemNumber: string; manufacturer?: string | null }>>();
+      for (const aoe of articleOENumbers) {
+        const existing = oemMap.get(aoe.productId) || [];
+        existing.push({ oemNumber: aoe.oemNumber, manufacturer: aoe.manufacturer });
+        oemMap.set(aoe.productId, existing);
+      }
+      
+      // Dodaj articleOENumbers u proizvode
+      const productsWithOEM = priced.map((p: any) => ({
+        ...p,
+        articleOENumbers: oemMap.get(p.id) || [],
+      }));
+      
       // Označi egzaktne matchove i sortiraj ih na vrh
-      const itemsWithExactMatches = markExactMatches(priced, query);
+      const itemsWithExactMatches = markExactMatches(productsWithOEM, query);
       const sortedItems = sortWithExactMatchesFirst(itemsWithExactMatches);
       
       return NextResponse.json(sortedItems);

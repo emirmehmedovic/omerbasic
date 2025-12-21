@@ -42,7 +42,7 @@ const Footer = () => {
 
   return (
     <footer className="relative bg-transparent mt-20">
-      <div className="container mx-auto px-4 py-12">
+      <div className="w-full mx-auto max-w-full xl:max-w-7xl 2xl:max-w-[2000px] 3xl:max-w-[2400px] px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16 3xl:px-20 py-12">
         <div className="relative overflow-hidden rounded-3xl border border-white/60 bg-gradient-to-br from-slate-50 via-slate-100 to-slate-200 p-8 md:p-10 shadow-2xl">
           {/* Modern texture overlay */}
           <div

@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Trash2 } from 'lucide-react';
 import { CartSuggestions } from '@/components/CartSuggestions';
+import { PageContainer } from '@/components/PageContainer';
 
 // Funkcija za formatiranje cijene
 const formatPrice = (price: number) => {
@@ -22,7 +23,7 @@ export default function CartPage() {
 
   if (cartCount === 0) {
     return (
-      <div className="container mx-auto px-4 py-12 text-center">
+      <PageContainer maxWidth="adaptive" padding="lg" className="text-center">
         <div className="rounded-2xl p-8 max-w-2xl mx-auto bg-white border border-slate-200 shadow-sm">
           <h1 className="text-3xl font-bold text-slate-900 mb-4">Vaša korpa je prazna</h1>
           <p className="text-slate-600 mb-8">Izgleda da još niste dodali nijedan proizvod.</p>
@@ -33,12 +34,12 @@ export default function CartPage() {
             Vratite se na kupovinu
           </Link>
         </div>
-      </div>
+      </PageContainer>
     );
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <PageContainer maxWidth="adaptive" padding="md">
       <div className="rounded-2xl p-8 mb-8 bg-white border border-slate-200 shadow-sm">
         <h1 className="text-3xl font-bold text-slate-900 mb-6">Vaša korpa</h1>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -113,6 +114,6 @@ export default function CartPage() {
           excludeProductIds={excludeProductIds} 
         />
       }
-    </div>
+    </PageContainer>
   );
 }

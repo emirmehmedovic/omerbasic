@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { ProductCard } from "./ProductCard";
 import { LayoutGrid, List } from "lucide-react";
 import ProductBrandSummary from '@/components/ProductBrandSummary';
+import ProductOEMSummary from '@/components/ProductOEMSummary';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useCart } from '@/context/CartContext';
@@ -33,6 +34,7 @@ type Product = {
   tecdocArticleId?: number | null;
   stock?: number;
   isExactMatch?: boolean;
+  articleOENumbers?: Array<{ id: string; oemNumber: string; manufacturer: string | null; referenceType: string | null }> | null;
 };
 
 export type ProductFilters = {
@@ -457,18 +459,12 @@ export default function ProductsResults({ filters, onClearAll, onPageChange, onQ
                       )}
                     </div>
                     <h3 className="text-lg font-semibold text-slate-900 mb-2 line-clamp-2">{p.name}</h3>
-                    {(p.catalogNumber || p.oemNumber || p.tecdocArticleId) && (
+                    {(p.catalogNumber || p.tecdocArticleId) && (
                       <div className="mb-1 flex flex-wrap gap-2">
                         {p.catalogNumber && (
                           <span className="inline-flex items-center gap-1 text-[11px] font-medium text-slate-600 bg-slate-50/70 backdrop-blur-sm border border-slate-200 rounded-lg px-2 py-0.5 shadow-sm">
                             <span className="text-slate-500">Kataloški</span>
                             <span className="font-mono tracking-tight text-slate-700">{p.catalogNumber}</span>
-                          </span>
-                        )}
-                        {p.oemNumber && (
-                          <span className="inline-flex items-center gap-1 text-[11px] font-medium text-slate-600 bg-slate-50/70 backdrop-blur-sm border border-slate-200 rounded-lg px-2 py-0.5 shadow-sm">
-                            <span className="text-slate-500">OEM</span>
-                            <span className="font-mono tracking-tight text-slate-700">{p.oemNumber}</span>
                           </span>
                         )}
                         {p.tecdocArticleId && (
@@ -479,6 +475,11 @@ export default function ProductsResults({ filters, onClearAll, onPageChange, onQ
                         )}
                       </div>
                     )}
+                    <ProductOEMSummary 
+                      productId={p.id}
+                      productOemNumber={p.oemNumber}
+                      articleOENumbers={p.articleOENumbers}
+                    />
                     <ProductBrandSummary productId={p.id} maxInline={5} />
                   </div>
                   <div className="text-left sm:text-right w-full sm:w-48 flex-shrink-0 mt-4 sm:mt-0 sm:ml-6">
@@ -575,18 +576,12 @@ export default function ProductsResults({ filters, onClearAll, onPageChange, onQ
                       <p className="text-sm text-slate-600">{p.category?.name || 'Kategorija'}</p>
                     </div>
                     <h3 className="text-lg font-semibold text-slate-900 mb-2 line-clamp-2">{p.name}</h3>
-                    {(p.catalogNumber || p.oemNumber || p.tecdocArticleId) && (
+                    {(p.catalogNumber || p.tecdocArticleId) && (
                       <div className="mb-1 flex flex-wrap gap-2">
                         {p.catalogNumber && (
                           <span className="inline-flex items-center gap-1 text-[11px] font-medium text-slate-600 bg-slate-50/70 backdrop-blur-sm border border-slate-200 rounded-lg px-2 py-0.5 shadow-sm">
                             <span className="text-slate-500">Kataloški</span>
                             <span className="font-mono tracking-tight text-slate-700">{p.catalogNumber}</span>
-                          </span>
-                        )}
-                        {p.oemNumber && (
-                          <span className="inline-flex items-center gap-1 text-[11px] font-medium text-slate-600 bg-slate-50/70 backdrop-blur-sm border border-slate-200 rounded-lg px-2 py-0.5 shadow-sm">
-                            <span className="text-slate-500">OEM</span>
-                            <span className="font-mono tracking-tight text-slate-700">{p.oemNumber}</span>
                           </span>
                         )}
                         {p.tecdocArticleId && (
@@ -597,6 +592,11 @@ export default function ProductsResults({ filters, onClearAll, onPageChange, onQ
                         )}
                       </div>
                     )}
+                    <ProductOEMSummary 
+                      productId={p.id}
+                      productOemNumber={p.oemNumber}
+                      articleOENumbers={p.articleOENumbers}
+                    />
                     <ProductBrandSummary productId={p.id} maxInline={5} />
                   </div>
                   <div className="text-left sm:text-right w-full sm:w-48 flex-shrink-0 mt-4 sm:mt-0 sm:ml-6">

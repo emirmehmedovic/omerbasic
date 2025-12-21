@@ -6,6 +6,7 @@ import ClientHierarchicalFilters from '@/components/ClientHierarchicalFilters';
 import ProductsResults from '@/components/ProductsResults';
 import { VehicleBrand } from '@/generated/prisma/client';
 import { Category } from '@/components/HierarchicalFilters';
+import { PageContainer } from '@/components/PageContainer';
 
 interface SearchPageClientProps {
   filterData: {
@@ -133,7 +134,7 @@ export default function SearchPageClient({ filterData }: SearchPageClientProps) 
 
   return (
     <div className="min-h-screen bg-app relative">
-      <div className="container mx-auto px-4 py-6 max-w-7xl relative z-10">
+      <PageContainer maxWidth="adaptive" padding="md" className="relative z-10">
         <h1 className="text-3xl font-bold mb-4">
           Rezultati pretrage za: <span className="text-orange-500">"{currentFilters.q || ''}"</span>
         </h1>
@@ -172,7 +173,7 @@ export default function SearchPageClient({ filterData }: SearchPageClientProps) 
             />
           </div>
         </div>
-      </div>
+      </PageContainer>
     </div>
   );
 }

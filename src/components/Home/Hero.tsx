@@ -8,9 +8,9 @@ import { SearchBar } from "@/components/SearchBar";
 
 export function Hero() {
   return (
-    <section className="relative mb-16 -mx-4 sm:-mx-0">
+    <section className="relative mb-16">
       {/* Hero Grid - 3 Elements */}
-      <div className="flex flex-col lg:flex-row gap-6 p-6 sm:p-8 lg:p-12">
+      <div className="flex flex-col lg:flex-row gap-6 p-6 sm:p-8 lg:p-12 xl:p-16 2xl:p-20 3xl:p-24">
         
         {/* 1. Left Section - Main Content - 40% width, Full Height */}
         <div className="w-full lg:w-[40%] relative overflow-hidden rounded-3xl min-h-[600px] lg:min-h-[85vh] bg-gradient-to-br from-primary via-primary-dark to-[#0F1F35] shadow-2xl">

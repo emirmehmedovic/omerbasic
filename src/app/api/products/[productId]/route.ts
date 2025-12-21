@@ -37,6 +37,7 @@ export async function GET(
         },
         originalReferences: true,
         replacementFor: true,
+        articleOENumbers: true,
       },
     });
 

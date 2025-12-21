@@ -6,6 +6,7 @@ import { useForm, Controller } from 'react-hook-form';
 import * as z from 'zod';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { Plus, X } from 'lucide-react';
 import { CategoryAttribute } from '@/lib/types/category-attributes';
 import { Category } from '@/generated/prisma/client';
 import type { CategoryWithChildren } from './HierarchicalCategorySelector';
@@ -86,6 +87,14 @@ export const UnifiedProductForm = ({ initialData, categories }: UnifiedProductFo
   const [showVehicleSelector, setShowVehicleSelector] = useState(false);
   const [categoryAttributes, setCategoryAttributes] = useState<CategoryAttribute[]>([]);
   const [loadingAttributes, setLoadingAttributes] = useState(false);
+  const [additionalOEMNumbers, setAdditionalOEMNumbers] = useState<Array<{
+    id?: string;
+    oemNumber: string;
+    manufacturer: string;
+    referenceType: string;
+    notes: string;
+  }>>([]);
+  const [loadingOEMNumbers, setLoadingOEMNumbers] = useState(false);
 
   const form = useForm<ProductFormValues>({
     resolver: zodResolver(productFormSchema),
@@ -142,6 +151,26 @@ export const UnifiedProductForm = ({ initialData, categories }: UnifiedProductFo
   useEffect(() => {
     form.register('generationIds');
   }, [form]);
+
+  // Učitaj postojeće ArticleOENumber zapise
+  useEffect(() => {
+    if (initialData?.id) {
+      setLoadingOEMNumbers(true);
+      fetch(`/api/products/${initialData.id}/oem-numbers`)
+        .then(res => res.json())
+        .then(data => {
+          setAdditionalOEMNumbers(data.map((oem: any) => ({
+            id: oem.id,
+            oemNumber: oem.oemNumber,
+            manufacturer: oem.manufacturer || '',
+            referenceType: oem.referenceType || 'Original',
+            notes: oem.notes || '',
+          })));
+        })
+        .catch(err => console.error('Error loading OEM numbers:', err))
+        .finally(() => setLoadingOEMNumbers(false));
+    }
+  }, [initialData?.id]);
 
   // Funkcija za dohvaćanje atributa kategorije
   const fetchCategoryAttributes = async (categoryId: string) => {
@@ -213,7 +242,7 @@ export const UnifiedProductForm = ({ initialData, categories }: UnifiedProductFo
 
       if (initialData) {
         // Ažuriranje postojećeg proizvoda
-        await toast.promise(
+        const productResponse = await toast.promise(
           fetch(`/api/products/${initialData.id}`, {
             method: 'PATCH',
             headers: {
@@ -228,17 +257,63 @@ export const UnifiedProductForm = ({ initialData, categories }: UnifiedProductFo
           }),
           {
             loading: 'Ažuriranje proizvoda...',
-            success: () => {
-              router.refresh();
-              router.push('/admin/products');
-              return 'Proizvod uspješno ažuriran!';
-            },
+            success: 'Proizvod uspješno ažuriran!',
             error: 'Došlo je do greške.',
           }
         );
+
+        // Ažuriraj ArticleOENumber zapise
+        try {
+          // Dohvati postojeće OEM brojeve
+          const existingOEMs = await fetch(`/api/products/${initialData.id}/oem-numbers`).then(res => res.json());
+          const existingIds = new Set(existingOEMs.map((oem: any) => oem.id));
+
+          // Obriši OEM brojeve koji više nisu u listi
+          for (const existing of existingOEMs) {
+            if (!additionalOEMNumbers.find(oem => oem.id === existing.id)) {
+              await fetch(`/api/products/${initialData.id}/oem-numbers?id=${existing.id}`, {
+                method: 'DELETE',
+              });
+            }
+          }
+
+          // Dodaj/ažuriraj OEM brojeve
+          for (const oem of additionalOEMNumbers) {
+            if (!oem.oemNumber.trim()) continue; // Preskoči prazne
+
+            const oemData = {
+              oemNumber: oem.oemNumber.trim(),
+              manufacturer: oem.manufacturer?.trim() || null,
+              referenceType: oem.referenceType || 'Original',
+              notes: oem.notes?.trim() || null,
+            };
+
+            if (oem.id && existingIds.has(oem.id)) {
+              // Ažuriraj postojeći
+              await fetch(`/api/products/${initialData.id}/oem-numbers`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ id: oem.id, ...oemData }),
+              });
+            } else {
+              // Kreiraj novi
+              await fetch(`/api/products/${initialData.id}/oem-numbers`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(oemData),
+              });
+            }
+          }
+        } catch (error) {
+          console.error('Error updating OEM numbers:', error);
+          toast.error('Proizvod je ažuriran, ali došlo je do greške pri ažuriranju OEM brojeva.');
+        }
+
+        router.refresh();
+        router.push('/admin/products');
       } else {
         // Kreiranje novog proizvoda
-        await toast.promise(
+        const productResponse = await toast.promise(
           fetch('/api/products', {
             method: 'POST',
             headers: {
@@ -253,14 +328,31 @@ export const UnifiedProductForm = ({ initialData, categories }: UnifiedProductFo
           }),
           {
             loading: 'Spremanje proizvoda...',
-            success: () => {
-              router.refresh();
-              router.push('/admin/products');
-              return 'Proizvod uspješno kreiran!';
-            },
+            success: 'Proizvod uspješno kreiran!',
             error: 'Došlo je do greške.',
           }
         );
+
+        // Dodaj ArticleOENumber zapise za novi proizvod
+        if (additionalOEMNumbers.length > 0 && productResponse?.id) {
+          for (const oem of additionalOEMNumbers) {
+            if (!oem.oemNumber.trim()) continue; // Preskoči prazne
+
+            await fetch(`/api/products/${productResponse.id}/oem-numbers`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                oemNumber: oem.oemNumber.trim(),
+                manufacturer: oem.manufacturer?.trim() || null,
+                referenceType: oem.referenceType || 'Original',
+                notes: oem.notes?.trim() || null,
+              }),
+            });
+          }
+        }
+
+        router.refresh();
+        router.push('/admin/products');
       }
     } catch (error) {
       console.error('Greška prilikom slanja forme:', error);
@@ -405,7 +497,7 @@ export const UnifiedProductForm = ({ initialData, categories }: UnifiedProductFo
             name="oemNumber"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-gray-700 font-medium">OEM broj</FormLabel>
+                <FormLabel className="text-gray-700 font-medium">OEM broj (glavni)</FormLabel>
                 <FormControl>
                   <Input 
                     disabled={loading} 
@@ -418,6 +510,116 @@ export const UnifiedProductForm = ({ initialData, categories }: UnifiedProductFo
               </FormItem>
             )}
           />
+        </div>
+
+        {/* Dodatni OEM brojevi */}
+        <div className="space-y-4">
+          <div className="flex items-center justify-between">
+            <FormLabel className="text-gray-700 font-medium">Dodatni OEM brojevi</FormLabel>
+            <Button
+              type="button"
+              variant="outline"
+              size="sm"
+              onClick={() => {
+                setAdditionalOEMNumbers([...additionalOEMNumbers, {
+                  oemNumber: '',
+                  manufacturer: '',
+                  referenceType: 'Original',
+                  notes: '',
+                }]);
+              }}
+              className="bg-white border-amber/30 hover:bg-amber/10 text-gray-800"
+            >
+              <Plus className="h-4 w-4 mr-1" />
+              Dodaj OEM broj
+            </Button>
+          </div>
+          
+          {additionalOEMNumbers.map((oem, index) => (
+            <div key={index} className="space-y-3 p-4 bg-gray-50 rounded-xl border border-gray-200">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div className="md:col-span-2">
+                  <label className="block text-sm font-medium text-gray-700 mb-1">OEM broj *</label>
+                  <Input
+                    value={oem.oemNumber}
+                    onChange={(e) => {
+                      const updated = [...additionalOEMNumbers];
+                      updated[index].oemNumber = e.target.value;
+                      setAdditionalOEMNumbers(updated);
+                    }}
+                    placeholder="Npr. 04E115561C"
+                    className="bg-white border-amber/30 focus:border-amber"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Proizvođač</label>
+                  <Input
+                    value={oem.manufacturer}
+                    onChange={(e) => {
+                      const updated = [...additionalOEMNumbers];
+                      updated[index].manufacturer = e.target.value;
+                      setAdditionalOEMNumbers(updated);
+                    }}
+                    placeholder="Npr. Audi, VW"
+                    className="bg-white border-amber/30 focus:border-amber"
+                  />
+                </div>
+                <div className="flex items-end gap-2">
+                  <div className="flex-1">
+                    <label className="block text-sm font-medium text-gray-700 mb-1">Tip</label>
+                    <Select
+                      value={oem.referenceType}
+                      onValueChange={(value) => {
+                        const updated = [...additionalOEMNumbers];
+                        updated[index].referenceType = value;
+                        setAdditionalOEMNumbers(updated);
+                      }}
+                    >
+                      <SelectTrigger className="bg-white border-amber/30 focus:border-amber">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="Original">Original</SelectItem>
+                        <SelectItem value="Equivalent">Equivalent</SelectItem>
+                        <SelectItem value="Compatible">Compatible</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => {
+                      setAdditionalOEMNumbers(additionalOEMNumbers.filter((_, i) => i !== index));
+                    }}
+                    className="text-red-600 hover:text-red-700 hover:bg-red-50"
+                  >
+                    <X className="h-4 w-4" />
+                  </Button>
+                </div>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Napomene (opcionalno)</label>
+                <Textarea
+                  value={oem.notes}
+                  onChange={(e) => {
+                    const updated = [...additionalOEMNumbers];
+                    updated[index].notes = e.target.value;
+                    setAdditionalOEMNumbers(updated);
+                  }}
+                  placeholder="Dodatne napomene..."
+                  className="bg-white border-amber/30 focus:border-amber"
+                  rows={2}
+                />
+              </div>
+            </div>
+          ))}
+          
+          {additionalOEMNumbers.length === 0 && (
+            <p className="text-sm text-gray-500 text-center py-4 bg-gray-50 rounded-xl border border-gray-200">
+              Nema dodatnih OEM brojeva. Kliknite "Dodaj OEM broj" da dodate.
+            </p>
+          )}
         </div>
 
         <FormField

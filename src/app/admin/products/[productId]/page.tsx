@@ -2,6 +2,7 @@ import { UnifiedProductForm } from '@/components/UnifiedProductForm';
 import { db } from '@/lib/db';
 import Link from 'next/link';
 import { Settings } from 'lucide-react';
+import { PageContainer } from '@/components/PageContainer';
 
 async function getProduct(id: string) {
   return db.product.findUnique({
@@ -69,8 +70,8 @@ export default async function EditProductPage({ params }: { params: Promise<{ pr
   }
 
   return (
-    <div className="container mx-auto p-4">
-      <div className="flex justify-between items-center mb-4">
+    <PageContainer maxWidth="adaptive" padding="md" className="min-h-screen">
+      <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold">Uredi proizvod</h1>
         <Link 
           href={`/admin/products/${productId}/attributes`} 
@@ -80,6 +81,6 @@ export default async function EditProductPage({ params }: { params: Promise<{ pr
         </Link>
       </div>
       <UnifiedProductForm initialData={extendedProduct as any} categories={categories} />
-    </div>
+    </PageContainer>
   );
 }
