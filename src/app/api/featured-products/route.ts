@@ -5,7 +5,42 @@ export async function GET() {
   try {
     const featuredProducts = await db.featuredProduct.findMany({
       include: {
-        product: { include: { category: true } },
+        product: { 
+          include: { 
+            category: true,
+            vehicleFitments: {
+              select: {
+                id: true,
+                isUniversal: true,
+                generation: {
+                  select: {
+                    id: true,
+                    name: true,
+                    model: {
+                      select: {
+                        id: true,
+                        name: true,
+                        brand: {
+                          id: true,
+                          name: true,
+                        }
+                      }
+                    }
+                  }
+                },
+                engine: {
+                  select: {
+                    id: true,
+                    engineCode: true,
+                    enginePowerKW: true,
+                    enginePowerHP: true,
+                    engineCapacity: true,
+                  }
+                }
+              }
+            }
+          } 
+        },
       },
       orderBy: {
         displayOrder: "asc",
