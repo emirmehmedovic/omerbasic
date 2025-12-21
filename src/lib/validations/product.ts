@@ -24,6 +24,7 @@ export const productFormSchema = z.object({
   engineType: z.string().optional().or(z.literal('')),
   catalogNumber: z.string().min(1, { message: 'Kataloški broj je obavezan.' }),
   oemNumber: z.string().optional().or(z.literal('')),
+  eanCode: z.string().optional().or(z.literal('')),
   weight: z.string().optional().or(z.literal('')).refine((val) => !val || !isNaN(parseFloat(val)), {
     message: 'Težina mora biti ispravan broj.',
   }),

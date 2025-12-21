@@ -56,6 +56,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({ initialData, categorie
             (initialData.technicalSpecs ? (initialData.technicalSpecs as any)?.engineType ?? '' : ''),
           catalogNumber: initialData.catalogNumber ?? '',
           oemNumber: initialData.oemNumber ?? '',
+          eanCode: initialData.eanCode ?? '',
           stock: String(initialData.stock ?? 0),
           lowStockThreshold: initialData.lowStockThreshold != null ? String(initialData.lowStockThreshold as any) : '',
         }
@@ -72,6 +73,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({ initialData, categorie
           engineType: '',
           catalogNumber: '',
           oemNumber: '',
+          eanCode: '',
           weight: '',
           width: '',
           height: '',

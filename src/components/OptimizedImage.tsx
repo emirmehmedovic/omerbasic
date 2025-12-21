@@ -33,21 +33,21 @@ export default function OptimizedImage({
 }: OptimizedImageProps) {
   const [imageError, setImageError] = useState(false);
 
-  // Detektiraj ako je slika lokalna (iz /uploads/ ili /images/tecdoc/ foldera)
-  const isLocalUpload = src.startsWith('/uploads/') || src.startsWith('/images/tecdoc/');
+  // Detektiraj ako je slika lokalna (iz /uploads/ ili /images/tecdoc/ foldera) ili API route
+  const isLocalUpload = src.startsWith('/uploads/') || src.startsWith('/images/tecdoc/') || 
+                        src.startsWith('/api/uploads/') || src.startsWith('/api/images/');
   
   // Konvertuj lokalne putanje u API route-ove za produkciju
   // Ovo osigurava da slike rade u produkciji gdje Next.js ne servira dinamički uploadovane fajlove
   let imageSrc = src;
   if (src.startsWith('/uploads/products/')) {
     imageSrc = src.replace('/uploads/products/', '/api/uploads/products/');
-  } else if (src.startsWith('/images/tecdoc/')) {
-    // Ekstraktuj filename iz putanje kao /images/tecdoc/10/4/7/477640.JPG -> 477640.JPG
-    const filename = src.split('/').pop() || '';
-    imageSrc = `/api/images/tecdoc/${filename}`;
   }
+  // Za tecdoc slike, ostavi originalnu putanju jer Next.js može servirati iz public/images/tecdoc/
+  // Ne konvertujemo u API route jer gubimo informaciju o strukturi foldera
 
-  // Za lokalne uploadove, koristi unoptimized da izbjegnemo 400 greške u produkciji
+  // Za lokalne uploadove i API route-ove, koristi unoptimized da izbjegnemo 400 greške
+  // Next.js Image Optimization ne može optimizirati API route-ove
   const imageProps: any = {
     src: imageSrc,
     alt,

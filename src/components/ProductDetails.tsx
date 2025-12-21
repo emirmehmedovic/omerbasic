@@ -175,6 +175,7 @@ interface ProductDetailsProps {
     originalReferences?: ProductReference[];
     replacementFor?: ProductReference[];
     articleOENumbers?: Array<{ id: string; oemNumber: string; manufacturer: string | null; referenceType: string | null; notes: string | null }>;
+    eanCode?: string | null;
   };
 }
 
@@ -659,15 +660,27 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
             
             {/* Additional Info Cards */}
             <div className="grid grid-cols-2 gap-3">
-              <div className="bg-white/60 backdrop-blur-sm border border-white/60 rounded-xl p-3 shadow-sm">
-                <div className="flex items-center gap-2 mb-1">
-                  <svg className="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                  <span className="text-xs font-bold text-slate-700">Kvalitet</span>
+              {product.eanCode ? (
+                <div className="bg-white/60 backdrop-blur-sm border border-white/60 rounded-xl p-3 shadow-sm">
+                  <div className="flex items-center gap-2 mb-1">
+                    <svg className="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clipRule="evenodd" />
+                    </svg>
+                    <span className="text-xs font-bold text-slate-700">EAN kod</span>
+                  </div>
+                  <p className="text-xs text-slate-600 font-mono font-semibold">{product.eanCode}</p>
                 </div>
-                <p className="text-xs text-slate-600">Originalni dijelovi</p>
-              </div>
+              ) : (
+                <div className="bg-white/60 backdrop-blur-sm border border-white/60 rounded-xl p-3 shadow-sm">
+                  <div className="flex items-center gap-2 mb-1">
+                    <svg className="w-4 h-4 text-success" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    <span className="text-xs font-bold text-slate-700">Kvalitet</span>
+                  </div>
+                  <p className="text-xs text-slate-600">Originalni dijelovi</p>
+                </div>
+              )}
               
               <div className="bg-white/60 backdrop-blur-sm border border-white/60 rounded-xl p-3 shadow-sm">
                 <div className="flex items-center gap-2 mb-1">
@@ -752,11 +765,19 @@ export const ProductDetails = ({ product }: ProductDetailsProps) => {
                 }}
               />
               <div className="relative z-10">
-                <div className="flex items-center space-x-4 mb-6">
-                  <div className="bg-gradient-to-br from-[#E85A28] to-[#FF6B35] p-4 rounded-2xl shadow-lg">
-                    <Copy className="h-7 w-7 text-white" />
+                <div className="flex items-center justify-between mb-6">
+                  <div className="flex items-center space-x-4">
+                    <div className="bg-gradient-to-br from-[#E85A28] to-[#FF6B35] p-4 rounded-2xl shadow-lg">
+                      <Copy className="h-7 w-7 text-white" />
+                    </div>
+                    <h3 className="text-3xl font-bold text-primary">OEM brojevi</h3>
                   </div>
-                  <h3 className="text-3xl font-bold text-primary">OEM brojevi</h3>
+                  {product.eanCode && (
+                    <div className="bg-white/80 backdrop-blur-sm border border-white/60 rounded-2xl p-4 shadow-lg">
+                      <div className="text-xs text-slate-500 font-medium mb-1">EAN kod</div>
+                      <div className="font-mono text-lg font-bold text-primary">{product.eanCode}</div>
+                    </div>
+                  )}
                 </div>
                 
                 {(() => {

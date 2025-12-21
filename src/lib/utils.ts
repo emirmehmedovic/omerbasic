@@ -133,14 +133,12 @@ export function resolveProductImage(
   }
 
   // Konvertuj lokalne putanje u API route-ove za produkciju
-  // Ovo osigurava da dinamički uploadovane slike i tecdoc slike rade u produkciji
+  // Ovo osigurava da dinamički uploadovane slike rade u produkciji
   if (resolvedUrl.startsWith('/uploads/products/')) {
     resolvedUrl = resolvedUrl.replace('/uploads/products/', '/api/uploads/products/');
-  } else if (resolvedUrl.startsWith('/images/tecdoc/')) {
-    // Ekstraktuj filename iz putanje kao /images/tecdoc/10/4/7/477640.JPG -> 477640.JPG
-    const filename = resolvedUrl.split('/').pop() || '';
-    resolvedUrl = `/api/images/tecdoc/${filename}`;
   }
+  // Za tecdoc slike, ostavi originalnu putanju jer Next.js može servirati iz public/images/tecdoc/
+  // Ne konvertujemo u API route jer gubimo informaciju o strukturi foldera
 
   return resolvedUrl;
 }

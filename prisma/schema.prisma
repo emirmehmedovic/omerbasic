@@ -25,6 +25,7 @@ model Product {
   lowStockAlerted   Boolean       @default(false)
   catalogNumber     String        @unique
   oemNumber         String?
+  eanCode           String?       // EAN (European Article Number) / GTIN barcode
   unitOfMeasure     String?
   sku               String?
   isFeatured        Boolean       @default(false)

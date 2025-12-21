@@ -22,6 +22,7 @@ type ExtendedProduct = {
   lowStockThreshold?: number | null;
   catalogNumber: string;
   oemNumber: string | null;
+  eanCode?: string | null;
   sku?: string | null;
   isFeatured: boolean;
   isArchived: boolean;
@@ -107,6 +108,7 @@ export const UnifiedProductForm = ({ initialData, categories }: UnifiedProductFo
           catalogNumber: initialData.catalogNumber ?? '',
           imageUrl: initialData.imageUrl ?? '',
           oemNumber: initialData.oemNumber ?? '',
+          eanCode: initialData.eanCode ?? '',
           vehicleBrand: initialData.vehicleBrand ?? '',
           vehicleModel: initialData.vehicleModel ?? '',
           yearOfManufacture: initialData.yearOfManufacture ? String(initialData.yearOfManufacture) : '',
@@ -129,6 +131,7 @@ export const UnifiedProductForm = ({ initialData, categories }: UnifiedProductFo
           catalogNumber: '',
           imageUrl: '',
           oemNumber: '',
+          eanCode: '',
           vehicleBrand: '',
           vehicleModel: '',
           yearOfManufacture: '',
@@ -577,6 +580,24 @@ export const UnifiedProductForm = ({ initialData, categories }: UnifiedProductFo
                   <Input 
                     disabled={loading} 
                     placeholder="Originalni broj proizvođača" 
+                    className="bg-white border-amber/30 focus:border-amber rounded-xl transition-all duration-200 text-gray-900 placeholder:text-gray-500"
+                    {...field} 
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="eanCode"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-gray-700 font-medium">EAN kod</FormLabel>
+                <FormControl>
+                  <Input 
+                    disabled={loading} 
+                    placeholder="Npr. 4006381333931" 
                     className="bg-white border-amber/30 focus:border-amber rounded-xl transition-all duration-200 text-gray-900 placeholder:text-gray-500"
                     {...field} 
                   />
