@@ -298,6 +298,39 @@ export async function GET(req: NextRequest) {
               referenceType: true,
             },
           },
+          vehicleFitments: {
+            select: {
+              id: true,
+              isUniversal: true,
+              generation: {
+                select: {
+                  id: true,
+                  name: true,
+                  model: {
+                    select: {
+                      id: true,
+                      name: true,
+                      brand: {
+                        select: {
+                          id: true,
+                          name: true,
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              engine: {
+                select: {
+                  id: true,
+                  engineCode: true,
+                  enginePowerKW: true,
+                  enginePowerHP: true,
+                  engineCapacity: true,
+                }
+              }
+            }
+          },
         },
         orderBy: [
           { createdAt: 'desc' },
@@ -392,6 +425,39 @@ export async function GET(req: NextRequest) {
             manufacturer: true,
             referenceType: true,
           },
+        },
+        vehicleFitments: {
+          select: {
+            id: true,
+            isUniversal: true,
+            generation: {
+              select: {
+                id: true,
+                name: true,
+                model: {
+                  select: {
+                    id: true,
+                    name: true,
+                    brand: {
+                      select: {
+                        id: true,
+                        name: true,
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            engine: {
+              select: {
+                id: true,
+                engineCode: true,
+                enginePowerKW: true,
+                enginePowerHP: true,
+                engineCapacity: true,
+              }
+            }
+          }
         },
       },
       orderBy: [

@@ -19,6 +19,29 @@ interface ProductCardProps {
     isExactMatch?: boolean; 
     tecdocArticleId?: number | null;
     articleOENumbers?: Array<{ id: string; oemNumber: string; manufacturer: string | null; referenceType: string | null }> | null;
+    vehicleFitments?: Array<{
+      id: string;
+      isUniversal: boolean;
+      generation: {
+        id: string;
+        name: string;
+        model: {
+          id: string;
+          name: string;
+          brand: {
+            id: string;
+            name: string;
+          };
+        };
+      };
+      engine?: {
+        id: string;
+        engineCode?: string | null;
+        enginePowerKW?: number | null;
+        enginePowerHP?: number | null;
+        engineCapacity?: number | null;
+      } | null;
+    }> | null;
   };
   compact?: boolean;
 }
@@ -144,7 +167,7 @@ export const ProductCard = ({ product, compact = false }: ProductCardProps) => {
         )}
 
         {/* Brand icons with hover for generations */}
-        {!compact && <ProductBrandSummary productId={product.id} maxInline={5} />}
+        {!compact && <ProductBrandSummary productId={product.id} vehicleFitments={product.vehicleFitments || undefined} maxInline={5} />}
 
         <div className={`flex items-end justify-between mt-auto border-t border-slate-200/60 ${compact ? 'pt-2' : 'pt-4'}`}>
           <div>

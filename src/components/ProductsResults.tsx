@@ -35,6 +35,29 @@ type Product = {
   stock?: number;
   isExactMatch?: boolean;
   articleOENumbers?: Array<{ id: string; oemNumber: string; manufacturer: string | null; referenceType: string | null }> | null;
+  vehicleFitments?: Array<{
+    id: string;
+    isUniversal: boolean;
+    generation: {
+      id: string;
+      name: string;
+      model: {
+        id: string;
+        name: string;
+        brand: {
+          id: string;
+          name: string;
+        };
+      };
+    };
+    engine?: {
+      id: string;
+      engineCode?: string | null;
+      enginePowerKW?: number | null;
+      enginePowerHP?: number | null;
+      engineCapacity?: number | null;
+    } | null;
+  }> | null;
 };
 
 export type ProductFilters = {
@@ -480,7 +503,7 @@ export default function ProductsResults({ filters, onClearAll, onPageChange, onQ
                       productOemNumber={p.oemNumber}
                       articleOENumbers={p.articleOENumbers}
                     />
-                    <ProductBrandSummary productId={p.id} maxInline={5} />
+                    <ProductBrandSummary productId={p.id} vehicleFitments={p.vehicleFitments || undefined} maxInline={5} />
                   </div>
                   <div className="text-left sm:text-right w-full sm:w-48 flex-shrink-0 mt-4 sm:mt-0 sm:ml-6">
                     {p.originalPrice ? (
@@ -597,7 +620,7 @@ export default function ProductsResults({ filters, onClearAll, onPageChange, onQ
                       productOemNumber={p.oemNumber}
                       articleOENumbers={p.articleOENumbers}
                     />
-                    <ProductBrandSummary productId={p.id} maxInline={5} />
+                    <ProductBrandSummary productId={p.id} vehicleFitments={p.vehicleFitments || undefined} maxInline={5} />
                   </div>
                   <div className="text-left sm:text-right w-full sm:w-48 flex-shrink-0 mt-4 sm:mt-0 sm:ml-6">
                     {p.originalPrice ? (

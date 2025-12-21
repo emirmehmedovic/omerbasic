@@ -154,7 +154,15 @@ function groupByBrand(fitments: VehicleFitment[]): BrandGroup[] {
   return Array.from(map.values()).sort((a, b) => a.brandName.localeCompare(b.brandName));
 }
 
-export default function ProductBrandSummary({ productId, maxInline = 5 }: { productId: string; maxInline?: number }) {
+export default function ProductBrandSummary({ 
+  productId, 
+  vehicleFitments,
+  maxInline = 5 
+}: { 
+  productId: string; 
+  vehicleFitments?: VehicleFitment[];
+  maxInline?: number;
+}) {
   const [brands, setBrands] = useState<BrandGroup[] | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [hoveredBrand, setHoveredBrand] = useState<string | null>(null);
@@ -167,6 +175,15 @@ export default function ProductBrandSummary({ productId, maxInline = 5 }: { prod
     let alive = true;
     setBrands(null);
     setError(null);
+    
+    // Ako su vehicleFitments proslijeđeni kroz props (čak i prazan array), koristi ih
+    if (vehicleFitments !== undefined) {
+      const grouped = groupByBrand(vehicleFitments);
+      setBrands(grouped);
+      return;
+    }
+    
+    // Fallback: fetch ako nisu proslijeđeni (backward compatibility)
     fetch(`/api/products/${productId}`)
       .then(async (res) => {
         if (!res.ok) throw new Error(await res.text());
@@ -182,7 +199,7 @@ export default function ProductBrandSummary({ productId, maxInline = 5 }: { prod
         setError(typeof e?.message === 'string' ? e.message : 'Greška pri učitavanju marki');
       });
     return () => { alive = false; };
-  }, [productId]);
+  }, [productId, vehicleFitments]);
 
   const inline = useMemo(() => {
     if (!brands || brands.length === 0) return [] as BrandGroup[];
