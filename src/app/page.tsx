@@ -37,15 +37,25 @@ const getMainCategories = unstable_cache(
   { tags: ['categories'] }
 );
 
-async function getLatestProducts() {
-  return db.product.findMany({
-    take: 50,
-    orderBy: { createdAt: 'desc' },
-    include: { category: true },
-  });
-}
+const getLatestProducts = unstable_cache(
+  async () => {
+    return db.product.findMany({
+      take: 50,
+      orderBy: { createdAt: 'desc' },
+      include: { category: true },
+    });
+  },
+  ['home-latest-products'],
+  {
+    tags: ['products'],
+    revalidate: 60 // Cache for 60 seconds
+  }
+);
 
 // legacy homepage-only components removed in favor of new Home/* components
+
+// Enable ISR caching for homepage
+export const revalidate = 60;
 
 export default async function HomePage() {
   const [mainCategories, latestProducts] = await Promise.all([
