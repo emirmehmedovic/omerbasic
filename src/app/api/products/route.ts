@@ -94,22 +94,30 @@ async function getTrigramPrefilterIdsForListing(query: string, limit: number): P
   if (!query || query.length < 3) return null;
   try {
     const rows = await db.$queryRaw<{ id: string }[]>`
-      SELECT p.id
+      SELECT DISTINCT p.id, p."createdAt",
+        (
+          ${NAME_WEIGHT} * similarity(immutable_unaccent(lower(p.name)), immutable_unaccent(lower(${query}))) +
+          ${CATALOG_WEIGHT} * similarity(immutable_unaccent(lower(p."catalogNumber")), immutable_unaccent(lower(${query})))
+        ) as similarity_score
       FROM "Product" p
+      LEFT JOIN "ArticleOENumber" aoe ON aoe."productId" = p.id
       WHERE (
         immutable_unaccent(lower(p.name)) % immutable_unaccent(lower(${query}))
         OR immutable_unaccent(lower(p."catalogNumber")) % immutable_unaccent(lower(${query}))
         OR immutable_unaccent(lower(COALESCE(p."oemNumber", ''))) % immutable_unaccent(lower(${query}))
+        OR immutable_unaccent(lower(COALESCE(aoe."oemNumber", ''))) % immutable_unaccent(lower(${query}))
+        OR normalize_oem(COALESCE(p."oemNumber", '')) = normalize_oem(${query})
+        OR normalize_oem(COALESCE(aoe."oemNumber", '')) = normalize_oem(${query})
       )
       AND (
         similarity(immutable_unaccent(lower(p.name)), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD} OR
         similarity(immutable_unaccent(lower(p."catalogNumber")), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD} OR
-        similarity(immutable_unaccent(lower(COALESCE(p."oemNumber", ''))), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD}
+        similarity(immutable_unaccent(lower(COALESCE(p."oemNumber", ''))), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD} OR
+        similarity(immutable_unaccent(lower(COALESCE(aoe."oemNumber", ''))), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD} OR
+        normalize_oem(COALESCE(p."oemNumber", '')) = normalize_oem(${query}) OR
+        normalize_oem(COALESCE(aoe."oemNumber", '')) = normalize_oem(${query})
       )
-      ORDER BY (
-        ${NAME_WEIGHT} * similarity(immutable_unaccent(lower(p.name)), immutable_unaccent(lower(${query}))) +
-        ${CATALOG_WEIGHT} * similarity(immutable_unaccent(lower(p."catalogNumber")), immutable_unaccent(lower(${query})))
-      ) DESC, p."createdAt" DESC
+      ORDER BY similarity_score DESC, p."createdAt" DESC
       LIMIT ${Number(limit)}
     `;
     return rows.map(r => r.id);

@@ -68,7 +68,9 @@ export async function GET(req: Request) {
             FROM "Category" c2
             JOIN cte ON c2."parentId" = cte.id
           )
-          SELECT DISTINCT p.id, p.name, p."catalogNumber", p."oemNumber", p."tecdocArticleId", p.price, p."imageUrl", p."categoryId", c."imageUrl" AS "categoryImageUrl"
+          SELECT DISTINCT ON (p.id) p.id, p.name, p."catalogNumber", p."oemNumber", p."tecdocArticleId", p.price, p."imageUrl", p."categoryId", p."createdAt", c."imageUrl" AS "categoryImageUrl",
+            (${NAME_WEIGHT} * similarity(immutable_unaccent(lower(p.name)), immutable_unaccent(lower(${query}))) +
+             ${CATALOG_WEIGHT} * similarity(immutable_unaccent(lower(p."catalogNumber")), immutable_unaccent(lower(${query})))) as similarity_score
           FROM "Product" p
           LEFT JOIN "Category" c ON c."id" = p."categoryId"
           LEFT JOIN "ArticleOENumber" aoe ON aoe."productId" = p.id
@@ -89,15 +91,14 @@ export async function GET(req: Request) {
             normalize_oem(COALESCE(p."oemNumber", '')) = normalize_oem(${query}) OR
             normalize_oem(COALESCE(aoe."oemNumber", '')) = normalize_oem(${query})
           )
-          ORDER BY (
-            ${NAME_WEIGHT} * similarity(immutable_unaccent(lower(p.name)), immutable_unaccent(lower(${query}))) +
-            ${CATALOG_WEIGHT} * similarity(immutable_unaccent(lower(p."catalogNumber")), immutable_unaccent(lower(${query})))
-          ) DESC, p."createdAt" DESC
+          ORDER BY p.id, similarity_score DESC, p."createdAt" DESC
           LIMIT 20
         `;
       } else {
         rows = await db.$queryRaw<any>`
-          SELECT DISTINCT p.id, p.name, p."catalogNumber", p."oemNumber", p."tecdocArticleId", p.price, p."imageUrl", p."categoryId", c."imageUrl" AS "categoryImageUrl"
+          SELECT DISTINCT ON (p.id) p.id, p.name, p."catalogNumber", p."oemNumber", p."tecdocArticleId", p.price, p."imageUrl", p."categoryId", p."createdAt", c."imageUrl" AS "categoryImageUrl",
+            (${NAME_WEIGHT} * similarity(immutable_unaccent(lower(p.name)), immutable_unaccent(lower(${query}))) +
+             ${CATALOG_WEIGHT} * similarity(immutable_unaccent(lower(p."catalogNumber")), immutable_unaccent(lower(${query})))) as similarity_score
           FROM "Product" p
           LEFT JOIN "Category" c ON c."id" = p."categoryId"
           LEFT JOIN "ArticleOENumber" aoe ON aoe."productId" = p.id
@@ -117,10 +118,7 @@ export async function GET(req: Request) {
             normalize_oem(COALESCE(p."oemNumber", '')) = normalize_oem(${query}) OR
             normalize_oem(COALESCE(aoe."oemNumber", '')) = normalize_oem(${query})
           )
-          ORDER BY (
-            ${NAME_WEIGHT} * similarity(immutable_unaccent(lower(p.name)), immutable_unaccent(lower(${query}))) +
-            ${CATALOG_WEIGHT} * similarity(immutable_unaccent(lower(p."catalogNumber")), immutable_unaccent(lower(${query})))
-          ) DESC, p."createdAt" DESC
+          ORDER BY p.id, similarity_score DESC, p."createdAt" DESC
           LIMIT 20
         `;
       }
