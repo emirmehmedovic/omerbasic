@@ -92,35 +92,66 @@ function logQuery(model: string, operation: string, args: unknown) {
 
 async function getTrigramPrefilterIdsForListing(query: string, limit: number): Promise<string[] | null> {
   if (!query || query.length < 3) return null;
+  
+  // Detektiraj da li query liči na OEM broj (samo brojevi, slova, razmaci i specijalni znakovi)
+  // Ako ne liči na OEM, ne koristi LEFT JOIN jer usporava query
+  const looksLikeOEM = /^[A-Za-z0-9\s\-\.\/]+$/.test(query) && query.length <= 20;
+  
   try {
-    const rows = await db.$queryRaw<{ id: string }[]>`
-      SELECT DISTINCT p.id, p."createdAt",
-        (
-          ${NAME_WEIGHT} * similarity(immutable_unaccent(lower(p.name)), immutable_unaccent(lower(${query}))) +
-          ${CATALOG_WEIGHT} * similarity(immutable_unaccent(lower(p."catalogNumber")), immutable_unaccent(lower(${query})))
-        ) as similarity_score
-      FROM "Product" p
-      LEFT JOIN "ArticleOENumber" aoe ON aoe."productId" = p.id
-      WHERE (
-        immutable_unaccent(lower(p.name)) % immutable_unaccent(lower(${query}))
-        OR immutable_unaccent(lower(p."catalogNumber")) % immutable_unaccent(lower(${query}))
-        OR immutable_unaccent(lower(COALESCE(p."oemNumber", ''))) % immutable_unaccent(lower(${query}))
-        OR immutable_unaccent(lower(COALESCE(aoe."oemNumber", ''))) % immutable_unaccent(lower(${query}))
-        OR normalize_oem(COALESCE(p."oemNumber", '')) = normalize_oem(${query})
-        OR normalize_oem(COALESCE(aoe."oemNumber", '')) = normalize_oem(${query})
-      )
-      AND (
-        similarity(immutable_unaccent(lower(p.name)), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD} OR
-        similarity(immutable_unaccent(lower(p."catalogNumber")), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD} OR
-        similarity(immutable_unaccent(lower(COALESCE(p."oemNumber", ''))), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD} OR
-        similarity(immutable_unaccent(lower(COALESCE(aoe."oemNumber", ''))), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD} OR
-        normalize_oem(COALESCE(p."oemNumber", '')) = normalize_oem(${query}) OR
-        normalize_oem(COALESCE(aoe."oemNumber", '')) = normalize_oem(${query})
-      )
-      ORDER BY similarity_score DESC, p."createdAt" DESC
-      LIMIT ${Number(limit)}
-    `;
-    return rows.map(r => r.id);
+    if (looksLikeOEM) {
+      // Samo ako liči na OEM broj, koristi LEFT JOIN za ArticleOENumber
+      const rows = await db.$queryRaw<{ id: string }[]>`
+        SELECT DISTINCT p.id, p."createdAt",
+          (
+            ${NAME_WEIGHT} * similarity(immutable_unaccent(lower(p.name)), immutable_unaccent(lower(${query}))) +
+            ${CATALOG_WEIGHT} * similarity(immutable_unaccent(lower(p."catalogNumber")), immutable_unaccent(lower(${query})))
+          ) as similarity_score
+        FROM "Product" p
+        LEFT JOIN "ArticleOENumber" aoe ON aoe."productId" = p.id
+        WHERE (
+          immutable_unaccent(lower(p.name)) % immutable_unaccent(lower(${query}))
+          OR immutable_unaccent(lower(p."catalogNumber")) % immutable_unaccent(lower(${query}))
+          OR immutable_unaccent(lower(COALESCE(p."oemNumber", ''))) % immutable_unaccent(lower(${query}))
+          OR immutable_unaccent(lower(COALESCE(aoe."oemNumber", ''))) % immutable_unaccent(lower(${query}))
+          OR normalize_oem(COALESCE(p."oemNumber", '')) = normalize_oem(${query})
+          OR normalize_oem(COALESCE(aoe."oemNumber", '')) = normalize_oem(${query})
+        )
+        AND (
+          similarity(immutable_unaccent(lower(p.name)), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD} OR
+          similarity(immutable_unaccent(lower(p."catalogNumber")), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD} OR
+          similarity(immutable_unaccent(lower(COALESCE(p."oemNumber", ''))), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD} OR
+          similarity(immutable_unaccent(lower(COALESCE(aoe."oemNumber", ''))), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD} OR
+          normalize_oem(COALESCE(p."oemNumber", '')) = normalize_oem(${query}) OR
+          normalize_oem(COALESCE(aoe."oemNumber", '')) = normalize_oem(${query})
+        )
+        ORDER BY similarity_score DESC, p."createdAt" DESC
+        LIMIT ${Number(limit)}
+      `;
+      return rows.map(r => r.id);
+    } else {
+      // Brža verzija bez ArticleOENumber JOIN-a za obične pretrage (npr. "filter ulja")
+      const rows = await db.$queryRaw<{ id: string }[]>`
+        SELECT p.id, p."createdAt",
+          (
+            ${NAME_WEIGHT} * similarity(immutable_unaccent(lower(p.name)), immutable_unaccent(lower(${query}))) +
+            ${CATALOG_WEIGHT} * similarity(immutable_unaccent(lower(p."catalogNumber")), immutable_unaccent(lower(${query})))
+          ) as similarity_score
+        FROM "Product" p
+        WHERE (
+          immutable_unaccent(lower(p.name)) % immutable_unaccent(lower(${query}))
+          OR immutable_unaccent(lower(p."catalogNumber")) % immutable_unaccent(lower(${query}))
+          OR immutable_unaccent(lower(COALESCE(p."oemNumber", ''))) % immutable_unaccent(lower(${query}))
+        )
+        AND (
+          similarity(immutable_unaccent(lower(p.name)), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD} OR
+          similarity(immutable_unaccent(lower(p."catalogNumber")), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD} OR
+          similarity(immutable_unaccent(lower(COALESCE(p."oemNumber", ''))), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD}
+        )
+        ORDER BY similarity_score DESC, p."createdAt" DESC
+        LIMIT ${Number(limit)}
+      `;
+      return rows.map(r => r.id);
+    }
   } catch (error) {
     console.error('[PRODUCTS_TRIGRAM_PREFILTER_ERROR]', error);
     return null;
