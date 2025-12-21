@@ -77,13 +77,17 @@ export async function GET(req: Request) {
             OR immutable_unaccent(lower(p."catalogNumber")) % immutable_unaccent(lower(${query}))
             OR immutable_unaccent(lower(COALESCE(p."oemNumber", ''))) % immutable_unaccent(lower(${query}))
             OR immutable_unaccent(lower(COALESCE(aoe."oemNumber", ''))) % immutable_unaccent(lower(${query}))
+            OR normalize_oem(COALESCE(p."oemNumber", '')) = normalize_oem(${query})
+            OR normalize_oem(COALESCE(aoe."oemNumber", '')) = normalize_oem(${query})
           )
           AND p."categoryId" IN (SELECT id FROM cte)
           AND (
             similarity(immutable_unaccent(lower(p.name)), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD} OR
             similarity(immutable_unaccent(lower(p."catalogNumber")), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD} OR
             similarity(immutable_unaccent(lower(COALESCE(p."oemNumber", ''))), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD} OR
-            similarity(immutable_unaccent(lower(COALESCE(aoe."oemNumber", ''))), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD}
+            similarity(immutable_unaccent(lower(COALESCE(aoe."oemNumber", ''))), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD} OR
+            normalize_oem(COALESCE(p."oemNumber", '')) = normalize_oem(${query}) OR
+            normalize_oem(COALESCE(aoe."oemNumber", '')) = normalize_oem(${query})
           )
           ORDER BY (
             ${NAME_WEIGHT} * similarity(immutable_unaccent(lower(p.name)), immutable_unaccent(lower(${query}))) +
@@ -102,12 +106,16 @@ export async function GET(req: Request) {
             OR immutable_unaccent(lower(p."catalogNumber")) % immutable_unaccent(lower(${query}))
             OR immutable_unaccent(lower(COALESCE(p."oemNumber", ''))) % immutable_unaccent(lower(${query}))
             OR immutable_unaccent(lower(COALESCE(aoe."oemNumber", ''))) % immutable_unaccent(lower(${query}))
+            OR normalize_oem(COALESCE(p."oemNumber", '')) = normalize_oem(${query})
+            OR normalize_oem(COALESCE(aoe."oemNumber", '')) = normalize_oem(${query})
           )
           AND (
             similarity(immutable_unaccent(lower(p.name)), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD} OR
             similarity(immutable_unaccent(lower(p."catalogNumber")), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD} OR
             similarity(immutable_unaccent(lower(COALESCE(p."oemNumber", ''))), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD} OR
-            similarity(immutable_unaccent(lower(COALESCE(aoe."oemNumber", ''))), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD}
+            similarity(immutable_unaccent(lower(COALESCE(aoe."oemNumber", ''))), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD} OR
+            normalize_oem(COALESCE(p."oemNumber", '')) = normalize_oem(${query}) OR
+            normalize_oem(COALESCE(aoe."oemNumber", '')) = normalize_oem(${query})
           )
           ORDER BY (
             ${NAME_WEIGHT} * similarity(immutable_unaccent(lower(p.name)), immutable_unaccent(lower(${query}))) +
