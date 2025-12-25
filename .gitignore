@@ -74,3 +74,11 @@ __pycache__/
 *.pyc
 *.pyo
 *.log
+
+# TecDoc Import Scripts
+scripts/tecdoc-import/.env
+scripts/tecdoc-import/venv/
+scripts/tecdoc-import/logs/
+scripts/tecdoc-import/*.log
+scripts/tecdoc-import/*.csv
+scripts/tecdoc-import/*.sql*

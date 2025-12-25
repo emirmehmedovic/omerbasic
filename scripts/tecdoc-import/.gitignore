@@ -1,0 +1,24 @@
+# Environment
+.env
+venv/
+__pycache__/
+*.pyc
+
+# Logs
+*.log
+logs/
+
+# Data exports
+*.sql
+*.sql.gz
+*.sql.xz
+*.sql.bz2
+*.sql.zip
+*.sha256
+
+# Validation reports
+validation_report_*.csv
+enrichment_validation_*.log
+
+# Backups
+backup_*.sql
