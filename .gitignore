@@ -52,3 +52,25 @@ next-env.d.ts
 /tecdoc_images/
 /public/images/tecdoc/
 /public/images/images/
+
+# Image files - product images, uploads, etc.
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.webp
+*.bmp
+*.svg
+*.ico
+*.heic
+*.heif
+
+# Exception for public folder icons/logos (force add with git add -f if needed)
+!public/favicon.ico
+!public/*.svg
+
+# Python cache and logs
+__pycache__/
+*.pyc
+*.pyo
+*.log

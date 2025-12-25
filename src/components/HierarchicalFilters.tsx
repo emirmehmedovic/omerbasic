@@ -111,7 +111,7 @@ const SubcategoryList = ({
             <div className={`flex items-center w-full text-left rounded-xl text-sm transition-all duration-300 border ${
               isSelected
                 ? 'bg-gradient-to-r from-primary/10 via-primary-dark/10 to-primary/10 text-primary border-primary shadow-lg font-bold'
-                : 'text-slate-700 hover:bg-white/80 hover:text-slate-900 hover:shadow-md border-white/60 bg-white/70 backdrop-blur-sm'
+                : 'text-slate-700 hover:bg-gradient-to-r hover:from-[#0c1c3a]/10 hover:to-transparent hover:text-[#0c1c3a] hover:shadow-lg hover:shadow-[#0c1c3a]/20 hover:border-l-4 hover:border-l-[#0c1c3a] hover:translate-x-1 border-white/60 bg-white/70 backdrop-blur-sm'
             } ${depth === 0 ? 'px-3 py-2.5 lg:px-4 lg:py-3' : 'px-3 py-2'}`}>
               {/* Chevron za expand/collapse */}
               <button
@@ -163,8 +163,7 @@ const SubcategoryList = ({
 
   return (
     <div
-      className="subcategory-list max-h-[95vh] overflow-y-auto pr-2"
-      style={{ maxHeight: '95vh', overflowY: 'auto' }}
+      className="subcategory-list max-h-[95vh] lg:max-h-[120vh] overflow-y-auto pr-2"
       data-test="hf-subcat-v2"
     >
       {renderNodes(categories, 0)}
