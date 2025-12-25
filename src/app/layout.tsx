@@ -64,10 +64,6 @@ export const metadata: Metadata = {
     description:
       "TP Omerbašić – autodijelovi za putnička i teretna vozila, kamione, ADR opremu i opremu za autopraonice. Rosulje bb, Jelah (Tešanj). Dostava širom BiH.",
   },
-  icons: {
-    icon: "/images/omerbasic.png",
-    apple: "/images/omerbasic.png",
-  },
 };
 
 export default function RootLayout({
