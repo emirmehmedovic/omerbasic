@@ -62,9 +62,7 @@ export function newOrderMessage(order: OrderWithDetails): string {
   // Detalji naručioca
   const customerName = escapeHtml(order.customerName);
   const customerEmail = escapeHtml(order.customerEmail);
-  const customerPhone = escapeHtml(
-    (order.shippingAddress as any)?.phone || 'N/A'
-  );
+  const customerPhone = escapeHtml(order.customerPhone || 'N/A');
 
   // Shipping address
   const address = order.shippingAddress as any;
