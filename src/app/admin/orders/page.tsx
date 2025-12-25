@@ -17,38 +17,64 @@ const formatDate = (date: Date) => {
   }).format(date);
 };
 
-export default async function AdminOrdersPage({ searchParams }: { searchParams: Promise<{ status?: OrderStatus }> }) {
+export default async function AdminOrdersPage({ searchParams }: { searchParams: Promise<{ status?: OrderStatus; page?: string }> }) {
   const session = await getServerSession(authOptions);
 
   if (!session || session.user.role !== 'ADMIN') {
     redirect('/login');
   }
 
-  const { status } = await searchParams;
+  const { status, page: pageParam } = await searchParams;
+  const page = parseInt(pageParam || '1') || 1;
+  const limit = 50; // 50 narudžbi po stranici
+  const skip = (page - 1) * limit;
+
   const whereClause = status ? { status } : {};
 
   const getOrders = async () => {
-    const orders = await db.order.findMany({
-      where: whereClause,
-      orderBy: {
-        createdAt: 'desc',
-      },
-      include: {
-        user: true,
-        items: {
-          include: {
-            product: true,
+    const [orders, total] = await Promise.all([
+      db.order.findMany({
+        where: whereClause,
+        orderBy: {
+          createdAt: 'desc',
+        },
+        skip,
+        take: limit,
+        include: {
+          user: {
+            select: {
+              id: true,
+              name: true,
+              email: true,
+            },
+          },
+          items: {
+            select: {
+              id: true,
+              quantity: true,
+              price: true,
+              productId: true,
+              product: {
+                select: {
+                  id: true,
+                  name: true,
+                  imageUrl: true,
+                },
+              },
+            },
           },
         },
-      },
-    });
-    return orders;
+      }),
+      db.order.count({ where: whereClause }),
+    ]);
+    return { orders, total };
   };
 
   // Izvedeni tip za narudžbu s uključenim relacijama
-  type OrderWithIncludes = Prisma.PromiseReturnType<typeof getOrders>[0];
+  type OrderWithIncludes = Prisma.PromiseReturnType<typeof getOrders>['orders'][0];
 
-  const orders = await getOrders();
+  const { orders, total } = await getOrders();
+  const totalPages = Math.ceil(total / limit);
 
   return (
     <div className="p-6 space-y-6">
@@ -75,7 +101,12 @@ export default async function AdminOrdersPage({ searchParams }: { searchParams: 
       </div>
 
       {/* Orders Table */}
-      <OrdersTable orders={orders} />
+      <OrdersTable
+        orders={orders}
+        currentPage={page}
+        totalPages={totalPages}
+        total={total}
+      />
     </div>
   );
 }

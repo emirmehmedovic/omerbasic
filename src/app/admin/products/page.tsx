@@ -1,7 +1,9 @@
 import Link from 'next/link';
 import { unstable_cache } from 'next/cache';
 
-export const dynamic = 'force-dynamic';
+// Revalidate svakih 60 sekundi umjesto force-dynamic (bolje za performans)
+export const revalidate = 60;
+
 import { ProductsClient } from './_components/ProductsClient';
 import { db } from '@/lib/db';
 import type { Category } from '@/generated/prisma/client';

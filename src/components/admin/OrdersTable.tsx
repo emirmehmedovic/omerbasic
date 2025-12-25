@@ -13,6 +13,9 @@ type OrderWithIncludes = {
 
 interface OrdersTableProps {
   orders: OrderWithIncludes[];
+  currentPage?: number;
+  totalPages?: number;
+  total?: number;
 }
 
 const formatPrice = (price: number) => {
@@ -26,11 +29,17 @@ const formatDate = (date: Date) => {
   }).format(date);
 };
 
-export default function OrdersTable({ orders }: OrdersTableProps) {
+export default function OrdersTable({ orders, currentPage = 1, totalPages = 1, total = 0 }: OrdersTableProps) {
   const router = useRouter();
 
   const handleRowClick = (orderId: string) => {
     router.push(`/admin/orders/${orderId}`);
+  };
+
+  const handlePageChange = (newPage: number) => {
+    const url = new URL(window.location.href);
+    url.searchParams.set('page', String(newPage));
+    router.push(url.pathname + url.search);
   };
 
   return (
@@ -40,7 +49,7 @@ export default function OrdersTable({ orders }: OrdersTableProps) {
           <svg className="w-5 h-5 text-amber" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
           </svg>
-          Lista narudžbi ({orders.length})
+          Lista narudžbi ({total > 0 ? total : orders.length})
         </h3>
       </div>
       <div className="overflow-x-auto">
@@ -111,6 +120,31 @@ export default function OrdersTable({ orders }: OrdersTableProps) {
             </div>
             <p className="text-gray-600 font-medium">Nema narudžbi</p>
             <p className="text-gray-500 text-sm">Narudžbe će se ovdje prikazati kada budu kreirane</p>
+          </div>
+        </div>
+      )}
+
+      {/* Pagination */}
+      {totalPages > 1 && (
+        <div className="border-t border-amber/20 px-6 py-4 flex items-center justify-between">
+          <div className="text-sm text-gray-600">
+            Stranica {currentPage} od {totalPages}
+          </div>
+          <div className="flex gap-2">
+            <button
+              onClick={() => handlePageChange(currentPage - 1)}
+              disabled={currentPage === 1}
+              className="px-4 py-2 text-sm font-medium rounded-lg border border-amber/30 bg-white hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            >
+              Prethodna
+            </button>
+            <button
+              onClick={() => handlePageChange(currentPage + 1)}
+              disabled={currentPage === totalPages}
+              className="px-4 py-2 text-sm font-medium rounded-lg border border-amber/30 bg-white hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            >
+              Sljedeća
+            </button>
           </div>
         </div>
       )}
