@@ -53,6 +53,7 @@ export async function POST(req: Request) {
     const {
       customerName,
       customerEmail,
+      customerPhone,
       shippingAddress,
       cartItems,
       subtotal,
@@ -99,6 +100,7 @@ export async function POST(req: Request) {
         data: {
           customerName,
           customerEmail,
+          customerPhone,
           shippingAddress: shippingAddress,
           subtotal: subtotal,
           shippingCost: shippingCost,

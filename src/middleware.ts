@@ -26,9 +26,21 @@ export async function middleware(req: NextRequest) {
       limit = 20; // 20 writes per minute
     }
 
-    // Even stricter for sensitive endpoints
-    if (pathname.includes('/auth/') || pathname.includes('/admin/')) {
-      limit = 10; // 10 requests per minute for auth/admin
+    // Stricter limits for admin endpoints
+    if (pathname.includes('/admin/')) {
+      limit = 10; // 10 requests per minute for admin
+    }
+
+    // More lenient for auth endpoints (session checks are frequent and legitimate)
+    if (pathname.includes('/auth/')) {
+      // Separate limits for different auth endpoints
+      if (pathname.includes('/api/auth/session') || pathname.includes('/api/auth/csrf')) {
+        limit = 120; // 120 session/csrf checks per minute (2 per second)
+      } else if (pathname.includes('/api/auth/signin') || pathname.includes('/api/auth/callback')) {
+        limit = 30; // 30 login attempts per minute
+      } else {
+        limit = 60; // 60 other auth requests per minute
+      }
     }
 
     // Apply rate limit

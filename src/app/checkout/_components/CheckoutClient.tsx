@@ -45,6 +45,7 @@ export function CheckoutClient({ user }: CheckoutClientProps) {
     defaultValues: {
       customerName: user?.name || '',
       customerEmail: user?.email || '',
+      customerPhone: (user as any)?.phone || '',
       shippingAddress: {
         street: (user as any)?.address?.street || '',
         city: (user as any)?.address?.city || '',
@@ -161,13 +162,24 @@ export function CheckoutClient({ user }: CheckoutClientProps) {
                 </div>
                 <div>
                   <label htmlFor="customerEmail" className="block text-sm font-medium text-slate-600 mb-1">Email</label>
-                  <input 
-                    {...register('customerEmail')} 
-                    id="customerEmail" 
-                    type="email" 
+                  <input
+                    {...register('customerEmail')}
+                    id="customerEmail"
+                    type="email"
                     className="block w-full rounded-lg bg-white border border-slate-200 px-4 py-2.5 text-slate-900 focus:ring-2 focus:ring-sunfire-300 focus:border-sunfire-300"
                   />
                   {errors.customerEmail && <p className="text-sm text-red-600 mt-1">{errors.customerEmail.message}</p>}
+                </div>
+                <div>
+                  <label htmlFor="customerPhone" className="block text-sm font-medium text-slate-600 mb-1">Broj telefona</label>
+                  <input
+                    {...register('customerPhone')}
+                    id="customerPhone"
+                    type="tel"
+                    placeholder="+387 XX XXX XXX"
+                    className="block w-full rounded-lg bg-white border border-slate-200 px-4 py-2.5 text-slate-900 focus:ring-2 focus:ring-sunfire-300 focus:border-sunfire-300"
+                  />
+                  {errors.customerPhone && <p className="text-sm text-red-600 mt-1">{errors.customerPhone.message}</p>}
                 </div>
               </div>
             </div>

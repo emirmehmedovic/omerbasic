@@ -12,6 +12,9 @@ const addressSchema = z.object({
 export const checkoutFormSchema = z.object({
   customerName: z.string().min(3, 'Ime i prezime su obavezni.'),
   customerEmail: z.string().email('Unesite ispravnu email adresu.'),
+  customerPhone: z.string()
+    .min(6, 'Broj telefona mora imati najmanje 6 brojeva.')
+    .regex(/^[\d\s\+\-\(\)]+$/, 'Broj telefona može sadržavati samo brojeve, razmake, +, -, ( i ).'),
   shippingAddress: addressSchema,
   shippingMethod: z.enum(['PICKUP', 'COURIER']),
   paymentMethod: z.enum(['BANK_TRANSFER', 'CASH_ON_DELIVERY']),

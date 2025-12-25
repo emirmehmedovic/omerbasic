@@ -229,6 +229,10 @@ export default async function OrderDetailsPage({ params }: { params: Promise<{ o
                   <span className="font-medium text-gray-700">Email:</span>
                   <span className="ml-2 text-gray-900">{order.customerEmail}</span>
                 </p>
+                <p className="text-sm">
+                  <span className="font-medium text-gray-700">Telefon:</span>
+                  <span className="ml-2 text-gray-900">{order.customerPhone}</span>
+                </p>
               </div>
               
               <div className="pt-4 border-t border-amber/20">
