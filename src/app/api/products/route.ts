@@ -115,6 +115,10 @@ async function getTrigramPrefilterIdsForListing(query: string, limit: number): P
           OR immutable_unaccent(lower(COALESCE(aoe."oemNumber", ''))) % immutable_unaccent(lower(${query}))
           OR normalize_oem(COALESCE(p."oemNumber", '')) = normalize_oem(${query})
           OR normalize_oem(COALESCE(aoe."oemNumber", '')) = normalize_oem(${query})
+          OR immutable_unaccent(lower(p.name)) ILIKE immutable_unaccent(lower(${`%${query}%`}))
+          OR immutable_unaccent(lower(p."catalogNumber")) ILIKE immutable_unaccent(lower(${`%${query}%`}))
+          OR immutable_unaccent(lower(COALESCE(p."oemNumber", ''))) ILIKE immutable_unaccent(lower(${`%${query}%`}))
+          OR immutable_unaccent(lower(COALESCE(aoe."oemNumber", ''))) ILIKE immutable_unaccent(lower(${`%${query}%`}))
         )
         AND (
           similarity(immutable_unaccent(lower(p.name)), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD} OR
@@ -122,7 +126,11 @@ async function getTrigramPrefilterIdsForListing(query: string, limit: number): P
           similarity(immutable_unaccent(lower(COALESCE(p."oemNumber", ''))), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD} OR
           similarity(immutable_unaccent(lower(COALESCE(aoe."oemNumber", ''))), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD} OR
           normalize_oem(COALESCE(p."oemNumber", '')) = normalize_oem(${query}) OR
-          normalize_oem(COALESCE(aoe."oemNumber", '')) = normalize_oem(${query})
+          normalize_oem(COALESCE(aoe."oemNumber", '')) = normalize_oem(${query}) OR
+          immutable_unaccent(lower(p.name)) ILIKE immutable_unaccent(lower(${`%${query}%`})) OR
+          immutable_unaccent(lower(p."catalogNumber")) ILIKE immutable_unaccent(lower(${`%${query}%`})) OR
+          immutable_unaccent(lower(COALESCE(p."oemNumber", ''))) ILIKE immutable_unaccent(lower(${`%${query}%`})) OR
+          immutable_unaccent(lower(COALESCE(aoe."oemNumber", ''))) ILIKE immutable_unaccent(lower(${`%${query}%`}))
         )
         ORDER BY similarity_score DESC, p."createdAt" DESC
         LIMIT ${Number(limit)}
@@ -141,11 +149,17 @@ async function getTrigramPrefilterIdsForListing(query: string, limit: number): P
           immutable_unaccent(lower(p.name)) % immutable_unaccent(lower(${query}))
           OR immutable_unaccent(lower(p."catalogNumber")) % immutable_unaccent(lower(${query}))
           OR immutable_unaccent(lower(COALESCE(p."oemNumber", ''))) % immutable_unaccent(lower(${query}))
+          OR immutable_unaccent(lower(p.name)) ILIKE immutable_unaccent(lower(${`%${query}%`}))
+          OR immutable_unaccent(lower(p."catalogNumber")) ILIKE immutable_unaccent(lower(${`%${query}%`}))
+          OR immutable_unaccent(lower(COALESCE(p."oemNumber", ''))) ILIKE immutable_unaccent(lower(${`%${query}%`}))
         )
         AND (
           similarity(immutable_unaccent(lower(p.name)), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD} OR
           similarity(immutable_unaccent(lower(p."catalogNumber")), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD} OR
-          similarity(immutable_unaccent(lower(COALESCE(p."oemNumber", ''))), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD}
+          similarity(immutable_unaccent(lower(COALESCE(p."oemNumber", ''))), immutable_unaccent(lower(${query}))) > ${SIMILARITY_THRESHOLD} OR
+          immutable_unaccent(lower(p.name)) ILIKE immutable_unaccent(lower(${`%${query}%`})) OR
+          immutable_unaccent(lower(p."catalogNumber")) ILIKE immutable_unaccent(lower(${`%${query}%`})) OR
+          immutable_unaccent(lower(COALESCE(p."oemNumber", ''))) ILIKE immutable_unaccent(lower(${`%${query}%`}))
         )
         ORDER BY similarity_score DESC, p."createdAt" DESC
         LIMIT ${Number(limit)}
@@ -337,13 +351,19 @@ export async function GET(req: NextRequest) {
             },
           },
         },
-        orderBy: [
+        // Don't skip/take when using trigram prefilter - we need all results to sort by relevance
+        skip: (prefilteredIds && prefilteredIds.length > 0) ? 0 : skip,
+        take: (prefilteredIds && prefilteredIds.length > 0) ? undefined : limit,
+      };
+
+      // When using trigram prefilter, don't sort by date - we'll sort manually by relevance
+      if (!(prefilteredIds && prefilteredIds.length > 0)) {
+        productFindManyArgs.orderBy = [
           { createdAt: 'desc' },
           { id: 'desc' },
-        ],
-        skip,
-        take: limit,
-      };
+        ];
+      }
+
       logQuery('Product', 'findMany', productFindManyArgs);
       const countArgs: Parameters<typeof db.product.count>[0] = { where };
       logQuery('Product', 'count', countArgs);
@@ -352,15 +372,29 @@ export async function GET(req: NextRequest) {
         db.product.count(countArgs),
       ]);
 
+      // If we used trigram prefilter, sort results by the order of prefilteredIds (relevance)
+      let sortedItemsRaw = itemsRaw;
+      if (prefilteredIds && prefilteredIds.length > 0) {
+        const idToIndex = new Map(prefilteredIds.map((id, idx) => [id, idx]));
+        sortedItemsRaw = [...itemsRaw].sort((a, b) => {
+          const idxA = idToIndex.get(a.id) ?? Infinity;
+          const idxB = idToIndex.get(b.id) ?? Infinity;
+          return idxA - idxB;
+        });
+        // Apply pagination after sorting
+        sortedItemsRaw = sortedItemsRaw.slice(skip, skip + limit);
+      }
+      const itemsRawPaginated = sortedItemsRaw;
+
       // Apply featured/B2B pricing
-      const ids = itemsRaw.map(i => i.id);
+      const ids = itemsRawPaginated.map(i => i.id);
       const featured = ids.length ? await db.featuredProduct.findMany({
         where: { productId: { in: ids }, isActive: true },
       }) : [];
       const fMap = new Map<string, any>();
       for (const f of featured as any[]) fMap.set(f.productId, f);
       const now = new Date();
-      const applyPricing = (p: typeof itemsRaw[number]) => {
+      const applyPricing = (p: typeof itemsRawPaginated[number]) => {
         const f = fMap.get(p.id) as any;
         if (f && f.isDiscountActive) {
           if (f.startsAt && now < new Date(f.startsAt)) {
@@ -391,7 +425,7 @@ export async function GET(req: NextRequest) {
         }
         return p;
       };
-      const items = itemsRaw.map(applyPricing);
+      const items = itemsRawPaginated.map(applyPricing);
 
       // Označi egzaktne matchove i sortiraj ih na vrh
       const itemsWithExactMatches = markExactMatches(items, query);
@@ -454,12 +488,16 @@ export async function GET(req: NextRequest) {
           },
         },
       },
-      orderBy: [
-        { createdAt: 'desc' },
-        { id: 'desc' },
-      ],
       take: limit + 1, // fetch one extra to know if there's next page
     };
+
+    // When using trigram prefilter, don't sort by date - we'll sort manually by relevance
+    if (!(prefilteredIds && prefilteredIds.length > 0)) {
+      cursorFindManyArgs.orderBy = [
+        { createdAt: 'desc' },
+        { id: 'desc' },
+      ];
+    }
 
     if (cursor) {
       cursorFindManyArgs.cursor = { id: cursor };
@@ -469,12 +507,23 @@ export async function GET(req: NextRequest) {
     logQuery('Product', 'findMany', cursorFindManyArgs);
     const products = await db.product.findMany(cursorFindManyArgs);
 
+    // If we used trigram prefilter, sort results by the order of prefilteredIds (relevance)
+    let sortedProducts = products;
+    if (prefilteredIds && prefilteredIds.length > 0) {
+      const idToIndex = new Map(prefilteredIds.map((id, idx) => [id, idx]));
+      sortedProducts = [...products].sort((a, b) => {
+        const idxA = idToIndex.get(a.id) ?? Infinity;
+        const idxB = idToIndex.get(b.id) ?? Infinity;
+        return idxA - idxB;
+      });
+    }
+
     let nextCursor: string | null = null;
-    let items = products;
-    if (products.length > limit) {
-      const nextItem = products[products.length - 1];
+    let items = sortedProducts;
+    if (sortedProducts.length > limit) {
+      const nextItem = sortedProducts[sortedProducts.length - 1];
       nextCursor = nextItem.id;
-      items = products.slice(0, limit);
+      items = sortedProducts.slice(0, limit);
     }
 
     // Apply featured/B2B pricing
