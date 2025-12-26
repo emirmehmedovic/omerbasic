@@ -432,14 +432,13 @@ class TecDocAdvancedEnricher:
             attr_value = row[1] if row[1] else ''
             attr_type = row[2] if row[2] else ''
 
-            # Store simple value if no type, or include type info
-            if attr_type:
-                specs[attr_name] = {
-                    'value': attr_value,
-                    'type': attr_type
-                }
-            else:
+            # Kombinuj vrijednost i jedinicu u jedan string
+            if attr_type and attr_value:
+                specs[attr_name] = f"{attr_value} {attr_type}"
+            elif attr_value:
                 specs[attr_name] = attr_value
+            else:
+                specs[attr_name] = ''
 
         cursor.close()
         return specs
