@@ -63,8 +63,8 @@ class TecDocAdvancedEnricher:
         # TecDoc MySQL (read-only)
         self.tecdoc_conn = mysql.connector.connect(
             host="localhost",
-            user="root",
-            password="",
+            user="tecdoc_user",
+            password="tecdoc_password_2025",
             database="tecdoc1q2019",
             charset='utf8mb4'
         )
@@ -73,8 +73,8 @@ class TecDocAdvancedEnricher:
         self.postgres_conn = psycopg2.connect(
             host="localhost",
             database="omerbasicdb",
-            user="emir_mw",
-            password=""
+            user="postgres",
+            password="123456789EmIna!"
         )
 
         # Cache
