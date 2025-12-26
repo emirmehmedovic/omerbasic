@@ -101,6 +101,7 @@ def update_product_images(dry_run: bool = False) -> Dict:
         'total_images': 0,
         'products_found': 0,
         'products_updated': 0,
+        'products_skipped': 0,
         'products_not_found': 0,
         'errors': []
     }
@@ -144,6 +145,14 @@ def update_product_images(dry_run: bool = False) -> Dict:
 
             # Prikaži info
             current_image = product['imageUrl']
+
+            # PROVJERA: Preskači proizvode koji već imaju sliku
+            if current_image:
+                results['products_skipped'] += 1
+                if dry_run:
+                    print(f"[SKIPPED] SKU: {sku} - već ima sliku: {current_image[:50]}")
+                continue
+
             if dry_run:
                 print(f"\n[DRY RUN] SKU: {sku}")
                 print(f"  Proizvod: {product['name'][:50]}")
@@ -202,6 +211,7 @@ def main():
     print(f"  Ukupno slika: {dry_results['total_images']}")
     print(f"  SKU-ova sa slikama: {dry_results['products_found'] + dry_results['products_not_found']}")
     print(f"  Proizvoda pronađeno: {dry_results['products_found']}")
+    print(f"  Proizvoda već ima sliku (preskočeno): {dry_results['products_skipped']}")
     print(f"  Proizvoda bi se ažuriralo: {dry_results['products_updated']}")
     print(f"  SKU-ova bez proizvoda: {dry_results['products_not_found']}")
 
@@ -233,6 +243,7 @@ def main():
 
     print(f"\n✅ Ažuriranje završeno!")
     print(f"  Proizvoda ažurirano: {results['products_updated']}")
+    print(f"  Proizvoda preskočeno (već imaju sliku): {results['products_skipped']}")
     print(f"  SKU-ova bez proizvoda: {results['products_not_found']}")
 
     if results['errors']:
