@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { ColumnDef } from '@tanstack/react-table';
-import { ArrowUpDown, MoreHorizontal, Settings, PencilLine, Check, X, Loader2, RefreshCcw } from 'lucide-react';
+import { ArrowUpDown, MoreHorizontal, Settings, PencilLine, Check, X, Loader2, RefreshCcw, ImagePlus, Trash } from 'lucide-react';
 import OptimizedImage from '@/components/OptimizedImage';
 import Link from 'next/link';
 import { toast } from 'react-hot-toast';
@@ -87,22 +87,122 @@ export const columns: ColumnDef<ProductWithCategory>[] = [
       );
     },
     cell: ({ row }) => {
-      const imageUrl = row.getValue('imageUrl') as string;
+      const product = row.original;
+      const initialImageUrl = (row.getValue('imageUrl') as string) || '';
+      const [imageUrl, setImageUrl] = React.useState<string>(initialImageUrl);
+      const [saving, setSaving] = React.useState(false);
+      const fileInputRef = React.useRef<HTMLInputElement | null>(null);
+
+      const persistImageUrl = async (nextUrl: string) => {
+        setSaving(true);
+        try {
+          await axios.patch(`/api/products/${product.id}`, { imageUrl: nextUrl });
+          product.imageUrl = nextUrl || null;
+          setImageUrl(nextUrl);
+          toast.success(nextUrl ? 'Slika ažurirana.' : 'Slika uklonjena.');
+        } catch (error) {
+          console.error('Error updating product image', error);
+          toast.error('Greška pri ažuriranju slike.');
+        } finally {
+          setSaving(false);
+        }
+      };
+
+      const onPickFile = () => {
+        if (saving) return;
+        fileInputRef.current?.click();
+      };
+
+      const onRemove = async () => {
+        if (!imageUrl) return;
+        const confirmed = window.confirm('Ukloniti sliku za ovaj proizvod?');
+        if (!confirmed) return;
+        await persistImageUrl('');
+      };
+
+      const onFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+        const file = event.target.files?.[0];
+        if (!file) return;
+        setSaving(true);
+        const formData = new FormData();
+        formData.append('file', file);
+        try {
+          const res = await axios.post('/api/upload', formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+            },
+          });
+          const url = String(res.data?.url || '');
+          if (!url) throw new Error('Upload nije vratio URL');
+          await axios.patch(`/api/products/${product.id}`, { imageUrl: url });
+          product.imageUrl = url;
+          setImageUrl(url);
+          toast.success('Slika ažurirana.');
+        } catch (error) {
+          console.error('Error uploading/updating product image', error);
+          toast.error('Greška pri uploadu slike.');
+        } finally {
+          if (fileInputRef.current) fileInputRef.current.value = '';
+          setSaving(false);
+        }
+      };
+
       return (
-        <div className="relative h-12 w-12 rounded-lg overflow-hidden bg-gray-100 border border-gray-200">
+        <div className="group relative h-20 w-20 rounded-2xl overflow-hidden bg-gray-100 border border-gray-200">
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept="image/*"
+            className="hidden"
+            onChange={onFileChange}
+            disabled={saving}
+          />
+
           {imageUrl ? (
-            <OptimizedImage
-              src={imageUrl}
-              alt={row.original.name}
-              fill
-              className="object-cover"
-            />
+            <>
+              <OptimizedImage
+                src={imageUrl}
+                alt={row.original.name}
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity bg-black/45 flex items-center justify-center gap-2">
+                <Button
+                  type="button"
+                  size="icon"
+                  variant="secondary"
+                  onClick={onPickFile}
+                  disabled={saving}
+                  className="h-9 w-9 bg-white/95 hover:bg-white text-gray-900"
+                >
+                  {saving ? <Loader2 className="h-4.5 w-4.5 animate-spin" /> : <ImagePlus className="h-4.5 w-4.5" />}
+                </Button>
+                <Button
+                  type="button"
+                  size="icon"
+                  variant="destructive"
+                  onClick={onRemove}
+                  disabled={saving}
+                  className="h-9 w-9 opacity-0 group-hover:opacity-100 transition-opacity"
+                >
+                  <Trash className="h-4.5 w-4.5" />
+                </Button>
+              </div>
+            </>
           ) : (
-            <div className="flex items-center justify-center h-full">
-              <svg className="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-              </svg>
-            </div>
+            <button
+              type="button"
+              onClick={onPickFile}
+              disabled={saving}
+              className="flex items-center justify-center h-full w-full bg-transparent border-2 border-transparent transition-colors group-hover:bg-white/60 group-hover:border-dashed group-hover:border-gray-300"
+              aria-label="Dodaj sliku"
+            >
+              {saving ? (
+                <Loader2 className="h-7 w-7 animate-spin text-gray-600" />
+              ) : (
+                <ImagePlus className="h-7 w-7 text-gray-700 invisible group-hover:visible" />
+              )}
+            </button>
           )}
         </div>
       );

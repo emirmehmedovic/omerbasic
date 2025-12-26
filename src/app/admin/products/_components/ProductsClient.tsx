@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { columns, ProductWithCategory } from './columns';
 import { DataTable } from './data-table';
 import type { CategoryWithChildren } from '../page';
@@ -21,14 +21,10 @@ export const ProductsClient = ({ categories }: ProductsClientProps) => {
   const [inStockOnly, setInStockOnly] = useState<boolean>(false);
   const currentControllerRef = useRef<AbortController | null>(null);
 
-  const baseParams = useMemo(() => {
-    const p = new URLSearchParams();
-    if (q && q.trim().length > 0) p.set('q', q.trim());
-    if (categoryId) p.set('categoryId', categoryId);
-    return p;
-  }, [q, categoryId]);
+  // Use a ref to track if this is a filter change (should reset to page 1) or a page change
+  const filterVersionRef = useRef(0);
 
-  const fetchPage = async (targetPage: number) => {
+  const fetchProducts = async (targetPage: number) => {
     // cancel previous in-flight request
     if (currentControllerRef.current) {
       currentControllerRef.current.abort();
@@ -36,10 +32,12 @@ export const ProductsClient = ({ categories }: ProductsClientProps) => {
     const controller = new AbortController();
     currentControllerRef.current = controller;
 
-    const params = new URLSearchParams(baseParams.toString());
+    const params = new URLSearchParams();
+    if (q && q.trim().length > 0) params.set('q', q.trim());
+    if (categoryId) params.set('categoryId', categoryId);
+    params.set('includeOutOfStock', inStockOnly ? 'false' : 'true');
     params.set('limit', String(PAGE_SIZE));
     params.set('page', String(targetPage));
-    params.set('includeOutOfStock', inStockOnly ? 'false' : 'true');
 
     const url = `/api/products?${params}`;
 
@@ -47,9 +45,8 @@ export const ProductsClient = ({ categories }: ProductsClientProps) => {
       try {
         return await fetch(url, { signal: controller.signal });
       } catch (e: any) {
-        if (e?.name === 'AbortError') throw e; // do not retry aborts
+        if (e?.name === 'AbortError') throw e;
         if (n <= 0) throw e;
-        // backoff: 200ms, 400ms
         const delay = (3 - n) * 200 + 200;
         await new Promise(r => setTimeout(r, delay));
         return attempt(n - 1);
@@ -61,54 +58,60 @@ export const ProductsClient = ({ categories }: ProductsClientProps) => {
     const data = await res.json();
     const hdrTotalPages = parseInt(res.headers.get('X-Total-Pages') || '1') || 1;
     const hdrTotalCount = parseInt(res.headers.get('X-Total-Count') || '0') || 0;
-    const hdrPage = parseInt(res.headers.get('X-Page') || String(targetPage)) || targetPage;
-    if (controller.signal.aborted) return; // ignore setState after abort
+    
+    if (controller.signal.aborted) return;
+    
     setItems(data);
     setTotalPages(hdrTotalPages);
     setTotalCount(hdrTotalCount);
-    setPage(hdrPage);
+    setPage(targetPage);
   };
 
+  // Effect for initial load and filter changes - always fetches page 1
   useEffect(() => {
+    filterVersionRef.current += 1;
     let mounted = true;
+    
     (async () => {
       setLoading(true);
       try {
-        await fetchPage(1);
+        await fetchProducts(1);
       } catch (e) {
         if ((e as any)?.name !== 'AbortError') console.error(e);
       } finally {
         if (mounted) setLoading(false);
       }
     })();
+    
     return () => {
       mounted = false;
       if (currentControllerRef.current) currentControllerRef.current.abort();
     };
-  }, [baseParams.toString(), inStockOnly]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [q, categoryId, inStockOnly]);
 
   const onSearch = (query: string) => {
     setQ(query);
-    setPage(1);
   };
 
   const onCategoryChange = (id: string) => {
     setCategoryId(id);
-    setPage(1);
   };
 
   const onInStockChange = (value: boolean) => {
     setInStockOnly(value);
-    setPage(1);
   };
 
   const onPageChange = async (next: number) => {
-    if (next < 1 || next > totalPages) return;
+    if (next < 1 || next > totalPages || next === page) return;
+    setPage(next); // Optimistically update page number immediately
     setLoading(true);
     try {
-      await fetchPage(next);
+      await fetchProducts(next);
     } catch (e) {
-      console.error(e);
+      if ((e as any)?.name !== 'AbortError') {
+        console.error('[ProductsClient] Error changing page:', e);
+      }
     } finally {
       setLoading(false);
     }
