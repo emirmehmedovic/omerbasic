@@ -851,14 +851,13 @@ if __name__ == "__main__":
     enricher = TecDocAdvancedEnricher()
 
     try:
-        # DOPUNA: Proizvodi koji već imaju tecdocArticleId (dodaj OEM, EAN, Specs)
-        logging.info("Starting ENRICHMENT - Products with tecdocArticleId (add OEM numbers)")
-        enricher.run_batch(limit=100, offset=0, filter_mode='has_tecdoc')
+        # FAZA 1: Proizvodi koji već imaju tecdocArticleId (dodaj OEM, EAN, Specs)
+        logging.info("PHASE 1: Enriching products with tecdocArticleId (add OEM/EAN/Specs)")
+        enricher.run_batch(limit=10000, offset=0, filter_mode='has_tecdoc')
 
-        # Alternativno:
-        # enricher.run_batch(limit=50, offset=0, filter_mode='no_tecdoc')  # Matchaj nove
-        # enricher.run_batch(limit=50, offset=0, filter_mode='has_ean')  # Samo sa EAN
-        # enricher.run_batch(limit=10000, offset=0, filter_mode='all')  # SVE
+        # FAZA 2: Matchaj nove proizvode bez tecdocArticleId
+        logging.info("\nPHASE 2: Matching NEW products without tecdocArticleId")
+        enricher.run_batch(limit=25000, offset=0, filter_mode='no_tecdoc')
 
     except Exception as e:
         logging.error(f"FATAL ERROR: {str(e)}")
