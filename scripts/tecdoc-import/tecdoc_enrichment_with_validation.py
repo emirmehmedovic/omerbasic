@@ -789,8 +789,8 @@ class TecDocEnricherWithValidation:
 
 if __name__ == "__main__":
     validator = TecDocEnricherWithValidation(
-        min_confidence=85,      # Minimum 85% confidence
-        min_quality_score=70    # Minimum 70% quality score
+        min_confidence=75,      # Minimum 75% confidence (sniženo sa 85%)
+        min_quality_score=60    # Minimum 60% quality score (sniženo sa 70%)
     )
 
     try:
@@ -798,7 +798,7 @@ if __name__ == "__main__":
         logging.info("Starting VALIDATION RUN (DRY MODE)")
 
         validator.validate_batch(
-            limit=20,              # Test sa 20 proizvoda
+            limit=100,             # Test sa 100 proizvoda (povećano sa 20)
             offset=0,
             filter_mode='no_tecdoc'  # Proizvodi bez TecDoc ID
         )
