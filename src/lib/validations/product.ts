@@ -98,7 +98,7 @@ export const productApiSchema = productFormSchema.extend({
         return isNaN(num) ? null : num;
       })
   ),
-  stock: z.coerce.number().int().min(0, { message: 'Zalihe ne mogu biti negativne.' }).default(0),
+  stock: z.coerce.number().int().min(0, { message: 'Zalihe ne mogu biti negativne.' }).optional(),
   lowStockThreshold: z.preprocess(
     (val) => (val === null || val === undefined) ? '' : String(val),
     z.string().optional().transform((val) => {

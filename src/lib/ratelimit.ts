@@ -28,6 +28,9 @@ interface Bucket {
 // In-memory fallback (only for development or when Redis is not configured)
 const buckets = new Map<string, Bucket>();
 
+// Track if we've already logged Redis error to avoid spam
+let redisErrorLogged = false;
+
 // Redis client (lazy loaded)
 let redis: any = null;
 
@@ -102,7 +105,11 @@ async function rateLimitRedis(key: string, limit: number, windowMs: number): Pro
     const remaining = Math.max(0, limit - count - 1);
     return { ok: true, remaining, resetInMs: windowMs };
   } catch (error) {
-    console.error('[RATELIMIT] Redis error, falling back to in-memory:', error);
+    // Only log Redis error once to avoid spam
+    if (!redisErrorLogged) {
+      console.error('[RATELIMIT] Redis error, falling back to in-memory. Further errors will be suppressed.');
+      redisErrorLogged = true;
+    }
     return rateLimitMemory(key, limit, windowMs);
   }
 }
