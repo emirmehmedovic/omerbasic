@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { ColumnDef } from '@tanstack/react-table';
-import { ArrowUpDown, MoreHorizontal, Settings, PencilLine, Check, X, Loader2, RefreshCcw, ImagePlus, Trash } from 'lucide-react';
+import { ArrowUpDown, MoreHorizontal, Settings, PencilLine, Check, X, Loader2, RefreshCcw, ImagePlus, Trash, Copy } from 'lucide-react';
 import OptimizedImage from '@/components/OptimizedImage';
 import Link from 'next/link';
 import { toast } from 'react-hot-toast';
@@ -21,11 +21,50 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { formatPrice } from '@/lib/utils';
-import type { Product, Category } from '@/generated/prisma/client';
+import type { Product, Category, ArticleOENumber } from '@/generated/prisma/client';
 
 export interface ProductWithCategory extends Product {
   category: Category;
+  articleOENumbers?: ArticleOENumber[];
 }
+
+// Helper component for copyable text cell
+const CopyableCell = ({ value, label }: { value: string | null | undefined; label: string }) => {
+  const [copied, setCopied] = React.useState(false);
+
+  const handleCopy = async () => {
+    if (!value) return;
+    try {
+      await navigator.clipboard.writeText(value);
+      setCopied(true);
+      toast.success(`${label} kopiran`);
+      setTimeout(() => setCopied(false), 1500);
+    } catch (error) {
+      toast.error('Greška pri kopiranju');
+    }
+  };
+
+  if (!value) {
+    return <span className="text-gray-400 text-sm">—</span>;
+  }
+
+  return (
+    <div className="flex items-center gap-1.5 group">
+      <span className="text-gray-900 text-sm font-mono truncate max-w-[120px]" title={value}>
+        {value}
+      </span>
+      <Button
+        size="icon"
+        variant="ghost"
+        onClick={handleCopy}
+        className="h-6 w-6 opacity-0 group-hover:opacity-100 transition-opacity text-gray-400 hover:text-gray-700"
+        title={`Kopiraj ${label.toLowerCase()}`}
+      >
+        {copied ? <Check className="h-3.5 w-3.5 text-green-600" /> : <Copy className="h-3.5 w-3.5" />}
+      </Button>
+    </div>
+  );
+};
 
 const onDelete = async (id: string, router: ReturnType<typeof useRouter>) => {
   if (window.confirm('Jeste li sigurni da želite obrisati ovaj proizvod?')) {
@@ -308,6 +347,44 @@ export const columns: ColumnDef<ProductWithCategory>[] = [
           </Button>
         </div>
       );
+    },
+  },
+  {
+    accessorKey: 'catalogNumber',
+    header: () => (
+      <div className="text-gray-700 font-medium">
+        Kat. broj
+      </div>
+    ),
+    cell: ({ row }) => {
+      const catalogNumber = row.original.catalogNumber;
+      return <CopyableCell value={catalogNumber} label="Kataloški broj" />;
+    },
+  },
+  {
+    id: 'oemNumber',
+    header: () => (
+      <div className="text-gray-700 font-medium">
+        OEM broj
+      </div>
+    ),
+    cell: ({ row }) => {
+      const product = row.original;
+      // First try articleOENumbers array, then fall back to oemNumber field
+      const firstOem = product.articleOENumbers?.[0]?.oemNumber || product.oemNumber;
+      return <CopyableCell value={firstOem} label="OEM broj" />;
+    },
+  },
+  {
+    accessorKey: 'sku',
+    header: () => (
+      <div className="text-gray-700 font-medium">
+        SKU
+      </div>
+    ),
+    cell: ({ row }) => {
+      const sku = row.original.sku;
+      return <CopyableCell value={sku} label="SKU" />;
     },
   },
   {
