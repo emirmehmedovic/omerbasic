@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { ColumnDef } from '@tanstack/react-table';
-import { ArrowUpDown, MoreHorizontal, Settings, PencilLine, Check, X, Loader2, RefreshCcw, ImagePlus, Trash, Copy } from 'lucide-react';
+import { ArrowUpDown, Settings, PencilLine, Check, X, Loader2, RefreshCcw, ImagePlus, Trash, Copy, Pencil, Trash2 } from 'lucide-react';
 import OptimizedImage from '@/components/OptimizedImage';
 import Link from 'next/link';
 import { toast } from 'react-hot-toast';
@@ -12,14 +12,6 @@ import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
 import { formatPrice } from '@/lib/utils';
 import type { Product, Category, ArticleOENumber } from '@/generated/prisma/client';
 
@@ -200,6 +192,7 @@ export const columns: ColumnDef<ProductWithCategory>[] = [
           {imageUrl ? (
             <>
               <OptimizedImage
+                key={imageUrl}
                 src={imageUrl}
                 alt={row.original.name}
                 fill
@@ -468,50 +461,56 @@ export const columns: ColumnDef<ProductWithCategory>[] = [
   },
   {
     id: 'actions',
-    header: ({ column }) => {
-      return (
-        <div className="text-gray-700 font-medium">
-          Akcije
-        </div>
-      );
-    },
+    header: () => (
+      <div className="text-gray-700 font-medium">
+        Akcije
+      </div>
+    ),
     cell: ({ row }) => {
       const product = row.original;
       const router = useRouter();
 
       return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-                      <Button variant="ghost" className="h-8 w-8 p-0 text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-all duration-200">
-            <span className="sr-only">Otvori meni</span>
-            <MoreHorizontal className="h-4 w-4" />
+        <div className="flex items-center gap-1">
+          <Link href={`/admin/products/${product.id}`}>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="h-8 w-8 text-gray-500 hover:text-blue-600 hover:bg-blue-50"
+              title="Uredi proizvod"
+            >
+              <Pencil className="h-4 w-4" />
+            </Button>
+          </Link>
+          <Link href={`/admin/products/${product.id}/attributes`}>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="h-8 w-8 text-gray-500 hover:text-purple-600 hover:bg-purple-50"
+              title="Atributi i reference"
+            >
+              <Settings className="h-4 w-4" />
+            </Button>
+          </Link>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="h-8 w-8 text-gray-500 hover:text-amber-600 hover:bg-amber-50"
+            title="Regeneriši slug"
+            onClick={() => onRegenerateSlug(product.id, router)}
+          >
+            <RefreshCcw className="h-4 w-4" />
           </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className="bg-white/95 backdrop-blur-sm border-gray-200 rounded-xl shadow-xl">
-            <DropdownMenuLabel className="text-gray-700">Akcije</DropdownMenuLabel>
-            <DropdownMenuItem asChild>
-              <Link href={`/admin/products/${product.id}`} className="text-gray-700">Uredi</Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem asChild>
-              <Link href={`/admin/products/${product.id}/attributes`} className="flex items-center text-gray-700">
-                <Settings className="h-4 w-4 mr-2" /> Atributi i reference
-              </Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem
-              onClick={() => onRegenerateSlug(product.id, router)}
-              className="flex items-center text-gray-700"
-            >
-              <RefreshCcw className="h-4 w-4 mr-2" /> Regeneriši slug
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem
-              className="text-red-600 focus:text-red-600 focus:bg-red-50 hover:text-red-700"
-              onClick={() => onDelete(product.id, router)}
-            >
-              Obriši
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="h-8 w-8 text-gray-500 hover:text-red-600 hover:bg-red-50"
+            title="Obriši proizvod"
+            onClick={() => onDelete(product.id, router)}
+          >
+            <Trash2 className="h-4 w-4" />
+          </Button>
+        </div>
       );
     },
   },

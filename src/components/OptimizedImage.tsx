@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 interface OptimizedImageProps {
   src: string;
@@ -36,6 +36,11 @@ export default function OptimizedImage({
   priority,
 }: OptimizedImageProps) {
   const [imageError, setImageError] = useState(false);
+
+  // Reset error state when src changes
+  useEffect(() => {
+    setImageError(false);
+  }, [src]);
 
   // Sve lokalne slike se sada serviraju direktno iz /public
   // Next.js automatski optimizuje i kešira slike
