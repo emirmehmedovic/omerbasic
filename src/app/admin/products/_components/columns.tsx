@@ -14,6 +14,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
 import { formatPrice } from '@/lib/utils';
 import type { Product, Category, ArticleOENumber } from '@/generated/prisma/client';
+import { OemQuickEdit } from './OemQuickEdit';
 
 export interface ProductWithCategory extends Product {
   category: Category;
@@ -363,9 +364,20 @@ export const columns: ColumnDef<ProductWithCategory>[] = [
     ),
     cell: ({ row }) => {
       const product = row.original;
-      // First try articleOENumbers array, then fall back to oemNumber field
-      const firstOem = product.articleOENumbers?.[0]?.oemNumber || product.oemNumber;
-      return <CopyableCell value={firstOem} label="OEM broj" />;
+      const oemNumbers = (product.articleOENumbers || []).map(oem => ({
+        id: oem.id,
+        oemNumber: oem.oemNumber,
+        manufacturer: oem.manufacturer,
+      }));
+      
+      return (
+        <OemQuickEdit
+          productId={product.id}
+          productName={product.name}
+          initialOemNumbers={oemNumbers}
+          legacyOemNumber={product.oemNumber}
+        />
+      );
     },
   },
   {
