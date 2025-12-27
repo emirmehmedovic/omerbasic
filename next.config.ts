@@ -13,10 +13,13 @@ const nextConfig: NextConfig = {
         hostname: 'placehold.co',
       },
     ],
-    // Allow local images from /uploads directory
+    // Allow local images from /uploads directory and API route
     localPatterns: [
       {
         pathname: '/uploads/**',
+      },
+      {
+        pathname: '/api/uploads/**',
       },
     ],
     // Increase the device sizes for better responsive images

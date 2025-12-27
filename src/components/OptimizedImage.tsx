@@ -42,9 +42,11 @@ export default function OptimizedImage({
     setImageError(false);
   }, [src]);
 
-  // Sve lokalne slike se sada serviraju direktno iz /public
-  // Next.js automatski optimizuje i kešira slike
-  const imageSrc = src;
+  // Za dinamički uploadovane slike koristi API route umjesto direktnog pristupa
+  // jer Next.js kešira public folder u build time
+  const imageSrc = src.startsWith('/uploads/') 
+    ? `/api${src}` 
+    : src;
 
   const imageProps: any = {
     src: imageSrc,
