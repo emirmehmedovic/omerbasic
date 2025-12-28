@@ -110,6 +110,35 @@ class TecDocAdvancedEnricher:
 
         return normalized
 
+    def should_skip_oem_matching(self, oem: str) -> bool:
+        """
+        Provjeri da li je OEM vrijednost placeholder/invalid
+
+        Skipuje:
+        - Prazne vrijednosti
+        - Placeholder vrijednosti kao "0", "N/A", "NONE"
+        - Veoma kratke vrijednosti (< 3 karaktera)
+        """
+        if not oem:
+            return True
+
+        oem_clean = oem.strip().upper()
+
+        # Placeholder values
+        placeholder_values = ['0', 'N/A', 'NA', 'NONE', '-', '/', 'X', 'XX', 'XXX']
+        if oem_clean in placeholder_values:
+            return True
+
+        # Too short to be a valid OEM
+        if len(oem_clean) < 3:
+            return True
+
+        # All zeros (0, 00, 000, 0000, etc.)
+        if oem_clean.replace('0', '') == '':
+            return True
+
+        return False
+
     def normalize_oem(self, oem: str) -> List[str]:
         """
         Normalizacija OEM broja - vraća liste varijanti
@@ -256,8 +285,8 @@ class TecDocAdvancedEnricher:
         0. EAN exact (100%)
         1. Catalog exact (95%)
         2. Catalog normalized (85%)
-        3. OEM exact (80%)
-        4. OEM normalized (70%)
+        3. OEM exact (80%) - SAMO AKO JE VALID OEM
+        4. OEM normalized (70%) - SAMO AKO JE VALID OEM
         """
 
         # Nivo 0: EAN Exact Match
@@ -276,14 +305,19 @@ class TecDocAdvancedEnricher:
         if article_id:
             return MatchResult(article_id, 85, "catalog_normalized")
 
-        # Nivo 3: OEM Exact
-        if oem:
+        # Validiraj OEM prije matchinga
+        skip_oem = self.should_skip_oem_matching(oem)
+        if skip_oem and oem:
+            logging.debug(f"  → Skipping OEM matching for placeholder value: '{oem}'")
+
+        # Nivo 3: OEM Exact (samo ako je validan OEM)
+        if oem and not skip_oem:
             article_id = self.find_by_oem_exact(oem)
             if article_id:
                 return MatchResult(article_id, 80, "oem_exact")
 
-        # Nivo 4: OEM Normalized
-        if oem:
+        # Nivo 4: OEM Normalized (samo ako je validan OEM)
+        if oem and not skip_oem:
             article_id = self.find_by_oem_normalized(oem)
             if article_id:
                 return MatchResult(article_id, 70, "oem_normalized")

@@ -34,6 +34,7 @@ model Product {
   manufacturerId     String?
   tecdocArticleId    Int?
   tecdocProductId    Int?
+  tecdocEnrichedAt   DateTime?
   slug               String?                 @unique
   eanCode            String?
   articleOENumbers   ArticleOENumber[]
@@ -58,6 +59,7 @@ model Product {
   @@index([name])
   @@index([tecdocArticleId])
   @@index([tecdocProductId])
+  @@index([tecdocEnrichedAt])
   @@index([oemNumber])
   @@index([sku])
 }
