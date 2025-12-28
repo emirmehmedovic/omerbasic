@@ -6,7 +6,7 @@
  * and links them to products by SKU (only for products without images).
  */
 
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from '../src/generated/prisma';
 import * as fs from 'fs';
 import * as path from 'path';
 
