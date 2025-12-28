@@ -14,7 +14,7 @@ const prisma = new PrismaClient();
 
 // Paths
 const SOURCE_DIR = path.join(process.cwd(), 'spareto_images');
-const TARGET_DIR = path.join(process.cwd(), 'public', 'uploads');
+const TARGET_DIR = path.join(process.cwd(), 'public', 'uploads', 'products');
 
 interface ProcessStats {
   totalImages: number;
@@ -95,7 +95,7 @@ async function main() {
       stats.copied++;
 
       // Update product with image URL
-      const imageUrl = `/uploads/${imageFile}`;
+      const imageUrl = `/uploads/products/${imageFile}`;
 
       await prisma.product.update({
         where: { id: product.id },
