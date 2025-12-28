@@ -95,6 +95,31 @@ class TecDocAdvancedEnricher:
             'errors': 0
         }
 
+    def ensure_mysql_connection(self):
+        """
+        Provjerava MySQL konekciju i reconnect-uje ako je potrebno.
+        Sprječava MySQL connection timeout greške.
+        """
+        try:
+            # Pokušaj jednostavan query da testiraš konekciju
+            self.tecdoc_conn.ping(reconnect=True, attempts=3, delay=1)
+        except mysql.connector.Error as e:
+            logging.warning(f"MySQL connection lost, reconnecting... Error: {e}")
+            try:
+                self.tecdoc_conn = mysql.connector.connect(
+                    host="localhost",
+                    user="tecdoc_user",
+                    password="tecdoc_password_2025",
+                    database="tecdoc1q2019",
+                    charset='utf8mb4',
+                    autocommit=True,
+                    connection_timeout=300
+                )
+                logging.info("✅ MySQL reconnected successfully")
+            except mysql.connector.Error as reconnect_error:
+                logging.error(f"❌ Failed to reconnect to MySQL: {reconnect_error}")
+                raise
+
     # ===================================================================
     # NORMALIZACIJA FUNKCIJA
     # ===================================================================
@@ -590,6 +615,7 @@ class TecDocAdvancedEnricher:
                 "tecdocProductId" = %s,
                 "eanCode" = COALESCE(%s, "eanCode"),
                 "technicalSpecs" = %s,
+                "tecdocEnrichedAt" = NOW(),
                 "updatedAt" = NOW()
             WHERE id = %s
         """
@@ -703,6 +729,9 @@ class TecDocAdvancedEnricher:
 
         logging.info(f"Processing: {catalog} (ID: {product_id})")
 
+        # Osiguraj MySQL konekciju prije query-a
+        self.ensure_mysql_connection()
+
         try:
             # Ako već ima tecdocArticleId, samo dopuni podatke
             if existing_tecdoc_id:
@@ -771,11 +800,11 @@ class TecDocAdvancedEnricher:
         # Build query based on filter
         where_clause = ""
         if filter_mode == 'no_tecdoc':
-            where_clause = 'WHERE "tecdocArticleId" IS NULL'
+            where_clause = 'WHERE "tecdocArticleId" IS NULL AND "tecdocEnrichedAt" IS NULL'
         elif filter_mode == 'has_tecdoc':
-            where_clause = 'WHERE "tecdocArticleId" IS NOT NULL'
+            where_clause = 'WHERE "tecdocArticleId" IS NOT NULL AND "tecdocEnrichedAt" IS NULL'
         elif filter_mode == 'has_ean':
-            where_clause = 'WHERE "eanCode" IS NOT NULL AND "eanCode" != \'\''
+            where_clause = 'WHERE "eanCode" IS NOT NULL AND "eanCode" != \'\' AND "tecdocEnrichedAt" IS NULL'
 
         query = f"""
             SELECT
@@ -787,7 +816,7 @@ class TecDocAdvancedEnricher:
                 "tecdocArticleId"
             FROM "Product"
             {where_clause}
-            ORDER BY "updatedAt" ASC
+            ORDER BY id ASC
             LIMIT %s OFFSET %s
         """
 
