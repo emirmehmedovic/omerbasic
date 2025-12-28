@@ -69,7 +69,7 @@ async function main() {
       const sku = imageFile.split('_')[0];
 
       // Find product by SKU
-      const product = await prisma.product.findUnique({
+      const product = await prisma.product.findFirst({
         where: { sku },
         select: { id: true, sku: true, name: true, imageUrl: true }
       });
