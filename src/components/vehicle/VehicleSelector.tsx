@@ -444,13 +444,6 @@ export default function VehicleSelector({
     }
     if (selectedGenerationId) params.set("generationId", selectedGenerationId); else params.delete("generationId");
     if (selectedEngineId && selectedEngineId !== 'all') params.set("engineId", selectedEngineId); else params.delete("engineId");
-    // Heuristic: set categoryId based on selected brand type if known so products page doesn't need a second redirect
-    const selBrand = allBrands.find(b => b.id === selectedBrandId);
-    const PASSENGER_CATEGORY_ID = 'cmer01ok30001rqbwu15hej6j';
-    const COMMERCIAL_CATEGORY_ID = 'cmer01z6s0001rqcokur4f0bn';
-    if (selBrand?.type === 'PASSENGER') params.set('categoryId', PASSENGER_CATEGORY_ID);
-    else if (selBrand?.type === 'COMMERCIAL') params.set('categoryId', COMMERCIAL_CATEGORY_ID);
-    else if (!params.get('categoryId')) params.set('categoryId', PASSENGER_CATEGORY_ID);
     // Remove free-text query if present
     params.delete('q');
 

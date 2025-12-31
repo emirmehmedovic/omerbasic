@@ -63,29 +63,7 @@ export default function ProductsPageClient({ filterData }: ProductsPageClientPro
     }
   };
 
-  // If we land with a makeId but no categoryId, default to Passenger category (static ID)
-  // so VehicleSelector is shown and brand is preselected.
-  const [categoryAutoApplied, setCategoryAutoApplied] = useState(false);
-  useEffect(() => {
-    if (categoryAutoApplied) return;
-    if (!currentFilters.makeId || currentFilters.categoryId) return;
-    const PASSENGER_CATEGORY_ID = 'cmer01ok30001rqbwu15hej6j';
-    const updated: FilterState = { ...currentFilters, categoryId: PASSENGER_CATEGORY_ID };
-    setCurrentFilters(updated);
-    setVehicleResetKey((k) => k + 1);
-    const params = new URLSearchParams(searchParams);
-    params.set('makeId', String(updated.makeId));
-    params.set('brandId', String(updated.makeId || ''));
-    params.set('categoryId', String(PASSENGER_CATEGORY_ID));
-    if (updated.generationId) params.set('generationId', String(updated.generationId)); else params.delete('generationId');
-    if (updated.engineId) params.set('engineId', String(updated.engineId)); else params.delete('engineId');
-    if (updated.minPrice) params.set('minPrice', String(updated.minPrice)); else params.delete('minPrice');
-    if (updated.maxPrice) params.set('maxPrice', String(updated.maxPrice)); else params.delete('maxPrice');
-    if (updated.q) params.set('q', String(updated.q)); else params.delete('q');
-    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
-    setCategoryAutoApplied(true);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [categoryAutoApplied, currentFilters, filterData.categories, pathname, router]);
+  // Removed auto-categoryId logic - let users see all products for selected vehicle across all categories
 
   const handleRemoveFilter = (key: keyof FilterState) => {
     const updated: FilterState = { ...currentFilters } as any;
