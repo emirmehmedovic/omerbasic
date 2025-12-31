@@ -24,3 +24,17 @@ export const db =
 if (process.env.NODE_ENV !== 'production') {
   globalForPrisma.prisma = db;
 }
+
+// Graceful shutdown - disconnect Prisma on process termination
+// This prevents idle connections from staying open and consuming RAM
+if (process.env.NODE_ENV === 'production') {
+  const cleanup = async () => {
+    await db.$disconnect();
+    console.log('Prisma disconnected gracefully');
+    process.exit(0);
+  };
+
+  process.on('SIGINT', cleanup);
+  process.on('SIGTERM', cleanup);
+  process.on('beforeExit', cleanup);
+}
