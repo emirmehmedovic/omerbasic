@@ -262,37 +262,10 @@ export async function GET(req: Request) {
               referenceType: true
             }
           },
-          vehicleFitments: {
+          compatibleBrands: {
             select: {
               id: true,
-              generation: {
-                select: {
-                  id: true,
-                  name: true,
-                  model: {
-                    select: {
-                      id: true,
-                      name: true,
-                      brand: {
-                        select: {
-                          id: true,
-                          name: true
-                        }
-                      }
-                    }
-                  },
-                  vehicleEngines: {
-                    select: {
-                      id: true,
-                      engineType: true,
-                      enginePowerKW: true,
-                      enginePowerHP: true,
-                      engineCapacity: true,
-                      engineCode: true
-                    }
-                  }
-                }
-              }
+              name: true,
             }
           }
         },

@@ -330,25 +330,11 @@ export async function GET(req: NextRequest) {
               referenceType: true,
             },
           },
-          // Limited vehicleFitments for brand icons display (prevents N+1 queries)
-          vehicleFitments: {
-            take: 5, // Limit to 5 for performance - enough for brand icons
+          // Pre-computed compatible vehicle brands (optimized - no N+1 queries on 4.6M fitments table)
+          compatibleBrands: {
             select: {
               id: true,
-              isUniversal: true,
-              generation: {
-                select: {
-                  id: true,
-                  name: true,
-                  model: {
-                    select: {
-                      id: true,
-                      name: true,
-                      brand: { select: { id: true, name: true } },
-                    },
-                  },
-                },
-              },
+              name: true,
             },
           },
         },

@@ -6,12 +6,11 @@ export const revalidate = 60;
 
 export async function GET() {
   try {
-    // Optimized: removed vehicleFitments include to speed up featured products loading
-    // vehicleFitments can be fetched separately on product detail page if needed
+    // Optimized: Use pre-computed compatibleBrands instead of vehicleFitments for much faster loading
     const featuredProducts = await db.featuredProduct.findMany({
       include: {
-        product: { 
-          select: { 
+        product: {
+          select: {
             id: true,
             name: true,
             price: true,
@@ -27,7 +26,13 @@ export async function GET() {
                 imageUrl: true,
               }
             },
-          } 
+            compatibleBrands: {
+              select: {
+                id: true,
+                name: true,
+              }
+            },
+          }
         },
       },
       orderBy: {

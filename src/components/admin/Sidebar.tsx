@@ -4,7 +4,7 @@ import { Fragment } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Dialog, Transition } from '@headlessui/react';
-import { LayoutDashboard, ShoppingCart, Package, Users2, List, LogOut, X, Car, Tags, Search, BarChart, ClipboardList, FileText, MessageSquare, Star, MonitorPlay, Truck, Bell } from 'lucide-react';
+import { LayoutDashboard, ShoppingCart, Package, Users2, List, LogOut, X, Car, Tags, Search, BarChart, ClipboardList, FileText, MessageSquare, Star, MonitorPlay, Truck, Bell, RefreshCw } from 'lucide-react';
 import { signOut } from 'next-auth/react';
 import Image from 'next/image';
 
@@ -19,6 +19,7 @@ const sidebarItems = [
   { name: 'B2B korisnici', href: '/admin/users/b2b', icon: Users2 },
   { name: 'B2B grupe', href: '/admin/b2b-groups', icon: Users2 },
   { name: 'Vozila', href: '/admin/vehicles', icon: Car },
+  { name: 'Sync Vehicle Brands', href: '/admin/sync-brands', icon: RefreshCw },
   { name: 'Dobavljači', href: '/admin/suppliers', icon: Users2 },
   { name: 'Proizvodi dobavljača', href: '/admin/supplier-products', icon: Package },
   { name: 'Narudžbenice', href: '/admin/purchase-orders', icon: ClipboardList },

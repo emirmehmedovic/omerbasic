@@ -54,6 +54,10 @@ type Product = {
   stock?: number;
   isExactMatch?: boolean;
   articleOENumbers?: Array<{ id: string; oemNumber: string; manufacturer: string | null; referenceType: string | null }> | null;
+  compatibleBrands?: Array<{
+    id: string;
+    name: string;
+  }> | null;
   vehicleFitments?: Array<{
     id: string;
     isUniversal: boolean;
@@ -588,7 +592,7 @@ export default function ProductsResults({ filters, onClearAll, onPageChange, onQ
                       productOemNumber={p.oemNumber}
                       articleOENumbers={p.articleOENumbers}
                     />
-                    <ProductBrandSummary productId={p.id} vehicleFitments={p.vehicleFitments ?? undefined} maxInline={5} />
+                    <ProductBrandSummary productId={p.id} compatibleBrands={p.compatibleBrands ?? undefined} maxInline={5} />
                   </div>
                   <div className="text-left sm:text-right w-full sm:w-48 flex-shrink-0 mt-4 sm:mt-0 sm:ml-6">
                     <p className="text-xl font-bold bg-gradient-to-r from-[#E85A28] to-[#FF6B35] bg-clip-text text-transparent mb-3">{formatPrice(p.price)}</p>
@@ -868,7 +872,7 @@ export default function ProductsResults({ filters, onClearAll, onPageChange, onQ
                       productOemNumber={p.oemNumber}
                       articleOENumbers={p.articleOENumbers}
                     />
-                    <ProductBrandSummary productId={p.id} vehicleFitments={p.vehicleFitments ?? undefined} maxInline={5} />
+                    <ProductBrandSummary productId={p.id} compatibleBrands={p.compatibleBrands ?? undefined} maxInline={5} />
                   </div>
                   <div className="text-left sm:text-right w-full sm:w-48 flex-shrink-0 mt-4 sm:mt-0 sm:ml-6">
                     {p.originalPrice ? (
@@ -997,7 +1001,7 @@ export default function ProductsResults({ filters, onClearAll, onPageChange, onQ
                       productOemNumber={p.oemNumber}
                       articleOENumbers={p.articleOENumbers}
                     />
-                    <ProductBrandSummary productId={p.id} vehicleFitments={p.vehicleFitments ?? undefined} maxInline={5} />
+                    <ProductBrandSummary productId={p.id} compatibleBrands={p.compatibleBrands ?? undefined} maxInline={5} />
                   </div>
                   <div className="text-left sm:text-right w-full sm:w-48 flex-shrink-0 mt-4 sm:mt-0 sm:ml-6">
                     {p.originalPrice ? (

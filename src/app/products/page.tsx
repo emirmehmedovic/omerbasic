@@ -51,6 +51,12 @@ const getFilterData = unstable_cache(
                   imageUrl: true,
                 }
               },
+              compatibleBrands: {
+                select: {
+                  id: true,
+                  name: true,
+                }
+              },
             }
           },
         },

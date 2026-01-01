@@ -14,12 +14,16 @@ import ProductBrandSummary from '@/components/ProductBrandSummary';
 import ProductOEMSummary from '@/components/ProductOEMSummary';
 
 interface ProductCardProps {
-  product: Product & { category: Category | null } & { 
-    originalPrice?: number; 
-    pricingSource?: 'FEATURED' | 'B2B' | 'BASE'; 
-    isExactMatch?: boolean; 
+  product: Product & { category: Category | null } & {
+    originalPrice?: number;
+    pricingSource?: 'FEATURED' | 'B2B' | 'BASE';
+    isExactMatch?: boolean;
     tecdocArticleId?: number | null;
     articleOENumbers?: Array<{ id: string; oemNumber: string; manufacturer: string | null; referenceType: string | null }> | null;
+    compatibleBrands?: Array<{
+      id: string;
+      name: string;
+    }> | null;
     vehicleFitments?: Array<{
       id: string;
       isUniversal: boolean;
@@ -201,7 +205,7 @@ export const ProductCard = ({ product, compact = false, isLoading = false, onPro
         )}
 
         {/* Brand icons with hover for generations */}
-            {!compact && <ProductBrandSummary productId={product.id} vehicleFitments={product.vehicleFitments ?? undefined} maxInline={5} />}
+            {!compact && <ProductBrandSummary productId={product.id} compatibleBrands={product.compatibleBrands ?? undefined} maxInline={5} />}
 
         <div className={`flex items-end justify-between mt-auto border-t border-slate-200/60 ${compact ? 'pt-2' : 'pt-4'}`}>
           <div>

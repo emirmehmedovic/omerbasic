@@ -56,9 +56,15 @@ type VehicleFitment = {
   generation: VehicleGeneration;
 };
 
+type VehicleBrand = {
+  id: string;
+  name: string;
+};
+
 type ProductWithFitments = {
   id: string;
   vehicleFitments?: VehicleFitment[];
+  compatibleBrands?: VehicleBrand[];
 };
 
 const brandIconEntries = [
@@ -154,13 +160,15 @@ function groupByBrand(fitments: VehicleFitment[]): BrandGroup[] {
   return Array.from(map.values()).sort((a, b) => a.brandName.localeCompare(b.brandName));
 }
 
-export default function ProductBrandSummary({ 
-  productId, 
+export default function ProductBrandSummary({
+  productId,
   vehicleFitments,
-  maxInline = 5 
-}: { 
-  productId: string; 
+  compatibleBrands,
+  maxInline = 5
+}: {
+  productId: string;
   vehicleFitments?: VehicleFitment[];
+  compatibleBrands?: VehicleBrand[];
   maxInline?: number;
 }) {
   const [brands, setBrands] = useState<BrandGroup[] | null>(null);
@@ -175,15 +183,27 @@ export default function ProductBrandSummary({
     let alive = true;
     setBrands(null);
     setError(null);
-    
-    // If vehicleFitments are provided through props, use them (for featured products)
+
+    // OPTIMIZED: If compatibleBrands are provided (pre-computed from DB), use them directly
+    if (compatibleBrands !== undefined) {
+      const brandGroups: BrandGroup[] = compatibleBrands.map(brand => ({
+        brandKey: brand.id.toLowerCase(),
+        brandName: brand.name,
+        Icon: iconForBrand(brand.name),
+        generations: [], // No detailed generation info in listing view
+      }));
+      setBrands(brandGroups);
+      return;
+    }
+
+    // LEGACY: If vehicleFitments are provided through props, use them (for featured products)
     if (vehicleFitments !== undefined) {
       const grouped = groupByBrand(vehicleFitments);
       setBrands(grouped);
       return;
     }
-    
-    // Otherwise fetch from API (for regular product listings)
+
+    // FALLBACK: Otherwise fetch from API (for regular product listings)
     fetch(`/api/products/${productId}`)
       .then(async (res) => {
         if (!res.ok) throw new Error(await res.text());
@@ -191,15 +211,28 @@ export default function ProductBrandSummary({
       })
       .then((p: ProductWithFitments) => {
         if (!alive) return;
-        const grouped = groupByBrand(p.vehicleFitments || []);
-        setBrands(grouped);
+
+        // Try compatibleBrands first (optimized)
+        if (p.compatibleBrands) {
+          const brandGroups: BrandGroup[] = p.compatibleBrands.map(brand => ({
+            brandKey: brand.id.toLowerCase(),
+            brandName: brand.name,
+            Icon: iconForBrand(brand.name),
+            generations: [],
+          }));
+          setBrands(brandGroups);
+        } else {
+          // Fallback to vehicleFitments (legacy)
+          const grouped = groupByBrand(p.vehicleFitments || []);
+          setBrands(grouped);
+        }
       })
       .catch((e) => {
         if (!alive) return;
         setError(typeof e?.message === 'string' ? e.message : 'Greška pri učitavanju marki');
       });
     return () => { alive = false; };
-  }, [productId, vehicleFitments]);
+  }, [productId, vehicleFitments, compatibleBrands]);
 
   const inline = useMemo(() => {
     if (!brands || brands.length === 0) return [] as BrandGroup[];

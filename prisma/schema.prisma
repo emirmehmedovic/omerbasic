@@ -49,6 +49,7 @@ model Product {
   vehicleFitments    ProductVehicleFitment[]
   purchaseOrderItems PurchaseOrderItem[]
   supplierProducts   SupplierProduct[]
+  compatibleBrands   VehicleBrand[]
 
   @@index([manufacturerId])
   @@index([categoryId, isArchived, stock])
@@ -511,12 +512,13 @@ model PurchaseOrderComment {
 }
 
 model VehicleBrand {
-  id         String         @id @default(cuid())
-  name       String         @unique
-  type       VehicleType
-  externalId String?        @unique
-  source     String?
-  models     VehicleModel[]
+  id                 String         @id @default(cuid())
+  name               String         @unique
+  type               VehicleType
+  externalId         String?        @unique
+  source             String?
+  models             VehicleModel[]
+  compatibleProducts Product[]
 }
 
 model VehicleModel {

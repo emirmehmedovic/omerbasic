@@ -42,7 +42,15 @@ const getLatestProducts = unstable_cache(
     return db.product.findMany({
       take: 50,
       orderBy: { createdAt: 'desc' },
-      include: { category: true },
+      include: {
+        category: true,
+        compatibleBrands: {
+          select: {
+            id: true,
+            name: true,
+          }
+        },
+      },
     });
   },
   ['home-latest-products'],

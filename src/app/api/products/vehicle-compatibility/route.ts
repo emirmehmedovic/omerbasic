@@ -114,19 +114,11 @@ export async function GET(req: NextRequest) {
             name: true,
           },
         },
-        vehicleFitments: {
-          include: {
-            generation: {
-              include: {
-                model: {
-                  include: {
-                    brand: true,
-                  },
-                },
-              },
-            },
-            engine: true,
-          },
+        compatibleBrands: {
+          select: {
+            id: true,
+            name: true,
+          }
         },
       },
       orderBy: {
