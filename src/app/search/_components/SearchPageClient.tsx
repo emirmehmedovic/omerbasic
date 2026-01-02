@@ -180,6 +180,7 @@ export default function SearchPageClient({ filterData }: SearchPageClientProps) 
               filters={currentFilters} 
               onClearAll={handleClearAll} 
               onQueryChange={handleQueryChange}
+              source="search-page"
             />
           </div>
         </div>

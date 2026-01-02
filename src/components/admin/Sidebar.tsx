@@ -11,6 +11,7 @@ import Image from 'next/image';
 const sidebarItems = [
   { name: 'Dashboard', href: '/admin', icon: LayoutDashboard },
   { name: 'Statistika', href: '/admin/statistics', icon: BarChart },
+  { name: 'Pretrage', href: '/admin/search-logs', icon: Search },
   { name: 'Proizvodi', href: '/admin/products', icon: ShoppingCart },
   { name: 'Narudžbe', href: '/admin/orders', icon: Package },
   { name: 'Kategorije', href: '/admin/categories', icon: List },

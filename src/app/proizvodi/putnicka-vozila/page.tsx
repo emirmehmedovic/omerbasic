@@ -121,7 +121,7 @@ export default async function PassengerCarsHubPage() {
             <h2 className="text-2xl font-bold text-primary mb-4">
               Izdvojeni proizvodi za putnička vozila
             </h2>
-            <ProductsResults filters={{ categoryId }} />
+            <ProductsResults filters={{ categoryId }} source="passenger-hub" />
           </section>
         )}
       </div>

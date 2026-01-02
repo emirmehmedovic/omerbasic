@@ -1,13 +1,14 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, usePathname } from "next/navigation";
 import AdvancedProductFilter from "@/components/product/AdvancedProductFilter";
 import { ProductCard } from "@/components/ProductCard";
 import { resolveProductImage } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 import { FloatingChatButtons } from "@/components/ChatButtons";
+import { logSearchEvent } from "@/lib/analytics-client";
 // Lokalna definicija tipa za kategoriju
 interface Category {
   id: string;
@@ -108,6 +109,7 @@ interface AdvancedProductSearchClientProps {
 
 export default function AdvancedProductSearchClient({ categories }: AdvancedProductSearchClientProps) {
   const searchParams = useSearchParams();
+  const pathname = usePathname();
   
   // Inicijalno stanje filtera iz URL parametara
   const initialParams: FilterParams = {
@@ -136,7 +138,9 @@ export default function AdvancedProductSearchClient({ categories }: AdvancedProd
   const [searchResults, setSearchResults] = useState<SearchResults | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
+  const [currentParams, setCurrentParams] = useState<FilterParams>(initialParams);
   const cooldownUntilRef = useRef<number>(0);
+  const lastLoggedKeyRef = useRef<string | null>(null);
   
   // Funkcija za dohvaćanje rezultata pretrage
   const fetchSearchResults = async (params: FilterParams) => {
@@ -210,12 +214,14 @@ export default function AdvancedProductSearchClient({ categories }: AdvancedProd
     // Provjera ima li dovoljno parametara za pretragu
     const hasSearchParams = searchParams.toString().length > 0;
     if (hasSearchParams) {
+      setCurrentParams(initialParams);
       debouncedFetch(initialParams, 0);
     }
   }, []);
   
   // Handler za promjenu filtera
   const handleFilterChange = (params: FilterParams) => {
+    setCurrentParams(params);
     // Ako je upit prekratak, a nema drugih filtera, ne pozivati API
     const hasQuery = Boolean(params.query && params.query.trim().length >= 3);
     const hasOtherFilters = Boolean(
@@ -234,12 +240,42 @@ export default function AdvancedProductSearchClient({ categories }: AdvancedProd
     if (!searchResults) return;
     
     const updatedParams: FilterParams = {
-      ...initialParams,
+      ...currentParams,
       page: newPage,
     };
+    setCurrentParams(updatedParams);
     
     fetchSearchResults(updatedParams);
   };
+
+  useEffect(() => {
+    if (!searchResults || isLoading || error) return;
+
+    const signature = JSON.stringify({
+      query: currentParams.query ?? null,
+      params: currentParams,
+      total: searchResults.total,
+      page: searchResults.page,
+    });
+
+    if (lastLoggedKeyRef.current === signature) return;
+    lastLoggedKeyRef.current = signature;
+
+    logSearchEvent({
+      query: currentParams.query ?? null,
+      filters: {
+        categoryId: currentParams.categoryId ?? null,
+        minPrice: currentParams.minPrice ?? null,
+        maxPrice: currentParams.maxPrice ?? null,
+        crossReferenceNumber: currentParams.crossReferenceNumber ?? null,
+        vehicleGenerationId: currentParams.vehicleGenerationId ?? null,
+      },
+      resultsCount: searchResults.total,
+      page: searchResults.page,
+      path: pathname,
+      source: "advanced-search",
+    });
+  }, [searchResults, isLoading, error, currentParams, pathname]);
   
   // Renderiranje paginacije
   const renderPagination = () => {

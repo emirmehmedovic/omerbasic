@@ -243,7 +243,7 @@ export default async function AutodijeloviSeoPage({ params }: PageProps) {
         {listingFilters && (
           <section className="mt-10">
             <h2 className="text-2xl font-bold text-primary mb-4">Proizvodi iz ponude</h2>
-            <ProductsResults filters={listingFilters} />
+            <ProductsResults filters={listingFilters} source="seo-landing" />
           </section>
         )}
 

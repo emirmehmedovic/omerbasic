@@ -250,6 +250,7 @@ export default function ProductsPageClient({ filterData }: ProductsPageClientPro
                 const queryString = params.toString();
                 router.replace(queryString ? `${pathname}?${queryString}` : pathname, { scroll: false });
               }}
+              source="products-page"
             />
           </div>
         </div>

@@ -107,6 +107,22 @@ model Manufacturer {
   @@index([externalId])
 }
 
+model SearchLog {
+  id           String   @id @default(cuid())
+  createdAt    DateTime @default(now())
+  query        String?
+  filters      Json?
+  resultsCount Int?
+  page         Int?
+  path         String?
+  source       String?
+  userAgent    String?
+  clientIpHash String?
+
+  @@index([createdAt])
+  @@index([query])
+}
+
 model AttributeGroup {
   id         String              @id @default(cuid())
   name       String

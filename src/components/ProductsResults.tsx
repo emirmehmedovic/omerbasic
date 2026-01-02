@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import useSWR from 'swr';
 import { ProductCard } from "./ProductCard";
 import { LayoutGrid, List, Loader2 } from "lucide-react";
@@ -13,6 +13,7 @@ import { useCart } from '@/context/CartContext';
 import { toast } from 'react-hot-toast';
 import { resolveProductImage } from '@/lib/utils';
 import { fbEvent } from '@/lib/fbPixel';
+import { logSearchEvent } from '@/lib/analytics-client';
 
 // SWR fetcher that returns data with headers
 const productsFetcher = async (url: string) => {
@@ -99,9 +100,10 @@ interface Props {
   onClearAll?: () => void;
   onPageChange?: (page: number) => void;
   onQueryChange?: (query: string) => void;
+  source?: string;
 }
 
-export default function ProductsResults({ filters, onClearAll, onPageChange, onQueryChange }: Props) {
+export default function ProductsResults({ filters, onClearAll, onPageChange, onQueryChange, source }: Props) {
   const [view, setView] = useState<'grid' | 'list'>('list');
   const [localQuery, setLocalQuery] = useState<string>("");
   const [page, setPage] = useState<number>(() => {
@@ -112,7 +114,9 @@ export default function ProductsResults({ filters, onClearAll, onPageChange, onQ
   const PAGE_SIZE = 24;
   const { addToCart } = useCart();
   const router = useRouter();
+  const pathname = usePathname();
   const prefetchedProducts = useRef<Set<string>>(new Set());
+  const lastLoggedKeyRef = useRef<string | null>(null);
 
   // Prefetch product page on hover for faster navigation
   const handleProductHover = useCallback((productSlug: string | null, productId: string) => {
@@ -190,6 +194,48 @@ export default function ProductsResults({ filters, onClearAll, onPageChange, onQ
   // - Validating AND filters changed (we're fetching new search results, show loading instead of stale data)
   const loading = isLoading || (isValidating && filtersChanged);
   const error = swrError?.message ?? null;
+
+  useEffect(() => {
+    if (loading || error || noFilter) return;
+
+    const hasAnyFilter =
+      !!filters.q ||
+      !!filters.categoryId ||
+      !!filters.generationId ||
+      !!filters.engineId ||
+      !!filters.minPrice ||
+      !!filters.maxPrice;
+
+    if (!hasAnyFilter) return;
+
+    const signature = JSON.stringify({
+      q: filters.q ?? null,
+      categoryId: filters.categoryId ?? null,
+      generationId: filters.generationId ?? null,
+      engineId: filters.engineId ?? null,
+      minPrice: filters.minPrice ?? null,
+      maxPrice: filters.maxPrice ?? null,
+      page: effectivePage,
+    });
+
+    if (lastLoggedKeyRef.current === signature) return;
+    lastLoggedKeyRef.current = signature;
+
+    logSearchEvent({
+      query: filters.q ?? null,
+      filters: {
+        categoryId: filters.categoryId ?? null,
+        generationId: filters.generationId ?? null,
+        engineId: filters.engineId ?? null,
+        minPrice: filters.minPrice ?? null,
+        maxPrice: filters.maxPrice ?? null,
+      },
+      resultsCount: totalCount,
+      page: effectivePage,
+      path: pathname,
+      source: source ?? "products-results",
+    });
+  }, [loading, error, noFilter, filters, effectivePage, pathname, source, totalCount]);
 
   // Check if we should look for products in other categories
   // Only when: we have a query, we have a category filter, and no products found
