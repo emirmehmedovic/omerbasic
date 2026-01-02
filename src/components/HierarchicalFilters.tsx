@@ -729,7 +729,7 @@ export default function HierarchicalFilters({
                 className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm"
                 onClick={() => setMobileVehicleOpen(false)}
               />
-              <div className="absolute bottom-0 left-0 right-0 max-h-[85vh] rounded-t-3xl bg-gradient-to-br from-slate-50 via-slate-100 to-slate-200 shadow-2xl border-t border-white/60">
+              <div className="absolute bottom-0 left-0 right-0 max-h-[85vh] rounded-t-3xl bg-gradient-to-br from-slate-50 via-slate-100 to-slate-200 shadow-2xl border-t border-white/60 flex flex-col">
                 <div className="px-5 pt-4 pb-3 border-b border-white/50">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
@@ -748,7 +748,7 @@ export default function HierarchicalFilters({
                     </button>
                   </div>
                 </div>
-                <div className="px-5 pb-5 pt-4">
+                <div className="px-5 pb-5 pt-4 overflow-y-auto max-h-[70vh]">
                   <VehicleSelector 
                     key={`vehsel-mobile-${vehicleSelectorResetKey}-${filters.categoryId}`}
                     onVehicleSelect={(data) => {
