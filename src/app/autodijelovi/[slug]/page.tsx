@@ -13,7 +13,7 @@ import {
 export const revalidate = 60;
 
 type PageProps = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 };
 
 export async function generateStaticParams() {
@@ -21,7 +21,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const page = getSeoAutodijeloviPage(params.slug);
+  const { slug } = await params;
+  const page = getSeoAutodijeloviPage(slug);
   if (!page) {
     return {
       title: "Stranica nije pronađena | TP Omerbašić",
@@ -131,7 +132,8 @@ function getFaqItems(page: NonNullable<ReturnType<typeof getSeoAutodijeloviPage>
 }
 
 export default async function AutodijeloviSeoPage({ params }: PageProps) {
-  const page = getSeoAutodijeloviPage(params.slug);
+  const { slug } = await params;
+  const page = getSeoAutodijeloviPage(slug);
   if (!page) notFound();
 
   const categoryId = await resolveCategoryId(page.categoryPath);
