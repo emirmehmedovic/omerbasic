@@ -7,6 +7,7 @@ import ProductsResults from '@/components/ProductsResults';
 import { VehicleBrand } from '@/generated/prisma/client';
 import { Category } from '@/components/HierarchicalFilters';
 import { PageContainer } from '@/components/PageContainer';
+import { FloatingChatButtons } from '@/components/ChatButtons';
 
 interface SearchPageClientProps {
   filterData: {
@@ -142,10 +143,12 @@ export default function SearchPageClient({ filterData }: SearchPageClientProps) 
   return (
     <div className="min-h-screen bg-app relative">
       <PageContainer maxWidth="adaptive" padding="md" className="relative z-10">
-        <h1 className="text-3xl font-bold mb-4">
-          Rezultati pretrage za: <span className="text-orange-500">"{currentFilters.q || ''}"</span>
-        </h1>
-        <p className="text-slate-500 mb-8">Filtrirajte rezultate kako biste pronašli točno ono što trebate.</p>
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold mb-4">
+            Rezultati pretrage za: <span className="text-orange-500">"{currentFilters.q || ''}"</span>
+          </h1>
+          <p className="text-slate-500">Filtrirajte rezultate kako biste pronašli točno ono što trebate.</p>
+        </div>
 
         <div className="mb-8">
           <ClientHierarchicalFilters 
@@ -181,6 +184,7 @@ export default function SearchPageClient({ filterData }: SearchPageClientProps) 
           </div>
         </div>
       </PageContainer>
+      <FloatingChatButtons />
     </div>
   );
 }

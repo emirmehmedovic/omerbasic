@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useSession, signOut } from 'next-auth/react';
 import { useCart } from '@/context/CartContext';
 import Image from 'next/image';
-import { ShoppingCart, User, Package, LogOut, ChevronDown, Menu, Search } from 'lucide-react';
+import { ShoppingCart, User, Package, LogOut, ChevronDown, Menu, Search, Phone } from 'lucide-react';
 import { SearchBar } from './SearchBar';
 import { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
@@ -95,6 +95,14 @@ export function Navbar() {
 
             {/* Desni dio navigacije */}
             <div className="flex items-center space-x-4">
+            <a
+              href="tel:032666536"
+              className="hidden md:inline-flex items-center gap-2 rounded-xl px-2.5 py-1.5 text-xs font-semibold text-slate-700 whitespace-nowrap hover:bg-gradient-to-r hover:from-[#E85A28] hover:to-[#FF6B35] hover:text-white hover:shadow-lg transition-all duration-300 lg:px-3 lg:py-2 lg:text-sm"
+              aria-label="Pozovi 032/666-536"
+            >
+              <Phone className="h-4 w-4" />
+              032/666-536
+            </a>
             {/* Košarica - moderan dizajn */}
             <Link 
               href="/cart" 
@@ -217,6 +225,14 @@ export function Navbar() {
               <MobileNavLink href="/products" onClick={() => setMenuOpen(false)}>Proizvodi</MobileNavLink>
               <MobileNavLink href="/transporti" onClick={() => setMenuOpen(false)}>Transporti</MobileNavLink>
               <MobileNavLink href="/contact" onClick={() => setMenuOpen(false)}>Kontakt</MobileNavLink>
+              <a
+                href="tel:032666536"
+                className="flex items-center px-4 py-2.5 text-sm text-slate-700 hover:bg-gradient-to-r hover:from-[#E85A28] hover:to-[#FF6B35] hover:text-white rounded-xl transition-all duration-300 font-medium"
+                onClick={() => setMenuOpen(false)}
+                aria-label="Pozovi 032/666-536"
+              >
+                <Phone className="h-4 w-4 mr-3" /> 032/666-536
+              </a>
 
               {status === 'authenticated' && session.user.role === 'ADMIN' && (
                 <MobileNavLink href="/admin" onClick={() => setMenuOpen(false)}>Admin Panel</MobileNavLink>

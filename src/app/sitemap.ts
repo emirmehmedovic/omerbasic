@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next';
 import { db } from '@/lib/db';
+import { seoAutodijeloviSlugs } from '@/lib/seo-autodijelovi-pages';
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://tpomerbasic.ba';
 
@@ -25,11 +26,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/gume',
   ];
 
+  const seoModelPaths = seoAutodijeloviSlugs.map((slug) => `/autodijelovi/${slug}`);
+
   const staticEntries: MetadataRoute.Sitemap = staticPaths.map((path) => ({
     url: `${siteUrl}${path}`,
     lastModified,
     changeFrequency: 'daily',
     priority: path === '/' ? 1.0 : 0.8,
+  }));
+
+  const seoEntries: MetadataRoute.Sitemap = seoModelPaths.map((path) => ({
+    url: `${siteUrl}${path}`,
+    lastModified,
+    changeFrequency: 'weekly',
+    priority: 0.7,
   }));
 
   const products = await db.product.findMany({
@@ -50,5 +60,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }));
 
-  return [...staticEntries, ...productEntries];
+  return [...staticEntries, ...seoEntries, ...productEntries];
 }

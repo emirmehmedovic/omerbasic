@@ -7,6 +7,7 @@ import { ProductCard } from "@/components/ProductCard";
 import { resolveProductImage } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
+import { FloatingChatButtons } from "@/components/ChatButtons";
 // Lokalna definicija tipa za kategoriju
 interface Category {
   id: string;
@@ -330,6 +331,10 @@ export default function AdvancedProductSearchClient({ categories }: AdvancedProd
   
   return (
     <div>
+      <div className="mb-6">
+        <h1 className="text-2xl font-bold text-slate-100">Napredna pretraga</h1>
+        <p className="text-sm text-slate-400">Kombinujte više filtera za precizniji rezultat.</p>
+      </div>
       {/* Filter komponenta */}
       <AdvancedProductFilter
         categories={categories}
@@ -411,6 +416,7 @@ export default function AdvancedProductSearchClient({ categories }: AdvancedProd
           </>
         )}
       </div>
+      <FloatingChatButtons />
     </div>
   );
 }

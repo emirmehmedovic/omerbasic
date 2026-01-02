@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { Loader2 } from "lucide-react";
 import VehicleSelector from "@/components/vehicle/VehicleSelector";
 import { Button } from "@/components/ui/button";
+import { FloatingChatButtons } from "@/components/ChatButtons";
 
 type DecodeResponse = {
   vin: string;
@@ -60,7 +61,9 @@ export default function VinClient() {
 
   return (
     <div className="container mx-auto py-8">
-      <h1 className="text-3xl font-bold mb-6">Pretraga po VIN</h1>
+      <div className="mb-6">
+        <h1 className="text-3xl font-bold">Pretraga po VIN</h1>
+      </div>
       {!code || !hasValidVin ? (
         <div className="bg-yellow-50 border border-yellow-200 text-yellow-800 p-4 rounded">
           Unesite puni VIN (17 znakova) u pretrazi gore. Primjer: WAUZZZ8K9AA123456
@@ -95,6 +98,7 @@ export default function VinClient() {
           </div>
         </div>
       ) : null}
+      <FloatingChatButtons />
     </div>
   );
 }

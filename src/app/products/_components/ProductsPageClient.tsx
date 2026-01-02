@@ -9,6 +9,7 @@ import ResultsBreadcrumb from './ResultsBreadcrumb';
 import { VehicleBrand } from '@/generated/prisma/client';
 import { Category } from '@/components/HierarchicalFilters';
 import { PageContainer } from '@/components/PageContainer';
+import { FloatingChatButtons } from '@/components/ChatButtons';
 
 interface ProductsPageClientProps {
   filterData: {
@@ -152,6 +153,10 @@ export default function ProductsPageClient({ filterData }: ProductsPageClientPro
   return (
     <div className="min-h-screen bg-app relative">
       <PageContainer maxWidth="adaptive" padding="md" className="relative z-10">
+        <div className="mb-6">
+          <h1 className="text-2xl font-bold text-slate-900">Pretraga proizvoda</h1>
+          <p className="text-sm text-slate-500">Filtrirajte i pronađite tačno ono što trebate.</p>
+        </div>
         {/* Hero (carousel/bento) uklonjen */}
         {/* Mobilni gumb za otvaranje/zatvaranje filtera */}
         <div className="mb-4 lg:hidden">
@@ -249,6 +254,7 @@ export default function ProductsPageClient({ filterData }: ProductsPageClientPro
           </div>
         </div>
       </PageContainer>
+      <FloatingChatButtons />
     </div>
   );
 }
