@@ -10,6 +10,7 @@ interface ClientHierarchicalFiltersProps {
   displayMode?: 'full' | 'topOnly' | 'sidebarOnly';
   updateUrl?: boolean;
   onFilterChangeExternal?: (filters: Record<string, any>) => void;
+  enableMobileStickyBar?: boolean;
   categories: Category[];
   brands: VehicleBrand[];
 }
@@ -19,6 +20,7 @@ export default function ClientHierarchicalFilters({
   displayMode = 'full',
   updateUrl = false,
   onFilterChangeExternal,
+  enableMobileStickyBar = false,
   categories,
   brands
 }: ClientHierarchicalFiltersProps) {
@@ -110,6 +112,7 @@ export default function ClientHierarchicalFilters({
       onFilterChange={handleFilterChange}
       initialFilters={currentFilters}
       displayMode={displayMode}
+      enableMobileStickyBar={enableMobileStickyBar}
       categories={categories}
       brands={brands}
     />

@@ -50,7 +50,6 @@ export default function ProductsPageClient({ filterData }: ProductsPageClientPro
 
   const [currentFilters, setCurrentFilters] = useState<FilterState>(initialFilters);
   const [vehicleResetKey, setVehicleResetKey] = useState(0);
-  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
 
@@ -58,10 +57,6 @@ export default function ProductsPageClient({ filterData }: ProductsPageClientPro
     // Kada se promijene filteri (kategorija, vozilo, cijena...), resetuj page
     setCurrentFilters(prev => ({ ...prev, ...filters, page: undefined }));
 
-    // Na mobilnim uređajima, nakon odabira filtera automatski zatvori drawer
-    if (typeof window !== 'undefined' && window.innerWidth < 1024) {
-      setMobileFiltersOpen(false);
-    }
   };
 
   // Removed auto-categoryId logic - let users see all products for selected vehicle across all categories
@@ -152,34 +147,20 @@ export default function ProductsPageClient({ filterData }: ProductsPageClientPro
 
   return (
     <div className="min-h-screen bg-app relative">
-      <PageContainer maxWidth="adaptive" padding="md" className="relative z-10">
+      <PageContainer maxWidth="adaptive" padding="md" className="relative z-10 pb-24 lg:pb-0">
         <div className="mb-6">
           <h1 className="text-2xl font-bold text-slate-900">Pretraga proizvoda</h1>
           <p className="text-sm text-slate-500">Filtrirajte i pronađite tačno ono što trebate.</p>
         </div>
         {/* Hero (carousel/bento) uklonjen */}
-        {/* Mobilni gumb za otvaranje/zatvaranje filtera */}
-        <div className="mb-4 lg:hidden">
-          <button
-            type="button"
-            onClick={() => setMobileFiltersOpen((open) => !open)}
-            className="w-full flex items-center justify-between px-4 py-2 rounded-xl bg-white/80 backdrop-blur-sm border border-white/60 shadow-sm text-slate-800 text-sm font-medium"
-          >
-            <span className="flex flex-col items-start text-left">
-              <span>Filteri proizvoda</span>
-              <span className="text-[11px] text-slate-500 font-normal">Dodirnite da odaberete vozilo, kategoriju i cijenu</span>
-            </span>
-            <span className="text-xs text-slate-600">{mobileFiltersOpen ? 'Sakrij' : 'Otvori'}</span>
-          </button>
-        </div>
-
-        <div className={`mb-8 ${mobileFiltersOpen ? 'block' : 'hidden'} lg:block`}>
+        <div className="mb-8">
           <ClientHierarchicalFilters
             key={`top-filters-${vehicleResetKey}`}
             initialFilters={currentFilters}
             displayMode="topOnly"
             updateUrl={true}
             onFilterChangeExternal={handleFilterChange}
+            enableMobileStickyBar={true}
             categories={filterData.categories}
             brands={filterData.brands}
           />
@@ -195,7 +176,7 @@ export default function ProductsPageClient({ filterData }: ProductsPageClientPro
         {/* Sidebar + results - always show */}
         <div className="flex flex-col lg:flex-row gap-6">
           {!noFiltersApplied && (
-            <div className={`w-full lg:w-1/4 ${mobileFiltersOpen ? 'block' : 'hidden'} lg:block`}>
+            <div className="w-full lg:w-1/4">
               <ClientHierarchicalFilters
                 key={`sidebar-filters-${vehicleResetKey}`}
                 initialFilters={currentFilters}

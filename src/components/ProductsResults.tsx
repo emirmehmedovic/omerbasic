@@ -449,50 +449,54 @@ export default function ProductsResults({ filters, onClearAll, onPageChange, onQ
               {/* Left: count + search */}
               <div className="min-w-[280px]">
                 <div className="">
-                  <div className="relative flex items-center gap-2 bg-white/80 backdrop-blur-sm border border-white/60 rounded-xl px-2 py-2 shadow-lg">
-                  <input
-                    type="text"
-                    value={localQuery}
-                    onChange={(e) => setLocalQuery(e.target.value)}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter' && onQueryChange) {
-                        const q = localQuery.trim();
-                        onQueryChange(q);
-                      }
-                    }}
-                    placeholder="Pretraži po imenu, OEM broju i kataloškom broju…"
-                    className="h-9 w-80 sm:w-96 max-w-[80vw] rounded-xl border border-white/40 bg-white/90 backdrop-blur-sm pl-8 pr-3 text-sm text-slate-900 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#FF6B35] focus:border-[#FF6B35] transition-all duration-300"
-                  />
-                  <svg className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#FF6B35]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15z" />
-                  </svg>
-                  {localQuery && (
-                    <button
-                      type="button"
-                      aria-label="Očisti pretragu"
-                      className="h-9 px-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 hover:text-slate-900 text-sm font-bold shadow-md transform hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-1.5"
-                      onClick={() => {
-                      setLocalQuery("");
-                      if (onQueryChange) onQueryChange("");
-                    }}
-                    >
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  <div className="flex flex-col gap-2 sm:flex-row sm:items-center bg-white/80 backdrop-blur-sm border border-white/60 rounded-xl px-2 py-2 shadow-lg">
+                    <div className="relative flex-1 min-w-0">
+                      <input
+                        type="text"
+                        value={localQuery}
+                        onChange={(e) => setLocalQuery(e.target.value)}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' && onQueryChange) {
+                            const q = localQuery.trim();
+                            onQueryChange(q);
+                          }
+                        }}
+                        placeholder="Pretraži po imenu, OEM broju i kataloškom broju…"
+                        className="h-9 w-full rounded-xl border border-white/40 bg-white/90 backdrop-blur-sm pl-8 pr-3 text-sm text-slate-900 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#FF6B35] focus:border-[#FF6B35] transition-all duration-300"
+                      />
+                      <svg className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#FF6B35]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15z" />
                       </svg>
-                      Očisti
-                    </button>
-                  )}
-                  <button
-                    type="button"
-                    className="h-9 px-3 rounded-xl bg-gradient-to-r from-primary via-primary-dark to-primary hover:shadow-2xl text-white text-sm font-bold shadow-xl transform hover:-translate-y-0.5 transition-all duration-300"
-                    onClick={() => {
-                      if (onQueryChange) {
-                        onQueryChange(localQuery.trim());
-                      }
-                    }}
-                  >
-                    Pretraži
-                  </button>
+                    </div>
+                    <div className="flex w-full sm:w-auto gap-2">
+                      {localQuery && (
+                        <button
+                          type="button"
+                          aria-label="Očisti pretragu"
+                          className="h-9 w-full sm:w-auto px-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 hover:text-slate-900 text-sm font-bold shadow-md transform hover:-translate-y-0.5 transition-all duration-300 flex items-center justify-center gap-1.5"
+                          onClick={() => {
+                            setLocalQuery("");
+                            if (onQueryChange) onQueryChange("");
+                          }}
+                        >
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                          </svg>
+                          Očisti
+                        </button>
+                      )}
+                      <button
+                        type="button"
+                        className="h-9 w-full sm:w-auto px-3 rounded-xl bg-gradient-to-r from-primary via-primary-dark to-primary hover:shadow-2xl text-white text-sm font-bold shadow-xl transform hover:-translate-y-0.5 transition-all duration-300"
+                        onClick={() => {
+                          if (onQueryChange) {
+                            onQueryChange(localQuery.trim());
+                          }
+                        }}
+                      >
+                        Pretraži
+                      </button>
+                    </div>
                   </div>
                   <div className="mt-2">
                     <span className="inline-flex items-center gap-2 px-2.5 py-1 rounded-lg bg-white/70 backdrop-blur-sm border border-white/60 text-[12px] text-slate-700 shadow-sm">
@@ -679,50 +683,54 @@ export default function ProductsResults({ filters, onClearAll, onPageChange, onQ
               {/* Left: count + search */}
               <div className="min-w-[280px]">
                 <div className="">
-                  <div className="relative flex items-center gap-2 bg-white/80 backdrop-blur-sm border border-white/60 rounded-xl px-2 py-2 shadow-lg">
-                  <input
-                    type="text"
-                    value={localQuery}
-                    onChange={(e) => setLocalQuery(e.target.value)}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter' && onQueryChange) {
-                        const q = localQuery.trim();
-                        onQueryChange(q);
-                      }
-                    }}
-                    placeholder="Pretraži po imenu, OEM broju i kataloškom broju…"
-                    className="h-9 w-80 sm:w-96 max-w-[80vw] rounded-xl border border-white/40 bg-white/90 backdrop-blur-sm pl-8 pr-3 text-sm text-slate-900 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#FF6B35] focus:border-[#FF6B35] transition-all duration-300"
-                  />
-                  <svg className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#FF6B35]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15z" />
-                  </svg>
-                  {localQuery && (
-                    <button
-                      type="button"
-                      aria-label="Očisti pretragu"
-                      className="h-9 px-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 hover:text-slate-900 text-sm font-bold shadow-md transform hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-1.5"
-                      onClick={() => {
-                      setLocalQuery("");
-                      if (onQueryChange) onQueryChange("");
-                    }}
-                    >
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  <div className="flex flex-col gap-2 sm:flex-row sm:items-center bg-white/80 backdrop-blur-sm border border-white/60 rounded-xl px-2 py-2 shadow-lg">
+                    <div className="relative flex-1 min-w-0">
+                      <input
+                        type="text"
+                        value={localQuery}
+                        onChange={(e) => setLocalQuery(e.target.value)}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' && onQueryChange) {
+                            const q = localQuery.trim();
+                            onQueryChange(q);
+                          }
+                        }}
+                        placeholder="Pretraži po imenu, OEM broju i kataloškom broju…"
+                        className="h-9 w-full rounded-xl border border-white/40 bg-white/90 backdrop-blur-sm pl-8 pr-3 text-sm text-slate-900 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-[#FF6B35] focus:border-[#FF6B35] transition-all duration-300"
+                      />
+                      <svg className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#FF6B35]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-4.35-4.35M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15z" />
                       </svg>
-                      Očisti
-                    </button>
-                  )}
-                  <button
-                    type="button"
-                    className="h-9 px-3 rounded-xl bg-gradient-to-r from-primary via-primary-dark to-primary hover:shadow-2xl text-white text-sm font-bold shadow-xl transform hover:-translate-y-0.5 transition-all duration-300"
-                    onClick={() => {
-                      if (onQueryChange) {
-                        onQueryChange(localQuery.trim());
-                      }
-                    }}
-                  >
-                    Pretraži
-                  </button>
+                    </div>
+                    <div className="flex w-full sm:w-auto gap-2">
+                      {localQuery && (
+                        <button
+                          type="button"
+                          aria-label="Očisti pretragu"
+                          className="h-9 w-full sm:w-auto px-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 hover:text-slate-900 text-sm font-bold shadow-md transform hover:-translate-y-0.5 transition-all duration-300 flex items-center justify-center gap-1.5"
+                          onClick={() => {
+                            setLocalQuery("");
+                            if (onQueryChange) onQueryChange("");
+                          }}
+                        >
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                          </svg>
+                          Očisti
+                        </button>
+                      )}
+                      <button
+                        type="button"
+                        className="h-9 w-full sm:w-auto px-3 rounded-xl bg-gradient-to-r from-primary via-primary-dark to-primary hover:shadow-2xl text-white text-sm font-bold shadow-xl transform hover:-translate-y-0.5 transition-all duration-300"
+                        onClick={() => {
+                          if (onQueryChange) {
+                            onQueryChange(localQuery.trim());
+                          }
+                        }}
+                      >
+                        Pretraži
+                      </button>
+                    </div>
                   </div>
                   <div className="mt-2">
                     <span className="inline-flex items-center gap-2 px-2.5 py-1 rounded-lg bg-white/70 backdrop-blur-sm border border-white/60 text-[12px] text-slate-700 shadow-sm">

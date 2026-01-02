@@ -77,11 +77,13 @@ const SubcategoryList = ({
   selectedCategoryId,
   onCategorySelect,
   expandIds,
+  className,
 }: {
   categories: Category[];
   selectedCategoryId: string;
   onCategorySelect: (id: string) => void;
   expandIds?: string[];
+  className?: string;
 }) => {
   const [expanded, setExpanded] = useState<Record<string, boolean>>({});
 
@@ -163,7 +165,7 @@ const SubcategoryList = ({
 
   return (
     <div
-      className="subcategory-list max-h-[95vh] lg:max-h-[120vh] overflow-y-auto pr-2"
+      className={`subcategory-list max-h-[95vh] lg:max-h-[120vh] overflow-y-auto pr-2 ${className ?? ''}`}
       data-test="hf-subcat-v2"
     >
       {renderNodes(categories, 0)}
@@ -177,6 +179,7 @@ interface HierarchicalFiltersProps {
   onFilterChange: (filters: any) => void;
   initialFilters?: any;
   displayMode?: 'full' | 'topOnly' | 'sidebarOnly';
+  enableMobileStickyBar?: boolean;
   categories: Category[];
   brands: VehicleBrand[];
 }
@@ -185,6 +188,7 @@ export default function HierarchicalFilters({
   onFilterChange, 
   initialFilters = {},
   displayMode = 'full',
+  enableMobileStickyBar = false,
   categories,
   brands
 }: HierarchicalFiltersProps) {
@@ -210,6 +214,8 @@ export default function HierarchicalFilters({
   });
 
   const [vehicleSelectorResetKey, setVehicleSelectorResetKey] = useState(0);
+  const [mobileSubcatsOpen, setMobileSubcatsOpen] = useState(false);
+  const [mobileVehicleOpen, setMobileVehicleOpen] = useState(false);
 
   // Sinkroniziraj lokalne filtere kada se promijene pojedinačne vrijednosti initialFilters,
   // ali nemoj prebrisati korisnički izbor s praznim vrijednostima.
@@ -577,20 +583,22 @@ export default function HierarchicalFilters({
           
           {/* Clean odabir vozila (prikaži samo za Teretna/Putnička) */}
           {derivedVehicleType !== 'ALL' && (
-            <VehicleSelector 
-              key={`vehsel-${vehicleSelectorResetKey}-${filters.categoryId}`}
-              onVehicleSelect={(data) => {
-                if (data.generationId) {
-                  // Ispravak: Poziv s ispravnim argumentima
-                  updateFilter('generationId', data.generationId, 'Vozilo', `Odabrano`);
-                  // Ako postoji specificirani motor, propagiraj i engineId; inače očisti engineId
-                  updateFilter('engineId', data.engineId || '', 'Motor');
-                }
-              }}
-              compact={true}
-              appearance="light"
-              vehicleType={derivedVehicleType}
-            />
+            <div className="hidden lg:block">
+              <VehicleSelector 
+                key={`vehsel-${vehicleSelectorResetKey}-${filters.categoryId}`}
+                onVehicleSelect={(data) => {
+                  if (data.generationId) {
+                    // Ispravak: Poziv s ispravnim argumentima
+                    updateFilter('generationId', data.generationId, 'Vozilo', `Odabrano`);
+                    // Ako postoji specificirani motor, propagiraj i engineId; inače očisti engineId
+                    updateFilter('engineId', data.engineId || '', 'Motor');
+                  }
+                }}
+                compact={true}
+                appearance="light"
+                vehicleType={derivedVehicleType}
+              />
+            </div>
           )}
         </div>
       )}
@@ -600,22 +608,84 @@ export default function HierarchicalFilters({
         <div className="sidebar-filters space-y-6">
           {/* Podkategorije ako postoje */}
           {selectedMainCategoryFull.children && selectedMainCategoryFull.children.length > 0 && (
-            <div className="relative overflow-hidden p-6 rounded-3xl bg-gradient-to-br from-slate-50 via-slate-100 to-slate-200 shadow-xl" data-test="hf-panel-v2">
-              <div className="pointer-events-none absolute inset-0 z-0 opacity-[0.04]"
-                   style={{
-                     backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(27,58,95,0.2) 1px, transparent 0), radial-gradient(circle at 50% 50%, rgba(255,107,53,0.08) 0%, transparent 70%)',
-                     backgroundSize: '32px 32px, 100% 100%'
-                   }} />
-              <div className="relative z-10">
-                <div className="sticky top-0 z-10 -mx-6 px-6 pt-3 pb-4 bg-gradient-to-br from-slate-50 via-slate-100 to-slate-200 backdrop-blur-sm border-b border-white/40 rounded-t-3xl">
-                  <div className="flex items-center mb-3">
-                    <div className="p-2.5 rounded-2xl mr-3 bg-gradient-to-br from-[#E85A28] to-[#FF6B35] shadow-xl">
-                      <Layers className="h-5 w-5 text-white" />
+            <>
+              <div className="relative overflow-hidden p-6 rounded-3xl bg-gradient-to-br from-slate-50 via-slate-100 to-slate-200 shadow-xl hidden lg:block" data-test="hf-panel-v2">
+                <div className="pointer-events-none absolute inset-0 z-0 opacity-[0.04]"
+                     style={{
+                       backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(27,58,95,0.2) 1px, transparent 0), radial-gradient(circle at 50% 50%, rgba(255,107,53,0.08) 0%, transparent 70%)',
+                       backgroundSize: '32px 32px, 100% 100%'
+                     }} />
+                <div className="relative z-10">
+                  <div className="sticky top-0 z-10 -mx-6 px-6 pt-3 pb-4 bg-gradient-to-br from-slate-50 via-slate-100 to-slate-200 backdrop-blur-sm border-b border-white/40 rounded-t-3xl">
+                    <div className="flex items-center mb-3">
+                      <div className="p-2.5 rounded-2xl mr-3 bg-gradient-to-br from-[#E85A28] to-[#FF6B35] shadow-xl">
+                        <Layers className="h-5 w-5 text-white" />
+                      </div>
+                      <h3 className="font-bold text-primary text-xl">Podkategorije</h3>
                     </div>
-                    <h3 className="font-bold text-primary text-xl">Podkategorije</h3>
+                    {/* Search input */}
+                    <div className="relative">
+                      <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#FF6B35]" />
+                      <input
+                        type="text"
+                        value={catSearch}
+                        onChange={(e) => setCatSearch(e.target.value)}
+                        placeholder="Pretraži kategorije…"
+                        className="w-full pl-9 pr-8 py-2.5 rounded-xl bg-white/90 backdrop-blur-sm text-slate-900 placeholder:text-slate-500 border border-white/60 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#FF6B35] focus:border-[#FF6B35] transition-all duration-300"
+                      />
+                      {catSearch && (
+                        <button
+                          type="button"
+                          onClick={() => setCatSearch('')}
+                          aria-label="Očisti pretragu"
+                          className="absolute right-2 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-800 transition-colors"
+                        >
+                          <X className="h-4 w-4" />
+                        </button>
+                      )}
+                    </div>
                   </div>
-                  {/* Search input */}
-                  <div className="relative">
+                  <SubcategoryList 
+                    key={selectedMainCategoryFull.id}
+                    categories={catSearch.trim() ? filteredSubcategories : selectedMainCategoryFull.children}
+                    selectedCategoryId={filters.categoryId}
+                    onCategorySelect={handleSubcategorySelect}
+                    expandIds={catSearch.trim() ? Array.from(expandIdsForSearch) : selectedPath?.map(c => c.id)}
+                  />
+                </div>
+              </div>
+            </>
+          )}
+        </div>
+      )}
+
+      {enableMobileStickyBar && (
+        <>
+          {mobileSubcatsOpen && selectedMainCategoryFull && (
+            <div className="fixed inset-0 z-50 lg:hidden" role="dialog" aria-modal="true">
+              <div
+                className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm"
+                onClick={() => setMobileSubcatsOpen(false)}
+              />
+              <div className="absolute bottom-0 left-0 right-0 max-h-[85vh] rounded-t-3xl bg-gradient-to-br from-slate-50 via-slate-100 to-slate-200 shadow-2xl border-t border-white/60">
+                <div className="px-5 pt-4 pb-3 border-b border-white/50">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <div className="p-2 rounded-xl bg-gradient-to-br from-[#E85A28] to-[#FF6B35] shadow-md">
+                        <Layers className="h-4 w-4 text-white" />
+                      </div>
+                      <h3 className="font-bold text-primary text-lg">Podkategorije</h3>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => setMobileSubcatsOpen(false)}
+                      className="p-2 rounded-xl bg-white/80 border border-white/60 shadow-sm text-slate-600 hover:text-slate-900"
+                      aria-label="Zatvori"
+                    >
+                      <X className="h-4 w-4" />
+                    </button>
+                  </div>
+                  <div className="relative mt-3">
                     <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[#FF6B35]" />
                     <input
                       type="text"
@@ -636,17 +706,92 @@ export default function HierarchicalFilters({
                     )}
                   </div>
                 </div>
-                <SubcategoryList 
-                  key={selectedMainCategoryFull.id}
-                  categories={catSearch.trim() ? filteredSubcategories : selectedMainCategoryFull.children}
-                  selectedCategoryId={filters.categoryId}
-                  onCategorySelect={handleSubcategorySelect}
-                  expandIds={catSearch.trim() ? Array.from(expandIdsForSearch) : selectedPath?.map(c => c.id)}
-                />
+                <div className="px-5 pb-5 pt-4">
+                  <SubcategoryList 
+                    key={`mobile-${selectedMainCategoryFull.id}`}
+                    categories={catSearch.trim() ? filteredSubcategories : selectedMainCategoryFull.children}
+                    selectedCategoryId={filters.categoryId}
+                    onCategorySelect={(id) => {
+                      handleSubcategorySelect(id);
+                      setMobileSubcatsOpen(false);
+                    }}
+                    expandIds={catSearch.trim() ? Array.from(expandIdsForSearch) : selectedPath?.map(c => c.id)}
+                    className="max-h-[60vh]"
+                  />
+                </div>
               </div>
             </div>
           )}
-        </div>
+
+          {mobileVehicleOpen && derivedVehicleType !== 'ALL' && (
+            <div className="fixed inset-0 z-50 lg:hidden" role="dialog" aria-modal="true">
+              <div
+                className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm"
+                onClick={() => setMobileVehicleOpen(false)}
+              />
+              <div className="absolute bottom-0 left-0 right-0 max-h-[85vh] rounded-t-3xl bg-gradient-to-br from-slate-50 via-slate-100 to-slate-200 shadow-2xl border-t border-white/60">
+                <div className="px-5 pt-4 pb-3 border-b border-white/50">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <div className="p-2 rounded-xl bg-gradient-to-br from-[#E85A28] to-[#FF6B35] shadow-md">
+                        <Car className="h-4 w-4 text-white" />
+                      </div>
+                      <h3 className="font-bold text-primary text-lg">Odabir vozila</h3>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => setMobileVehicleOpen(false)}
+                      className="p-2 rounded-xl bg-white/80 border border-white/60 shadow-sm text-slate-600 hover:text-slate-900"
+                      aria-label="Zatvori"
+                    >
+                      <X className="h-4 w-4" />
+                    </button>
+                  </div>
+                </div>
+                <div className="px-5 pb-5 pt-4">
+                  <VehicleSelector 
+                    key={`vehsel-mobile-${vehicleSelectorResetKey}-${filters.categoryId}`}
+                    onVehicleSelect={(data) => {
+                      if (data.generationId) {
+                        updateFilter('generationId', data.generationId, 'Vozilo', `Odabrano`);
+                        updateFilter('engineId', data.engineId || '', 'Motor');
+                        setMobileVehicleOpen(false);
+                      }
+                    }}
+                    compact={true}
+                    appearance="light"
+                    vehicleType={derivedVehicleType}
+                  />
+                </div>
+              </div>
+            </div>
+          )}
+
+          <div className="fixed inset-x-0 bottom-0 z-40 lg:hidden">
+            <div className="mx-4 mb-4 rounded-2xl bg-white/90 backdrop-blur-md border border-white/60 shadow-2xl p-2">
+              <div className="grid grid-cols-2 gap-2">
+                <button
+                  type="button"
+                  onClick={() => setMobileSubcatsOpen(true)}
+                  disabled={!selectedMainCategoryFull || !selectedMainCategoryFull.children?.length}
+                  className="flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl text-sm font-semibold bg-gradient-to-r from-[#0c1c3a] to-[#1b3a5f] text-white shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  <Layers className="h-4 w-4" />
+                  Filteri
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setMobileVehicleOpen(true)}
+                  disabled={derivedVehicleType === 'ALL'}
+                  className="flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl text-sm font-semibold bg-gradient-to-r from-[#E85A28] to-[#FF6B35] text-white shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  <Car className="h-4 w-4" />
+                  Vozilo
+                </button>
+              </div>
+            </div>
+          </div>
+        </>
       )}
     </div>
   );
