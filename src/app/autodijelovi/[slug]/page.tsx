@@ -43,7 +43,7 @@ async function resolveCategoryId(path: string[] | undefined): Promise<string | n
   if (!path || path.length === 0) return null;
   let parentId: string | null = null;
   for (const name of path) {
-    const category = await db.category.findFirst({
+    const category: { id: string } | null = await db.category.findFirst({
       where: {
         name,
         parentId,
