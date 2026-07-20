@@ -143,8 +143,10 @@ export function ContactForm() {
               </div>
               <div>
                 <h3 className="font-medium text-slate-900">Telefon</h3>
-                <p className="text-slate-600">032/666-536</p>
-                <p className="text-slate-600">061/847-203</p>
+                <p className="text-slate-600 font-semibold">032/666-658</p>
+                <p className="text-slate-500 text-sm">Putnički program: 061/894-695</p>
+                <p className="text-slate-500 text-sm">Teretni i ADR: 061/962-359</p>
+                <p className="text-slate-500 text-sm">Autopraonice i kozmetika: 061/215-713</p>
               </div>
             </div>
 

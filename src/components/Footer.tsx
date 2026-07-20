@@ -158,10 +158,20 @@ const Footer = () => {
                   <Phone className="w-4 h-4 text-white" />
                 </div>
                 <div>
-                  <p className="text-slate-700 text-sm font-medium">
-                    <a href="tel:+38732666536" className="hover:text-sunfire-600 transition-colors">032/666-536</a>
-                    {' '}•{' '}
-                    <a href="tel:+38761847203" className="hover:text-sunfire-600 transition-colors">061/847-203</a>
+                  <p className="text-slate-700 text-sm font-bold mb-1">
+                    <a href="tel:+38732666658" className="hover:text-sunfire-600 transition-colors">032/666-658</a>
+                  </p>
+                  <p className="text-slate-600 text-xs">
+                    <span className="font-medium">Putnički program:</span>{' '}
+                    <a href="tel:+38761894695" className="hover:text-sunfire-600 transition-colors">061/894-695</a>
+                  </p>
+                  <p className="text-slate-600 text-xs">
+                    <span className="font-medium">Teretni i ADR:</span>{' '}
+                    <a href="tel:+38761962359" className="hover:text-sunfire-600 transition-colors">061/962-359</a>
+                  </p>
+                  <p className="text-slate-600 text-xs">
+                    <span className="font-medium">Autopraonice i kozmetika:</span>{' '}
+                    <a href="tel:+38761215713" className="hover:text-sunfire-600 transition-colors">061/215-713</a>
                   </p>
                 </div>
               </div>
